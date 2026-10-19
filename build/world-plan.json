@@ -1,0 +1,3094 @@
+{
+  "assets": [
+    {
+      "asset_id": "civic.hall.frontage",
+      "class": "facade",
+      "dependencies": [],
+      "fallback": "geometric_facade",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "civic.hall.interior",
+      "class": "interior",
+      "dependencies": [],
+      "fallback": "geometric_interior",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "civic.justice.frontage",
+      "class": "facade",
+      "dependencies": [],
+      "fallback": "geometric_facade",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "civic.justice.interior",
+      "class": "interior",
+      "dependencies": [],
+      "fallback": "geometric_interior",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "civic.tower.frontage",
+      "class": "facade",
+      "dependencies": [],
+      "fallback": "geometric_facade",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "civic.tower.interior",
+      "class": "interior",
+      "dependencies": [],
+      "fallback": "geometric_interior",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "culture.museum.frontage",
+      "class": "facade",
+      "dependencies": [],
+      "fallback": "geometric_facade",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "culture.museum.interior",
+      "class": "interior",
+      "dependencies": [],
+      "fallback": "geometric_interior",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "education.campus.frontage",
+      "class": "facade",
+      "dependencies": [],
+      "fallback": "geometric_facade",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "education.campus.interior",
+      "class": "interior",
+      "dependencies": [],
+      "fallback": "geometric_interior",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "education.library.frontage",
+      "class": "facade",
+      "dependencies": [],
+      "fallback": "geometric_facade",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "education.library.interior",
+      "class": "interior",
+      "dependencies": [],
+      "fallback": "geometric_interior",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "innovation.lab.frontage",
+      "class": "facade",
+      "dependencies": [],
+      "fallback": "geometric_facade",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "innovation.lab.interior",
+      "class": "interior",
+      "dependencies": [],
+      "fallback": "geometric_interior",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.bench",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_bench",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.board",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_board",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.bookshelf",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_bookshelf",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.desk",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_desk",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.display",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_display",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.kiosk",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_kiosk",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.lamp",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_lamp",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.panel",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_panel",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.planter",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_planter",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.table",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_table",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "prop.terminal",
+      "class": "prop",
+      "dependencies": [],
+      "fallback": "primitive_terminal",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "services.admin.frontage",
+      "class": "facade",
+      "dependencies": [],
+      "fallback": "geometric_facade",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "services.admin.interior",
+      "class": "interior",
+      "dependencies": [],
+      "fallback": "geometric_interior",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "source": "native_procedural"
+    },
+    {
+      "asset_id": "v23.audio.archives",
+      "class": "audio",
+      "dependencies": [],
+      "fallback": "silence",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.audio.botanique",
+      "class": "audio",
+      "dependencies": [],
+      "fallback": "silence",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.audio.harmonie_civique",
+      "class": "audio",
+      "dependencies": [],
+      "fallback": "silence",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.audio.laboratoire",
+      "class": "audio",
+      "dependencies": [],
+      "fallback": "silence",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.audio.port",
+      "class": "audio",
+      "dependencies": [],
+      "fallback": "silence",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.material.champagne_mineral",
+      "class": "material",
+      "dependencies": [],
+      "fallback": "native_roblox_material",
+      "generator": "tools/generate_v23_materials.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.material.opale_massive",
+      "class": "material",
+      "dependencies": [],
+      "fallback": "native_roblox_material",
+      "generator": "tools/generate_v23_materials.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.material.pierre_promenoir",
+      "class": "material",
+      "dependencies": [],
+      "fallback": "native_roblox_material",
+      "generator": "tools/generate_v23_materials.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.material.sarcelle_pierre",
+      "class": "material",
+      "dependencies": [],
+      "fallback": "native_roblox_material",
+      "generator": "tools/generate_v23_materials.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.mesh.crystal_rosette",
+      "class": "mesh",
+      "dependencies": [],
+      "fallback": "native_faceted_part",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.mesh.mineral_column",
+      "class": "mesh",
+      "dependencies": [],
+      "fallback": "native_faceted_part",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.mesh.opal_arch",
+      "class": "mesh",
+      "dependencies": [],
+      "fallback": "native_faceted_part",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.mesh.opal_chandelier",
+      "class": "mesh",
+      "dependencies": [],
+      "fallback": "native_faceted_part",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    },
+    {
+      "asset_id": "v23.mesh.opal_spire",
+      "class": "mesh",
+      "dependencies": [],
+      "fallback": "native_faceted_part",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "source": "local_source"
+    }
+  ],
+  "canonical_sha256": "0f218410500752602e40e5a000c7f52ca67112b7881070ebda9c64edfd9e6385",
+  "city_id": "kin_city",
+  "compiler": "offline-plan-1",
+  "doors": [
+    {
+      "building_id": "konnected.university",
+      "destination_anchor_id": "city.konnected.university.return_spawn",
+      "destination_place_key": "city",
+      "door_id": "campus.exit",
+      "is_operational_required": true,
+      "return_door_id": "city.konnected.university.entry",
+      "source_anchor_id": "campus.exit.door",
+      "source_place_key": "campus",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "central.city_hall",
+      "destination_anchor_id": "city_hall.lobby.spawn",
+      "destination_place_key": "city_hall",
+      "door_id": "city.central.city_hall.entry",
+      "is_operational_required": true,
+      "return_door_id": "city_hall.exit",
+      "source_anchor_id": "city.central.city_hall.front_door",
+      "source_place_key": "city",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "central.ekoh_tower",
+      "destination_anchor_id": "ekoh_tower.lobby.spawn",
+      "destination_place_key": "ekoh_tower",
+      "door_id": "city.central.ekoh_tower.entry",
+      "is_operational_required": true,
+      "return_door_id": "ekoh_tower.exit",
+      "source_anchor_id": "city.central.ekoh_tower.front_door",
+      "source_place_key": "city",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "ethikos.justice_palace",
+      "destination_anchor_id": "justice_palace.lobby.spawn",
+      "destination_place_key": "justice_palace",
+      "door_id": "city.ethikos.justice_palace.entry",
+      "is_operational_required": true,
+      "return_door_id": "justice_palace.exit",
+      "source_anchor_id": "city.ethikos.justice_palace.front_door",
+      "source_place_key": "city",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "keenkonnect.innovation_lab",
+      "destination_anchor_id": "innovation_lab.lobby.spawn",
+      "destination_place_key": "innovation_lab",
+      "door_id": "city.keenkonnect.innovation_lab.entry",
+      "is_operational_required": true,
+      "return_door_id": "innovation_lab.exit",
+      "source_anchor_id": "city.keenkonnect.innovation_lab.front_door",
+      "source_place_key": "city",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "konnected.library",
+      "destination_anchor_id": "library.lobby.spawn",
+      "destination_place_key": "library",
+      "door_id": "city.konnected.library.entry",
+      "is_operational_required": true,
+      "return_door_id": "library.exit",
+      "source_anchor_id": "city.konnected.library.front_door",
+      "source_place_key": "city",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "konnected.university",
+      "destination_anchor_id": "campus.lobby.spawn",
+      "destination_place_key": "campus",
+      "door_id": "city.konnected.university.entry",
+      "is_operational_required": true,
+      "return_door_id": "campus.exit",
+      "source_anchor_id": "city.konnected.university.front_door",
+      "source_place_key": "city",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "kreative.museum",
+      "destination_anchor_id": "museum.lobby.spawn",
+      "destination_place_key": "museum",
+      "door_id": "city.kreative.museum.entry",
+      "is_operational_required": true,
+      "return_door_id": "museum.exit",
+      "source_anchor_id": "city.kreative.museum.front_door",
+      "source_place_key": "city",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "orgo.admin_center",
+      "destination_anchor_id": "orgo_center.lobby.spawn",
+      "destination_place_key": "orgo_center",
+      "door_id": "city.orgo.admin_center.entry",
+      "is_operational_required": true,
+      "return_door_id": "orgo_center.exit",
+      "source_anchor_id": "city.orgo.admin_center.front_door",
+      "source_place_key": "city",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "central.city_hall",
+      "destination_anchor_id": "city.central.city_hall.return_spawn",
+      "destination_place_key": "city",
+      "door_id": "city_hall.exit",
+      "is_operational_required": true,
+      "return_door_id": "city.central.city_hall.entry",
+      "source_anchor_id": "city_hall.exit.door",
+      "source_place_key": "city_hall",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "central.ekoh_tower",
+      "destination_anchor_id": "city.central.ekoh_tower.return_spawn",
+      "destination_place_key": "city",
+      "door_id": "ekoh_tower.exit",
+      "is_operational_required": true,
+      "return_door_id": "city.central.ekoh_tower.entry",
+      "source_anchor_id": "ekoh_tower.exit.door",
+      "source_place_key": "ekoh_tower",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "keenkonnect.innovation_lab",
+      "destination_anchor_id": "city.keenkonnect.innovation_lab.return_spawn",
+      "destination_place_key": "city",
+      "door_id": "innovation_lab.exit",
+      "is_operational_required": true,
+      "return_door_id": "city.keenkonnect.innovation_lab.entry",
+      "source_anchor_id": "innovation_lab.exit.door",
+      "source_place_key": "innovation_lab",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "ethikos.justice_palace",
+      "destination_anchor_id": "city.ethikos.justice_palace.return_spawn",
+      "destination_place_key": "city",
+      "door_id": "justice_palace.exit",
+      "is_operational_required": true,
+      "return_door_id": "city.ethikos.justice_palace.entry",
+      "source_anchor_id": "justice_palace.exit.door",
+      "source_place_key": "justice_palace",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "konnected.library",
+      "destination_anchor_id": "city.konnected.library.return_spawn",
+      "destination_place_key": "city",
+      "door_id": "library.exit",
+      "is_operational_required": true,
+      "return_door_id": "city.konnected.library.entry",
+      "source_anchor_id": "library.exit.door",
+      "source_place_key": "library",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "kreative.museum",
+      "destination_anchor_id": "city.kreative.museum.return_spawn",
+      "destination_place_key": "city",
+      "door_id": "museum.exit",
+      "is_operational_required": true,
+      "return_door_id": "city.kreative.museum.entry",
+      "source_anchor_id": "museum.exit.door",
+      "source_place_key": "museum",
+      "transition_kind": "teleport"
+    },
+    {
+      "building_id": "orgo.admin_center",
+      "destination_anchor_id": "city.orgo.admin_center.return_spawn",
+      "destination_place_key": "city",
+      "door_id": "orgo_center.exit",
+      "is_operational_required": true,
+      "return_door_id": "city.orgo.admin_center.entry",
+      "source_anchor_id": "orgo_center.exit.door",
+      "source_place_key": "orgo_center",
+      "transition_kind": "teleport"
+    }
+  ],
+  "interactions": [
+    {
+      "anchor_id": "hall.kiosk_01",
+      "building_id": "central.city_hall",
+      "capability_id": "smartvote.ballots.browse",
+      "display_message_key": "ui.coming_soon",
+      "display_title_key": "title.ballots",
+      "interaction_id": "central.city_hall.vote_01",
+      "place_key": "city_hall",
+      "prompt_label_key": "prompt.consult",
+      "provider_mode": "stub"
+    },
+    {
+      "anchor_id": "tower.panel_01",
+      "building_id": "central.ekoh_tower",
+      "capability_id": "ekoh.profile.view",
+      "display_message_key": "ui.coming_soon",
+      "display_title_key": "title.ekoh",
+      "interaction_id": "central.ekoh_tower.display_01",
+      "place_key": "ekoh_tower",
+      "prompt_label_key": "prompt.consult",
+      "provider_mode": "stub"
+    },
+    {
+      "anchor_id": "hall.terminal_01",
+      "building_id": "ethikos.justice_palace",
+      "capability_id": "ethikos.consultation.list",
+      "display_message_key": "ui.coming_soon",
+      "display_title_key": "title.consultations",
+      "interaction_id": "ethikos.justice_palace.terminal_01",
+      "place_key": "justice_palace",
+      "prompt_label_key": "prompt.consult",
+      "provider_mode": "stub"
+    },
+    {
+      "anchor_id": "hall.desk_01",
+      "building_id": "keenkonnect.innovation_lab",
+      "capability_id": "keenkonnect.projects.browse",
+      "display_message_key": "ui.coming_soon",
+      "display_title_key": "title.projects",
+      "interaction_id": "keenkonnect.innovation_lab.desk_01",
+      "place_key": "innovation_lab",
+      "prompt_label_key": "prompt.consult",
+      "provider_mode": "stub"
+    },
+    {
+      "anchor_id": "hall.bookshelf_01",
+      "building_id": "konnected.library",
+      "capability_id": "konnected.catalog.browse",
+      "display_message_key": "ui.coming_soon",
+      "display_title_key": "title.catalog",
+      "interaction_id": "konnected.library.bookshelf_01",
+      "place_key": "library",
+      "prompt_label_key": "prompt.consult",
+      "provider_mode": "stub"
+    },
+    {
+      "anchor_id": "hall.board_01",
+      "building_id": "konnected.university",
+      "capability_id": "uckk.courses.browse",
+      "display_message_key": "ui.coming_soon",
+      "display_title_key": "title.courses",
+      "interaction_id": "konnected.university.board_01",
+      "place_key": "campus",
+      "prompt_label_key": "prompt.consult",
+      "provider_mode": "stub"
+    },
+    {
+      "anchor_id": "hall.panel_01",
+      "building_id": "kreative.museum",
+      "capability_id": "kreative.exhibits.read",
+      "display_message_key": "ui.coming_soon",
+      "display_title_key": "title.exhibits",
+      "interaction_id": "kreative.museum.panel_01",
+      "place_key": "museum",
+      "prompt_label_key": "prompt.consult",
+      "provider_mode": "stub"
+    },
+    {
+      "anchor_id": "hall.terminal_01",
+      "building_id": "orgo.admin_center",
+      "capability_id": "orgo.tasks.browse",
+      "display_message_key": "ui.coming_soon",
+      "display_title_key": "title.tasks",
+      "interaction_id": "orgo.admin_center.terminal_01",
+      "place_key": "orgo_center",
+      "prompt_label_key": "prompt.consult",
+      "provider_mode": "stub"
+    }
+  ],
+  "mode": "WORLD_STUB",
+  "pedestrian_paths": [
+    {
+      "arrival": "city.central.city_hall.return_spawn",
+      "building_id": "central.city_hall",
+      "path_xyz_studs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -60
+        ]
+      ],
+      "start": "city.central.spawn",
+      "width_studs": 6
+    },
+    {
+      "arrival": "city.central.ekoh_tower.return_spawn",
+      "building_id": "central.ekoh_tower",
+      "path_xyz_studs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          60,
+          0,
+          0
+        ]
+      ],
+      "start": "city.central.spawn",
+      "width_studs": 6
+    },
+    {
+      "arrival": "city.ethikos.justice_palace.return_spawn",
+      "building_id": "ethikos.justice_palace",
+      "path_xyz_studs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          200
+        ]
+      ],
+      "start": "city.central.spawn",
+      "width_studs": 6
+    },
+    {
+      "arrival": "city.keenkonnect.innovation_lab.return_spawn",
+      "building_id": "keenkonnect.innovation_lab",
+      "path_xyz_studs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          -190,
+          0,
+          0
+        ],
+        [
+          -190,
+          0,
+          70
+        ]
+      ],
+      "start": "city.central.spawn",
+      "width_studs": 6
+    },
+    {
+      "arrival": "city.konnected.library.return_spawn",
+      "building_id": "konnected.library",
+      "path_xyz_studs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          70,
+          0,
+          0
+        ],
+        [
+          70,
+          0,
+          30
+        ],
+        [
+          150,
+          0,
+          30
+        ],
+        [
+          150,
+          0,
+          50
+        ]
+      ],
+      "start": "city.central.spawn",
+      "width_studs": 6
+    },
+    {
+      "arrival": "city.konnected.university.return_spawn",
+      "building_id": "konnected.university",
+      "path_xyz_studs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          70,
+          0,
+          0
+        ],
+        [
+          70,
+          0,
+          30
+        ],
+        [
+          140,
+          0,
+          30
+        ],
+        [
+          140,
+          0,
+          110
+        ],
+        [
+          170,
+          0,
+          110
+        ],
+        [
+          170,
+          0,
+          120
+        ],
+        [
+          190,
+          0,
+          120
+        ],
+        [
+          190,
+          0,
+          130
+        ],
+        [
+          260,
+          0,
+          130
+        ],
+        [
+          260,
+          0,
+          120
+        ]
+      ],
+      "start": "city.central.spawn",
+      "width_studs": 6
+    },
+    {
+      "arrival": "city.kreative.museum.return_spawn",
+      "building_id": "kreative.museum",
+      "path_xyz_studs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          -170,
+          0,
+          0
+        ],
+        [
+          -170,
+          0,
+          -150
+        ]
+      ],
+      "start": "city.central.spawn",
+      "width_studs": 6
+    },
+    {
+      "arrival": "city.orgo.admin_center.return_spawn",
+      "building_id": "orgo.admin_center",
+      "path_xyz_studs": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          70,
+          0,
+          0
+        ],
+        [
+          70,
+          0,
+          -30
+        ],
+        [
+          110,
+          0,
+          -30
+        ],
+        [
+          110,
+          0,
+          -200
+        ]
+      ],
+      "start": "city.central.spawn",
+      "width_studs": 6
+    }
+  ],
+  "places": [
+    {
+      "anchor_count": 3,
+      "anchors": [
+        {
+          "anchor_id": "campus.exit.door",
+          "position_studs": [
+            0.0,
+            3.0,
+            -45.0
+          ],
+          "role": "door",
+          "room_id": "campus.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "campus.lobby.spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            -32.0
+          ],
+          "role": "spawn",
+          "room_id": "campus.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "hall.board_01",
+          "position_studs": [
+            -27.0,
+            3.0,
+            18.0
+          ],
+          "role": "interaction",
+          "room_id": "campus.gallery",
+          "yaw_degrees": 0.0
+        }
+      ],
+      "bounds": {
+        "ground_y_studs": 0,
+        "height_studs": 22,
+        "shape": "rectangle",
+        "size_studs": [
+          110,
+          100
+        ]
+      },
+      "furnishing_count": 7,
+      "furnishings": [
+        {
+          "anchor_id": "hall.board_01",
+          "asset_id": "prop.board",
+          "collision_policy": "solid",
+          "furnishing_id": "campus.interactive.01",
+          "position_studs": [
+            -27,
+            0,
+            18
+          ],
+          "room_id": "campus.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "campus.prop.01",
+          "position_studs": [
+            15,
+            0,
+            -29
+          ],
+          "room_id": "campus.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.planter",
+          "collision_policy": "solid",
+          "furnishing_id": "campus.prop.02",
+          "position_studs": [
+            -39,
+            0,
+            -28
+          ],
+          "room_id": "campus.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.table",
+          "collision_policy": "solid",
+          "furnishing_id": "campus.prop.03",
+          "position_studs": [
+            27,
+            0,
+            20
+          ],
+          "room_id": "campus.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.lamp",
+          "collision_policy": "no_collision",
+          "furnishing_id": "campus.prop.04",
+          "position_studs": [
+            38,
+            0,
+            38
+          ],
+          "room_id": "campus.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.display",
+          "collision_policy": "solid",
+          "furnishing_id": "campus.prop.05",
+          "position_studs": [
+            -14,
+            0,
+            37
+          ],
+          "room_id": "campus.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "campus.prop.06",
+          "position_studs": [
+            -32,
+            0,
+            37
+          ],
+          "room_id": "campus.gallery",
+          "yaw_degrees": 0
+        }
+      ],
+      "place_id": null,
+      "place_key": "campus",
+      "portals": [
+        {
+          "center_studs": [
+            27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "campus.lobby",
+          "portal_id": "campus.portal.lobby.chamber",
+          "to_room": "campus.chamber"
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "campus.lobby",
+          "portal_id": "campus.portal.lobby.gallery",
+          "to_room": "campus.gallery"
+        }
+      ],
+      "publication_state": "unpublished",
+      "room_count": 3,
+      "rooms": [
+        {
+          "center_studs": [
+            27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Laboratoire pédagogique",
+          "has_walkable_floor": true,
+          "room_id": "campus.chamber",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Salle de cours",
+          "has_walkable_floor": true,
+          "room_id": "campus.gallery",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            0,
+            0,
+            -29
+          ],
+          "decor_density": "rich",
+          "display_name": "Hall du campus",
+          "has_walkable_floor": true,
+          "room_id": "campus.lobby",
+          "size_studs": [
+            100,
+            16,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "anchor_count": 23,
+      "anchors": [
+        {
+          "anchor_id": "city.central.city_hall.front_door",
+          "position_studs": [
+            -0.0,
+            3.0,
+            -71.0
+          ],
+          "role": "door",
+          "yaw_degrees": 180.0
+        },
+        {
+          "anchor_id": "city.central.city_hall.return_spawn",
+          "position_studs": [
+            -0.0,
+            3.0,
+            -58.0
+          ],
+          "role": "spawn",
+          "yaw_degrees": 180.0
+        },
+        {
+          "anchor_id": "city.central.ekoh_tower.front_door",
+          "position_studs": [
+            78.0,
+            3.0,
+            -0.0
+          ],
+          "role": "door",
+          "yaw_degrees": 90.0
+        },
+        {
+          "anchor_id": "city.central.ekoh_tower.return_spawn",
+          "position_studs": [
+            65.0,
+            3.0,
+            -0.0
+          ],
+          "role": "spawn",
+          "yaw_degrees": 90.0
+        },
+        {
+          "anchor_id": "city.central.spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "role": "spawn",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city.district.central.hub",
+          "position_studs": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "role": "hub",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city.district.ethikos.hub",
+          "position_studs": [
+            0.0,
+            3.0,
+            155.0
+          ],
+          "role": "hub",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city.district.keenkonnect.hub",
+          "position_studs": [
+            -145.652,
+            3.0,
+            53.013
+          ],
+          "role": "hub",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city.district.konnected.hub",
+          "position_studs": [
+            145.652,
+            3.0,
+            53.013
+          ],
+          "role": "hub",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city.district.kreative.hub",
+          "position_studs": [
+            -99.632,
+            3.0,
+            -118.737
+          ],
+          "role": "hub",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city.district.orgo.hub",
+          "position_studs": [
+            77.5,
+            3.0,
+            -134.234
+          ],
+          "role": "hub",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city.ethikos.justice_palace.front_door",
+          "position_studs": [
+            0.0,
+            3.0,
+            213.0
+          ],
+          "role": "door",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city.ethikos.justice_palace.return_spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            200.0
+          ],
+          "role": "spawn",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city.keenkonnect.innovation_lab.front_door",
+          "position_studs": [
+            -200.881,
+            3.0,
+            73.365
+          ],
+          "role": "door",
+          "yaw_degrees": -69.937
+        },
+        {
+          "anchor_id": "city.keenkonnect.innovation_lab.return_spawn",
+          "position_studs": [
+            -188.67,
+            3.0,
+            68.906
+          ],
+          "role": "spawn",
+          "yaw_degrees": -69.937
+        },
+        {
+          "anchor_id": "city.konnected.library.front_door",
+          "position_studs": [
+            163.9,
+            3.0,
+            59.139
+          ],
+          "role": "door",
+          "yaw_degrees": 70.159
+        },
+        {
+          "anchor_id": "city.konnected.library.return_spawn",
+          "position_studs": [
+            151.671,
+            3.0,
+            54.727
+          ],
+          "role": "spawn",
+          "yaw_degrees": 70.159
+        },
+        {
+          "anchor_id": "city.konnected.university.front_door",
+          "position_studs": [
+            276.066,
+            3.0,
+            128.109
+          ],
+          "role": "door",
+          "yaw_degrees": 65.106
+        },
+        {
+          "anchor_id": "city.konnected.university.return_spawn",
+          "position_studs": [
+            264.274,
+            3.0,
+            122.637
+          ],
+          "role": "spawn",
+          "yaw_degrees": 65.106
+        },
+        {
+          "anchor_id": "city.kreative.museum.front_door",
+          "position_studs": [
+            -178.109,
+            3.0,
+            -158.711
+          ],
+          "role": "door",
+          "yaw_degrees": -131.704
+        },
+        {
+          "anchor_id": "city.kreative.museum.return_spawn",
+          "position_studs": [
+            -168.403,
+            3.0,
+            -150.062
+          ],
+          "role": "spawn",
+          "yaw_degrees": -131.704
+        },
+        {
+          "anchor_id": "city.orgo.admin_center.front_door",
+          "position_studs": [
+            120.737,
+            3.0,
+            -213.75
+          ],
+          "role": "door",
+          "yaw_degrees": 150.54
+        },
+        {
+          "anchor_id": "city.orgo.admin_center.return_spawn",
+          "position_studs": [
+            114.344,
+            3.0,
+            -202.431
+          ],
+          "role": "spawn",
+          "yaw_degrees": 150.54
+        }
+      ],
+      "bounds": {
+        "ground_y_studs": 0,
+        "radius_studs": 495,
+        "shape": "disc"
+      },
+      "furnishing_count": 0,
+      "furnishings": [],
+      "place_id": null,
+      "place_key": "city",
+      "portals": [],
+      "publication_state": "unpublished",
+      "room_count": 0,
+      "rooms": []
+    },
+    {
+      "anchor_count": 3,
+      "anchors": [
+        {
+          "anchor_id": "city_hall.exit.door",
+          "position_studs": [
+            0.0,
+            3.0,
+            -45.0
+          ],
+          "role": "door",
+          "room_id": "city_hall.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "city_hall.lobby.spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            -32.0
+          ],
+          "role": "spawn",
+          "room_id": "city_hall.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "hall.kiosk_01",
+          "position_studs": [
+            -27.0,
+            3.0,
+            18.0
+          ],
+          "role": "interaction",
+          "room_id": "city_hall.gallery",
+          "yaw_degrees": 0.0
+        }
+      ],
+      "bounds": {
+        "ground_y_studs": 0,
+        "height_studs": 22,
+        "shape": "rectangle",
+        "size_studs": [
+          110,
+          100
+        ]
+      },
+      "furnishing_count": 7,
+      "furnishings": [
+        {
+          "anchor_id": "hall.kiosk_01",
+          "asset_id": "prop.kiosk",
+          "collision_policy": "solid",
+          "furnishing_id": "city_hall.interactive.01",
+          "position_studs": [
+            -27,
+            0,
+            18
+          ],
+          "room_id": "city_hall.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "city_hall.prop.01",
+          "position_studs": [
+            15,
+            0,
+            -29
+          ],
+          "room_id": "city_hall.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.planter",
+          "collision_policy": "solid",
+          "furnishing_id": "city_hall.prop.02",
+          "position_studs": [
+            -39,
+            0,
+            -28
+          ],
+          "room_id": "city_hall.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.table",
+          "collision_policy": "solid",
+          "furnishing_id": "city_hall.prop.03",
+          "position_studs": [
+            27,
+            0,
+            20
+          ],
+          "room_id": "city_hall.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.lamp",
+          "collision_policy": "no_collision",
+          "furnishing_id": "city_hall.prop.04",
+          "position_studs": [
+            38,
+            0,
+            38
+          ],
+          "room_id": "city_hall.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.display",
+          "collision_policy": "solid",
+          "furnishing_id": "city_hall.prop.05",
+          "position_studs": [
+            -14,
+            0,
+            37
+          ],
+          "room_id": "city_hall.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "city_hall.prop.06",
+          "position_studs": [
+            -32,
+            0,
+            37
+          ],
+          "room_id": "city_hall.gallery",
+          "yaw_degrees": 0
+        }
+      ],
+      "place_id": null,
+      "place_key": "city_hall",
+      "portals": [
+        {
+          "center_studs": [
+            27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "city_hall.lobby",
+          "portal_id": "city_hall.portal.lobby.chamber",
+          "to_room": "city_hall.chamber"
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "city_hall.lobby",
+          "portal_id": "city_hall.portal.lobby.gallery",
+          "to_room": "city_hall.gallery"
+        }
+      ],
+      "publication_state": "unpublished",
+      "room_count": 3,
+      "rooms": [
+        {
+          "center_studs": [
+            27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Salle du conseil",
+          "has_walkable_floor": true,
+          "room_id": "city_hall.chamber",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Galerie des services",
+          "has_walkable_floor": true,
+          "room_id": "city_hall.gallery",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            0,
+            0,
+            -29
+          ],
+          "decor_density": "rich",
+          "display_name": "Accueil public",
+          "has_walkable_floor": true,
+          "room_id": "city_hall.lobby",
+          "size_studs": [
+            100,
+            16,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "anchor_count": 3,
+      "anchors": [
+        {
+          "anchor_id": "ekoh_tower.exit.door",
+          "position_studs": [
+            0.0,
+            3.0,
+            -45.0
+          ],
+          "role": "door",
+          "room_id": "ekoh_tower.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "ekoh_tower.lobby.spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            -32.0
+          ],
+          "role": "spawn",
+          "room_id": "ekoh_tower.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "tower.panel_01",
+          "position_studs": [
+            -27.0,
+            3.0,
+            18.0
+          ],
+          "role": "interaction",
+          "room_id": "ekoh_tower.gallery",
+          "yaw_degrees": 0.0
+        }
+      ],
+      "bounds": {
+        "ground_y_studs": 0,
+        "height_studs": 22,
+        "shape": "rectangle",
+        "size_studs": [
+          110,
+          100
+        ]
+      },
+      "furnishing_count": 7,
+      "furnishings": [
+        {
+          "anchor_id": "tower.panel_01",
+          "asset_id": "prop.panel",
+          "collision_policy": "solid",
+          "furnishing_id": "ekoh_tower.interactive.01",
+          "position_studs": [
+            -27,
+            0,
+            18
+          ],
+          "room_id": "ekoh_tower.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "ekoh_tower.prop.01",
+          "position_studs": [
+            15,
+            0,
+            -29
+          ],
+          "room_id": "ekoh_tower.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.planter",
+          "collision_policy": "solid",
+          "furnishing_id": "ekoh_tower.prop.02",
+          "position_studs": [
+            -39,
+            0,
+            -28
+          ],
+          "room_id": "ekoh_tower.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.table",
+          "collision_policy": "solid",
+          "furnishing_id": "ekoh_tower.prop.03",
+          "position_studs": [
+            27,
+            0,
+            20
+          ],
+          "room_id": "ekoh_tower.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.lamp",
+          "collision_policy": "no_collision",
+          "furnishing_id": "ekoh_tower.prop.04",
+          "position_studs": [
+            38,
+            0,
+            38
+          ],
+          "room_id": "ekoh_tower.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.display",
+          "collision_policy": "solid",
+          "furnishing_id": "ekoh_tower.prop.05",
+          "position_studs": [
+            -14,
+            0,
+            37
+          ],
+          "room_id": "ekoh_tower.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "ekoh_tower.prop.06",
+          "position_studs": [
+            -32,
+            0,
+            37
+          ],
+          "room_id": "ekoh_tower.gallery",
+          "yaw_degrees": 0
+        }
+      ],
+      "place_id": null,
+      "place_key": "ekoh_tower",
+      "portals": [
+        {
+          "center_studs": [
+            27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "ekoh_tower.lobby",
+          "portal_id": "ekoh_tower.portal.lobby.chamber",
+          "to_room": "ekoh_tower.chamber"
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "ekoh_tower.lobby",
+          "portal_id": "ekoh_tower.portal.lobby.gallery",
+          "to_room": "ekoh_tower.gallery"
+        }
+      ],
+      "publication_state": "unpublished",
+      "room_count": 3,
+      "rooms": [
+        {
+          "center_studs": [
+            27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Salle d’observation",
+          "has_walkable_floor": true,
+          "room_id": "ekoh_tower.chamber",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Galerie des contributions",
+          "has_walkable_floor": true,
+          "room_id": "ekoh_tower.gallery",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            0,
+            0,
+            -29
+          ],
+          "decor_density": "rich",
+          "display_name": "Accueil",
+          "has_walkable_floor": true,
+          "room_id": "ekoh_tower.lobby",
+          "size_studs": [
+            100,
+            16,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "anchor_count": 3,
+      "anchors": [
+        {
+          "anchor_id": "hall.desk_01",
+          "position_studs": [
+            -27.0,
+            3.0,
+            18.0
+          ],
+          "role": "interaction",
+          "room_id": "innovation_lab.gallery",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "innovation_lab.exit.door",
+          "position_studs": [
+            0.0,
+            3.0,
+            -45.0
+          ],
+          "role": "door",
+          "room_id": "innovation_lab.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "innovation_lab.lobby.spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            -32.0
+          ],
+          "role": "spawn",
+          "room_id": "innovation_lab.lobby",
+          "yaw_degrees": 0.0
+        }
+      ],
+      "bounds": {
+        "ground_y_studs": 0,
+        "height_studs": 22,
+        "shape": "rectangle",
+        "size_studs": [
+          110,
+          100
+        ]
+      },
+      "furnishing_count": 7,
+      "furnishings": [
+        {
+          "anchor_id": "hall.desk_01",
+          "asset_id": "prop.desk",
+          "collision_policy": "solid",
+          "furnishing_id": "innovation_lab.interactive.01",
+          "position_studs": [
+            -27,
+            0,
+            18
+          ],
+          "room_id": "innovation_lab.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "innovation_lab.prop.01",
+          "position_studs": [
+            15,
+            0,
+            -29
+          ],
+          "room_id": "innovation_lab.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.planter",
+          "collision_policy": "solid",
+          "furnishing_id": "innovation_lab.prop.02",
+          "position_studs": [
+            -39,
+            0,
+            -28
+          ],
+          "room_id": "innovation_lab.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.table",
+          "collision_policy": "solid",
+          "furnishing_id": "innovation_lab.prop.03",
+          "position_studs": [
+            27,
+            0,
+            20
+          ],
+          "room_id": "innovation_lab.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.lamp",
+          "collision_policy": "no_collision",
+          "furnishing_id": "innovation_lab.prop.04",
+          "position_studs": [
+            38,
+            0,
+            38
+          ],
+          "room_id": "innovation_lab.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.display",
+          "collision_policy": "solid",
+          "furnishing_id": "innovation_lab.prop.05",
+          "position_studs": [
+            -14,
+            0,
+            37
+          ],
+          "room_id": "innovation_lab.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "innovation_lab.prop.06",
+          "position_studs": [
+            -32,
+            0,
+            37
+          ],
+          "room_id": "innovation_lab.gallery",
+          "yaw_degrees": 0
+        }
+      ],
+      "place_id": null,
+      "place_key": "innovation_lab",
+      "portals": [
+        {
+          "center_studs": [
+            27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "innovation_lab.lobby",
+          "portal_id": "innovation_lab.portal.lobby.chamber",
+          "to_room": "innovation_lab.chamber"
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "innovation_lab.lobby",
+          "portal_id": "innovation_lab.portal.lobby.gallery",
+          "to_room": "innovation_lab.gallery"
+        }
+      ],
+      "publication_state": "unpublished",
+      "room_count": 3,
+      "rooms": [
+        {
+          "center_studs": [
+            27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Salle de démonstration",
+          "has_walkable_floor": true,
+          "room_id": "innovation_lab.chamber",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Atelier de fabrication",
+          "has_walkable_floor": true,
+          "room_id": "innovation_lab.gallery",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            0,
+            0,
+            -29
+          ],
+          "decor_density": "rich",
+          "display_name": "Accueil projets",
+          "has_walkable_floor": true,
+          "room_id": "innovation_lab.lobby",
+          "size_studs": [
+            100,
+            16,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "anchor_count": 3,
+      "anchors": [
+        {
+          "anchor_id": "hall.terminal_01",
+          "position_studs": [
+            -27.0,
+            3.0,
+            18.0
+          ],
+          "role": "interaction",
+          "room_id": "justice_palace.gallery",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "justice_palace.exit.door",
+          "position_studs": [
+            0.0,
+            3.0,
+            -45.0
+          ],
+          "role": "door",
+          "room_id": "justice_palace.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "justice_palace.lobby.spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            -32.0
+          ],
+          "role": "spawn",
+          "room_id": "justice_palace.lobby",
+          "yaw_degrees": 0.0
+        }
+      ],
+      "bounds": {
+        "ground_y_studs": 0,
+        "height_studs": 22,
+        "shape": "rectangle",
+        "size_studs": [
+          110,
+          100
+        ]
+      },
+      "furnishing_count": 7,
+      "furnishings": [
+        {
+          "anchor_id": "hall.terminal_01",
+          "asset_id": "prop.terminal",
+          "collision_policy": "solid",
+          "furnishing_id": "justice_palace.interactive.01",
+          "position_studs": [
+            -27,
+            0,
+            18
+          ],
+          "room_id": "justice_palace.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "justice_palace.prop.01",
+          "position_studs": [
+            15,
+            0,
+            -29
+          ],
+          "room_id": "justice_palace.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.planter",
+          "collision_policy": "solid",
+          "furnishing_id": "justice_palace.prop.02",
+          "position_studs": [
+            -39,
+            0,
+            -28
+          ],
+          "room_id": "justice_palace.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.table",
+          "collision_policy": "solid",
+          "furnishing_id": "justice_palace.prop.03",
+          "position_studs": [
+            27,
+            0,
+            20
+          ],
+          "room_id": "justice_palace.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.lamp",
+          "collision_policy": "no_collision",
+          "furnishing_id": "justice_palace.prop.04",
+          "position_studs": [
+            38,
+            0,
+            38
+          ],
+          "room_id": "justice_palace.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.display",
+          "collision_policy": "solid",
+          "furnishing_id": "justice_palace.prop.05",
+          "position_studs": [
+            -14,
+            0,
+            37
+          ],
+          "room_id": "justice_palace.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "justice_palace.prop.06",
+          "position_studs": [
+            -32,
+            0,
+            37
+          ],
+          "room_id": "justice_palace.gallery",
+          "yaw_degrees": 0
+        }
+      ],
+      "place_id": null,
+      "place_key": "justice_palace",
+      "portals": [
+        {
+          "center_studs": [
+            27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "justice_palace.lobby",
+          "portal_id": "justice_palace.portal.lobby.chamber",
+          "to_room": "justice_palace.chamber"
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "justice_palace.lobby",
+          "portal_id": "justice_palace.portal.lobby.gallery",
+          "to_room": "justice_palace.gallery"
+        }
+      ],
+      "publication_state": "unpublished",
+      "room_count": 3,
+      "rooms": [
+        {
+          "center_studs": [
+            27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Salle de délibération",
+          "has_walkable_floor": true,
+          "room_id": "justice_palace.chamber",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Salle de consultation",
+          "has_walkable_floor": true,
+          "room_id": "justice_palace.gallery",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            0,
+            0,
+            -29
+          ],
+          "decor_density": "rich",
+          "display_name": "Hall civique",
+          "has_walkable_floor": true,
+          "room_id": "justice_palace.lobby",
+          "size_studs": [
+            100,
+            16,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "anchor_count": 3,
+      "anchors": [
+        {
+          "anchor_id": "hall.bookshelf_01",
+          "position_studs": [
+            -27.0,
+            3.0,
+            18.0
+          ],
+          "role": "interaction",
+          "room_id": "library.gallery",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "library.exit.door",
+          "position_studs": [
+            0.0,
+            3.0,
+            -45.0
+          ],
+          "role": "door",
+          "room_id": "library.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "library.lobby.spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            -32.0
+          ],
+          "role": "spawn",
+          "room_id": "library.lobby",
+          "yaw_degrees": 0.0
+        }
+      ],
+      "bounds": {
+        "ground_y_studs": 0,
+        "height_studs": 22,
+        "shape": "rectangle",
+        "size_studs": [
+          110,
+          100
+        ]
+      },
+      "furnishing_count": 7,
+      "furnishings": [
+        {
+          "anchor_id": "hall.bookshelf_01",
+          "asset_id": "prop.bookshelf",
+          "collision_policy": "solid",
+          "furnishing_id": "library.interactive.01",
+          "position_studs": [
+            -27,
+            0,
+            18
+          ],
+          "room_id": "library.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "library.prop.01",
+          "position_studs": [
+            15,
+            0,
+            -29
+          ],
+          "room_id": "library.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.planter",
+          "collision_policy": "solid",
+          "furnishing_id": "library.prop.02",
+          "position_studs": [
+            -39,
+            0,
+            -28
+          ],
+          "room_id": "library.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.table",
+          "collision_policy": "solid",
+          "furnishing_id": "library.prop.03",
+          "position_studs": [
+            27,
+            0,
+            20
+          ],
+          "room_id": "library.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.lamp",
+          "collision_policy": "no_collision",
+          "furnishing_id": "library.prop.04",
+          "position_studs": [
+            38,
+            0,
+            38
+          ],
+          "room_id": "library.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.display",
+          "collision_policy": "solid",
+          "furnishing_id": "library.prop.05",
+          "position_studs": [
+            -14,
+            0,
+            37
+          ],
+          "room_id": "library.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "library.prop.06",
+          "position_studs": [
+            -32,
+            0,
+            37
+          ],
+          "room_id": "library.gallery",
+          "yaw_degrees": 0
+        }
+      ],
+      "place_id": null,
+      "place_key": "library",
+      "portals": [
+        {
+          "center_studs": [
+            27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "library.lobby",
+          "portal_id": "library.portal.lobby.chamber",
+          "to_room": "library.chamber"
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "library.lobby",
+          "portal_id": "library.portal.lobby.gallery",
+          "to_room": "library.gallery"
+        }
+      ],
+      "publication_state": "unpublished",
+      "room_count": 3,
+      "rooms": [
+        {
+          "center_studs": [
+            27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Salle de lecture",
+          "has_walkable_floor": true,
+          "room_id": "library.chamber",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Galerie des rayonnages",
+          "has_walkable_floor": true,
+          "room_id": "library.gallery",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            0,
+            0,
+            -29
+          ],
+          "decor_density": "rich",
+          "display_name": "Hall des lecteurs",
+          "has_walkable_floor": true,
+          "room_id": "library.lobby",
+          "size_studs": [
+            100,
+            16,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "anchor_count": 3,
+      "anchors": [
+        {
+          "anchor_id": "hall.panel_01",
+          "position_studs": [
+            -27.0,
+            3.0,
+            18.0
+          ],
+          "role": "interaction",
+          "room_id": "museum.gallery",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "museum.exit.door",
+          "position_studs": [
+            0.0,
+            3.0,
+            -45.0
+          ],
+          "role": "door",
+          "room_id": "museum.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "museum.lobby.spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            -32.0
+          ],
+          "role": "spawn",
+          "room_id": "museum.lobby",
+          "yaw_degrees": 0.0
+        }
+      ],
+      "bounds": {
+        "ground_y_studs": 0,
+        "height_studs": 22,
+        "shape": "rectangle",
+        "size_studs": [
+          110,
+          100
+        ]
+      },
+      "furnishing_count": 7,
+      "furnishings": [
+        {
+          "anchor_id": "hall.panel_01",
+          "asset_id": "prop.panel",
+          "collision_policy": "solid",
+          "furnishing_id": "museum.interactive.01",
+          "position_studs": [
+            -27,
+            0,
+            18
+          ],
+          "room_id": "museum.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "museum.prop.01",
+          "position_studs": [
+            15,
+            0,
+            -29
+          ],
+          "room_id": "museum.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.planter",
+          "collision_policy": "solid",
+          "furnishing_id": "museum.prop.02",
+          "position_studs": [
+            -39,
+            0,
+            -28
+          ],
+          "room_id": "museum.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.table",
+          "collision_policy": "solid",
+          "furnishing_id": "museum.prop.03",
+          "position_studs": [
+            27,
+            0,
+            20
+          ],
+          "room_id": "museum.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.lamp",
+          "collision_policy": "no_collision",
+          "furnishing_id": "museum.prop.04",
+          "position_studs": [
+            38,
+            0,
+            38
+          ],
+          "room_id": "museum.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.display",
+          "collision_policy": "solid",
+          "furnishing_id": "museum.prop.05",
+          "position_studs": [
+            -14,
+            0,
+            37
+          ],
+          "room_id": "museum.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "museum.prop.06",
+          "position_studs": [
+            -32,
+            0,
+            37
+          ],
+          "room_id": "museum.gallery",
+          "yaw_degrees": 0
+        }
+      ],
+      "place_id": null,
+      "place_key": "museum",
+      "portals": [
+        {
+          "center_studs": [
+            27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "museum.lobby",
+          "portal_id": "museum.portal.lobby.chamber",
+          "to_room": "museum.chamber"
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "museum.lobby",
+          "portal_id": "museum.portal.lobby.gallery",
+          "to_room": "museum.gallery"
+        }
+      ],
+      "publication_state": "unpublished",
+      "room_count": 3,
+      "rooms": [
+        {
+          "center_studs": [
+            27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Galerie temporaire",
+          "has_walkable_floor": true,
+          "room_id": "museum.chamber",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Galerie permanente",
+          "has_walkable_floor": true,
+          "room_id": "museum.gallery",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            0,
+            0,
+            -29
+          ],
+          "decor_density": "rich",
+          "display_name": "Accueil expositions",
+          "has_walkable_floor": true,
+          "room_id": "museum.lobby",
+          "size_studs": [
+            100,
+            16,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "anchor_count": 3,
+      "anchors": [
+        {
+          "anchor_id": "hall.terminal_01",
+          "position_studs": [
+            -27.0,
+            3.0,
+            18.0
+          ],
+          "role": "interaction",
+          "room_id": "orgo_center.gallery",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "orgo_center.exit.door",
+          "position_studs": [
+            0.0,
+            3.0,
+            -45.0
+          ],
+          "role": "door",
+          "room_id": "orgo_center.lobby",
+          "yaw_degrees": 0.0
+        },
+        {
+          "anchor_id": "orgo_center.lobby.spawn",
+          "position_studs": [
+            0.0,
+            3.0,
+            -32.0
+          ],
+          "role": "spawn",
+          "room_id": "orgo_center.lobby",
+          "yaw_degrees": 0.0
+        }
+      ],
+      "bounds": {
+        "ground_y_studs": 0,
+        "height_studs": 22,
+        "shape": "rectangle",
+        "size_studs": [
+          110,
+          100
+        ]
+      },
+      "furnishing_count": 7,
+      "furnishings": [
+        {
+          "anchor_id": "hall.terminal_01",
+          "asset_id": "prop.terminal",
+          "collision_policy": "solid",
+          "furnishing_id": "orgo_center.interactive.01",
+          "position_studs": [
+            -27,
+            0,
+            18
+          ],
+          "room_id": "orgo_center.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "orgo_center.prop.01",
+          "position_studs": [
+            15,
+            0,
+            -29
+          ],
+          "room_id": "orgo_center.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.planter",
+          "collision_policy": "solid",
+          "furnishing_id": "orgo_center.prop.02",
+          "position_studs": [
+            -39,
+            0,
+            -28
+          ],
+          "room_id": "orgo_center.lobby",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.table",
+          "collision_policy": "solid",
+          "furnishing_id": "orgo_center.prop.03",
+          "position_studs": [
+            27,
+            0,
+            20
+          ],
+          "room_id": "orgo_center.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.lamp",
+          "collision_policy": "no_collision",
+          "furnishing_id": "orgo_center.prop.04",
+          "position_studs": [
+            38,
+            0,
+            38
+          ],
+          "room_id": "orgo_center.chamber",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.display",
+          "collision_policy": "solid",
+          "furnishing_id": "orgo_center.prop.05",
+          "position_studs": [
+            -14,
+            0,
+            37
+          ],
+          "room_id": "orgo_center.gallery",
+          "yaw_degrees": 0
+        },
+        {
+          "asset_id": "prop.bench",
+          "collision_policy": "solid",
+          "furnishing_id": "orgo_center.prop.06",
+          "position_studs": [
+            -32,
+            0,
+            37
+          ],
+          "room_id": "orgo_center.gallery",
+          "yaw_degrees": 0
+        }
+      ],
+      "place_id": null,
+      "place_key": "orgo_center",
+      "portals": [
+        {
+          "center_studs": [
+            27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "orgo_center.lobby",
+          "portal_id": "orgo_center.portal.lobby.chamber",
+          "to_room": "orgo_center.chamber"
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            -10.5
+          ],
+          "clear_width_studs": 10,
+          "from_room": "orgo_center.lobby",
+          "portal_id": "orgo_center.portal.lobby.gallery",
+          "to_room": "orgo_center.gallery"
+        }
+      ],
+      "publication_state": "unpublished",
+      "room_count": 3,
+      "rooms": [
+        {
+          "center_studs": [
+            27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Salle des opérations",
+          "has_walkable_floor": true,
+          "room_id": "orgo_center.chamber",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            -27,
+            0,
+            17
+          ],
+          "decor_density": "rich",
+          "display_name": "Espace dossiers",
+          "has_walkable_floor": true,
+          "room_id": "orgo_center.gallery",
+          "size_studs": [
+            44,
+            16,
+            52
+          ]
+        },
+        {
+          "center_studs": [
+            0,
+            0,
+            -29
+          ],
+          "decor_density": "rich",
+          "display_name": "Accueil administratif",
+          "has_walkable_floor": true,
+          "room_id": "orgo_center.lobby",
+          "size_studs": [
+            100,
+            16,
+            34
+          ]
+        }
+      ]
+    }
+  ],
+  "schema_version": "kincity.plan/1.0",
+  "seed": 20261018,
+  "structures": [
+    {
+      "building_id": "central.city_hall",
+      "center_studs": [
+        0,
+        0,
+        -100
+      ],
+      "entrance_clearance_studs": 10,
+      "facade_asset_id": "civic.hall.frontage",
+      "footprint_studs": [
+        70,
+        56
+      ],
+      "height_studs": 29,
+      "place_key": "city",
+      "style_id": "civic_stone",
+      "yaw_degrees": 180.0
+    },
+    {
+      "building_id": "central.ekoh_tower",
+      "center_studs": [
+        100,
+        0,
+        0
+      ],
+      "entrance_clearance_studs": 10,
+      "facade_asset_id": "civic.tower.frontage",
+      "footprint_studs": [
+        42,
+        42
+      ],
+      "height_studs": 73,
+      "place_key": "city",
+      "style_id": "central_glass",
+      "yaw_degrees": 90.0
+    },
+    {
+      "building_id": "ethikos.justice_palace",
+      "center_studs": [
+        0,
+        0,
+        242
+      ],
+      "entrance_clearance_studs": 10,
+      "facade_asset_id": "civic.justice.frontage",
+      "footprint_studs": [
+        76,
+        56
+      ],
+      "height_studs": 28,
+      "place_key": "city",
+      "style_id": "civic_stone",
+      "yaw_degrees": 0.0
+    },
+    {
+      "building_id": "keenkonnect.innovation_lab",
+      "center_studs": [
+        -230,
+        0,
+        84
+      ],
+      "entrance_clearance_studs": 10,
+      "facade_asset_id": "innovation.lab.frontage",
+      "footprint_studs": [
+        76,
+        60
+      ],
+      "height_studs": 24,
+      "place_key": "city",
+      "style_id": "innovation_glass",
+      "yaw_degrees": -69.937
+    },
+    {
+      "building_id": "konnected.library",
+      "center_studs": [
+        194,
+        0,
+        70
+      ],
+      "entrance_clearance_studs": 10,
+      "facade_asset_id": "education.library.frontage",
+      "footprint_studs": [
+        78,
+        62
+      ],
+      "height_studs": 24,
+      "place_key": "city",
+      "style_id": "warm_academic",
+      "yaw_degrees": 70.159
+    },
+    {
+      "building_id": "konnected.university",
+      "center_studs": [
+        306,
+        0,
+        142
+      ],
+      "entrance_clearance_studs": 10,
+      "facade_asset_id": "education.campus.frontage",
+      "footprint_studs": [
+        82,
+        64
+      ],
+      "height_studs": 31,
+      "place_key": "city",
+      "style_id": "warm_academic",
+      "yaw_degrees": 65.106
+    },
+    {
+      "building_id": "kreative.museum",
+      "center_studs": [
+        -202,
+        0,
+        -180
+      ],
+      "entrance_clearance_studs": 10,
+      "facade_asset_id": "culture.museum.frontage",
+      "footprint_studs": [
+        82,
+        62
+      ],
+      "height_studs": 24,
+      "place_key": "city",
+      "style_id": "cultural_copper",
+      "yaw_degrees": -131.704
+    },
+    {
+      "building_id": "orgo.admin_center",
+      "center_studs": [
+        135,
+        0,
+        -239
+      ],
+      "entrance_clearance_studs": 10,
+      "facade_asset_id": "services.admin.frontage",
+      "footprint_studs": [
+        72,
+        56
+      ],
+      "height_studs": 26,
+      "place_key": "city",
+      "style_id": "service_brick",
+      "yaw_degrees": 150.54
+    }
+  ],
+  "styles": {
+    "central_glass": {
+      "fenestration": "vertical",
+      "identity": "tour savoir et transparence",
+      "palette": {
+        "accent": "#BEEBE4",
+        "floor": "#DAEEEA",
+        "trim": "#1E6864",
+        "wall": "#A6D0CB"
+      },
+      "roof": "spire",
+      "signage": "light_vertical"
+    },
+    "civic_stone": {
+      "fenestration": "rhythmic",
+      "identity": "institution publique accessible",
+      "palette": {
+        "accent": "#E5D7AF",
+        "floor": "#E7ECE5",
+        "trim": "#1E6864",
+        "wall": "#C9D6CD"
+      },
+      "roof": "flat_parapet",
+      "signage": "large_bilingual_ready"
+    },
+    "cultural_copper": {
+      "fenestration": "varied",
+      "identity": "mémoire et création",
+      "palette": {
+        "accent": "#E3BDB1",
+        "floor": "#E9E4DC",
+        "trim": "#1E6864",
+        "wall": "#D2C9BA"
+      },
+      "roof": "vault",
+      "signage": "museum"
+    },
+    "innovation_glass": {
+      "fenestration": "broad",
+      "identity": "expérimentation ouverte",
+      "palette": {
+        "accent": "#83DDD8",
+        "floor": "#DCEDE9",
+        "trim": "#1E6864",
+        "wall": "#B3D4D1"
+      },
+      "roof": "flat_parapet",
+      "signage": "technical"
+    },
+    "service_brick": {
+      "fenestration": "grid",
+      "identity": "système discret et lisible",
+      "palette": {
+        "accent": "#B8D2ED",
+        "floor": "#DDE8E2",
+        "trim": "#1E6864",
+        "wall": "#BDCEC8"
+      },
+      "roof": "flat_parapet",
+      "signage": "quiet"
+    },
+    "warm_academic": {
+      "fenestration": "rhythmic",
+      "identity": "apprentissage et lecture",
+      "palette": {
+        "accent": "#E6C99F",
+        "floor": "#EFE6D7",
+        "trim": "#1E6864",
+        "wall": "#D5CBB1"
+      },
+      "roof": "gable",
+      "signage": "scholarly"
+    }
+  },
+  "units": "stud"
+}

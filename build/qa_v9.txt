@@ -1,0 +1,10 @@
+----------------------------------------------------------------------
+Ran 13 tests in 3.394s
+
+OK
+EXPORT OK 30b74b3f5d2377bb857ef13c3bb20f3bd90edb052dd49f8246662b7c66029d59 / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 30b74b3f5d2377bb857ef13c3bb20f3bd90edb052dd49f8246662b7c66029d59 / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 30b74b3f5d2377bb857ef13c3bb20f3bd90edb052dd49f8246662b7c66029d59 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/KinCity_Construction_v9/KinCity_Installer_CommandBar.luau 395617 octets
+EXPORT OK 30b74b3f5d2377bb857ef13c3bb20f3bd90edb052dd49f8246662b7c66029d59 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/KinCity_Construction_v9/KinCity_Installer_CommandBar.luau 395617 octets

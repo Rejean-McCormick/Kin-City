@@ -1,0 +1,101 @@
+{
+  "schema_version": "kincity.buildings/1.0",
+  "buildings": [
+    {
+      "building_id": "central.city_hall",
+      "district_id": "central",
+      "name": "Hôtel de ville",
+      "exterior_template": "civic.hall.frontage",
+      "interior_template": "civic.hall.interior",
+      "interior_mode": "separate_place",
+      "interior_place_key": "city_hall",
+      "entry_door_id": "city.central.city_hall.entry",
+      "exit_door_id": "city_hall.exit",
+      "visual_seed": 2200
+    },
+    {
+      "building_id": "central.ekoh_tower",
+      "district_id": "central",
+      "name": "Tour du Savoir",
+      "exterior_template": "civic.tower.frontage",
+      "interior_template": "civic.tower.interior",
+      "interior_mode": "separate_place",
+      "interior_place_key": "ekoh_tower",
+      "entry_door_id": "city.central.ekoh_tower.entry",
+      "exit_door_id": "ekoh_tower.exit",
+      "visual_seed": 2217
+    },
+    {
+      "building_id": "konnected.library",
+      "district_id": "konnected",
+      "name": "Grande Bibliothèque",
+      "exterior_template": "education.library.frontage",
+      "interior_template": "education.library.interior",
+      "interior_mode": "separate_place",
+      "interior_place_key": "library",
+      "entry_door_id": "city.konnected.library.entry",
+      "exit_door_id": "library.exit",
+      "visual_seed": 2234
+    },
+    {
+      "building_id": "konnected.university",
+      "district_id": "konnected",
+      "name": "Univers-Cité",
+      "exterior_template": "education.campus.frontage",
+      "interior_template": "education.campus.interior",
+      "interior_mode": "separate_place",
+      "interior_place_key": "campus",
+      "entry_door_id": "city.konnected.university.entry",
+      "exit_door_id": "campus.exit",
+      "visual_seed": 2251
+    },
+    {
+      "building_id": "ethikos.justice_palace",
+      "district_id": "ethikos",
+      "name": "Palais de justice",
+      "exterior_template": "civic.justice.frontage",
+      "interior_template": "civic.justice.interior",
+      "interior_mode": "separate_place",
+      "interior_place_key": "justice_palace",
+      "entry_door_id": "city.ethikos.justice_palace.entry",
+      "exit_door_id": "justice_palace.exit",
+      "visual_seed": 2268
+    },
+    {
+      "building_id": "keenkonnect.innovation_lab",
+      "district_id": "keenkonnect",
+      "name": "Laboratoire d’innovation",
+      "exterior_template": "innovation.lab.frontage",
+      "interior_template": "innovation.lab.interior",
+      "interior_mode": "separate_place",
+      "interior_place_key": "innovation_lab",
+      "entry_door_id": "city.keenkonnect.innovation_lab.entry",
+      "exit_door_id": "innovation_lab.exit",
+      "visual_seed": 2285
+    },
+    {
+      "building_id": "kreative.museum",
+      "district_id": "kreative",
+      "name": "Musée Kreative",
+      "exterior_template": "culture.museum.frontage",
+      "interior_template": "culture.museum.interior",
+      "interior_mode": "separate_place",
+      "interior_place_key": "museum",
+      "entry_door_id": "city.kreative.museum.entry",
+      "exit_door_id": "museum.exit",
+      "visual_seed": 2302
+    },
+    {
+      "building_id": "orgo.admin_center",
+      "district_id": "orgo",
+      "name": "Centre administratif",
+      "exterior_template": "services.admin.frontage",
+      "interior_template": "services.admin.interior",
+      "interior_mode": "separate_place",
+      "interior_place_key": "orgo_center",
+      "entry_door_id": "city.orgo.admin_center.entry",
+      "exit_door_id": "orgo_center.exit",
+      "visual_seed": 2319
+    }
+  ]
+}

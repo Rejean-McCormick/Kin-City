@@ -1,0 +1,19 @@
+KIN CITY — CONSTRUCTION v15
+
+INSTALLATION DANS ROBLOX STUDIO
+
+1. Ouvrir Roblox Studio et faire une copie de son projet existant ou créer Baseplate.
+2. Ouvrir « KinCity_Installation_Directe_v15.luau » dans un éditeur de texte.
+3. Copier tout le contenu dans View > Command Bar, en mode EDITION.
+4. Exécuter une seule fois : l'installateur installe les scripts et génère la scène.
+5. Lancer Play puis entrer dans une grande institution et monter aux galeries/toit.
+6. Sur le toit, prendre l'ascenseur vers le PAVILLON DU CIEL (nouveau 4e niveau).
+7. E = activer les 16 démonstrations et éclairages; P = carnet des observatoires.
+
+L'INSTALLATEUR REMPLACE LES DOSSIERS KIN CITY GENERES.
+Ne pas placer de création manuelle non sauvegardée dans KinCityGenerated.
+
+Autres touches : M carte, N destinations, J carnet, G lignes, K ateliers.
+
+NOTE : le projet a été généré hors Roblox Studio. Fonctionnement réel non vérifié.
+Aucune connexion kOA ni API IA payante. Les services futurs sont en stub.

@@ -1,0 +1,181 @@
+{
+  "schema_version": "kincity.doors/1.0",
+  "doors": [
+    {
+      "door_id": "city.central.city_hall.entry",
+      "building_id": "central.city_hall",
+      "source_place_key": "city",
+      "source_anchor_id": "city.central.city_hall.front_door",
+      "destination_place_key": "city_hall",
+      "destination_anchor_id": "city_hall.lobby.spawn",
+      "return_door_id": "city_hall.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "city_hall.exit",
+      "building_id": "central.city_hall",
+      "source_place_key": "city_hall",
+      "source_anchor_id": "city_hall.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.central.city_hall.return_spawn",
+      "return_door_id": "city.central.city_hall.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "city.central.ekoh_tower.entry",
+      "building_id": "central.ekoh_tower",
+      "source_place_key": "city",
+      "source_anchor_id": "city.central.ekoh_tower.front_door",
+      "destination_place_key": "ekoh_tower",
+      "destination_anchor_id": "ekoh_tower.lobby.spawn",
+      "return_door_id": "ekoh_tower.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "ekoh_tower.exit",
+      "building_id": "central.ekoh_tower",
+      "source_place_key": "ekoh_tower",
+      "source_anchor_id": "ekoh_tower.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.central.ekoh_tower.return_spawn",
+      "return_door_id": "city.central.ekoh_tower.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "city.konnected.library.entry",
+      "building_id": "konnected.library",
+      "source_place_key": "city",
+      "source_anchor_id": "city.konnected.library.front_door",
+      "destination_place_key": "library",
+      "destination_anchor_id": "library.lobby.spawn",
+      "return_door_id": "library.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "library.exit",
+      "building_id": "konnected.library",
+      "source_place_key": "library",
+      "source_anchor_id": "library.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.konnected.library.return_spawn",
+      "return_door_id": "city.konnected.library.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "city.konnected.university.entry",
+      "building_id": "konnected.university",
+      "source_place_key": "city",
+      "source_anchor_id": "city.konnected.university.front_door",
+      "destination_place_key": "campus",
+      "destination_anchor_id": "campus.lobby.spawn",
+      "return_door_id": "campus.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "campus.exit",
+      "building_id": "konnected.university",
+      "source_place_key": "campus",
+      "source_anchor_id": "campus.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.konnected.university.return_spawn",
+      "return_door_id": "city.konnected.university.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "city.ethikos.justice_palace.entry",
+      "building_id": "ethikos.justice_palace",
+      "source_place_key": "city",
+      "source_anchor_id": "city.ethikos.justice_palace.front_door",
+      "destination_place_key": "justice_palace",
+      "destination_anchor_id": "justice_palace.lobby.spawn",
+      "return_door_id": "justice_palace.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "justice_palace.exit",
+      "building_id": "ethikos.justice_palace",
+      "source_place_key": "justice_palace",
+      "source_anchor_id": "justice_palace.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.ethikos.justice_palace.return_spawn",
+      "return_door_id": "city.ethikos.justice_palace.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "city.keenkonnect.innovation_lab.entry",
+      "building_id": "keenkonnect.innovation_lab",
+      "source_place_key": "city",
+      "source_anchor_id": "city.keenkonnect.innovation_lab.front_door",
+      "destination_place_key": "innovation_lab",
+      "destination_anchor_id": "innovation_lab.lobby.spawn",
+      "return_door_id": "innovation_lab.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "innovation_lab.exit",
+      "building_id": "keenkonnect.innovation_lab",
+      "source_place_key": "innovation_lab",
+      "source_anchor_id": "innovation_lab.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.keenkonnect.innovation_lab.return_spawn",
+      "return_door_id": "city.keenkonnect.innovation_lab.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "city.kreative.museum.entry",
+      "building_id": "kreative.museum",
+      "source_place_key": "city",
+      "source_anchor_id": "city.kreative.museum.front_door",
+      "destination_place_key": "museum",
+      "destination_anchor_id": "museum.lobby.spawn",
+      "return_door_id": "museum.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "museum.exit",
+      "building_id": "kreative.museum",
+      "source_place_key": "museum",
+      "source_anchor_id": "museum.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.kreative.museum.return_spawn",
+      "return_door_id": "city.kreative.museum.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "city.orgo.admin_center.entry",
+      "building_id": "orgo.admin_center",
+      "source_place_key": "city",
+      "source_anchor_id": "city.orgo.admin_center.front_door",
+      "destination_place_key": "orgo_center",
+      "destination_anchor_id": "orgo_center.lobby.spawn",
+      "return_door_id": "orgo_center.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "orgo_center.exit",
+      "building_id": "orgo.admin_center",
+      "source_place_key": "orgo_center",
+      "source_anchor_id": "orgo_center.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.orgo.admin_center.return_spawn",
+      "return_door_id": "city.orgo.admin_center.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    }
+  ]
+}

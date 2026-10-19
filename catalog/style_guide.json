@@ -1,0 +1,96 @@
+{
+  "schema_version": "kincity.style/1.0",
+  "styles": {
+    "civic_stone": {
+      "identity": "institution publique accessible",
+      "palette": {
+        "wall": "#C9D6CD",
+        "trim": "#1E6864",
+        "accent": "#E5D7AF",
+        "floor": "#E7ECE5"
+      },
+      "roof": "flat_parapet",
+      "fenestration": "rhythmic",
+      "signage": "large_bilingual_ready"
+    },
+    "central_glass": {
+      "identity": "tour savoir et transparence",
+      "palette": {
+        "wall": "#A6D0CB",
+        "trim": "#1E6864",
+        "accent": "#BEEBE4",
+        "floor": "#DAEEEA"
+      },
+      "roof": "spire",
+      "fenestration": "vertical",
+      "signage": "light_vertical"
+    },
+    "warm_academic": {
+      "identity": "apprentissage et lecture",
+      "palette": {
+        "wall": "#D5CBB1",
+        "trim": "#1E6864",
+        "accent": "#E6C99F",
+        "floor": "#EFE6D7"
+      },
+      "roof": "gable",
+      "fenestration": "rhythmic",
+      "signage": "scholarly"
+    },
+    "innovation_glass": {
+      "identity": "expérimentation ouverte",
+      "palette": {
+        "wall": "#B3D4D1",
+        "trim": "#1E6864",
+        "accent": "#83DDD8",
+        "floor": "#DCEDE9"
+      },
+      "roof": "flat_parapet",
+      "fenestration": "broad",
+      "signage": "technical"
+    },
+    "cultural_copper": {
+      "identity": "mémoire et création",
+      "palette": {
+        "wall": "#D2C9BA",
+        "trim": "#1E6864",
+        "accent": "#E3BDB1",
+        "floor": "#E9E4DC"
+      },
+      "roof": "vault",
+      "fenestration": "varied",
+      "signage": "museum"
+    },
+    "service_brick": {
+      "identity": "système discret et lisible",
+      "palette": {
+        "wall": "#BDCEC8",
+        "trim": "#1E6864",
+        "accent": "#B8D2ED",
+        "floor": "#DDE8E2"
+      },
+      "roof": "flat_parapet",
+      "fenestration": "grid",
+      "signage": "quiet"
+    }
+  },
+  "art_direction": {
+    "tone": "sarcelle minérale #1E6864 + cristal opalin, architecture humaniste, reflets subtils et lisibilité mobile",
+    "avoid": [
+      "combat",
+      "armes",
+      "gore",
+      "textures photo non vérifiées",
+      "copie directe de logos tiers",
+      "verre transparent sur toutes les façades",
+      "lumières ponctuelles sur chaque cristal",
+      "pointe cristalline bloquant une entrée"
+    ],
+    "signage_rules": [
+      "un lieu se reconnaît par sa silhouette",
+      "contraste et taille de texte adaptatifs",
+      "information et navigation accessibles sans texte minuscule"
+    ],
+    "crystal_theme": "catalog/crystal_theme.json"
+  }
+}

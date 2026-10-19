@@ -1,0 +1,13 @@
+KIN CITY v16 — INSTALLATION DIRECTE
+
+1. Ouvrir Roblox Studio > nouveau projet Baseplate (ou COPIE de ton projet).
+2. Ouvrir KinCity_Installer_CommandBar.luau avec un éditeur de texte.
+3. Tout sélectionner et coller dans View > Command Bar, en mode Édition.
+4. Exécuter la commande et attendre la génération de KinCityGenerated.
+5. Lancer Play, entrer dans une institution avec E, traverser l'atrium arrière,
+   rejoindre la nouvelle galerie, monter les escaliers et activer les oeuvres avec E.
+6. Les consoles destinées à kOA affichent Fonctionnalité à venir.
+
+Mode local : aucune connexion kOA, aucun PlaceId requis.
+Le jeu n'a pas été exécuté dans Roblox Studio dans l'environnement de création.
+Sources complètes dans le dépôt ZIP.

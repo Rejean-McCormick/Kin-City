@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.kincity.example/spatial.schema.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "unit",
+    "coordinate_system",
+    "ground_floor_elevation_studs",
+    "envelope_clearance_studs",
+    "structures",
+    "places"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "kincity.spatial/1.0"
+    },
+    "unit": {
+      "const": "stud"
+    },
+    "coordinate_system": {
+      "type": "string"
+    },
+    "ground_floor_elevation_studs": {
+      "type": "number"
+    },
+    "envelope_clearance_studs": {
+      "type": "number",
+      "minimum": 1
+    },
+    "structures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "building_id",
+          "place_key",
+          "center_studs",
+          "footprint_studs",
+          "height_studs",
+          "yaw_degrees",
+          "facade_asset_id",
+          "style_id",
+          "entrance_clearance_studs"
+        ],
+        "properties": {
+          "building_id": {
+            "type": "string"
+          },
+          "place_key": {
+            "const": "city"
+          },
+          "center_studs": {
+            "$ref": "#/$defs/xyz"
+          },
+          "footprint_studs": {
+            "$ref": "#/$defs/xzSize"
+          },
+          "height_studs": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "yaw_degrees": {
+            "type": "number"
+          },
+          "facade_asset_id": {
+            "type": "string"
+          },
+          "style_id": {
+            "type": "string"
+          },
+          "entrance_clearance_studs": {
+            "type": "number",
+            "minimum": 6
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "places": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "place_key",
+          "bounds",
+          "anchors",
+          "rooms",
+          "furnishings",
+          "portals"
+        ],
+        "properties": {
+          "place_key": {
+            "type": "string"
+          },
+          "bounds": {
+            "type": "object"
+          },
+          "anchors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "anchor_id",
+                "position_studs",
+                "yaw_degrees",
+                "role"
+              ],
+              "properties": {
+                "anchor_id": {
+                  "type": "string"
+                },
+                "position_studs": {
+                  "$ref": "#/$defs/xyz"
+                },
+                "yaw_degrees": {
+                  "type": "number"
+                },
+                "role": {
+                  "enum": [
+                    "spawn",
+                    "hub",
+                    "door",
+                    "interaction"
+                  ]
+                },
+                "room_id": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "rooms": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "room_id",
+                "display_name",
+                "center_studs",
+                "size_studs",
+                "decor_density",
+                "has_walkable_floor"
+              ],
+              "properties": {
+                "room_id": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "center_studs": {
+                  "$ref": "#/$defs/xyz"
+                },
+                "size_studs": {
+                  "$ref": "#/$defs/xyz"
+                },
+                "decor_density": {
+                  "enum": [
+                    "rich",
+                    "medium",
+                    "light"
+                  ]
+                },
+                "has_walkable_floor": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "furnishings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "furnishing_id",
+                "asset_id",
+                "position_studs",
+                "yaw_degrees",
+                "room_id",
+                "collision_policy"
+              ],
+              "properties": {
+                "furnishing_id": {
+                  "type": "string"
+                },
+                "asset_id": {
+                  "type": "string"
+                },
+                "position_studs": {
+                  "$ref": "#/$defs/xyz"
+                },
+                "yaw_degrees": {
+                  "type": "number"
+                },
+                "room_id": {
+                  "type": "string"
+                },
+                "anchor_id": {
+                  "type": "string"
+                },
+                "collision_policy": {
+                  "enum": [
+                    "solid",
+                    "no_collision"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "portals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "portal_id",
+                "from_room",
+                "to_room",
+                "center_studs",
+                "clear_width_studs"
+              ],
+              "properties": {
+                "portal_id": {
+                  "type": "string"
+                },
+                "from_room": {
+                  "type": "string"
+                },
+                "to_room": {
+                  "type": "string"
+                },
+                "center_studs": {
+                  "$ref": "#/$defs/xyz"
+                },
+                "clear_width_studs": {
+                  "type": "number",
+                  "minimum": 7
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "xyz": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "xzSize": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    }
+  }
+}

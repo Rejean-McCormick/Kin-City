@@ -1,0 +1,415 @@
+{
+  "schema_version": "kincity.assets/1.0",
+  "assets": [
+    {
+      "asset_id": "civic.hall.frontage",
+      "class": "facade",
+      "source": "native_procedural",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_facade"
+    },
+    {
+      "asset_id": "civic.justice.frontage",
+      "class": "facade",
+      "source": "native_procedural",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_facade"
+    },
+    {
+      "asset_id": "civic.tower.frontage",
+      "class": "facade",
+      "source": "native_procedural",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_facade"
+    },
+    {
+      "asset_id": "culture.museum.frontage",
+      "class": "facade",
+      "source": "native_procedural",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_facade"
+    },
+    {
+      "asset_id": "education.campus.frontage",
+      "class": "facade",
+      "source": "native_procedural",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_facade"
+    },
+    {
+      "asset_id": "education.library.frontage",
+      "class": "facade",
+      "source": "native_procedural",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_facade"
+    },
+    {
+      "asset_id": "innovation.lab.frontage",
+      "class": "facade",
+      "source": "native_procedural",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_facade"
+    },
+    {
+      "asset_id": "services.admin.frontage",
+      "class": "facade",
+      "source": "native_procedural",
+      "generator": "FacadeNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_facade"
+    },
+    {
+      "asset_id": "civic.hall.interior",
+      "class": "interior",
+      "source": "native_procedural",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_interior"
+    },
+    {
+      "asset_id": "civic.justice.interior",
+      "class": "interior",
+      "source": "native_procedural",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_interior"
+    },
+    {
+      "asset_id": "civic.tower.interior",
+      "class": "interior",
+      "source": "native_procedural",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_interior"
+    },
+    {
+      "asset_id": "culture.museum.interior",
+      "class": "interior",
+      "source": "native_procedural",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_interior"
+    },
+    {
+      "asset_id": "education.campus.interior",
+      "class": "interior",
+      "source": "native_procedural",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_interior"
+    },
+    {
+      "asset_id": "education.library.interior",
+      "class": "interior",
+      "source": "native_procedural",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_interior"
+    },
+    {
+      "asset_id": "innovation.lab.interior",
+      "class": "interior",
+      "source": "native_procedural",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_interior"
+    },
+    {
+      "asset_id": "services.admin.interior",
+      "class": "interior",
+      "source": "native_procedural",
+      "generator": "InteriorNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "geometric_interior"
+    },
+    {
+      "asset_id": "prop.bookshelf",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_bookshelf"
+    },
+    {
+      "asset_id": "prop.terminal",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_terminal"
+    },
+    {
+      "asset_id": "prop.kiosk",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_kiosk"
+    },
+    {
+      "asset_id": "prop.board",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_board"
+    },
+    {
+      "asset_id": "prop.panel",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_panel"
+    },
+    {
+      "asset_id": "prop.desk",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_desk"
+    },
+    {
+      "asset_id": "prop.bench",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_bench"
+    },
+    {
+      "asset_id": "prop.lamp",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_lamp"
+    },
+    {
+      "asset_id": "prop.planter",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_planter"
+    },
+    {
+      "asset_id": "prop.table",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_table"
+    },
+    {
+      "asset_id": "prop.display",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "PropNativeV1",
+      "license": "project_original",
+      "revision": "native-1",
+      "dependencies": [],
+      "fallback": "primitive_display"
+    },
+    {
+      "asset_id": "v23.mesh.mineral_column",
+      "class": "mesh",
+      "source": "local_source",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "native_faceted_part"
+    },
+    {
+      "asset_id": "v23.mesh.opal_spire",
+      "class": "mesh",
+      "source": "local_source",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "native_faceted_part"
+    },
+    {
+      "asset_id": "v23.mesh.crystal_rosette",
+      "class": "mesh",
+      "source": "local_source",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "native_faceted_part"
+    },
+    {
+      "asset_id": "v23.mesh.opal_arch",
+      "class": "mesh",
+      "source": "local_source",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "native_faceted_part"
+    },
+    {
+      "asset_id": "v23.mesh.opal_chandelier",
+      "class": "mesh",
+      "source": "local_source",
+      "generator": "tools/generate_v23_meshes.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "native_faceted_part"
+    },
+    {
+      "asset_id": "v23.material.sarcelle_pierre",
+      "class": "material",
+      "source": "local_source",
+      "generator": "tools/generate_v23_materials.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "native_roblox_material"
+    },
+    {
+      "asset_id": "v23.material.opale_massive",
+      "class": "material",
+      "source": "local_source",
+      "generator": "tools/generate_v23_materials.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "native_roblox_material"
+    },
+    {
+      "asset_id": "v23.material.champagne_mineral",
+      "class": "material",
+      "source": "local_source",
+      "generator": "tools/generate_v23_materials.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "native_roblox_material"
+    },
+    {
+      "asset_id": "v23.material.pierre_promenoir",
+      "class": "material",
+      "source": "local_source",
+      "generator": "tools/generate_v23_materials.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "native_roblox_material"
+    },
+    {
+      "asset_id": "v23.audio.archives",
+      "class": "audio",
+      "source": "local_source",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "silence"
+    },
+    {
+      "asset_id": "v23.audio.botanique",
+      "class": "audio",
+      "source": "local_source",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "silence"
+    },
+    {
+      "asset_id": "v23.audio.port",
+      "class": "audio",
+      "source": "local_source",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "silence"
+    },
+    {
+      "asset_id": "v23.audio.harmonie_civique",
+      "class": "audio",
+      "source": "local_source",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "silence"
+    },
+    {
+      "asset_id": "v23.audio.laboratoire",
+      "class": "audio",
+      "source": "local_source",
+      "generator": "tools/generate_v23_soundbeds.py",
+      "license": "project_original",
+      "revision": "v23",
+      "dependencies": [],
+      "fallback": "silence"
+    }
+  ]
+}

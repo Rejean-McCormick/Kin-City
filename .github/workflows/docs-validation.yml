@@ -1,0 +1,22 @@
+name: Kin City — qualification du plan documentaire
+on:
+  push:
+  pull_request:
+jobs:
+  validate-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-dev.txt
+      - run: python tools/validate_catalog.py
+      - run: python tools/validate_spatial.py
+      - run: python tools/compile_plan.py --out build/world-plan.json
+      - run: python -m unittest discover -s tests -v
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: world-plan-static
+          path: build/world-plan.json

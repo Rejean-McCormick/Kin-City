@@ -1,0 +1,53 @@
+{
+  "schema_version": "kincity.districts/1.0",
+  "districts": [
+    {
+      "district_id": "central",
+      "name": "Centre",
+      "symbolic_domain": "ekoh_konnaxion",
+      "ring": 0,
+      "angle_degrees": 0,
+      "hub_anchor_id": "city.district.central.hub"
+    },
+    {
+      "district_id": "konnected",
+      "name": "Quartier du Savoir",
+      "symbolic_domain": "konnected_uckk",
+      "ring": 1,
+      "angle_degrees": 20,
+      "hub_anchor_id": "city.district.konnected.hub"
+    },
+    {
+      "district_id": "ethikos",
+      "name": "Place de l’Éthique",
+      "symbolic_domain": "ethikos",
+      "ring": 1,
+      "angle_degrees": 90,
+      "hub_anchor_id": "city.district.ethikos.hub"
+    },
+    {
+      "district_id": "keenkonnect",
+      "name": "Parc de l’Innovation",
+      "symbolic_domain": "keenkonnect",
+      "ring": 1,
+      "angle_degrees": 160,
+      "hub_anchor_id": "city.district.keenkonnect.hub"
+    },
+    {
+      "district_id": "kreative",
+      "name": "Quartier Créatif",
+      "symbolic_domain": "kreative",
+      "ring": 1,
+      "angle_degrees": 230,
+      "hub_anchor_id": "city.district.kreative.hub"
+    },
+    {
+      "district_id": "orgo",
+      "name": "Infrastructure / Administration",
+      "symbolic_domain": "orgo",
+      "ring": 1,
+      "angle_degrees": 300,
+      "hub_anchor_id": "city.district.orgo.hub"
+    }
+  ]
+}

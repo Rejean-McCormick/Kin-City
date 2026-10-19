@@ -1,0 +1,107 @@
+{
+  "packages": [
+    {
+      "anchors": 23,
+      "canonical_doors": 8,
+      "canonical_interactions": 0,
+      "generates_city": true,
+      "generates_institution_interior": false,
+      "installer": "KinCity_Installation_Place_city_v26.luau",
+      "place_key": "city",
+      "published_place_id": null,
+      "role": "exterior_city"
+    },
+    {
+      "anchors": 3,
+      "canonical_doors": 1,
+      "canonical_interactions": 1,
+      "generates_city": false,
+      "generates_institution_interior": true,
+      "installer": "KinCity_Installation_Place_city_hall_v26.luau",
+      "place_key": "city_hall",
+      "published_place_id": null,
+      "role": "institution_interior"
+    },
+    {
+      "anchors": 3,
+      "canonical_doors": 1,
+      "canonical_interactions": 1,
+      "generates_city": false,
+      "generates_institution_interior": true,
+      "installer": "KinCity_Installation_Place_ekoh_tower_v26.luau",
+      "place_key": "ekoh_tower",
+      "published_place_id": null,
+      "role": "institution_interior"
+    },
+    {
+      "anchors": 3,
+      "canonical_doors": 1,
+      "canonical_interactions": 1,
+      "generates_city": false,
+      "generates_institution_interior": true,
+      "installer": "KinCity_Installation_Place_library_v26.luau",
+      "place_key": "library",
+      "published_place_id": null,
+      "role": "institution_interior"
+    },
+    {
+      "anchors": 3,
+      "canonical_doors": 1,
+      "canonical_interactions": 1,
+      "generates_city": false,
+      "generates_institution_interior": true,
+      "installer": "KinCity_Installation_Place_campus_v26.luau",
+      "place_key": "campus",
+      "published_place_id": null,
+      "role": "institution_interior"
+    },
+    {
+      "anchors": 3,
+      "canonical_doors": 1,
+      "canonical_interactions": 1,
+      "generates_city": false,
+      "generates_institution_interior": true,
+      "installer": "KinCity_Installation_Place_justice_palace_v26.luau",
+      "place_key": "justice_palace",
+      "published_place_id": null,
+      "role": "institution_interior"
+    },
+    {
+      "anchors": 3,
+      "canonical_doors": 1,
+      "canonical_interactions": 1,
+      "generates_city": false,
+      "generates_institution_interior": true,
+      "installer": "KinCity_Installation_Place_innovation_lab_v26.luau",
+      "place_key": "innovation_lab",
+      "published_place_id": null,
+      "role": "institution_interior"
+    },
+    {
+      "anchors": 3,
+      "canonical_doors": 1,
+      "canonical_interactions": 1,
+      "generates_city": false,
+      "generates_institution_interior": true,
+      "installer": "KinCity_Installation_Place_museum_v26.luau",
+      "place_key": "museum",
+      "published_place_id": null,
+      "role": "institution_interior"
+    },
+    {
+      "anchors": 3,
+      "canonical_doors": 1,
+      "canonical_interactions": 1,
+      "generates_city": false,
+      "generates_institution_interior": true,
+      "installer": "KinCity_Installation_Place_orgo_center_v26.luau",
+      "place_key": "orgo_center",
+      "published_place_id": null,
+      "role": "institution_interior"
+    }
+  ],
+  "preview_has_interplace_teleportation": false,
+  "published_place_ids_required_for_interplace_travel": true,
+  "source_world_plan_sha256": "0f218410500752602e40e5a000c7f52ca67112b7881070ebda9c64edfd9e6385",
+  "version": "26.0.0"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "KinCity",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "KinCityShared": { "$path": "src/shared" }
+    },
+    "ServerScriptService": {
+      "KinCityRuntime": { "$path": "src/server" }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "KinCityUI": { "$path": "src/client" }
+      }
+    },
+    "Workspace": {
+      "$properties": { "StreamingEnabled": true }
+    }
+  }
+}

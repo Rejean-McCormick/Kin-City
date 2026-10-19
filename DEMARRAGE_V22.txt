@@ -1,0 +1,14 @@
+KIN CITY v22 — INSTALLATION DIRECTE (ROBLOX STUDIO)
+
+1. Crée une copie de ton projet existant. L'installation remplace les dossiers Kin City générés.
+2. Ouvre Roblox Studio > View > Command Bar, en mode Édition.
+3. Ouvre KinCity_Installation_Directe_v22.luau et colle tout le texte dans Command Bar.
+4. Exécute, puis lance Play. La ville est construite en mode Édition par le script.
+5. Explore un des huit grands bâtiments et visite ses galeries pour commencer le carnet.
+6. T / bouton GALERIES : carnet des salles découvertes. V / bouton CRISTAL : qualité locale.
+7. E : portes et interactions. M : carte. N : guide. Autres raccourcis antérieurs conservés.
+
+Les futures fonctions métier restent « Fonctionnalité à venir ».
+Aucune connexion à kOA ni API d'IA payante.
+Les sons originaux nécessitent des identifiants Roblox après importation.
+Un résultat hors Roblox ne certifie pas les collisions ou animations en jeu.

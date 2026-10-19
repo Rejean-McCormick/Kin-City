@@ -1,0 +1,9 @@
+Kin City v17 — sarcelle #1E6864 + cristal opalin.
+
+1. Copier une version de votre projet Roblox Studio.
+2. Ouvrir KinCity_Installation_Directe_v17.luau.
+3. Coller le fichier entier dans Command Bar en mode Édition; exécuter.
+4. Laisser la génération terminer puis lancer Play.
+5. Visiter la place centrale, une institution, son intérieur et un quartier pour constater les nouveaux matériaux.
+
+Aucun service kOA actif. Le projet garde les activités locales existantes.

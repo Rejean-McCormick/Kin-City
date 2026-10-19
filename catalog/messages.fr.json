@@ -1,0 +1,21 @@
+{
+  "schema_version": "kincity.messages/1.0",
+  "locale": "fr-CA",
+  "messages": {
+    "ui.coming_soon": "Fonctionnalité à venir",
+    "ui.close": "Fermer",
+    "ui.no_operation": "Aucune opération n’a été effectuée.",
+    "ui.teleport_unavailable": "Impossible d’entrer pour le moment.",
+    "prompt.consult": "Consulter",
+    "prompt.enter": "Entrer",
+    "prompt.exit": "Sortir",
+    "title.ballots": "Consultations Smart Vote",
+    "title.ekoh": "Profil EkoH",
+    "title.catalog": "Catalogue de la bibliothèque",
+    "title.courses": "Cours Univers-Cité",
+    "title.consultations": "Consultations eThikos",
+    "title.projects": "Projets de recherche",
+    "title.exhibits": "Collections du musée",
+    "title.tasks": "Services administratifs"
+  }
+}

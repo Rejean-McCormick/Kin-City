@@ -1,0 +1,124 @@
+{
+  "schema_version": "kincity.places/1.0",
+  "places": [
+    {
+      "place_key": "city",
+      "place_id": null,
+      "kind": "city",
+      "publication_state": "unpublished",
+      "anchors": [
+        "city.central.spawn",
+        "city.district.central.hub",
+        "city.district.konnected.hub",
+        "city.district.ethikos.hub",
+        "city.district.keenkonnect.hub",
+        "city.district.kreative.hub",
+        "city.district.orgo.hub",
+        "city.central.city_hall.front_door",
+        "city.central.city_hall.return_spawn",
+        "city.central.ekoh_tower.front_door",
+        "city.central.ekoh_tower.return_spawn",
+        "city.konnected.library.front_door",
+        "city.konnected.library.return_spawn",
+        "city.konnected.university.front_door",
+        "city.konnected.university.return_spawn",
+        "city.ethikos.justice_palace.front_door",
+        "city.ethikos.justice_palace.return_spawn",
+        "city.keenkonnect.innovation_lab.front_door",
+        "city.keenkonnect.innovation_lab.return_spawn",
+        "city.kreative.museum.front_door",
+        "city.kreative.museum.return_spawn",
+        "city.orgo.admin_center.front_door",
+        "city.orgo.admin_center.return_spawn"
+      ]
+    },
+    {
+      "place_key": "city_hall",
+      "place_id": null,
+      "kind": "interior",
+      "publication_state": "unpublished",
+      "anchors": [
+        "city_hall.lobby.spawn",
+        "city_hall.exit.door",
+        "hall.kiosk_01"
+      ]
+    },
+    {
+      "place_key": "ekoh_tower",
+      "place_id": null,
+      "kind": "interior",
+      "publication_state": "unpublished",
+      "anchors": [
+        "ekoh_tower.lobby.spawn",
+        "ekoh_tower.exit.door",
+        "tower.panel_01"
+      ]
+    },
+    {
+      "place_key": "library",
+      "place_id": null,
+      "kind": "interior",
+      "publication_state": "unpublished",
+      "anchors": [
+        "library.lobby.spawn",
+        "library.exit.door",
+        "hall.bookshelf_01"
+      ]
+    },
+    {
+      "place_key": "campus",
+      "place_id": null,
+      "kind": "interior",
+      "publication_state": "unpublished",
+      "anchors": [
+        "campus.lobby.spawn",
+        "campus.exit.door",
+        "hall.board_01"
+      ]
+    },
+    {
+      "place_key": "justice_palace",
+      "place_id": null,
+      "kind": "interior",
+      "publication_state": "unpublished",
+      "anchors": [
+        "justice_palace.lobby.spawn",
+        "justice_palace.exit.door",
+        "hall.terminal_01"
+      ]
+    },
+    {
+      "place_key": "innovation_lab",
+      "place_id": null,
+      "kind": "interior",
+      "publication_state": "unpublished",
+      "anchors": [
+        "innovation_lab.lobby.spawn",
+        "innovation_lab.exit.door",
+        "hall.desk_01"
+      ]
+    },
+    {
+      "place_key": "museum",
+      "place_id": null,
+      "kind": "interior",
+      "publication_state": "unpublished",
+      "anchors": [
+        "museum.lobby.spawn",
+        "museum.exit.door",
+        "hall.panel_01"
+      ]
+    },
+    {
+      "place_key": "orgo_center",
+      "place_id": null,
+      "kind": "interior",
+      "publication_state": "unpublished",
+      "anchors": [
+        "orgo_center.lobby.spawn",
+        "orgo_center.exit.door",
+        "hall.terminal_01"
+      ]
+    }
+  ]
+}

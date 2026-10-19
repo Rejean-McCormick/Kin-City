@@ -1,0 +1,41 @@
+{
+  "schema_version": "kincity.crystal/1.0",
+  "design_name": "Sarcelle minérale et cristal opalin",
+  "brand": {
+    "primary": "#1E6864",
+    "deep": "#123E3C",
+    "medium": "#327C78",
+    "stone": "#CEE0DA",
+    "opal": "#C5F4F0",
+    "pearl": "#EDFDFC",
+    "champagne": "#E5D7AF",
+    "water": "#407E8E",
+    "wood": "#967858"
+  },
+  "institution_accents": {
+    "city_hall": "#E5D7AF",
+    "ekoh_tower": "#A2EDD2",
+    "library": "#E6C99F",
+    "campus": "#A7CFF3",
+    "justice_palace": "#E3CCB0",
+    "innovation_lab": "#83DDD8",
+    "museum": "#F1BCCA",
+    "orgo_center": "#B8D2ED"
+  },
+  "crystal_renders": {
+    "opaque": "Slate/SmoothPlastic avec facettes",
+    "glow": "petite inclusion Neon",
+    "hero": "verre translucide limité aux monuments"
+  },
+  "budgets": {
+    "hero_translucent_parts_per_spire": 1,
+    "noncolliding_ornamentation": true,
+    "hero_point_light_range": 18,
+    "max_crystal_spires_per_major_facade": 5
+  },
+  "notes": [
+    "La palette prime sur les anciennes couleurs globales mais conserve une accentuation unique par institution.",
+    "Les objets interactifs conservent leurs IDs, CanCollide et capacités; seuls des ornements sont ajoutés.",
+    "Ne pas transformer chaque part en verre transparent, le rendu mobile souffrirait de la surimpression."
+  ]
+}

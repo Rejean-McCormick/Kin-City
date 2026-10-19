@@ -1,0 +1,7 @@
+# Matériau indicatif; couleur définitive réglée dans Studio
+newmtl SarcelleCristal
+Ka 0.12 0.27 0.26
+Kd 0.12 0.41 0.39
+Ks 0.28 0.37 0.34
+Ns 56.0
+d 1.0

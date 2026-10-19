@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "enabled": false,
+  "wind_sound_id": null,
+  "water_sound_id": null,
+  "chimes_sound_id": null,
+  "notes": "Importer les WAV originaux assets/audio dans Roblox Creator Hub, copier leurs identifiants puis passer enabled à true. Les huit sons sont FACULTATIFS.",
+  "archives_sound_id": null,
+  "laboratory_sound_id": null,
+  "harbor_sound_id": null,
+  "botanical_sound_id": null,
+  "civic_sound_id": null
+}

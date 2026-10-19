@@ -1,0 +1,28 @@
+name: Kin City offline checks
+on:
+  push:
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Validate catalogs and spatial geometry
+        run: |
+          python tools/validate_catalog.py
+          python tools/validate_spatial.py
+      - name: Generate assets, Luau and check all tests
+        run: |
+          python tools/generate_v23_meshes.py
+          python tools/generate_v24_meshes.py
+          python tools/generate_v23_materials.py
+          python tools/generate_v23_soundbeds.py
+          python -m unittest discover -s tests -v
+          python tools/build_release.py
+      - name: Ensure generated files are committed
+        run: git diff --exit-code -- src/shared/ build/world-plan.json build/release-manifest.json KinCity_Installer_CommandBar.luau KinCity_Installation_Directe_v26.luau KinCity_Installation_Place_*_v26.luau build/place-package-plan.json

@@ -1,0 +1,93 @@
+{
+  "schema_version": "kincity.interactions/1.0",
+  "interactions": [
+    {
+      "interaction_id": "central.city_hall.vote_01",
+      "building_id": "central.city_hall",
+      "place_key": "city_hall",
+      "anchor_id": "hall.kiosk_01",
+      "capability_id": "smartvote.ballots.browse",
+      "provider_mode": "stub",
+      "prompt_label_key": "prompt.consult",
+      "display_title_key": "title.ballots",
+      "display_message_key": "ui.coming_soon"
+    },
+    {
+      "interaction_id": "central.ekoh_tower.display_01",
+      "building_id": "central.ekoh_tower",
+      "place_key": "ekoh_tower",
+      "anchor_id": "tower.panel_01",
+      "capability_id": "ekoh.profile.view",
+      "provider_mode": "stub",
+      "prompt_label_key": "prompt.consult",
+      "display_title_key": "title.ekoh",
+      "display_message_key": "ui.coming_soon"
+    },
+    {
+      "interaction_id": "konnected.library.bookshelf_01",
+      "building_id": "konnected.library",
+      "place_key": "library",
+      "anchor_id": "hall.bookshelf_01",
+      "capability_id": "konnected.catalog.browse",
+      "provider_mode": "stub",
+      "prompt_label_key": "prompt.consult",
+      "display_title_key": "title.catalog",
+      "display_message_key": "ui.coming_soon"
+    },
+    {
+      "interaction_id": "konnected.university.board_01",
+      "building_id": "konnected.university",
+      "place_key": "campus",
+      "anchor_id": "hall.board_01",
+      "capability_id": "uckk.courses.browse",
+      "provider_mode": "stub",
+      "prompt_label_key": "prompt.consult",
+      "display_title_key": "title.courses",
+      "display_message_key": "ui.coming_soon"
+    },
+    {
+      "interaction_id": "ethikos.justice_palace.terminal_01",
+      "building_id": "ethikos.justice_palace",
+      "place_key": "justice_palace",
+      "anchor_id": "hall.terminal_01",
+      "capability_id": "ethikos.consultation.list",
+      "provider_mode": "stub",
+      "prompt_label_key": "prompt.consult",
+      "display_title_key": "title.consultations",
+      "display_message_key": "ui.coming_soon"
+    },
+    {
+      "interaction_id": "keenkonnect.innovation_lab.desk_01",
+      "building_id": "keenkonnect.innovation_lab",
+      "place_key": "innovation_lab",
+      "anchor_id": "hall.desk_01",
+      "capability_id": "keenkonnect.projects.browse",
+      "provider_mode": "stub",
+      "prompt_label_key": "prompt.consult",
+      "display_title_key": "title.projects",
+      "display_message_key": "ui.coming_soon"
+    },
+    {
+      "interaction_id": "kreative.museum.panel_01",
+      "building_id": "kreative.museum",
+      "place_key": "museum",
+      "anchor_id": "hall.panel_01",
+      "capability_id": "kreative.exhibits.read",
+      "provider_mode": "stub",
+      "prompt_label_key": "prompt.consult",
+      "display_title_key": "title.exhibits",
+      "display_message_key": "ui.coming_soon"
+    },
+    {
+      "interaction_id": "orgo.admin_center.terminal_01",
+      "building_id": "orgo.admin_center",
+      "place_key": "orgo_center",
+      "anchor_id": "hall.terminal_01",
+      "capability_id": "orgo.tasks.browse",
+      "provider_mode": "stub",
+      "prompt_label_key": "prompt.consult",
+      "display_title_key": "title.tasks",
+      "display_message_key": "ui.coming_soon"
+    }
+  ]
+}

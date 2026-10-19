@@ -1,0 +1,77 @@
+{
+  "schema_version": "kincity.capabilities/1.0",
+  "capabilities": [
+    {
+      "capability_id": "smartvote.ballots.browse",
+      "owner_ref": "konnaxion.smart_vote",
+      "provider_mode": "stub",
+      "state": "planned",
+      "operation_kind": "read",
+      "content_admission": "no_live_content",
+      "message_key": "ui.coming_soon"
+    },
+    {
+      "capability_id": "ekoh.profile.view",
+      "owner_ref": "konnaxion.ekoh",
+      "provider_mode": "stub",
+      "state": "planned",
+      "operation_kind": "read",
+      "content_admission": "no_live_content",
+      "message_key": "ui.coming_soon"
+    },
+    {
+      "capability_id": "konnected.catalog.browse",
+      "owner_ref": "konnaxion.konnected",
+      "provider_mode": "stub",
+      "state": "planned",
+      "operation_kind": "read",
+      "content_admission": "no_live_content",
+      "message_key": "ui.coming_soon"
+    },
+    {
+      "capability_id": "uckk.courses.browse",
+      "owner_ref": "uckk.univers_cite",
+      "provider_mode": "stub",
+      "state": "planned",
+      "operation_kind": "read",
+      "content_admission": "no_live_content",
+      "message_key": "ui.coming_soon"
+    },
+    {
+      "capability_id": "ethikos.consultation.list",
+      "owner_ref": "konnaxion.ethikos",
+      "provider_mode": "stub",
+      "state": "planned",
+      "operation_kind": "read",
+      "content_admission": "no_live_content",
+      "message_key": "ui.coming_soon"
+    },
+    {
+      "capability_id": "keenkonnect.projects.browse",
+      "owner_ref": "konnaxion.keenkonnect",
+      "provider_mode": "stub",
+      "state": "planned",
+      "operation_kind": "read",
+      "content_admission": "no_live_content",
+      "message_key": "ui.coming_soon"
+    },
+    {
+      "capability_id": "kreative.exhibits.read",
+      "owner_ref": "konnaxion.kreative",
+      "provider_mode": "stub",
+      "state": "planned",
+      "operation_kind": "read",
+      "content_admission": "no_live_content",
+      "message_key": "ui.coming_soon"
+    },
+    {
+      "capability_id": "orgo.tasks.browse",
+      "owner_ref": "orgo.workflow",
+      "provider_mode": "stub",
+      "state": "planned",
+      "operation_kind": "read",
+      "content_admission": "no_live_content",
+      "message_key": "ui.coming_soon"
+    }
+  ]
+}

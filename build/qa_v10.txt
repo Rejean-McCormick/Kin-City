@@ -1,0 +1,24 @@
+test_all_doors_reversible_and_resolved (test_runtime_generation.TestRuntimeGeneration.test_all_doors_reversible_and_resolved) ... ok
+test_all_interactions_have_real_furniture (test_runtime_generation.TestRuntimeGeneration.test_all_interactions_have_real_furniture) ... ok
+test_all_interiors_have_connected_layout_and_threshold (test_runtime_generation.TestRuntimeGeneration.test_all_interiors_have_connected_layout_and_threshold) ... ok
+test_built_runtime_is_network_free (test_runtime_generation.TestRuntimeGeneration.test_built_runtime_is_network_free) ... ok
+test_export_deterministic_and_contains_real_plan (test_runtime_generation.TestRuntimeGeneration.test_export_deterministic_and_contains_real_plan) ... ok
+test_multi_place_requires_public_ids (test_runtime_generation.TestRuntimeGeneration.test_multi_place_requires_public_ids) ... ok
+test_installer_is_self_contained_and_reproducible (test_studio_installer.StudioInstallerTest.test_installer_is_self_contained_and_reproducible) ... ok
+test_missing_interaction_object_rejected (test_validation.TestStaticWorld.test_missing_interaction_object_rejected) ... ok
+test_nonexistent_facade_rejected (test_validation.TestStaticWorld.test_nonexistent_facade_rejected) ... ok
+test_plan_is_repeatable (test_validation.TestStaticWorld.test_plan_is_repeatable) ... ok
+test_plan_paths_do_not_cross_footprints_on_grid (test_validation.TestStaticWorld.test_plan_paths_do_not_cross_footprints_on_grid) ... ok
+test_spatial_anchor_out_of_city_rejected (test_validation.TestStaticWorld.test_spatial_anchor_out_of_city_rejected) ... ok
+test_world_passes (test_validation.TestStaticWorld.test_world_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 2.616s
+
+OK
+EXPORT OK 30b74b3f5d2377bb857ef13c3bb20f3bd90edb052dd49f8246662b7c66029d59 / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 30b74b3f5d2377bb857ef13c3bb20f3bd90edb052dd49f8246662b7c66029d59 / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 30b74b3f5d2377bb857ef13c3bb20f3bd90edb052dd49f8246662b7c66029d59 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/KinCity_Construction_v10/KinCity_Installer_CommandBar.luau 427475 octets
+EXPORT OK 30b74b3f5d2377bb857ef13c3bb20f3bd90edb052dd49f8246662b7c66029d59 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/KinCity_Construction_v10/KinCity_Installer_CommandBar.luau 427475 octets

@@ -1,0 +1,7 @@
+# Palette de travail. SurfaceAppearance finale importée séparément dans Studio.
+newmtl OpaleMinérale
+Ka 0.12 0.26 0.25
+Kd 0.77 0.94 0.90
+Ks 0.20 0.30 0.28
+Ns 54.0
+d 1.0

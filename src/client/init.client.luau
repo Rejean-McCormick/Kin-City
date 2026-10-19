@@ -1,0 +1,28 @@
+--!strict
+local ReplicatedStorage=game:GetService("ReplicatedStorage")
+local Mode=require(ReplicatedStorage:WaitForChild("KinCityShared"):WaitForChild("RuntimeConfig"))
+local Routing=require(ReplicatedStorage:WaitForChild("KinCityShared"):WaitForChild("PlaceRouting"))
+local isCity=Mode.mode=="LOCAL_UNIVERSE" or Mode.target_place_key=="city" or Routing.city==game.PlaceId
+local remote=ReplicatedStorage:WaitForChild("KinCityReply")
+require(script.Hud).start(remote)
+if isCity then
+    require(script.MapHud).start()
+    require(script.RouteGuide).start()
+    require(script.ExplorationJournal).start()
+    require(script.VistaCamera).start(remote)
+    require(script.TrailHud).start()
+    require(script.TramRideHud).start(remote)
+    require(script.IslandPassportHud).start()
+    require(script.ArchipelagoProgressHud).start()
+    require(script.FerryGroupHud).start(remote)
+    require(script.BoulevardBusHud).start(remote)
+    require(script.IntermodalPanel).start()
+    require(script.CooperativeHud).start(remote)
+    require(script.WorkshopHud).start(remote)
+    require(script.SkyTourHud).start(remote)
+    require(script.CitizenAnimationV21).start()
+end
+require(script.CrystalDetailLOD).start()
+require(script.LocalVisualDirectorV22).start()
+require(script.GalleryJournalV22).start()
+require(script.PlaceIdentityHudV26).start()
