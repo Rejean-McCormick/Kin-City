@@ -1,0 +1,18 @@
+test_annular_radial_segments_end_shorter_than_spacing (test_v29_comfort.V29Geometry.test_annular_radial_segments_end_shorter_than_spacing) ... ok
+test_baseplate_original_not_destroyed (test_v29_comfort.V29Geometry.test_baseplate_original_not_destroyed) ... ok
+test_eight_destinations_reached_without_furniture_collision (test_v29_comfort.V29Geometry.test_eight_destinations_reached_without_furniture_collision) ... ok
+test_pavement_geometry_does_not_overlap (test_v29_comfort.V29Geometry.test_pavement_geometry_does_not_overlap) ... ok
+test_portals_and_interactions_unchanged (test_v29_comfort.V29Geometry.test_portals_and_interactions_unchanged) ... ok
+test_raster_union_is_exact_and_without_any_duplicate_surface (test_v29_comfort.V29Geometry.test_raster_union_is_exact_and_without_any_duplicate_surface) ... ok
+test_signs_one_per_main_destination_avoid_footprints_and_one_another (test_v29_comfort.V29Geometry.test_signs_one_per_main_destination_avoid_footprints_and_one_another) ... ok
+test_spawn_consistency_with_placement_and_camera (test_v29_comfort.V29Geometry.test_spawn_consistency_with_placement_and_camera) ... ok
+test_g_reserved_and_h_unused_other_than_station (test_v29_comfort.V29UI.test_g_reserved_and_h_unused_other_than_station) ... ok
+test_menu_exclusivity_closure_and_mobile_scrolling (test_v29_comfort.V29UI.test_menu_exclusivity_closure_and_mobile_scrolling) ... ok
+test_no_forced_route_at_start_and_one_guide_mode (test_v29_comfort.V29UI.test_no_forced_route_at_start_and_one_guide_mode) ... ok
+test_panorama_exits_on_location_change_respawn_and_restores_fov (test_v29_comfort.V29UI.test_panorama_exits_on_location_change_respawn_and_restores_fov) ... ok
+test_probe_local_and_conditional_on_zone_quality (test_v29_comfort.V29UI.test_probe_local_and_conditional_on_zone_quality) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.015s
+
+OK

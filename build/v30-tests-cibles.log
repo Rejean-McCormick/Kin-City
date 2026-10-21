@@ -1,0 +1,12 @@
+test_menu_search_fits_small_screens_and_selects_controller_focus (test_v30_accessibility.AccessibilityV30.test_menu_search_fits_small_screens_and_selects_controller_focus) ... ok
+test_probe_local_no_network_and_interruptible (test_v30_accessibility.AccessibilityV30.test_probe_local_no_network_and_interruptible) ... ok
+test_separate_8_interiors_and_city_and_all_in_one (test_v30_accessibility.BuildV30.test_separate_8_interiors_and_city_and_all_in_one) ... ok
+test_canonical_navigation_and_building_ids_unchanged (test_v30_accessibility.NavigationV30.test_canonical_navigation_and_building_ids_unchanged) ... ok
+test_destinations_eight_main_first_filter_and_clear (test_v30_accessibility.NavigationV30.test_destinations_eight_main_first_filter_and_clear) ... ok
+test_optional_library_guide_respects_dismissal (test_v30_accessibility.NavigationV30.test_optional_library_guide_respects_dismissal) ... ok
+test_route_projects_along_path_not_through_destination (test_v30_accessibility.NavigationV30.test_route_projects_along_path_not_through_destination) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.017s
+
+OK

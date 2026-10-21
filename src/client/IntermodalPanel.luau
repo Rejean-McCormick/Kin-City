@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Panneau de lignes: information purement locale, ne vend ni ne réserve rien.
 -- Un bouton tactile permet de consulter les lignes sans clavier.
 local Players=game:GetService("Players")
@@ -21,7 +22,7 @@ local function text(parent,value,y,height,size,bold)
     l.Text=value;l.TextWrapped=true
     l.TextXAlignment=Enum.TextXAlignment.Left
     l.TextYAlignment=Enum.TextYAlignment.Center
-    l.TextColor3=FG;l.Font=if bold then Enum.Font.GothamBold else Enum.Font.Gotham
+    l.TextColor3=FG;l.Font=if bold then Typography.body() else Typography.body()
     l.TextSize=size;l.Parent=parent
     return l
 end
@@ -31,7 +32,7 @@ function Panel.start()
     gui.IgnoreGuiInset=false;gui.ResetOnSpawn=false;gui.DisplayOrder=7
     gui.Parent=player:WaitForChild("PlayerGui")
     local toggle=Instance.new("TextButton")
-    toggle.Name="GareButton";toggle.Text="GARE";toggle.Font=Enum.Font.GothamBold;toggle.TextSize=12
+    toggle.Name="GareButton";toggle.Text="GARE [H]";toggle.Font=Typography.body();toggle.TextSize=12
     toggle.TextColor3=FG;toggle.BackgroundColor3=BG
     toggle.Size=UDim2.fromOffset(78,36)
     toggle.Position=UDim2.new(1,-94,1,-58)
@@ -75,14 +76,15 @@ function Panel.start()
         label.BackgroundTransparency=1;label.Position=UDim2.fromOffset(13,3)
         label.Size=UDim2.new(1,-20,1,-6)
         label.Text=string.format("%d  %s",i,gate.title)
-        label.TextWrapped=true;label.TextSize=12;label.Font=Enum.Font.GothamMedium
+        label.TextWrapped=true;label.TextSize=12;label.Font=Typography.body()
         label.TextXAlignment=Enum.TextXAlignment.Left;label.TextColor3=FG
         label.Parent=row
     end
     local function flip()window.Visible=not window.Visible end
     toggle.Activated:Connect(flip)
+    require(script.Parent.KinCityMenu).register("station","Gare [H]",toggle,window,flip)
     UIS.InputBegan:Connect(function(input,handled)
-        if not handled and input.KeyCode==Enum.KeyCode.G then flip() end
+        if not handled and input.KeyCode==Enum.KeyCode.H then flip() end
     end)
     local elapsed=0
     RunService.RenderStepped:Connect(function(dt)

@@ -413,8 +413,28 @@ return {
       ["revision"] = "v23",
       ["source"] = "local_source",
     },
+    {
+      ["asset_id"] = "v28.library.story_book",
+      ["class"] = "prop",
+      ["dependencies"] = {},
+      ["fallback"] = "native_parts",
+      ["generator"] = "src/server/LibraryJourneyArt.luau",
+      ["license"] = "project_original",
+      ["revision"] = "v28",
+      ["source"] = "native_procedural",
+    },
+    {
+      ["asset_id"] = "v28.mesh.kingklown_hair",
+      ["class"] = "mesh",
+      ["dependencies"] = {},
+      ["fallback"] = "native_curved_locks",
+      ["generator"] = "tools/generate_v28_meshes.py",
+      ["license"] = "project_original",
+      ["revision"] = "v28",
+      ["source"] = "local_source",
+    },
   },
-  ["canonical_sha256"] = "0f218410500752602e40e5a000c7f52ca67112b7881070ebda9c64edfd9e6385",
+  ["canonical_sha256"] = "9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001",
   ["city_id"] = "kin_city",
   ["compiler"] = "offline-plan-1",
   ["doors"] = {
@@ -686,6 +706,205 @@ return {
     },
   },
   ["mode"] = "WORLD_STUB",
+  ["navigation_obstacles"] = {
+    {
+      ["center_studs"] = {
+        -30,
+        -29,
+      },
+      ["clearance_studs"] = 5,
+      ["id"] = "central.fountain",
+      ["kind"] = "fountain",
+      ["radius_studs"] = 12.5,
+    },
+    {
+      ["center_studs"] = {
+        0,
+        39,
+      },
+      ["clearance_studs"] = 5,
+      ["id"] = "central.monument",
+      ["kind"] = "monument",
+      ["radius_studs"] = 3.55,
+    },
+    {
+      ["center_studs"] = {
+        0,
+        30,
+      },
+      ["clearance_studs"] = 4,
+      ["id"] = "central.welcome",
+      ["kind"] = "welcome",
+      ["radius_studs"] = 14,
+    },
+    {
+      ["center_studs"] = {
+        58,
+        48,
+      },
+      ["clearance_studs"] = 4,
+      ["id"] = "central.sculpture.1",
+      ["kind"] = "sculpture",
+      ["radius_studs"] = 4,
+    },
+    {
+      ["center_studs"] = {
+        -65,
+        56,
+      },
+      ["clearance_studs"] = 4,
+      ["id"] = "central.sculpture.2",
+      ["kind"] = "sculpture",
+      ["radius_studs"] = 4,
+    },
+    {
+      ["center_studs"] = {
+        26.18657,
+        32.83692,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.1",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 141.428571,
+    },
+    {
+      ["center_studs"] = {
+        32.42147,
+        40.65524,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.1",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        -9.34588,
+        40.94697,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.2",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 192.857143,
+    },
+    {
+      ["center_studs"] = {
+        -11.57109,
+        50.69625,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.2",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        -37.84069,
+        18.22312,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.3",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 244.285714,
+    },
+    {
+      ["center_studs"] = {
+        -46.85038,
+        22.56195,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.3",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        -37.84069,
+        -18.22312,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.4",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 295.714286,
+    },
+    {
+      ["center_studs"] = {
+        -46.85038,
+        -22.56195,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.4",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        -9.34588,
+        -40.94697,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.5",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 347.142857,
+    },
+    {
+      ["center_studs"] = {
+        -11.57109,
+        -50.69625,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.5",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        26.18657,
+        -32.83692,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.6",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 398.571429,
+    },
+    {
+      ["center_studs"] = {
+        32.42147,
+        -40.65524,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.6",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        42.0,
+        -0.0,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.7",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 450.0,
+    },
+    {
+      ["center_studs"] = {
+        52.0,
+        -0.0,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.7",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+  },
   ["pedestrian_paths"] = {
     {
       ["arrival"] = "city.central.city_hall.return_spawn",
@@ -694,7 +913,22 @@ return {
         {
           0,
           0,
+          -20,
+        },
+        {
+          10,
           0,
+          -20,
+        },
+        {
+          10,
+          0,
+          -50,
+        },
+        {
+          0,
+          0,
+          -50,
         },
         {
           0,
@@ -712,7 +946,12 @@ return {
         {
           0,
           0,
+          -20,
+        },
+        {
+          60,
           0,
+          -20,
         },
         {
           60,
@@ -730,7 +969,62 @@ return {
         {
           0,
           0,
+          -20,
+        },
+        {
+          -10,
           0,
+          -20,
+        },
+        {
+          -10,
+          0,
+          -10,
+        },
+        {
+          -20,
+          0,
+          -10,
+        },
+        {
+          -20,
+          0,
+          0,
+        },
+        {
+          -60,
+          0,
+          0,
+        },
+        {
+          -60,
+          0,
+          30,
+        },
+        {
+          -30,
+          0,
+          30,
+        },
+        {
+          -30,
+          0,
+          40,
+        },
+        {
+          -20,
+          0,
+          40,
+        },
+        {
+          -20,
+          0,
+          60,
+        },
+        {
+          0,
+          0,
+          60,
         },
         {
           0,
@@ -747,6 +1041,26 @@ return {
       ["path_xyz_studs"] = {
         {
           0,
+          0,
+          -20,
+        },
+        {
+          -10,
+          0,
+          -20,
+        },
+        {
+          -10,
+          0,
+          -10,
+        },
+        {
+          -20,
+          0,
+          -10,
+        },
+        {
+          -20,
           0,
           0,
         },
@@ -771,12 +1085,12 @@ return {
         {
           0,
           0,
-          0,
+          -20,
         },
         {
           70,
           0,
-          0,
+          -20,
         },
         {
           70,
@@ -804,12 +1118,12 @@ return {
         {
           0,
           0,
-          0,
+          -20,
         },
         {
           70,
           0,
-          0,
+          -20,
         },
         {
           70,
@@ -867,12 +1181,32 @@ return {
         {
           0,
           0,
+          -20,
+        },
+        {
+          10,
           0,
+          -20,
+        },
+        {
+          10,
+          0,
+          -50,
+        },
+        {
+          0,
+          0,
+          -50,
+        },
+        {
+          0,
+          0,
+          -60,
         },
         {
           -170,
           0,
-          0,
+          -60,
         },
         {
           -170,
@@ -890,12 +1224,12 @@ return {
         {
           0,
           0,
-          0,
+          -20,
         },
         {
           70,
           0,
-          0,
+          -20,
         },
         {
           70,
@@ -1179,7 +1513,7 @@ return {
           ["position_studs"] = {
             0.0,
             3.0,
-            0.0,
+            -16.0,
           },
           ["role"] = "spawn",
           ["yaw_degrees"] = 0.0,

@@ -164,7 +164,7 @@
           "position_studs": [
             0.0,
             3.0,
-            0.0
+            -16.0
           ],
           "yaw_degrees": 0.0,
           "role": "spawn"

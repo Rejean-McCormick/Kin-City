@@ -1,0 +1,10 @@
+Kin City 30.0.2 - contrôles hors Roblox Studio
+===========================================
+Cause reproduite par inspection du journal Studio : Unknown asset generator: prop.desk
+Réparation : géométrie du bureau d'innovation_lab et registre de couverture du mobilier.
+Nombre de furnishings canoniques : 11 types, tous associés à un constructeur.
+Tests exécutables : 101 passés, 0 assertion échouée.
+Tests non exécutés : test_ground_arrival, test_v27_reliability, test_v28_journey (lupa indisponible).
+Validation : catalogue OK ; spatiale OK ; parcours bibliothèque OK.
+Luau : balayage lexical / structurel 182 fichiers OK ; analyseur syntaxique complet absent (tree_sitter).
+Roblox Studio : installation, rendu et collisions NON testés dans le moteur.

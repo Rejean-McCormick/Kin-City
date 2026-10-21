@@ -76,12 +76,12 @@ class SecondaryArchitecture(unittest.TestCase):
         self.assertIn('KinCityGenerated',(R/'KinCity_Diagnostic_Studio_v25.luau').read_text())
     def test_release_v25(self):
         manifest=json.loads((R/'build/release-manifest.json').read_text())
-        self.assertEqual(manifest['version'],'26.0.0')
-        for artifact in ('KinCity_Installation_Directe_v26.luau','KinCity_Enregistrer_Mesh_Studio_v25.luau',
+        self.assertEqual(manifest['version'],'30.0.7')
+        for artifact in ('KinCity_Installation_Directe_v30.luau','KinCity_Enregistrer_Mesh_Studio_v25.luau',
                          'KinCity_Enregistrer_Materiau_Studio_v25.luau','KinCity_Diagnostic_Studio_v25.luau'):
             self.assertIn(artifact,manifest['artifacts'])
             self.assertTrue((R/artifact).is_file())
-        self.assertIn('construction-v26.0.0-', (S/'WorldBuilder.luau').read_text())
+        self.assertIn('construction-v30.0.7-', (S/'WorldBuilder.luau').read_text())
     def test_no_kOA_services_added(self):
         for name in ('SecondaryArchitectureV25.luau','MaterialLibraryV25.luau','WorldBuildDiagnosticsV25.luau'):
             code=(S/name).read_text()

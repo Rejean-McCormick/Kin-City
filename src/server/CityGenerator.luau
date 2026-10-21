@@ -33,6 +33,8 @@ local OpalWayfindingV19=require(script.Parent.OpalWayfindingV19)
 local BotanicalKitV20=require(script.Parent.BotanicalKitV20)
 local CrystalRestStopsV22=require(script.Parent.CrystalRestStopsV22)
 local CrystalLandingsV24=require(script.Parent.CrystalLandingsV24)
+local GroundCompatibility=require(script.Parent.GroundCompatibility)
+local Spatial=require(script.Parent.Spatial)
 local CityGenerator={}
 
 local function nearestBuildings(x,z,structures)
@@ -68,15 +70,108 @@ local function tree(parent,x,z,seed)
     return BotanicalKitV20.tree(parent,x,z,seed)
 end
 
-local function pavement(parent,name,a,b,width,color)
-    local vector=b-a
-    local length=Vector3.new(vector.X,0,vector.Z).Magnitude
-    if length<0.5 then return end
-    local midpoint=(a+b)/2
-    Factory.part(parent,name,Vector3.new(width,0.24,length),CFrame.lookAt(Vector3.new(midpoint.X,0.09,midpoint.Z),Vector3.new(b.X,0.09,b.Z)),color,Enum.Material.Cobblestone)
+-- v29 : union discrète des routes alignées sur la grille canonique de 10 studs.
+-- Un seul carreau par noeud et un seul tronçon par arête, sans surfaces coplanaires.
+-- Au centre, la Place centrale couvre le sol : ne pas générer de pavés cachés.
+local function streetTiles(folder,paths)
+    local nodes,edges={},{}
+    local function nodeKey(x,z) return string.format("%d:%d",x,z) end
+    local function addNode(x,z)
+        local key=nodeKey(x,z)
+        if Vector2.new(x,z).Magnitude>56 then nodes[key]={x,z} end
+    end
+    for _,path in ipairs(paths) do
+        local pts=path.path_xyz_studs
+        for i=2,#pts do
+            local a,b=pts[i-1],pts[i]
+            local dx=if a[1]~=b[1] then (b[1]>a[1] and 10 or -10) else 0
+            local dz=if a[3]~=b[3] then (b[3]>a[3] and 10 or -10) else 0
+            if dx~=0 or dz~=0 then
+                local steps=math.floor((math.abs(b[1]-a[1])+math.abs(b[3]-a[3]))/10+0.5)
+                for j=0,steps do
+                    local x,z=a[1]+j*dx,a[3]+j*dz
+                    addNode(x,z)
+                    if j>0 then
+                        local px,pz=x-dx,z-dz
+                        local midx,midz=(px+x)/2,(pz+z)/2
+                        if Vector2.new(px,pz).Magnitude>56 and Vector2.new(x,z).Magnitude>56 then
+                            local key=if dx~=0 then "H:"..nodeKey(midx,midz) else "V:"..nodeKey(midx,midz)
+                            edges[key]={midx,midz,dx~=0}
+                        end
+                    end
+                end
+            end
+        end
+    end
+    -- Raster de 2 studs : cellules disjointes, puis fusion par rangées contiguës.
+    -- La forme visible et la forme de collision utilisent les mêmes rectangles.
+    local rows={}
+    local function cell(x,z)
+        local ix,iz=math.floor(x/2+0.5),math.floor(z/2+0.5)
+        rows[iz]=rows[iz] or {}
+        rows[iz][ix]=true
+    end
+    for _,v in pairs(nodes) do
+        for dx=-2,2,2 do
+            for dz=-2,2,2 do cell(v[1]+dx,v[2]+dz) end
+        end
+    end
+    for _,v in pairs(edges) do
+        if v[3] then
+            for dx=-1,1,2 do
+                for dz=-2,2,2 do cell(v[1]+dx,v[2]+dz) end
+            end
+        else
+            for dx=-2,2,2 do
+                for dz=-1,1,2 do cell(v[1]+dx,v[2]+dz) end
+            end
+        end
+    end
+    local color=Color3.fromRGB(211,200,175)
+    local count=0
+    local function emit(r)
+        local x1,x2,z1,z2=r[1],r[2],r[3],r[4]
+        local width=(x2-x1+1)*2
+        local depth=(z2-z1+1)*2
+        local tile=Factory.part(folder,"Chemin unifié",Vector3.new(width,0.24,depth),CFrame.new(x1+x2,0.09,z1+z2),color,Enum.Material.Cobblestone)
+        tile.CanCollide=true;count+=1
+    end
+    local zs={}
+    for z in pairs(rows) do table.insert(zs,z) end
+    table.sort(zs)
+    local active={}
+    for _,z in ipairs(zs) do
+        local xs={}
+        for x in pairs(rows[z]) do table.insert(xs,x) end
+        table.sort(xs)
+        local runs={}
+        for _,x in ipairs(xs) do
+            local last=runs[#runs]
+            if last and x==last[2]+1 then last[2]=x
+            else table.insert(runs,{x,x}) end
+        end
+        local nextActive={}
+        for _,run in ipairs(runs) do
+            local key=tostring(run[1])..":"..tostring(run[2])
+            local old=active[key]
+            if old and old[4]==z-1 then
+                old[4]=z;nextActive[key]=old
+            else
+                nextActive[key]={run[1],run[2],z,z}
+            end
+        end
+        for key,r in pairs(active) do
+            if not nextActive[key] then emit(r) end
+        end
+        active=nextActive
+    end
+    for _,r in pairs(active) do emit(r) end
+    folder:SetAttribute("KinUniquePavementPieces",count)
+    folder:SetAttribute("KinPavementUnionV29",true)
 end
 
 function CityGenerator.make(parent,plan,buildingsById)
+    GroundCompatibility.prepare()
     local city=Factory.folder(parent,"Ville")
     local disk=Factory.part(city,"Île circulaire",Vector3.new(2,990,990),CFrame.new(0,-1,0)*CFrame.Angles(0,0,math.pi/2),Color3.fromRGB(84,141,107),Enum.Material.Grass)
     disk.Shape=Enum.PartType.Cylinder
@@ -84,15 +179,9 @@ function CityGenerator.make(parent,plan,buildingsById)
     water.Shape=Enum.PartType.Cylinder
     local plaza=Factory.part(city,"Place centrale",Vector3.new(2,110,110),CFrame.new(0,0,0)*CFrame.Angles(0,0,math.pi/2),Color3.fromRGB(198,220,211),Enum.Material.Cobblestone)
     plaza.Shape=Enum.PartType.Cylinder
-    plaza.CanCollide=false
+    plaza.CanCollide=true
     local roads=Factory.folder(city,"Sentiers piétons")
-    for _,path in ipairs(plan.pedestrian_paths) do
-        for i=2,#path.path_xyz_studs do
-            local p=path.path_xyz_studs[i-1]
-            local q=path.path_xyz_studs[i]
-            pavement(roads,path.building_id,Vector3.new(p[1],0,p[3]),Vector3.new(q[1],0,q[3]),path.width_studs,Color3.fromRGB(211,200,175))
-        end
-    end
+    streetTiles(roads,plan.pedestrian_paths)
     local facades=Factory.folder(city,"Bâtiments")
     for _,b in ipairs(plan.structures) do
         local building=buildingsById[b.building_id]
@@ -119,16 +208,23 @@ function CityGenerator.make(parent,plan,buildingsById)
             end
         end
     end
-    local monument=Factory.part(city,"Monument du savoir",Vector3.new(5,19,5),CFrame.new(0,9.5,39),Color3.fromRGB(30,104,100),Enum.Material.Marble)
-    Factory.sign(city,"Bienvenue",Vector3.new(0,7,17),0,"KIN CITY",28,5)
+    for _,item in ipairs(plan.navigation_obstacles) do
+        if item.kind=="monument" then
+            Factory.part(city,"Monument du savoir",Vector3.new(5,19,5),CFrame.new(item.center_studs[1],9.5,item.center_studs[2]),Color3.fromRGB(30,104,100),Enum.Material.Marble)
+        elseif item.kind=="welcome" then
+            Factory.sign(city,"Bienvenue",Vector3.new(item.center_studs[1],7,item.center_studs[2]),0,"KIN CITY",28,5).CanCollide=false
+        end
+    end
     local spawn=Instance.new("SpawnLocation")
     spawn.Name="Arrivée Kin City"
     spawn.Size=Vector3.new(12,1,12)
-    spawn.CFrame=CFrame.new(0,0.8,0)
+    local arrival=assert(Spatial.anchorCFrame("city","city.central.spawn"))
+    spawn.CFrame=arrival*CFrame.new(0,-2.2,0)
     spawn.Anchored=true
     spawn.Neutral=true
     spawn.CanCollide=true
-    spawn.Transparency=0.25
+    spawn.Transparency=1
+    spawn.Duration=0
     spawn.Parent=city
     UrbanDetails.make(city,plan)
     InstitutionForecourts.make(city,plan)

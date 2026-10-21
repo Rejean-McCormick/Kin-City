@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Indicateur de trajet non bloquant; le joueur peut admirer la ville pendant le trajet.
 local Players=game:GetService("Players")
 local TweenService=game:GetService("TweenService")
@@ -16,7 +17,7 @@ function UI.start(remote)
     local round=Instance.new("UICorner");round.CornerRadius=UDim.new(0,13);round.Parent=frame
     local title=Instance.new("TextLabel")
     title.Size=UDim2.new(1,-28,0,39);title.Position=UDim2.fromOffset(14,3)
-    title.BackgroundTransparency=1;title.TextXAlignment=Enum.TextXAlignment.Left;title.Font=Enum.Font.GothamBold
+    title.BackgroundTransparency=1;title.TextXAlignment=Enum.TextXAlignment.Left;title.Font=Typography.body()
     title.TextColor3=Color3.fromRGB(246,241,221);title.TextSize=16;title.Text="Tramway Kin City"
     title.Parent=frame
     local track=Instance.new("Frame")

@@ -1,0 +1,43 @@
+----------------------------------------------------------------------
+Ran 91 tests in 7.497s
+
+OK
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/KinCity_Construction_v27/KinCity_Installer_CommandBar.luau 812999 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/KinCity_Construction_v27/KinCity_Installer_CommandBar.luau 812999 octets
+crystal-canopy.obj 26 vertices 48 triangles
+mineral-planter.obj 33 vertices 64 triangles
+opal-console.obj 24 vertices 36 triangles
+opal-lattice 80 vertices 120 triangles
+mineral-pediment 48 vertices 72 triangles
+harbor-crest 128 vertices 192 triangles
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installer_CommandBar.luau 812999 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installation_Place_city_v28.luau 813031 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installation_Place_city_hall_v28.luau 813037 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installation_Place_ekoh_tower_v28.luau 813038 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installation_Place_library_v28.luau 813035 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installation_Place_campus_v28.luau 813034 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installation_Place_justice_palace_v28.luau 813042 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installation_Place_innovation_lab_v28.luau 813042 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installation_Place_museum_v28.luau 813034 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/work/tmp0ulum6hy/test_repo/KinCity_Installation_Place_orgo_center_v28.luau 813039 octets
+RELEASE v28 9 installateurs indépendants; build 67a81ef17b43b525
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode MULTI_PLACE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/qa_tmp/tmpd4na97sr/fixture/KinCity_Installation_Place_library_v28.luau 813078 octets
+EXPORT OK 2a15c419dbd15de6644d4aa0ca400f6f0a1d70f841dca63df4ba37a1550539ce / mode MULTI_PLACE / places 9
+INSTALLER OK /workspace/scratch/1b683357d751/qa_tmp/tmpuca06_4b/KinCity_Installer_CommandBar.luau 813044 octets

@@ -92,7 +92,7 @@ local function store(parent,data)
     terminal:SetAttribute("KinStubCapabilityId","future.station.arcade")
     terminal:SetAttribute("KinStubTitle",data.title)
     F.prompt(terminal,"Consulter","Fonctionnalité à venir")
-    local board=F.sign(m,"Enseigne",(cf*CFrame.new(0,13,-9.4)).Position,math.deg(data.yaw),data.title,18,2.8)
+    local board=F.sign(m,"Enseigne",(cf*CFrame.new(0,14.15,-10.85)).Position,math.deg(data.yaw),data.title,18.8,3.45)
     board.CanCollide=false
     CrystalEverydayV19.frame(m,cf,18,18,11.5,"station-atelier")
     SecondaryArchitectureV25.arcade(m,cf,#data.id,tint)

@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- V14 · Panneau des expériences à trois étapes; compatible tactile et clavier.
 -- Affiche un état local de session, sans note, score ou accès réseau.
 local Players=game:GetService("Players")
@@ -18,7 +19,7 @@ local function label(parent,txt,y,size,bold)
     line.BackgroundTransparency=1
     line.TextColor3=FG
     line.Text=txt;line.TextWrapped=true
-    line.Font=if bold then Enum.Font.GothamBold else Enum.Font.Gotham
+    line.Font=if bold then Typography.body() else Typography.body()
     line.TextSize=size
     line.TextXAlignment=Enum.TextXAlignment.Left
     line.Parent=parent
@@ -29,7 +30,7 @@ function WorkshopHud.start(remote)
     gui.Name="KinCityWorkshopHud";gui.ResetOnSpawn=false;gui.DisplayOrder=9
     gui.Parent=Players.LocalPlayer:WaitForChild("PlayerGui")
     local button=Instance.new("TextButton")
-    button.Text="ATELIERS [K]";button.Font=Enum.Font.GothamBold;button.TextSize=12
+    button.Text="ATELIERS [K]";button.Font=Typography.body();button.TextSize=12
     button.TextColor3=FG;button.BackgroundColor3=BG
     button.Position=UDim2.new(1,-141,0,82)
     button.Size=UDim2.fromOffset(126,35);button.Parent=gui;corner(button,9)
@@ -51,7 +52,7 @@ function WorkshopHud.start(remote)
         local dot=Instance.new("TextLabel")
         dot.Size=UDim2.fromOffset(78,23)
         dot.Position=UDim2.fromOffset((i-1)*89,0)
-        dot.Text="ÉTAPE "..i;dot.TextSize=11;dot.Font=Enum.Font.GothamBold
+        dot.Text="ÉTAPE "..i;dot.TextSize=11;dot.Font=Typography.body()
         dot.TextColor3=FG;dot.BackgroundColor3=Color3.fromRGB(67,92,96)
         dot.Parent=marks;corner(dot,7);cells[i]=dot
     end
@@ -59,6 +60,7 @@ function WorkshopHud.start(remote)
     foot.Size=UDim2.new(1,-26,0,34)
     local function flip()panel.Visible=not panel.Visible end
     button.Activated:Connect(flip)
+    require(script.Parent.KinCityMenu).register("workshops","Ateliers [K]",button,panel,flip)
     UIS.InputBegan:Connect(function(input,handled)
         if not handled and input.KeyCode==Enum.KeyCode.K then flip() end
     end)

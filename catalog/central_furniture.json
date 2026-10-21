@@ -1,0 +1,202 @@
+{
+  "version": "v29",
+  "navigation_obstacles": [
+    {
+      "id": "central.fountain",
+      "kind": "fountain",
+      "center_studs": [
+        -30,
+        -29
+      ],
+      "radius_studs": 12.5,
+      "clearance_studs": 5
+    },
+    {
+      "id": "central.monument",
+      "kind": "monument",
+      "center_studs": [
+        0,
+        39
+      ],
+      "radius_studs": 3.55,
+      "clearance_studs": 5
+    },
+    {
+      "id": "central.welcome",
+      "kind": "welcome",
+      "center_studs": [
+        0,
+        30
+      ],
+      "radius_studs": 14,
+      "clearance_studs": 4
+    },
+    {
+      "id": "central.sculpture.1",
+      "kind": "sculpture",
+      "center_studs": [
+        58,
+        48
+      ],
+      "radius_studs": 4,
+      "clearance_studs": 4
+    },
+    {
+      "id": "central.sculpture.2",
+      "kind": "sculpture",
+      "center_studs": [
+        -65,
+        56
+      ],
+      "radius_studs": 4,
+      "clearance_studs": 4
+    },
+    {
+      "id": "central.bench.1",
+      "kind": "bench",
+      "center_studs": [
+        26.18657,
+        32.83692
+      ],
+      "yaw_degrees": 141.428571,
+      "radius_studs": 4.25,
+      "clearance_studs": 3
+    },
+    {
+      "id": "central.planter.1",
+      "kind": "planter",
+      "center_studs": [
+        32.42147,
+        40.65524
+      ],
+      "radius_studs": 2.9,
+      "clearance_studs": 2
+    },
+    {
+      "id": "central.bench.2",
+      "kind": "bench",
+      "center_studs": [
+        -9.34588,
+        40.94697
+      ],
+      "yaw_degrees": 192.857143,
+      "radius_studs": 4.25,
+      "clearance_studs": 3
+    },
+    {
+      "id": "central.planter.2",
+      "kind": "planter",
+      "center_studs": [
+        -11.57109,
+        50.69625
+      ],
+      "radius_studs": 2.9,
+      "clearance_studs": 2
+    },
+    {
+      "id": "central.bench.3",
+      "kind": "bench",
+      "center_studs": [
+        -37.84069,
+        18.22312
+      ],
+      "yaw_degrees": 244.285714,
+      "radius_studs": 4.25,
+      "clearance_studs": 3
+    },
+    {
+      "id": "central.planter.3",
+      "kind": "planter",
+      "center_studs": [
+        -46.85038,
+        22.56195
+      ],
+      "radius_studs": 2.9,
+      "clearance_studs": 2
+    },
+    {
+      "id": "central.bench.4",
+      "kind": "bench",
+      "center_studs": [
+        -37.84069,
+        -18.22312
+      ],
+      "yaw_degrees": 295.714286,
+      "radius_studs": 4.25,
+      "clearance_studs": 3
+    },
+    {
+      "id": "central.planter.4",
+      "kind": "planter",
+      "center_studs": [
+        -46.85038,
+        -22.56195
+      ],
+      "radius_studs": 2.9,
+      "clearance_studs": 2
+    },
+    {
+      "id": "central.bench.5",
+      "kind": "bench",
+      "center_studs": [
+        -9.34588,
+        -40.94697
+      ],
+      "yaw_degrees": 347.142857,
+      "radius_studs": 4.25,
+      "clearance_studs": 3
+    },
+    {
+      "id": "central.planter.5",
+      "kind": "planter",
+      "center_studs": [
+        -11.57109,
+        -50.69625
+      ],
+      "radius_studs": 2.9,
+      "clearance_studs": 2
+    },
+    {
+      "id": "central.bench.6",
+      "kind": "bench",
+      "center_studs": [
+        26.18657,
+        -32.83692
+      ],
+      "yaw_degrees": 398.571429,
+      "radius_studs": 4.25,
+      "clearance_studs": 3
+    },
+    {
+      "id": "central.planter.6",
+      "kind": "planter",
+      "center_studs": [
+        32.42147,
+        -40.65524
+      ],
+      "radius_studs": 2.9,
+      "clearance_studs": 2
+    },
+    {
+      "id": "central.bench.7",
+      "kind": "bench",
+      "center_studs": [
+        42.0,
+        -0.0
+      ],
+      "yaw_degrees": 450.0,
+      "radius_studs": 4.25,
+      "clearance_studs": 3
+    },
+    {
+      "id": "central.planter.7",
+      "kind": "planter",
+      "center_studs": [
+        52.0,
+        -0.0
+      ],
+      "radius_studs": 2.9,
+      "clearance_studs": 2
+    }
+  ]
+}

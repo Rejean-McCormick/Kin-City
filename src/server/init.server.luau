@@ -35,6 +35,15 @@ if not reply then
     reply.Name="KinCityReply"
     reply.Parent=ReplicatedStorage
 end
+-- Le petit installateur autonome peut déjà fournir le personnage.
+if not game:GetService("ServerScriptService"):FindFirstChild("KinCityKingKlownAvatar") then
+    local avatarConfig=table.clone(require(ReplicatedStorage.KinCityShared.KingKlownConfig))
+    local preservedOwner=script:GetAttribute("KingKlownOwnerUserId")
+    if avatarConfig.ownerUserId==0 and type(preservedOwner)=="number" and preservedOwner>0 then
+        avatarConfig.ownerUserId=preservedOwner
+    end
+    require(script.KingKlownAvatar).start(avatarConfig)
+end
 local state=WorldBuilder.build(true)
 PlayerTravel.setup(state,reply)
 PromptRouter.start(state,reply)
@@ -46,6 +55,7 @@ DiscoveryLedger.start(state.world,reply)
 SkyPavilionRuntime.start(state.world,reply)
 InstitutionDiscoveryRuntime.start(state.world,reply)
 LivingExhibitsV23.start(state.world)
+require(script.LibraryJourneyRuntime).start(state.world,reply)
 if state.mode=="LOCAL_UNIVERSE" or state.currentPlace=="city" then
     Citizens.start(state.world)
     NativeR15Citizens.start(state.world)

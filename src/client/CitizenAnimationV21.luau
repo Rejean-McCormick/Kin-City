@@ -68,7 +68,9 @@ function Animator.start()
                     npcs[model]=nil
                 else
                     if next(record.joints)==nil then record.joints=rigJoints(model) end
-                    local visible=distanceFromViewer(model,camera,avatarRoot)<MAX_DISTANCE
+                    local quality=Players.LocalPlayer:GetAttribute("KinCityLocalQuality")
+                    local radius=if quality=="LITE" then 80 elseif quality=="SHOWCASE" then 190 else MAX_DISTANCE
+                    local visible=distanceFromViewer(model,camera,avatarRoot)<radius
                     if record.enabled and not visible then
                         for _,joint in pairs(record.joints) do
                             if joint.Parent then joint.Transform=CFrame.identity end
@@ -78,7 +80,8 @@ function Animator.start()
                 end
             end
         end
-        if clock<1/UPDATE_HZ then return end
+        local hz=if Players.LocalPlayer:GetAttribute("KinCityLocalQuality")=="LITE" then 12 else UPDATE_HZ
+        if clock<1/hz then return end
         clock=0
         local now=workspace:GetServerTimeNow()
         for model,record in pairs(npcs) do

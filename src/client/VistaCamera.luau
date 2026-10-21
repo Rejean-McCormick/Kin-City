@@ -1,5 +1,7 @@
 --!strict
--- V5 : points de vue panoramiques locaux. Aucun kOA, HTTP ni asset externe.
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
+-- V30 : sortie anticipée des panoramas, restauration native sans flash entre zones.
+-- Aucun kOA, HTTP ni asset externe.
 local Players=game:GetService("Players")
 local UserInputService=game:GetService("UserInputService")
 local Workspace=game:GetService("Workspace")
@@ -8,6 +10,8 @@ local Vista={}
 local active=false
 local savedType=nil
 local savedFieldOfView=70
+local savedFrame=CFrame.new()
+local savedZone="city"
 local originFrame=CFrame.new()
 local angle=0
 local fieldOfView=58
@@ -25,10 +29,19 @@ local function restore()
     if gui then gui.Enabled=false end
     local camera=Workspace.CurrentCamera
     if camera then
-        camera.CameraType=savedType or Enum.CameraType.Custom
-        camera.FieldOfView=savedFieldOfView
         local character=player.Character
         local humanoid=character and character:FindFirstChildOfClass("Humanoid")
+        local root=character and character:FindFirstChild("HumanoidRootPart")
+        camera.CameraType=if savedType==Enum.CameraType.Scriptable then Enum.CameraType.Custom else (savedType or Enum.CameraType.Custom)
+        camera.FieldOfView=savedFieldOfView
+        -- Sur téléportation ou respawn, ne pas réafficher une image de l'ancien lieu.
+        local returnFrame=savedFrame
+        if root and (root.Position-savedFrame.Position).Magnitude>75 then
+            local lookAt=root.Position+Vector3.new(0,2,0)
+            returnFrame=CFrame.lookAt(lookAt+Vector3.new(0,6,14),lookAt)
+        end
+        camera.CFrame=returnFrame
+        camera.Focus=CFrame.new(returnFrame.Position+returnFrame.LookVector*14)
         if humanoid then camera.CameraSubject=humanoid end
     end
 end
@@ -48,7 +61,7 @@ local function control(parent,label,x,width,action)
     button.Text=label
     button.TextColor3=Color3.fromRGB(239,243,239)
     button.TextSize=15
-    button.Font=Enum.Font.GothamBold
+    button.Font=Typography.body()
     button.BackgroundColor3=Color3.fromRGB(50,101,111)
     button.Parent=parent
     corner(button,8)
@@ -66,7 +79,8 @@ function Vista.start(remote)
     gui=g
     local bar=Instance.new("Frame")
     bar.Size=UDim2.fromOffset(380,119)
-    bar.Position=UDim2.new(0.5,-190,1,-148)
+    bar.AnchorPoint=Vector2.new(0.5,1)
+    bar.Position=UDim2.new(0.5,0,1,-22)
     bar.BackgroundColor3=Color3.fromRGB(28,47,58)
     bar.BackgroundTransparency=0.05
     bar.Parent=g
@@ -78,7 +92,7 @@ function Vista.start(remote)
     header.Text="PANORAMA · KIN CITY"
     header.TextSize=17
     header.TextColor3=Color3.fromRGB(241,237,218)
-    header.Font=Enum.Font.GothamBold
+    header.Font=Typography.body()
     header.Parent=bar
     heading=header
     local hint=Instance.new("TextLabel")
@@ -88,7 +102,7 @@ function Vista.start(remote)
     hint.Text="Regarder autour · Zoomer · F pour revenir"
     hint.TextColor3=Color3.fromRGB(196,220,219)
     hint.TextSize=12
-    hint.Font=Enum.Font.Gotham
+    hint.Font=Typography.body()
     hint.Parent=bar
     control(bar,"◀",12,54,function()angle=math.clamp(angle-15,-125,125);apply() end)
     control(bar,"▶",72,54,function()angle=math.clamp(angle+15,-125,125);apply() end)
@@ -101,8 +115,12 @@ function Vista.start(remote)
         local camera=Workspace.CurrentCamera
         if not camera then return end
         if active then restore() end
+        -- Ne pas prendre le contrôle d'une cinématique déjà en mode Scriptable.
+        if camera.CameraType==Enum.CameraType.Scriptable then return end
         savedType=camera.CameraType
         savedFieldOfView=camera.FieldOfView
+        savedFrame=camera.CFrame
+        savedZone=player:GetAttribute("KinZone") or "city"
         originFrame=CFrame.lookAt(payload.camera_position,payload.look_at)
         heading.Text=payload.title or "PANORAMA · KIN CITY"
         angle=0
@@ -113,6 +131,7 @@ function Vista.start(remote)
     end)
     UserInputService.InputBegan:Connect(function(input,processed)
         if not active then return end
+        if UserInputService:GetFocusedTextBox() then return end
         if input.KeyCode==Enum.KeyCode.Escape or input.KeyCode==Enum.KeyCode.F or input.KeyCode==Enum.KeyCode.ButtonB then
             restore()
         elseif not processed and input.KeyCode==Enum.KeyCode.Left then
@@ -121,6 +140,19 @@ function Vista.start(remote)
             angle=math.clamp(angle+15,-125,125);apply()
         end
     end)
+    player.CharacterRemoving:Connect(restore)
     player.CharacterAdded:Connect(restore)
+    player:GetAttributeChangedSignal("KinZone"):Connect(function()
+        if active and (player:GetAttribute("KinZone") or "city")~=savedZone then restore() end
+    end)
+    local function fit()
+        local cam=Workspace.CurrentCamera
+        local viewport=cam and cam.ViewportSize or Vector2.new(800,600)
+        local scale=bar:FindFirstChild("MobileScale")
+        if not scale then scale=Instance.new("UIScale");scale.Name="MobileScale";scale.Parent=bar end
+        scale.Scale=math.clamp((viewport.X-24)/380,0.58,1)
+    end
+    fit()
+    if Workspace.CurrentCamera then Workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(fit) end
 end
 return Vista

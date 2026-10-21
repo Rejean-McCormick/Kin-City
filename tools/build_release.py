@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Release v26: ville seule + huit intérieurs, plus secours historique local.
+"""Release v30: ville seule + huit intérieurs, plus secours historique local.
 Sans PlaceId inventé ni connexion réseau. Si les vrais IDs sont configurés et
 MULTI_PLACE sélectionné, les neuf scripts basculent en publication.
 """
@@ -17,16 +17,23 @@ ROOT=Path(__file__).resolve().parents[1]
 def sha256(path:Path)->str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 def build(root:Path):
+    from validate_v28_journey import validate
+    errors=validate(root)
+    if errors: raise ValueError("Invalid library journey: "+"; ".join(errors))
     runpy.run_path(str(root/'tools/generate_v24_meshes.py'))
     runpy.run_path(str(root/'tools/generate_v25_meshes.py'))
+    from generate_v28_meshes import generate as generate_meshes
+    generate_meshes(root)
+    from make_king_klown_installer import generate_avatar
+    avatar=generate_avatar(root)
     local=generate(root)
-    local_copy=root/'KinCity_Installation_Univers_Local_v26.luau'
+    local_copy=root/'KinCity_Installation_Univers_Local_v30.luau'
     shutil.copyfile(local,local_copy)
     registry=json.loads((root/'config/place_ids.json').read_text(encoding='utf8'))
     installers={}
     for key in registry:
         installers[key]=generate(root,place_key=key)
-    direct=root/'KinCity_Installation_Directe_v26.luau'
+    direct=root/'KinCity_Installation_Directe_v30.luau'
     shutil.copyfile(installers['city'],direct)
     plan=json.loads((root/'build/world-plan.json').read_text(encoding='utf8'))
     identity=build_fingerprint(root,plan['canonical_sha256'])
@@ -46,11 +53,11 @@ def build(root:Path):
         })
     package_json=root/'build/place-package-plan.json'
     package_json.write_text(json.dumps({
-        'version':'26.0.0','source_world_plan_sha256':plan['canonical_sha256'],
+        'version':'30.0.7','source_world_plan_sha256':plan['canonical_sha256'],
         'packages':place_packages,'published_place_ids_required_for_interplace_travel':True,
         'preview_has_interplace_teleportation':False,
     },ensure_ascii=False,sort_keys=True,indent=2)+'\n',encoding='utf8')
-    tracked=[root/'build/world-plan.json',package_json,local,local_copy,direct]
+    tracked=[avatar,root/'KingKlown_Enregistrer_Cheveux_v7.luau',root/'assets/kingklown-v7/kingklown-hair-v7.obj',root/'KinCity_Diagnostic_Performance_v28.luau',root/'build/world-plan.json',package_json,local,local_copy,direct]
     tracked.extend(installers.values())
     tracked.extend(sorted((root/'src/shared').glob('*.luau')))
     tracked.extend(sorted((root/'assets/meshes-v24').glob('*.obj')))
@@ -61,9 +68,9 @@ def build(root:Path):
         root/'KinCity_Diagnostic_Places_v26.luau'])
     configured=json.loads((root/'config/runtime.json').read_text(encoding='utf8'))['mode']
     manifest={
-        'version':'26.0.0','mode':'WORLD_STUB','runtime_mode':configured,
+        'version':'30.0.7','mode':'WORLD_STUB','runtime_mode':configured,
         'place_install_mode':'MULTI_PLACE' if configured=='MULTI_PLACE' else 'SPLIT_PREVIEW',
-        'art_style':'#1E6864 + cristal opalin',
+        'art_style':'#1E6864 + #C5F4F0 cristal opalin',
         'plan_sha256':plan['canonical_sha256'],'build_sha256':identity['sha256'],
         'place_installers':{key:path.name for key,path in installers.items()},
         'place_ids_configured':sum(isinstance(n,int) and not isinstance(n,bool) for n in registry.values()),
@@ -71,7 +78,7 @@ def build(root:Path):
     }
     output=root/'build/release-manifest.json'
     output.write_text(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n',encoding='utf8')
-    print('RELEASE v26',len(installers),'installateurs indépendants; build',identity['sha256'][:16])
+    print('RELEASE v30',len(installers),'installateurs indépendants; build',identity['sha256'][:16])
     return manifest
 
 if __name__=='__main__':

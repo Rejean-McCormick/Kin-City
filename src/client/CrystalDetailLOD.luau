@@ -24,7 +24,6 @@ function LOD.start()
     world.DescendantAdded:Connect(add)
     world.DescendantRemoving:Connect(remove)
     local farDistance=if Visual.profile=="LITE" then 165 elseif Visual.profile=="SHOWCASE" then 570 else 340
-    local nearDistance=farDistance-35 -- hystérésis évitant le clignotement à la limite
     task.spawn(function()
         while world.Parent do
             local char=player.Character
@@ -40,10 +39,12 @@ function LOD.start()
                 local checked=0
                 for part in pairs(optional) do
                     if part.Parent then
-                        local dist=math.min((part.Position-pos).Magnitude,(part.Position-viewPos).Magnitude)
-                        if part.LocalTransparencyModifier<1 and dist>effectiveFar then
+                        local avatarDelta=part.Position-pos
+                        local viewDelta=part.Position-viewPos
+                        local dist=math.min(avatarDelta:Dot(avatarDelta),viewDelta:Dot(viewDelta))
+                        if part.LocalTransparencyModifier<1 and dist>effectiveFar*effectiveFar then
                             part.LocalTransparencyModifier=1
-                        elseif part.LocalTransparencyModifier>=1 and dist<effectiveNear then
+                        elseif part.LocalTransparencyModifier>=1 and dist<effectiveNear*effectiveNear then
                             part.LocalTransparencyModifier=0
                         end
                     else

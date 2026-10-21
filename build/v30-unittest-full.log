@@ -1,0 +1,181 @@
+test_ground_arrival (unittest.loader._FailedTest.test_ground_arrival) ... ERROR
+test_all_doors_reversible_and_resolved (test_runtime_generation.TestRuntimeGeneration.test_all_doors_reversible_and_resolved) ... ok
+test_all_interactions_have_real_furniture (test_runtime_generation.TestRuntimeGeneration.test_all_interactions_have_real_furniture) ... ok
+test_all_interiors_have_connected_layout_and_threshold (test_runtime_generation.TestRuntimeGeneration.test_all_interiors_have_connected_layout_and_threshold) ... ok
+test_built_runtime_is_network_free (test_runtime_generation.TestRuntimeGeneration.test_built_runtime_is_network_free) ... ok
+test_export_deterministic_and_contains_real_plan (test_runtime_generation.TestRuntimeGeneration.test_export_deterministic_and_contains_real_plan) ... ok
+test_multi_place_requires_public_ids (test_runtime_generation.TestRuntimeGeneration.test_multi_place_requires_public_ids) ... ok
+test_installer_is_self_contained_and_reproducible (test_studio_installer.StudioInstallerTest.test_installer_is_self_contained_and_reproducible) ... ok
+test_build_fingerprint_covers_crystal_visual_mode_and_code (test_v18_continuation.TestV18Build.test_build_fingerprint_covers_crystal_visual_mode_and_code) ... ok
+test_full_plan_json_matches_compiler (test_v18_continuation.TestV18Build.test_full_plan_json_matches_compiler) ... ok
+test_interactions_and_ready_flag_are_shared_by_full_and_partial_build (test_v18_continuation.TestV18Build.test_interactions_and_ready_flag_are_shared_by_full_and_partial_build) ... ok
+test_interior_origins_are_explicit_and_spaced (test_v18_continuation.TestV18Build.test_interior_origins_are_explicit_and_spaced) ... ok
+test_player_travel_session_integrates_all_transports (test_v18_continuation.TestV18Build.test_player_travel_session_integrates_all_transports) ... ok
+test_art_themes_match_eight_institutions (test_v19_art.ConstructionV19.test_art_themes_match_eight_institutions) ... ok
+test_artistic_modules_wired_into_builders (test_v19_art.ConstructionV19.test_artistic_modules_wired_into_builders) ... ok
+test_no_new_interaction_or_physics_and_lod_tags (test_v19_art.ConstructionV19.test_no_new_interaction_or_physics_and_lod_tags) ... ok
+test_biomes_are_connected_to_original_tree_sites (test_v20_art.V20Art.test_biomes_are_connected_to_original_tree_sites) ... ok
+test_cabinet_art_is_built_per_institution_room (test_v20_art.V20Art.test_cabinet_art_is_built_per_institution_room) ... ok
+test_glazing_is_not_global_glass_mesh (test_v20_art.V20Art.test_glazing_is_not_global_glass_mesh) ... ok
+test_no_active_konnaxion_or_external_apis_added (test_v20_art.V20Art.test_no_active_konnaxion_or_external_apis_added) ... ok
+test_v20_revision_touches_generation (test_v20_art.V20Art.test_v20_revision_touches_generation) ... ok
+test_accessories_are_welded_lightweight_without_external_assets (test_v21_citizens.CitizenV21.test_accessories_are_welded_lightweight_without_external_assets) ... ok
+test_audio_keeps_user_upload_optional (test_v21_citizens.CitizenV21.test_audio_keeps_user_upload_optional) ... ok
+test_nearby_client_animation_is_streaming_compatible (test_v21_citizens.CitizenV21.test_nearby_client_animation_is_streaming_compatible) ... ok
+test_r15_tagging_and_shared_activity (test_v21_citizens.CitizenV21.test_r15_tagging_and_shared_activity) ... ok
+test_v21_release (test_v21_citizens.CitizenV21.test_v21_release) ... ok
+test_build_version (test_v22_construction.LargeArtPass.test_build_version) ... ok
+test_eight_institutional_roofs (test_v22_construction.LargeArtPass.test_eight_institutional_roofs) ... ok
+test_houses_get_a_front_roof_not_covering_gardens (test_v22_construction.LargeArtPass.test_houses_get_a_front_roof_not_covering_gardens) ... ok
+test_local_quality_and_gallery (test_v22_construction.LargeArtPass.test_local_quality_and_gallery) ... ok
+test_ornaments_have_no_collisions_or_fake_koa (test_v22_construction.LargeArtPass.test_ornaments_have_no_collisions_or_fake_koa) ... ok
+test_repeated_glazing_is_opaline_in_homes_and_arcades (test_v22_construction.LargeArtPass.test_repeated_glazing_is_opaline_in_homes_and_arcades) ... ok
+test_rest_stops_follow_existing_roads (test_v22_construction.LargeArtPass.test_rest_stops_follow_existing_roads) ... ok
+test_six_rooms_by_eight_institutions_are_decorated (test_v22_construction.LargeArtPass.test_six_rooms_by_eight_institutions_are_decorated) ... ok
+test_audio_and_mesh_files (test_v23_build.V23Construction.test_audio_and_mesh_files) ... ok
+test_furniture_all_institutions (test_v23_build.V23Construction.test_furniture_all_institutions) ... ok
+test_lighting_not_tripled (test_v23_build.V23Construction.test_lighting_not_tripled) ... ok
+test_local_exhibits (test_v23_build.V23Construction.test_local_exhibits) ... ok
+test_material_maps (test_v23_build.V23Construction.test_material_maps) ... ok
+test_release (test_v23_build.V23Construction.test_release) ... ok
+test_asset_registration_command (test_v24_assets_and_architecture.V24Build.test_asset_registration_command) ... ok
+test_current_release_manifest (test_v24_assets_and_architecture.V24Build.test_current_release_manifest) ... ok
+test_exterior_studio_asset_placements (test_v24_assets_and_architecture.V24Build.test_exterior_studio_asset_placements) ... ok
+test_new_obj_geometry (test_v24_assets_and_architecture.V24Build.test_new_obj_geometry) ... ok
+test_no_network_in_new_modules (test_v24_assets_and_architecture.V24Build.test_no_network_in_new_modules) ... ok
+test_registry_names_and_fallback (test_v24_assets_and_architecture.V24Build.test_registry_names_and_fallback) ... ok
+test_staging_all_eight_institutions (test_v24_assets_and_architecture.V24Build.test_staging_all_eight_institutions) ... ok
+test_57_existing_buildings_are_connected (test_v25_secondary_architecture.SecondaryArchitecture.test_57_existing_buildings_are_connected) ... ok
+test_diagnostics_are_populated_at_build_completion (test_v25_secondary_architecture.SecondaryArchitecture.test_diagnostics_are_populated_at_build_completion) ... ok
+test_new_glazing_is_opaline (test_v25_secondary_architecture.SecondaryArchitecture.test_new_glazing_is_opaline) ... ok
+test_no_kOA_services_added (test_v25_secondary_architecture.SecondaryArchitecture.test_no_kOA_services_added) ... ok
+test_obj_geometry_is_valid_and_bounded (test_v25_secondary_architecture.SecondaryArchitecture.test_obj_geometry_is_valid_and_bounded) ... ok
+test_ornaments_avoid_gameplay_collision_and_use_profiles (test_v25_secondary_architecture.SecondaryArchitecture.test_ornaments_avoid_gameplay_collision_and_use_profiles) ... ok
+test_pbr_library_preserves_existing_appearance (test_v25_secondary_architecture.SecondaryArchitecture.test_pbr_library_preserves_existing_appearance) ... ok
+test_release_v25 (test_v25_secondary_architecture.SecondaryArchitecture.test_release_v25) ... ok
+test_reused_mesh_or_native_fallback (test_v25_secondary_architecture.SecondaryArchitecture.test_reused_mesh_or_native_fallback) ... ok
+test_city_ui_not_forced_on_interiors (test_v26_places.SplitPlaceContracts.test_city_ui_not_forced_on_interiors) ... ok
+test_each_place_has_return_door_and_spawn (test_v26_places.SplitPlaceContracts.test_each_place_has_return_door_and_spawn) ... ok
+test_fallback_legacy_local_is_still_available (test_v26_places.SplitPlaceContracts.test_fallback_legacy_local_is_still_available) ... ok
+test_nine_independent_installers (test_v26_places.SplitPlaceContracts.test_nine_independent_installers) ... ok
+test_portal_decoration_is_local_and_nonblocking (test_v26_places.SplitPlaceContracts.test_portal_decoration_is_local_and_nonblocking) ... ok
+test_published_generation_is_guarded (test_v26_places.SplitPlaceContracts.test_published_generation_is_guarded) ... ok
+test_published_generation_with_fixture_ids_only (test_v26_places.SplitPlaceContracts.test_published_generation_with_fixture_ids_only) ... ok
+test_split_generates_only_place_content (test_v26_places.SplitPlaceContracts.test_split_generates_only_place_content) ... ok
+test_teleport_stays_disabled_without_published_ids (test_v26_places.SplitPlaceContracts.test_teleport_stays_disabled_without_published_ids) ... ok
+test_zone_manifest_disjoint_and_consistent (test_v26_places.SplitPlaceContracts.test_zone_manifest_disjoint_and_consistent) ... ok
+test_v27_reliability (unittest.loader._FailedTest.test_v27_reliability) ... ERROR
+test_v28_journey (unittest.loader._FailedTest.test_v28_journey) ... ERROR
+test_annular_radial_segments_end_shorter_than_spacing (test_v29_comfort.V29Geometry.test_annular_radial_segments_end_shorter_than_spacing) ... ok
+test_baseplate_original_not_destroyed (test_v29_comfort.V29Geometry.test_baseplate_original_not_destroyed) ... ok
+test_eight_destinations_reached_without_furniture_collision (test_v29_comfort.V29Geometry.test_eight_destinations_reached_without_furniture_collision) ... ok
+test_pavement_geometry_does_not_overlap (test_v29_comfort.V29Geometry.test_pavement_geometry_does_not_overlap) ... ok
+test_portals_and_interactions_unchanged (test_v29_comfort.V29Geometry.test_portals_and_interactions_unchanged) ... ok
+test_raster_union_is_exact_and_without_any_duplicate_surface (test_v29_comfort.V29Geometry.test_raster_union_is_exact_and_without_any_duplicate_surface) ... ok
+test_signs_one_per_main_destination_avoid_footprints_and_one_another (test_v29_comfort.V29Geometry.test_signs_one_per_main_destination_avoid_footprints_and_one_another) ... ok
+test_spawn_consistency_with_placement_and_camera (test_v29_comfort.V29Geometry.test_spawn_consistency_with_placement_and_camera) ... ok
+test_g_reserved_and_h_unused_other_than_station (test_v29_comfort.V29UI.test_g_reserved_and_h_unused_other_than_station) ... ok
+test_menu_exclusivity_closure_and_mobile_scrolling (test_v29_comfort.V29UI.test_menu_exclusivity_closure_and_mobile_scrolling) ... ok
+test_no_forced_route_at_start_and_one_guide_mode (test_v29_comfort.V29UI.test_no_forced_route_at_start_and_one_guide_mode) ... ok
+test_panorama_exits_on_location_change_respawn_and_restores_fov (test_v29_comfort.V29UI.test_panorama_exits_on_location_change_respawn_and_restores_fov) ... ok
+test_probe_local_and_conditional_on_zone_quality (test_v29_comfort.V29UI.test_probe_local_and_conditional_on_zone_quality) ... ok
+test_menu_search_fits_small_screens_and_selects_controller_focus (test_v30_accessibility.AccessibilityV30.test_menu_search_fits_small_screens_and_selects_controller_focus) ... ok
+test_probe_local_no_network_and_interruptible (test_v30_accessibility.AccessibilityV30.test_probe_local_no_network_and_interruptible) ... ok
+test_separate_8_interiors_and_city_and_all_in_one (test_v30_accessibility.BuildV30.test_separate_8_interiors_and_city_and_all_in_one) ... ok
+test_canonical_navigation_and_building_ids_unchanged (test_v30_accessibility.NavigationV30.test_canonical_navigation_and_building_ids_unchanged) ... ok
+test_destinations_eight_main_first_filter_and_clear (test_v30_accessibility.NavigationV30.test_destinations_eight_main_first_filter_and_clear) ... ok
+test_optional_library_guide_respects_dismissal (test_v30_accessibility.NavigationV30.test_optional_library_guide_respects_dismissal) ... ok
+test_route_projects_along_path_not_through_destination (test_v30_accessibility.NavigationV30.test_route_projects_along_path_not_through_destination) ... ok
+test_missing_interaction_object_rejected (test_validation.TestStaticWorld.test_missing_interaction_object_rejected) ... ok
+test_nonexistent_facade_rejected (test_validation.TestStaticWorld.test_nonexistent_facade_rejected) ... ok
+test_plan_is_repeatable (test_validation.TestStaticWorld.test_plan_is_repeatable) ... ok
+test_plan_paths_do_not_cross_footprints_on_grid (test_validation.TestStaticWorld.test_plan_paths_do_not_cross_footprints_on_grid) ... ok
+test_spatial_anchor_out_of_city_rejected (test_validation.TestStaticWorld.test_spatial_anchor_out_of_city_rejected) ... ok
+test_world_passes (test_validation.TestStaticWorld.test_world_passes) ... ok
+
+======================================================================
+ERROR: test_ground_arrival (unittest.loader._FailedTest.test_ground_arrival)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_ground_arrival
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/work_v30/KinCity_Construction_v30/tests/test_ground_arrival.py", line 4, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+======================================================================
+ERROR: test_v27_reliability (unittest.loader._FailedTest.test_v27_reliability)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_v27_reliability
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/work_v30/KinCity_Construction_v30/tests/test_v27_reliability.py", line 8, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+======================================================================
+ERROR: test_v28_journey (unittest.loader._FailedTest.test_v28_journey)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_v28_journey
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/work_v30/KinCity_Construction_v30/tests/test_v28_journey.py", line 4, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+----------------------------------------------------------------------
+Ran 94 tests in 3.361s
+
+FAILED (errors=3)
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installer_CommandBar.luau 859712 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installer_CommandBar.luau 859712 octets
+crystal-canopy.obj 26 vertices 48 triangles
+mineral-planter.obj 33 vertices 64 triangles
+opal-console.obj 24 vertices 36 triangles
+opal-lattice 80 vertices 120 triangles
+mineral-pediment 48 vertices 72 triangles
+harbor-crest 128 vertices 192 triangles
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installer_CommandBar.luau 859712 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installation_Place_city_v30.luau 859744 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installation_Place_city_hall_v30.luau 859750 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installation_Place_ekoh_tower_v30.luau 859751 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installation_Place_library_v30.luau 859748 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installation_Place_campus_v30.luau 859747 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installation_Place_justice_palace_v30.luau 859755 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installation_Place_innovation_lab_v30.luau 859755 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installation_Place_museum_v30.luau 859747 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/tmp2cuul2hn/test_repo/KinCity_Installation_Place_orgo_center_v30.luau 859752 octets
+RELEASE v30 9 installateurs indépendants; build 1420daf3b8adda60
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode MULTI_PLACE / places 9
+INSTALLER OK /tmp/tmp59rxwuz8/fixture/KinCity_Installation_Place_library_v30.luau 859791 octets

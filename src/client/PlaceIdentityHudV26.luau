@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Guide propre à une Place; ne présente jamais la carte de la ville au milieu d'une institution.
 local Players=game:GetService("Players")
 local RS=game:GetService("ReplicatedStorage")
@@ -33,18 +34,18 @@ function Hud.start()
  text.BackgroundTransparency=1
  text.TextColor3=Color3.fromRGB(237,253,252)
  text.TextScaled=true
- text.Font=Enum.Font.GothamBold
+ text.Font=Typography.body()
  text.Text=names[key] or key
  text.Parent=frame
  local sub=Instance.new("TextLabel")
  sub.Name="Statut du passage"
  sub.BackgroundTransparency=1
- sub.Text=if Runtime.mode=="SPLIT_PREVIEW" then "Aperçu indépendant • passages actifs après publication" else "Place indépendante • entrées et sorties par les portes"
+ sub.Text=if Runtime.mode=="SPLIT_PREVIEW" then "Aperçu non publié : visites séparées • portes inter-Places indisponibles" else "Place indépendante • entrées et sorties par les portes"
  sub.Position=UDim2.new(0,0,1,2)
  sub.Size=UDim2.fromOffset(325,18)
  sub.TextSize=11
  sub.TextColor3=Color3.fromRGB(232,217,175)
- sub.Font=Enum.Font.Gotham
+ sub.Font=Typography.body()
  sub.Parent=frame
 end
 return Hud

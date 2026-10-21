@@ -53,11 +53,11 @@ class V23Construction(unittest.TestCase):
         from build_release import build
         from tempfile import TemporaryDirectory
         import shutil
-        with TemporaryDirectory() as d:
+        with TemporaryDirectory(dir=ROOT.parent) as d:
             target=Path(d)/'test_repo'
             shutil.copytree(ROOT,target,ignore=shutil.ignore_patterns('.git','__pycache__'))
             result=build(target)
-            self.assertEqual(result['version'],'26.0.0')
-            self.assertIn('KinCity_Installation_Directe_v26.luau',result['artifacts'])
+            self.assertEqual(result['version'],'30.0.7')
+            self.assertIn('KinCity_Installation_Directe_v30.luau',result['artifacts'])
 
 if __name__=='__main__':unittest.main()

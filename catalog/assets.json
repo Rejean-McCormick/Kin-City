@@ -410,6 +410,26 @@
       "revision": "v23",
       "dependencies": [],
       "fallback": "silence"
+    },
+    {
+      "asset_id": "v28.library.story_book",
+      "class": "prop",
+      "source": "native_procedural",
+      "generator": "src/server/LibraryJourneyArt.luau",
+      "license": "project_original",
+      "revision": "v28",
+      "dependencies": [],
+      "fallback": "native_parts"
+    },
+    {
+      "asset_id": "v28.mesh.kingklown_hair",
+      "class": "mesh",
+      "source": "local_source",
+      "generator": "tools/generate_v28_meshes.py",
+      "license": "project_original",
+      "revision": "v28",
+      "dependencies": [],
+      "fallback": "native_curved_locks"
     }
   ]
 }

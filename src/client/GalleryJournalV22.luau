@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Carnet LOCAL des galeries. Les marqueurs physiques sont créés par InstitutionStoriesV22.
 -- Aucun RemoteEvent, aucun DataStore ni point EkoH ; le carnet repart de zéro par session.
 local Players=game:GetService("Players")
@@ -55,13 +56,14 @@ function Journal.start()
     toggle.Size=UDim2.fromOffset(137,32)
     toggle.BackgroundColor3=Color3.fromRGB(30,104,100)
     toggle.TextColor3=Color3.fromRGB(241,252,247)
-    toggle.Font=Enum.Font.GothamBold
+    toggle.Font=Typography.body()
     toggle.TextSize=12
     toggle.Parent=gui
     local buttonCorner=Instance.new("UICorner")
     buttonCorner.CornerRadius=UDim.new(0,9)
     buttonCorner.Parent=toggle
     toggle.Activated:Connect(openClose)
+    require(script.Parent.KinCityMenu).register("gallery","Galeries [T]",toggle,window,openClose)
     window=Instance.new("Frame")
     window.Name="Carnet des galeries"
     window.AnchorPoint=Vector2.new(0.5,0.5)
@@ -84,7 +86,7 @@ function Journal.start()
     title.Size=UDim2.new(1,-65,0,35)
     title.Position=UDim2.fromOffset(17,11)
     title.BackgroundTransparency=1
-    title.Font=Enum.Font.GothamBold
+    title.Font=Typography.body()
     title.TextColor3=Color3.fromRGB(229,245,241)
     title.TextSize=20
     title.TextXAlignment=Enum.TextXAlignment.Left
@@ -96,7 +98,7 @@ function Journal.start()
     close.Position=UDim2.new(1,-49,0,11)
     close.Text="✕"
     close.TextSize=18
-    close.Font=Enum.Font.GothamBold
+    close.Font=Typography.body()
     close.TextColor3=Color3.fromRGB(239,254,248)
     close.BackgroundColor3=Color3.fromRGB(42,96,92)
     close.Parent=window
@@ -106,7 +108,7 @@ function Journal.start()
     summary.Size=UDim2.new(1,-35,0,42)
     summary.Position=UDim2.fromOffset(17,52)
     summary.BackgroundTransparency=1
-    summary.Font=Enum.Font.Gotham
+    summary.Font=Typography.body()
     summary.TextColor3=Color3.fromRGB(209,227,221)
     summary.TextSize=14
     summary.TextWrapped=true
@@ -130,7 +132,7 @@ function Journal.start()
     listing.TextXAlignment=Enum.TextXAlignment.Left
     listing.TextYAlignment=Enum.TextYAlignment.Top
     listing.TextWrapped=true
-    listing.Font=Enum.Font.Gotham
+    listing.Font=Typography.body()
     listing.TextColor3=Color3.fromRGB(223,248,241)
     listing.TextSize=14
     listing.LineHeight=1.65

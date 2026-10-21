@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Kin City v11 : six lignes de minibus électriques, huit passagers par véhicule.
 -- Lignes le long des boulevards existants, de l'entrée au quartier résidentiel.
 -- Animation ancrée serveur; aucune billettique, économie ni service kOA.
@@ -83,7 +84,7 @@ local function station(root,route,atStart)
     s.Face=Enum.NormalId.Front;s.PixelsPerStud=32;s.CanvasSize=Vector2.new(750,180);s.Parent=banner
     local label=Instance.new("TextLabel")
     label.Size=UDim2.fromScale(1,1);label.BackgroundTransparency=1
-    label.Font=Enum.Font.GothamBold;label.TextScaled=true;label.TextWrapped=true
+    label.Font=Typography.body();label.TextScaled=true;label.TextWrapped=true
     label.TextColor3=ROOF
     label.Text=if atStart then "NAVETTE VERS LE QUARTIER" else "NAVETTE VERS LE CENTRE"
     label.Parent=s

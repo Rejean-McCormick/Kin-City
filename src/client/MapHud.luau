@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Guide et carte client; exploite le plan partagé, sans RemoteEvent ni réseau externe.
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
@@ -21,7 +22,7 @@ local MapHud={}
 local function label(parent,text,pos,size,bold)
     local t=Instance.new("TextLabel")
     t.BackgroundTransparency=1;t.Text=text;t.Size=size;t.Position=pos
-    t.Font=bold and Enum.Font.GothamBold or Enum.Font.Gotham
+    t.Font=bold and Typography.body() or Typography.body()
     t.TextSize=bold and 16 or 12;t.TextColor3=Color3.fromRGB(238,240,231)
     t.TextWrapped=true;t.TextXAlignment=Enum.TextXAlignment.Left
     t.Parent=parent
@@ -49,7 +50,7 @@ function MapHud.start()
     round(head,10)
     label(head,"KIN CITY",UDim2.fromOffset(12,3),UDim2.fromOffset(235,25),true)
     local area=label(head,"Explore la ville • M pour la carte",UDim2.fromOffset(12,29),UDim2.fromOffset(258,22),false)
-    local toggle=Instance.new("TextButton");toggle.Name="Carte";toggle.Text="CARTE  [M]";toggle.Font=Enum.Font.GothamBold;toggle.TextSize=13;toggle.TextColor3=Color3.fromRGB(245,245,241)
+    local toggle=Instance.new("TextButton");toggle.Name="Carte";toggle.Text="CARTE  [M]";toggle.Font=Typography.body();toggle.TextSize=13;toggle.TextColor3=Color3.fromRGB(245,245,241)
     toggle.Size=UDim2.fromOffset(114,38);toggle.Position=UDim2.new(1,-128,0,82);toggle.BackgroundColor3=Color3.fromRGB(40,94,99);toggle.Parent=gui;round(toggle,10)
     local window=Instance.new("Frame");window.Name="Carte";window.Size=UDim2.fromOffset(308,388);window.AnchorPoint=Vector2.new(1,0);window.Position=UDim2.new(1,-14,0,130);window.BackgroundColor3=Color3.fromRGB(23,43,50);window.BackgroundTransparency=0.03;window.Visible=false;window.Parent=gui;round(window,14)
     label(window,"PLAN DE KIN CITY",UDim2.fromOffset(15,10),UDim2.fromOffset(275,26),true)
@@ -127,7 +128,7 @@ function MapHud.start()
     zoom.Position=UDim2.fromOffset(13,324)
     zoom.BackgroundColor3=Color3.fromRGB(53,107,109)
     zoom.TextColor3=Color3.fromRGB(241,238,216)
-    zoom.Font=Enum.Font.GothamBold;zoom.TextSize=12;zoom.Text="VILLE  ·  Voir l'archipel"
+    zoom.Font=Typography.body();zoom.TextSize=12;zoom.Text="VILLE  ·  Voir l'archipel"
     zoom.Parent=window;round(zoom,7)
     zoom.Activated:Connect(function()
         scale=if scale==1050 then 1850 else 1050
@@ -136,9 +137,10 @@ function MapHud.start()
             item.dot.Position=UDim2.fromScale(0.5+item.x/scale,0.5+item.z/scale)
         end
     end)
-    label(window,"M : carte  ·  N : destinations  ·  E : interagir",UDim2.fromOffset(15,356),UDim2.fromOffset(286,21),false)
+    label(window,"Menu Kin City  ·  M : carte  ·  N : lieux  ·  H : gare",UDim2.fromOffset(15,356),UDim2.fromOffset(286,21),false)
     local function flip()window.Visible=not window.Visible end
     toggle.Activated:Connect(flip)
+    require(script.Parent.KinCityMenu).register("map","Carte [M]",toggle,window,flip)
     UIS.InputBegan:Connect(function(input,processed)
         if not processed and input.KeyCode==Enum.KeyCode.M then flip() end
     end)

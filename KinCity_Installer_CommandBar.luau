@@ -1,9 +1,18 @@
 -- Kin City WORLD_STUB — installation dans Roblox Studio (mode Édition seulement)
 -- Collez ce fichier entier dans View > Command Bar et exécutez UNE fois.
 -- Aucun appel HTTP / aucune API / aucun jeton.
+assert(not game:GetService("RunService"):IsRunning(),"Arrêtez Play avant l'installation.")
 local RS = game:GetService("ReplicatedStorage")
 local SS = game:GetService("ServerScriptService")
 local SP = game:GetService("StarterPlayer"):WaitForChild("StarterPlayerScripts")
+-- Migration du costume autonome; conserver son attribution explicite.
+local oldAvatar=SS:FindFirstChild("KinCityKingKlownAvatar")
+local preservedOwner=oldAvatar and oldAvatar:GetAttribute("OwnerUserId") or 0
+local previousRuntime=SS:FindFirstChild("KinCityRuntime")
+if preservedOwner==0 and previousRuntime then preservedOwner=previousRuntime:GetAttribute("KingKlownOwnerUserId") or 0 end
+if oldAvatar then oldAvatar:Destroy() end
+local oldAura=SP:FindFirstChild("KinCityKingKlownAura")
+if oldAura then oldAura:Destroy() end
 local existing = RS:FindFirstChild("KinCityShared")
 if existing then existing:Destroy() end
 existing = SS:FindFirstChild("KinCityRuntime")
@@ -16,6 +25,7 @@ shared.Parent = RS
 local server = Instance.new("Script")
 server.Name = "KinCityRuntime"
 server.Enabled = false
+server:SetAttribute("KingKlownOwnerUserId",preservedOwner)
 server.Parent = SS
 local client = Instance.new("LocalScript")
 client.Name = "KinCityUI"
@@ -74,13 +84,13 @@ return routes
 ]])
 source(shared,'BuildIdentity',"ModuleScript",[[
 --!strict
--- Généré automatiquement : empreinte exacte du build v26
+-- Généré automatiquement : empreinte exacte du build v29
 -- NE PAS MODIFIER. Modifier les JSON dans catalog/ ou config/ puis exporter.
 return {
-  ["input_count"] = 147,
-  ["plan_sha256"] = "0f218410500752602e40e5a000c7f52ca67112b7881070ebda9c64edfd9e6385",
-  ["sha256"] = "31b412142dfbfd55967569ec66a525a9fe7b67acede7fa260f8504c36a31a214",
-  ["version"] = "build-v26",
+  ["input_count"] = 168,
+  ["plan_sha256"] = "9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001",
+  ["sha256"] = "c5909d8a14d7220c86f0b2903c648ea83da941cf0ca78d47699f8004753b52a0",
+  ["version"] = "build-v29",
 }
 
 ]])
@@ -431,6 +441,121 @@ end
 return result
 
 ]])
+source(shared,'JourneyPath',"ModuleScript",[[
+--!strict
+-- Géométrie 2D pure : projection au sentier puis prochain virage, sans couper les angles.
+local Path={}
+function Path.target(points,x,z)
+    if #points==0 then return nil end
+    if #points==1 then return points[1] end
+    local best=nil
+    local distance=math.huge
+    for i=1,#points-1 do
+        local a,b=points[i],points[i+1]
+        local dx,dz=b[1]-a[1],b[3]-a[3]
+        local length=dx*dx+dz*dz
+        local t=0
+        if length>0 then t=math.max(0,math.min(1,((x-a[1])*dx+(z-a[3])*dz)/length)) end
+        local px,pz=a[1]+dx*t,a[3]+dz*t
+        local d=(px-x)^2+(pz-z)^2
+        if d<distance then distance=d;best={index=i,t=t,point={px,a[2],pz}} end
+    end
+    if distance>81 then return best.point end
+    local nextIndex=best.index+1
+    local target=points[nextIndex]
+    if (target[1]-x)^2+(target[3]-z)^2<16 and nextIndex<#points then target=points[nextIndex+1] end
+    return target
+end
+function Path.roomRoute(x,z,target)
+    local points={{x,0,z}}
+    local currentSide=0
+    local targetSide=0
+    if z>-10 then if x<0 then currentSide=-1 else currentSide=1 end end
+    if target[3]>-10 then if target[1]<0 then targetSide=-1 else targetSide=1 end end
+    if currentSide~=targetSide then
+        if currentSide~=0 then
+            if math.abs(x-currentSide*27)>3 then table.insert(points,{currentSide*27,0,z}) end
+            table.insert(points,{currentSide*27,0,-18})
+        end
+        if targetSide~=0 then table.insert(points,{targetSide*27,0,-18}) end
+    end
+    table.insert(points,target)
+    return points
+end
+return Path
+
+]])
+source(shared,'KingKlownConfig',"ModuleScript",[[
+--!strict
+-- Généré automatiquement : King Klown v7 : attribution serveur
+-- NE PAS MODIFIER. Modifier les JSON dans catalog/ ou config/ puis exporter.
+return {
+  ["ownerUserId"] = 0,
+  ["studioPreview"] = true,
+}
+
+]])
+source(shared,'LibraryJourney',"ModuleScript",[[
+--!strict
+-- Généré automatiquement : parcours de lecture v28
+-- NE PAS MODIFIER. Modifier les JSON dans catalog/ ou config/ puis exporter.
+return {
+  ["building_id"] = "konnected.library",
+  ["ending"] = "Observer. Relier. Imaginer. La dernière page était blanche pour une raison : la suite se construit avec les autres. Le livre vous rend à la ville.",
+  ["entry_door_id"] = "city.konnected.library.entry",
+  ["exit_door_id"] = "library.exit",
+  ["placement"] = {
+    ["asset_id"] = "v28.library.story_book",
+    ["clearance"] = "above existing furnishing top; noncolliding; no floor footprint",
+    ["door_anchor_id"] = "library.exit.door",
+    ["host_local_offset_studs"] = {
+      0,
+      0.34,
+      0,
+    },
+    ["size_studs"] = {
+      2.4,
+      0.5,
+      1.6,
+    },
+    ["yaw_degrees"] = 0,
+  },
+  ["start_anchor_id"] = "city.central.spawn",
+  ["stations"] = {
+    {
+      ["furnishing_id"] = "library.prop.01",
+      ["id"] = "welcome",
+      ["text"] = "La dernière page a disparu. Trois fragments sont cachés parmi les lecteurs : observer, relier, imaginer. Retrouvez-les, puis revenez ici.",
+      ["title"] = "Le livre sans dernière page",
+      ["verb"] = "Ouvrir le livre",
+    },
+    {
+      ["furnishing_id"] = "library.prop.05",
+      ["id"] = "memory",
+      ["text"] = "Une ville garde les traces de ceux qui l'habitent. Regardez ce qui existe avant de décider ce qui manque. Premier mot : OBSERVER.",
+      ["title"] = "Observer — la mémoire",
+      ["verb"] = "Lire le fragment",
+    },
+    {
+      ["furnishing_id"] = "library.prop.06",
+      ["id"] = "connection",
+      ["text"] = "Deux lecteurs ouvrent le même livre et n'y trouvent pas la même histoire. Une rencontre donne un autre sens aux mots. Deuxième mot : RELIER.",
+      ["title"] = "Relier — la rencontre",
+      ["verb"] = "Lire le fragment",
+    },
+    {
+      ["furnishing_id"] = "library.prop.03",
+      ["id"] = "imagination",
+      ["text"] = "Une page blanche n'est pas une erreur. C'est une invitation à essayer une idée qui n'existe pas encore. Troisième mot : IMAGINER.",
+      ["title"] = "Imaginer — la possibilité",
+      ["verb"] = "Lire le fragment",
+    },
+  },
+  ["title"] = "Le livre sans dernière page",
+  ["version"] = 1,
+}
+
+]])
 source(shared,'MarinaDestinations',"ModuleScript",[[
 --!strict
 -- Registre géographique de deux marinas. Commun aux générateurs et au guide.
@@ -639,11 +764,43 @@ return groups
 ]])
 source(shared,'RuntimeConfig',"ModuleScript",[[
 --!strict
--- Généré automatiquement : mode d’exécution v26
--- NE PAS MODIFIER. Modifier les JSON dans catalog/ ou config/ puis exporter.
+-- Identité propre à cette installation.
 return {
   ["mode"] = "LOCAL_UNIVERSE",
 }
+
+]])
+source(shared,'Typography',"ModuleScript",[[
+--!strict
+-- Charte typographique Kin City : Garamond partout, Bodoni en repli.
+-- Les deux polices sont des polices natives Roblox; aucun AssetId requis.
+local Typography={}
+
+local function resolve(name:string): Enum.Font?
+    local ok, value = pcall(function()
+        return Enum.Font[name]
+    end)
+    if ok and value then return value end
+    return nil
+end
+
+local GARAMOND=resolve("Garamond")
+local BODONI=resolve("Bodoni")
+local SELECTED=GARAMOND or BODONI or Enum.Font.SourceSans
+
+function Typography.body(): Enum.Font
+    return SELECTED
+end
+function Typography.bold(): Enum.Font
+    return SELECTED
+end
+function Typography.display(): Enum.Font
+    return SELECTED
+end
+function Typography.fallback(): Enum.Font
+    return BODONI or SELECTED
+end
+return Typography
 
 ]])
 source(shared,'UrbanV14Destinations',"ModuleScript",[[
@@ -1122,8 +1279,28 @@ return {
       ["revision"] = "v23",
       ["source"] = "local_source",
     },
+    {
+      ["asset_id"] = "v28.library.story_book",
+      ["class"] = "prop",
+      ["dependencies"] = {},
+      ["fallback"] = "native_parts",
+      ["generator"] = "src/server/LibraryJourneyArt.luau",
+      ["license"] = "project_original",
+      ["revision"] = "v28",
+      ["source"] = "native_procedural",
+    },
+    {
+      ["asset_id"] = "v28.mesh.kingklown_hair",
+      ["class"] = "mesh",
+      ["dependencies"] = {},
+      ["fallback"] = "native_curved_locks",
+      ["generator"] = "tools/generate_v28_meshes.py",
+      ["license"] = "project_original",
+      ["revision"] = "v28",
+      ["source"] = "local_source",
+    },
   },
-  ["canonical_sha256"] = "0f218410500752602e40e5a000c7f52ca67112b7881070ebda9c64edfd9e6385",
+  ["canonical_sha256"] = "9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001",
   ["city_id"] = "kin_city",
   ["compiler"] = "offline-plan-1",
   ["doors"] = {
@@ -1395,6 +1572,205 @@ return {
     },
   },
   ["mode"] = "WORLD_STUB",
+  ["navigation_obstacles"] = {
+    {
+      ["center_studs"] = {
+        -30,
+        -29,
+      },
+      ["clearance_studs"] = 5,
+      ["id"] = "central.fountain",
+      ["kind"] = "fountain",
+      ["radius_studs"] = 12.5,
+    },
+    {
+      ["center_studs"] = {
+        0,
+        39,
+      },
+      ["clearance_studs"] = 5,
+      ["id"] = "central.monument",
+      ["kind"] = "monument",
+      ["radius_studs"] = 3.55,
+    },
+    {
+      ["center_studs"] = {
+        0,
+        30,
+      },
+      ["clearance_studs"] = 4,
+      ["id"] = "central.welcome",
+      ["kind"] = "welcome",
+      ["radius_studs"] = 14,
+    },
+    {
+      ["center_studs"] = {
+        58,
+        48,
+      },
+      ["clearance_studs"] = 4,
+      ["id"] = "central.sculpture.1",
+      ["kind"] = "sculpture",
+      ["radius_studs"] = 4,
+    },
+    {
+      ["center_studs"] = {
+        -65,
+        56,
+      },
+      ["clearance_studs"] = 4,
+      ["id"] = "central.sculpture.2",
+      ["kind"] = "sculpture",
+      ["radius_studs"] = 4,
+    },
+    {
+      ["center_studs"] = {
+        26.18657,
+        32.83692,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.1",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 141.428571,
+    },
+    {
+      ["center_studs"] = {
+        32.42147,
+        40.65524,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.1",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        -9.34588,
+        40.94697,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.2",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 192.857143,
+    },
+    {
+      ["center_studs"] = {
+        -11.57109,
+        50.69625,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.2",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        -37.84069,
+        18.22312,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.3",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 244.285714,
+    },
+    {
+      ["center_studs"] = {
+        -46.85038,
+        22.56195,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.3",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        -37.84069,
+        -18.22312,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.4",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 295.714286,
+    },
+    {
+      ["center_studs"] = {
+        -46.85038,
+        -22.56195,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.4",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        -9.34588,
+        -40.94697,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.5",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 347.142857,
+    },
+    {
+      ["center_studs"] = {
+        -11.57109,
+        -50.69625,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.5",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        26.18657,
+        -32.83692,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.6",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 398.571429,
+    },
+    {
+      ["center_studs"] = {
+        32.42147,
+        -40.65524,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.6",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+    {
+      ["center_studs"] = {
+        42.0,
+        -0.0,
+      },
+      ["clearance_studs"] = 3,
+      ["id"] = "central.bench.7",
+      ["kind"] = "bench",
+      ["radius_studs"] = 4.25,
+      ["yaw_degrees"] = 450.0,
+    },
+    {
+      ["center_studs"] = {
+        52.0,
+        -0.0,
+      },
+      ["clearance_studs"] = 2,
+      ["id"] = "central.planter.7",
+      ["kind"] = "planter",
+      ["radius_studs"] = 2.9,
+    },
+  },
   ["pedestrian_paths"] = {
     {
       ["arrival"] = "city.central.city_hall.return_spawn",
@@ -1403,7 +1779,22 @@ return {
         {
           0,
           0,
+          -20,
+        },
+        {
+          10,
           0,
+          -20,
+        },
+        {
+          10,
+          0,
+          -50,
+        },
+        {
+          0,
+          0,
+          -50,
         },
         {
           0,
@@ -1421,7 +1812,12 @@ return {
         {
           0,
           0,
+          -20,
+        },
+        {
+          60,
           0,
+          -20,
         },
         {
           60,
@@ -1439,7 +1835,62 @@ return {
         {
           0,
           0,
+          -20,
+        },
+        {
+          -10,
           0,
+          -20,
+        },
+        {
+          -10,
+          0,
+          -10,
+        },
+        {
+          -20,
+          0,
+          -10,
+        },
+        {
+          -20,
+          0,
+          0,
+        },
+        {
+          -60,
+          0,
+          0,
+        },
+        {
+          -60,
+          0,
+          30,
+        },
+        {
+          -30,
+          0,
+          30,
+        },
+        {
+          -30,
+          0,
+          40,
+        },
+        {
+          -20,
+          0,
+          40,
+        },
+        {
+          -20,
+          0,
+          60,
+        },
+        {
+          0,
+          0,
+          60,
         },
         {
           0,
@@ -1456,6 +1907,26 @@ return {
       ["path_xyz_studs"] = {
         {
           0,
+          0,
+          -20,
+        },
+        {
+          -10,
+          0,
+          -20,
+        },
+        {
+          -10,
+          0,
+          -10,
+        },
+        {
+          -20,
+          0,
+          -10,
+        },
+        {
+          -20,
           0,
           0,
         },
@@ -1480,12 +1951,12 @@ return {
         {
           0,
           0,
-          0,
+          -20,
         },
         {
           70,
           0,
-          0,
+          -20,
         },
         {
           70,
@@ -1513,12 +1984,12 @@ return {
         {
           0,
           0,
-          0,
+          -20,
         },
         {
           70,
           0,
-          0,
+          -20,
         },
         {
           70,
@@ -1576,12 +2047,32 @@ return {
         {
           0,
           0,
+          -20,
+        },
+        {
+          10,
           0,
+          -20,
+        },
+        {
+          10,
+          0,
+          -50,
+        },
+        {
+          0,
+          0,
+          -50,
+        },
+        {
+          0,
+          0,
+          -60,
         },
         {
           -170,
           0,
-          0,
+          -60,
         },
         {
           -170,
@@ -1599,12 +2090,12 @@ return {
         {
           0,
           0,
-          0,
+          -20,
         },
         {
           70,
           0,
-          0,
+          -20,
         },
         {
           70,
@@ -1888,7 +2379,7 @@ return {
           ["position_studs"] = {
             0.0,
             3.0,
-            0.0,
+            -16.0,
           },
           ["role"] = "spawn",
           ["yaw_degrees"] = 0.0,
@@ -3865,8 +4356,12 @@ function A.decorate(model,structure,building,style)
     windowMullions(model,base,w,d,h,trim)
     -- Nombre limité d'ornements répétables pour les appareils modestes.
     if family=="civic_stone" then
+        local doorwayHalf=6.6
         for i=-2,2 do
-            pillar(model,base,i*9,-d/2-3,math.min(13,h-4),trim,accent)
+            local px=i*9
+            if math.abs(px)>doorwayHalf then
+                pillar(model,base,px,-d/2-3,math.min(13,h-4),trim,accent)
+            end
         end
         piece(model,"Fronton civique",base,Vector3.new(w-4,2,5),Vector3.new(0,math.min(16,h-3),-d/2-2.4),accent,Enum.Material.Marble)
         for i=-2,2 do
@@ -3881,8 +4376,11 @@ function A.decorate(model,structure,building,style)
             orb(model,"Dôme hôtel de ville",base,Vector3.new(14,8,14),Vector3.new(0,h+8,0),accent,Enum.Material.Metal)
         end
     elseif family=="warm_academic" then
+        local doorwayHalf=6.8
         for x=-w/2+5,w/2-5,9 do
-            pillar(model,base,x,-d/2-1.2,math.min(12,h-4),trim,wall)
+            if math.abs(x)>doorwayHalf then
+                pillar(model,base,x,-d/2-1.2,math.min(12,h-4),trim,wall)
+            end
         end
         for i=-2,2 do
             piece(model,"Toiture académique",base,Vector3.new(math.max(8,w/5-1),1.3,d+2),Vector3.new(i*w/5,h+1.1,0),accent,Enum.Material.Slate)
@@ -4148,7 +4646,7 @@ local function booth(root,index,base,style,yaw)
     counter:SetAttribute("KinStubCapabilityId","future.artisan."..style.tag)
     counter:SetAttribute("KinStubTitle",style.name)
     F.prompt(counter,"Consulter",style.name)
-    F.sign(mdl,"Enseigne",(base*CFrame.new(0,12.3,-15)).Position,math.deg(yaw),style.name,20,2.7).CanCollide=false
+    F.sign(mdl,"Enseigne",(base*CFrame.new(0,13.65,-16.15)).Position,math.deg(yaw),style.name,20.5,3.35).CanCollide=false
     return mdl
 end
 function Artisan.make(city,plan)
@@ -4241,6 +4739,7 @@ return Botanical
 ]])
 source(server,"BoulevardBuses","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Kin City v11 : six lignes de minibus électriques, huit passagers par véhicule.
 -- Lignes le long des boulevards existants, de l'entrée au quartier résidentiel.
 -- Animation ancrée serveur; aucune billettique, économie ni service kOA.
@@ -4325,7 +4824,7 @@ local function station(root,route,atStart)
     s.Face=Enum.NormalId.Front;s.PixelsPerStud=32;s.CanvasSize=Vector2.new(750,180);s.Parent=banner
     local label=Instance.new("TextLabel")
     label.Size=UDim2.fromScale(1,1);label.BackgroundTransparency=1
-    label.Font=Enum.Font.GothamBold;label.TextScaled=true;label.TextWrapped=true
+    label.Font=Typography.body();label.TextScaled=true;label.TextWrapped=true
     label.TextColor3=ROOF
     label.Text=if atStart then "NAVETTE VERS LE QUARTIER" else "NAVETTE VERS LE CENTRE"
     label.Parent=s
@@ -4606,6 +5105,29 @@ end
 function Props.attach(model:Model,role:string,index:number)
     local hand=model:FindFirstChild("RightHand")
     if not hand or not hand:IsA("BasePart") then return end
+    local head=model:FindFirstChild("Head")
+    local torso=model:FindFirstChild("UpperTorso")
+    local feet={model:FindFirstChild("LeftFoot"),model:FindFirstChild("RightFoot")}
+    local hairColors={Color3.fromRGB(51,43,43),Color3.fromRGB(124,84,57),Color3.fromRGB(196,154,104),Color3.fromRGB(54,66,73)}
+    local hair=hairColors[(index-1)%#hairColors+1]
+    if head and head:IsA("BasePart") then
+        -- La face native reste visible (cheveux au-dessus du crâne).
+        accessory(model,head,"Coiffure sculptée",Vector3.new(1.6,0.36,1.35),CFrame.new(0,0.47,0.07),hair,Enum.Material.SmoothPlastic)
+        if index%3==0 then
+            accessory(model,head,"Mèche latérale",Vector3.new(0.29,0.53,0.75),CFrame.new(-0.62,0.30,0.10),hair,Enum.Material.SmoothPlastic)
+        elseif index%4==0 then
+            accessory(model,head,"Béret souple",Vector3.new(1.85,0.26,1.74),CFrame.new(0,0.69,0),teal,Enum.Material.Fabric)
+        end
+    end
+    if torso and torso:IsA("BasePart") then
+        accessory(model,torso,"Col opalin",Vector3.new(1.12,0.18,0.20),CFrame.new(0,0.75,-0.5),opal,Enum.Material.SmoothPlastic)
+        accessory(model,torso,"Insigne Kin City",Vector3.new(0.24,0.34,0.07),CFrame.new(-0.55,0.22,-0.52),gold,Enum.Material.Metal)
+    end
+    for _,foot in ipairs(feet) do
+        if foot and foot:IsA("BasePart") then
+            accessory(model,foot,"Chaussure de ville",Vector3.new(0.88,0.22,1.05),CFrame.new(0,-0.21,-0.09),Color3.fromRGB(39,57,63),Enum.Material.SmoothPlastic)
+        end
+    end
     -- Mini livre, carnet, outil ou prisme selon le métier.
     local kind=index%4
     if string.find(role,"Biblioth") or string.find(role,"Archiv") or kind==0 then
@@ -4625,11 +5147,12 @@ return Props
 ]])
 source(server,"Citizens","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Citoyens procéduraux : coiffures, teintes, vêtements, marche articulée et interactions.
 -- Aucun avatar externe, aucune identité kOA et aucun ID asset obligatoire.
-local TweenService=game:GetService("TweenService")
 local F=require(script.Parent.Factory)
 local Presence=require(script.Parent.ViewerPresenceV21)
+local Nav=require(script.Parent.NeighborhoodNPCNavigation)
 local Citizens={}
 local outfits={
     {"Bibliothécaire","Savoirs"},{"Guide du savoir","Accueil"},{"Étudiante","Université"},
@@ -4685,7 +5208,18 @@ local function makeCitizen(parent,index)
         table.insert(arms,a)
         local b=make(s<0 and "Jambe gauche" or "Jambe droite",Vector3.new(0.95,2.5,1),Vector3.new(s*0.6,1.2,0),dark)
         table.insert(legs,b)
-        make("Chaussure",Vector3.new(0.96,0.45,1.3),Vector3.new(s*0.6,0.25,-0.15),Color3.fromRGB(50,50,52))
+        make(s<0 and "Chaussure gauche" or "Chaussure droite",Vector3.new(0.96,0.45,1.3),Vector3.new(s*0.6,0.25,-0.15),Color3.fromRGB(50,50,52))
+    end
+    -- Visage expressif et détails de tenue ; aucune texture ou ressource distante.
+    make("Sourcil gauche",Vector3.new(0.29,0.07,0.08),Vector3.new(-0.35,6.51,-0.75),hair)
+    make("Sourcil droit",Vector3.new(0.29,0.07,0.08),Vector3.new(0.35,6.51,-0.75),hair)
+    make("Sourire",Vector3.new(0.34,0.07,0.06),Vector3.new(0,5.78,-0.79),Color3.fromRGB(130,72,72))
+    make("Ceinture",Vector3.new(2.28,0.24,1.35),Vector3.new(0,2.15,0),Color3.fromRGB(39,69,70))
+    make("Boucle opaline",Vector3.new(0.34,0.25,0.10),Vector3.new(0,2.15,-0.72),Color3.fromRGB(197,244,240),Enum.Material.Metal)
+    make("Revers gauche",Vector3.new(0.32,1.20,0.12),Vector3.new(-0.58,4.13,-0.71),Color3.fromRGB(197,244,240))
+    make("Revers droit",Vector3.new(0.32,1.20,0.12),Vector3.new(0.58,4.13,-0.71),Color3.fromRGB(197,244,240))
+    for _,side in ipairs({-1,1}) do
+        make(side<0 and "Manche gauche" or "Manche droite",Vector3.new(0.82,1.05,0.90),Vector3.new(side*1.58,4.15,0),coat)
     end
     if index%5==1 then
         make("Sac",Vector3.new(2.1,2,0.8),Vector3.new(0,3.1,1),Color3.fromRGB(123,84,62))
@@ -4706,7 +5240,7 @@ local function makeCitizen(parent,index)
     txt.BackgroundTransparency=0.23
     txt.TextColor3=Color3.fromRGB(249,248,233)
     txt.TextSize=13
-    txt.Font=Enum.Font.GothamMedium
+    txt.Font=Typography.body()
     txt.Text=name
     txt.Parent=marker
     local rounded=Instance.new("UICorner");rounded.CornerRadius=UDim.new(0,9);rounded.Parent=txt
@@ -4716,68 +5250,126 @@ local function makeCitizen(parent,index)
     F.prompt(head,"Parler",named[1])
     return model,arms,legs
 end
-local function orbit(index)
-    -- Anneaux publics dégagés : les personnages ne traversent pas les façades.
-    local radii={34,46,58,70}
-    local r=radii[(index-1)%#radii+1]
-    local angle=index*2.399963
-    return r,angle
-end
 function Citizens.make(parent)
     local folder=F.folder(parent,"Citoyens")
     for i=1,36 do
         local model=makeCitizen(folder,i)
-        local r,theta=orbit(i)
-        model:PivotTo(CFrame.new(r*math.cos(theta),0.15,r*math.sin(theta)))
+        local quarter=Nav.quarter(i)
+        local start=Nav.stop(quarter,i,1)
+        model:SetAttribute("KinResidenceQuarter",quarter.id)
+        model:SetAttribute("KinNPCActivity","Accueil du quartier")
+        model:PivotTo(CFrame.new(start+Vector3.new(0,0.15,0)))
     end
     return folder
+end
+-- Les PNJ primitifs sont ancrés et n'utilisent pas Humanoid:MoveTo. On avance
+-- sur une tangente à vitesse constante, puis on aligne le regard sur ce vecteur.
+-- Les membres pivotent autour de l'épaule/hanche : ni glissade latérale ni
+-- jambes/chaussures laissées en arrière durant le déplacement.
+local function animate(model,frame,phase,walking)
+    local swing=if walking then math.sin(phase)*0.42 else 0
+    for i,side in ipairs({-1,1}) do
+        local armAngle=swing*(if i==1 then 1 else -1)
+        local legAngle=swing*(if i==1 then -1 else 1)
+        local shoulder=frame*CFrame.new(side*1.58,4.48,0)*CFrame.Angles(armAngle,0,0)
+        local hip=frame*CFrame.new(side*0.6,2.35,0)*CFrame.Angles(legAngle,0,0)
+        local arm=model:FindFirstChild(if i==1 then "Bras gauche" else "Bras droit")
+        local sleeve=model:FindFirstChild(if i==1 then "Manche gauche" else "Manche droite")
+        local leg=model:FindFirstChild(if i==1 then "Jambe gauche" else "Jambe droite")
+        local shoe=model:FindFirstChild(if i==1 then "Chaussure gauche" else "Chaussure droite")
+        if arm then arm.CFrame=shoulder*CFrame.new(0,-1.05,0) end
+        if sleeve then sleeve.CFrame=shoulder*CFrame.new(0,-0.33,0) end
+        if leg then leg.CFrame=hip*CFrame.new(0,-1.15,0) end
+        if shoe then shoe.CFrame=hip*CFrame.new(0,-2.10,-0.15) end
+    end
+end
+local function face(position,tangent)
+    return CFrame.lookAt(position,position+tangent)
 end
 function Citizens.start(world)
     local city=world:FindFirstChild("Ville")
     local folder=city and city:FindFirstChild("Citoyens")
     if not folder then return end
-    for _,m in ipairs(folder:GetChildren()) do
-        local index=m:GetAttribute("CitizenIndex")
-        if index and m:IsA("Model") then
+    for _,model in ipairs(folder:GetChildren()) do
+        local index=model:GetAttribute("CitizenIndex")
+        if index and model:IsA("Model") then
             task.spawn(function()
-                local radius,angle=orbit(index)
-                local root=m.PrimaryPart
-                local current=0
-                local arms={m:FindFirstChild("Bras gauche"),m:FindFirstChild("Bras droit")}
-                local legs={m:FindFirstChild("Jambe gauche"),m:FindFirstChild("Jambe droite")}
+                local quarter=Nav.quarter(index)
+                local routeStep=1
+                local phase=index*1.7
+                local speed=4.5+(index%4)*0.65
+                local last=os.clock()
+                local lastPresence=0
+                local nearby=false
+                local pathPoints=nil
+                local waypointIndex=2
+                local retryAt=0
+                local pauseUntil=0
+                local root=model.PrimaryPart
                 while root and root.Parent and world.Parent do
-                    if not Presence.near(m:GetPivot().Position,200) then
-                        task.wait(3)
+                    local now=os.clock()
+                    local dt=math.clamp(now-last,0,0.15)
+                    last=now
+                    if now-lastPresence>1.0 then
+                        nearby=Presence.near(model:GetPivot().Position,180)
+                        lastPresence=now
+                    end
+                    if not nearby then
+                        task.wait(0.6)
                         continue
                     end
-                    local nextAngle=angle+0.28
-                    local speed=7.2+(index%5)*0.65
-                    local destination=CFrame.new(radius*math.cos(nextAngle),0.15,radius*math.sin(nextAngle))*CFrame.Angles(0,-nextAngle+math.pi/2,0)
-                    local proxy=Instance.new("CFrameValue")
-                    proxy.Value=m:GetPivot()
-                    local last=0
-                    local conn=proxy.Changed:Connect(function(cf)
-                        if not m.Parent then return end
-                        local now=os.clock()
-                        if now-last<0.085 then return end
-                        last=now
-                        current+=0.37
-                        m:PivotTo(cf)
-                        local wave=math.sin(current)
-                        for j,arm in ipairs(arms) do
-                            if arm then arm.CFrame=cf*CFrame.new((j==1 and -1 or 1)*1.58,3.43,0)*CFrame.Angles(wave*(j==1 and 0.27 or -0.27),0,0) end
+                    local position=model:GetPivot().Position
+                    if not pathPoints and now>=retryAt then
+                        routeStep+=1
+                        local target,activity=Nav.stop(quarter,index,routeStep)
+                        local _,points=Nav.plan(quarter,position+Vector3.new(0,2.35,0),target+Vector3.new(0,2.5,0))
+                        pathPoints=points
+                        waypointIndex=2
+                        retryAt=now+(if points then 0 else 2.5)
+                        if points then model:SetAttribute("KinNPCActivity",activity) end
+                    end
+                    local walking=false
+                    local direction=Vector3.new(0,0,-1)
+                    if pathPoints and now>=pauseUntil then
+                        local waypoint=pathPoints[waypointIndex]
+                        if waypoint then
+                            local delta=Vector3.new(waypoint.Position.X-position.X,0,waypoint.Position.Z-position.Z)
+                            if delta.Magnitude<0.55 then
+                                waypointIndex+=1
+                                if waypointIndex>#pathPoints then
+                                    pathPoints=nil
+                                    pauseUntil=now+1.2+(index%4)*0.6
+                                end
+                            else
+                                direction=delta.Unit
+                                local step=math.min(speed*dt,delta.Magnitude)
+                                local advance=direction*step
+                                if Nav.blockedAhead(model,position,advance+direction*1.1,world) then
+                                    pathPoints=nil
+                                    retryAt=now+2.0
+                                else
+                                    local nextPosition=position+advance
+                                    -- Les PNJ ancrés ne traversent pas l'enveloppe de leur quartier.
+                                    if Nav.within(quarter,nextPosition) then
+                                        walking=true
+                                        phase+=step*1.05
+                                        local frame=face(nextPosition,direction)
+                                        model:PivotTo(frame)
+                                        animate(model,frame,phase,true)
+                                    else
+                                        pathPoints=nil
+                                        retryAt=now+2.5
+                                    end
+                                end
+                            end
+                        else
+                            pathPoints=nil
                         end
-                        for j,leg in ipairs(legs) do
-                            if leg then leg.CFrame=cf*CFrame.new((j==1 and -1 or 1)*0.6,1.2,0)*CFrame.Angles(wave*(j==1 and -0.22 or 0.22),0,0) end
-                        end
-                    end)
-                    local tween=TweenService:Create(proxy,TweenInfo.new(speed,Enum.EasingStyle.Linear),{Value=destination})
-                    tween:Play();tween.Completed:Wait()
-                    conn:Disconnect()
-                    if m.Parent then m:PivotTo(destination) end
-                    proxy:Destroy()
-                    angle=nextAngle
-                    task.wait(index%3==0 and 0.8 or 0.1)
+                    end
+                    if not walking then
+                        animate(model,model:GetPivot(),phase,false)
+                    end
+                    task.wait(0.08)
                 end
             end)
         end
@@ -4787,6 +5379,271 @@ return Citizens
 
 ]])
 source(server,"CityGenerator","ModuleScript",[[
+--!strict
+local Factory=require(script.Parent.Factory)
+local FacadeGenerator=require(script.Parent.FacadeGenerator)
+local UrbanDetails=require(script.Parent.UrbanDetails)
+local Citizens=require(script.Parent.Citizens)
+local DistrictLandmarks=require(script.Parent.DistrictLandmarks)
+local Wildlife=require(script.Parent.Wildlife)
+local PromenadeLife=require(script.Parent.PromenadeLife)
+local OutdoorAtmosphere=require(script.Parent.OutdoorAtmosphere)
+local InstitutionForecourts=require(script.Parent.InstitutionForecourts)
+local ScenicCoast=require(script.Parent.ScenicCoast)
+local PedestrianWayfinding=require(script.Parent.PedestrianWayfinding)
+local WaterfrontDistrict=require(script.Parent.WaterfrontDistrict)
+local ArtisanStreets=require(script.Parent.ArtisanStreets)
+local InteractiveGardens=require(script.Parent.InteractiveGardens)
+local LearningConservatories=require(script.Parent.LearningConservatories)
+local DiscoveryPromenade=require(script.Parent.DiscoveryPromenade)
+local OuterIslands=require(script.Parent.OuterIslands)
+local MarinaDistrict=require(script.Parent.MarinaDistrict)
+local IslandAnnexes=require(script.Parent.IslandAnnexes)
+local IslandFootpaths=require(script.Parent.IslandFootpaths)
+local ResidentialQuarters=require(script.Parent.ResidentialQuarters)
+local CommunityBuildings=require(script.Parent.CommunityBuildings)
+local IntermodalHub=require(script.Parent.IntermodalHub)
+local CivicStages=require(script.Parent.CivicStages)
+local PromenadeCommerce=require(script.Parent.PromenadeCommerce)
+local SecondaryStreets=require(script.Parent.SecondaryStreets)
+local CooperativeInstallations=require(script.Parent.CooperativeInstallations)
+local StationArcades=require(script.Parent.StationArcades)
+local PublicWorkshops=require(script.Parent.PublicWorkshops)
+local CrystalPublic=require(script.Parent.CrystalPublic)
+local OpalWayfindingV19=require(script.Parent.OpalWayfindingV19)
+local BotanicalKitV20=require(script.Parent.BotanicalKitV20)
+local CrystalRestStopsV22=require(script.Parent.CrystalRestStopsV22)
+local CrystalLandingsV24=require(script.Parent.CrystalLandingsV24)
+local GroundCompatibility=require(script.Parent.GroundCompatibility)
+local Spatial=require(script.Parent.Spatial)
+local CityGenerator={}
+
+local function nearestBuildings(x,z,structures)
+    for _,b in ipairs(structures) do
+        local cx,_,cz=table.unpack(b.center_studs)
+        local yaw=math.rad(b.yaw_degrees)
+        local dx=x-cx
+        local dz=z-cz
+        local localX=math.cos(yaw)*dx-math.sin(yaw)*dz
+        local localZ=math.sin(yaw)*dx+math.cos(yaw)*dz
+        if math.abs(localX)<b.footprint_studs[1]/2+14 and math.abs(localZ)<b.footprint_studs[2]/2+14 then return true end
+    end
+    return false
+end
+
+local function distanceToPath(x,z,path)
+    local p=Vector3.new(x,0,z)
+    local nearest=math.huge
+    for i=2,#path.path_xyz_studs do
+        local a=path.path_xyz_studs[i-1]
+        local b=path.path_xyz_studs[i]
+        local av=Vector3.new(a[1],0,a[3])
+        local bv=Vector3.new(b[1],0,b[3])
+        local segment=bv-av
+        if segment.Magnitude>0.1 then
+            local t=math.clamp((p-av):Dot(segment)/segment:Dot(segment),0,1)
+            nearest=math.min(nearest,(p-(av+segment*t)).Magnitude)
+        end
+    end
+    return nearest
+end
+local function tree(parent,x,z,seed)
+    return BotanicalKitV20.tree(parent,x,z,seed)
+end
+
+-- v29 : union discrète des routes alignées sur la grille canonique de 10 studs.
+-- Un seul carreau par noeud et un seul tronçon par arête, sans surfaces coplanaires.
+-- Au centre, la Place centrale couvre le sol : ne pas générer de pavés cachés.
+local function streetTiles(folder,paths)
+    local nodes,edges={},{}
+    local function nodeKey(x,z) return string.format("%d:%d",x,z) end
+    local function addNode(x,z)
+        local key=nodeKey(x,z)
+        if Vector2.new(x,z).Magnitude>56 then nodes[key]={x,z} end
+    end
+    for _,path in ipairs(paths) do
+        local pts=path.path_xyz_studs
+        for i=2,#pts do
+            local a,b=pts[i-1],pts[i]
+            local dx=if a[1]~=b[1] then (b[1]>a[1] and 10 or -10) else 0
+            local dz=if a[3]~=b[3] then (b[3]>a[3] and 10 or -10) else 0
+            if dx~=0 or dz~=0 then
+                local steps=math.floor((math.abs(b[1]-a[1])+math.abs(b[3]-a[3]))/10+0.5)
+                for j=0,steps do
+                    local x,z=a[1]+j*dx,a[3]+j*dz
+                    addNode(x,z)
+                    if j>0 then
+                        local px,pz=x-dx,z-dz
+                        local midx,midz=(px+x)/2,(pz+z)/2
+                        if Vector2.new(px,pz).Magnitude>56 and Vector2.new(x,z).Magnitude>56 then
+                            local key=if dx~=0 then "H:"..nodeKey(midx,midz) else "V:"..nodeKey(midx,midz)
+                            edges[key]={midx,midz,dx~=0}
+                        end
+                    end
+                end
+            end
+        end
+    end
+    -- Raster de 2 studs : cellules disjointes, puis fusion par rangées contiguës.
+    -- La forme visible et la forme de collision utilisent les mêmes rectangles.
+    local rows={}
+    local function cell(x,z)
+        local ix,iz=math.floor(x/2+0.5),math.floor(z/2+0.5)
+        rows[iz]=rows[iz] or {}
+        rows[iz][ix]=true
+    end
+    for _,v in pairs(nodes) do
+        for dx=-2,2,2 do
+            for dz=-2,2,2 do cell(v[1]+dx,v[2]+dz) end
+        end
+    end
+    for _,v in pairs(edges) do
+        if v[3] then
+            for dx=-1,1,2 do
+                for dz=-2,2,2 do cell(v[1]+dx,v[2]+dz) end
+            end
+        else
+            for dx=-2,2,2 do
+                for dz=-1,1,2 do cell(v[1]+dx,v[2]+dz) end
+            end
+        end
+    end
+    local color=Color3.fromRGB(211,200,175)
+    local count=0
+    local function emit(r)
+        local x1,x2,z1,z2=r[1],r[2],r[3],r[4]
+        local width=(x2-x1+1)*2
+        local depth=(z2-z1+1)*2
+        local tile=Factory.part(folder,"Chemin unifié",Vector3.new(width,0.24,depth),CFrame.new(x1+x2,0.09,z1+z2),color,Enum.Material.Cobblestone)
+        tile.CanCollide=true;count+=1
+    end
+    local zs={}
+    for z in pairs(rows) do table.insert(zs,z) end
+    table.sort(zs)
+    local active={}
+    for _,z in ipairs(zs) do
+        local xs={}
+        for x in pairs(rows[z]) do table.insert(xs,x) end
+        table.sort(xs)
+        local runs={}
+        for _,x in ipairs(xs) do
+            local last=runs[#runs]
+            if last and x==last[2]+1 then last[2]=x
+            else table.insert(runs,{x,x}) end
+        end
+        local nextActive={}
+        for _,run in ipairs(runs) do
+            local key=tostring(run[1])..":"..tostring(run[2])
+            local old=active[key]
+            if old and old[4]==z-1 then
+                old[4]=z;nextActive[key]=old
+            else
+                nextActive[key]={run[1],run[2],z,z}
+            end
+        end
+        for key,r in pairs(active) do
+            if not nextActive[key] then emit(r) end
+        end
+        active=nextActive
+    end
+    for _,r in pairs(active) do emit(r) end
+    folder:SetAttribute("KinUniquePavementPieces",count)
+    folder:SetAttribute("KinPavementUnionV29",true)
+end
+
+function CityGenerator.make(parent,plan,buildingsById)
+    GroundCompatibility.prepare()
+    local city=Factory.folder(parent,"Ville")
+    local disk=Factory.part(city,"Île circulaire",Vector3.new(2,990,990),CFrame.new(0,-1,0)*CFrame.Angles(0,0,math.pi/2),Color3.fromRGB(84,141,107),Enum.Material.Grass)
+    disk.Shape=Enum.PartType.Cylinder
+    local water=Factory.part(city,"Lac périphérique",Vector3.new(1,1800,1800),CFrame.new(0,-3.8,0)*CFrame.Angles(0,0,math.pi/2),Color3.fromRGB(47,125,163),Enum.Material.SmoothPlastic)
+    water.Shape=Enum.PartType.Cylinder
+    local plaza=Factory.part(city,"Place centrale",Vector3.new(2,110,110),CFrame.new(0,0,0)*CFrame.Angles(0,0,math.pi/2),Color3.fromRGB(198,220,211),Enum.Material.Cobblestone)
+    plaza.Shape=Enum.PartType.Cylinder
+    plaza.CanCollide=true
+    local roads=Factory.folder(city,"Sentiers piétons")
+    streetTiles(roads,plan.pedestrian_paths)
+    local facades=Factory.folder(city,"Bâtiments")
+    for _,b in ipairs(plan.structures) do
+        local building=buildingsById[b.building_id]
+        assert(building,"Missing building: "..b.building_id)
+        FacadeGenerator.make(facades,b,building,plan.styles[b.style_id])
+    end
+    local gardens=Factory.folder(city,"Nature")
+    local rng=Random.new(plan.seed)
+    local planted=0
+    for i=1,185 do
+        local angle=rng:NextNumber(0,2*math.pi)
+        local radius=rng:NextNumber(90,465)
+        local x,z=math.cos(angle)*radius,math.sin(angle)*radius
+        if not nearestBuildings(x,z,plan.structures) and not InstitutionForecourts.isReserved(x,z,plan.structures) and not LearningConservatories.isReserved(x,z) and not DiscoveryPromenade.isReserved(x,z) and not ResidentialQuarters.isReserved(x,z) and not CommunityBuildings.isReserved(x,z) and not IntermodalHub.isReserved(x,z) and not CivicStages.isReserved(x,z) and not PromenadeCommerce.isReserved(x,z) and not CooperativeInstallations.isReserved(x,z) and not SecondaryStreets.isReserved(x,z) and not StationArcades.isReserved(x,z) and not PublicWorkshops.isReserved(x,z) then
+            local blockedPath=false
+            for _,path in ipairs(plan.pedestrian_paths) do
+                if distanceToPath(x,z,path)<path.width_studs/2+7 then
+                    blockedPath=true
+                    break
+                end
+            end
+            if not blockedPath then
+                tree(gardens,x,z,i);planted+=1
+            end
+        end
+    end
+    for _,item in ipairs(plan.navigation_obstacles) do
+        if item.kind=="monument" then
+            Factory.part(city,"Monument du savoir",Vector3.new(5,19,5),CFrame.new(item.center_studs[1],9.5,item.center_studs[2]),Color3.fromRGB(30,104,100),Enum.Material.Marble)
+        elseif item.kind=="welcome" then
+            Factory.sign(city,"Bienvenue",Vector3.new(item.center_studs[1],7,item.center_studs[2]),0,"KIN CITY",28,5).CanCollide=false
+        end
+    end
+    local spawn=Instance.new("SpawnLocation")
+    spawn.Name="Arrivée Kin City"
+    spawn.Size=Vector3.new(12,1,12)
+    local arrival=assert(Spatial.anchorCFrame("city","city.central.spawn"))
+    spawn.CFrame=arrival*CFrame.new(0,-2.2,0)
+    spawn.Anchored=true
+    spawn.Neutral=true
+    spawn.CanCollide=true
+    spawn.Transparency=1
+    spawn.Duration=0
+    spawn.Parent=city
+    UrbanDetails.make(city,plan)
+    InstitutionForecourts.make(city,plan)
+    CrystalLandingsV24.make(city,plan)
+    ScenicCoast.make(city)
+    WaterfrontDistrict.make(city)
+    OuterIslands.make(city)
+    MarinaDistrict.make(city)
+    IslandAnnexes.make(city)
+    IslandFootpaths.make(city)
+    ResidentialQuarters.make(city)
+    CommunityBuildings.make(city)
+    IntermodalHub.make(city)
+    StationArcades.make(city)
+    PublicWorkshops.make(city)
+    CivicStages.make(city)
+    CooperativeInstallations.make(city)
+    PromenadeCommerce.make(city)
+    SecondaryStreets.make(city)
+    ArtisanStreets.make(city,plan)
+    InteractiveGardens.make(city,plan)
+    LearningConservatories.make(city)
+    DiscoveryPromenade.make(city)
+    PedestrianWayfinding.make(city,plan,buildingsById)
+    DistrictLandmarks.make(city,plan)
+    PromenadeLife.make(city,plan)
+    OutdoorAtmosphere.make(city)
+    Citizens.make(city)
+    Wildlife.make(city)
+    CrystalPublic.make(city)
+    OpalWayfindingV19.make(city,plan)
+    CrystalRestStopsV22.make(city,plan)
+    return city
+end
+return CityGenerator
+
+]])
+source(server,"CityGeneratorLegacyV27","ModuleScript",[[
 --!strict
 local Factory=require(script.Parent.Factory)
 local FacadeGenerator=require(script.Parent.FacadeGenerator)
@@ -4953,6 +5810,7 @@ function CityGenerator.make(parent,plan,buildingsById)
     return city
 end
 return CityGenerator
+
 
 ]])
 source(server,"CivicStageRuntime","ModuleScript",[[
@@ -6713,7 +7571,7 @@ function FacadeGenerator.make(parent, structure, building, style)
     for side=-1,1,2 do
         element(model,"EntranceColumn",Vector3.new(1.4,10,1.4),base,Vector3.new(side*6.5,5,-d/2-1.2),trim,Enum.Material.Marble)
     end
-    Factory.sign(model,"BuildingSign",(base*CFrame.new(0,math.min(h-3,13),-d/2-1.25)).Position,yaw,building.name,math.min(w-12,40),3.3)
+    Factory.sign(model,"BuildingSign",(base*CFrame.new(0,math.min(h-2.1,14.1),-d/2-1.95)).Position,yaw,building.name,math.min(w-10,42),3.8)
     if style.roof=="spire" then
         element(model,"Spire",Vector3.new(3,math.min(15,h*0.32),3),base,Vector3.new(0,h+math.min(15,h*0.32)/2,0),accent,Enum.Material.Metal)
     elseif style.roof=="gable" then
@@ -6735,6 +7593,9 @@ return FacadeGenerator
 source(server,"Factory","ModuleScript",[[
 --!strict
 -- Primitives natives. Aucune ressource Toolbox et aucun asset payant.
+local ReplicatedStorage=game:GetService("ReplicatedStorage")
+local Shared=ReplicatedStorage:WaitForChild("KinCityShared")
+local Typography=require(Shared:WaitForChild("Typography"))
 local Factory = {}
 
 function Factory.part(parent, name, size, frame, color, material)
@@ -6758,27 +7619,86 @@ function Factory.folder(parent, name)
     return f
 end
 
+local function estimateLines(text:string, width:number): number
+    local length=#text
+    if string.find(text,"\n",1,true) then
+        local _,count=string.gsub(text,"\n","")
+        return math.clamp(count+1,1,4)
+    end
+    local capacity=math.max(8, math.floor(width*1.45))
+    return math.clamp(math.ceil(length/capacity),1,4)
+end
+
 function Factory.sign(parent, name, position, yaw, text, width, height)
+    local signText = tostring(text or "")
+    local boardWidth = width or 15
+    local requestedHeight = height or 3.4
+    local lines = estimateLines(signText, boardWidth)
+    local boardHeight = math.max(requestedHeight + 0.85, requestedHeight + math.max(0, lines-1)*0.7, math.min(boardWidth * 0.27, requestedHeight + 1.55))
     local rotation = CFrame.Angles(0, math.rad(yaw or 0), 0)
-    local board = Factory.part(parent, name, Vector3.new(width or 15, height or 3.4, 0.35), CFrame.new(position) * rotation, Color3.fromRGB(18, 62, 60), Enum.Material.Metal)
+    local forward = rotation.LookVector
+    local frontOffset = 0.46
+    local board = Factory.part(parent, name, Vector3.new(boardWidth, boardHeight, 0.34), CFrame.new(position + forward * frontOffset) * rotation, Color3.fromRGB(16, 58, 56), Enum.Material.Metal)
     board.CanCollide = false
+    board.CanTouch = false
+    board.CanQuery = false
+    board:SetAttribute("KinSignTypography", "garamond-with-bodoni-fallback")
+    board:SetAttribute("KinSignRequestedHeight", requestedHeight)
+    board:SetAttribute("KinSignEstimatedLines", lines)
+
+    local trim = Factory.part(parent, name.."Frame", Vector3.new(boardWidth + 0.48, boardHeight + 0.46, 0.10), CFrame.new(position + forward * 0.09) * rotation, Color3.fromRGB(232, 240, 232), Enum.Material.SmoothPlastic)
+    trim.CanCollide = false
+    trim.CanTouch = false
+    trim.CanQuery = false
+    trim.CastShadow = false
+    trim.Transparency = 0.06
+
     local sg = Instance.new("SurfaceGui")
     sg.Name = "ReadableSign"
     sg.Face = Enum.NormalId.Front
-    sg.CanvasSize = Vector2.new(900, 200)
-    sg.PixelsPerStud = 42
+    sg.CanvasSize = Vector2.new(math.max(1024, math.floor(boardWidth * 64)), math.max(360, math.floor(boardHeight * 118)))
+    sg.PixelsPerStud = 60
     sg.LightInfluence = 0
+    sg.ClipsDescendants = true
+    sg.SizingMode = Enum.SurfaceGuiSizingMode.PixelsPerStud
     sg.Parent = board
+
     local txt = Instance.new("TextLabel")
     txt.Name = "Text"
     txt.BackgroundTransparency = 1
     txt.Size = UDim2.fromScale(1, 1)
-    txt.Text = text
+    txt.Position = UDim2.fromOffset(0,0)
+    txt.Text = signText
     txt.TextScaled = true
     txt.TextWrapped = true
-    txt.Font = Enum.Font.GothamBold
-    txt.TextColor3 = Color3.fromRGB(237, 253, 252)
+    txt.Font = Typography.display()
+    txt.TextColor3 = Color3.fromRGB(239, 253, 252)
+    txt.TextStrokeColor3 = Color3.fromRGB(8, 32, 34)
+    txt.TextStrokeTransparency = 0.84
+    txt.TextXAlignment = Enum.TextXAlignment.Center
+    txt.TextYAlignment = Enum.TextYAlignment.Center
+    txt.RichText = false
+    txt.LineHeight = 1.0
     txt.Parent = sg
+
+    local padding = Instance.new("UIPadding")
+    padding.PaddingLeft = UDim.new(0, 26)
+    padding.PaddingRight = UDim.new(0, 26)
+    padding.PaddingTop = UDim.new(0, if lines>=3 then 20 else 16)
+    padding.PaddingBottom = UDim.new(0, if lines>=3 then 20 else 16)
+    padding.Parent = txt
+
+    local constraint = Instance.new("UITextSizeConstraint")
+    constraint.MinTextSize = 18
+    constraint.MaxTextSize = 94
+    constraint.Parent = txt
+
+    local shadow = Instance.new("UIStroke")
+    shadow.Thickness = 1.35
+    shadow.Color = Color3.fromRGB(12, 40, 40)
+    shadow.Transparency = 0.74
+    shadow.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+    shadow.Parent = txt
     return board
 end
 
@@ -6813,6 +7733,36 @@ function Factory.hex(colorHex)
 end
 
 return Factory
+
+]])
+source(server,"GroundCompatibility","ModuleScript",[[
+--!strict
+-- Retire de la scène uniquement le socle plat de démarrage qui affleure l'île.
+-- L'objet est conservé intact dans ServerStorage, sans effacer le Terrain utilisateur.
+local Ground={}
+function Ground.prepare()
+    local base=workspace:FindFirstChild("Baseplate")
+    if not base or not base:IsA("Part") or not base.Anchored then return end
+    if base.Shape~=Enum.PartType.Block or base.Size.X<100 or base.Size.Z<100 then return end
+    if base.CFrame.UpVector:Dot(Vector3.yAxis)<0.9999 then return end
+    local top=base.Position.Y+base.Size.Y/2
+    local localOrigin=base.CFrame:PointToObjectSpace(Vector3.zero)
+    if math.abs(top)>0.3 or math.abs(localOrigin.X)>base.Size.X/2 or math.abs(localOrigin.Z)>base.Size.Z/2 then return end
+    -- Ne pas déplacer un socle devenu un conteneur de scripts ou de construction.
+    for _,child in ipairs(base:GetDescendants()) do
+        if child:IsA("BasePart") or child:IsA("LuaSourceContainer") then return end
+    end
+    local storage=game:GetService("ServerStorage")
+    local archive=storage:FindFirstChild("KinCityOriginalGround")
+    if not archive then
+        archive=Instance.new("Folder")
+        archive.Name="KinCityOriginalGround"
+        archive.Parent=storage
+    end
+    base.Parent=archive
+    print("Kin City : Baseplate superposée au gazon mise de côté dans ServerStorage.KinCityOriginalGround.")
+end
+return Ground
 
 ]])
 source(server,"HarborAndTrailsRuntime","ModuleScript",[[
@@ -8123,6 +9073,7 @@ return Stage
 ]])
 source(server,"InstitutionStoriesV22","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Scénographie lisible et THÉMATIQUE dans chacune des six salles institutionnelles.
 -- Zones murales en retrait; zéro collision et zéro nouveau faux terminal métier.
 local Studio=require(script.Parent.ArtisanGeometryV22)
@@ -8154,7 +9105,7 @@ local function inscription(parent,text,base)
     label.Size=UDim2.fromScale(1,1)
     label.BackgroundTransparency=1
     label.Text=text
-    label.Font=Enum.Font.GothamSemibold
+    label.Font=Typography.body()
     label.TextColor3=Kit.pearl
     label.TextSize=25
     label.TextWrapped=true
@@ -8597,10 +9548,177 @@ function InteriorGenerator.make(parent, canonicalPlace, style)
     InstitutionDiscoveryWings.make(model,place.place_key,origin,style)
     CrystalInteriors.make(model,place,origin,style)
     require(script.Parent.CrystalRoomStoriesV19).make(model,place,origin,style)
+    require(script.Parent.LibraryJourneyArt).make(model,place.place_key)
     return model
 end
 
 return InteriorGenerator
+
+]])
+source(server,"InteriorGeneratorLegacyV27","ModuleScript",[[
+--!strict
+local Factory = require(script.Parent.Factory)
+local PropGenerator = require(script.Parent.PropGenerator)
+local Spatial = require(script.Parent.Spatial)
+local InteriorPlus = require(script.Parent.InteriorPlus)
+local InteriorWings = require(script.Parent.InteriorWings)
+local VerticalArchitecture = require(script.Parent.VerticalArchitecture)
+local InstitutionExhibits = require(script.Parent.InstitutionExhibits)
+local InteriorCollections = require(script.Parent.InteriorCollections)
+local InteriorScenography = require(script.Parent.InteriorScenography)
+local SpecializedRooms = require(script.Parent.SpecializedRooms)
+local SkyPavilions = require(script.Parent.SkyPavilions)
+local InstitutionDiscoveryWings = require(script.Parent.InstitutionDiscoveryWings)
+local CrystalInteriors = require(script.Parent.CrystalInteriors)
+local InstitutionCraftV20=require(script.Parent.InstitutionCraftV20)
+local StoriesV22=require(script.Parent.InstitutionStoriesV22)
+local FurnitureV23=require(script.Parent.SculptedFurnitureV23)
+local AtlasV23=require(script.Parent.LivingExhibitsV23)
+local StageV24=require(script.Parent.InstitutionStagecraftV24)
+local InteriorGenerator = {}
+
+local function segment(parent, name, width, height, center, color)
+    return Factory.part(parent,name,Vector3.new(width,height,0.85),CFrame.new(center),color,Enum.Material.Concrete)
+end
+
+local function wallWithOpening(parent, room, side, place, wallColor, position)
+    local cx,_,cz=table.unpack(room.center_studs)
+    local width, height, depth=table.unpack(room.size_studs)
+    local horiz=(side=="front" or side=="back")
+    local wallLength = horiz and width or depth
+    local centerCoord= if horiz then cx else cz
+    local wallCoord=if side=="front" then cz-depth/2 elseif side=="back" then cz+depth/2 elseif side=="left" then cx-width/2 else cx+width/2
+    local openings={}
+    for _, portal in ipairs(place.portals) do
+        if portal.from_room==room.room_id or portal.to_room==room.room_id then
+            local pc=portal.center_studs
+            local close= if horiz then math.abs(pc[3]-wallCoord)<3 else math.abs(pc[1]-wallCoord)<3
+            if close then
+                table.insert(openings,{center=if horiz then pc[1] else pc[3],width=portal.clear_width_studs})
+            end
+        end
+    end
+    table.sort(openings,function(a,b)return a.center<b.center end)
+    local sections={}
+    local start=centerCoord-wallLength/2
+    local finish=centerCoord+wallLength/2
+    for _,open in ipairs(openings) do
+        local lo=math.max(start,open.center-open.width/2)
+        local hi=math.min(finish,open.center+open.width/2)
+        if lo>start+0.1 then table.insert(sections,{start,lo,16,8}) end
+        if hi>lo then table.insert(sections,{lo,hi,7,12.5}) end -- linteau de porte de 9 studs
+        start=math.max(start,hi)
+    end
+    if finish>start+0.1 then table.insert(sections,{start,finish,16,8}) end
+    if horiz then
+        for _,section in ipairs(sections) do
+            local lo,hi,h,y=table.unpack(section)
+            segment(parent,"Wall_"..side,hi-lo,h,Vector3.new((hi+lo)/2+position.X,y+position.Y,wallCoord+position.Z),wallColor)
+        end
+    else
+        for _,section in ipairs(sections) do
+            local lo,hi,h,y=table.unpack(section)
+            Factory.part(parent,"Wall_"..side,Vector3.new(0.85,h,hi-lo),CFrame.new(wallCoord+position.X,y+position.Y,(hi+lo)/2+position.Z),wallColor,Enum.Material.Concrete)
+        end
+    end
+end
+
+function InteriorGenerator.make(parent, canonicalPlace, style)
+    local place=InteriorWings.expand(canonicalPlace)
+    local origin=Spatial.origin(place.place_key)
+    local model=Instance.new("Model")
+    model.Name="Intérieur — "..place.place_key
+    model:SetAttribute("KinPlaceKey",place.place_key)
+    model.Parent=parent
+    local walls=Factory.hex(style.palette.wall)
+    local floorColor=Factory.hex(style.palette.floor)
+    local trim=Factory.hex(style.palette.trim)
+    local accent=Factory.hex(style.palette.accent)
+    for roomIndex,room in ipairs(place.rooms) do
+        local folder=Factory.folder(model,room.room_id)
+        local cx,_,cz=table.unpack(room.center_studs)
+        local w,h,d=table.unpack(room.size_studs)
+        Factory.part(folder,"Floor",Vector3.new(w,1,d),CFrame.new(origin+Vector3.new(cx,-0.5,cz)),floorColor,Enum.Material.Marble)
+        for _,side in ipairs({"front","back","left","right"}) do
+            wallWithOpening(folder,room,side,place,walls,origin)
+        end
+        if not string.find(room.room_id,"%.rear_atrium$") then
+            Factory.part(folder,"Ceiling",Vector3.new(w,0.65,d),CFrame.new(origin+Vector3.new(cx,16.4,cz)),trim,Enum.Material.SmoothPlastic).CanCollide=false
+            Factory.part(folder,"CeilingBorder",Vector3.new(w-2,0.25,d-2),CFrame.new(origin+Vector3.new(cx,15.8,cz)),accent,Enum.Material.Metal).CanCollide=false
+        end
+        Factory.light(folder,origin+Vector3.new(cx,15.0,cz),1.7,55)
+        -- Lecture des noms des pièces à proximité des accès, sans collision.
+        Factory.sign(folder,"RoomTitle",origin+Vector3.new(cx,10.8,cz-d/2+0.65),0,room.display_name,math.min(30,w-6),2.5)
+        InteriorPlus.decorateRoom(folder,place.place_key,room,origin,style,roomIndex)
+        InteriorCollections.make(folder,place.place_key,room,origin,style,roomIndex)
+        InteriorScenography.decorate(folder,room,origin,style,place.place_key,roomIndex)
+        InstitutionCraftV20.decorate(folder,place.place_key,room,origin,roomIndex)
+        StoriesV22.decorate(folder,place.place_key,room,origin,roomIndex)
+        FurnitureV23.decorate(folder,place.place_key,room,origin,roomIndex)
+        AtlasV23.decorate(folder,place.place_key,room,origin,roomIndex)
+        StageV24.decorate(folder,place.place_key,room,origin,roomIndex)
+    end
+    for _,furn in ipairs(place.furnishings) do
+        local palette={wall=walls,trim=trim,accent=accent}
+        local inst = table.clone(furn)
+        inst.place_key = place.place_key
+        PropGenerator.make(model,inst,Spatial.position(place.place_key,furn.position_studs),palette)
+    end
+    -- Portails décoratifs sur le chemin traversable, sans cloison invisible.
+    for _,portal in ipairs(place.portals) do
+        local px,_,pz=table.unpack(portal.center_studs)
+        local base=origin+Vector3.new(px,0,pz)
+        local width=portal.clear_width_studs
+        -- Pont de sol sur l’interstice entre pièces (la géométrie v3 prévoit un écart de 3 studs).
+        local from,to=nil,nil
+        for _,room in ipairs(place.rooms) do
+            if room.room_id==portal.from_room then from=room end
+            if room.room_id==portal.to_room then to=room end
+        end
+        local eastWest=from and to and math.abs(from.center_studs[1]-to.center_studs[1]) > math.abs(from.center_studs[3]-to.center_studs[3])
+        local bridge=eastWest and Vector3.new(5,1,width) or Vector3.new(width,1,5)
+        local header=eastWest and Vector3.new(2.8,0.65,width+2) or Vector3.new(width+2,0.65,2.8)
+        Factory.part(model,"PortalThreshold",bridge,CFrame.new(base+Vector3.new(0,-0.5,0)),floorColor,Enum.Material.Marble)
+        Factory.part(model,"PortalHeader",header,CFrame.new(base+Vector3.new(0,9.6,0)),accent,Enum.Material.Metal).CanCollide=false
+    end
+    InstitutionExhibits.make(model,place.place_key,origin)
+    SpecializedRooms.make(model,place.place_key,origin)
+    VerticalArchitecture.make(model,place.place_key,origin,style)
+    SkyPavilions.make(model,place.place_key,origin,style)
+    InstitutionDiscoveryWings.make(model,place.place_key,origin,style)
+    CrystalInteriors.make(model,place,origin,style)
+    require(script.Parent.CrystalRoomStoriesV19).make(model,place,origin,style)
+    return model
+end
+
+return InteriorGenerator
+
+
+]])
+source(server,"InteriorLightingV30","ModuleScript",[[
+--!strict
+-- Intensité des éclairages artificiels des huit institutions à 65 %.
+-- Aucun changement au soleil / à Lighting global / aux lampadaires extérieurs.
+local InteriorLighting={}
+local FACTOR=0.65
+function InteriorLighting.apply(model:Instance):number
+    local count=0
+    for _,item in ipairs(model:GetDescendants()) do
+        if item:IsA("PointLight") or item:IsA("SpotLight") or item:IsA("SurfaceLight") then
+            local original=item:GetAttribute("KinInteriorOriginalBrightness")
+            if typeof(original)~="number" then
+                original=item.Brightness
+                item:SetAttribute("KinInteriorOriginalBrightness",original)
+            end
+            item.Brightness=original*FACTOR
+            count+=1
+        end
+    end
+    model:SetAttribute("KinInteriorLightingFactor",FACTOR)
+    model:SetAttribute("KinInteriorLightsAdjusted",count)
+    return count
+end
+return InteriorLighting
 
 ]])
 source(server,"InteriorPlus","ModuleScript",[[
@@ -9677,6 +10795,387 @@ end
 return Paths
 
 ]])
+source(server,"KingKlownAvatar","ModuleScript",[[
+--!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
+-- KING KLOWN / Costume jouable pour Kin City
+-- Uniquement les personnages des vrais joueurs, jamais les PNJ.
+-- Les couleurs et toutes les pièces sont générées localement, sans AssetId.
+local Players=game:GetService("Players")
+local RunService=game:GetService("RunService")
+
+local TEAL=Color3.fromRGB(30,104,100)
+local DEEP=Color3.fromRGB(16,47,55)
+local OPAL=Color3.fromRGB(197,244,240)
+local GOLD=Color3.fromRGB(229,215,175)
+local MID=Color3.fromRGB(47,127,119)
+local PALE=Color3.fromRGB(244,239,231)
+local BLACK=Color3.fromRGB(23,36,40)
+
+local CollectionService=game:GetService("CollectionService")
+local Avatar={}
+local config={ownerUserId=0,studioPreview=true}
+local records={}
+local started=false
+local OUTFIT_NAME="KingKlownCostume"
+
+local function part(costume:Model,ref:BasePart,name:string,size:Vector3,offset:CFrame,
+                  tint:Color3,material:Enum.Material,shape:Enum.PartType?,wedge:boolean?):BasePart
+    local p=Instance.new(if wedge then "WedgePart" else "Part")
+    p.Name=name
+    p.Size=size
+    p.Color=tint
+    p.Material=material
+    p.Transparency=0
+    if shape and p:IsA("Part") then p.Shape=shape end
+    p.Anchored=false
+    p.Massless=true
+    p.CanCollide=false
+    p.CanTouch=false
+    p.CanQuery=false
+    p.CastShadow=false
+    p.CFrame=ref.CFrame*offset
+    p.Parent=costume
+    local w=Instance.new("WeldConstraint")
+    w.Name="Fixation du costume"
+    w.Part0=ref
+    w.Part1=p
+    w.Parent=p
+    return p
+end
+
+local function findPart(character:Model,...:string):BasePart?
+    for _,name in ipairs({...}) do
+        local item=character:FindFirstChild(name)
+        if item and item:IsA("BasePart") then return item end
+    end
+    return nil
+end
+
+local function decorate(player:Player,character:Model)
+    if player.Character~=character then return false end
+    local humanoid=character:FindFirstChildOfClass("Humanoid")
+    if not humanoid or humanoid.Health<=0 then return false end
+    local head=findPart(character,"Head")
+    local torso=findPart(character,"UpperTorso","Torso")
+    if not head or not torso then return false end
+
+    local record=records[player]
+    for _,connection in ipairs(record.faceConnections) do connection:Disconnect() end
+    table.clear(record.faceConnections)
+    local old=character:FindFirstChild(OUTFIT_NAME)
+    if old then old:Destroy() end
+    -- Le nom King Klown v2 était attaché directement à la tête.
+    -- Ne pas le conserver lorsqu'un nouveau costume est équipé.
+    local oldNameplate=head:FindFirstChild("KingKlownNameplate")
+    if oldNameplate then oldNameplate:Destroy() end
+    -- Le style reste visible sans accessoires Roblox ajoutés par-dessus.
+    for _,child in ipairs(character:GetChildren()) do
+        if child:IsA("Accessory") or child:IsA("Shirt") or child:IsA("Pants")
+            or child:IsA("ShirtGraphic") then
+            child:Destroy()
+        end
+    end
+
+    local colors=character:FindFirstChildOfClass("BodyColors")
+    if not colors then colors=Instance.new("BodyColors");colors.Parent=character end
+    colors.HeadColor3=PALE
+    colors.TorsoColor3=DEEP
+    colors.LeftArmColor3=TEAL
+    colors.RightArmColor3=TEAL
+    colors.LeftLegColor3=TEAL
+    colors.RightLegColor3=TEAL
+
+    local costume=Instance.new("Model")
+    costume.Name=OUTFIT_NAME
+    costume:SetAttribute("KinCityPlayableAvatar",true)
+    costume:SetAttribute("KingKlownStyle","Trickster v7 #1E6864 : mèches sculptées, cape courte et gestes magiques")
+    costume.Parent=character
+
+    -- Une coque ellipsoïdale complète remplace VISUELLEMENT la tête native.
+    -- Les joints, la caméra et la physique de la vraie Head sont conservés.
+    -- Cela masque aussi les visages intégrés aux têtes MeshPart/dynamiques.
+    head.Transparency=1
+    part(costume,head,"Tête ronde King Klown",head.Size,CFrame.identity,
+        PALE,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+    local function hideNativeFace(item)
+        if item:IsA("Decal") or item:IsA("Texture") then item.Transparency=1 end
+        if item:IsA("SurfaceGui") then item.Enabled=false end
+    end
+    for _,item in ipairs(head:GetDescendants()) do hideNativeFace(item) end
+    table.insert(record.faceConnections,head.DescendantAdded:Connect(hideNativeFace))
+    table.insert(record.faceConnections,head:GetPropertyChangedSignal("Transparency"):Connect(function()
+        if head.Transparency~=1 then head.Transparency=1 end
+    end))
+
+    -- Projette chaque détail sur une ellipsoïde épousant les dimensions de
+    -- la tête (y compris les variantes R6/R15). Le nez, les yeux et la bouche
+    -- ne reposent plus sur une grande surface rectangulaire rigide.
+    local function facePose(x:number,y:number,angle:number?):CFrame
+        x=x*head.Size.X/2
+        y=y*head.Size.Y
+        local rx=math.max(head.Size.X*0.5,0.01)
+        local ry=math.max(head.Size.Y*0.5,0.01)
+        local rz=math.max(head.Size.Z*0.5,0.01)
+        local u=math.clamp(x/rx,-0.86,0.86)
+        local v=math.clamp(y/ry,-0.86,0.86)
+        local z=-rz*math.sqrt(math.max(0.16,1-u*u-v*v))
+        local surface=Vector3.new(x,y,z)
+        local normal=Vector3.new(x/(rx*rx),y/(ry*ry),z/(rz*rz)).Unit
+        local point=surface+normal*0.035
+        return CFrame.lookAt(point,point+normal)*CFrame.Angles(0,0,angle or 0)
+    end
+
+    local function hair(name,size,offset,tint,material,shape,wedge)
+        local scale=Vector3.new(head.Size.X/2,head.Size.Y,head.Size.Z)
+        local position=offset.Position*scale
+        return part(costume,head,name,size*scale,CFrame.new(position)*offset.Rotation,tint,material,shape,wedge)
+    end
+    -- Import optionnel : remplacer le gabarit une fois dans ServerStorage.
+    local library=game:GetService("ServerStorage"):FindFirstChild("KinCityAssetLibrary")
+    local template=library and library:FindFirstChild("kingklown_hair_v7")
+    if template and template:IsA("MeshPart") then
+        local scale=Vector3.new(head.Size.X/2,head.Size.Y,head.Size.Z)
+        local mesh=template:Clone();mesh:ClearAllChildren()
+        mesh.Name="Chevelure sculptée importée";mesh.Size=Vector3.new(1.7869,1.08,1.2754)*scale
+        mesh.CFrame=head.CFrame*CFrame.new(Vector3.new(-0.01345,0.88,0.0923)*scale)
+        mesh.Color=TEAL;mesh.Material=Enum.Material.SmoothPlastic
+        mesh.Anchored=false;mesh.Massless=true;mesh.CanCollide=false;mesh.CanTouch=false;mesh.CanQuery=false;mesh.CastShadow=false
+        mesh.Parent=costume
+        local weld=Instance.new("WeldConstraint");weld.Part0=head;weld.Part1=mesh;weld.Parent=mesh
+    else
+    -- Sept mèches courbes asymétriques : volumes effilés, pas une couronne radiale.
+    hair("Chevelure profonde",Vector3.new(1.72,0.53,1.26),CFrame.new(0,0.53,0.11),
+        DEEP,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+    local locks={
+        {-0.60,0.60,-0.32,-0.28,0.55,-0.22,-32},
+        {-0.30,0.70,-0.36,-0.12,0.72,-0.16,-20},
+        {0.03,0.70,-0.35,0.30,0.60,-0.18,30},
+        {0.38,0.60,-0.28,0.42,0.34,-0.16,55},
+        {-0.60,0.54,0.28,-0.30,0.42,0.21,-38},
+        {0.12,0.61,0.40,0.28,0.53,0.25,25},
+        {0.60,0.40,0.20,0.20,0.20,0.23,50},
+    }
+    for i,lock in ipairs(locks) do
+        for segment=0,2 do
+            local t=segment/2
+            local width=0.44*(1-t*0.55)
+            hair("Mèche sculptée "..i.."."..segment,Vector3.new(width,0.50-t*0.13,0.34-t*0.13),
+                CFrame.new(lock[1]+lock[4]*t,lock[2]+lock[5]*t,lock[3]+lock[6]*t)
+                    *CFrame.Angles(math.rad(-12),math.rad(i*9),math.rad(lock[7]+t*14)),
+                if i%3==0 then MID else TEAL,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+        end
+    end
+    hair("Frange en virgule",Vector3.new(0.80,0.29,0.30),
+        CFrame.new(0.25,0.45,-0.49)*CFrame.Angles(0,0,math.rad(24)),TEAL,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+
+    end
+
+    -- EXPRESSION V7 : une seule paire d'yeux, deux sourcils expressifs et
+    -- un seul sourire. Les détails suivent la COURBURE de la tête ronde.
+    part(costume,head,"Œil gauche ouvert",Vector3.new(0.215,0.225,0.09),
+        facePose(-0.255,0.085),BLACK,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+    part(costume,head,"Œil droit mi-clos",Vector3.new(0.21,0.135,0.09),
+        facePose(0.255,0.085,math.rad(-5)),BLACK,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+    -- Reflet MINUSCULE placé dans le premier œil, jamais un troisième œil.
+    part(costume,head,"Reflet opalin",Vector3.new(0.026,0.026,0.018),
+        facePose(-0.28,0.125)*CFrame.new(0,0,-0.052),OPAL,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+
+    part(costume,head,"Sourcil espiègle relevé",Vector3.new(0.35,0.050,0.078),
+        facePose(-0.255,0.300,math.rad(-10)),DEEP,Enum.Material.SmoothPlastic)
+    part(costume,head,"Sourcil complice",Vector3.new(0.33,0.050,0.078),
+        facePose(0.250,0.230,math.rad(3)),DEEP,Enum.Material.SmoothPlastic)
+
+    -- Un sourire courbé, sans moustache ni grimace. Chacun des 4 morceaux suit
+    -- la sphère et est joint au suivant pour donner UN arc continu.
+    local grin={
+        Vector2.new(-0.28,-0.192),
+        Vector2.new(-0.15,-0.235),
+        Vector2.new( 0.015,-0.246),
+        Vector2.new( 0.17,-0.215),
+        Vector2.new( 0.30,-0.145),
+    }
+    local smooth={}
+    for i=1,#grin-1 do
+        for j=0,2 do table.insert(smooth,grin[i]:Lerp(grin[i+1],j/3)) end
+    end
+    table.insert(smooth,grin[#grin])
+    grin=smooth
+    for i=1,#grin-1 do
+        local a,b=grin[i],grin[i+1]
+        local delta=b-a
+        local midpoint=(a+b)*0.5
+        part(costume,head,"Sourire du trickster · arc "..i,
+            Vector3.new(delta.Magnitude+0.018,0.044,0.085),
+            facePose(midpoint.X,midpoint.Y,math.atan2(delta.Y,delta.X)),
+            DEEP,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+    end
+
+    -- Tenue trickster sarcelle, en fines incrustations qui suivent le torse.
+    local front=-(torso.Size.Z/2+0.095)
+    part(costume,torso,"Veston trickster",Vector3.new(torso.Size.X*1.02,torso.Size.Y*1.05,0.30),
+        CFrame.new(0,0.02,front+0.02),TEAL,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+    for _,side in ipairs({-1,1}) do
+        part(costume,torso,"Revers de veste",Vector3.new(torso.Size.X*0.35,torso.Size.Y*0.59,0.10),
+            CFrame.new(side*torso.Size.X*0.19,0.10,front-0.13)*CFrame.Angles(0,0,side*math.rad(19)),
+            DEEP,Enum.Material.SmoothPlastic)
+        part(costume,torso,"Passementerie",Vector3.new(0.08,torso.Size.Y*0.66,0.08),
+            CFrame.new(side*torso.Size.X*0.38,-0.02,front-0.17),GOLD,Enum.Material.Metal)
+    end
+    part(costume,torso,"Insigne du fripon",Vector3.new(0.36,0.36,0.16),
+        CFrame.new(0,0.15,front-0.22)*CFrame.Angles(0,0,math.pi/4),OPAL,Enum.Material.SmoothPlastic)
+    for n=1,2 do
+        part(costume,torso,"Bouton de cérémonie "..n,Vector3.new(0.13,0.13,0.13),
+            CFrame.new(0,-0.15-(n-1)*0.21,front-0.25),GOLD,Enum.Material.Metal,Enum.PartType.Ball)
+    end
+
+    -- Deux pans courts, articulations cosmétiques séparées du squelette joueur.
+    for _,side in ipairs({-1,1}) do
+        local panel=part(costume,torso,"Cape courte "..side,
+            Vector3.new(torso.Size.X*0.54,torso.Size.Y*1.05,0.13),
+            CFrame.new(side*torso.Size.X*0.25,-torso.Size.Y*0.36,torso.Size.Z/2+0.20),
+            if side<0 then TEAL else DEEP,Enum.Material.SmoothPlastic)
+        panel:FindFirstChildOfClass("WeldConstraint"):Destroy()
+        local joint=Instance.new("Motor6D")
+        joint.Name="KingKlownCapeJoint"
+        joint.Part0=torso;joint.Part1=panel
+        joint.C0=CFrame.new(side*torso.Size.X*0.25,torso.Size.Y*0.17,torso.Size.Z/2+0.20)
+        joint.C1=CFrame.new(0,torso.Size.Y*0.53,0)
+        joint:SetAttribute("KingKlownCapeSide",side)
+        joint.Parent=panel
+    end
+    part(costume,torso,"Broche opaline",Vector3.new(0.26,0.26,0.24),
+        CFrame.new(torso.Size.X*0.32,torso.Size.Y*0.35,front-0.20),OPAL,Enum.Material.SmoothPlastic,Enum.PartType.Ball)
+
+    -- Gants, poignets, chaussures. Prend en charge R15 et R6.
+    for _,side in ipairs({"Left","Right"}) do
+        local arm=findPart(character,side.."LowerArm",side.." Arm",side.."UpperArm")
+        if arm then
+            part(costume,arm,"Manchette de scène "..side,
+                Vector3.new(arm.Size.X*1.07,0.24,arm.Size.Z*1.07),
+                CFrame.new(0,-arm.Size.Y*0.29,0),GOLD,Enum.Material.Metal)
+        end
+        local foot=findPart(character,side.."Foot",side.." Leg")
+        if foot then
+            part(costume,foot,"Chaussure de spectacle "..side,
+                Vector3.new(foot.Size.X*1.07,math.max(0.22,foot.Size.Y*0.49),foot.Size.Z*1.11),
+                CFrame.new(0,-foot.Size.Y*0.26,-0.06),DEEP,Enum.Material.SmoothPlastic)
+            part(costume,foot,"Boucle chaussure "..side,Vector3.new(0.23,0.18,0.10),
+                CFrame.new(0,-foot.Size.Y*0.11,-foot.Size.Z*0.53),GOLD,Enum.Material.Metal)
+        end
+    end
+
+    -- Les mains restent libres : l'étincelle apparaît pendant le geste magique.
+    -- Aura créée par chaque client, jamais animée/répliquée par le serveur.
+    costume:SetAttribute("KingKlownAura",true)
+    CollectionService:AddTag(costume,"KingKlownAvatar")
+
+    -- Nom affiché à distance raisonnable, sans duplicata du nom Roblox.
+    humanoid.DisplayName="King Klown"
+    humanoid.NameDisplayDistance=0
+    local sign=Instance.new("BillboardGui")
+    sign.Name="KingKlownNameplate"
+    sign.Adornee=head
+    sign.Size=UDim2.fromOffset(240,45)
+    sign.StudsOffsetWorldSpace=Vector3.new(0,3.25,0)
+    sign.MaxDistance=85
+    sign.AlwaysOnTop=false
+    sign.Parent=costume
+    local text=Instance.new("TextLabel")
+    text.Size=UDim2.fromScale(1,1)
+    text.BackgroundTransparency=1
+    text.Font=Typography.body()
+    text.Text="✦ KING KLOWN ✦"
+    text.TextColor3=GOLD
+    text.TextStrokeColor3=DEEP
+    text.TextStrokeTransparency=0.12
+    text.TextScaled=true
+    text.Parent=sign
+
+    character:SetAttribute("KinCityCharacter","King Klown")
+    return true
+end
+
+local function selected(player:Player):boolean
+    if config.ownerUserId>0 then return player.UserId==config.ownerUserId end
+    if RunService:IsStudio() then return config.studioPreview end
+    return game.CreatorType==Enum.CreatorType.User and game.CreatorId>0
+        and player.UserId==game.CreatorId
+end
+
+local function bind(player)
+    if records[player] or not selected(player) then return end
+    local record={connections={},faceConnections={},generation=0,dressed=nil}
+    records[player]=record
+    local function schedule(character,appearanceLoaded)
+        record.generation+=1
+        local generation=record.generation
+        task.spawn(function()
+            if not character:WaitForChild("HumanoidRootPart",12) then return end
+            if not character:WaitForChild("Head",12) then return end
+            local humanoid=character:WaitForChild("Humanoid",12)
+            if not humanoid or not humanoid:IsA("Humanoid") then return end
+            local torsoName=if humanoid.RigType==Enum.HumanoidRigType.R15 then "UpperTorso" else "Torso"
+            if not character:WaitForChild(torsoName,12) then return end
+            if not appearanceLoaded and not player:HasAppearanceLoaded() then task.wait(2.5) end
+            if records[player]~=record or generation~=record.generation
+                or player.Character~=character then return end
+            -- L'événement tardif d'apparence reconstruit le costume une seule fois.
+            local ok,result=pcall(decorate,player,character)
+            if ok and result then record.dressed=character
+            elseif not ok then warn("King Klown : "..tostring(result)) end
+        end)
+    end
+    table.insert(record.connections,player.CharacterAdded:Connect(function(character)
+        schedule(character,false)
+    end))
+    table.insert(record.connections,player.CharacterAppearanceLoaded:Connect(function(character)
+        if player.Character==character then schedule(character,true) end
+    end))
+    table.insert(record.connections,player.CharacterRemoving:Connect(function()
+        record.generation+=1
+        record.dressed=nil
+        for _,connection in ipairs(record.faceConnections) do connection:Disconnect() end
+        table.clear(record.faceConnections)
+    end))
+    if player.Character then schedule(player.Character,player:HasAppearanceLoaded()) end
+end
+function Avatar.start(options)
+    if started then return end
+    started=true
+    config=options or config
+    config.ownerUserId=tonumber(config.ownerUserId) or 0
+    local RS=game:GetService("ReplicatedStorage")
+    local cast=RS:FindFirstChild("KinCityTricksterCast")
+    if not cast then cast=Instance.new("RemoteEvent");cast.Name="KinCityTricksterCast";cast.Parent=RS end
+    local cooldown={}
+    cast.OnServerEvent:Connect(function(player)
+        local character=player.Character
+        local humanoid=character and character:FindFirstChildOfClass("Humanoid")
+        local root=character and character:FindFirstChild("HumanoidRootPart")
+        if not selected(player) or not humanoid or humanoid.Health<=0 or not root then return end
+        if not character:FindFirstChild(OUTFIT_NAME) or humanoid.SeatPart or humanoid.MoveDirection.Magnitude>0.1
+            or humanoid.FloorMaterial==Enum.Material.Air or character:FindFirstChildOfClass("Tool") then return end
+        local now=workspace:GetServerTimeNow()
+        if now-(cooldown[player] or -100)<6 then return end
+        cooldown[player]=now
+        character:SetAttribute("KingKlownCastAt",now)
+    end)
+    Players.PlayerRemoving:Connect(function(player) cooldown[player]=nil end)
+    Players.PlayerAdded:Connect(bind)
+    Players.PlayerRemoving:Connect(function(player)
+        local record=records[player]
+        if not record then return end
+        record.generation+=1
+        for _,connection in ipairs(record.connections) do connection:Disconnect() end
+        for _,connection in ipairs(record.faceConnections) do connection:Disconnect() end
+        records[player]=nil
+    end)
+    for _,player in ipairs(Players:GetPlayers()) do bind(player) end
+end
+return Avatar
+
+]])
 source(server,"LearningConservatories","ModuleScript",[[
 --!strict
 -- Huit pavillons d'expérimentation, construits en matériaux Roblox natifs.
@@ -9810,8 +11309,144 @@ end
 return Pavilions
 
 ]])
+source(server,"LibraryJourneyArt","ModuleScript",[[
+--!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
+-- Réutilise les enveloppes du mobilier canonique; aucun obstacle au sol ajouté.
+local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local Journey=require(Shared.LibraryJourney)
+local Art={}
+local TEAL=Color3.fromRGB(30,104,100)
+local OPAL=Color3.fromRGB(197,244,240)
+function Art.make(model,placeKey)
+    if placeKey~="library" then return end
+    local stations={}
+    for _,station in ipairs(Journey.stations) do stations[station.furnishing_id]=station end
+    for _,furnishing in ipairs(model:GetChildren()) do
+        local station=stations[furnishing:GetAttribute("KinFurnishingId")]
+        if not station or not furnishing:IsA("Model") or not furnishing.PrimaryPart then continue end
+        local host=furnishing.PrimaryPart
+        if host:FindFirstChild("LibraryStoryPrompt") then continue end
+        host:SetAttribute("KinLibraryStoryAction",station.id)
+        local prompt=Instance.new("ProximityPrompt")
+        prompt.Name="LibraryStoryPrompt";prompt.ActionText=station.verb;prompt.ObjectText=station.title
+        prompt.HoldDuration=0.25;prompt.MaxActivationDistance=11;prompt.RequiresLineOfSight=false
+        prompt.KeyboardKeyCode=Enum.KeyCode.E;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.Parent=host
+        local base=host.CFrame*CFrame.new(0,host.Size.Y/2+0.34,0)
+        local book=Instance.new("Model");book.Name="Livre de récit — "..station.id;book.Parent=furnishing
+        book:SetAttribute("KinAssetId",Journey.placement.asset_id)
+        for _,side in ipairs({-1,1}) do
+            local page=Instance.new("Part");page.Name="Pages ouvertes"
+            page.Size=Vector3.new(1.16,0.12,1.55)
+            page.CFrame=base*CFrame.new(side*0.58,0,0)*CFrame.Angles(0,0,math.rad(side*9))
+            page.Color=OPAL;page.Material=Enum.Material.SmoothPlastic;page.Anchored=true
+            page.CanCollide=false;page.CanTouch=false;page.CanQuery=false;page.Parent=book
+            local cover=page:Clone();cover.Name="Reliure sarcelle";cover.Size=Vector3.new(1.20,0.08,1.60)
+            cover.CFrame=page.CFrame*CFrame.new(0,-0.1,0);cover.Color=TEAL;cover.Parent=book
+        end
+        local label=Instance.new("BillboardGui");label.Name="LibraryStoryLabel"
+        label.Adornee=host;label.StudsOffsetWorldSpace=Vector3.new(0,host.Size.Y/2+1.8,0)
+        label.Size=UDim2.fromOffset(220,42);label.MaxDistance=36;label.AlwaysOnTop=false;label.Parent=book
+        local text=Instance.new("TextLabel");text.Size=UDim2.fromScale(1,1);text.BackgroundTransparency=1
+        text.Text=station.title;text.TextColor3=OPAL;text.TextStrokeTransparency=0.35
+        text.Font=Typography.body();text.TextSize=15;text.TextWrapped=true;text.Parent=label
+    end
+end
+return Art
+
+]])
+source(server,"LibraryJourneyRules","ModuleScript",[[
+--!strict
+-- État de récit local, sans crédits, certification ni persistance métier.
+local Rules={}
+local fragments={"memory","connection","imagination"}
+function Rules.new() return {active=false,finished=false,seen={}} end
+function Rules.count(state)
+    local count=0
+    for _,id in ipairs(fragments) do if state.seen[id] then count=count+1 end end
+    return count
+end
+function Rules.target(state)
+    if state.finished then return "exit" end
+    if not state.active then return "welcome" end
+    for _,id in ipairs(fragments) do if not state.seen[id] then return id end end
+    return "welcome"
+end
+function Rules.visit(state,id)
+    if id=="welcome" then
+        if state.finished then return "finished" end
+        if not state.active then state.active=true;return "start" end
+        if Rules.count(state)==3 then state.finished=true;return "complete" end
+        return "missing"
+    end
+    local known=false
+    for _,fragment in ipairs(fragments) do if fragment==id then known=true end end
+    if not known then return "invalid" end
+    if not state.active then return "start_first" end
+    if state.finished then return "finished" end
+    if state.seen[id] then return "repeat" end
+    state.seen[id]=true
+    return "fragment"
+end
+return Rules
+
+]])
+source(server,"LibraryJourneyRuntime","ModuleScript",[[
+--!strict
+local Players=game:GetService("Players")
+local Prompts=game:GetService("ProximityPromptService")
+local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local Journey=require(Shared.LibraryJourney)
+local Rules=require(script.Parent.LibraryJourneyRules)
+local RateLimiter=require(script.Parent.RateLimiter)
+local Runtime={}
+function Runtime.start(world,remote)
+    local states={}
+    local stations={}
+    for _,station in ipairs(Journey.stations) do stations[station.id]=station end
+    local function sync(player,state)
+        player:SetAttribute("KinLibraryStoryCount",Rules.count(state))
+        player:SetAttribute("KinLibraryStoryTarget",Rules.target(state))
+    end
+    local function register(player)
+        if states[player] then return end
+        states[player]=Rules.new();sync(player,states[player])
+    end
+    Players.PlayerAdded:Connect(register)
+    Players.PlayerRemoving:Connect(function(player) states[player]=nil end)
+    for _,player in ipairs(Players:GetPlayers()) do register(player) end
+    Prompts.PromptTriggered:Connect(function(prompt,player)
+        if prompt.Name~="LibraryStoryPrompt" or not prompt.Enabled or not prompt:IsDescendantOf(world) then return end
+        local host=prompt.Parent
+        if not host or not host:IsA("BasePart") then return end
+        local id=host:GetAttribute("KinLibraryStoryAction")
+        local station=stations[id]
+        if not station or player:GetAttribute("KinZone")~="library" then return end
+        local character=player.Character
+        local hum=character and character:FindFirstChildOfClass("Humanoid")
+        local root=character and character:FindFirstChild("HumanoidRootPart")
+        if not hum or hum.Health<=0 or not root or (root.Position-host.Position).Magnitude>14 then return end
+        if not RateLimiter.allowed(player,"library-story",0.75) then return end
+        register(player)
+        local state=states[player]
+        local result=Rules.visit(state,id)
+        sync(player,state)
+        local message=station.text
+        if result=="complete" or result=="finished" then message=Journey.ending
+        elseif result=="missing" then message="Il vous reste "..(3-Rules.count(state)).." fragment(s) à découvrir. Suivez le guide vers le prochain livre."
+        elseif result=="start_first" then message="Commencez au livre d'accueil, sur le banc du hall. Le guide vous y conduit."
+        elseif result=="repeat" then message="Fragment déjà découvert. "..station.text end
+        remote:FireClient(player,{kind="interaction.reply.v1",status="LOCAL_STORY",title=station.title,
+            message=message,notice="Récit de visite · "..Rules.count(state).."/3 fragments · aucune récompense ni service kOA"})
+        if result=="complete" then player:SetAttribute("KinLibraryStoryCompletedAt",workspace:GetServerTimeNow()) end
+    end)
+end
+return Runtime
+
+]])
 source(server,"LivingExhibitsV23","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Huit expositions interactives à quatre chapitres. Les textes sont locaux,
 -- consultables sans kOA; les changements de sculpture et de panneau répliquent.
 -- Aucune décision, note ou vote n'est simulé.
@@ -9887,7 +11522,7 @@ local function caption(parent,name,position,size,text,textSize)
     label.Position=UDim2.fromScale(0,0)
     label.BackgroundTransparency=1
     label.TextColor3=Kit.pearl
-    label.Font=Enum.Font.GothamMedium
+    label.Font=Typography.body()
     label.TextWrapped=true
     label.TextSize=textSize
     label.Text=text
@@ -9944,7 +11579,7 @@ function Atlas.decorate(roomFolder,placeKey,room,origin,index)
     heading.Position=UDim2.fromScale(0.03,0.04)
     heading.TextColor3=Kit.gold
     heading.BackgroundTransparency=1
-    heading.Font=Enum.Font.GothamBold
+    heading.Font=Typography.body()
     heading.TextWrapped=true
     heading.TextSize=39
     heading.Parent=headingSurface
@@ -9954,7 +11589,7 @@ function Atlas.decorate(roomFolder,placeKey,room,origin,index)
     body.Position=UDim2.fromScale(0.03,0.46)
     body.TextColor3=Kit.pearl
     body.BackgroundTransparency=1
-    body.Font=Enum.Font.Gotham
+    body.Font=Typography.body()
     body.TextWrapped=true
     body.TextSize=30
     body.Parent=headingSurface
@@ -9964,7 +11599,7 @@ function Atlas.decorate(roomFolder,placeKey,room,origin,index)
     progress.Position=UDim2.fromScale(0.78,0.01)
     progress.TextColor3=Kit.gold
     progress.BackgroundTransparency=1
-    progress.Font=Enum.Font.GothamBold
+    progress.Font=Typography.body()
     progress.TextSize=21
     progress.Parent=headingSurface
     piece(root,"WedgePart","Noyau de chapitre",Vector3.new(1.8,1.7,1.5),host.CFrame*CFrame.new(0,2.65,0.2),Kit.accent(placeKey),Enum.Material.Slate,false)
@@ -10235,6 +11870,7 @@ return Library
 ]])
 source(server,"NativeR15Citizens","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Avatars Roblox R15 créés par l'API officielle, SANS identifiant d'avatar externe requis.
 -- L'échec d'un chargement Roblox ne doit jamais empêcher l'ouverture de Kin City.
 -- Ces citoyens complètent la population stylisée déjà présente dans l'édition du monde.
@@ -10242,6 +11878,7 @@ local Players=game:GetService("Players")
 local CollectionService=game:GetService("CollectionService")
 local CitizenProps=require(script.Parent.CitizenPropsV21)
 local Presence=require(script.Parent.ViewerPresenceV21)
+local Nav=require(script.Parent.NeighborhoodNPCNavigation)
 local F=require(script.Parent.Factory)
 local R15={}
 local skins={
@@ -10285,7 +11922,7 @@ local function badger(model,part,title)
     text.BackgroundColor3=Color3.fromRGB(31,53,60)
     text.BackgroundTransparency=0.26
     text.TextColor3=Color3.fromRGB(247,237,216)
-    text.Font=Enum.Font.GothamMedium
+    text.Font=Typography.body()
     text.TextSize=13
     text.Text=title
     text.Parent=bb
@@ -10312,6 +11949,7 @@ local function make(index,parent)
     local head=model:FindFirstChild("Head")
     if not humanoid or not root or not head then model:Destroy();return nil end
     humanoid.WalkSpeed=7+(index%3)
+    humanoid.AutoRotate=true -- regarder la direction de MoveTo, sans tween latéral
     humanoid.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.None
     humanoid.BreakJointsOnDeath=false
     root.CanCollide=false
@@ -10330,40 +11968,35 @@ local function make(index,parent)
     return model,humanoid,root
 end
 local function walk(model,humanoid,index,world)
-    -- Le serveur choisit uniquement les destinations et publie l'activité.
-    -- Les gestes R15 sont rendus par CitizenAnimationV21 côté client.
-    local radius=76+(index%3)*5
-    local theta=index*math.pi*2/10
-    local start=Vector3.new(radius*math.cos(theta),2.5,radius*math.sin(theta))
-    model:PivotTo(CFrame.new(start))
+    local quarter=Nav.quarter(index)
+    local start=Nav.stop(quarter,index,1)
+    model:SetAttribute("KinResidenceQuarter",quarter.id)
+    model:PivotTo(CFrame.new(start+Vector3.new(0,2.5,0)))
     local root=model:FindFirstChild("HumanoidRootPart")
     if root and root:IsA("BasePart") then
         pcall(function() root:SetNetworkOwner(nil) end)
     end
     local activities={"Promenade", "Observer", "Lecture", "Accueil", "Rencontre"}
     task.spawn(function()
-        local lap=0
+        local step=1
         while model.Parent and world.Parent and humanoid.Health>0 do
             if not Presence.near(model:GetPivot().Position,200) then
                 model:SetAttribute("KinNPCMotion","idle")
                 task.wait(2.5)
                 continue
             end
-            lap+=1
-            theta+=0.21
-            local pos=Vector3.new(radius*math.cos(theta),1.8,radius*math.sin(theta))
+            step+=1
+            local destination,title=Nav.stop(quarter,index,step)
             model:SetAttribute("KinNPCMotion","walk")
-            model:SetAttribute("KinNPCActivity","Promenade")
-            humanoid:MoveTo(pos)
-            local finished=false
-            local conn=humanoid.MoveToFinished:Connect(function() finished=true end)
-            local untilTime=os.clock()+10
-            while not finished and os.clock()<untilTime and model.Parent and world.Parent and humanoid.Health>0 do
-                task.wait(0.3)
-            end
-            conn:Disconnect()
+            model:SetAttribute("KinNPCActivity",title)
+            local reached=Nav.walkHumanoid(model,humanoid,quarter,destination,world)
             if not model.Parent or not world.Parent then break end
-            local activity=activities[(lap+index-2)%#activities+1]
+            if not reached then
+                model:SetAttribute("KinNPCMotion","idle")
+                task.wait(2.0) -- aucun mouvement direct à travers le mobilier
+                continue
+            end
+            local activity=activities[(step+index-2)%#activities+1]
             model:SetAttribute("KinNPCMotion",if activity=="Lecture" then "read" elseif activity=="Accueil" or activity=="Rencontre" then "greet" else "idle")
             model:SetAttribute("KinNPCActivity",activity)
             task.wait(1.5+(index%3)*0.55)
@@ -10375,9 +12008,9 @@ function R15.start(world)
     local city=world:FindFirstChild("Ville")
     if not city then return end
     local folder=F.folder(city,"Citoyens Roblox R15")
-    -- Chargement asynchrone, peu de modèles, population stylisée conservée comme repli.
+    -- Quatorze rigs natifs répartis sur les voies publiques, plus de variété sans surcharger la ville.
     task.spawn(function()
-        for i=1,10 do
+        for i=1,14 do
             if not world.Parent then break end
             local model,humanoid=make(i,folder)
             if model and humanoid then walk(model,humanoid,i,world) end
@@ -10386,6 +12019,141 @@ function R15.start(world)
     end)
 end
 return R15
+
+]])
+source(server,"NeighborhoodNPCNavigation","ModuleScript",[[
+--!strict
+-- Navigation des PNJ : parcours de quartier, obstacles réellement traversables et
+-- refus de déplacer un PNJ si aucun trajet sûr n'est trouvé (sans téléportation).
+-- Les mêmes six quartiers servent aux 36 citoyens, 14 R15 et 12 résidents.
+local RS=game:GetService("ReplicatedStorage")
+local PathfindingService=game:GetService("PathfindingService")
+local Groups=require(RS:WaitForChild("KinCityShared"):WaitForChild("ResidentialDestinations"))
+local Nav={}
+-- Coordonnées locales alignées sur ResidentialQuarters : le kiosque occupe
+-- [-8.5,8.5]^2 ; les quatre maisons sont centrées à (+/-29,+/-29).
+-- Les haltes restent sur les allées entre kiosque, jardins et façades.
+local STOPS={
+    {0,-27,"Entrée de quartier"}, {0,-55,"Promenade du boulevard"},
+    {0,-79,"Perspective de la ville"}, {0,-55,"Promenade du boulevard"},
+    {0,-27,"Accueil"}, {10,-23,"Allée des voisins"},
+    {23,-10,"Place publique"}, {27,0,"Atelier de quartier"},
+    {23,10,"Allée plantée"}, {10,23,"Promenade calme"},
+    {0,27,"Terrasse commune"}, {-10,23,"Balade du jardin"},
+    {-23,10,"Maison des voisins"}, {-27,0,"Place publique"},
+    {-23,-10,"Allée de quartier"}, {-10,-23,"Rencontre"},
+}
+-- Alternance de visites courtes, demi-tours et petites sorties sur le boulevard.
+-- Aucune boucle orbitale ou déplacement aléatoire sans contrôle d'obstacles.
+local ROUTES={
+    {1,6,7,8,9,10,11,12,13,14,15,16},
+    {11,10,9,8,7,6,1,2,3,4,5,16,15},
+    {1,2,3,4,5,16,15,14,13,12,11},
+    {7,8,9,10,11,12,13,14,15,16,1,6},
+    {11,12,13,14,15,16,1,2,4,5,6,7},
+    {1,16,15,14,13,12,11,10,9,8,7,6},
+}
+function Nav.quarter(index)
+    return Groups[(index-1)%#Groups+1]
+end
+function Nav.frame(quarter)
+    return CFrame.new(quarter.center_studs[1],0,quarter.center_studs[3])
+        *CFrame.Angles(0,math.pi/2-quarter.angle,0)
+end
+function Nav.localPoint(quarter,x,z)
+    return (Nav.frame(quarter)*CFrame.new(x,0,z)).Position
+end
+function Nav.within(quarter,position)
+    local p=Nav.frame(quarter):PointToObjectSpace(position)
+    -- 65x95 studs autour de l'îlot, y compris son allée d'approche.
+    return math.abs(p.X)<=65 and p.Z>=-95 and p.Z<=55
+end
+function Nav.stop(quarter,index,step)
+    local route=ROUTES[(index-1)%#ROUTES+1]
+    local id=route[((step-1)%#route)+1]
+    local stop=STOPS[id]
+    return Nav.localPoint(quarter,stop[1],stop[2]),stop[3]
+end
+-- Un chemin Roblox est construit sur les collisions du monde, non pas sur la
+-- distance en ligne droite. Un détour hors quartier ou un saut est refusé.
+function Nav.plan(quarter,from,to)
+    if not Nav.within(quarter,from) or not Nav.within(quarter,to) then return nil end
+    local path=PathfindingService:CreatePath({
+        AgentRadius=2.5,AgentHeight=6,AgentCanJump=false,AgentCanClimb=false,
+        WaypointSpacing=3,
+    })
+    local ok=pcall(function() path:ComputeAsync(from,to) end)
+    if not ok or path.Status~=Enum.PathStatus.Success then return nil end
+    local points=path:GetWaypoints()
+    if #points<2 or #points>100 then return nil end
+    local traveled=0
+    local last=from
+    for _,waypoint in ipairs(points) do
+        if waypoint.Action==Enum.PathWaypointAction.Jump then return nil end
+        if not Nav.within(quarter,waypoint.Position) then return nil end
+        traveled+=(waypoint.Position-last).Magnitude
+        last=waypoint.Position
+    end
+    -- Garde-fou contre une navigation qui traverse toute la ville.
+    if traveled>190 then return nil end
+    return path,points
+end
+-- Déplacement physique des R15, avec replanification au prochain arrêt si le
+-- navmesh est bloqué. Pas de MoveTo direct vers la destination en secours.
+function Nav.walkHumanoid(model,humanoid,quarter,destination,world)
+    local root=model:FindFirstChild("HumanoidRootPart")
+    if not root or not root:IsA("BasePart") then return false end
+    local target=Vector3.new(destination.X,root.Position.Y,destination.Z)
+    local path,points=Nav.plan(quarter,root.Position,target)
+    if not path or not points then return false end
+    local blocked=false
+    local blockedConnection=path.Blocked:Connect(function() blocked=true end)
+    local success=true
+    for index=2,#points do
+        if blocked or not model.Parent or not world.Parent or humanoid.Health<=0 then
+            success=false;break
+        end
+        local waypoint=points[index].Position
+        local targetPosition=Vector3.new(waypoint.X,root.Position.Y,waypoint.Z)
+        local finished,reached=false,false
+        local connection=humanoid.MoveToFinished:Connect(function(ok)
+            finished=true;reached=ok
+        end)
+        humanoid:MoveTo(targetPosition)
+        local untilTime=os.clock()+math.max(2.8,(root.Position-targetPosition).Magnitude/math.max(humanoid.WalkSpeed,1)+1.8)
+        while not finished and not blocked and os.clock()<untilTime and model.Parent and world.Parent and humanoid.Health>0 do
+            task.wait(0.15)
+        end
+        connection:Disconnect()
+        if blocked or not reached then success=false;break end
+    end
+    blockedConnection:Disconnect()
+    if not success then
+        humanoid:MoveTo(root.Position) -- annuler la dernière instruction de mouvement
+    end
+    return success
+end
+-- Une vérification additionnelle empêche les figurines ancrées de traverser un
+-- banc ou un poteau apparu après le calcul de chemin. Vérifie la collision.
+function Nav.blockedAhead(model,from,displacement,world)
+    if displacement.Magnitude<0.01 then return false end
+    local params=RaycastParams.new()
+    params.FilterType=Enum.RaycastFilterType.Exclude
+    local city=world:FindFirstChild("Ville")
+    local ignored={model}
+    if city then
+        for _,name in ipairs({"Citoyens","Citoyens Roblox R15","Habitants R15 des quartiers"}) do
+            local folder=city:FindFirstChild(name)
+            if folder then table.insert(ignored,folder) end
+        end
+    end
+    params.FilterDescendantsInstances=ignored
+    params.RespectCanCollide=true
+    local start=from+Vector3.new(0,3.1,0)
+    local hit=workspace:Blockcast(CFrame.new(start),Vector3.new(1.6,3.4,1.6),displacement,params)
+    return hit~=nil
+end
+return Nav
 
 ]])
 source(server,"NeighborhoodRooflinesV22","ModuleScript",[[
@@ -10544,39 +12312,81 @@ return Glass
 ]])
 source(server,"OpalWayfindingV19","ModuleScript",[[
 --!strict
--- Incrustations opalines intégrées dans le pavage (sans collision ni éclairages coûteux).
--- Parcours dérivés des mêmes points que les véritables sentiers piétons.
+-- Filigranes v29 : unions collinéaires des itinéraires du plan, non solidaires du sol.
+-- Aucun trait doublé lorsque deux destinations empruntent le même segment.
 local Kit=require(script.Parent.CrystalKit)
 local Wayfinding={}
-local function stripe(folder,p,q,offset,color)
-    local direction=q-p
-    local horizontal=Vector3.new(direction.X,0,direction.Z)
-    local distance=horizontal.Magnitude
+local function addSegment(groups,a,b)
+    local horizontal=a[3]==b[3]
+    local fixed=if horizontal then a[3] else a[1]
+    local first=math.min(if horizontal then a[1] else a[3],if horizontal then b[1] else b[3])
+    local last=math.max(if horizontal then a[1] else a[3],if horizontal then b[1] else b[3])
+    if last-first<0.1 then return end
+    local key=(if horizontal then "H" else "V")..":"..tostring(fixed)
+    if not groups[key] then groups[key]={horizontal=horizontal,fixed=fixed,intervals={}} end
+    table.insert(groups[key].intervals,{first,last})
+end
+local function stripe(folder,a,b,side,color,isVertical)
+    local direction=b-a
+    local distance=direction.Magnitude
     if distance<3 then return end
-    local forward=horizontal.Unit
-    local sideways=Vector3.new(forward.Z,0,-forward.X)
-    local center=(p+q)*0.5+sideways*offset
-    center=Vector3.new(center.X,0.27,center.Z)
-    local frame=CFrame.lookAt(center,center+forward)
-    local part=Kit.part(folder,"Part","Veine de guidage",Vector3.new(0.24,0.08,distance),frame,color,Enum.Material.Metal)
+    local forward=direction.Unit
+    local perpendicular=Vector3.new(forward.Z,0,-forward.X)
+    local center=(a+b)/2+perpendicular*side
+    -- Croisements transversaux sur un plan visuel distinct pour éviter les faces coplanaires.
+    local y=if isVertical then 0.292 else 0.27
+    center=Vector3.new(center.X,y,center.Z)
+    local part=Kit.part(folder,"Part","Veine de guidage unifiée",Vector3.new(0.24,0.08,distance),CFrame.lookAt(center,center+forward),color,Enum.Material.Metal)
+    part.CanCollide=false;part.CanTouch=false;part.CanQuery=false;part.CastShadow=false
     part:SetAttribute("KinOptionalDetail",true)
 end
 function Wayfinding.make(city,plan)
     local folder=Instance.new("Folder")
-    folder.Name="Filigranes de promenade — v19"
+    folder.Name="Filigranes de promenade — v29"
     folder.Parent=city
-    folder:SetAttribute("KinArtTheme","sarcelle-cristal-v19")
+    folder:SetAttribute("KinArtTheme","sarcelle-cristal-v29")
     local density=Kit.profile=="LITE" and 1 or 2
-    for routeIndex,path in ipairs(plan.pedestrian_paths) do
-        for i=2,#path.path_xyz_studs do
-            local a,b=path.path_xyz_studs[i-1],path.path_xyz_studs[i]
-            local p=Vector3.new(a[1],0,a[3])
-            local q=Vector3.new(b[1],0,b[3])
-            local halfWidth=math.max(1.25,math.min(path.width_studs*0.31,3.5))
-            stripe(folder,p,q,-halfWidth,Kit.primary)
-            if density==2 then stripe(folder,p,q,halfWidth,Kit.gold) end
+    local groups={}
+    for _,route in ipairs(plan.pedestrian_paths) do
+        for i=2,#route.path_xyz_studs do
+            addSegment(groups,route.path_xyz_studs[i-1],route.path_xyz_studs[i])
         end
     end
+    local count=0
+    local keys={}
+    for key in pairs(groups) do table.insert(keys,key) end
+    table.sort(keys)
+    for _,key in ipairs(keys) do
+        local group=groups[key]
+        table.sort(group.intervals,function(a,b)return a[1]<b[1] end)
+        local merged={}
+        for _,interval in ipairs(group.intervals) do
+            local last=merged[#merged]
+            if last and interval[1]<=last[2]+0.001 then
+                last[2]=math.max(last[2],interval[2])
+            else
+                table.insert(merged,{interval[1],interval[2]})
+            end
+        end
+        for _,interval in ipairs(merged) do
+            local a,b
+            if group.horizontal then
+                a=Vector3.new(interval[1],0,group.fixed)
+                b=Vector3.new(interval[2],0,group.fixed)
+            else
+                a=Vector3.new(group.fixed,0,interval[1])
+                b=Vector3.new(group.fixed,0,interval[2])
+            end
+            local side=math.max(1.25,math.min(6*0.31,3.5))
+            stripe(folder,a,b,-side,Kit.primary,not group.horizontal)
+            count+=1
+            if density==2 then
+                stripe(folder,a,b,side,Kit.gold,not group.horizontal)
+                count+=1
+            end
+        end
+    end
+    folder:SetAttribute("KinMergedOpalVeins",count)
     return folder
 end
 return Wayfinding
@@ -10853,6 +12663,8 @@ local INK=Color3.fromRGB(38,69,78)
 function Wayfinding.make(city,plan,buildingsById)
     local folder=F.folder(city,"Jalonnement piéton")
     local total=0
+    local marked={}
+    local signs={}
     for _,path in ipairs(plan.pedestrian_paths) do
         local points=path.path_xyz_studs
         local building=buildingsById[path.building_id]
@@ -10872,21 +12684,81 @@ function Wayfinding.make(city,plan,buildingsById)
                     local t=step*20
                     if t<len-4 then
                         local pos=a+direction*t
-                        local circle=F.part(folder,"Repère de parcours",Vector3.new(0.13,2.2,2.2),CFrame.new(pos+Vector3.new(0,0.29,0)),BRASS,Enum.Material.Metal)
-                        circle.Shape=Enum.PartType.Cylinder
-                        circle.CFrame=circle.CFrame*CFrame.Angles(0,0,math.pi/2)
-                        circle.CanCollide=false
+                        local key=string.format("%d:%d",math.floor(pos.X/4+0.5),math.floor(pos.Z/4+0.5))
+                        if not marked[key] and pos.Magnitude>56 then
+                            marked[key]=true
+                            local circle=F.part(folder,"Repère de parcours",Vector3.new(0.13,2.2,2.2),CFrame.new(pos+Vector3.new(0,0.29,0)),BRASS,Enum.Material.Metal)
+                            circle.Shape=Enum.PartType.Cylinder
+                            circle.CFrame=circle.CFrame*CFrame.Angles(0,0,math.pi/2)
+                            circle.CanCollide=false
+                        end
                     end
                 end
                 -- Pas plus de trois poteaux par trajet : lisibilité et budget de parts.
-                if idx<=4 then
-                    local point=a+direction*math.min(len-2,9)+cross*6.5
+                local point=a+direction*math.min(len-2,9)+cross*6.5
+                -- Réserver le centre aux joueurs et à leur caméra.
+                -- La demi-largeur des panneaux (9.5) reste hors du disque de 28 studs.
+                local far=point.Magnitude>=72
+                local clear=true
+                for _,b in ipairs(plan.structures) do
+                    local center=Vector3.new(b.center_studs[1],0,b.center_studs[3])
+                    local relative=point-center
+                    local yaw=math.rad(b.yaw_degrees)
+                    local xx=math.cos(yaw)*relative.X-math.sin(yaw)*relative.Z
+                    local zz=math.sin(yaw)*relative.X+math.cos(yaw)*relative.Z
+                    if math.abs(xx)<b.footprint_studs[1]/2+13 and math.abs(zz)<b.footprint_studs[2]/2+13 then clear=false;break end
+                end
+                for _,existing in ipairs(signs) do
+                    if (existing-point).Magnitude<25 then clear=false;break end
+                end
+                if not signs[path.building_id] and far and clear then
                     local post=F.part(folder,"Poteau d'orientation",Vector3.new(0.7,8,0.7),CFrame.new(point+Vector3.new(0,4.0,0)),INK,Enum.Material.Metal)
                     local yaw=math.deg(math.atan2(-direction.X,-direction.Z))
                     local label=F.sign(folder,"Vers "..name,point+Vector3.new(0,8.2,0),yaw,"→ "..name,19,3.1)
                     label.CanCollide=false
+                    table.insert(signs,point)
+                    signs[path.building_id]=true
                     total+=1
                 end
+            end
+        end
+    end
+    -- Garantit une indication unique pour chaque institution, même proche de la place.
+    -- Déplacement automatique hors des empreintes réelles et des panneaux voisins.
+    for n,path in ipairs(plan.pedestrian_paths) do
+        if not signs[path.building_id] then
+            local building=buildingsById[path.building_id]
+            local goal=path.path_xyz_studs[#path.path_xyz_studs]
+            local bearing=math.atan2(goal[3],goal[1])
+            local found=nil
+            for _,radius in ipairs({115,145,175}) do
+                if found then break end
+                for offset=-12,12 do
+                    local angle=bearing+offset*math.pi/24
+                    local pos=Vector3.new(math.cos(angle)*radius,0,math.sin(angle)*radius)
+                    local clear=true
+                    for _,b in ipairs(plan.structures) do
+                        local center=Vector3.new(b.center_studs[1],0,b.center_studs[3])
+                        local delta=pos-center
+                        local rot=math.rad(b.yaw_degrees)
+                        local xx=math.cos(rot)*delta.X-math.sin(rot)*delta.Z
+                        local zz=math.sin(rot)*delta.X+math.cos(rot)*delta.Z
+                        if math.abs(xx)<b.footprint_studs[1]/2+13 and math.abs(zz)<b.footprint_studs[2]/2+13 then clear=false;break end
+                    end
+                    for _,existing in ipairs(signs) do
+                        if (existing-pos).Magnitude<26 then clear=false;break end
+                    end
+                    if clear then found=pos;break end
+                end
+            end
+            if found then
+                local dir=(Vector3.new(goal[1],0,goal[3])-found).Unit
+                F.part(folder,"Poteau d'orientation",Vector3.new(0.7,8,0.7),CFrame.new(found+Vector3.new(0,4,0)),INK,Enum.Material.Metal)
+                local sign=F.sign(folder,"Vers "..(building and building.name or path.building_id),found+Vector3.new(0,8.2,0),math.deg(math.atan2(-dir.X,-dir.Z)),"→ "..(building and building.name or path.building_id),19,3.1)
+                sign.CanCollide=false
+                table.insert(signs,found);signs[path.building_id]=true;total+=1
+            else
+                warn("Kin City : aucune implantation sans obstacle pour le panneau de "..path.building_id)
             end
         end
     end
@@ -10894,6 +12766,35 @@ function Wayfinding.make(city,plan,buildingsById)
     return folder
 end
 return Wayfinding
+
+]])
+source(server,"PendingTravel","ModuleScript",[[
+--!strict
+-- Corrélation pure des requêtes : les retours tardifs ne libèrent pas un autre voyage.
+local PendingTravel={}
+function PendingTravel.new()
+    local requests={}
+    local store={}
+    function store.begin(player,request)
+        if requests[player] then return false end
+        requests[player]=request
+        return true
+    end
+    function store.get(player) return requests[player] end
+    function store.take(player,id)
+        local request=requests[player]
+        if not request or request.id~=id then return nil end
+        requests[player]=nil
+        return request
+    end
+    function store.clear(player)
+        local request=requests[player]
+        requests[player]=nil
+        return request
+    end
+    return store
+end
+return PendingTravel
 
 ]])
 source(server,"PlacePortalsV26","ModuleScript",[[
@@ -10927,20 +12828,20 @@ function Portals.decorate(parent,door,frame,mode)
  deco:SetAttribute("KinToPlace",door.destination_place_key)
  deco.Parent=parent
  for _,side in ipairs({-1,1}) do
-  ornament(deco,"Pilastre sarcelle",Vector3.new(0.65,8.0,0.9),
-   frame*CFrame.new(side*5.0,1.7,0),teal,Enum.Material.Metal)
+  ornament(deco,"Pilastre sarcelle",Vector3.new(0.45,7.6,0.7),
+   frame*CFrame.new(side*5.85,1.85,-0.05),teal,Enum.Material.Metal)
   ornament(deco,"Cristal opalin",Vector3.new(0.85,1.15,0.85),
-   frame*CFrame.new(side*5.0,6.25,0)*CFrame.Angles(0,0,math.rad(45)),opal,Enum.Material.Neon)
+   frame*CFrame.new(side*5.9,6.1,-0.1)*CFrame.Angles(0,0,math.rad(45)),opal,Enum.Material.Neon)
  end
- ornament(deco,"Linteau champagne",Vector3.new(11.3,0.5,1.1),
-  frame*CFrame.new(0,5.95,0),gold,Enum.Material.Metal)
+ ornament(deco,"Linteau champagne",Vector3.new(12.1,0.42,0.82),
+  frame*CFrame.new(0,6.55,-0.08),gold,Enum.Material.Metal)
  local tag=if isEntry then "ENTRÉE • "..name else "RETOUR • KIN CITY"
- local label=F.sign(deco,"Signalétique de la Place",(frame*CFrame.new(0,4.7,-0.55)).Position,
-  math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),tag,9.5,1.6)
+ local label=F.sign(deco,"Signalétique de la Place",(frame*CFrame.new(0,7.95,-0.72)).Position,
+  math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),tag,10.2,1.95)
  label.CastShadow=false;label.CanTouch=false;label.CanQuery=false
  if mode=="SPLIT_PREVIEW" then
-  local info=F.sign(deco,"Statut de publication",(frame*CFrame.new(0,3.5,-0.65)).Position,
-    math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),"PLACE DISTINCTE • À PUBLIER",8,0.8)
+  local info=F.sign(deco,"Statut de publication",(frame*CFrame.new(0,2.95,-0.72)).Position,
+    math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),"PLACE DISTINCTE • À PUBLIER",8.6,0.95)
   info.CanTouch=false;info.CanQuery=false;info.CastShadow=false
  end
  return deco
@@ -10957,10 +12858,18 @@ local Plan=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCitySha
 local RateLimiter=require(script.Parent.RateLimiter)
 local TravelSession=require(script.Parent.TravelSession)
 local PlayerTravel={}
+local pending=require(script.Parent.PendingTravel).new()
 local where={}
 local doorById={}
 for _,d in ipairs(Plan.doors) do doorById[d.door_id]=d end
 local replyEvent=nil
+local placeNames={}
+for _,place in ipairs(Plan.places) do placeNames[place.place_key]=place.display_name or place.place_key end
+local function finishPending(player,id)
+    local request=pending.take(player,id)
+    if request then TravelSession.finish(player,request.token) end
+    return request
+end
 
 local function report(player,status,message)
     if replyEvent and player.Parent==Players then
@@ -10980,7 +12889,7 @@ local function move(player,place,anchor,existingToken)
     end
     local token=existingToken or TravelSession.begin(player,"spawn")
     if not token then return false end
-    if Spatial.mode()=="LOCAL_UNIVERSE" then
+    do
         -- Le stream est opportuniste : après toute suspension la session
         -- et le personnage doivent encore être valides.
         pcall(function() player:RequestStreamAroundAsync(cf.Position,4) end)
@@ -10990,6 +12899,9 @@ local function move(player,place,anchor,existingToken)
         return false
     end
     token.character:PivotTo(cf)
+    if place=="city" and anchor=="city.central.spawn" then
+        token.character:SetAttribute("KinArrivalFrame",cf)
+    end
     where[player]={place=place,anchor=anchor}
     player:SetAttribute("KinZone",place)
     TravelSession.finish(player,token)
@@ -11013,6 +12925,7 @@ local function arrivalFromJoin(player,currentPlace)
     local src=doorById[td.sourceDoorId]
     if not src or src.destination_place_key~=currentPlace then return nil end
     if src.destination_anchor_id~=td.destinationAnchorId then return nil end
+    player:SetAttribute("KinLibraryReturn",src.door_id=="library.exit")
     return td.destinationAnchorId
 end
 function PlayerTravel.setup(state,events)
@@ -11023,31 +12936,34 @@ function PlayerTravel.setup(state,events)
         local anchor=requested or safeStart(startKey)
         where[player]={place=startKey,anchor=anchor}
         player:SetAttribute("KinZone",startKey)
-        player.CharacterAdded:Connect(function(char)
+        local function onCharacter(char)
+            pending.clear(player)
             TravelSession.cancel(player)
             task.defer(function()
-                char:WaitForChild("HumanoidRootPart",12)
+                if not char:WaitForChild("HumanoidRootPart",12) then return end
+                if not char:WaitForChild("Humanoid",12) then return end
                 if player.Character~=char then return end
                 local current=where[player]
                 if current then move(player,current.place,current.anchor) end
             end)
-        end)
-        if player.Character then
-            task.defer(function()
-                local current=where[player]
-                if current then move(player,current.place,current.anchor) end
-            end)
         end
+        player.CharacterAdded:Connect(onCharacter)
+        if player.Character then onCharacter(player.Character) end
     end
     Players.PlayerAdded:Connect(register)
     for _,p in ipairs(Players:GetPlayers()) do register(p) end
     Players.PlayerRemoving:Connect(function(p)
+        pending.clear(p)
         where[p]=nil
         TravelSession.cancel(p)
         RateLimiter.clear(p)
     end)
     TeleportService.TeleportInitFailed:Connect(function(p,result,message,placeId,options)
-        report(p,"UNAVAILABLE","Le passage a échoué. Réessayez.")
+        local request=pending.get(p)
+        if not request or request.targetId~=placeId or not options then return end
+        local ok,data=pcall(function() return options:GetTeleportData() end)
+        if not ok or type(data)~="table" or data.requestId~=request.id then return end
+        if finishPending(p,request.id) then report(p,"UNAVAILABLE","Le passage a échoué. Réessayez.") end
     end)
 end
 
@@ -11073,9 +12989,7 @@ function PlayerTravel.tryLift(player,data)
     if not RateLimiter.allowed(player,"lift/"..tostring(data.lift_id),1.2) then return end
     local token=TravelSession.begin(player,"lift")
     if not token then return end
-    if Spatial.mode()=="LOCAL_UNIVERSE" then
-        pcall(function() player:RequestStreamAroundAsync(data.destination,4) end)
-    end
+    pcall(function() player:RequestStreamAroundAsync(data.destination,4) end)
     if TravelSession.valid(player,token) then
         token.character:PivotTo(CFrame.new(data.destination))
     end
@@ -11093,6 +13007,8 @@ function PlayerTravel.tryDoor(player,door,state)
     if Spatial.mode()=="LOCAL_UNIVERSE" then
         if not move(player,dest,anchor,token) then
             report(player,"UNAVAILABLE","Passage indisponible actuellement.")
+        else
+            player:SetAttribute("KinLibraryReturn",door.door_id=="library.exit")
         end
         return
     end
@@ -11112,15 +13028,26 @@ function PlayerTravel.tryDoor(player,door,state)
         return
     end
     local opts=Instance.new("TeleportOptions")
-    opts:SetTeleportData({v=1,sourceDoorId=door.door_id,destinationAnchorId=anchor})
+    opts:SetTeleportData({v=1,sourceDoorId=door.door_id,destinationAnchorId=anchor,requestId=token.id})
+    if not pending.begin(player,{id=token.id,token=token,targetId=targetId}) then
+        TravelSession.finish(player,token)
+        return
+    end
+    if replyEvent then replyEvent:FireClient(player,{kind="travel.pending.v1",destination=placeNames[dest]}) end
+    -- Borne de récupération, sans relancer automatiquement une téléportation.
+    task.delay(30,function()
+        if finishPending(player,token.id) then
+            report(player,"TIMEOUT","Le passage prend trop de temps. Vous pouvez réessayer.")
+        end
+    end)
     local success,reason=pcall(function()
         TeleportService:TeleportAsync(targetId,{player},opts)
     end)
-    TravelSession.finish(player,token)
-    if not success then
+    if not success and finishPending(player,token.id) then
         warn("Kin City transit failure",door.door_id,reason)
         report(player,"ERROR","Impossible de franchir cette porte.")
     end
+    -- Succès de l'appel : garder la réservation jusqu'au départ, échec ou délai.
 end
 return PlayerTravel
 
@@ -11226,7 +13153,7 @@ local function shop(parent,item)
     future:SetAttribute("KinStubTitle",item.title)
     Factory.prompt(future,"Consulter", "Fonctionnalité à venir")
     part(mdl,"Écran du catalogue",base,-5.6,3.1,-4.65,1.9,1.8,0.15,GLASS,Enum.Material.Neon,false)
-    Factory.sign(mdl,"Enseigne d'atelier",(base*CFrame.new(0,11.8,-12.7)).Position,math.deg(item.yaw),item.title,18,2.5).CanCollide=false
+    Factory.sign(mdl,"Enseigne d'atelier",(base*CFrame.new(0,13.2,-13.65)).Position,math.deg(item.yaw),item.title,18.8,3.25).CanCollide=false
     CrystalEverydayV19.frame(mdl,base,17,21,13.4,"commerce")
     SecondaryArchitectureV25.boutique(mdl,base,item.kind,tint)
     return mdl
@@ -11382,7 +13309,7 @@ local function pavilion(root,base,index,spec)
         part(m,"Dossier",base,Vector3.new(7.1,2,0.45),Vector3.new(x,2.5,-1.7),IRON,Enum.Material.Metal,false)
         ball(m,"Lampe d'ambiance",base,Vector3.new(1.3,1.3,1.3),Vector3.new(x,12.8,-3),accent)
     end
-    F.sign(m,"Enseigne",(base*CFrame.new(0,11,-9.7)).Position,math.deg(math.atan2(-base.LookVector.X,-base.LookVector.Z)),spec[1],20,2.5).CanCollide=false
+    F.sign(m,"Enseigne",(base*CFrame.new(0,12.5,-11.25)).Position,math.deg(math.atan2(-base.LookVector.X,-base.LookVector.Z)),spec[1],20.5,3.2).CanCollide=false
 end
 function Promenade.make(parent,plan)
     local folder=F.folder(parent,"Promenades citoyennes")
@@ -11485,6 +13412,26 @@ source(server,"PropGenerator","ModuleScript",[[
 local Factory = require(script.Parent.Factory)
 local PropGenerator = {}
 
+-- Single explicit registry used by Studio's preflight before generating the world.
+-- Each ID must also have a matching construction branch in make().
+local SUPPORTED_ASSETS = {
+    ["prop.bookshelf"] = true,
+    ["prop.terminal"] = true,
+    ["prop.kiosk"] = true,
+    ["prop.board"] = true,
+    ["prop.panel"] = true,
+    ["prop.display"] = true,
+    ["prop.table"] = true,
+    ["prop.desk"] = true,
+    ["prop.bench"] = true,
+    ["prop.planter"] = true,
+    ["prop.lamp"] = true,
+}
+
+function PropGenerator.supports(assetId)
+    return SUPPORTED_ASSETS[assetId] == true
+end
+
 local function piece(parent, name, size, base, dx, dy, dz, color, material)
     return Factory.part(parent, name, size, base * CFrame.new(dx,dy,dz),color,material)
 end
@@ -11521,6 +13468,19 @@ function PropGenerator.make(parent, item, position, palette)
         root = piece(model,"Panel",Vector3.new(7,5,0.75),base,0,4.2,0,metal)
         piece(model,"DisplaySurface",Vector3.new(6.3,4.3,0.14),base,0,4.2,-0.43,teal,Enum.Material.SmoothPlastic)
         piece(model,"Stand",Vector3.new(0.6,2.1,0.6),base,0,1,0,wood)
+    elseif asset == "prop.desk" then
+        -- The innovation laboratory's canonical interaction desk. Keep its
+        -- furnishing ID and anchor attributes unchanged, and leave the front
+        -- clearance open so a player can approach its prompt.
+        root = piece(model,"DeskTop",Vector3.new(7.6,0.55,3.6),base,0,3.1,0,wood,Enum.Material.Wood)
+        piece(model,"DeskFront",Vector3.new(7.1,2.35,0.45),base,0,1.55,1.3,stone,Enum.Material.Marble)
+        for _,x in ipairs({-3.15,3.15}) do
+            for _,z in ipairs({-1.25,1.25}) do
+                piece(model,"DeskLeg",Vector3.new(0.55,2.8,0.55),base,x,1.4,z,metal,Enum.Material.Metal)
+            end
+        end
+        local display=piece(model,"DeskConsole",Vector3.new(2.8,0.3,1.7),base,1.35,3.55,-0.2,teal,Enum.Material.SmoothPlastic)
+        display.CanCollide=false
     elseif asset == "prop.table" then
         root = piece(model,"Tabletop",Vector3.new(8,0.5,4),base,0,3.2,0,wood,Enum.Material.Wood)
         for x=-1,1,2 do for z=-1,1,2 do
@@ -11977,6 +13937,7 @@ return Residential
 ]])
 source(server,"ResidentialResidents","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Douze habitants R15 supplémentaires, répartis dans les six îlots.
 -- Le chargement des avatars est facultatif : la ville reste accessible en cas d'échec.
 -- Les conversations sont des stubs. Le mouvement est purement local.
@@ -11984,6 +13945,7 @@ local Players=game:GetService("Players")
 local CollectionService=game:GetService("CollectionService")
 local CitizenProps=require(script.Parent.CitizenPropsV21)
 local Presence=require(script.Parent.ViewerPresenceV21)
+local Nav=require(script.Parent.NeighborhoodNPCNavigation)
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Destinations=require(ReplicatedStorage:WaitForChild("KinCityShared"):WaitForChild("ResidentialDestinations"))
 local F=require(script.Parent.Factory)
@@ -12028,6 +13990,7 @@ local function newResident(folder,index,quarter)
     model:SetAttribute("KinResidenceQuarter",quarter.id)
     hum.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.None
     hum.WalkSpeed=5+(index%3)
+    hum.AutoRotate=true
     root.CanCollide=false
     head:SetAttribute("KinStubInteractionId",string.format("kin.resident.%02d.future",index))
     head:SetAttribute("KinStubCapabilityId","future.residential.dialogue")
@@ -12059,7 +14022,7 @@ local function activityBadge(model,role)
     text.BackgroundColor3=Color3.fromRGB(34,66,65)
     text.BackgroundTransparency=0.24
     text.TextColor3=Color3.fromRGB(245,236,204)
-    text.Font=Enum.Font.GothamMedium;text.TextSize=12
+    text.Font=Typography.body();text.TextSize=12
     text.Text=role; text.Parent=gui
     local corner=Instance.new("UICorner")
     corner.CornerRadius=UDim.new(0,7);corner.Parent=text
@@ -12067,44 +14030,38 @@ local function activityBadge(model,role)
 end
 local function wander(model,hum,world,quarter,index)
     local center=Vector3.new(quarter.center_studs[1],2.8,quarter.center_studs[3])
-    local radius=13.3
-    local phase=index*1.87
+    local start=Nav.stop(quarter,index,1)
     local role=model.Name
     local badge=activityBadge(model,role)
-    model:PivotTo(CFrame.new(center+Vector3.new(math.cos(phase)*radius,0,math.sin(phase)*radius)))
+    model:PivotTo(CFrame.new(start+Vector3.new(0,2.8,0)))
     task.spawn(function()
-        local round=0
+        local step=1
         while model.Parent and world.Parent and hum.Health>0 do
             if not Presence.near(center,190) then
                 model:SetAttribute("KinNPCMotion","idle")
                 task.wait(3)
                 continue
             end
-            round+=1
-            phase+=math.pi/3
-            local goal=center+Vector3.new(math.cos(phase)*radius,0,math.sin(phase)*radius)
+            step+=1
+            local goal,title=Nav.stop(quarter,index,step)
             local clock=game:GetService("Lighting").ClockTime
-            local work=if clock<8 then "Ouverture de quartier" elseif clock>=19 then "Promenade du soir" else tasks[((index+round-2)%#tasks)+1]
+            local work=if clock<8 then "Ouverture de quartier" elseif clock>=19 then "Promenade du soir" else title
             model:SetAttribute("KinResidentActivity",work)
             if badge then badge.Text=work.." · "..role end
             model:SetAttribute("KinNPCActivity",work)
             model:SetAttribute("KinNPCMotion","walk")
-            hum:MoveTo(goal)
-            local finished=false
-            local connection=hum.MoveToFinished:Connect(function() finished=true end)
-            local deadline=os.clock()+9
-            while not finished and os.clock()<deadline and model.Parent and world.Parent and hum.Health>0 do
-                task.wait(0.25)
+            local reached=Nav.walkHumanoid(model,hum,quarter,goal,world)
+            if not reached then
+                model:SetAttribute("KinNPCMotion","idle")
+                task.wait(2.0) -- ne pas traverser les maisons si la route est bloquée
+                continue
             end
-            connection:Disconnect()
-            if model.Parent then
-                local motion=if work=="Lecture" then "read" elseif work=="Jardin partagé" then "garden" elseif work=="Rencontre" then "greet" elseif work=="Observation" then "observe" else "idle"
-                model:SetAttribute("KinNPCMotion",motion)
-                -- Pause devant une place ou un jardin : le lieu n'est pas traversé au pas de course.
-                local pause=if round%4==0 then 6.0 else 1.8+(index%3)
-                task.wait(pause)
-            end
+            local activity=tasks[((index+step-2)%#tasks)+1]
+            model:SetAttribute("KinNPCMotion",if activity=="Lecture" then "read" elseif activity=="Jardin partagé" then "garden" elseif activity=="Rencontre" then "greet" elseif activity=="Observation" then "observe" else "idle")
+            model:SetAttribute("KinNPCActivity",activity)
+            task.wait(if step%4==0 then 5.0 else 1.8+(index%3))
         end
+        model:SetAttribute("KinNPCMotion","idle")
     end)
 end
 function Residents.start(world)
@@ -13490,7 +15447,7 @@ local function store(parent,data)
     terminal:SetAttribute("KinStubCapabilityId","future.station.arcade")
     terminal:SetAttribute("KinStubTitle",data.title)
     F.prompt(terminal,"Consulter","Fonctionnalité à venir")
-    local board=F.sign(m,"Enseigne",(cf*CFrame.new(0,13,-9.4)).Position,math.deg(data.yaw),data.title,18,2.8)
+    local board=F.sign(m,"Enseigne",(cf*CFrame.new(0,14.15,-10.85)).Position,math.deg(data.yaw),data.title,18.8,3.45)
     board.CanCollide=false
     CrystalEverydayV19.frame(m,cf,18,18,11.5,"station-atelier")
     SecondaryArchitectureV25.arcade(m,cf,#data.id,tint)
@@ -13981,18 +15938,38 @@ local function nearBuilding(x,z,structures,padding)
     end
     return false
 end
-local function ring(parent,radius,width,structures)
+local function distanceToPath(x,z,path)
+    local p=Vector3.new(x,0,z)
+    local nearest=math.huge
+    for i=2,#path.path_xyz_studs do
+        local a=path.path_xyz_studs[i-1]
+        local b=path.path_xyz_studs[i]
+        local av=Vector3.new(a[1],0,a[3])
+        local bv=Vector3.new(b[1],0,b[3])
+        local segment=bv-av
+        if segment.Magnitude>0.1 then
+            local t=math.clamp((p-av):Dot(segment)/segment:Dot(segment),0,1)
+            nearest=math.min(nearest,(p-(av+segment*t)).Magnitude)
+        end
+    end
+    return nearest
+end
+local function ring(parent,radius,width,structures,paths)
     local segments=96
     for k=1,segments do
         local theta=(k-0.5)*math.pi*2/segments
         local x,z=math.cos(theta)*radius,math.sin(theta)*radius
-        if not nearBuilding(x,z,structures,9) then
+        local crossing=false
+        for _,path in ipairs(paths) do
+            if distanceToPath(x,z,path)<(width+path.width_studs)/2+1 then crossing=true;break end
+        end
+        if not nearBuilding(x,z,structures,9) and not crossing then
             local a=(k-1)*math.pi*2/segments
             local b=k*math.pi*2/segments
             local p=Vector3.new(math.cos(a)*radius,0.17,math.sin(a)*radius)
             local q=Vector3.new(math.cos(b)*radius,0.17,math.sin(b)*radius)
             local v=q-p
-            local section=F.part(parent,"Promenade annulaire",Vector3.new(width,0.23,v.Magnitude+1.3),CFrame.lookAt((p+q)/2,q),Color3.fromRGB(204,187,159),Enum.Material.Cobblestone)
+            local section=F.part(parent,"Promenade annulaire",Vector3.new(width,0.23,math.max(0.2,v.Magnitude-0.025)),CFrame.lookAt((p+q)/2,q),Color3.fromRGB(204,187,159),Enum.Material.Cobblestone)
             section.CanCollide=false
         end
     end
@@ -14005,16 +15982,15 @@ local districtNames={
 function Urban.make(parent,plan)
     local folder=F.folder(parent,"Vie urbaine et jardins")
     local promenades=F.folder(folder,"Promenades concentriques")
-    ring(promenades,71,5.5,plan.structures)
-    ring(promenades,327,7,plan.structures)
+    ring(promenades,71,5.5,plan.structures,plan.pedestrian_paths)
+    ring(promenades,327,7,plan.structures,plan.pedestrian_paths)
     local details=F.folder(folder,"Places et monuments")
-    fountain(details,-30,-29)
-    for n=1,7 do
-        local a=math.pi*2*n/7
-        local radius=42
-        local x,z=math.cos(a)*radius,math.sin(a)*radius
-        bench(details,x,z,(a*180/math.pi)+90)
-        planter(details,math.cos(a)*52,math.sin(a)*52,n)
+    for _,item in ipairs(plan.navigation_obstacles) do
+        local x,z=item.center_studs[1],item.center_studs[2]
+        if item.kind=="fountain" then fountain(details,x,z)
+        elseif item.kind=="bench" then bench(details,x,z,item.yaw_degrees)
+        elseif item.kind=="planter" then planter(details,x,z,tonumber(string.match(item.id,"(%d+)$")) or 1)
+        elseif item.kind=="sculpture" then sculpture(details,x,z,tonumber(string.match(item.id,"(%d+)$")) or 1) end
     end
     for n=1,4 do
         local a=n*math.pi/2+math.pi/4
@@ -14047,9 +16023,13 @@ function Urban.make(parent,plan)
         for radius=335,425,15 do
             local mid=radius+7.5
             local x,z=math.cos(angle)*mid,math.sin(angle)*mid
-            if not nearBuilding(x,z,plan.structures,8) then
+            local crossing=false
+            for _,path in ipairs(plan.pedestrian_paths) do
+                if distanceToPath(x,z,path)<(6+path.width_studs)/2+1 then crossing=true;break end
+            end
+            if not crossing and not nearBuilding(x,z,plan.structures,8) then
                 local base=CFrame.new(x,0.19,z)*CFrame.Angles(0,-angle+math.pi/2,0)
-                local sidewalk=F.part(promenades,"Allée radiale",Vector3.new(6,0.23,16.5),base,stone,Enum.Material.Cobblestone)
+                local sidewalk=F.part(promenades,"Allée radiale",Vector3.new(6,0.23,14.975),base,stone,Enum.Material.Cobblestone)
                 sidewalk.CanCollide=false
             end
         end
@@ -14068,8 +16048,6 @@ function Urban.make(parent,plan)
         local a=base*CFrame.new(0,0,-2)
         bench(terrace,a.Position.X,a.Position.Z,math.deg(-angle+math.pi/2))
     end
-    sculpture(details,58,48,2)
-    sculpture(details,-65,56,5)
     -- Lumières piétonnes espacées : détail visuel, mais coût maîtrisé.
     for _,path in ipairs(plan.pedestrian_paths) do
         local nodes=path.path_xyz_studs
@@ -14645,8 +16623,20 @@ local Buildings=require(Shared:WaitForChild("Buildings"))
 local BuildIdentity=require(Shared:WaitForChild("BuildIdentity"))
 local CanonicalInteractions=require(script.Parent.CanonicalInteractions)
 local Spatial=require(script.Parent.Spatial)
-local CityGenerator=require(script.Parent.CityGenerator)
-local InteriorGenerator=require(script.Parent.InteriorGenerator)
+local PropGenerator=require(script.Parent.PropGenerator)
+local InteriorLighting=require(script.Parent.InteriorLightingV30)
+-- Les versions de secours sont issues du script v27 fourni par le propriétaire.
+-- Elles n'interviennent QUE si le générateur actuel échoue en Studio.
+local function loadGenerator(name,legacy)
+    local ok,result=pcall(function() return require(script.Parent:WaitForChild(name)) end)
+    if ok then return result end
+    local backup=script.Parent:FindFirstChild(legacy)
+    if not backup then error("Kin City: "..name.." ne charge pas : "..tostring(result)) end
+    warn("KIN CITY : "..name.." indisponible : "..tostring(result).." ; utilisation du générateur v27 de secours.")
+    return require(backup)
+end
+local CityGenerator=loadGenerator("CityGenerator","CityGeneratorLegacyV27")
+local InteriorGenerator=loadGenerator("InteriorGenerator","InteriorGeneratorLegacyV27")
 local Factory=require(script.Parent.Factory)
 local Neighborhoods=require(script.Parent.Neighborhoods)
 local SkyDirector=require(script.Parent.SkyDirector)
@@ -14659,7 +16649,7 @@ local PlacePortalsV26=require(script.Parent.PlacePortalsV26)
 local WorldBuilder={}
 -- Version de fabrication indépendante des manifestes : toute modification de géométrie
 -- doit invalider une scène d'édition issue d'une précédente version du moteur.
-local WORLD_BUILD_REVISION="construction-v26.0.0-"..VisualConfig.profile.."-"..BuildIdentity.sha256
+local WORLD_BUILD_REVISION="construction-v30.0.7-door-clearance-pass-"..VisualConfig.profile.."-"..BuildIdentity.sha256
 
 -- Réutilise la scène déjà construite en mode Édition par l'installateur.
 -- En session Play, le clonage automatique du Workspace évite une génération complète
@@ -14752,6 +16742,19 @@ local function rehydrate(world)
 end
 
 function WorldBuilder.build(reuseExisting)
+    -- Fail early, BEFORE removing a prior KinCityGenerated, if the canonical
+    -- catalog contains any furniture without an actual geometry generator.
+    local unknown={}
+    for _,place in ipairs(Plan.places) do
+        if place.place_key~="city" and (Spatial.mode()=="LOCAL_UNIVERSE" or place.place_key==Spatial.currentPlace()) then
+            for _,furn in ipairs(place.furnishings) do
+                if not PropGenerator.supports(furn.asset_id) then
+                    table.insert(unknown,place.place_key.."/"..tostring(furn.asset_id))
+                end
+            end
+        end
+    end
+    assert(#unknown==0,"Kin City : mobilier sans générateur : "..table.concat(unknown,", "))
     local old=workspace:FindFirstChild("KinCityGenerated")
     if reuseExisting and old then
         local restored=rehydrate(old)
@@ -14772,14 +16775,48 @@ function WorldBuilder.build(reuseExisting)
     local active=Spatial.currentPlace()
     local named={}
     for _,b in ipairs(Buildings) do named[b.building_id]=b end
+    local fallbackCount=0
     if routing=="LOCAL_UNIVERSE" or active=="city" then
-        CityGenerator.make(world,Plan,named)
+        print("KIN CITY : construction de la ville extérieure...")
+        local ok,err=pcall(function() CityGenerator.make(world,Plan,named) end)
+        if not ok then
+            warn("KIN CITY : générateur de ville v30 en erreur : "..tostring(err))
+            local backup=script.Parent:FindFirstChild("CityGeneratorLegacyV27")
+            if not backup then error("Kin City: pas de générateur de secours : "..tostring(err)) end
+            local partial=world:FindFirstChild("Ville")
+            if partial then partial:Destroy() end
+            local legacy=require(backup)
+            local success,detail=pcall(function() legacy.make(world,Plan,named) end)
+            if not success then error("Kin City: ville v30 : "..tostring(err).." ; secours v27 : "..tostring(detail)) end
+            fallbackCount+=1
+            warn("KIN CITY : ville créée avec le générateur v27 de secours ; améliorations géométriques v30 non garanties.")
+        end
+        local city=world:FindFirstChild("Ville")
+        assert(city and #city:GetDescendants()>50,"Kin City: la ville extérieure est absente ou presque vide")
+        print("KIN CITY : ville extérieure présente ("..tostring(#city:GetDescendants()).." objets).")
     end
     local inside=Factory.folder(world,"Bâtiments visitables")
     for _,place in ipairs(Plan.places) do
         if place.place_key~="city" and (routing=="LOCAL_UNIVERSE" or place.place_key==active) then
             local style=Spatial.styleForPlace(place.place_key)
-            InteriorGenerator.make(inside,place,style)
+            print("KIN CITY : génération institution "..place.place_key.."...")
+            local ok,err=pcall(function() InteriorGenerator.make(inside,place,style) end)
+            if not ok then
+                warn("KIN CITY : intérieur v30 "..place.place_key.." en erreur : "..tostring(err))
+                local backup=script.Parent:FindFirstChild("InteriorGeneratorLegacyV27")
+                if not backup then error("Kin City: pas de secours pour "..place.place_key.." : "..tostring(err)) end
+                local partial=inside:FindFirstChild("Intérieur — "..place.place_key)
+                if partial then partial:Destroy() end
+                local legacy=require(backup)
+                local success,detail=pcall(function() legacy.make(inside,place,style) end)
+                if not success then error("Kin City: intérieur "..place.place_key.." v30 : "..tostring(err).." ; secours v27 : "..tostring(detail)) end
+                fallbackCount+=1
+                warn("KIN CITY : "..place.place_key.." créé en mode de secours v27.")
+            end
+            local model=inside:FindFirstChild("Intérieur — "..place.place_key)
+            assert(model and #model:GetDescendants()>20,"Kin City: intérieur vide ou absent : "..place.place_key)
+            local lights=InteriorLighting.apply(model)
+            print("KIN CITY : "..place.place_key.." présent ("..tostring(#model:GetDescendants()).." objets ; "..tostring(lights).." lumières à 65 %).")
         end
     end
     local promptRecords={}
@@ -14818,8 +16855,13 @@ function WorldBuilder.build(reuseExisting)
             local a=Spatial.anchor(door.source_place_key,door.source_anchor_id)
             assert(a,"Missing source anchor: "..door.source_anchor_id)
             local frame=Spatial.anchorCFrame(door.source_place_key,door.source_anchor_id)
-            local doorPart=Factory.part(binders,"Porte : "..door.door_id,Vector3.new(7,7.2,0.85),frame*CFrame.new(0,0.5,0),Color3.fromRGB(66,92,101),Enum.Material.Metal)
+            local doorPart=Factory.part(binders,"Porte : "..door.door_id,Vector3.new(6.6,6.8,0.18),frame*CFrame.new(0,0.45,-0.04),Color3.fromRGB(66,92,101),Enum.Material.Metal)
             doorPart.CanCollide=false
+            doorPart.CanTouch=false
+            doorPart.CanQuery=false
+            doorPart.CastShadow=false
+            doorPart.Transparency=0.96
+            doorPart:SetAttribute("KinDoorBoundary",true)
             doorPart:SetAttribute("KinDoorId",door.door_id)
             local enter=(door.source_place_key=="city")
             local prompt=Factory.prompt(doorPart,if enter then "Entrer" else "Sortir",if enter then "Bâtiment" else "Retour à la ville")
@@ -14888,7 +16930,22 @@ function WorldBuilder.build(reuseExisting)
     world:SetAttribute("KinCanonicalInteractionCount",expectedInteractions)
     world:SetAttribute("KinSeparatedWorld",routing~="LOCAL_UNIVERSE")
     WorldBuildDiagnosticsV25.capture(world,startClock,VisualConfig.profile)
+    local interiorCount=0
+    for _,place in ipairs(Plan.places) do
+        if place.place_key~="city" and validPlace(place.place_key) then
+            local interior=inside:FindFirstChild("Intérieur — "..place.place_key)
+            assert(interior and #interior:GetDescendants()>20,"Kin City : institution manquante : "..place.place_key)
+            interiorCount+=1
+        end
+    end
+    if routing=="LOCAL_UNIVERSE" then
+        assert(world:FindFirstChild("Ville") and interiorCount==8,
+            "Kin City : le mode univers complet exige une ville et 8 institutions, obtenu "..tostring(interiorCount))
+    end
+    world:SetAttribute("KinInteriorCount",interiorCount)
+    world:SetAttribute("KinGeneratorFallbacks",fallbackCount)
     world:SetAttribute("KinBuildState","Ready")
+    print("KIN CITY : MONDE PRÊT — ville + "..tostring(interiorCount).." institutions ; "..tostring(fallbackCount).." secours v27.")
     return {world=world,prompts=promptRecords,anchors=anchorParts,currentPlace=active,mode=routing}
 end
 return WorldBuilder
@@ -14904,6 +16961,7 @@ local Buildings=require(Shared:WaitForChild("Buildings"))
 local Spatial=require(script.Parent.Spatial)
 local Facade=require(script.Parent.FacadeGenerator)
 local Interiors=require(script.Parent.InteriorGenerator)
+local InteriorLighting=require(script.Parent.InteriorLightingV30)
 local FullBuilder=require(script.Parent.WorldBuilder)
 local CanonicalInteractions=require(script.Parent.CanonicalInteractions)
 local Editor={}
@@ -14952,6 +17010,7 @@ function Editor.regenerateInterior(placeKey)
     if old then old:Destroy() end
     local style=Spatial.styleForPlace(placeKey)
     local model=Interiors.make(interiors,place,style)
+    InteriorLighting.apply(model)
     CanonicalInteractions.bindPlace(model,placeKey,Plan.interactions,nil)
     world:SetAttribute("KinBuildState","Ready")
     return model
@@ -14961,6 +17020,7 @@ return Editor
 ]])
 source(client,"ArchipelagoProgressHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Écran discret de progression locale; compatible souris et tactile.
 local Players=game:GetService("Players")
 local player=Players.LocalPlayer
@@ -14975,7 +17035,7 @@ function Hud.start()
     toggle.Position=UDim2.new(0,16,1,-65)
     toggle.BackgroundColor3=Color3.fromRGB(29,67,77)
     toggle.TextColor3=Color3.fromRGB(238,229,197)
-    toggle.Font=Enum.Font.GothamBold;toggle.TextSize=12
+    toggle.Font=Typography.body();toggle.TextSize=12
     toggle.Text="CARNET DES VOYAGES"
     toggle.Parent=gui
     local round=Instance.new("UICorner");round.CornerRadius=UDim.new(0,8);round.Parent=toggle
@@ -14990,12 +17050,12 @@ function Hud.start()
     heading.BackgroundTransparency=1;heading.Position=UDim2.fromOffset(12,7)
     heading.Size=UDim2.fromOffset(233,24);heading.Text="EXPLORATION LOCALE"
     heading.TextColor3=Color3.fromRGB(242,225,169);heading.TextSize=15
-    heading.Font=Enum.Font.GothamBold;heading.Parent=panel
+    heading.Font=Typography.body();heading.Parent=panel
     local stats=Instance.new("TextLabel")
     stats.Name="Progression";stats.BackgroundTransparency=1
     stats.Size=UDim2.fromOffset(228,88);stats.Position=UDim2.fromOffset(13,34)
     stats.TextColor3=Color3.fromRGB(230,239,232)
-    stats.Font=Enum.Font.Gotham;stats.TextSize=14
+    stats.Font=Typography.body();stats.TextSize=14
     stats.TextXAlignment=Enum.TextXAlignment.Left;stats.TextYAlignment=Enum.TextYAlignment.Top
     stats.TextWrapped=true;stats.Parent=panel
     local function update()
@@ -15005,6 +17065,7 @@ function Hud.start()
             player:GetAttribute("KinIslandTrailVisits") or 0)
     end
     toggle.Activated:Connect(function()panel.Visible=not panel.Visible end)
+    require(script.Parent.KinCityMenu).register("archipelago","Voyages",toggle,panel)
     for _,k in ipairs({"KinMarinaDiscoveries","KinAnnexRoomsVisited","KinIslandTrailVisits"}) do
         player:GetAttributeChangedSignal(k):Connect(update)
     end
@@ -15013,8 +17074,50 @@ end
 return Hud
 
 ]])
+source(client,"ArrivalCamera","ModuleScript",[[
+--!strict
+-- Cadrage ponctuel après le placement serveur, puis contrôle Roblox normal.
+local Players=game:GetService("Players")
+local RunService=game:GetService("RunService")
+local Arrival={}
+function Arrival.start()
+    local player=Players.LocalPlayer
+    -- Occlusion native : rend le personnage visible sans caméra Scriptable permanente.
+    player.DevCameraOcclusionMode=Enum.DevCameraOcclusionMode.Invisicam
+    local function characterAdded(character)
+        task.spawn(function()
+            local root=character:WaitForChild("HumanoidRootPart",12)
+            local humanoid=character:WaitForChild("Humanoid",12)
+            if not root or not humanoid then return end
+            local deadline=os.clock()+15
+            while character.Parent and player.Character==character and os.clock()<deadline do
+                if character:GetAttribute("KinArrivalFrame") then
+                    local name="KinCityArrivalCamera"
+                    RunService:BindToRenderStep(name,Enum.RenderPriority.Camera.Value+1,function()
+                        RunService:UnbindFromRenderStep(name)
+                        if player.Character~=character then return end
+                        local camera=workspace.CurrentCamera
+                        if not camera or camera.CameraType==Enum.CameraType.Scriptable then return end
+                        camera.CameraSubject=humanoid
+                        local focus=root.Position+Vector3.new(0,1.5,0)
+                        camera.CFrame=CFrame.lookAt(focus+Vector3.new(0,7,16),focus)
+                        camera.Focus=CFrame.new(focus)
+                    end)
+                    return
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+    player.CharacterAdded:Connect(characterAdded)
+    if player.Character then characterAdded(player.Character) end
+end
+return Arrival
+
+]])
 source(client,"BoulevardBusHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Interface des minibus collectifs. Tactile, manette et clavier (sans raccourci requis).
 local Players=game:GetService("Players")
 local RunService=game:GetService("RunService")
@@ -15034,11 +17137,11 @@ function Hud.start(remote)
     local label=Instance.new("TextLabel")
     label.BackgroundTransparency=1;label.Size=UDim2.new(1,-20,0,30)
     label.Position=UDim2.fromOffset(10,4)
-    label.Font=Enum.Font.GothamBold;label.TextSize=15;label.TextXAlignment=Enum.TextXAlignment.Left
+    label.Font=Typography.body();label.TextSize=15;label.TextXAlignment=Enum.TextXAlignment.Left
     label.TextColor3=Color3.fromRGB(241,224,175);label.Text="NAVETTE ÉLECTRIQUE";label.Parent=panel
     local detail=Instance.new("TextLabel")
     detail.BackgroundTransparency=1;detail.Position=UDim2.fromOffset(10,34)
-    detail.Size=UDim2.new(1,-20,0,45);detail.Font=Enum.Font.Gotham
+    detail.Size=UDim2.new(1,-20,0,45);detail.Font=Typography.body()
     detail.TextSize=13;detail.TextWrapped=true;detail.TextXAlignment=Enum.TextXAlignment.Left
     detail.TextColor3=Color3.fromRGB(231,243,238);detail.Parent=panel
     local current="";local active=false;local state="boarding";local remaining=0;local total=0;local count=0
@@ -15139,7 +17242,9 @@ function Animator.start()
                     npcs[model]=nil
                 else
                     if next(record.joints)==nil then record.joints=rigJoints(model) end
-                    local visible=distanceFromViewer(model,camera,avatarRoot)<MAX_DISTANCE
+                    local quality=Players.LocalPlayer:GetAttribute("KinCityLocalQuality")
+                    local radius=if quality=="LITE" then 80 elseif quality=="SHOWCASE" then 190 else MAX_DISTANCE
+                    local visible=distanceFromViewer(model,camera,avatarRoot)<radius
                     if record.enabled and not visible then
                         for _,joint in pairs(record.joints) do
                             if joint.Parent then joint.Transform=CFrame.identity end
@@ -15149,7 +17254,8 @@ function Animator.start()
                 end
             end
         end
-        if clock<1/UPDATE_HZ then return end
+        local hz=if Players.LocalPlayer:GetAttribute("KinCityLocalQuality")=="LITE" then 12 else UPDATE_HZ
+        if clock<1/hz then return end
         clock=0
         local now=workspace:GetServerTimeNow()
         for model,record in pairs(npcs) do
@@ -15188,6 +17294,7 @@ return Animator
 ]])
 source(client,"CooperativeHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Notification non bloquante : l'exploration continue pendant l'activité.
 local Players=game:GetService("Players")
 local CooperativeHud={}
@@ -15213,7 +17320,7 @@ function CooperativeHud.start(remote)
     title.Position=UDim2.fromOffset(12,7)
     title.BackgroundTransparency=1
     title.TextColor3=Color3.fromRGB(238,199,121)
-    title.Font=Enum.Font.GothamBold
+    title.Font=Typography.body()
     title.TextXAlignment=Enum.TextXAlignment.Left
     title.TextSize=16;title.Text="ACTIVITÉ COOPÉRATIVE";title.Parent=box
     local body=Instance.new("TextLabel")
@@ -15223,7 +17330,7 @@ function CooperativeHud.start(remote)
     body.TextColor3=Color3.fromRGB(242,241,222)
     body.TextXAlignment=Enum.TextXAlignment.Left
     body.TextWrapped=true
-    body.TextSize=15;body.Font=Enum.Font.Gotham
+    body.TextSize=15;body.Font=Typography.body()
     body.Parent=box
     local sequence=0
     remote.OnClientEvent:Connect(function(payload)
@@ -15267,7 +17374,6 @@ function LOD.start()
     world.DescendantAdded:Connect(add)
     world.DescendantRemoving:Connect(remove)
     local farDistance=if Visual.profile=="LITE" then 165 elseif Visual.profile=="SHOWCASE" then 570 else 340
-    local nearDistance=farDistance-35 -- hystérésis évitant le clignotement à la limite
     task.spawn(function()
         while world.Parent do
             local char=player.Character
@@ -15283,10 +17389,12 @@ function LOD.start()
                 local checked=0
                 for part in pairs(optional) do
                     if part.Parent then
-                        local dist=math.min((part.Position-pos).Magnitude,(part.Position-viewPos).Magnitude)
-                        if part.LocalTransparencyModifier<1 and dist>effectiveFar then
+                        local avatarDelta=part.Position-pos
+                        local viewDelta=part.Position-viewPos
+                        local dist=math.min(avatarDelta:Dot(avatarDelta),viewDelta:Dot(viewDelta))
+                        if part.LocalTransparencyModifier<1 and dist>effectiveFar*effectiveFar then
                             part.LocalTransparencyModifier=1
-                        elseif part.LocalTransparencyModifier>=1 and dist<effectiveNear then
+                        elseif part.LocalTransparencyModifier>=1 and dist<effectiveNear*effectiveNear then
                             part.LocalTransparencyModifier=0
                         end
                     else
@@ -15305,6 +17413,7 @@ return LOD
 ]])
 source(client,"ExplorationJournal","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Carnet de promenade local. Aucun score, compte kOA ou stockage serveur.
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
@@ -15336,7 +17445,7 @@ local function txt(parent,content,size,pos,sz,bold)
     v.Position=pos
     v.BackgroundTransparency=1
     v.Text=content
-    v.Font=bold and Enum.Font.GothamBold or Enum.Font.Gotham
+    v.Font=bold and Typography.body() or Typography.body()
     v.TextSize=sz
     v.TextColor3=Color3.fromRGB(244,241,227)
     v.TextWrapped=true
@@ -15355,7 +17464,7 @@ function Journal.start()
     btn.Position=UDim2.fromOffset(16,140)
     btn.BackgroundColor3=Color3.fromRGB(45,94,104)
     btn.TextColor3=Color3.fromRGB(241,238,220)
-    btn.Font=Enum.Font.GothamBold
+    btn.Font=Typography.body()
     btn.TextSize=13
     btn.Text="CARNET [J]"
     btn.Parent=gui
@@ -15396,6 +17505,7 @@ function Journal.start()
     end
     local function flip() panel.Visible=not panel.Visible;capture() end
     btn.Activated:Connect(flip)
+    require(script.Parent.KinCityMenu).register("journal","Carnet [J]",btn,panel,flip)
     UIS.InputBegan:Connect(function(key,processed)
         if not processed and key.KeyCode==Enum.KeyCode.J then flip() end
     end)
@@ -15407,6 +17517,7 @@ return Journal
 ]])
 source(client,"FerryGroupHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Panneau compact de ferry collectif, accessible au clavier et au tactile.
 -- L'état provient uniquement du serveur. Aucun compteur ou promesse kOA.
 local Players=game:GetService("Players")
@@ -15434,7 +17545,7 @@ function FerryHud.start(remote)
     title.Size=UDim2.new(1,-20,0,29)
     title.Position=UDim2.fromOffset(10,5)
     title.BackgroundTransparency=1
-    title.Font=Enum.Font.GothamBold
+    title.Font=Typography.body()
     title.TextColor3=Color3.fromRGB(246,238,205)
     title.TextSize=15
     title.Text="FERRY COLLECTIF"
@@ -15444,7 +17555,7 @@ function FerryHud.start(remote)
     state.Size=UDim2.new(1,-20,0,38)
     state.Position=UDim2.fromOffset(10,36)
     state.BackgroundTransparency=1
-    state.Font=Enum.Font.Gotham
+    state.Font=Typography.body()
     state.TextColor3=Color3.fromRGB(214,235,234)
     state.TextSize=13
     state.TextWrapped=true
@@ -15492,6 +17603,7 @@ return FerryHud
 ]])
 source(client,"GalleryJournalV22","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Carnet LOCAL des galeries. Les marqueurs physiques sont créés par InstitutionStoriesV22.
 -- Aucun RemoteEvent, aucun DataStore ni point EkoH ; le carnet repart de zéro par session.
 local Players=game:GetService("Players")
@@ -15548,13 +17660,14 @@ function Journal.start()
     toggle.Size=UDim2.fromOffset(137,32)
     toggle.BackgroundColor3=Color3.fromRGB(30,104,100)
     toggle.TextColor3=Color3.fromRGB(241,252,247)
-    toggle.Font=Enum.Font.GothamBold
+    toggle.Font=Typography.body()
     toggle.TextSize=12
     toggle.Parent=gui
     local buttonCorner=Instance.new("UICorner")
     buttonCorner.CornerRadius=UDim.new(0,9)
     buttonCorner.Parent=toggle
     toggle.Activated:Connect(openClose)
+    require(script.Parent.KinCityMenu).register("gallery","Galeries [T]",toggle,window,openClose)
     window=Instance.new("Frame")
     window.Name="Carnet des galeries"
     window.AnchorPoint=Vector2.new(0.5,0.5)
@@ -15577,7 +17690,7 @@ function Journal.start()
     title.Size=UDim2.new(1,-65,0,35)
     title.Position=UDim2.fromOffset(17,11)
     title.BackgroundTransparency=1
-    title.Font=Enum.Font.GothamBold
+    title.Font=Typography.body()
     title.TextColor3=Color3.fromRGB(229,245,241)
     title.TextSize=20
     title.TextXAlignment=Enum.TextXAlignment.Left
@@ -15589,7 +17702,7 @@ function Journal.start()
     close.Position=UDim2.new(1,-49,0,11)
     close.Text="✕"
     close.TextSize=18
-    close.Font=Enum.Font.GothamBold
+    close.Font=Typography.body()
     close.TextColor3=Color3.fromRGB(239,254,248)
     close.BackgroundColor3=Color3.fromRGB(42,96,92)
     close.Parent=window
@@ -15599,7 +17712,7 @@ function Journal.start()
     summary.Size=UDim2.new(1,-35,0,42)
     summary.Position=UDim2.fromOffset(17,52)
     summary.BackgroundTransparency=1
-    summary.Font=Enum.Font.Gotham
+    summary.Font=Typography.body()
     summary.TextColor3=Color3.fromRGB(209,227,221)
     summary.TextSize=14
     summary.TextWrapped=true
@@ -15623,7 +17736,7 @@ function Journal.start()
     listing.TextXAlignment=Enum.TextXAlignment.Left
     listing.TextYAlignment=Enum.TextYAlignment.Top
     listing.TextWrapped=true
-    listing.Font=Enum.Font.Gotham
+    listing.Font=Typography.body()
     listing.TextColor3=Color3.fromRGB(223,248,241)
     listing.TextSize=14
     listing.LineHeight=1.65
@@ -15662,6 +17775,7 @@ return Journal
 ]])
 source(client,"Hud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 local Players=game:GetService("Players")
 local UserInputService=game:GetService("UserInputService")
 local GuiService=game:GetService("GuiService")
@@ -15675,7 +17789,7 @@ local function createLabel(parent, text,size,weight,y)
     label.BackgroundTransparency=1
     label.Size=UDim2.new(1,-44,0,size)
     label.Position=UDim2.fromOffset(22,y)
-    label.Font=weight and Enum.Font.GothamBold or Enum.Font.Gotham
+    label.Font=weight and Typography.body() or Typography.body()
     label.TextColor3=Color3.fromRGB(241,243,241)
     label.TextWrapped=true
     label.TextXAlignment=Enum.TextXAlignment.Left
@@ -15725,7 +17839,7 @@ function Hud.start(remote)
     local closeBtn=Instance.new("TextButton")
     closeBtn.Name="Fermer"
     closeBtn.Text="Fermer"
-    closeBtn.Font=Enum.Font.GothamBold
+    closeBtn.Font=Typography.body()
     closeBtn.TextSize=20
     closeBtn.TextColor3=Color3.new(1,1,1)
     closeBtn.BackgroundColor3=Color3.fromRGB(42,116,124)
@@ -15742,6 +17856,7 @@ function Hud.start(remote)
     end)
     remote.OnClientEvent:Connect(function(payload)
         if typeof(payload)~="table" then return end
+        if payload.status=="LOCAL_STORY" then return end
         local kind=payload.kind
         if kind~="interaction.reply.v1" and kind~="travel.failure.v1" then return end
         messageSequence+=1
@@ -15757,6 +17872,7 @@ return Hud
 ]])
 source(client,"IntermodalPanel","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Panneau de lignes: information purement locale, ne vend ni ne réserve rien.
 -- Un bouton tactile permet de consulter les lignes sans clavier.
 local Players=game:GetService("Players")
@@ -15779,7 +17895,7 @@ local function text(parent,value,y,height,size,bold)
     l.Text=value;l.TextWrapped=true
     l.TextXAlignment=Enum.TextXAlignment.Left
     l.TextYAlignment=Enum.TextYAlignment.Center
-    l.TextColor3=FG;l.Font=if bold then Enum.Font.GothamBold else Enum.Font.Gotham
+    l.TextColor3=FG;l.Font=if bold then Typography.body() else Typography.body()
     l.TextSize=size;l.Parent=parent
     return l
 end
@@ -15789,7 +17905,7 @@ function Panel.start()
     gui.IgnoreGuiInset=false;gui.ResetOnSpawn=false;gui.DisplayOrder=7
     gui.Parent=player:WaitForChild("PlayerGui")
     local toggle=Instance.new("TextButton")
-    toggle.Name="GareButton";toggle.Text="GARE";toggle.Font=Enum.Font.GothamBold;toggle.TextSize=12
+    toggle.Name="GareButton";toggle.Text="GARE [H]";toggle.Font=Typography.body();toggle.TextSize=12
     toggle.TextColor3=FG;toggle.BackgroundColor3=BG
     toggle.Size=UDim2.fromOffset(78,36)
     toggle.Position=UDim2.new(1,-94,1,-58)
@@ -15833,14 +17949,15 @@ function Panel.start()
         label.BackgroundTransparency=1;label.Position=UDim2.fromOffset(13,3)
         label.Size=UDim2.new(1,-20,1,-6)
         label.Text=string.format("%d  %s",i,gate.title)
-        label.TextWrapped=true;label.TextSize=12;label.Font=Enum.Font.GothamMedium
+        label.TextWrapped=true;label.TextSize=12;label.Font=Typography.body()
         label.TextXAlignment=Enum.TextXAlignment.Left;label.TextColor3=FG
         label.Parent=row
     end
     local function flip()window.Visible=not window.Visible end
     toggle.Activated:Connect(flip)
+    require(script.Parent.KinCityMenu).register("station","Gare [H]",toggle,window,flip)
     UIS.InputBegan:Connect(function(input,handled)
-        if not handled and input.KeyCode==Enum.KeyCode.G then flip() end
+        if not handled and input.KeyCode==Enum.KeyCode.H then flip() end
     end)
     local elapsed=0
     RunService.RenderStepped:Connect(function(dt)
@@ -15865,6 +17982,7 @@ return Panel
 ]])
 source(client,"IslandPassportHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Carnet de l'archipel, progression locale par session seulement.
 local Players=game:GetService("Players")
 local player=Players.LocalPlayer
@@ -15890,7 +18008,7 @@ function Passport.start()
     text.Size=UDim2.new(1,-10,1,0)
     text.Position=UDim2.fromOffset(5,0)
     text.TextColor3=Color3.fromRGB(243,233,194)
-    text.Font=Enum.Font.GothamBold
+    text.Font=Typography.body()
     text.TextSize=13
     text.Parent=panel
     local function refresh()
@@ -15903,8 +18021,884 @@ end
 return Passport
 
 ]])
+source(client,"KinCityMenu","ModuleScript",[[
+--!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
+-- v30 : outils exclusifs, recherche locale, défilement mobile et focus manette.
+-- Les dialogues narratifs et les confirmations ne sont pas des outils.
+local Players=game:GetService("Players")
+local UIS=game:GetService("UserInputService")
+local GuiService=game:GetService("GuiService")
+local Menu={}
+local entries={}
+local player=Players.LocalPlayer
+local gui,menuPanel,items,list,searchBox,emptyLabel
+local expanded=false
+local function refreshResults()
+    if not list then return end
+    local query=if searchBox then string.lower(searchBox.Text) else ""
+    local found=0
+    for _,e in ipairs(entries) do
+        local matches=query=="" or string.find(string.lower(e.label),query,1,true)~=nil
+        if e.button then e.button.Visible=matches end
+        if matches then found+=1 end
+    end
+    if emptyLabel then emptyLabel.Visible=found==0 end
+    -- UIListLayout donne la hauteur effective après les filtres et le reflow mobile.
+    local layout=list:FindFirstChildOfClass("UIListLayout")
+    if layout then
+        list.CanvasSize=UDim2.fromOffset(0,layout.AbsoluteContentSize.Y+12)
+    end
+end
+local function focusMenu()
+    if not UIS.GamepadEnabled or not menuPanel or not menuPanel.Visible then return end
+    for _,e in ipairs(entries) do
+        if e.button and e.button.Visible then GuiService.SelectedObject=e.button;return end
+    end
+    if searchBox then GuiService.SelectedObject=searchBox end
+end
+local function corner(parent,r)
+    local c=Instance.new("UICorner");c.CornerRadius=UDim.new(0,r);c.Parent=parent
+end
+local function makeButton(parent,label,height)
+    local b=Instance.new("TextButton");b.Size=UDim2.new(1,-16,0,height or 40)
+    b.BackgroundColor3=Color3.fromRGB(30,104,100);b.TextColor3=Color3.fromRGB(197,244,240)
+    b.Text=label;b.Font=Typography.body();b.TextSize=13;b.TextWrapped=true;b.Parent=parent
+    corner(b,8)
+    return b
+end
+local function showOnly(key)
+    for _,e in ipairs(entries) do
+        if e.key~=key and e.window then e.window.Visible=false end
+    end
+    if menuPanel then menuPanel.Visible=false end
+    if UIS.GamepadEnabled then
+        for _,entry in ipairs(entries) do
+            if entry.key==key and entry.window then
+                local close=entry.window:FindFirstChild("Fermer l'outil")
+                if close and close:IsA("GuiButton") then GuiService.SelectedObject=close end
+                break
+            end
+        end
+    end
+end
+function Menu.closeTools()
+    for _,e in ipairs(entries) do if e.window then e.window.Visible=false end end
+    if menuPanel then menuPanel.Visible=false end
+    local selected=GuiService.SelectedObject
+    if selected then
+        local belongs=gui and selected:IsDescendantOf(gui)
+        for _,entry in ipairs(entries) do
+            if entry.window and selected:IsDescendantOf(entry.window) then belongs=true;break end
+        end
+        if belongs then GuiService.SelectedObject=nil end
+    end
+end
+function Menu.open(key)
+    for _,e in ipairs(entries) do
+        if e.key==key then
+            if e.action then e.action()
+            elseif e.window then e.window.Visible=not e.window.Visible end
+            if not e.window or e.window.Visible then showOnly(key) end
+            return
+        end
+    end
+end
+function Menu.register(key,label,toggle,window,action)
+    assert(gui,"KinCityMenu.start must run first")
+    for _,e in ipairs(entries) do if e.key==key then error("duplicate Kin City tool "..key) end end
+    local e={key=key,window=window,action=action,label=label}
+    table.insert(entries,e)
+    if toggle then toggle.Visible=false end
+    -- Menus ouverts via les anciens raccourcis ou les messages serveur : exclusivité.
+    window:GetPropertyChangedSignal("Visible"):Connect(function()
+        if window.Visible then showOnly(key) end
+    end)
+    local close=Instance.new("TextButton");close.Name="Fermer l'outil"
+    close.AnchorPoint=Vector2.new(1,0);close.Position=UDim2.new(1,-6,0,5)
+    close.Size=UDim2.fromOffset(34,30);close.Text="✕";close.Font=Typography.body()
+    close.TextSize=17;close.BackgroundColor3=Color3.fromRGB(30,104,100)
+    close.TextColor3=Color3.fromRGB(245,251,249);close.ZIndex=25;close.Parent=window
+    corner(close,7);close.Activated:Connect(function()window.Visible=false end)
+    local viewport=workspace.CurrentCamera
+    local normalWidth=math.max(window.Size.X.Offset,240)
+    local normalHeight=math.max(window.Size.Y.Offset,135)
+    -- L'ancien UISizeConstraint peut forcer une taille supérieure à l'écran mobile.
+    -- Le dimensionnement commun borne déjà la fenêtre; son contenu défile.
+    local constraint=window:FindFirstChildOfClass("UISizeConstraint")
+    if constraint then constraint.MinSize=Vector2.zero end
+    -- Les grandes fenêtres conservent leur contenu, avec scroll vertical sur mobile.
+    local contents=Instance.new("ScrollingFrame");contents.Name="Contenu défilable v30"
+    contents.Size=UDim2.fromScale(1,1);contents.BackgroundTransparency=1
+    contents.BorderSizePixel=0;contents.ScrollBarThickness=5;contents.Selectable=true
+    contents.CanvasSize=UDim2.fromOffset(0,normalHeight);contents.Parent=window
+    for _,child in ipairs(window:GetChildren()) do
+        if child~=contents and child~=close and (child:IsA("GuiObject")
+            or child:IsA("UIListLayout") or child:IsA("UIGridLayout")
+            or child:IsA("UIPageLayout") or child:IsA("UIPadding")) then
+            child.Parent=contents
+        end
+    end
+    -- La hauteur de la fenêtre et sa position se recalculent à chaque changement d'écran.
+    local function resize()
+        local c=workspace.CurrentCamera
+        local v=c and c.ViewportSize or Vector2.new(900,650)
+        local w=math.max(180,math.min(normalWidth,v.X-20))
+        local h=math.max(125,math.min(normalHeight,v.Y-115))
+        window.AnchorPoint=Vector2.new(0.5,0.5)
+        window.Position=UDim2.fromScale(0.5,0.52)
+        window.Size=UDim2.fromOffset(w,h)
+        contents.CanvasSize=UDim2.fromOffset(0,normalHeight+10)
+        -- L'interface de l'outil reste visible pendant que sa liste défile.
+    end
+    resize()
+    if viewport then viewport:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
+    local b=makeButton(items,label,38)
+    e.button=b
+    b.LayoutOrder=#entries
+    b.Activated:Connect(function()Menu.open(key) end)
+    refreshResults()
+end
+-- Actions sans fenêtre (qualité visuelle, etc.) : même point d'accès.
+function Menu.registerAction(key,label,toggle,action)
+    assert(gui,"KinCityMenu.start must run first")
+    for _,e in ipairs(entries) do if e.key==key then error("duplicate Kin City tool "..key) end end
+    if toggle then toggle.Visible=false end
+    local e={key=key,label=label,action=action}
+    table.insert(entries,e)
+    local b=makeButton(items,label,38);b.LayoutOrder=#entries;e.button=b
+    b.Activated:Connect(function()Menu.open(key) end)
+    refreshResults()
+end
+
+function Menu.start()
+    if gui then return end
+    gui=Instance.new("ScreenGui");gui.Name="KinCityMenuV30";gui.ResetOnSpawn=false
+    gui.DisplayOrder=29;gui.Parent=player:WaitForChild("PlayerGui")
+    local button=Instance.new("TextButton")
+    button.Name="Menu Kin City";button.Size=UDim2.fromOffset(140,42)
+    button.AnchorPoint=Vector2.new(1,0);button.Position=UDim2.new(1,-12,0,14)
+    button.Text="☰ KIN CITY";button.Font=Typography.body();button.TextSize=15
+    button.BackgroundColor3=Color3.fromRGB(30,104,100)
+    button.TextColor3=Color3.fromRGB(197,244,240);button.Parent=gui;corner(button,10)
+    menuPanel=Instance.new("Frame");menuPanel.Name="Outils"
+    menuPanel.AnchorPoint=Vector2.new(1,0);menuPanel.Position=UDim2.new(1,-12,0,62)
+    menuPanel.Size=UDim2.fromOffset(272,420);menuPanel.BackgroundColor3=Color3.fromRGB(18,45,53)
+    menuPanel.Visible=false;menuPanel.Parent=gui;corner(menuPanel,10)
+    local function resizeMenu()
+        local cam=workspace.CurrentCamera
+        local v=cam and cam.ViewportSize or Vector2.new(900,650)
+        menuPanel.Size=UDim2.fromOffset(math.max(160,math.min(272,v.X-24)),math.max(150,math.min(510,v.Y-105)))
+    end
+    resizeMenu()
+    if workspace.CurrentCamera then
+        workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(resizeMenu)
+    end
+    local title=Instance.new("TextLabel");title.Size=UDim2.new(1,-15,0,37)
+    title.Position=UDim2.fromOffset(10,3);title.BackgroundTransparency=1
+    title.Text="OUTILS · Échap / B pour fermer";title.TextColor3=Color3.fromRGB(197,244,240)
+    title.Font=Typography.body();title.TextSize=12;title.Parent=menuPanel
+    searchBox=Instance.new("TextBox")
+    searchBox.Name="Rechercher un outil"
+    searchBox.PlaceholderText="Rechercher un outil…"
+    searchBox.ClearTextOnFocus=false;searchBox.Text=""
+    searchBox.TextSize=13;searchBox.Font=Typography.body()
+    searchBox.TextColor3=Color3.fromRGB(197,244,240)
+    searchBox.PlaceholderColor3=Color3.fromRGB(167,203,199)
+    searchBox.BackgroundColor3=Color3.fromRGB(38,72,79)
+    searchBox.Size=UDim2.new(1,-16,0,33);searchBox.Position=UDim2.fromOffset(8,41)
+    searchBox.Parent=menuPanel;corner(searchBox,7)
+    list=Instance.new("ScrollingFrame");list.Size=UDim2.new(1,-10,1,-91)
+    list.Position=UDim2.fromOffset(5,82);list.BackgroundTransparency=1
+    list.BorderSizePixel=0;list.ScrollBarThickness=5;list.CanvasSize=UDim2.fromOffset(0,0)
+    list.Parent=menuPanel;items=list
+    local layout=Instance.new("UIListLayout");layout.Padding=UDim.new(0,5)
+    layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.HorizontalAlignment=Enum.HorizontalAlignment.Center
+    layout.Parent=items
+    layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(refreshResults)
+    searchBox:GetPropertyChangedSignal("Text"):Connect(refreshResults)
+    emptyLabel=Instance.new("TextLabel")
+    emptyLabel.Name="Aucun outil trouvé";emptyLabel.BackgroundTransparency=1
+    emptyLabel.Size=UDim2.new(1,-12,0,34)
+    emptyLabel.Position=UDim2.fromOffset(6,82)
+    emptyLabel.Text="Aucun outil trouvé";emptyLabel.TextSize=13
+    emptyLabel.TextColor3=Color3.fromRGB(197,244,240)
+    emptyLabel.Visible=false;emptyLabel.Parent=menuPanel
+    local gap=makeButton(items,"INDICATEURS · Ouvrir",38);gap.LayoutOrder=1000
+    local counters=Instance.new("TextLabel");counters.Name="Statistiques locales"
+    counters.Size=UDim2.new(1,-16,0,140);counters.LayoutOrder=1001
+    counters.BackgroundTransparency=1;counters.TextWrapped=true
+    counters.TextColor3=Color3.fromRGB(232,245,238);counters.TextSize=12
+    counters.Font=Typography.body();counters.Visible=false;counters.Parent=items
+    gap.Activated:Connect(function()
+        expanded=not expanded;counters.Visible=expanded
+        refreshResults()
+    end)
+    local secondary={"KinCityDiscoveryTracker","KinCityIslandPassport"}
+    -- Ne jamais désactiver les GUI d'histoire, de dialogues, d'animation ou de transport.
+    local holders={}
+    local function hideCounter(child)
+        for _,name in ipairs(secondary) do
+            if child.Name==name and child:IsA("ScreenGui") then
+                table.insert(holders,child);child.Enabled=false;break
+            end
+        end
+    end
+    player.PlayerGui.ChildAdded:Connect(hideCounter)
+    task.defer(function()
+    for _,name in ipairs(secondary) do
+        local other=player.PlayerGui:FindFirstChild(name)
+        if other and other:IsA("ScreenGui") then
+            hideCounter(other)
+        end
+    end
+    end)
+    task.spawn(function()
+        while gui and gui.Parent do
+            if expanded then
+                local lines={"Compteurs de la session (locaux)"}
+                for _,other in ipairs(holders) do
+                    for _,obj in ipairs(other:GetDescendants()) do
+                        if obj:IsA("TextLabel") and #obj.Text>0 then
+                            table.insert(lines,string.sub(obj.Text,1,95))
+                            if #lines>=7 then break end
+                        end
+                    end
+                end
+                counters.Text=table.concat(lines,"\n")
+            end
+            task.wait(0.8)
+        end
+    end)
+    local function toggleMenu()
+        local open=not menuPanel.Visible
+        if open then
+            Menu.closeTools()
+            menuPanel.Visible=true
+            refreshResults()
+            focusMenu()
+        else
+            Menu.closeTools()
+        end
+    end
+    button.Activated:Connect(toggleMenu)
+    UIS.InputBegan:Connect(function(input,used)
+        if UIS:GetFocusedTextBox() then return end
+        if input.KeyCode==Enum.KeyCode.Escape or input.KeyCode==Enum.KeyCode.ButtonB then
+            Menu.closeTools()
+        elseif not used and input.KeyCode==Enum.KeyCode.ButtonSelect then
+            toggleMenu()
+        end
+    end)
+end
+return Menu
+
+]])
+source(client,"KingKlownAura","ModuleScript",[[
+--!strict
+-- Une boucle locale partagée; aucun RemoteEvent, PointLight ou ForceField.
+local CollectionService=game:GetService("CollectionService")
+local Players=game:GetService("Players")
+local RunService=game:GetService("RunService")
+local Aura={}
+function Aura.start()
+    local player=Players.LocalPlayer
+    local playerGui=player:WaitForChild("PlayerGui")
+    if playerGui:GetAttribute("KingKlownAuraRunning") then return end
+    playerGui:SetAttribute("KingKlownAuraRunning",true)
+    local records={}
+    local pending={}
+    local function remove(model)
+        pending[model]=nil
+        local record=records[model]
+        if record then
+            record.orb:Destroy()
+            for _,mote in ipairs(record.motes) do mote:Destroy() end
+            if record.spark then record.spark:Destroy() end
+            records[model]=nil
+        end
+    end
+    local function add(model)
+        if records[model] or pending[model] then return end
+        local ticket={}
+        pending[model]=ticket
+        task.spawn(function()
+            local character=model.Parent
+            local root=character and character:WaitForChild("HumanoidRootPart",10)
+            if pending[model]~=ticket or not root or not root:IsA("BasePart")
+                or not model:IsDescendantOf(workspace) then
+                if pending[model]==ticket then pending[model]=nil end
+                return
+            end
+            pending[model]=nil
+            local orb=Instance.new("Part")
+            orb.Name="Aura locale du Trickster"
+            orb.Shape=Enum.PartType.Ball
+            orb.Size=Vector3.new(7.2,7.2,7.2)
+            orb.Color=Color3.fromRGB(197,244,240)
+            orb.Material=Enum.Material.Neon
+            orb.Transparency=0.965
+            orb.Massless=true
+            orb.CanCollide=false;orb.CanTouch=false;orb.CanQuery=false;orb.CastShadow=false
+            orb.CFrame=root.CFrame*CFrame.new(0,0.25,0)
+            orb.Parent=model
+            local weld=Instance.new("WeldConstraint")
+            weld.Part0=root;weld.Part1=orb;weld.Parent=orb
+            local emitter=Instance.new("ParticleEmitter")
+            emitter.Texture="rbxasset://textures/particles/sparkles_main.dds"
+            emitter.Shape=Enum.ParticleEmitterShape.Sphere
+            emitter.ShapeStyle=Enum.ParticleEmitterShapeStyle.Surface
+            emitter.Rate=4
+            emitter.Lifetime=NumberRange.new(1,1.6)
+            emitter.Speed=NumberRange.new(0.02,0.10)
+            emitter.LockedToPart=true
+            emitter.LightEmission=0.3
+            emitter.Color=ColorSequence.new(Color3.fromRGB(30,104,100),Color3.fromRGB(197,244,240))
+            emitter.Size=NumberSequence.new({NumberSequenceKeypoint.new(0,0),NumberSequenceKeypoint.new(0.3,0.12),NumberSequenceKeypoint.new(1,0)})
+            emitter.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,1),NumberSequenceKeypoint.new(0.3,0.25),NumberSequenceKeypoint.new(1,1)})
+            emitter.Parent=orb
+            local motes={}
+            for i=1,3 do
+                local mote=Instance.new("Part")
+                mote.Name="Éclat orbital "..i;mote.Shape=Enum.PartType.Ball
+                mote.Size=Vector3.new(0.10,0.10,0.10);mote.Material=Enum.Material.Neon
+                mote.Color=Color3.fromRGB(197,244,240);mote.Anchored=true
+                mote.CanCollide=false;mote.CanTouch=false;mote.CanQuery=false;mote.CastShadow=false
+                mote.Transparency=1;mote.Parent=model
+                local a=Instance.new("Attachment");a.Position=Vector3.new(0,0.025,0);a.Parent=mote
+                local b=Instance.new("Attachment");b.Position=Vector3.new(0,-0.025,0);b.Parent=mote
+                local trail=Instance.new("Trail");trail.Attachment0=a;trail.Attachment1=b
+                trail.Lifetime=0.32;trail.LightEmission=0.4
+                trail.Color=ColorSequence.new(Color3.fromRGB(30,104,100),Color3.fromRGB(197,244,240))
+                trail.Transparency=NumberSequence.new(0.4,1);trail.Enabled=false;trail.Parent=mote
+                table.insert(motes,mote)
+            end
+            local hand=character:FindFirstChild("RightHand") or character:FindFirstChild("Right Arm")
+            local spark=nil
+            if hand then
+                spark=Instance.new("Attachment");spark.Name="KingKlownHandSpark";spark.Position=Vector3.new(0,-0.25,-0.3);spark.Parent=hand
+                local burst=emitter:Clone();burst.Rate=0;burst.Lifetime=NumberRange.new(0.25,0.6)
+                burst.Speed=NumberRange.new(0.6,1.8);burst.LockedToPart=false;burst.Parent=spark
+            end
+            records[model]={orb=orb,emitter=emitter,root=root,character=character,visible=false,motes=motes,spark=spark,lastCast=-100}
+        end)
+    end
+    CollectionService:GetInstanceAddedSignal("KingKlownAvatar"):Connect(add)
+    CollectionService:GetInstanceRemovedSignal("KingKlownAvatar"):Connect(remove)
+    for _,model in ipairs(CollectionService:GetTagged("KingKlownAvatar")) do add(model) end
+    local elapsed=0
+    RunService.Heartbeat:Connect(function(dt)
+        elapsed+=dt
+        if elapsed<0.05 then return end
+        elapsed=0
+        local camera=workspace.CurrentCamera
+        if not camera then return end
+        local quality=player:GetAttribute("KinCityLocalQuality") or "STANDARD"
+        local lite=quality=="LITE"
+        local distance=if lite then 55 else 110
+        local now=os.clock()
+        for model,record in pairs(records) do
+            if not model:IsDescendantOf(workspace) or not record.root.Parent then remove(model);continue end
+            local delta=record.root.Position-camera.CFrame.Position
+            local head=record.character:FindFirstChild("Head")
+            local firstPerson=record.character==player.Character and head
+                and (head.Position-camera.CFrame.Position).Magnitude<2
+            local visible=not firstPerson and delta:Dot(delta)<distance*distance
+            record.orb.LocalTransparencyModifier=if visible then 0 else 1
+            record.emitter.Enabled=visible
+            if visible then
+                record.emitter.Rate=if lite then 2 elseif quality=="SHOWCASE" then 6 else 4
+                record.orb.Transparency=if lite then 0.978 else 0.965+math.sin(now*1.3)*0.009
+                if not record.visible then record.emitter:Emit(if lite then 3 else 8) end
+            elseif record.visible then record.emitter:Clear() end
+            local castAt=record.character:GetAttribute("KingKlownCastAt") or -100
+            local age=workspace:GetServerTimeNow()-castAt
+            local hum=record.character:FindFirstChildOfClass("Humanoid")
+            local casting=age>=0 and age<2.4 and hum and hum.Health>0 and not hum.SeatPart
+                and hum.MoveDirection.Magnitude<0.1 and hum.FloorMaterial~=Enum.Material.Air
+                and not record.character:FindFirstChildOfClass("Tool")
+            for i,mote in ipairs(record.motes) do
+                local shown=visible and (not lite or i==1)
+                mote.Transparency=if shown then 0.2 else 1
+                local trail=mote:FindFirstChildOfClass("Trail")
+                trail.Enabled=shown and not lite
+                if not shown then trail:Clear() end
+                if shown then
+                    local angle=now*0.65+i*math.pi*2/3
+                    local center=record.root.Position+Vector3.new(0,0.25,0)
+                    local radius=3.45
+                    if casting and record.spark and age>0.7 then
+                        center=record.spark.WorldPosition;radius=0.30
+                    end
+                    mote.CFrame=CFrame.new(center+Vector3.new(math.cos(angle)*radius,math.sin(angle*1.4)*0.7,math.sin(angle)*radius))
+                end
+            end
+            if visible and casting and age>=0.85 and record.lastCast~=castAt then
+                record.lastCast=castAt
+                record.emitter:Emit(if lite then 4 else 10)
+                if record.spark then record.spark:FindFirstChildOfClass("ParticleEmitter"):Emit(if lite then 5 else 12) end
+            end
+            record.visible=visible
+        end
+    end)
+end
+return Aura
+
+]])
+source(client,"KingKlownPerformance","ModuleScript",[[
+--!strict
+-- Gestes additifs locaux synchronisés par un seul timestamp serveur.
+local Players=game:GetService("Players")
+local CollectionService=game:GetService("CollectionService")
+local RunService=game:GetService("RunService")
+local CAS=game:GetService("ContextActionService")
+local UIS=game:GetService("UserInputService")
+local Performance={}
+function Performance.start()
+    local player=Players.LocalPlayer
+    local gui=player:WaitForChild("PlayerGui")
+    if gui:GetAttribute("KingKlownPerformanceRunning") then return end
+    gui:SetAttribute("KingKlownPerformanceRunning",true)
+    local records={}
+    local function restore(record)
+        for _,joint in ipairs(record.joints) do
+            if joint.item.Parent and joint.output and joint.item.Transform==joint.output then
+                joint.item.Transform=joint.base
+            end
+            joint.output=nil
+        end
+    end
+    local function remove(model)
+        local record=records[model]
+        if record then
+            restore(record)
+            for _,eye in ipairs(record.eyes) do if eye.part.Parent then eye.part.Size=eye.size end end
+            records[model]=nil
+        end
+    end
+    local function add(model)
+        if records[model] then return end
+        local character=model.Parent
+        if not character then return end
+        local joints={}
+        for _,item in ipairs(character:GetDescendants()) do
+            if (item:IsA("Motor6D") or item:IsA("AnimationConstraint")) and (item.Name=="Neck" or item.Name=="RightShoulder"
+                or item.Name=="LeftShoulder" or item.Name=="Right Shoulder" or item.Name=="Left Shoulder"
+                or item.Name=="KingKlownCapeJoint") then
+                table.insert(joints,{item=item,base=item.Transform})
+            end
+        end
+        local eyes={}
+        for _,item in ipairs(model:GetChildren()) do
+            if item:IsA("BasePart") and (item.Name=="Œil gauche ouvert" or item.Name=="Œil droit mi-clos") then
+                table.insert(eyes,{part=item,size=item.Size})
+            end
+        end
+        records[model]={character=character,joints=joints,eyes=eyes}
+    end
+    CollectionService:GetInstanceAddedSignal("KingKlownAvatar"):Connect(add)
+    CollectionService:GetInstanceRemovedSignal("KingKlownAvatar"):Connect(remove)
+    for _,model in ipairs(CollectionService:GetTagged("KingKlownAvatar")) do add(model) end
+    -- Retirer uniquement notre offset avant le passage de l'Animator.
+    RunService.PreAnimation:Connect(function()
+        for _,record in pairs(records) do restore(record) end
+    end)
+    RunService.PreSimulation:Connect(function()
+        local camera=workspace.CurrentCamera
+        if not camera then return end
+        local now=workspace:GetServerTimeNow()
+        local lite=player:GetAttribute("KinCityLocalQuality")=="LITE"
+        for model,record in pairs(records) do
+            local character=record.character
+            local root=character:FindFirstChild("HumanoidRootPart")
+            local hum=character:FindFirstChildOfClass("Humanoid")
+            if not model:IsDescendantOf(workspace) then remove(model);continue end
+            if not root or not hum or hum.Health<=0 then continue end
+            if (root.Position-camera.CFrame.Position).Magnitude>(if lite then 55 else 100) then continue end
+            local blinkPhase=now%5.3
+            local eyelid=if blinkPhase<0.14 then math.max(0.12,math.abs(blinkPhase-0.07)/0.07) else 1
+            for _,eye in ipairs(record.eyes) do if eye.part.Parent then eye.part.Size=eye.size*Vector3.new(1,eyelid,1) end end
+            local seated=hum.SeatPart~=nil
+            local grounded=hum.FloorMaterial~=Enum.Material.Air
+            local moving=hum.MoveDirection.Magnitude>0.1
+            local tool=character:FindFirstChildOfClass("Tool")~=nil
+            local age=now-(character:GetAttribute("KingKlownCastAt") or -100)
+            local casting=age>=0 and age<2.4 and grounded and not moving and not seated and not tool
+            local pose=if casting then math.sin(math.pi*math.clamp(age/2.4,0,1)) else 0
+            for _,joint in ipairs(record.joints) do
+                local item=joint.item
+                if not item.Parent then continue end
+                local offset=CFrame.identity
+                if item.Name=="KingKlownCapeJoint" then
+                    local side=item:GetAttribute("KingKlownCapeSide") or 1
+                    offset=CFrame.Angles(if seated then 0.65 else -0.08-math.min(root.AssemblyLinearVelocity.Magnitude/100,0.25)+math.sin(now*2.5+side)*0.025,0,side*0.05)
+                elseif not seated and grounded and not tool then
+                    if item.Name=="Neck" then
+                        offset=CFrame.Angles(-pose*0.10,pose*0.10,if moving then 0 else 0.035+math.sin(now*0.65)*0.015)
+                    elseif item.Name=="RightShoulder" or item.Name=="Right Shoulder" then
+                        offset=CFrame.Angles(-pose*1.15,pose*0.15,pose*0.32)
+                    elseif not moving then
+                        offset=CFrame.Angles(0.025,0,-0.035)
+                    end
+                end
+                joint.base=item.Transform
+                joint.output=joint.base*offset
+                item.Transform=joint.output
+            end
+        end
+    end)
+    local bound=false
+    local function refresh()
+        local character=player.Character
+        local selected=character and character:GetAttribute("KinCityCharacter")=="King Klown"
+        if selected and not bound then
+            bound=true
+            CAS:BindAction("KingKlownMagic",function(_,state)
+                if UIS:GetFocusedTextBox() then return Enum.ContextActionResult.Pass end
+                if state==Enum.UserInputState.Begin then
+                    local remote=game:GetService("ReplicatedStorage"):FindFirstChild("KinCityTricksterCast")
+                    if remote then remote:FireServer() end
+                end
+                return Enum.ContextActionResult.Sink
+            end,true,Enum.KeyCode.G,Enum.KeyCode.ButtonR3)
+            CAS:SetTitle("KingKlownMagic","Magie")
+            CAS:SetPosition("KingKlownMagic",UDim2.new(1,-170,1,-180))
+        elseif not selected and bound then
+            bound=false;CAS:UnbindAction("KingKlownMagic")
+        end
+    end
+    local appearanceConnection=nil
+    local function watch(character)
+        if appearanceConnection then appearanceConnection:Disconnect() end
+        appearanceConnection=character:GetAttributeChangedSignal("KinCityCharacter"):Connect(refresh)
+        refresh()
+    end
+    player.CharacterAdded:Connect(watch)
+    player.CharacterRemoving:Connect(function() if bound then bound=false;CAS:UnbindAction("KingKlownMagic") end end)
+    if player.Character then watch(player.Character) end
+end
+return Performance
+
+]])
+source(client,"LibraryJourneyGuide","ModuleScript",[[
+--!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
+local Players=game:GetService("Players")
+local RunService=game:GetService("RunService")
+local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local Plan=require(Shared.WorldPlan)
+local Config=require(Shared.RuntimeConfig)
+local Origins=require(Shared.InteriorOrigins)
+local Journey=require(Shared.LibraryJourney)
+local Path=require(Shared.JourneyPath)
+local Guide={}
+function Guide.start()
+    local player=Players.LocalPlayer
+    local gui=Instance.new("ScreenGui");gui.Name="KinCityLibraryJourney";gui.ResetOnSpawn=false
+    gui.DisplayOrder=9;gui.Parent=player:WaitForChild("PlayerGui")
+    local toggle=Instance.new("TextButton");toggle.AnchorPoint=Vector2.new(1,0)
+    toggle.Position=UDim2.new(1,-16,0,130);toggle.Size=UDim2.fromOffset(195,38)
+    toggle.BackgroundColor3=Color3.fromRGB(30,104,100);toggle.TextColor3=Color3.fromRGB(197,244,240)
+    toggle.Text="PARCOURS BIBLIOTHÈQUE";toggle.Font=Typography.body();toggle.TextSize=12;toggle.Parent=gui
+    local corner=Instance.new("UICorner");corner.CornerRadius=UDim.new(0,10);corner.Parent=toggle
+    local card=Instance.new("TextLabel");card.AnchorPoint=Vector2.new(1,0)
+    card.Position=UDim2.new(1,-16,0,176);card.Size=UDim2.new(0.85,0,0,114)
+    card.BackgroundColor3=Color3.fromRGB(16,47,55);card.BackgroundTransparency=0.08
+    card.TextColor3=Color3.fromRGB(224,244,237);card.Font=Typography.body();card.TextSize=14;card.TextWrapped=true
+    card.Parent=gui;local cap=Instance.new("UISizeConstraint");cap.MaxSize=Vector2.new(300,114);cap.Parent=card
+    local padding=Instance.new("UIPadding");padding.PaddingLeft=UDim.new(0,12);padding.PaddingRight=UDim.new(0,12);padding.Parent=card
+    local round=corner:Clone();round.Parent=card
+    local enabled=false
+    local dismissed=false -- Le masquage volontaire reste respecté pendant la session.
+    card.Visible=false
+    local function autoEnable()
+        local zone=player:GetAttribute("KinZone")
+        local mode=player:GetAttribute("KinGuideMode")
+        if not dismissed and mode~="route" and (zone=="library" or player:GetAttribute("KinLibraryReturn")==true) then
+            enabled=true;player:SetAttribute("KinGuideMode","library")
+        end
+    end
+    autoEnable()
+    player:GetAttributeChangedSignal("KinZone"):Connect(autoEnable)
+    player:GetAttributeChangedSignal("KinLibraryReturn"):Connect(autoEnable)
+    local function toggleJourney()
+        -- Si un autre guide est actif, une activation bascule directement sur le récit.
+        enabled=player:GetAttribute("KinGuideMode")~="library"
+        dismissed=not enabled
+        player:SetAttribute("KinGuideMode",if enabled then "library" else "none")
+    end
+    toggle.Activated:Connect(toggleJourney)
+    local hide=Instance.new("TextButton")
+    hide.Text="✕";hide.Size=UDim2.fromOffset(28,28)
+    hide.AnchorPoint=Vector2.new(1,0);hide.Position=UDim2.new(1,-17,0,181)
+    hide.BackgroundColor3=Color3.fromRGB(30,104,100);hide.TextColor3=Color3.fromRGB(197,244,240)
+    hide.Parent=gui;hide.Visible=false;hide.Activated:Connect(function()enabled=false;dismissed=true;player:SetAttribute("KinGuideMode","none") end)
+    toggle.Visible=false
+    -- Le parcours est une action facultative du menu, non une deuxième barre flottante.
+    local menu=require(script.Parent.KinCityMenu)
+    local tool=Instance.new("Frame");tool.Visible=false;tool.Size=UDim2.fromOffset(300,155)
+    tool.BackgroundColor3=Color3.fromRGB(16,47,55);tool.Parent=gui
+    local intro=Instance.new("TextLabel");intro.BackgroundTransparency=1
+    intro.Text="Le livre sans dernière page\nPremière visite facultative : suivez le chemin opalin."
+    intro.TextWrapped=true;intro.TextSize=14;intro.TextColor3=Color3.fromRGB(197,244,240)
+    intro.Size=UDim2.new(1,-20,1,-55);intro.Position=UDim2.fromOffset(10,18);intro.Parent=tool
+    local launch=Instance.new("TextButton");launch.Text="Activer / masquer le parcours"
+    launch.TextSize=14;launch.Size=UDim2.new(1,-20,0,38)
+    launch.Position=UDim2.new(0,10,1,-43);launch.Parent=tool
+    launch.Activated:Connect(function()toggleJourney();tool.Visible=false end)
+    menu.register("library","Bibliothèque · première visite",toggle,tool)
+    local cityPath={}
+    for _,path in ipairs(Plan.pedestrian_paths) do
+        if path.building_id==Journey.building_id then
+            for _,point in ipairs(path.path_xyz_studs) do table.insert(cityPath,point) end
+        end
+    end
+    local city,library
+    for _,place in ipairs(Plan.places) do
+        if place.place_key=="city" then city=place elseif place.place_key=="library" then library=place end
+    end
+    local entry,exit
+    for _,door in ipairs(Plan.doors) do
+        if door.door_id==Journey.entry_door_id then entry=door elseif door.door_id==Journey.exit_door_id then exit=door end
+    end
+    local function anchor(place,id)
+        for _,a in ipairs(place.anchors) do if a.anchor_id==id then return a.position_studs end end
+    end
+    table.insert(cityPath,anchor(city,entry.source_anchor_id))
+    local stations={}
+    for _,station in ipairs(Journey.stations) do
+        for _,furn in ipairs(library.furnishings) do
+            if furn.furnishing_id==station.furnishing_id then stations[station.id]={station=station,position=furn.position_studs} end
+        end
+    end
+    local folder=Instance.new("Folder");folder.Name="LibraryJourneyLocalTrail";folder.Parent=workspace
+    local dots={}
+    for i=1,10 do
+        local dot=Instance.new("Part");dot.Name="Repère de parcours";dot.Shape=Enum.PartType.Ball
+        dot.Size=Vector3.new(0.22,0.12,0.22);dot.Color=Color3.fromRGB(197,244,240);dot.Material=Enum.Material.Neon
+        dot.Anchored=true;dot.CanCollide=false;dot.CanTouch=false;dot.CanQuery=false;dot.CastShadow=false
+        dot.Transparency=1;dot.Parent=folder;table.insert(dots,dot)
+    end
+    local elapsed=0
+    RunService.Heartbeat:Connect(function(dt)
+        elapsed+=dt;if elapsed<0.2 then return end;elapsed=0
+        local zone=player:GetAttribute("KinZone") or "city"
+        local root=player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+        toggle.Visible=zone=="city" or zone=="library"
+        card.Visible=enabled and (zone=="city" or zone=="library") and player:GetAttribute("KinGuideMode")=="library"
+        hide.Visible=card.Visible
+        for _,dot in ipairs(dots) do dot.Transparency=1 end
+        if not card.Visible or not root then return end
+        local origin=Vector3.zero
+        if zone=="library" and Config.mode=="LOCAL_UNIVERSE" then origin=Vector3.new(table.unpack(Origins.library)) end
+        local pos=root.Position-origin
+        local points={}
+        local title,message
+        if zone=="city" then
+            if player:GetAttribute("KinLibraryReturn") then
+                for i=#cityPath,1,-1 do table.insert(points,cityPath[i]) end
+                title="Retour à la place centrale";message="Suivez le chemin opalin vers le cœur de Kin City."
+            else
+                points=cityPath;title="La bibliothèque vous attend"
+                message=if Config.mode=="SPLIT_PREVIEW" then "L'intérieur se visite dans sa Place dédiée. Les passages ne sont pas encore publiés." else "Suivez le chemin opalin, puis activez la porte."
+            end
+        else
+            local id=player:GetAttribute("KinLibraryStoryTarget") or "welcome"
+            local target
+            if id=="exit" then
+                target=anchor(library,exit.source_anchor_id);title="La suite est dans la ville"
+                message=if Config.mode=="SPLIT_PREVIEW" then "Récit terminé. La porte de retour attend la publication des Places." else "Rejoignez la sortie, puis la place centrale."
+            else
+                local stop=stations[id] or stations.welcome
+                if not stop then return end
+                target=stop.position;title=stop.station.title
+                message=string.format("%d/3 fragments · Approchez du livre et activez l'invite.",player:GetAttribute("KinLibraryStoryCount") or 0)
+            end
+            -- Rejoindre l'axe du portail avant de franchir la cloison.
+            local approach={target[1],0,target[3]-(if id=="exit" then -4 else 5)}
+            points=Path.roomRoute(pos.X,pos.Z,approach)
+        end
+        local goal=points[#points]
+        local remaining=Vector3.new(goal[1]-pos.X,0,goal[3]-pos.Z).Magnitude
+        if zone=="city" and player:GetAttribute("KinLibraryReturn") and remaining<12 then
+            title="De retour au cœur de Kin City";message="La promenade continue. Vous pouvez masquer ce guide."
+        end
+        card.Text=title.."\n"..math.floor(remaining+0.5).." studs · "..message
+        local nextPoint=Path.target(points,pos.X,pos.Z)
+        if not nextPoint or remaining<6 then return end
+        local start=Vector3.new(pos.X,0.65,pos.Z)
+        local target=Vector3.new(nextPoint[1],0.65,nextPoint[3])
+        local delta=target-start
+        if delta.Magnitude<1 then return end
+        local count=if player:GetAttribute("KinCityLocalQuality")=="LITE" then 5 else 10
+        for i=1,count do
+            local distance=i*2.5
+            if distance<=delta.Magnitude then
+                dots[i].Position=origin+start+delta.Unit*distance;dots[i].Transparency=0.25+i*0.035
+            end
+        end
+    end)
+end
+return Guide
+
+]])
+source(client,"LibraryStoryPanel","ModuleScript",[[
+--!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
+-- Lecture défilable : le texte complet reste accessible sur petit écran.
+local Players=game:GetService("Players")
+local GuiService=game:GetService("GuiService")
+local UIS=game:GetService("UserInputService")
+local Reader={}
+function Reader.start(remote)
+    local gui=Instance.new("ScreenGui");gui.Name="KinCityStoryReader";gui.ResetOnSpawn=false
+    gui.DisplayOrder=16;gui.Enabled=false;gui.Parent=Players.LocalPlayer:WaitForChild("PlayerGui")
+    local card=Instance.new("Frame");card.AnchorPoint=Vector2.new(0.5,0.5);card.Position=UDim2.fromScale(0.5,0.5)
+    card.Size=UDim2.fromScale(0.9,0.8);card.BackgroundColor3=Color3.fromRGB(16,47,55);card.Parent=gui
+    local limits=Instance.new("UISizeConstraint");limits.MaxSize=Vector2.new(560,420);limits.Parent=card
+    local corner=Instance.new("UICorner");corner.CornerRadius=UDim.new(0,16);corner.Parent=card
+    local border=Instance.new("UIStroke");border.Color=Color3.fromRGB(197,244,240);border.Transparency=0.4;border.Parent=card
+    local heading=Instance.new("TextLabel");heading.Size=UDim2.new(1,-32,0,56);heading.Position=UDim2.fromOffset(16,8)
+    heading.BackgroundTransparency=1;heading.TextColor3=Color3.fromRGB(197,244,240)
+    heading.Font=Typography.body();heading.TextSize=19;heading.TextWrapped=true;heading.Parent=card
+    local scroll=Instance.new("ScrollingFrame");scroll.Position=UDim2.fromOffset(16,70)
+    scroll.Size=UDim2.new(1,-32,1,-148);scroll.BackgroundTransparency=1;scroll.BorderSizePixel=0
+    scroll.ScrollBarThickness=5;scroll.AutomaticCanvasSize=Enum.AutomaticSize.Y
+    scroll.CanvasSize=UDim2.new();scroll.Selectable=true;scroll.Parent=card
+    local body=Instance.new("TextLabel");body.Size=UDim2.new(1,-12,0,0);body.AutomaticSize=Enum.AutomaticSize.Y
+    body.BackgroundTransparency=1;body.TextColor3=Color3.fromRGB(244,239,231);body.Font=Typography.body()
+    body.TextSize=18;body.TextWrapped=true;body.TextXAlignment=Enum.TextXAlignment.Left;body.TextYAlignment=Enum.TextYAlignment.Top;body.Parent=scroll
+    local close=Instance.new("TextButton");close.AnchorPoint=Vector2.new(0.5,1)
+    close.Position=UDim2.new(0.5,0,1,-16);close.Size=UDim2.new(1,-32,0,46)
+    close.BackgroundColor3=Color3.fromRGB(30,104,100);close.TextColor3=Color3.fromRGB(197,244,240)
+    close.Font=Typography.body();close.TextSize=17;close.Text="Continuer la visite";close.Parent=card
+    local previous=nil
+    local function dismiss()
+        gui.Enabled=false
+        if GuiService.SelectedObject==close or GuiService.SelectedObject==scroll then
+            GuiService.SelectedObject=if previous and previous.Parent then previous else nil
+        end
+    end
+    close.Activated:Connect(dismiss)
+    UIS.InputBegan:Connect(function(input)
+        if gui.Enabled and (input.KeyCode==Enum.KeyCode.Escape or input.KeyCode==Enum.KeyCode.ButtonB) then dismiss() end
+    end)
+    remote.OnClientEvent:Connect(function(payload)
+        if type(payload)~="table" or payload.status~="LOCAL_STORY" then return end
+        if not gui.Enabled then previous=GuiService.SelectedObject end
+        heading.Text=payload.title or "La bibliothèque"
+        body.Text=(payload.message or "").."\n\n"..(payload.notice or "")
+        scroll.CanvasPosition=Vector2.zero;gui.Enabled=true
+        if UIS.GamepadEnabled then GuiService.SelectedObject=scroll end
+    end)
+end
+return Reader
+
+]])
+source(client,"LocalPerformanceProbeV29","ModuleScript",[[
+--!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
+-- Mesure volontaire sur 20 secondes en local. Aucune transmission ni stockage.
+local Players=game:GetService("Players")
+local RunService=game:GetService("RunService")
+local Probe={}
+function Probe.start()
+    local player=Players.LocalPlayer
+    local gui=Instance.new("ScreenGui");gui.Name="KinCityPerformanceLocalV29"
+    gui.ResetOnSpawn=false;gui.DisplayOrder=10;gui.Parent=player:WaitForChild("PlayerGui")
+    local panel=Instance.new("Frame");panel.Size=UDim2.fromOffset(315,238)
+    panel.BackgroundColor3=Color3.fromRGB(18,45,53);panel.Visible=false;panel.Parent=gui
+    local title=Instance.new("TextLabel");title.BackgroundTransparency=1;title.TextWrapped=true
+    title.Text="PERFORMANCE · MESURE LOCALE 20 s";title.Font=Typography.body()
+    title.TextSize=15;title.TextColor3=Color3.fromRGB(197,244,240)
+    title.Position=UDim2.fromOffset(12,10);title.Size=UDim2.new(1,-24,0,39);title.Parent=panel
+    local result=Instance.new("TextLabel");result.BackgroundTransparency=1;result.TextWrapped=true
+    result.Text="Mesure facultative, sur cet appareil uniquement.\nNe déplacez pas la caméra ni la qualité pendant la mesure pour comparer deux scènes."
+    result.TextSize=14;result.Font=Typography.body()
+    result.TextColor3=Color3.fromRGB(239,247,244);result.Size=UDim2.new(1,-24,1,-107)
+    result.Position=UDim2.fromOffset(12,49);result.TextYAlignment=Enum.TextYAlignment.Top
+    result.Parent=panel
+    local button=Instance.new("TextButton");button.Text="Lancer 20 secondes"
+    button.Size=UDim2.new(1,-24,0,40);button.Position=UDim2.new(0,12,1,-49)
+    button.BackgroundColor3=Color3.fromRGB(30,104,100)
+    button.TextColor3=Color3.fromRGB(197,244,240);button.TextSize=14
+    button.Font=Typography.body();button.Parent=panel
+    local busy=false
+    local measurementConnection=nil
+    local zoneConnection=nil
+    local qualityConnection=nil
+    local function disconnect()
+        if measurementConnection then measurementConnection:Disconnect();measurementConnection=nil end
+        if zoneConnection then zoneConnection:Disconnect();zoneConnection=nil end
+        if qualityConnection then qualityConnection:Disconnect();qualityConnection=nil end
+        busy=false
+    end
+    local function percentile(values,p)
+        if #values==0 then return 0 end
+        local i=math.clamp(math.ceil(#values*p),1,#values)
+        return values[i]
+    end
+    button.Activated:Connect(function()
+        if busy then
+            disconnect()
+            button.Text="Relancer 20 secondes"
+            result.Text="Mesure annulée. Aucune donnée conservée."
+            return
+        end
+        busy=true;button.Text="Annuler la mesure"
+        -- time() est le temps réel écoulé côté Roblox, contrairement à os.clock() (CPU).
+        local started=time()
+        local zone=player:GetAttribute("KinZone") or "city"
+        local quality=player:GetAttribute("KinCityLocalQuality") or "STANDARD"
+        local changed=false
+        zoneConnection=player:GetAttributeChangedSignal("KinZone"):Connect(function()changed=true end)
+        qualityConnection=player:GetAttributeChangedSignal("KinCityLocalQuality"):Connect(function()changed=true end)
+        local frames={}
+        local interrupted=false
+        local lastDisplay=0
+        measurementConnection=RunService.RenderStepped:Connect(function(dt)
+            local elapsed=time()-started
+            if (player:GetAttribute("KinZone") or "city")~=zone
+                or (player:GetAttribute("KinCityLocalQuality") or "STANDARD")~=quality then changed=true end
+            if dt>0 and dt<1 then table.insert(frames,dt*1000)
+            else interrupted=true end
+            if elapsed<20 then
+                -- Une modification du texte à chaque image fausserait inutilement la mesure.
+                if elapsed-lastDisplay>=0.4 then
+                    result.Text=string.format("Enregistrement local · %.1f / 20 s\nZone : %s · Qualité : %s\nAppuyer de nouveau pour annuler.",elapsed,zone,quality)
+                    lastDisplay=elapsed
+                end
+                return
+            end
+            disconnect()
+            table.sort(frames)
+            local total=0
+            for _,ms in ipairs(frames) do total+=ms end
+            local mean=if #frames>0 then total/#frames else 0
+            local fps=if mean>0 then 1000/mean else 0
+            local changedText=if changed then "⚠ Zone ou qualité modifiée : mesure non comparable."
+                else "Zone et qualité stables sur l'intervalle observé."
+            result.Text=string.format("%d images · %.1f secondes\nFPS moyen : %.1f\nTemps/image médian : %.2f ms\nTemps/image p95 : %.2f ms\n%s\nAucune donnée envoyée.",
+                #frames,elapsed,fps,percentile(frames,0.5),percentile(frames,0.95),changedText)
+            if #frames<120 or interrupted then result.Text..="\n⚠ Mesure perturbée (pause / arrière-plan)." end
+            button.Text="Relancer 20 secondes"
+        end)
+    end)
+    panel:GetPropertyChangedSignal("Visible"):Connect(function()
+        if not panel.Visible and busy then
+            disconnect()
+            button.Text="Relancer 20 secondes"
+            result.Text="Mesure interrompue à la fermeture de l'outil."
+        end
+    end)
+    require(script.Parent.KinCityMenu).register("performance","Mesurer les FPS (20 s)",nil,panel)
+end
+return Probe
+
+]])
 source(client,"LocalVisualDirectorV22","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Ambiance locale par visiteur : jamais de RemoteEvent ni d'altération du gameplay.
 -- Trois qualités CHOISIES par le joueur; le mode standard reste la valeur initiale.
 local Lighting=game:GetService("Lighting")
@@ -15912,7 +18906,7 @@ local Players=game:GetService("Players")
 local UserInputService=game:GetService("UserInputService")
 local TweenService=game:GetService("TweenService")
 local RS=game:GetService("ReplicatedStorage")
-local Origins=require(RS:WaitForChild("KinCityShared"):WaitForChild("InteriorOrigins"))
+local Visual=require(RS:WaitForChild("KinCityShared"):WaitForChild("VisualConfig"))
 local player=Players.LocalPlayer
 local Director={}
 local presets={
@@ -15927,7 +18921,7 @@ local zones={
     justice_palace=Color3.fromRGB(242,236,221),innovation_lab=Color3.fromRGB(205,243,249),
     museum=Color3.fromRGB(247,227,246),orgo_center=Color3.fromRGB(216,239,244),
 }
-local quality="STANDARD"
+local quality=Visual.profile
 local currentZone=""
 local cfx:ColorCorrectionEffect
 local bloom:BloomEffect
@@ -15985,7 +18979,7 @@ function Director.start()
     button.BackgroundTransparency=0.13
     button.TextColor3=Color3.fromRGB(226,249,245)
     button.TextSize=12
-    button.Font=Enum.Font.GothamBold
+    button.Font=Typography.body()
     button.AutoButtonColor=true
     button.Parent=gui
     local corner=Instance.new("UICorner")
@@ -15999,24 +18993,12 @@ function Director.start()
     UserInputService.InputBegan:Connect(function(input,processed)
         if not processed and input.KeyCode==Enum.KeyCode.V then cycle() end
     end)
-    apply("",false)
-    task.spawn(function()
-        while gui.Parent do
-            local character=player.Character
-            local root=character and character:FindFirstChild("HumanoidRootPart")
-            if root and root:IsA("BasePart") then
-                local zone=""
-                -- Seuls les centres intérieurs sont examinés; la Place extérieure garde son rendu neutre.
-                for key,position in pairs(Origins) do
-                    if (root.Position-Vector3.new(position[1],position[2],position[3])).Magnitude<340 then
-                        zone=key
-                        break
-                    end
-                end
-                if currentZone~=zone then currentZone=zone;apply(zone,true) end
-            end
-            task.wait(2.5)
-        end
+    require(script.Parent.KinCityMenu).registerAction("quality","Qualité cristal [V]",button,cycle)
+    currentZone=player:GetAttribute("KinZone") or ""
+    apply(currentZone,false)
+    player:GetAttributeChangedSignal("KinZone"):Connect(function()
+        local zone=player:GetAttribute("KinZone") or ""
+        if currentZone~=zone then currentZone=zone;apply(zone,true) end
     end)
 end
 return Director
@@ -16024,6 +19006,7 @@ return Director
 ]])
 source(client,"MapHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Guide et carte client; exploite le plan partagé, sans RemoteEvent ni réseau externe.
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
@@ -16046,7 +19029,7 @@ local MapHud={}
 local function label(parent,text,pos,size,bold)
     local t=Instance.new("TextLabel")
     t.BackgroundTransparency=1;t.Text=text;t.Size=size;t.Position=pos
-    t.Font=bold and Enum.Font.GothamBold or Enum.Font.Gotham
+    t.Font=bold and Typography.body() or Typography.body()
     t.TextSize=bold and 16 or 12;t.TextColor3=Color3.fromRGB(238,240,231)
     t.TextWrapped=true;t.TextXAlignment=Enum.TextXAlignment.Left
     t.Parent=parent
@@ -16074,7 +19057,7 @@ function MapHud.start()
     round(head,10)
     label(head,"KIN CITY",UDim2.fromOffset(12,3),UDim2.fromOffset(235,25),true)
     local area=label(head,"Explore la ville • M pour la carte",UDim2.fromOffset(12,29),UDim2.fromOffset(258,22),false)
-    local toggle=Instance.new("TextButton");toggle.Name="Carte";toggle.Text="CARTE  [M]";toggle.Font=Enum.Font.GothamBold;toggle.TextSize=13;toggle.TextColor3=Color3.fromRGB(245,245,241)
+    local toggle=Instance.new("TextButton");toggle.Name="Carte";toggle.Text="CARTE  [M]";toggle.Font=Typography.body();toggle.TextSize=13;toggle.TextColor3=Color3.fromRGB(245,245,241)
     toggle.Size=UDim2.fromOffset(114,38);toggle.Position=UDim2.new(1,-128,0,82);toggle.BackgroundColor3=Color3.fromRGB(40,94,99);toggle.Parent=gui;round(toggle,10)
     local window=Instance.new("Frame");window.Name="Carte";window.Size=UDim2.fromOffset(308,388);window.AnchorPoint=Vector2.new(1,0);window.Position=UDim2.new(1,-14,0,130);window.BackgroundColor3=Color3.fromRGB(23,43,50);window.BackgroundTransparency=0.03;window.Visible=false;window.Parent=gui;round(window,14)
     label(window,"PLAN DE KIN CITY",UDim2.fromOffset(15,10),UDim2.fromOffset(275,26),true)
@@ -16152,7 +19135,7 @@ function MapHud.start()
     zoom.Position=UDim2.fromOffset(13,324)
     zoom.BackgroundColor3=Color3.fromRGB(53,107,109)
     zoom.TextColor3=Color3.fromRGB(241,238,216)
-    zoom.Font=Enum.Font.GothamBold;zoom.TextSize=12;zoom.Text="VILLE  ·  Voir l'archipel"
+    zoom.Font=Typography.body();zoom.TextSize=12;zoom.Text="VILLE  ·  Voir l'archipel"
     zoom.Parent=window;round(zoom,7)
     zoom.Activated:Connect(function()
         scale=if scale==1050 then 1850 else 1050
@@ -16161,9 +19144,10 @@ function MapHud.start()
             item.dot.Position=UDim2.fromScale(0.5+item.x/scale,0.5+item.z/scale)
         end
     end)
-    label(window,"M : carte  ·  N : destinations  ·  E : interagir",UDim2.fromOffset(15,356),UDim2.fromOffset(286,21),false)
+    label(window,"Menu Kin City  ·  M : carte  ·  N : lieux  ·  H : gare",UDim2.fromOffset(15,356),UDim2.fromOffset(286,21),false)
     local function flip()window.Visible=not window.Visible end
     toggle.Activated:Connect(flip)
+    require(script.Parent.KinCityMenu).register("map","Carte [M]",toggle,window,flip)
     UIS.InputBegan:Connect(function(input,processed)
         if not processed and input.KeyCode==Enum.KeyCode.M then flip() end
     end)
@@ -16190,6 +19174,7 @@ return MapHud
 ]])
 source(client,"PlaceIdentityHudV26","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Guide propre à une Place; ne présente jamais la carte de la ville au milieu d'une institution.
 local Players=game:GetService("Players")
 local RS=game:GetService("ReplicatedStorage")
@@ -16224,18 +19209,18 @@ function Hud.start()
  text.BackgroundTransparency=1
  text.TextColor3=Color3.fromRGB(237,253,252)
  text.TextScaled=true
- text.Font=Enum.Font.GothamBold
+ text.Font=Typography.body()
  text.Text=names[key] or key
  text.Parent=frame
  local sub=Instance.new("TextLabel")
  sub.Name="Statut du passage"
  sub.BackgroundTransparency=1
- sub.Text=if Runtime.mode=="SPLIT_PREVIEW" then "Aperçu indépendant • passages actifs après publication" else "Place indépendante • entrées et sorties par les portes"
+ sub.Text=if Runtime.mode=="SPLIT_PREVIEW" then "Aperçu non publié : visites séparées • portes inter-Places indisponibles" else "Place indépendante • entrées et sorties par les portes"
  sub.Position=UDim2.new(0,0,1,2)
  sub.Size=UDim2.fromOffset(325,18)
  sub.TextSize=11
  sub.TextColor3=Color3.fromRGB(232,217,175)
- sub.Font=Enum.Font.Gotham
+ sub.Font=Typography.body()
  sub.Parent=frame
 end
 return Hud
@@ -16243,6 +19228,7 @@ return Hud
 ]])
 source(client,"RouteGuide","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Guide de lieux : panneau cliquable et indication d'azimut / distance.
 -- Fonctionne même sans kOA, sans accès HTTP et sans serveur RemoteEvent.
 local Players=game:GetService("Players")
@@ -16269,7 +19255,7 @@ end
 local function text(parent,value,size,position,bold)
     local l=Instance.new("TextLabel")
     l.BackgroundTransparency=1;l.Text=value;l.TextWrapped=true
-    l.Font=bold and Enum.Font.GothamBold or Enum.Font.Gotham
+    l.Font=bold and Typography.body() or Typography.body()
     l.TextColor3=colors.text;l.TextSize=bold and 16 or 13
     l.Size=size;l.Position=position;l.TextXAlignment=Enum.TextXAlignment.Left
     l.Parent=parent
@@ -16277,11 +19263,21 @@ local function text(parent,value,size,position,bold)
 end
 local pathsByBuilding={}
 for _,walk in ipairs(Plan.pedestrian_paths) do pathsByBuilding[walk.building_id]=walk end
+-- Projection sur un segment du parcours public : distance restant sur les virages,
+-- sans traverser fictivement les obstacles en ligne droite.
 local function directionForWalk(playerPosition,path)
-    if not path then return nil,math.huge end
+    if not path or #path.path_xyz_studs<2 then return nil,math.huge,nil end
     local points=path.path_xyz_studs
-    local bestDistance=math.huge
+    local nearest=math.huge
+    local remaining=nil
     local nextTarget=nil
+    local after={}
+    after[#points]=0
+    for i=#points-1,1,-1 do
+        local a,b=points[i],points[i+1]
+        local segmentLength=math.sqrt((b[1]-a[1])^2+(b[3]-a[3])^2)
+        after[i]=after[i+1]+segmentLength
+    end
     for i=2,#points do
         local a=Vector3.new(points[i-1][1],playerPosition.Y,points[i-1][3])
         local b=Vector3.new(points[i][1],playerPosition.Y,points[i][3])
@@ -16289,18 +19285,21 @@ local function directionForWalk(playerPosition,path)
         local lengthSq=segment:Dot(segment)
         if lengthSq>0.1 then
             local t=math.clamp((playerPosition-a):Dot(segment)/lengthSq,0,1)
-            local near=a+segment*t
-            local dist=(near-playerPosition).Magnitude
-            if dist<bestDistance then
-                bestDistance=dist
-                local pointIndex=i
-                if (b-playerPosition).Magnitude<8 and i<#points then pointIndex=i+1 end
-                nextTarget=Vector3.new(points[pointIndex][1],playerPosition.Y,points[pointIndex][3])
+            local projected=a+segment*t
+            local gap=(projected-playerPosition).Magnitude
+            if gap<nearest then
+                nearest=gap
+                local index=i
+                if (b-playerPosition).Magnitude<8 and i<#points then index=i+1 end
+                -- Écart important : guider d'abord vers le sentier, pas à travers un virage.
+                nextTarget=if gap>18 then projected else Vector3.new(points[index][1],playerPosition.Y,points[index][3])
+                remaining=gap+(1-t)*math.sqrt(lengthSq)+after[i]
             end
         end
     end
-    return nextTarget,bestDistance
+    return nextTarget,nearest,remaining
 end
+
 local names={}
 for _,b in ipairs(Buildings) do names[b.building_id]=b.name end
 local sorted={}
@@ -16344,11 +19343,18 @@ for _,workshop in ipairs(UrbanV14Destinations.workshops) do
     names[workshop.id]=workshop.title.." · Trois étapes"
     table.insert(sorted,{building_id=workshop.id,center_studs=workshop.center_studs,isPublicAttraction=true})
 end
-table.sort(sorted,function(a,b)return a.building_id<b.building_id end)
+-- Les huit institutions précèdent les nombreuses attractions secondaires.
+local mainIds={}
+for _,b in ipairs(Buildings) do mainIds[b.building_id]=true end
+table.sort(sorted,function(a,b)
+    local aa,bb=mainIds[a.building_id] and 0 or 1,mainIds[b.building_id] and 0 or 1
+    if aa~=bb then return aa<bb end
+    return (names[a.building_id] or a.building_id)<(names[b.building_id] or b.building_id)
+end)
 local function createButton(parent,title,y)
     local b=Instance.new("TextButton")
     b.Size=UDim2.new(1,-20,0,40);b.Position=UDim2.fromOffset(10,y)
-    b.BackgroundColor3=colors.card;b.Font=Enum.Font.GothamMedium
+    b.BackgroundColor3=colors.card;b.Font=Typography.body()
     b.TextColor3=colors.text;b.TextSize=13;b.TextWrapped=true
     b.Text=title;b.Parent=parent;rounded(b,7)
     return b
@@ -16366,51 +19372,104 @@ function Guide.start()
     toggle.Position=UDim2.new(0,17,0,92)
     toggle.BackgroundColor3=colors.card
     toggle.Text="LIEUX [N]"
-    toggle.Font=Enum.Font.GothamBold
+    toggle.Font=Typography.body()
     toggle.TextColor3=colors.text
     toggle.TextSize=13
     toggle.Parent=gui;rounded(toggle,8)
     local panel=Instance.new("Frame")
-    panel.Size=UDim2.new(0,294,0,437)
+    panel.Size=UDim2.fromOffset(300,456)
     panel.Position=UDim2.fromOffset(15,141)
     panel.BackgroundColor3=colors.background
     panel.Visible=false;panel.Parent=gui;rounded(panel,12)
     local heading=text(panel,"DESTINATIONS",UDim2.new(1,-20,0,32),UDim2.fromOffset(12,11),true)
-    local selected=sorted[1]
+    local selected=nil
     local buttons={}
+    local search=Instance.new("TextBox")
+    search.Name="Rechercher une destination"
+    search.PlaceholderText="Rechercher un lieu…"
+    search.Text="";search.ClearTextOnFocus=false
+    search.TextColor3=colors.text;search.PlaceholderColor3=Color3.fromRGB(178,208,203)
+    search.BackgroundColor3=colors.card;search.Font=Typography.body()
+    search.TextSize=14;search.Size=UDim2.new(1,-22,0,36)
+    search.Position=UDim2.fromOffset(11,47);search.Parent=panel;rounded(search,7)
     local list=Instance.new("ScrollingFrame")
     list.BackgroundTransparency=1
     list.BorderSizePixel=0
-    list.Position=UDim2.fromOffset(0,48)
-    list.Size=UDim2.new(1,0,1,-104)
+    list.Position=UDim2.fromOffset(0,91)
+    list.Size=UDim2.new(1,0,1,-165)
     list.ScrollBarThickness=5
     list.ScrollBarImageColor3=colors.highlight
     list.CanvasSize=UDim2.fromOffset(0,#sorted*48+7)
     list.Parent=panel
-    local status=text(panel,"",UDim2.new(1,-26,0,49),UDim2.new(0,13,1,-54),false)
+    local status=text(panel,"",UDim2.new(1,-26,0,38),UDim2.new(0,13,1,-69),false)
+    local clear=Instance.new("TextButton")
+    clear.Name="Annuler la destination";clear.Text="✕  Effacer la destination"
+    clear.Size=UDim2.new(1,-26,0,27);clear.Position=UDim2.new(0,13,1,-29)
+    clear.BackgroundColor3=colors.card;clear.TextColor3=colors.text
+    clear.TextSize=12;clear.Font=Typography.body();clear.Parent=panel;rounded(clear,6)
     local guidance=Instance.new("Frame")
     guidance.Name="Direction"
     guidance.BackgroundColor3=colors.background
     guidance.BackgroundTransparency=0.1
     guidance.Size=UDim2.new(0,280,0,47)
     guidance.Position=UDim2.new(0.5,-140,0,15)
-    guidance.Parent=gui;rounded(guidance,11)
+    guidance.Parent=gui;guidance.Visible=false;rounded(guidance,11)
     local navLabel=text(guidance,"",UDim2.new(1,-20,1,-8),UDim2.fromOffset(10,4),false)
     navLabel.TextSize=13
+    local dismiss=Instance.new("TextButton")
+    dismiss.Name="Masquer le guide";dismiss.Text="✕";dismiss.Font=Typography.body()
+    dismiss.TextColor3=colors.text;dismiss.BackgroundColor3=colors.card
+    dismiss.Size=UDim2.fromOffset(30,29);dismiss.Position=UDim2.new(1,-33,0,8)
+    dismiss.Parent=guidance;rounded(dismiss,7)
+    navLabel.Size=UDim2.new(1,-51,1,-8)
+    local function clearDestination()
+        selected=nil
+        if player:GetAttribute("KinGuideMode")=="route" then player:SetAttribute("KinGuideMode","none") end
+        guidance.Visible=false
+        for _,item in ipairs(buttons) do item.BackgroundColor3=colors.card end
+    end
+    dismiss.Activated:Connect(clearDestination)
+    clear.Activated:Connect(clearDestination)
     for i,st in ipairs(sorted) do
         local b=createButton(list,names[st.building_id] or st.building_id,5+(i-1)*47)
         buttons[i]=b
         b.Activated:Connect(function()
             selected=st
+            player:SetAttribute("KinGuideMode","route")
             for j,button in ipairs(buttons) do
                 button.BackgroundColor3=j==i and colors.highlight or colors.card
             end
             panel.Visible=false
+            guidance.Visible=true
         end)
     end
-    buttons[1].BackgroundColor3=colors.highlight
-    local function togglePanel()panel.Visible=not panel.Visible end
+    local filteredCount=#buttons
+    local function updateResults()
+        local query=string.lower(search.Text)
+        local visible=0
+        for i,st in ipairs(sorted) do
+            local caption=names[st.building_id] or st.building_id
+            local match=query=="" or string.find(string.lower(caption),query,1,true)~=nil
+                or string.find(string.lower(st.building_id),query,1,true)~=nil
+            buttons[i].Visible=match
+            if match then
+                buttons[i].Position=UDim2.fromOffset(10,5+visible*47)
+                visible+=1
+            end
+        end
+        filteredCount=visible
+        list.CanvasSize=UDim2.fromOffset(0,visible*47+10)
+        status.Text=if visible==0 then "Aucune destination trouvée." else "8 institutions en tête · Choisir une destination."
+    end
+    search:GetPropertyChangedSignal("Text"):Connect(updateResults)
+    updateResults()
+    navLabel.Text="Bienvenue · Bibliothèque : première visite facultative"
+    local function togglePanel()
+        panel.Visible=not panel.Visible
+        if panel.Visible then guidance.Visible=selected~=nil and player:GetAttribute("KinGuideMode")=="route" end
+    end
     toggle.Activated:Connect(togglePanel)
+    require(script.Parent.KinCityMenu).register("destinations","Destinations [N]",toggle,panel,togglePanel)
     UIS.InputBegan:Connect(function(input,processed)
         if processed then return end
         if input.KeyCode==Enum.KeyCode.N then togglePanel() end
@@ -16421,6 +19480,11 @@ function Guide.start()
         if elapsed<0.25 then return end
         elapsed=0
         local current=player:GetAttribute("KinZone") or "city"
+        guidance.Visible=selected~=nil and player:GetAttribute("KinGuideMode")=="route" and current=="city"
+        if not selected then
+            status.Text=if filteredCount==0 then "Aucune destination trouvée." else "Choisis un lieu ou la première visite facultative."
+            return
+        end
         if current~="city" then
             navLabel.Text="INTÉRIEUR · Parcours libre"
             status.Text="Reviens à l'extérieur pour suivre une destination."
@@ -16432,18 +19496,20 @@ function Guide.start()
         local p=root.Position
         local destination=Vector3.new(selected.center_studs[1],p.Y,selected.center_studs[3])
         local distance=(destination-p).Magnitude
-        local waypoint,pathGap=directionForWalk(p,pathsByBuilding[selected.building_id])
+        local waypoint,pathGap,routeRemaining=directionForWalk(p,pathsByBuilding[selected.building_id])
         local target=waypoint or destination
         local delta=target-p
         local bearing=math.deg(math.atan2(delta.X,-delta.Z))%360
         local cardinal=if bearing<45 or bearing>=315 then "N" elseif bearing<135 then "E" elseif bearing<225 then "S" else "O"
-        local name=names[selected.building_id] or "Institution"
-        if distance<19 then
+        local name=names[selected.building_id] or "Destination"
+        local remaining=routeRemaining or distance
+        local arrived=if routeRemaining then remaining<14 and pathGap<16 else distance<19
+        if arrived then
             navLabel.Text="ARRIVÉE · "..name
-            status.Text=if selected.isResidential then "Bienvenue dans le quartier habité !" elseif selected.isIsland then "Bienvenue sur l’île !" elseif selected.isMarina then "Bienvenue au port !" elseif selected.isCommunity then "Bienvenue dans l’espace public !" elseif selected.isPublicAttraction then "Tu es au pavillon scientifique." else "Tu es à proximité de l’institution."
+            status.Text=if selected.isResidential then "Bienvenue dans le quartier habité !" elseif selected.isIsland then "Bienvenue sur l’île !" elseif selected.isMarina then "Bienvenue au port !" elseif selected.isCommunity then "Bienvenue dans l’espace public !" elseif selected.isPublicAttraction then "Tu es à proximité de ce lieu public." else "Tu es près de l'entrée de l’institution."
         else
-            navLabel.Text=string.format("%s · %d studs %s",name,math.floor(distance+0.5),cardinal)
-            status.Text=if selected.isResidential then "Rejoins les cours habitées • direction "..math.floor(bearing).."°" elseif selected.isIsland then "Rejoins une passerelle ou un ferry • direction "..math.floor(bearing).."°" elseif selected.isMarina then "Rejoins la promenade côtière • direction "..math.floor(bearing).."°" elseif selected.isCommunity then "Rejoins la halle ou la maison communautaire • direction "..math.floor(bearing).."°" elseif selected.isPublicAttraction then "Explore le pavillon • direction "..math.floor(bearing).."°" elseif pathGap>30 then "Rejoins le sentier balisé · "..math.floor(pathGap).." studs" else "Suis le jalonnement doré · direction "..math.floor(bearing).."°"
+            navLabel.Text=string.format("%s · %d studs %s",name,math.floor(remaining+0.5),cardinal)
+            status.Text=if selected.isResidential then "Rejoins les cours habitées • direction "..math.floor(bearing).."°" elseif selected.isIsland then "Rejoins une passerelle ou un ferry • direction "..math.floor(bearing).."°" elseif selected.isMarina then "Rejoins la promenade côtière • direction "..math.floor(bearing).."°" elseif selected.isCommunity then "Rejoins la halle ou la maison communautaire • direction "..math.floor(bearing).."°" elseif selected.isPublicAttraction then "Rejoins ce lieu public • direction "..math.floor(bearing).."°" elseif pathGap>30 then "Rejoins le sentier balisé · "..math.floor(pathGap).." studs" elseif routeRemaining then "Distance sur le chemin · direction "..math.floor(bearing).."°" else "Distance directe indicative · direction "..math.floor(bearing).."°"
         end
     end)
 end
@@ -16452,6 +19518,7 @@ return Guide
 ]])
 source(client,"SkyTourHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Carnet des stations de quatrième niveau; progression locale à la session.
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
@@ -16468,7 +19535,7 @@ local function title(parent,text,y,size)
     l.BackgroundTransparency=1
     l.Position=UDim2.fromOffset(14,y)
     l.Size=UDim2.new(1,-28,0,size)
-    l.Font=Enum.Font.GothamSemibold
+    l.Font=Typography.body()
     l.TextSize=if size>=32 then 19 else 14
     l.TextColor3=Color3.fromRGB(242,234,211)
     l.TextXAlignment=Enum.TextXAlignment.Left
@@ -16491,7 +19558,7 @@ function SkyHud.start(remote)
     button.Position=UDim2.new(1,-15,0,360)
     button.Size=UDim2.fromOffset(121,38)
     button.Text="Ciel · P"
-    button.Font=Enum.Font.GothamBold
+    button.Font=Typography.body()
     button.TextSize=14
     button.TextColor3=Color3.fromRGB(252,248,229)
     button.BackgroundColor3=Color3.fromRGB(39,82,106)
@@ -16526,6 +19593,7 @@ function SkyHud.start(remote)
     rounded(fill,4)
     local toggle=function()panel.Visible=not panel.Visible end
     button.Activated:Connect(toggle)
+    require(script.Parent.KinCityMenu).register("sky","Pavillons [P]",button,panel,toggle)
     UIS.InputBegan:Connect(function(input,handled)
         if not handled and input.KeyCode==Enum.KeyCode.P then toggle() end
     end)
@@ -16547,6 +19615,7 @@ return SkyHud
 ]])
 source(client,"TrailHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Compteur de promenade local, lisible au clavier / tactile / manette.
 local Players=game:GetService("Players")
 local player=Players.LocalPlayer
@@ -16563,7 +19632,7 @@ function Tracker.start()
     local label=Instance.new("TextLabel")
     label.Size=UDim2.new(1,-18,1,-8);label.Position=UDim2.fromOffset(9,4)
     label.BackgroundTransparency=1;label.TextColor3=Color3.fromRGB(249,242,218)
-    label.TextSize=16;label.Font=Enum.Font.GothamBold;label.TextXAlignment=Enum.TextXAlignment.Left
+    label.TextSize=16;label.Font=Typography.body();label.TextXAlignment=Enum.TextXAlignment.Left
     label.Parent=chip
     local function render()
         local count=player:GetAttribute("KinTrailCount") or 0
@@ -16579,6 +19648,7 @@ return Tracker
 ]])
 source(client,"TramRideHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Indicateur de trajet non bloquant; le joueur peut admirer la ville pendant le trajet.
 local Players=game:GetService("Players")
 local TweenService=game:GetService("TweenService")
@@ -16596,7 +19666,7 @@ function UI.start(remote)
     local round=Instance.new("UICorner");round.CornerRadius=UDim.new(0,13);round.Parent=frame
     local title=Instance.new("TextLabel")
     title.Size=UDim2.new(1,-28,0,39);title.Position=UDim2.fromOffset(14,3)
-    title.BackgroundTransparency=1;title.TextXAlignment=Enum.TextXAlignment.Left;title.Font=Enum.Font.GothamBold
+    title.BackgroundTransparency=1;title.TextXAlignment=Enum.TextXAlignment.Left;title.Font=Typography.body()
     title.TextColor3=Color3.fromRGB(246,241,221);title.TextSize=16;title.Text="Tramway Kin City"
     title.Parent=frame
     local track=Instance.new("Frame")
@@ -16628,9 +19698,44 @@ end
 return UI
 
 ]])
+source(client,"TravelTransition","ModuleScript",[[
+--!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
+local Players=game:GetService("Players")
+local Transition={}
+function Transition.start(remote)
+    local gui=Instance.new("ScreenGui")
+    gui.Name="KinCityTravelStatus";gui.ResetOnSpawn=false;gui.DisplayOrder=12
+    gui.Parent=Players.LocalPlayer:WaitForChild("PlayerGui")
+    local label=Instance.new("TextLabel")
+    label.AnchorPoint=Vector2.new(0.5,1)
+    label.Position=UDim2.new(0.5,0,1,-75)
+    label.Size=UDim2.new(0.85,0,0,56)
+    label.BackgroundColor3=Color3.fromRGB(30,104,100)
+    label.TextColor3=Color3.fromRGB(197,244,240)
+    label.Font=Typography.body();label.TextSize=17;label.TextWrapped=true
+    label.Visible=false;label.Parent=gui
+    local corner=Instance.new("UICorner");corner.CornerRadius=UDim.new(0,12);corner.Parent=label
+    local constraint=Instance.new("UISizeConstraint");constraint.MaxSize=Vector2.new(500,56);constraint.Parent=label
+    remote.OnClientEvent:Connect(function(payload)
+        if type(payload)~="table" then return end
+        if payload.kind=="travel.pending.v1" then
+            label.Text="Passage vers "..tostring(payload.destination or "votre destination").."…"
+            label.Visible=true
+        elseif payload.kind=="travel.failure.v1" or payload.kind=="travel.complete.v1" then
+            label.Visible=false
+        end
+    end)
+    Players.LocalPlayer.CharacterAdded:Connect(function() label.Visible=false end)
+end
+return Transition
+
+]])
 source(client,"VistaCamera","ModuleScript",[[
 --!strict
--- V5 : points de vue panoramiques locaux. Aucun kOA, HTTP ni asset externe.
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
+-- V30 : sortie anticipée des panoramas, restauration native sans flash entre zones.
+-- Aucun kOA, HTTP ni asset externe.
 local Players=game:GetService("Players")
 local UserInputService=game:GetService("UserInputService")
 local Workspace=game:GetService("Workspace")
@@ -16639,6 +19744,8 @@ local Vista={}
 local active=false
 local savedType=nil
 local savedFieldOfView=70
+local savedFrame=CFrame.new()
+local savedZone="city"
 local originFrame=CFrame.new()
 local angle=0
 local fieldOfView=58
@@ -16656,10 +19763,19 @@ local function restore()
     if gui then gui.Enabled=false end
     local camera=Workspace.CurrentCamera
     if camera then
-        camera.CameraType=savedType or Enum.CameraType.Custom
-        camera.FieldOfView=savedFieldOfView
         local character=player.Character
         local humanoid=character and character:FindFirstChildOfClass("Humanoid")
+        local root=character and character:FindFirstChild("HumanoidRootPart")
+        camera.CameraType=if savedType==Enum.CameraType.Scriptable then Enum.CameraType.Custom else (savedType or Enum.CameraType.Custom)
+        camera.FieldOfView=savedFieldOfView
+        -- Sur téléportation ou respawn, ne pas réafficher une image de l'ancien lieu.
+        local returnFrame=savedFrame
+        if root and (root.Position-savedFrame.Position).Magnitude>75 then
+            local lookAt=root.Position+Vector3.new(0,2,0)
+            returnFrame=CFrame.lookAt(lookAt+Vector3.new(0,6,14),lookAt)
+        end
+        camera.CFrame=returnFrame
+        camera.Focus=CFrame.new(returnFrame.Position+returnFrame.LookVector*14)
         if humanoid then camera.CameraSubject=humanoid end
     end
 end
@@ -16679,7 +19795,7 @@ local function control(parent,label,x,width,action)
     button.Text=label
     button.TextColor3=Color3.fromRGB(239,243,239)
     button.TextSize=15
-    button.Font=Enum.Font.GothamBold
+    button.Font=Typography.body()
     button.BackgroundColor3=Color3.fromRGB(50,101,111)
     button.Parent=parent
     corner(button,8)
@@ -16697,7 +19813,8 @@ function Vista.start(remote)
     gui=g
     local bar=Instance.new("Frame")
     bar.Size=UDim2.fromOffset(380,119)
-    bar.Position=UDim2.new(0.5,-190,1,-148)
+    bar.AnchorPoint=Vector2.new(0.5,1)
+    bar.Position=UDim2.new(0.5,0,1,-22)
     bar.BackgroundColor3=Color3.fromRGB(28,47,58)
     bar.BackgroundTransparency=0.05
     bar.Parent=g
@@ -16709,7 +19826,7 @@ function Vista.start(remote)
     header.Text="PANORAMA · KIN CITY"
     header.TextSize=17
     header.TextColor3=Color3.fromRGB(241,237,218)
-    header.Font=Enum.Font.GothamBold
+    header.Font=Typography.body()
     header.Parent=bar
     heading=header
     local hint=Instance.new("TextLabel")
@@ -16719,7 +19836,7 @@ function Vista.start(remote)
     hint.Text="Regarder autour · Zoomer · F pour revenir"
     hint.TextColor3=Color3.fromRGB(196,220,219)
     hint.TextSize=12
-    hint.Font=Enum.Font.Gotham
+    hint.Font=Typography.body()
     hint.Parent=bar
     control(bar,"◀",12,54,function()angle=math.clamp(angle-15,-125,125);apply() end)
     control(bar,"▶",72,54,function()angle=math.clamp(angle+15,-125,125);apply() end)
@@ -16732,8 +19849,12 @@ function Vista.start(remote)
         local camera=Workspace.CurrentCamera
         if not camera then return end
         if active then restore() end
+        -- Ne pas prendre le contrôle d'une cinématique déjà en mode Scriptable.
+        if camera.CameraType==Enum.CameraType.Scriptable then return end
         savedType=camera.CameraType
         savedFieldOfView=camera.FieldOfView
+        savedFrame=camera.CFrame
+        savedZone=player:GetAttribute("KinZone") or "city"
         originFrame=CFrame.lookAt(payload.camera_position,payload.look_at)
         heading.Text=payload.title or "PANORAMA · KIN CITY"
         angle=0
@@ -16744,6 +19865,7 @@ function Vista.start(remote)
     end)
     UserInputService.InputBegan:Connect(function(input,processed)
         if not active then return end
+        if UserInputService:GetFocusedTextBox() then return end
         if input.KeyCode==Enum.KeyCode.Escape or input.KeyCode==Enum.KeyCode.F or input.KeyCode==Enum.KeyCode.ButtonB then
             restore()
         elseif not processed and input.KeyCode==Enum.KeyCode.Left then
@@ -16752,13 +19874,27 @@ function Vista.start(remote)
             angle=math.clamp(angle+15,-125,125);apply()
         end
     end)
+    player.CharacterRemoving:Connect(restore)
     player.CharacterAdded:Connect(restore)
+    player:GetAttributeChangedSignal("KinZone"):Connect(function()
+        if active and (player:GetAttribute("KinZone") or "city")~=savedZone then restore() end
+    end)
+    local function fit()
+        local cam=Workspace.CurrentCamera
+        local viewport=cam and cam.ViewportSize or Vector2.new(800,600)
+        local scale=bar:FindFirstChild("MobileScale")
+        if not scale then scale=Instance.new("UIScale");scale.Name="MobileScale";scale.Parent=bar end
+        scale.Scale=math.clamp((viewport.X-24)/380,0.58,1)
+    end
+    fit()
+    if Workspace.CurrentCamera then Workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(fit) end
 end
 return Vista
 
 ]])
 source(client,"WorkshopHud","ModuleScript",[[
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- V14 · Panneau des expériences à trois étapes; compatible tactile et clavier.
 -- Affiche un état local de session, sans note, score ou accès réseau.
 local Players=game:GetService("Players")
@@ -16778,7 +19914,7 @@ local function label(parent,txt,y,size,bold)
     line.BackgroundTransparency=1
     line.TextColor3=FG
     line.Text=txt;line.TextWrapped=true
-    line.Font=if bold then Enum.Font.GothamBold else Enum.Font.Gotham
+    line.Font=if bold then Typography.body() else Typography.body()
     line.TextSize=size
     line.TextXAlignment=Enum.TextXAlignment.Left
     line.Parent=parent
@@ -16789,7 +19925,7 @@ function WorkshopHud.start(remote)
     gui.Name="KinCityWorkshopHud";gui.ResetOnSpawn=false;gui.DisplayOrder=9
     gui.Parent=Players.LocalPlayer:WaitForChild("PlayerGui")
     local button=Instance.new("TextButton")
-    button.Text="ATELIERS [K]";button.Font=Enum.Font.GothamBold;button.TextSize=12
+    button.Text="ATELIERS [K]";button.Font=Typography.body();button.TextSize=12
     button.TextColor3=FG;button.BackgroundColor3=BG
     button.Position=UDim2.new(1,-141,0,82)
     button.Size=UDim2.fromOffset(126,35);button.Parent=gui;corner(button,9)
@@ -16811,7 +19947,7 @@ function WorkshopHud.start(remote)
         local dot=Instance.new("TextLabel")
         dot.Size=UDim2.fromOffset(78,23)
         dot.Position=UDim2.fromOffset((i-1)*89,0)
-        dot.Text="ÉTAPE "..i;dot.TextSize=11;dot.Font=Enum.Font.GothamBold
+        dot.Text="ÉTAPE "..i;dot.TextSize=11;dot.Font=Typography.body()
         dot.TextColor3=FG;dot.BackgroundColor3=Color3.fromRGB(67,92,96)
         dot.Parent=marks;corner(dot,7);cells[i]=dot
     end
@@ -16819,6 +19955,7 @@ function WorkshopHud.start(remote)
     foot.Size=UDim2.new(1,-26,0,34)
     local function flip()panel.Visible=not panel.Visible end
     button.Activated:Connect(flip)
+    require(script.Parent.KinCityMenu).register("workshops","Ateliers [K]",button,panel,flip)
     UIS.InputBegan:Connect(function(input,handled)
         if not handled and input.KeyCode==Enum.KeyCode.K then flip() end
     end)
@@ -16880,6 +20017,15 @@ if not reply then
     reply.Name="KinCityReply"
     reply.Parent=ReplicatedStorage
 end
+-- Le petit installateur autonome peut déjà fournir le personnage.
+if not game:GetService("ServerScriptService"):FindFirstChild("KinCityKingKlownAvatar") then
+    local avatarConfig=table.clone(require(ReplicatedStorage.KinCityShared.KingKlownConfig))
+    local preservedOwner=script:GetAttribute("KingKlownOwnerUserId")
+    if avatarConfig.ownerUserId==0 and type(preservedOwner)=="number" and preservedOwner>0 then
+        avatarConfig.ownerUserId=preservedOwner
+    end
+    require(script.KingKlownAvatar).start(avatarConfig)
+end
 local state=WorldBuilder.build(true)
 PlayerTravel.setup(state,reply)
 PromptRouter.start(state,reply)
@@ -16891,6 +20037,7 @@ DiscoveryLedger.start(state.world,reply)
 SkyPavilionRuntime.start(state.world,reply)
 InstitutionDiscoveryRuntime.start(state.world,reply)
 LivingExhibitsV23.start(state.world)
+require(script.LibraryJourneyRuntime).start(state.world,reply)
 if state.mode=="LOCAL_UNIVERSE" or state.currentPlace=="city" then
     Citizens.start(state.world)
     NativeR15Citizens.start(state.world)
@@ -16922,7 +20069,15 @@ local Mode=require(ReplicatedStorage:WaitForChild("KinCityShared"):WaitForChild(
 local Routing=require(ReplicatedStorage:WaitForChild("KinCityShared"):WaitForChild("PlaceRouting"))
 local isCity=Mode.mode=="LOCAL_UNIVERSE" or Mode.target_place_key=="city" or Routing.city==game.PlaceId
 local remote=ReplicatedStorage:WaitForChild("KinCityReply")
+require(script.ArrivalCamera).start()
+require(script.KinCityMenu).start()
 require(script.Hud).start(remote)
+require(script.TravelTransition).start(remote)
+require(script.LibraryJourneyGuide).start()
+require(script.LocalPerformanceProbeV29).start()
+require(script.LibraryStoryPanel).start(remote)
+require(script.KingKlownAura).start()
+require(script.KingKlownPerformance).start()
 if isCity then
     require(script.MapHud).start()
     require(script.RouteGuide).start()
@@ -16964,4 +20119,4 @@ local streamingOk, streamingValue=pcall(function() return workspace.StreamingEna
 if streamingOk then
     print("KIN CITY : Workspace.StreamingEnabled = "..tostring(streamingValue).." (paramètre Studio)")
 end
-print("KIN CITY v26 : Place installée séparément, ville allégée et institutions indépendantes; identité sarcelle-cristal, WORLD_STUB.")
+print("KIN CITY v30.0.7 : Place installée séparément, typographie Garamond, ville allégée et institutions indépendantes; identité sarcelle-cristal, WORLD_STUB.")

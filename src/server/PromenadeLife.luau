@@ -63,7 +63,7 @@ local function pavilion(root,base,index,spec)
         part(m,"Dossier",base,Vector3.new(7.1,2,0.45),Vector3.new(x,2.5,-1.7),IRON,Enum.Material.Metal,false)
         ball(m,"Lampe d'ambiance",base,Vector3.new(1.3,1.3,1.3),Vector3.new(x,12.8,-3),accent)
     end
-    F.sign(m,"Enseigne",(base*CFrame.new(0,11,-9.7)).Position,math.deg(math.atan2(-base.LookVector.X,-base.LookVector.Z)),spec[1],20,2.5).CanCollide=false
+    F.sign(m,"Enseigne",(base*CFrame.new(0,12.5,-11.25)).Position,math.deg(math.atan2(-base.LookVector.X,-base.LookVector.Z)),spec[1],20.5,3.2).CanCollide=false
 end
 function Promenade.make(parent,plan)
     local folder=F.folder(parent,"Promenades citoyennes")

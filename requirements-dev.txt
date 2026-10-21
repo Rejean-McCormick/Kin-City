@@ -1,3 +1,7 @@
 jsonschema>=4.20,<5
 numpy>=1.26,<3
 Pillow>=10,<13
+# Régressions comportementales Lua pur et analyse syntaxique Luau v27.
+lupa>=2.8,<3
+tree-sitter>=0.25,<0.27
+tree-sitter-luau>=1.2,<2

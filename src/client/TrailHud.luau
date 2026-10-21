@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Compteur de promenade local, lisible au clavier / tactile / manette.
 local Players=game:GetService("Players")
 local player=Players.LocalPlayer
@@ -15,7 +16,7 @@ function Tracker.start()
     local label=Instance.new("TextLabel")
     label.Size=UDim2.new(1,-18,1,-8);label.Position=UDim2.fromOffset(9,4)
     label.BackgroundTransparency=1;label.TextColor3=Color3.fromRGB(249,242,218)
-    label.TextSize=16;label.Font=Enum.Font.GothamBold;label.TextXAlignment=Enum.TextXAlignment.Left
+    label.TextSize=16;label.Font=Typography.body();label.TextXAlignment=Enum.TextXAlignment.Left
     label.Parent=chip
     local function render()
         local count=player:GetAttribute("KinTrailCount") or 0

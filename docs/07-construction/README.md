@@ -10,4 +10,4 @@
 8. [Contrats Luau](architecture-code-luau.md) — frontières de modules, signatures et erreurs
 9. [Vibe coding](protocole-build-vibe-coding.md) — procédure de contribution
 
-**Lecture stricte :** géométrie+assets dans ce dépôt sont des **définitions cibles**, pas des scènes Roblox actuellement validées. Les fichiers `.rbxl` et les scripts Luau de production ne sont pas inclus.
+**État v27 :** les sources Luau et les installateurs sont inclus. L’utilisateur a confirmé une promenade dans la ville v26. Les modifications v27, les huit intérieurs et les téléportations publiées restent à qualifier dans Roblox; aucun fichier `.rbxl` n’est fourni.

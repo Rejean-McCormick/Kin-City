@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Carnet de promenade local. Aucun score, compte kOA ou stockage serveur.
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
@@ -30,7 +31,7 @@ local function txt(parent,content,size,pos,sz,bold)
     v.Position=pos
     v.BackgroundTransparency=1
     v.Text=content
-    v.Font=bold and Enum.Font.GothamBold or Enum.Font.Gotham
+    v.Font=bold and Typography.body() or Typography.body()
     v.TextSize=sz
     v.TextColor3=Color3.fromRGB(244,241,227)
     v.TextWrapped=true
@@ -49,7 +50,7 @@ function Journal.start()
     btn.Position=UDim2.fromOffset(16,140)
     btn.BackgroundColor3=Color3.fromRGB(45,94,104)
     btn.TextColor3=Color3.fromRGB(241,238,220)
-    btn.Font=Enum.Font.GothamBold
+    btn.Font=Typography.body()
     btn.TextSize=13
     btn.Text="CARNET [J]"
     btn.Parent=gui
@@ -90,6 +91,7 @@ function Journal.start()
     end
     local function flip() panel.Visible=not panel.Visible;capture() end
     btn.Activated:Connect(flip)
+    require(script.Parent.KinCityMenu).register("journal","Carnet [J]",btn,panel,flip)
     UIS.InputBegan:Connect(function(key,processed)
         if not processed and key.KeyCode==Enum.KeyCode.J then flip() end
     end)

@@ -9,22 +9,26 @@ from collections import deque
 from validate_spatial import validate,load
 ROOT=Path(__file__).resolve().parents[1]
 
-def is_blocked(x,z, structures, margin=6):
+def is_blocked(x,z, structures, margin=6, obstacles=()):
     for item in structures:
         cx,cy,cz=item['center_studs'];w,d=item['footprint_studs']; theta=math.radians(item['yaw_degrees'])
         dx=x-cx;dz=z-cz
         localx=math.cos(theta)*dx-math.sin(theta)*dz
         localz=math.sin(theta)*dx+math.cos(theta)*dz
         if abs(localx)<=w/2+margin and abs(localz)<=d/2+margin:return True
+    for item in obstacles:
+        px,pz=item['center_studs']
+        if math.hypot(x-px,z-pz)<=item['radius_studs']+item['clearance_studs']+3.0:
+            return True
     return False
 
-def nav_path(origin,dest,structures,step=10,world_radius=480):
+def nav_path(origin,dest,structures,step=10,world_radius=480,obstacles=()):
     # A* (constant-cost BFS on 4-connected grid) with pre-validated clear cells.
     def grid(pt):return (round(pt[0]/step),round(pt[2]/step))
     source=grid(origin);goal=grid(dest)
     def valid(node):
         x,z=node[0]*step,node[1]*step
-        return math.hypot(x,z)<=world_radius and not is_blocked(x,z,structures)
+        return math.hypot(x,z)<=world_radius and not is_blocked(x,z,structures,obstacles=obstacles)
     if not valid(source) or not valid(goal):return None
     q=deque([source]);came={source:None}
     while q:
@@ -53,10 +57,11 @@ def compile_plan(root=ROOT):
     sp_by_key={v['place_key']:v for v in spatial['places']}
     city_anchors={a['anchor_id']:a for a in sp_by_key['city']['anchors']}
     structures=sorted(spatial['structures'],key=lambda x:x['building_id'])
+    furniture=json.loads((root/'catalog/central_furniture.json').read_text(encoding='utf8'))['navigation_obstacles']
     walkways=[]
     for b in sorted(buildings,key=lambda x:x['building_id']):
         dst=city_anchors['city.'+b['building_id']+'.return_spawn']['position_studs']
-        p=nav_path(city_anchors['city.central.spawn']['position_studs'],dst,structures)
+        p=nav_path(city_anchors['city.central.spawn']['position_studs'],dst,structures,obstacles=furniture)
         if p is None:raise ValueError(f"Accès piéton impossible : {b['building_id']}")
         walkways.append({'building_id':b['building_id'],'start':'city.central.spawn','arrival':'city.'+b['building_id']+'.return_spawn','path_xyz_studs':p,'width_studs':6})
     place_summaries=[]
@@ -69,7 +74,7 @@ def compile_plan(root=ROOT):
             'furnishings':sorted(g['furnishings'],key=lambda x:x['furnishing_id']),
             'anchors':sorted(g['anchors'],key=lambda x:x['anchor_id'])})
     content={'schema_version':'kincity.plan/1.0','compiler':'offline-plan-1','city_id':city['city_id'],
-             'seed':city['seed'],'mode':'WORLD_STUB','units':'stud','structures':structures,'places':place_summaries,'pedestrian_paths':walkways,
+             'seed':city['seed'],'mode':'WORLD_STUB','units':'stud','structures':structures,'places':place_summaries,'pedestrian_paths':walkways,'navigation_obstacles':furniture,
              'interactions':sorted(load(root,'interactions')['interactions'],key=lambda x:x['interaction_id']),
              'doors':sorted(load(root,'doors')['doors'],key=lambda x:x['door_id']),
              'assets':sorted(load(root,'assets')['assets'],key=lambda x:x['asset_id']),

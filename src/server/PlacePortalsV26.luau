@@ -28,20 +28,20 @@ function Portals.decorate(parent,door,frame,mode)
  deco:SetAttribute("KinToPlace",door.destination_place_key)
  deco.Parent=parent
  for _,side in ipairs({-1,1}) do
-  ornament(deco,"Pilastre sarcelle",Vector3.new(0.65,8.0,0.9),
-   frame*CFrame.new(side*5.0,1.7,0),teal,Enum.Material.Metal)
+  ornament(deco,"Pilastre sarcelle",Vector3.new(0.45,7.6,0.7),
+   frame*CFrame.new(side*5.85,1.85,-0.05),teal,Enum.Material.Metal)
   ornament(deco,"Cristal opalin",Vector3.new(0.85,1.15,0.85),
-   frame*CFrame.new(side*5.0,6.25,0)*CFrame.Angles(0,0,math.rad(45)),opal,Enum.Material.Neon)
+   frame*CFrame.new(side*5.9,6.1,-0.1)*CFrame.Angles(0,0,math.rad(45)),opal,Enum.Material.Neon)
  end
- ornament(deco,"Linteau champagne",Vector3.new(11.3,0.5,1.1),
-  frame*CFrame.new(0,5.95,0),gold,Enum.Material.Metal)
+ ornament(deco,"Linteau champagne",Vector3.new(12.1,0.42,0.82),
+  frame*CFrame.new(0,6.55,-0.08),gold,Enum.Material.Metal)
  local tag=if isEntry then "ENTRÉE • "..name else "RETOUR • KIN CITY"
- local label=F.sign(deco,"Signalétique de la Place",(frame*CFrame.new(0,4.7,-0.55)).Position,
-  math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),tag,9.5,1.6)
+ local label=F.sign(deco,"Signalétique de la Place",(frame*CFrame.new(0,7.95,-0.72)).Position,
+  math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),tag,10.2,1.95)
  label.CastShadow=false;label.CanTouch=false;label.CanQuery=false
  if mode=="SPLIT_PREVIEW" then
-  local info=F.sign(deco,"Statut de publication",(frame*CFrame.new(0,3.5,-0.65)).Position,
-    math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),"PLACE DISTINCTE • À PUBLIER",8,0.8)
+  local info=F.sign(deco,"Statut de publication",(frame*CFrame.new(0,2.95,-0.72)).Position,
+    math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),"PLACE DISTINCTE • À PUBLIER",8.6,0.95)
   info.CanTouch=false;info.CanQuery=false;info.CastShadow=false
  end
  return deco

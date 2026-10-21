@@ -7,6 +7,7 @@ local Buildings=require(Shared:WaitForChild("Buildings"))
 local Spatial=require(script.Parent.Spatial)
 local Facade=require(script.Parent.FacadeGenerator)
 local Interiors=require(script.Parent.InteriorGenerator)
+local InteriorLighting=require(script.Parent.InteriorLightingV30)
 local FullBuilder=require(script.Parent.WorldBuilder)
 local CanonicalInteractions=require(script.Parent.CanonicalInteractions)
 local Editor={}
@@ -55,6 +56,7 @@ function Editor.regenerateInterior(placeKey)
     if old then old:Destroy() end
     local style=Spatial.styleForPlace(placeKey)
     local model=Interiors.make(interiors,place,style)
+    InteriorLighting.apply(model)
     CanonicalInteractions.bindPlace(model,placeKey,Plan.interactions,nil)
     world:SetAttribute("KinBuildState","Ready")
     return model

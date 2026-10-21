@@ -98,7 +98,7 @@ local function shop(parent,item)
     future:SetAttribute("KinStubTitle",item.title)
     Factory.prompt(future,"Consulter", "Fonctionnalité à venir")
     part(mdl,"Écran du catalogue",base,-5.6,3.1,-4.65,1.9,1.8,0.15,GLASS,Enum.Material.Neon,false)
-    Factory.sign(mdl,"Enseigne d'atelier",(base*CFrame.new(0,11.8,-12.7)).Position,math.deg(item.yaw),item.title,18,2.5).CanCollide=false
+    Factory.sign(mdl,"Enseigne d'atelier",(base*CFrame.new(0,13.2,-13.65)).Position,math.deg(item.yaw),item.title,18.8,3.25).CanCollide=false
     CrystalEverydayV19.frame(mdl,base,17,21,13.4,"commerce")
     SecondaryArchitectureV25.boutique(mdl,base,item.kind,tint)
     return mdl

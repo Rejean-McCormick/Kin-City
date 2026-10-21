@@ -105,7 +105,7 @@ local function booth(root,index,base,style,yaw)
     counter:SetAttribute("KinStubCapabilityId","future.artisan."..style.tag)
     counter:SetAttribute("KinStubTitle",style.name)
     F.prompt(counter,"Consulter",style.name)
-    F.sign(mdl,"Enseigne",(base*CFrame.new(0,12.3,-15)).Position,math.deg(yaw),style.name,20,2.7).CanCollide=false
+    F.sign(mdl,"Enseigne",(base*CFrame.new(0,13.65,-16.15)).Position,math.deg(yaw),style.name,20.5,3.35).CanCollide=false
     return mdl
 end
 function Artisan.make(city,plan)

@@ -1,0 +1,27 @@
+crystal-canopy.obj 26 vertices 48 triangles
+mineral-planter.obj 33 vertices 64 triangles
+opal-console.obj 24 vertices 36 triangles
+opal-lattice 80 vertices 120 triangles
+mineral-pediment 48 vertices 72 triangles
+harbor-crest 128 vertices 192 triangles
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installer_CommandBar.luau 859971 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installation_Place_city_v30.luau 860003 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installation_Place_city_hall_v30.luau 860009 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installation_Place_ekoh_tower_v30.luau 860010 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installation_Place_library_v30.luau 860007 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installation_Place_campus_v30.luau 860006 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installation_Place_justice_palace_v30.luau 860014 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installation_Place_innovation_lab_v30.luau 860014 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installation_Place_museum_v30.luau 860006 octets
+EXPORT OK 9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001 / mode LOCAL_UNIVERSE / places 9
+INSTALLER OK /mnt/data/work_v30/KinCity_Construction_v30/KinCity_Installation_Place_orgo_center_v30.luau 860011 octets
+RELEASE v30 9 installateurs indépendants; build eb0bfed10b79f56c

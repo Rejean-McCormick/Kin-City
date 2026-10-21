@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Douze habitants R15 supplémentaires, répartis dans les six îlots.
 -- Le chargement des avatars est facultatif : la ville reste accessible en cas d'échec.
 -- Les conversations sont des stubs. Le mouvement est purement local.
@@ -6,6 +7,7 @@ local Players=game:GetService("Players")
 local CollectionService=game:GetService("CollectionService")
 local CitizenProps=require(script.Parent.CitizenPropsV21)
 local Presence=require(script.Parent.ViewerPresenceV21)
+local Nav=require(script.Parent.NeighborhoodNPCNavigation)
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Destinations=require(ReplicatedStorage:WaitForChild("KinCityShared"):WaitForChild("ResidentialDestinations"))
 local F=require(script.Parent.Factory)
@@ -50,6 +52,7 @@ local function newResident(folder,index,quarter)
     model:SetAttribute("KinResidenceQuarter",quarter.id)
     hum.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.None
     hum.WalkSpeed=5+(index%3)
+    hum.AutoRotate=true
     root.CanCollide=false
     head:SetAttribute("KinStubInteractionId",string.format("kin.resident.%02d.future",index))
     head:SetAttribute("KinStubCapabilityId","future.residential.dialogue")
@@ -81,7 +84,7 @@ local function activityBadge(model,role)
     text.BackgroundColor3=Color3.fromRGB(34,66,65)
     text.BackgroundTransparency=0.24
     text.TextColor3=Color3.fromRGB(245,236,204)
-    text.Font=Enum.Font.GothamMedium;text.TextSize=12
+    text.Font=Typography.body();text.TextSize=12
     text.Text=role; text.Parent=gui
     local corner=Instance.new("UICorner")
     corner.CornerRadius=UDim.new(0,7);corner.Parent=text
@@ -89,44 +92,38 @@ local function activityBadge(model,role)
 end
 local function wander(model,hum,world,quarter,index)
     local center=Vector3.new(quarter.center_studs[1],2.8,quarter.center_studs[3])
-    local radius=13.3
-    local phase=index*1.87
+    local start=Nav.stop(quarter,index,1)
     local role=model.Name
     local badge=activityBadge(model,role)
-    model:PivotTo(CFrame.new(center+Vector3.new(math.cos(phase)*radius,0,math.sin(phase)*radius)))
+    model:PivotTo(CFrame.new(start+Vector3.new(0,2.8,0)))
     task.spawn(function()
-        local round=0
+        local step=1
         while model.Parent and world.Parent and hum.Health>0 do
             if not Presence.near(center,190) then
                 model:SetAttribute("KinNPCMotion","idle")
                 task.wait(3)
                 continue
             end
-            round+=1
-            phase+=math.pi/3
-            local goal=center+Vector3.new(math.cos(phase)*radius,0,math.sin(phase)*radius)
+            step+=1
+            local goal,title=Nav.stop(quarter,index,step)
             local clock=game:GetService("Lighting").ClockTime
-            local work=if clock<8 then "Ouverture de quartier" elseif clock>=19 then "Promenade du soir" else tasks[((index+round-2)%#tasks)+1]
+            local work=if clock<8 then "Ouverture de quartier" elseif clock>=19 then "Promenade du soir" else title
             model:SetAttribute("KinResidentActivity",work)
             if badge then badge.Text=work.." · "..role end
             model:SetAttribute("KinNPCActivity",work)
             model:SetAttribute("KinNPCMotion","walk")
-            hum:MoveTo(goal)
-            local finished=false
-            local connection=hum.MoveToFinished:Connect(function() finished=true end)
-            local deadline=os.clock()+9
-            while not finished and os.clock()<deadline and model.Parent and world.Parent and hum.Health>0 do
-                task.wait(0.25)
+            local reached=Nav.walkHumanoid(model,hum,quarter,goal,world)
+            if not reached then
+                model:SetAttribute("KinNPCMotion","idle")
+                task.wait(2.0) -- ne pas traverser les maisons si la route est bloquée
+                continue
             end
-            connection:Disconnect()
-            if model.Parent then
-                local motion=if work=="Lecture" then "read" elseif work=="Jardin partagé" then "garden" elseif work=="Rencontre" then "greet" elseif work=="Observation" then "observe" else "idle"
-                model:SetAttribute("KinNPCMotion",motion)
-                -- Pause devant une place ou un jardin : le lieu n'est pas traversé au pas de course.
-                local pause=if round%4==0 then 6.0 else 1.8+(index%3)
-                task.wait(pause)
-            end
+            local activity=tasks[((index+step-2)%#tasks)+1]
+            model:SetAttribute("KinNPCMotion",if activity=="Lecture" then "read" elseif activity=="Jardin partagé" then "garden" elseif activity=="Rencontre" then "greet" elseif activity=="Observation" then "observe" else "idle")
+            model:SetAttribute("KinNPCActivity",activity)
+            task.wait(if step%4==0 then 5.0 else 1.8+(index%3))
         end
+        model:SetAttribute("KinNPCMotion","idle")
     end)
 end
 function Residents.start(world)

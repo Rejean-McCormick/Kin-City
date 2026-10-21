@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 local Players=game:GetService("Players")
 local UserInputService=game:GetService("UserInputService")
 local GuiService=game:GetService("GuiService")
@@ -12,7 +13,7 @@ local function createLabel(parent, text,size,weight,y)
     label.BackgroundTransparency=1
     label.Size=UDim2.new(1,-44,0,size)
     label.Position=UDim2.fromOffset(22,y)
-    label.Font=weight and Enum.Font.GothamBold or Enum.Font.Gotham
+    label.Font=weight and Typography.body() or Typography.body()
     label.TextColor3=Color3.fromRGB(241,243,241)
     label.TextWrapped=true
     label.TextXAlignment=Enum.TextXAlignment.Left
@@ -62,7 +63,7 @@ function Hud.start(remote)
     local closeBtn=Instance.new("TextButton")
     closeBtn.Name="Fermer"
     closeBtn.Text="Fermer"
-    closeBtn.Font=Enum.Font.GothamBold
+    closeBtn.Font=Typography.body()
     closeBtn.TextSize=20
     closeBtn.TextColor3=Color3.new(1,1,1)
     closeBtn.BackgroundColor3=Color3.fromRGB(42,116,124)
@@ -79,6 +80,7 @@ function Hud.start(remote)
     end)
     remote.OnClientEvent:Connect(function(payload)
         if typeof(payload)~="table" then return end
+        if payload.status=="LOCAL_STORY" then return end
         local kind=payload.kind
         if kind~="interaction.reply.v1" and kind~="travel.failure.v1" then return end
         messageSequence+=1

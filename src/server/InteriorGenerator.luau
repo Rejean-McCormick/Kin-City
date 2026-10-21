@@ -130,6 +130,7 @@ function InteriorGenerator.make(parent, canonicalPlace, style)
     InstitutionDiscoveryWings.make(model,place.place_key,origin,style)
     CrystalInteriors.make(model,place,origin,style)
     require(script.Parent.CrystalRoomStoriesV19).make(model,place,origin,style)
+    require(script.Parent.LibraryJourneyArt).make(model,place.place_key)
     return model
 end
 

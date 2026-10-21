@@ -2,6 +2,26 @@
 local Factory = require(script.Parent.Factory)
 local PropGenerator = {}
 
+-- Single explicit registry used by Studio's preflight before generating the world.
+-- Each ID must also have a matching construction branch in make().
+local SUPPORTED_ASSETS = {
+    ["prop.bookshelf"] = true,
+    ["prop.terminal"] = true,
+    ["prop.kiosk"] = true,
+    ["prop.board"] = true,
+    ["prop.panel"] = true,
+    ["prop.display"] = true,
+    ["prop.table"] = true,
+    ["prop.desk"] = true,
+    ["prop.bench"] = true,
+    ["prop.planter"] = true,
+    ["prop.lamp"] = true,
+}
+
+function PropGenerator.supports(assetId)
+    return SUPPORTED_ASSETS[assetId] == true
+end
+
 local function piece(parent, name, size, base, dx, dy, dz, color, material)
     return Factory.part(parent, name, size, base * CFrame.new(dx,dy,dz),color,material)
 end
@@ -38,6 +58,19 @@ function PropGenerator.make(parent, item, position, palette)
         root = piece(model,"Panel",Vector3.new(7,5,0.75),base,0,4.2,0,metal)
         piece(model,"DisplaySurface",Vector3.new(6.3,4.3,0.14),base,0,4.2,-0.43,teal,Enum.Material.SmoothPlastic)
         piece(model,"Stand",Vector3.new(0.6,2.1,0.6),base,0,1,0,wood)
+    elseif asset == "prop.desk" then
+        -- The innovation laboratory's canonical interaction desk. Keep its
+        -- furnishing ID and anchor attributes unchanged, and leave the front
+        -- clearance open so a player can approach its prompt.
+        root = piece(model,"DeskTop",Vector3.new(7.6,0.55,3.6),base,0,3.1,0,wood,Enum.Material.Wood)
+        piece(model,"DeskFront",Vector3.new(7.1,2.35,0.45),base,0,1.55,1.3,stone,Enum.Material.Marble)
+        for _,x in ipairs({-3.15,3.15}) do
+            for _,z in ipairs({-1.25,1.25}) do
+                piece(model,"DeskLeg",Vector3.new(0.55,2.8,0.55),base,x,1.4,z,metal,Enum.Material.Metal)
+            end
+        end
+        local display=piece(model,"DeskConsole",Vector3.new(2.8,0.3,1.7),base,1.35,3.55,-0.2,teal,Enum.Material.SmoothPlastic)
+        display.CanCollide=false
     elseif asset == "prop.table" then
         root = piece(model,"Tabletop",Vector3.new(8,0.5,4),base,0,3.2,0,wood,Enum.Material.Wood)
         for x=-1,1,2 do for z=-1,1,2 do

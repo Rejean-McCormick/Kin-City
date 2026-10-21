@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Scénographie lisible et THÉMATIQUE dans chacune des six salles institutionnelles.
 -- Zones murales en retrait; zéro collision et zéro nouveau faux terminal métier.
 local Studio=require(script.Parent.ArtisanGeometryV22)
@@ -30,7 +31,7 @@ local function inscription(parent,text,base)
     label.Size=UDim2.fromScale(1,1)
     label.BackgroundTransparency=1
     label.Text=text
-    label.Font=Enum.Font.GothamSemibold
+    label.Font=Typography.body()
     label.TextColor3=Kit.pearl
     label.TextSize=25
     label.TextWrapped=true

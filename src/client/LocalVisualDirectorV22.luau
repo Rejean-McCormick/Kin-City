@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Ambiance locale par visiteur : jamais de RemoteEvent ni d'altération du gameplay.
 -- Trois qualités CHOISIES par le joueur; le mode standard reste la valeur initiale.
 local Lighting=game:GetService("Lighting")
@@ -6,7 +7,7 @@ local Players=game:GetService("Players")
 local UserInputService=game:GetService("UserInputService")
 local TweenService=game:GetService("TweenService")
 local RS=game:GetService("ReplicatedStorage")
-local Origins=require(RS:WaitForChild("KinCityShared"):WaitForChild("InteriorOrigins"))
+local Visual=require(RS:WaitForChild("KinCityShared"):WaitForChild("VisualConfig"))
 local player=Players.LocalPlayer
 local Director={}
 local presets={
@@ -21,7 +22,7 @@ local zones={
     justice_palace=Color3.fromRGB(242,236,221),innovation_lab=Color3.fromRGB(205,243,249),
     museum=Color3.fromRGB(247,227,246),orgo_center=Color3.fromRGB(216,239,244),
 }
-local quality="STANDARD"
+local quality=Visual.profile
 local currentZone=""
 local cfx:ColorCorrectionEffect
 local bloom:BloomEffect
@@ -79,7 +80,7 @@ function Director.start()
     button.BackgroundTransparency=0.13
     button.TextColor3=Color3.fromRGB(226,249,245)
     button.TextSize=12
-    button.Font=Enum.Font.GothamBold
+    button.Font=Typography.body()
     button.AutoButtonColor=true
     button.Parent=gui
     local corner=Instance.new("UICorner")
@@ -93,24 +94,12 @@ function Director.start()
     UserInputService.InputBegan:Connect(function(input,processed)
         if not processed and input.KeyCode==Enum.KeyCode.V then cycle() end
     end)
-    apply("",false)
-    task.spawn(function()
-        while gui.Parent do
-            local character=player.Character
-            local root=character and character:FindFirstChild("HumanoidRootPart")
-            if root and root:IsA("BasePart") then
-                local zone=""
-                -- Seuls les centres intérieurs sont examinés; la Place extérieure garde son rendu neutre.
-                for key,position in pairs(Origins) do
-                    if (root.Position-Vector3.new(position[1],position[2],position[3])).Magnitude<340 then
-                        zone=key
-                        break
-                    end
-                end
-                if currentZone~=zone then currentZone=zone;apply(zone,true) end
-            end
-            task.wait(2.5)
-        end
+    require(script.Parent.KinCityMenu).registerAction("quality","Qualité cristal [V]",button,cycle)
+    currentZone=player:GetAttribute("KinZone") or ""
+    apply(currentZone,false)
+    player:GetAttributeChangedSignal("KinZone"):Connect(function()
+        local zone=player:GetAttribute("KinZone") or ""
+        if currentZone~=zone then currentZone=zone;apply(zone,true) end
     end)
 end
 return Director

@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Carnet des stations de quatrième niveau; progression locale à la session.
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
@@ -15,7 +16,7 @@ local function title(parent,text,y,size)
     l.BackgroundTransparency=1
     l.Position=UDim2.fromOffset(14,y)
     l.Size=UDim2.new(1,-28,0,size)
-    l.Font=Enum.Font.GothamSemibold
+    l.Font=Typography.body()
     l.TextSize=if size>=32 then 19 else 14
     l.TextColor3=Color3.fromRGB(242,234,211)
     l.TextXAlignment=Enum.TextXAlignment.Left
@@ -38,7 +39,7 @@ function SkyHud.start(remote)
     button.Position=UDim2.new(1,-15,0,360)
     button.Size=UDim2.fromOffset(121,38)
     button.Text="Ciel · P"
-    button.Font=Enum.Font.GothamBold
+    button.Font=Typography.body()
     button.TextSize=14
     button.TextColor3=Color3.fromRGB(252,248,229)
     button.BackgroundColor3=Color3.fromRGB(39,82,106)
@@ -73,6 +74,7 @@ function SkyHud.start(remote)
     rounded(fill,4)
     local toggle=function()panel.Visible=not panel.Visible end
     button.Activated:Connect(toggle)
+    require(script.Parent.KinCityMenu).register("sky","Pavillons [P]",button,panel,toggle)
     UIS.InputBegan:Connect(function(input,handled)
         if not handled and input.KeyCode==Enum.KeyCode.P then toggle() end
     end)

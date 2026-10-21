@@ -6,10 +6,18 @@ local Plan=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCitySha
 local RateLimiter=require(script.Parent.RateLimiter)
 local TravelSession=require(script.Parent.TravelSession)
 local PlayerTravel={}
+local pending=require(script.Parent.PendingTravel).new()
 local where={}
 local doorById={}
 for _,d in ipairs(Plan.doors) do doorById[d.door_id]=d end
 local replyEvent=nil
+local placeNames={}
+for _,place in ipairs(Plan.places) do placeNames[place.place_key]=place.display_name or place.place_key end
+local function finishPending(player,id)
+    local request=pending.take(player,id)
+    if request then TravelSession.finish(player,request.token) end
+    return request
+end
 
 local function report(player,status,message)
     if replyEvent and player.Parent==Players then
@@ -29,7 +37,7 @@ local function move(player,place,anchor,existingToken)
     end
     local token=existingToken or TravelSession.begin(player,"spawn")
     if not token then return false end
-    if Spatial.mode()=="LOCAL_UNIVERSE" then
+    do
         -- Le stream est opportuniste : après toute suspension la session
         -- et le personnage doivent encore être valides.
         pcall(function() player:RequestStreamAroundAsync(cf.Position,4) end)
@@ -39,6 +47,9 @@ local function move(player,place,anchor,existingToken)
         return false
     end
     token.character:PivotTo(cf)
+    if place=="city" and anchor=="city.central.spawn" then
+        token.character:SetAttribute("KinArrivalFrame",cf)
+    end
     where[player]={place=place,anchor=anchor}
     player:SetAttribute("KinZone",place)
     TravelSession.finish(player,token)
@@ -62,6 +73,7 @@ local function arrivalFromJoin(player,currentPlace)
     local src=doorById[td.sourceDoorId]
     if not src or src.destination_place_key~=currentPlace then return nil end
     if src.destination_anchor_id~=td.destinationAnchorId then return nil end
+    player:SetAttribute("KinLibraryReturn",src.door_id=="library.exit")
     return td.destinationAnchorId
 end
 function PlayerTravel.setup(state,events)
@@ -72,31 +84,34 @@ function PlayerTravel.setup(state,events)
         local anchor=requested or safeStart(startKey)
         where[player]={place=startKey,anchor=anchor}
         player:SetAttribute("KinZone",startKey)
-        player.CharacterAdded:Connect(function(char)
+        local function onCharacter(char)
+            pending.clear(player)
             TravelSession.cancel(player)
             task.defer(function()
-                char:WaitForChild("HumanoidRootPart",12)
+                if not char:WaitForChild("HumanoidRootPart",12) then return end
+                if not char:WaitForChild("Humanoid",12) then return end
                 if player.Character~=char then return end
                 local current=where[player]
                 if current then move(player,current.place,current.anchor) end
             end)
-        end)
-        if player.Character then
-            task.defer(function()
-                local current=where[player]
-                if current then move(player,current.place,current.anchor) end
-            end)
         end
+        player.CharacterAdded:Connect(onCharacter)
+        if player.Character then onCharacter(player.Character) end
     end
     Players.PlayerAdded:Connect(register)
     for _,p in ipairs(Players:GetPlayers()) do register(p) end
     Players.PlayerRemoving:Connect(function(p)
+        pending.clear(p)
         where[p]=nil
         TravelSession.cancel(p)
         RateLimiter.clear(p)
     end)
     TeleportService.TeleportInitFailed:Connect(function(p,result,message,placeId,options)
-        report(p,"UNAVAILABLE","Le passage a échoué. Réessayez.")
+        local request=pending.get(p)
+        if not request or request.targetId~=placeId or not options then return end
+        local ok,data=pcall(function() return options:GetTeleportData() end)
+        if not ok or type(data)~="table" or data.requestId~=request.id then return end
+        if finishPending(p,request.id) then report(p,"UNAVAILABLE","Le passage a échoué. Réessayez.") end
     end)
 end
 
@@ -122,9 +137,7 @@ function PlayerTravel.tryLift(player,data)
     if not RateLimiter.allowed(player,"lift/"..tostring(data.lift_id),1.2) then return end
     local token=TravelSession.begin(player,"lift")
     if not token then return end
-    if Spatial.mode()=="LOCAL_UNIVERSE" then
-        pcall(function() player:RequestStreamAroundAsync(data.destination,4) end)
-    end
+    pcall(function() player:RequestStreamAroundAsync(data.destination,4) end)
     if TravelSession.valid(player,token) then
         token.character:PivotTo(CFrame.new(data.destination))
     end
@@ -142,6 +155,8 @@ function PlayerTravel.tryDoor(player,door,state)
     if Spatial.mode()=="LOCAL_UNIVERSE" then
         if not move(player,dest,anchor,token) then
             report(player,"UNAVAILABLE","Passage indisponible actuellement.")
+        else
+            player:SetAttribute("KinLibraryReturn",door.door_id=="library.exit")
         end
         return
     end
@@ -161,14 +176,25 @@ function PlayerTravel.tryDoor(player,door,state)
         return
     end
     local opts=Instance.new("TeleportOptions")
-    opts:SetTeleportData({v=1,sourceDoorId=door.door_id,destinationAnchorId=anchor})
+    opts:SetTeleportData({v=1,sourceDoorId=door.door_id,destinationAnchorId=anchor,requestId=token.id})
+    if not pending.begin(player,{id=token.id,token=token,targetId=targetId}) then
+        TravelSession.finish(player,token)
+        return
+    end
+    if replyEvent then replyEvent:FireClient(player,{kind="travel.pending.v1",destination=placeNames[dest]}) end
+    -- Borne de récupération, sans relancer automatiquement une téléportation.
+    task.delay(30,function()
+        if finishPending(player,token.id) then
+            report(player,"TIMEOUT","Le passage prend trop de temps. Vous pouvez réessayer.")
+        end
+    end)
     local success,reason=pcall(function()
         TeleportService:TeleportAsync(targetId,{player},opts)
     end)
-    TravelSession.finish(player,token)
-    if not success then
+    if not success and finishPending(player,token.id) then
         warn("Kin City transit failure",door.door_id,reason)
         report(player,"ERROR","Impossible de franchir cette porte.")
     end
+    -- Succès de l'appel : garder la réservation jusqu'au départ, échec ou délai.
 end
 return PlayerTravel

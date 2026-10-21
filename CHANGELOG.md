@@ -1,3 +1,37 @@
+# Changelog
+
+## v30.0.7
+- correction des portes encombrées : surface interactive quasi invisible au lieu d'un bloc apparent
+- dégagement central sur les façades `civic_stone` et `warm_academic` pour éviter les piliers devant les portails
+- signalétique de seuil remontée et affinée pour garder l'ouverture lisible
+- nouvel installateur univers complet régénéré
+
+## v30.0.7 — finalisation typographique
+- même mécanisme Garamond → Bodoni pour toutes les interfaces et pancartes
+- résolution des polices natives sans évaluer de police potentiellement absente avant le repli
+- univers complet et installateurs séparés reconstruits
+
+## v30.0.7 — lisibilité des pancartes
+- typographie serif pour les enseignes (`Garamond` si disponible, sinon `Bodoni`) avec liseré de lecture
+- panneaux extérieurs agrandis et moins aplatis verticalement
+- enseignes principales avancées et relevées pour éviter les marquises, corniches et éléments décoratifs devant le texte
+
+## v30.0.7 — déplacement local des PNJ
+
+- Parcours PNJ à plusieurs haltes par quartier, attribués aux 36 citoyens procéduraux, 14 R15 urbains et 12 résidents.
+- Trajets calculés par PathfindingService et restreints aux six quartiers existants; blocage si obstacle ou destination inaccessible (pas de téléportation à travers le mobilier).
+- Détection de collision additionnelle Blockcast pour les figurines ancrées.
+- Aucun changement aux huit intérieurs et à l'éclairage réduit à 65 %.
+
+## v30.0.0 — navigation lisible et interface accessible
+
+- Recherche d’outils et de lieux, huit institutions en priorité, destination effaçable.
+- Distance suivant le chemin public quand il existe, indication directe sinon.
+- Guides mutuellement exclusifs et masquage volontaire du parcours bibliothèque.
+- Meilleure gestion des focus manette, du défilement et des tailles mobiles.
+- Sortie de panorama plus sûre, mesure FPS locale interruptible et actualisée moins souvent.
+- Installateurs régénérés ville + huit Places + local tout-en-un; sans nouveau PlaceId.
+
 # Version 25.0 — finition des quartiers, matériaux PBR, diagnostic de construction
 
 - 57 bâtiments secondaires ciblés par `SecondaryArchitectureV25`.

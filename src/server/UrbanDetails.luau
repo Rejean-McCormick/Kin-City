@@ -79,18 +79,38 @@ local function nearBuilding(x,z,structures,padding)
     end
     return false
 end
-local function ring(parent,radius,width,structures)
+local function distanceToPath(x,z,path)
+    local p=Vector3.new(x,0,z)
+    local nearest=math.huge
+    for i=2,#path.path_xyz_studs do
+        local a=path.path_xyz_studs[i-1]
+        local b=path.path_xyz_studs[i]
+        local av=Vector3.new(a[1],0,a[3])
+        local bv=Vector3.new(b[1],0,b[3])
+        local segment=bv-av
+        if segment.Magnitude>0.1 then
+            local t=math.clamp((p-av):Dot(segment)/segment:Dot(segment),0,1)
+            nearest=math.min(nearest,(p-(av+segment*t)).Magnitude)
+        end
+    end
+    return nearest
+end
+local function ring(parent,radius,width,structures,paths)
     local segments=96
     for k=1,segments do
         local theta=(k-0.5)*math.pi*2/segments
         local x,z=math.cos(theta)*radius,math.sin(theta)*radius
-        if not nearBuilding(x,z,structures,9) then
+        local crossing=false
+        for _,path in ipairs(paths) do
+            if distanceToPath(x,z,path)<(width+path.width_studs)/2+1 then crossing=true;break end
+        end
+        if not nearBuilding(x,z,structures,9) and not crossing then
             local a=(k-1)*math.pi*2/segments
             local b=k*math.pi*2/segments
             local p=Vector3.new(math.cos(a)*radius,0.17,math.sin(a)*radius)
             local q=Vector3.new(math.cos(b)*radius,0.17,math.sin(b)*radius)
             local v=q-p
-            local section=F.part(parent,"Promenade annulaire",Vector3.new(width,0.23,v.Magnitude+1.3),CFrame.lookAt((p+q)/2,q),Color3.fromRGB(204,187,159),Enum.Material.Cobblestone)
+            local section=F.part(parent,"Promenade annulaire",Vector3.new(width,0.23,math.max(0.2,v.Magnitude-0.025)),CFrame.lookAt((p+q)/2,q),Color3.fromRGB(204,187,159),Enum.Material.Cobblestone)
             section.CanCollide=false
         end
     end
@@ -103,16 +123,15 @@ local districtNames={
 function Urban.make(parent,plan)
     local folder=F.folder(parent,"Vie urbaine et jardins")
     local promenades=F.folder(folder,"Promenades concentriques")
-    ring(promenades,71,5.5,plan.structures)
-    ring(promenades,327,7,plan.structures)
+    ring(promenades,71,5.5,plan.structures,plan.pedestrian_paths)
+    ring(promenades,327,7,plan.structures,plan.pedestrian_paths)
     local details=F.folder(folder,"Places et monuments")
-    fountain(details,-30,-29)
-    for n=1,7 do
-        local a=math.pi*2*n/7
-        local radius=42
-        local x,z=math.cos(a)*radius,math.sin(a)*radius
-        bench(details,x,z,(a*180/math.pi)+90)
-        planter(details,math.cos(a)*52,math.sin(a)*52,n)
+    for _,item in ipairs(plan.navigation_obstacles) do
+        local x,z=item.center_studs[1],item.center_studs[2]
+        if item.kind=="fountain" then fountain(details,x,z)
+        elseif item.kind=="bench" then bench(details,x,z,item.yaw_degrees)
+        elseif item.kind=="planter" then planter(details,x,z,tonumber(string.match(item.id,"(%d+)$")) or 1)
+        elseif item.kind=="sculpture" then sculpture(details,x,z,tonumber(string.match(item.id,"(%d+)$")) or 1) end
     end
     for n=1,4 do
         local a=n*math.pi/2+math.pi/4
@@ -145,9 +164,13 @@ function Urban.make(parent,plan)
         for radius=335,425,15 do
             local mid=radius+7.5
             local x,z=math.cos(angle)*mid,math.sin(angle)*mid
-            if not nearBuilding(x,z,plan.structures,8) then
+            local crossing=false
+            for _,path in ipairs(plan.pedestrian_paths) do
+                if distanceToPath(x,z,path)<(6+path.width_studs)/2+1 then crossing=true;break end
+            end
+            if not crossing and not nearBuilding(x,z,plan.structures,8) then
                 local base=CFrame.new(x,0.19,z)*CFrame.Angles(0,-angle+math.pi/2,0)
-                local sidewalk=F.part(promenades,"Allée radiale",Vector3.new(6,0.23,16.5),base,stone,Enum.Material.Cobblestone)
+                local sidewalk=F.part(promenades,"Allée radiale",Vector3.new(6,0.23,14.975),base,stone,Enum.Material.Cobblestone)
                 sidewalk.CanCollide=false
             end
         end
@@ -166,8 +189,6 @@ function Urban.make(parent,plan)
         local a=base*CFrame.new(0,0,-2)
         bench(terrace,a.Position.X,a.Position.Z,math.deg(-angle+math.pi/2))
     end
-    sculpture(details,58,48,2)
-    sculpture(details,-65,56,5)
     -- Lumières piétonnes espacées : détail visuel, mais coût maîtrisé.
     for _,path in ipairs(plan.pedestrian_paths) do
         local nodes=path.path_xyz_studs

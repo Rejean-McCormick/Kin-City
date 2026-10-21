@@ -51,9 +51,9 @@ class V24Build(unittest.TestCase):
             self.assertLessEqual(max(abs(c) for p in points for c in p),0.501)
     def test_current_release_manifest(self):
         obj=json.loads((ROOT/'build/release-manifest.json').read_text())
-        self.assertEqual(obj['version'],'26.0.0')
+        self.assertEqual(obj['version'],'30.0.7')
         self.assertEqual(obj['mode'],'WORLD_STUB')
-        self.assertIn('KinCity_Installation_Directe_v26.luau',obj['artifacts'])
+        self.assertIn('KinCity_Installation_Directe_v30.luau',obj['artifacts'])
         self.assertIn('KinCity_Installer_CommandBar.luau',obj['artifacts'])
     def test_no_network_in_new_modules(self):
         for name in ['StudioAssetLibraryV24.luau','InstitutionFacadeKitV24.luau',

@@ -34,14 +34,23 @@ def generate(root=ROOT, place_key=None, *, preview=None):
             raise ValueError('A real published MULTI_PLACE install requires all published PlaceIds')
         target_mode='SPLIT_PREVIEW' if preview else 'MULTI_PLACE'
     else:
-        target_mode=runtime['mode']
+        target_mode='LOCAL_UNIVERSE'
 
     template='''-- Kin City WORLD_STUB — installation dans Roblox Studio (mode Édition seulement)
 -- Collez ce fichier entier dans View > Command Bar et exécutez UNE fois.
 -- Aucun appel HTTP / aucune API / aucun jeton.
+assert(not game:GetService("RunService"):IsRunning(),"Arrêtez Play avant l'installation.")
 local RS = game:GetService("ReplicatedStorage")
 local SS = game:GetService("ServerScriptService")
 local SP = game:GetService("StarterPlayer"):WaitForChild("StarterPlayerScripts")
+-- Migration du costume autonome; conserver son attribution explicite.
+local oldAvatar=SS:FindFirstChild("KinCityKingKlownAvatar")
+local preservedOwner=oldAvatar and oldAvatar:GetAttribute("OwnerUserId") or 0
+local previousRuntime=SS:FindFirstChild("KinCityRuntime")
+if preservedOwner==0 and previousRuntime then preservedOwner=previousRuntime:GetAttribute("KingKlownOwnerUserId") or 0 end
+if oldAvatar then oldAvatar:Destroy() end
+local oldAura=SP:FindFirstChild("KinCityKingKlownAura")
+if oldAura then oldAura:Destroy() end
 local existing = RS:FindFirstChild("KinCityShared")
 if existing then existing:Destroy() end
 existing = SS:FindFirstChild("KinCityRuntime")
@@ -54,6 +63,7 @@ shared.Parent = RS
 local server = Instance.new("Script")
 server.Name = "KinCityRuntime"
 server.Enabled = false
+server:SetAttribute("KingKlownOwnerUserId",preservedOwner)
 server.Parent = SS
 local client = Instance.new("LocalScript")
 client.Name = "KinCityUI"
@@ -69,9 +79,9 @@ end
     content=[template]
     for fname in sorted((root/'src/shared').glob('*.luau')):
         module_source=fname.read_text(encoding="utf8")
-        if fname.stem=='RuntimeConfig' and place_key is not None:
+        if fname.stem=='RuntimeConfig':
             module_source='--!strict\n-- Identité propre à cette installation.\nreturn '+lua_literal(
-                {'mode':target_mode,'target_place_key':place_key})+'\n'
+                ({'mode':target_mode,'target_place_key':place_key} if place_key else {'mode':'LOCAL_UNIVERSE'}))+'\n'
         content.append(f'source(shared,{repr(fname.stem)},"ModuleScript",{quote_luau(module_source)})\n')
     for fname in sorted((root/'src/server').glob('*.luau')):
         if fname.name=='init.server.luau':continue
@@ -101,13 +111,13 @@ local streamingOk, streamingValue=pcall(function() return workspace.StreamingEna
 if streamingOk then
     print("KIN CITY : Workspace.StreamingEnabled = "..tostring(streamingValue).." (paramètre Studio)")
 end
-print("KIN CITY v26 : Place installée séparément, ville allégée et institutions indépendantes; identité sarcelle-cristal, WORLD_STUB.")
+print("KIN CITY v30.0.7 : Place installée séparément, typographie Garamond, ville allégée et institutions indépendantes; identité sarcelle-cristal, WORLD_STUB.")
 ''')
     content=[chunk.replace('__KIN_CAMERA__', camera) for chunk in content]
     if place_key is None:
         path=root/'KinCity_Installer_CommandBar.luau'
     else:
-        path=root/f'KinCity_Installation_Place_{place_key}_v26.luau' 
+        path=root/f'KinCity_Installation_Place_{place_key}_v30.luau' 
     path.write_text(''.join(content),encoding='utf8')
     print('INSTALLER OK', path, path.stat().st_size, 'octets')
     return path

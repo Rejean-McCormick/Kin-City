@@ -44,7 +44,7 @@ def build_fingerprint(root: Path, plan_hash: str) -> dict:
             digest.update(name.encode("utf8")+b"\0"+len(data).to_bytes(8,"big")+data)
             included.append(name)
     digest.update(b"canonical-plan\0"+plan_hash.encode("ascii"))
-    return {"sha256":digest.hexdigest(),"plan_sha256":plan_hash,"input_count":len(included),"version":"build-v26"}
+    return {"sha256":digest.hexdigest(),"plan_sha256":plan_hash,"input_count":len(included),"version":"build-v29"}
 
 def export(root: Path):
     plan=compile_plan(root)
@@ -58,14 +58,24 @@ def export(root: Path):
     if config['mode']=='MULTI_PLACE' and any(v is None for v in registry.values()):
         raise ValueError('MULTI_PLACE exige tous les PlaceIds publiés')
     out=root/'src/shared'
-    put(out/'BuildIdentity.luau',build_fingerprint(root,plan['canonical_sha256']),'empreinte exacte du build v26')
+    put(out/'BuildIdentity.luau',build_fingerprint(root,plan['canonical_sha256']),'empreinte exacte du build v29')
     origins=json.loads((root/'config/interior_origins.json').read_text(encoding='utf8'))
     if set(origins)!=expected-{'city'}: raise ValueError('Origines intérieures incomplètes')
     put(out/'InteriorOrigins.luau',origins,'positions stables des intérieurs')
     put(out/'WorldPlan.luau',plan,'plan spatial Kin City')
     put(out/'PlaceRouting.luau',registry,'routage de publication')
-    put(out/'RuntimeConfig.luau',{'mode':config['mode']},'mode d’exécution v26')
+    put(out/'RuntimeConfig.luau',{'mode':config['mode']},'mode d’exécution v28')
     put(out/'Buildings.luau',json.loads((root/'catalog/buildings.json').read_text(encoding='utf8'))['buildings'],'noms et gabarits des bâtiments')
+    avatar_path=root/'config/king_klown.json'
+    avatar=json.loads(avatar_path.read_text()) if avatar_path.exists() else {'ownerUserId':0,'studioPreview':True}
+    if type(avatar.get('ownerUserId')) is not int or avatar['ownerUserId']<0:
+        raise ValueError('ownerUserId must be a nonnegative integer')
+    if type(avatar.get('studioPreview')) is not bool: raise ValueError('studioPreview must be boolean')
+    put(out/'KingKlownConfig.luau',avatar,'King Klown v7 : attribution serveur')
+    journey_path=root/'config/library_journey.json'
+    if journey_path.exists():
+        journey=json.loads(journey_path.read_text(encoding='utf8'))
+        put(out/'LibraryJourney.luau',journey,'parcours de lecture v28')
     put(out/'Messages.luau',json.loads((root/'catalog/messages.fr.json').read_text(encoding='utf8'))['messages'],'textes fr-CA')
     put(out/'AudioManifest.luau',json.loads((root/'config/audio.json').read_text(encoding='utf8')),'manifest sonore utilisateur')
     put(out/'MeshManifest.luau',json.loads((root/'config/meshes.json').read_text(encoding='utf8')),'IDs optionnels des modèles OBJ / bibliothèque Studio v25')

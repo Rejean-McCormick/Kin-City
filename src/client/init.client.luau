@@ -4,7 +4,15 @@ local Mode=require(ReplicatedStorage:WaitForChild("KinCityShared"):WaitForChild(
 local Routing=require(ReplicatedStorage:WaitForChild("KinCityShared"):WaitForChild("PlaceRouting"))
 local isCity=Mode.mode=="LOCAL_UNIVERSE" or Mode.target_place_key=="city" or Routing.city==game.PlaceId
 local remote=ReplicatedStorage:WaitForChild("KinCityReply")
+require(script.ArrivalCamera).start()
+require(script.KinCityMenu).start()
 require(script.Hud).start(remote)
+require(script.TravelTransition).start(remote)
+require(script.LibraryJourneyGuide).start()
+require(script.LocalPerformanceProbeV29).start()
+require(script.LibraryStoryPanel).start(remote)
+require(script.KingKlownAura).start()
+require(script.KingKlownPerformance).start()
 if isCity then
     require(script.MapHud).start()
     require(script.RouteGuide).start()

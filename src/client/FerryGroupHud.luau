@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Panneau compact de ferry collectif, accessible au clavier et au tactile.
 -- L'état provient uniquement du serveur. Aucun compteur ou promesse kOA.
 local Players=game:GetService("Players")
@@ -26,7 +27,7 @@ function FerryHud.start(remote)
     title.Size=UDim2.new(1,-20,0,29)
     title.Position=UDim2.fromOffset(10,5)
     title.BackgroundTransparency=1
-    title.Font=Enum.Font.GothamBold
+    title.Font=Typography.body()
     title.TextColor3=Color3.fromRGB(246,238,205)
     title.TextSize=15
     title.Text="FERRY COLLECTIF"
@@ -36,7 +37,7 @@ function FerryHud.start(remote)
     state.Size=UDim2.new(1,-20,0,38)
     state.Position=UDim2.fromOffset(10,36)
     state.BackgroundTransparency=1
-    state.Font=Enum.Font.Gotham
+    state.Font=Typography.body()
     state.TextColor3=Color3.fromRGB(214,235,234)
     state.TextSize=13
     state.TextWrapped=true

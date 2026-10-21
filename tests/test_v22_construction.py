@@ -49,6 +49,6 @@ class LargeArtPass(unittest.TestCase):
   self.assertIn('OpalGlazingV22.apply', (S/'ResidentialQuarters.luau').read_text())
   self.assertIn('OpalGlazingV22.apply', (S/'StationArcades.luau').read_text())
  def test_build_version(self):
-  self.assertIn('construction-v26.0.0-',(S/'WorldBuilder.luau').read_text())
-  self.assertIn('KinCity_Installation_Directe_v26.luau',(R/'tools/build_release.py').read_text())
+  self.assertIn('construction-v30.0.7-',(S/'WorldBuilder.luau').read_text())
+  self.assertIn('KinCity_Installation_Directe_v30.luau',(R/'tools/build_release.py').read_text())
 if __name__=='__main__': unittest.main()

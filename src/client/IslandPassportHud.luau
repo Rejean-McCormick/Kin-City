@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Carnet de l'archipel, progression locale par session seulement.
 local Players=game:GetService("Players")
 local player=Players.LocalPlayer
@@ -24,7 +25,7 @@ function Passport.start()
     text.Size=UDim2.new(1,-10,1,0)
     text.Position=UDim2.fromOffset(5,0)
     text.TextColor3=Color3.fromRGB(243,233,194)
-    text.Font=Enum.Font.GothamBold
+    text.Font=Typography.body()
     text.TextSize=13
     text.Parent=panel
     local function refresh()

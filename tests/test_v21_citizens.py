@@ -38,7 +38,7 @@ class CitizenV21(unittest.TestCase):
         self.assertNotIn('HttpService',s)
     def test_v21_release(self):
         release=(ROOT/'tools/build_release.py').read_text()
-        assert 'KinCity_Installation_Directe_v26.luau' in release
-        assert '26.0.0' in release
-        self.assertIn('construction-v26.0.0-',(SERVER/'WorldBuilder.luau').read_text())
+        assert 'KinCity_Installation_Directe_v30.luau' in release
+        assert '30.0.7' in release
+        self.assertIn('construction-v30.0.7-',(SERVER/'WorldBuilder.luau').read_text())
 if __name__=='__main__':unittest.main()

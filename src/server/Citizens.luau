@@ -1,9 +1,10 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Citoyens procéduraux : coiffures, teintes, vêtements, marche articulée et interactions.
 -- Aucun avatar externe, aucune identité kOA et aucun ID asset obligatoire.
-local TweenService=game:GetService("TweenService")
 local F=require(script.Parent.Factory)
 local Presence=require(script.Parent.ViewerPresenceV21)
+local Nav=require(script.Parent.NeighborhoodNPCNavigation)
 local Citizens={}
 local outfits={
     {"Bibliothécaire","Savoirs"},{"Guide du savoir","Accueil"},{"Étudiante","Université"},
@@ -59,7 +60,18 @@ local function makeCitizen(parent,index)
         table.insert(arms,a)
         local b=make(s<0 and "Jambe gauche" or "Jambe droite",Vector3.new(0.95,2.5,1),Vector3.new(s*0.6,1.2,0),dark)
         table.insert(legs,b)
-        make("Chaussure",Vector3.new(0.96,0.45,1.3),Vector3.new(s*0.6,0.25,-0.15),Color3.fromRGB(50,50,52))
+        make(s<0 and "Chaussure gauche" or "Chaussure droite",Vector3.new(0.96,0.45,1.3),Vector3.new(s*0.6,0.25,-0.15),Color3.fromRGB(50,50,52))
+    end
+    -- Visage expressif et détails de tenue ; aucune texture ou ressource distante.
+    make("Sourcil gauche",Vector3.new(0.29,0.07,0.08),Vector3.new(-0.35,6.51,-0.75),hair)
+    make("Sourcil droit",Vector3.new(0.29,0.07,0.08),Vector3.new(0.35,6.51,-0.75),hair)
+    make("Sourire",Vector3.new(0.34,0.07,0.06),Vector3.new(0,5.78,-0.79),Color3.fromRGB(130,72,72))
+    make("Ceinture",Vector3.new(2.28,0.24,1.35),Vector3.new(0,2.15,0),Color3.fromRGB(39,69,70))
+    make("Boucle opaline",Vector3.new(0.34,0.25,0.10),Vector3.new(0,2.15,-0.72),Color3.fromRGB(197,244,240),Enum.Material.Metal)
+    make("Revers gauche",Vector3.new(0.32,1.20,0.12),Vector3.new(-0.58,4.13,-0.71),Color3.fromRGB(197,244,240))
+    make("Revers droit",Vector3.new(0.32,1.20,0.12),Vector3.new(0.58,4.13,-0.71),Color3.fromRGB(197,244,240))
+    for _,side in ipairs({-1,1}) do
+        make(side<0 and "Manche gauche" or "Manche droite",Vector3.new(0.82,1.05,0.90),Vector3.new(side*1.58,4.15,0),coat)
     end
     if index%5==1 then
         make("Sac",Vector3.new(2.1,2,0.8),Vector3.new(0,3.1,1),Color3.fromRGB(123,84,62))
@@ -80,7 +92,7 @@ local function makeCitizen(parent,index)
     txt.BackgroundTransparency=0.23
     txt.TextColor3=Color3.fromRGB(249,248,233)
     txt.TextSize=13
-    txt.Font=Enum.Font.GothamMedium
+    txt.Font=Typography.body()
     txt.Text=name
     txt.Parent=marker
     local rounded=Instance.new("UICorner");rounded.CornerRadius=UDim.new(0,9);rounded.Parent=txt
@@ -90,68 +102,126 @@ local function makeCitizen(parent,index)
     F.prompt(head,"Parler",named[1])
     return model,arms,legs
 end
-local function orbit(index)
-    -- Anneaux publics dégagés : les personnages ne traversent pas les façades.
-    local radii={34,46,58,70}
-    local r=radii[(index-1)%#radii+1]
-    local angle=index*2.399963
-    return r,angle
-end
 function Citizens.make(parent)
     local folder=F.folder(parent,"Citoyens")
     for i=1,36 do
         local model=makeCitizen(folder,i)
-        local r,theta=orbit(i)
-        model:PivotTo(CFrame.new(r*math.cos(theta),0.15,r*math.sin(theta)))
+        local quarter=Nav.quarter(i)
+        local start=Nav.stop(quarter,i,1)
+        model:SetAttribute("KinResidenceQuarter",quarter.id)
+        model:SetAttribute("KinNPCActivity","Accueil du quartier")
+        model:PivotTo(CFrame.new(start+Vector3.new(0,0.15,0)))
     end
     return folder
+end
+-- Les PNJ primitifs sont ancrés et n'utilisent pas Humanoid:MoveTo. On avance
+-- sur une tangente à vitesse constante, puis on aligne le regard sur ce vecteur.
+-- Les membres pivotent autour de l'épaule/hanche : ni glissade latérale ni
+-- jambes/chaussures laissées en arrière durant le déplacement.
+local function animate(model,frame,phase,walking)
+    local swing=if walking then math.sin(phase)*0.42 else 0
+    for i,side in ipairs({-1,1}) do
+        local armAngle=swing*(if i==1 then 1 else -1)
+        local legAngle=swing*(if i==1 then -1 else 1)
+        local shoulder=frame*CFrame.new(side*1.58,4.48,0)*CFrame.Angles(armAngle,0,0)
+        local hip=frame*CFrame.new(side*0.6,2.35,0)*CFrame.Angles(legAngle,0,0)
+        local arm=model:FindFirstChild(if i==1 then "Bras gauche" else "Bras droit")
+        local sleeve=model:FindFirstChild(if i==1 then "Manche gauche" else "Manche droite")
+        local leg=model:FindFirstChild(if i==1 then "Jambe gauche" else "Jambe droite")
+        local shoe=model:FindFirstChild(if i==1 then "Chaussure gauche" else "Chaussure droite")
+        if arm then arm.CFrame=shoulder*CFrame.new(0,-1.05,0) end
+        if sleeve then sleeve.CFrame=shoulder*CFrame.new(0,-0.33,0) end
+        if leg then leg.CFrame=hip*CFrame.new(0,-1.15,0) end
+        if shoe then shoe.CFrame=hip*CFrame.new(0,-2.10,-0.15) end
+    end
+end
+local function face(position,tangent)
+    return CFrame.lookAt(position,position+tangent)
 end
 function Citizens.start(world)
     local city=world:FindFirstChild("Ville")
     local folder=city and city:FindFirstChild("Citoyens")
     if not folder then return end
-    for _,m in ipairs(folder:GetChildren()) do
-        local index=m:GetAttribute("CitizenIndex")
-        if index and m:IsA("Model") then
+    for _,model in ipairs(folder:GetChildren()) do
+        local index=model:GetAttribute("CitizenIndex")
+        if index and model:IsA("Model") then
             task.spawn(function()
-                local radius,angle=orbit(index)
-                local root=m.PrimaryPart
-                local current=0
-                local arms={m:FindFirstChild("Bras gauche"),m:FindFirstChild("Bras droit")}
-                local legs={m:FindFirstChild("Jambe gauche"),m:FindFirstChild("Jambe droite")}
+                local quarter=Nav.quarter(index)
+                local routeStep=1
+                local phase=index*1.7
+                local speed=4.5+(index%4)*0.65
+                local last=os.clock()
+                local lastPresence=0
+                local nearby=false
+                local pathPoints=nil
+                local waypointIndex=2
+                local retryAt=0
+                local pauseUntil=0
+                local root=model.PrimaryPart
                 while root and root.Parent and world.Parent do
-                    if not Presence.near(m:GetPivot().Position,200) then
-                        task.wait(3)
+                    local now=os.clock()
+                    local dt=math.clamp(now-last,0,0.15)
+                    last=now
+                    if now-lastPresence>1.0 then
+                        nearby=Presence.near(model:GetPivot().Position,180)
+                        lastPresence=now
+                    end
+                    if not nearby then
+                        task.wait(0.6)
                         continue
                     end
-                    local nextAngle=angle+0.28
-                    local speed=7.2+(index%5)*0.65
-                    local destination=CFrame.new(radius*math.cos(nextAngle),0.15,radius*math.sin(nextAngle))*CFrame.Angles(0,-nextAngle+math.pi/2,0)
-                    local proxy=Instance.new("CFrameValue")
-                    proxy.Value=m:GetPivot()
-                    local last=0
-                    local conn=proxy.Changed:Connect(function(cf)
-                        if not m.Parent then return end
-                        local now=os.clock()
-                        if now-last<0.085 then return end
-                        last=now
-                        current+=0.37
-                        m:PivotTo(cf)
-                        local wave=math.sin(current)
-                        for j,arm in ipairs(arms) do
-                            if arm then arm.CFrame=cf*CFrame.new((j==1 and -1 or 1)*1.58,3.43,0)*CFrame.Angles(wave*(j==1 and 0.27 or -0.27),0,0) end
+                    local position=model:GetPivot().Position
+                    if not pathPoints and now>=retryAt then
+                        routeStep+=1
+                        local target,activity=Nav.stop(quarter,index,routeStep)
+                        local _,points=Nav.plan(quarter,position+Vector3.new(0,2.35,0),target+Vector3.new(0,2.5,0))
+                        pathPoints=points
+                        waypointIndex=2
+                        retryAt=now+(if points then 0 else 2.5)
+                        if points then model:SetAttribute("KinNPCActivity",activity) end
+                    end
+                    local walking=false
+                    local direction=Vector3.new(0,0,-1)
+                    if pathPoints and now>=pauseUntil then
+                        local waypoint=pathPoints[waypointIndex]
+                        if waypoint then
+                            local delta=Vector3.new(waypoint.Position.X-position.X,0,waypoint.Position.Z-position.Z)
+                            if delta.Magnitude<0.55 then
+                                waypointIndex+=1
+                                if waypointIndex>#pathPoints then
+                                    pathPoints=nil
+                                    pauseUntil=now+1.2+(index%4)*0.6
+                                end
+                            else
+                                direction=delta.Unit
+                                local step=math.min(speed*dt,delta.Magnitude)
+                                local advance=direction*step
+                                if Nav.blockedAhead(model,position,advance+direction*1.1,world) then
+                                    pathPoints=nil
+                                    retryAt=now+2.0
+                                else
+                                    local nextPosition=position+advance
+                                    -- Les PNJ ancrés ne traversent pas l'enveloppe de leur quartier.
+                                    if Nav.within(quarter,nextPosition) then
+                                        walking=true
+                                        phase+=step*1.05
+                                        local frame=face(nextPosition,direction)
+                                        model:PivotTo(frame)
+                                        animate(model,frame,phase,true)
+                                    else
+                                        pathPoints=nil
+                                        retryAt=now+2.5
+                                    end
+                                end
+                            end
+                        else
+                            pathPoints=nil
                         end
-                        for j,leg in ipairs(legs) do
-                            if leg then leg.CFrame=cf*CFrame.new((j==1 and -1 or 1)*0.6,1.2,0)*CFrame.Angles(wave*(j==1 and -0.22 or 0.22),0,0) end
-                        end
-                    end)
-                    local tween=TweenService:Create(proxy,TweenInfo.new(speed,Enum.EasingStyle.Linear),{Value=destination})
-                    tween:Play();tween.Completed:Wait()
-                    conn:Disconnect()
-                    if m.Parent then m:PivotTo(destination) end
-                    proxy:Destroy()
-                    angle=nextAngle
-                    task.wait(index%3==0 and 0.8 or 0.1)
+                    end
+                    if not walking then
+                        animate(model,model:GetPivot(),phase,false)
+                    end
+                    task.wait(0.08)
                 end
             end)
         end

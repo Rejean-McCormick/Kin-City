@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Huit expositions interactives à quatre chapitres. Les textes sont locaux,
 -- consultables sans kOA; les changements de sculpture et de panneau répliquent.
 -- Aucune décision, note ou vote n'est simulé.
@@ -74,7 +75,7 @@ local function caption(parent,name,position,size,text,textSize)
     label.Position=UDim2.fromScale(0,0)
     label.BackgroundTransparency=1
     label.TextColor3=Kit.pearl
-    label.Font=Enum.Font.GothamMedium
+    label.Font=Typography.body()
     label.TextWrapped=true
     label.TextSize=textSize
     label.Text=text
@@ -131,7 +132,7 @@ function Atlas.decorate(roomFolder,placeKey,room,origin,index)
     heading.Position=UDim2.fromScale(0.03,0.04)
     heading.TextColor3=Kit.gold
     heading.BackgroundTransparency=1
-    heading.Font=Enum.Font.GothamBold
+    heading.Font=Typography.body()
     heading.TextWrapped=true
     heading.TextSize=39
     heading.Parent=headingSurface
@@ -141,7 +142,7 @@ function Atlas.decorate(roomFolder,placeKey,room,origin,index)
     body.Position=UDim2.fromScale(0.03,0.46)
     body.TextColor3=Kit.pearl
     body.BackgroundTransparency=1
-    body.Font=Enum.Font.Gotham
+    body.Font=Typography.body()
     body.TextWrapped=true
     body.TextSize=30
     body.Parent=headingSurface
@@ -151,7 +152,7 @@ function Atlas.decorate(roomFolder,placeKey,room,origin,index)
     progress.Position=UDim2.fromScale(0.78,0.01)
     progress.TextColor3=Kit.gold
     progress.BackgroundTransparency=1
-    progress.Font=Enum.Font.GothamBold
+    progress.Font=Typography.body()
     progress.TextSize=21
     progress.Parent=headingSurface
     piece(root,"WedgePart","Noyau de chapitre",Vector3.new(1.8,1.7,1.5),host.CFrame*CFrame.new(0,2.65,0.2),Kit.accent(placeKey),Enum.Material.Slate,false)

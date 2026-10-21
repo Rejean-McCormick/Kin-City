@@ -8,8 +8,20 @@ local Buildings=require(Shared:WaitForChild("Buildings"))
 local BuildIdentity=require(Shared:WaitForChild("BuildIdentity"))
 local CanonicalInteractions=require(script.Parent.CanonicalInteractions)
 local Spatial=require(script.Parent.Spatial)
-local CityGenerator=require(script.Parent.CityGenerator)
-local InteriorGenerator=require(script.Parent.InteriorGenerator)
+local PropGenerator=require(script.Parent.PropGenerator)
+local InteriorLighting=require(script.Parent.InteriorLightingV30)
+-- Les versions de secours sont issues du script v27 fourni par le propriétaire.
+-- Elles n'interviennent QUE si le générateur actuel échoue en Studio.
+local function loadGenerator(name,legacy)
+    local ok,result=pcall(function() return require(script.Parent:WaitForChild(name)) end)
+    if ok then return result end
+    local backup=script.Parent:FindFirstChild(legacy)
+    if not backup then error("Kin City: "..name.." ne charge pas : "..tostring(result)) end
+    warn("KIN CITY : "..name.." indisponible : "..tostring(result).." ; utilisation du générateur v27 de secours.")
+    return require(backup)
+end
+local CityGenerator=loadGenerator("CityGenerator","CityGeneratorLegacyV27")
+local InteriorGenerator=loadGenerator("InteriorGenerator","InteriorGeneratorLegacyV27")
 local Factory=require(script.Parent.Factory)
 local Neighborhoods=require(script.Parent.Neighborhoods)
 local SkyDirector=require(script.Parent.SkyDirector)
@@ -22,7 +34,7 @@ local PlacePortalsV26=require(script.Parent.PlacePortalsV26)
 local WorldBuilder={}
 -- Version de fabrication indépendante des manifestes : toute modification de géométrie
 -- doit invalider une scène d'édition issue d'une précédente version du moteur.
-local WORLD_BUILD_REVISION="construction-v26.0.0-"..VisualConfig.profile.."-"..BuildIdentity.sha256
+local WORLD_BUILD_REVISION="construction-v30.0.7-door-clearance-pass-"..VisualConfig.profile.."-"..BuildIdentity.sha256
 
 -- Réutilise la scène déjà construite en mode Édition par l'installateur.
 -- En session Play, le clonage automatique du Workspace évite une génération complète
@@ -115,6 +127,19 @@ local function rehydrate(world)
 end
 
 function WorldBuilder.build(reuseExisting)
+    -- Fail early, BEFORE removing a prior KinCityGenerated, if the canonical
+    -- catalog contains any furniture without an actual geometry generator.
+    local unknown={}
+    for _,place in ipairs(Plan.places) do
+        if place.place_key~="city" and (Spatial.mode()=="LOCAL_UNIVERSE" or place.place_key==Spatial.currentPlace()) then
+            for _,furn in ipairs(place.furnishings) do
+                if not PropGenerator.supports(furn.asset_id) then
+                    table.insert(unknown,place.place_key.."/"..tostring(furn.asset_id))
+                end
+            end
+        end
+    end
+    assert(#unknown==0,"Kin City : mobilier sans générateur : "..table.concat(unknown,", "))
     local old=workspace:FindFirstChild("KinCityGenerated")
     if reuseExisting and old then
         local restored=rehydrate(old)
@@ -135,14 +160,48 @@ function WorldBuilder.build(reuseExisting)
     local active=Spatial.currentPlace()
     local named={}
     for _,b in ipairs(Buildings) do named[b.building_id]=b end
+    local fallbackCount=0
     if routing=="LOCAL_UNIVERSE" or active=="city" then
-        CityGenerator.make(world,Plan,named)
+        print("KIN CITY : construction de la ville extérieure...")
+        local ok,err=pcall(function() CityGenerator.make(world,Plan,named) end)
+        if not ok then
+            warn("KIN CITY : générateur de ville v30 en erreur : "..tostring(err))
+            local backup=script.Parent:FindFirstChild("CityGeneratorLegacyV27")
+            if not backup then error("Kin City: pas de générateur de secours : "..tostring(err)) end
+            local partial=world:FindFirstChild("Ville")
+            if partial then partial:Destroy() end
+            local legacy=require(backup)
+            local success,detail=pcall(function() legacy.make(world,Plan,named) end)
+            if not success then error("Kin City: ville v30 : "..tostring(err).." ; secours v27 : "..tostring(detail)) end
+            fallbackCount+=1
+            warn("KIN CITY : ville créée avec le générateur v27 de secours ; améliorations géométriques v30 non garanties.")
+        end
+        local city=world:FindFirstChild("Ville")
+        assert(city and #city:GetDescendants()>50,"Kin City: la ville extérieure est absente ou presque vide")
+        print("KIN CITY : ville extérieure présente ("..tostring(#city:GetDescendants()).." objets).")
     end
     local inside=Factory.folder(world,"Bâtiments visitables")
     for _,place in ipairs(Plan.places) do
         if place.place_key~="city" and (routing=="LOCAL_UNIVERSE" or place.place_key==active) then
             local style=Spatial.styleForPlace(place.place_key)
-            InteriorGenerator.make(inside,place,style)
+            print("KIN CITY : génération institution "..place.place_key.."...")
+            local ok,err=pcall(function() InteriorGenerator.make(inside,place,style) end)
+            if not ok then
+                warn("KIN CITY : intérieur v30 "..place.place_key.." en erreur : "..tostring(err))
+                local backup=script.Parent:FindFirstChild("InteriorGeneratorLegacyV27")
+                if not backup then error("Kin City: pas de secours pour "..place.place_key.." : "..tostring(err)) end
+                local partial=inside:FindFirstChild("Intérieur — "..place.place_key)
+                if partial then partial:Destroy() end
+                local legacy=require(backup)
+                local success,detail=pcall(function() legacy.make(inside,place,style) end)
+                if not success then error("Kin City: intérieur "..place.place_key.." v30 : "..tostring(err).." ; secours v27 : "..tostring(detail)) end
+                fallbackCount+=1
+                warn("KIN CITY : "..place.place_key.." créé en mode de secours v27.")
+            end
+            local model=inside:FindFirstChild("Intérieur — "..place.place_key)
+            assert(model and #model:GetDescendants()>20,"Kin City: intérieur vide ou absent : "..place.place_key)
+            local lights=InteriorLighting.apply(model)
+            print("KIN CITY : "..place.place_key.." présent ("..tostring(#model:GetDescendants()).." objets ; "..tostring(lights).." lumières à 65 %).")
         end
     end
     local promptRecords={}
@@ -181,8 +240,13 @@ function WorldBuilder.build(reuseExisting)
             local a=Spatial.anchor(door.source_place_key,door.source_anchor_id)
             assert(a,"Missing source anchor: "..door.source_anchor_id)
             local frame=Spatial.anchorCFrame(door.source_place_key,door.source_anchor_id)
-            local doorPart=Factory.part(binders,"Porte : "..door.door_id,Vector3.new(7,7.2,0.85),frame*CFrame.new(0,0.5,0),Color3.fromRGB(66,92,101),Enum.Material.Metal)
+            local doorPart=Factory.part(binders,"Porte : "..door.door_id,Vector3.new(6.6,6.8,0.18),frame*CFrame.new(0,0.45,-0.04),Color3.fromRGB(66,92,101),Enum.Material.Metal)
             doorPart.CanCollide=false
+            doorPart.CanTouch=false
+            doorPart.CanQuery=false
+            doorPart.CastShadow=false
+            doorPart.Transparency=0.96
+            doorPart:SetAttribute("KinDoorBoundary",true)
             doorPart:SetAttribute("KinDoorId",door.door_id)
             local enter=(door.source_place_key=="city")
             local prompt=Factory.prompt(doorPart,if enter then "Entrer" else "Sortir",if enter then "Bâtiment" else "Retour à la ville")
@@ -251,7 +315,22 @@ function WorldBuilder.build(reuseExisting)
     world:SetAttribute("KinCanonicalInteractionCount",expectedInteractions)
     world:SetAttribute("KinSeparatedWorld",routing~="LOCAL_UNIVERSE")
     WorldBuildDiagnosticsV25.capture(world,startClock,VisualConfig.profile)
+    local interiorCount=0
+    for _,place in ipairs(Plan.places) do
+        if place.place_key~="city" and validPlace(place.place_key) then
+            local interior=inside:FindFirstChild("Intérieur — "..place.place_key)
+            assert(interior and #interior:GetDescendants()>20,"Kin City : institution manquante : "..place.place_key)
+            interiorCount+=1
+        end
+    end
+    if routing=="LOCAL_UNIVERSE" then
+        assert(world:FindFirstChild("Ville") and interiorCount==8,
+            "Kin City : le mode univers complet exige une ville et 8 institutions, obtenu "..tostring(interiorCount))
+    end
+    world:SetAttribute("KinInteriorCount",interiorCount)
+    world:SetAttribute("KinGeneratorFallbacks",fallbackCount)
     world:SetAttribute("KinBuildState","Ready")
+    print("KIN CITY : MONDE PRÊT — ville + "..tostring(interiorCount).." institutions ; "..tostring(fallbackCount).." secours v27.")
     return {world=world,prompts=promptRecords,anchors=anchorParts,currentPlace=active,mode=routing}
 end
 return WorldBuilder

@@ -30,6 +30,29 @@ end
 function Props.attach(model:Model,role:string,index:number)
     local hand=model:FindFirstChild("RightHand")
     if not hand or not hand:IsA("BasePart") then return end
+    local head=model:FindFirstChild("Head")
+    local torso=model:FindFirstChild("UpperTorso")
+    local feet={model:FindFirstChild("LeftFoot"),model:FindFirstChild("RightFoot")}
+    local hairColors={Color3.fromRGB(51,43,43),Color3.fromRGB(124,84,57),Color3.fromRGB(196,154,104),Color3.fromRGB(54,66,73)}
+    local hair=hairColors[(index-1)%#hairColors+1]
+    if head and head:IsA("BasePart") then
+        -- La face native reste visible (cheveux au-dessus du crâne).
+        accessory(model,head,"Coiffure sculptée",Vector3.new(1.6,0.36,1.35),CFrame.new(0,0.47,0.07),hair,Enum.Material.SmoothPlastic)
+        if index%3==0 then
+            accessory(model,head,"Mèche latérale",Vector3.new(0.29,0.53,0.75),CFrame.new(-0.62,0.30,0.10),hair,Enum.Material.SmoothPlastic)
+        elseif index%4==0 then
+            accessory(model,head,"Béret souple",Vector3.new(1.85,0.26,1.74),CFrame.new(0,0.69,0),teal,Enum.Material.Fabric)
+        end
+    end
+    if torso and torso:IsA("BasePart") then
+        accessory(model,torso,"Col opalin",Vector3.new(1.12,0.18,0.20),CFrame.new(0,0.75,-0.5),opal,Enum.Material.SmoothPlastic)
+        accessory(model,torso,"Insigne Kin City",Vector3.new(0.24,0.34,0.07),CFrame.new(-0.55,0.22,-0.52),gold,Enum.Material.Metal)
+    end
+    for _,foot in ipairs(feet) do
+        if foot and foot:IsA("BasePart") then
+            accessory(model,foot,"Chaussure de ville",Vector3.new(0.88,0.22,1.05),CFrame.new(0,-0.21,-0.09),Color3.fromRGB(39,57,63),Enum.Material.SmoothPlastic)
+        end
+    end
     -- Mini livre, carnet, outil ou prisme selon le métier.
     local kind=index%4
     if string.find(role,"Biblioth") or string.find(role,"Archiv") or kind==0 then

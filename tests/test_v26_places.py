@@ -18,7 +18,7 @@ KEYS=['city','city_hall','ekoh_tower','library','campus','justice_palace','innov
 class SplitPlaceContracts(unittest.TestCase):
     def test_nine_independent_installers(self):
         manifest=json.loads((ROOT/'build/release-manifest.json').read_text())
-        self.assertEqual(manifest['version'],'26.0.0')
+        self.assertEqual(manifest['version'],'30.0.7')
         self.assertEqual(set(manifest['place_installers']),set(KEYS))
         for key in KEYS:
             name=manifest['place_installers'][key]
@@ -31,10 +31,10 @@ class SplitPlaceContracts(unittest.TestCase):
             self.assertIn('["target_place_key"] = "'+key+'"',script)
             self.assertIn('require(server:WaitForChild("WorldBuilder")).build()',script)
     def test_fallback_legacy_local_is_still_available(self):
-        main=(ROOT/'KinCity_Installation_Directe_v26.luau').read_bytes()
-        city=(ROOT/'KinCity_Installation_Place_city_v26.luau').read_bytes()
+        main=(ROOT/'KinCity_Installation_Directe_v30.luau').read_bytes()
+        city=(ROOT/'KinCity_Installation_Place_city_v30.luau').read_bytes()
         self.assertEqual(main,city)
-        local=(ROOT/'KinCity_Installation_Univers_Local_v26.luau').read_text()
+        local=(ROOT/'KinCity_Installation_Univers_Local_v30.luau').read_text()
         self.assertIn('LOCAL_UNIVERSE',local)
         self.assertNotIn('["target_place_key"]',local)
     def test_split_generates_only_place_content(self):

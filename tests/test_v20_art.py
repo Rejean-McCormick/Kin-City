@@ -38,7 +38,7 @@ class V20Art(unittest.TestCase):
             self.assertIn('KinArtTheme',src)
     def test_v20_revision_touches_generation(self):
         builder=(S/'WorldBuilder.luau').read_text(encoding='utf8')
-        self.assertIn('construction-v26.0.0-',builder)
+        self.assertIn('construction-v30.0.7-',builder)
         release=(R/'tools/build_release.py').read_text(encoding='utf8')
-        self.assertIn('KinCity_Installation_Directe_v26.luau',release)
+        self.assertIn('KinCity_Installation_Directe_v30.luau',release)
 if __name__=='__main__': unittest.main()

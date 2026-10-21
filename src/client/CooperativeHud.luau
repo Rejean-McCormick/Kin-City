@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Notification non bloquante : l'exploration continue pendant l'activité.
 local Players=game:GetService("Players")
 local CooperativeHud={}
@@ -24,7 +25,7 @@ function CooperativeHud.start(remote)
     title.Position=UDim2.fromOffset(12,7)
     title.BackgroundTransparency=1
     title.TextColor3=Color3.fromRGB(238,199,121)
-    title.Font=Enum.Font.GothamBold
+    title.Font=Typography.body()
     title.TextXAlignment=Enum.TextXAlignment.Left
     title.TextSize=16;title.Text="ACTIVITÉ COOPÉRATIVE";title.Parent=box
     local body=Instance.new("TextLabel")
@@ -34,7 +35,7 @@ function CooperativeHud.start(remote)
     body.TextColor3=Color3.fromRGB(242,241,222)
     body.TextXAlignment=Enum.TextXAlignment.Left
     body.TextWrapped=true
-    body.TextSize=15;body.Font=Enum.Font.Gotham
+    body.TextSize=15;body.Font=Typography.body()
     body.Parent=box
     local sequence=0
     remote.OnClientEvent:Connect(function(payload)

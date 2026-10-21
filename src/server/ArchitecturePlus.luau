@@ -56,8 +56,12 @@ function A.decorate(model,structure,building,style)
     windowMullions(model,base,w,d,h,trim)
     -- Nombre limité d'ornements répétables pour les appareils modestes.
     if family=="civic_stone" then
+        local doorwayHalf=6.6
         for i=-2,2 do
-            pillar(model,base,i*9,-d/2-3,math.min(13,h-4),trim,accent)
+            local px=i*9
+            if math.abs(px)>doorwayHalf then
+                pillar(model,base,px,-d/2-3,math.min(13,h-4),trim,accent)
+            end
         end
         piece(model,"Fronton civique",base,Vector3.new(w-4,2,5),Vector3.new(0,math.min(16,h-3),-d/2-2.4),accent,Enum.Material.Marble)
         for i=-2,2 do
@@ -72,8 +76,11 @@ function A.decorate(model,structure,building,style)
             orb(model,"Dôme hôtel de ville",base,Vector3.new(14,8,14),Vector3.new(0,h+8,0),accent,Enum.Material.Metal)
         end
     elseif family=="warm_academic" then
+        local doorwayHalf=6.8
         for x=-w/2+5,w/2-5,9 do
-            pillar(model,base,x,-d/2-1.2,math.min(12,h-4),trim,wall)
+            if math.abs(x)>doorwayHalf then
+                pillar(model,base,x,-d/2-1.2,math.min(12,h-4),trim,wall)
+            end
         end
         for i=-2,2 do
             piece(model,"Toiture académique",base,Vector3.new(math.max(8,w/5-1),1.3,d+2),Vector3.new(i*w/5,h+1.1,0),accent,Enum.Material.Slate)

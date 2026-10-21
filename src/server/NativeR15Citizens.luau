@@ -1,4 +1,5 @@
 --!strict
+local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("Typography"))
 -- Avatars Roblox R15 créés par l'API officielle, SANS identifiant d'avatar externe requis.
 -- L'échec d'un chargement Roblox ne doit jamais empêcher l'ouverture de Kin City.
 -- Ces citoyens complètent la population stylisée déjà présente dans l'édition du monde.
@@ -6,6 +7,7 @@ local Players=game:GetService("Players")
 local CollectionService=game:GetService("CollectionService")
 local CitizenProps=require(script.Parent.CitizenPropsV21)
 local Presence=require(script.Parent.ViewerPresenceV21)
+local Nav=require(script.Parent.NeighborhoodNPCNavigation)
 local F=require(script.Parent.Factory)
 local R15={}
 local skins={
@@ -49,7 +51,7 @@ local function badger(model,part,title)
     text.BackgroundColor3=Color3.fromRGB(31,53,60)
     text.BackgroundTransparency=0.26
     text.TextColor3=Color3.fromRGB(247,237,216)
-    text.Font=Enum.Font.GothamMedium
+    text.Font=Typography.body()
     text.TextSize=13
     text.Text=title
     text.Parent=bb
@@ -76,6 +78,7 @@ local function make(index,parent)
     local head=model:FindFirstChild("Head")
     if not humanoid or not root or not head then model:Destroy();return nil end
     humanoid.WalkSpeed=7+(index%3)
+    humanoid.AutoRotate=true -- regarder la direction de MoveTo, sans tween latéral
     humanoid.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.None
     humanoid.BreakJointsOnDeath=false
     root.CanCollide=false
@@ -94,40 +97,35 @@ local function make(index,parent)
     return model,humanoid,root
 end
 local function walk(model,humanoid,index,world)
-    -- Le serveur choisit uniquement les destinations et publie l'activité.
-    -- Les gestes R15 sont rendus par CitizenAnimationV21 côté client.
-    local radius=76+(index%3)*5
-    local theta=index*math.pi*2/10
-    local start=Vector3.new(radius*math.cos(theta),2.5,radius*math.sin(theta))
-    model:PivotTo(CFrame.new(start))
+    local quarter=Nav.quarter(index)
+    local start=Nav.stop(quarter,index,1)
+    model:SetAttribute("KinResidenceQuarter",quarter.id)
+    model:PivotTo(CFrame.new(start+Vector3.new(0,2.5,0)))
     local root=model:FindFirstChild("HumanoidRootPart")
     if root and root:IsA("BasePart") then
         pcall(function() root:SetNetworkOwner(nil) end)
     end
     local activities={"Promenade", "Observer", "Lecture", "Accueil", "Rencontre"}
     task.spawn(function()
-        local lap=0
+        local step=1
         while model.Parent and world.Parent and humanoid.Health>0 do
             if not Presence.near(model:GetPivot().Position,200) then
                 model:SetAttribute("KinNPCMotion","idle")
                 task.wait(2.5)
                 continue
             end
-            lap+=1
-            theta+=0.21
-            local pos=Vector3.new(radius*math.cos(theta),1.8,radius*math.sin(theta))
+            step+=1
+            local destination,title=Nav.stop(quarter,index,step)
             model:SetAttribute("KinNPCMotion","walk")
-            model:SetAttribute("KinNPCActivity","Promenade")
-            humanoid:MoveTo(pos)
-            local finished=false
-            local conn=humanoid.MoveToFinished:Connect(function() finished=true end)
-            local untilTime=os.clock()+10
-            while not finished and os.clock()<untilTime and model.Parent and world.Parent and humanoid.Health>0 do
-                task.wait(0.3)
-            end
-            conn:Disconnect()
+            model:SetAttribute("KinNPCActivity",title)
+            local reached=Nav.walkHumanoid(model,humanoid,quarter,destination,world)
             if not model.Parent or not world.Parent then break end
-            local activity=activities[(lap+index-2)%#activities+1]
+            if not reached then
+                model:SetAttribute("KinNPCMotion","idle")
+                task.wait(2.0) -- aucun mouvement direct à travers le mobilier
+                continue
+            end
+            local activity=activities[(step+index-2)%#activities+1]
             model:SetAttribute("KinNPCMotion",if activity=="Lecture" then "read" elseif activity=="Accueil" or activity=="Rencontre" then "greet" else "idle")
             model:SetAttribute("KinNPCActivity",activity)
             task.wait(1.5+(index%3)*0.55)
@@ -139,9 +137,9 @@ function R15.start(world)
     local city=world:FindFirstChild("Ville")
     if not city then return end
     local folder=F.folder(city,"Citoyens Roblox R15")
-    -- Chargement asynchrone, peu de modèles, population stylisée conservée comme repli.
+    -- Quatorze rigs natifs répartis sur les voies publiques, plus de variété sans surcharger la ville.
     task.spawn(function()
-        for i=1,10 do
+        for i=1,14 do
             if not world.Parent then break end
             local model,humanoid=make(i,folder)
             if model and humanoid then walk(model,humanoid,i,world) end

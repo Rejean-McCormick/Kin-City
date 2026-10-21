@@ -1,0 +1,8 @@
+{
+  "catalog/doors.json": "b6f1e5bfcdd12e27a08a74bf2a54254e1956108df573b4f102cd74c3a85f9a0a",
+  "catalog/buildings.json": "3f90c85a6c74fb0ea559688401ead3cff1d37f1ae4e39f2b28e80d0f45d49ec6",
+  "catalog/interactions.json": "eda0f6458f1fcc4443f46e05a20ea419f2a08bc7ba9eb443701798211ef74ca8",
+  "catalog/spatial.json": "7c049e479a1894e3b84c4d6c1714b1df43c779066cfb236ae1349255cef84b27",
+  "config/place_ids.json": "a11327dce842a42412f3be7f0c9842b7e22bb0b14fbb06d1ad25cf8c10816f11",
+  "config/library_journey.json": "e2b39de7e488c76f2560951c0e6b34c76484ef5430e8ebaee31676fc59c64528"
+}

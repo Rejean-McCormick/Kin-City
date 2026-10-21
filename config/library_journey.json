@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "title": "Le livre sans dernière page",
+  "building_id": "konnected.library",
+  "entry_door_id": "city.konnected.library.entry",
+  "exit_door_id": "library.exit",
+  "start_anchor_id": "city.central.spawn",
+  "stations": [
+    {
+      "id": "welcome",
+      "furnishing_id": "library.prop.01",
+      "title": "Le livre sans dernière page",
+      "verb": "Ouvrir le livre",
+      "text": "La dernière page a disparu. Trois fragments sont cachés parmi les lecteurs : observer, relier, imaginer. Retrouvez-les, puis revenez ici."
+    },
+    {
+      "id": "memory",
+      "furnishing_id": "library.prop.05",
+      "title": "Observer — la mémoire",
+      "verb": "Lire le fragment",
+      "text": "Une ville garde les traces de ceux qui l'habitent. Regardez ce qui existe avant de décider ce qui manque. Premier mot : OBSERVER."
+    },
+    {
+      "id": "connection",
+      "furnishing_id": "library.prop.06",
+      "title": "Relier — la rencontre",
+      "verb": "Lire le fragment",
+      "text": "Deux lecteurs ouvrent le même livre et n'y trouvent pas la même histoire. Une rencontre donne un autre sens aux mots. Deuxième mot : RELIER."
+    },
+    {
+      "id": "imagination",
+      "furnishing_id": "library.prop.03",
+      "title": "Imaginer — la possibilité",
+      "verb": "Lire le fragment",
+      "text": "Une page blanche n'est pas une erreur. C'est une invitation à essayer une idée qui n'existe pas encore. Troisième mot : IMAGINER."
+    }
+  ],
+  "ending": "Observer. Relier. Imaginer. La dernière page était blanche pour une raison : la suite se construit avec les autres. Le livre vous rend à la ville.",
+  "placement": {
+    "asset_id": "v28.library.story_book",
+    "host_local_offset_studs": [
+      0,
+      0.34,
+      0
+    ],
+    "size_studs": [
+      2.4,
+      0.5,
+      1.6
+    ],
+    "yaw_degrees": 0,
+    "clearance": "above existing furnishing top; noncolliding; no floor footprint",
+    "door_anchor_id": "library.exit.door"
+  }
+}
