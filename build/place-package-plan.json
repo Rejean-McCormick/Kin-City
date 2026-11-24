@@ -1,12 +1,12 @@
 {
   "packages": [
     {
-      "anchors": 23,
+      "anchors": 25,
       "canonical_doors": 8,
       "canonical_interactions": 0,
       "generates_city": true,
       "generates_institution_interior": false,
-      "installer": "KinCity_Installation_Place_city_v30.luau",
+      "installer": "KinCity_Installation_Place_city_v31_9_3.luau",
       "place_key": "city",
       "published_place_id": null,
       "role": "exterior_city"
@@ -17,7 +17,7 @@
       "canonical_interactions": 1,
       "generates_city": false,
       "generates_institution_interior": true,
-      "installer": "KinCity_Installation_Place_city_hall_v30.luau",
+      "installer": "KinCity_Installation_Place_city_hall_v31_9_3.luau",
       "place_key": "city_hall",
       "published_place_id": null,
       "role": "institution_interior"
@@ -28,7 +28,7 @@
       "canonical_interactions": 1,
       "generates_city": false,
       "generates_institution_interior": true,
-      "installer": "KinCity_Installation_Place_ekoh_tower_v30.luau",
+      "installer": "KinCity_Installation_Place_ekoh_tower_v31_9_3.luau",
       "place_key": "ekoh_tower",
       "published_place_id": null,
       "role": "institution_interior"
@@ -39,7 +39,7 @@
       "canonical_interactions": 1,
       "generates_city": false,
       "generates_institution_interior": true,
-      "installer": "KinCity_Installation_Place_library_v30.luau",
+      "installer": "KinCity_Installation_Place_library_v31_9_3.luau",
       "place_key": "library",
       "published_place_id": null,
       "role": "institution_interior"
@@ -50,7 +50,7 @@
       "canonical_interactions": 1,
       "generates_city": false,
       "generates_institution_interior": true,
-      "installer": "KinCity_Installation_Place_campus_v30.luau",
+      "installer": "KinCity_Installation_Place_campus_v31_9_3.luau",
       "place_key": "campus",
       "published_place_id": null,
       "role": "institution_interior"
@@ -61,7 +61,7 @@
       "canonical_interactions": 1,
       "generates_city": false,
       "generates_institution_interior": true,
-      "installer": "KinCity_Installation_Place_justice_palace_v30.luau",
+      "installer": "KinCity_Installation_Place_justice_palace_v31_9_3.luau",
       "place_key": "justice_palace",
       "published_place_id": null,
       "role": "institution_interior"
@@ -72,7 +72,7 @@
       "canonical_interactions": 1,
       "generates_city": false,
       "generates_institution_interior": true,
-      "installer": "KinCity_Installation_Place_innovation_lab_v30.luau",
+      "installer": "KinCity_Installation_Place_innovation_lab_v31_9_3.luau",
       "place_key": "innovation_lab",
       "published_place_id": null,
       "role": "institution_interior"
@@ -83,7 +83,7 @@
       "canonical_interactions": 1,
       "generates_city": false,
       "generates_institution_interior": true,
-      "installer": "KinCity_Installation_Place_museum_v30.luau",
+      "installer": "KinCity_Installation_Place_museum_v31_9_3.luau",
       "place_key": "museum",
       "published_place_id": null,
       "role": "institution_interior"
@@ -94,7 +94,7 @@
       "canonical_interactions": 1,
       "generates_city": false,
       "generates_institution_interior": true,
-      "installer": "KinCity_Installation_Place_orgo_center_v30.luau",
+      "installer": "KinCity_Installation_Place_orgo_center_v31_9_3.luau",
       "place_key": "orgo_center",
       "published_place_id": null,
       "role": "institution_interior"
@@ -102,6 +102,6 @@
   ],
   "preview_has_interplace_teleportation": false,
   "published_place_ids_required_for_interplace_travel": true,
-  "source_world_plan_sha256": "9a484bde9eac1e8010c716a03612e83fd72d61212b9e2cb8aa602552411e0001",
-  "version": "30.0.7"
+  "source_world_plan_sha256": "5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a",
+  "version": "31.9.3"
 }

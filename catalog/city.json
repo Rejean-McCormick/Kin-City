@@ -1,16 +1,17 @@
 {
   "schema_version": "kincity.city/1.0",
   "city_id": "kin_city",
-  "display_name": "Kin City — exemple de catalogue",
+  "display_name": "Kin City — interface spatiale de Koali",
   "seed": 20261018,
   "start_place_key": "city",
   "district_ids": [
     "central",
-    "konnected",
-    "ethikos",
     "keenkonnect",
+    "ethikos",
     "kreative",
-    "orgo"
+    "uckk",
+    "ekole",
+    "konnected"
   ],
   "layout": {
     "topology": "concentric",

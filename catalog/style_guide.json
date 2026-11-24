@@ -72,6 +72,66 @@
       "roof": "flat_parapet",
       "fenestration": "grid",
       "signage": "quiet"
+    },
+    "konnected_marble": {
+      "identity": "KonnectED — marbre noir, veines or et sarcelle",
+      "palette": {
+        "wall": "#171B20",
+        "trim": "#1E6864",
+        "accent": "#CDA465",
+        "floor": "#F0EDE5"
+      },
+      "roof": "flat_parapet",
+      "fenestration": "rhythmic",
+      "signage": "monumental"
+    },
+    "uckk_academic": {
+      "identity": "UCKK — rétrokuturisme civique académique",
+      "palette": {
+        "wall": "#DAD4C1",
+        "trim": "#1E6864",
+        "accent": "#A88D60",
+        "floor": "#F0E8D8"
+      },
+      "roof": "gable",
+      "fenestration": "rhythmic",
+      "signage": "institutional"
+    },
+    "ethikos_wood": {
+      "identity": "ethiKos — bois et sarcelle",
+      "palette": {
+        "wall": "#957854",
+        "trim": "#1E6864",
+        "accent": "#D1B997",
+        "floor": "#F0E5D5"
+      },
+      "roof": "flat_parapet",
+      "fenestration": "rhythmic",
+      "signage": "public"
+    },
+    "keenkonnect_metal": {
+      "identity": "keenKonnect — métal et sarcelle",
+      "palette": {
+        "wall": "#8D9FA3",
+        "trim": "#1E6864",
+        "accent": "#A9DDDB",
+        "floor": "#E0ECEA"
+      },
+      "roof": "flat_parapet",
+      "fenestration": "grid",
+      "signage": "technical"
+    },
+    "kreative_gallery": {
+      "identity": "Kreative — galerie à accent cosmétique évolutif",
+      "palette": {
+        "wall": "#DECFD0",
+        "trim": "#1E6864",
+        "accent": "#C98BA3",
+        "floor": "#F2E6E6"
+      },
+      "roof": "vault",
+      "fenestration": "varied",
+      "signage": "gallery"
     }
   },
   "art_direction": {

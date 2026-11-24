@@ -53,7 +53,7 @@ def build(root:Path):
         })
     package_json=root/'build/place-package-plan.json'
     package_json.write_text(json.dumps({
-        'version':'30.0.7','source_world_plan_sha256':plan['canonical_sha256'],
+        'version':'31.9.3','source_world_plan_sha256':plan['canonical_sha256'],
         'packages':place_packages,'published_place_ids_required_for_interplace_travel':True,
         'preview_has_interplace_teleportation':False,
     },ensure_ascii=False,sort_keys=True,indent=2)+'\n',encoding='utf8')
@@ -68,7 +68,7 @@ def build(root:Path):
         root/'KinCity_Diagnostic_Places_v26.luau'])
     configured=json.loads((root/'config/runtime.json').read_text(encoding='utf8'))['mode']
     manifest={
-        'version':'30.0.7','mode':'WORLD_STUB','runtime_mode':configured,
+        'version':'31.9.3','mode':'WORLD_STUB','runtime_mode':configured,
         'place_install_mode':'MULTI_PLACE' if configured=='MULTI_PLACE' else 'SPLIT_PREVIEW',
         'art_style':'#1E6864 + #C5F4F0 cristal opalin',
         'plan_sha256':plan['canonical_sha256'],'build_sha256':identity['sha256'],
@@ -78,7 +78,7 @@ def build(root:Path):
     }
     output=root/'build/release-manifest.json'
     output.write_text(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n',encoding='utf8')
-    print('RELEASE v30',len(installers),'installateurs indépendants; build',identity['sha256'][:16])
+    print('RELEASE v31.9.3',len(installers),'installateurs indépendants; build',identity['sha256'][:16])
     return manifest
 
 if __name__=='__main__':

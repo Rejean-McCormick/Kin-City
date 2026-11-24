@@ -4,10 +4,10 @@
 local F=require(script.Parent.Factory)
 local Portals={}
 local names={
- city="Kin City",city_hall="Hôtel de ville",ekoh_tower="Tour EkoH",
- library="Grande Bibliothèque",campus="Université KonnectED",
- justice_palace="Palais de justice",innovation_lab="Parc de l'Innovation",
- museum="Musée Kreative",orgo_center="Centre Orgo",
+ city="Kin City",city_hall="Accueil",ekoh_tower="Observatoire EkoH",
+ library="Grande Bibliothèque",campus="Université King Klown",
+ justice_palace="Agora Korum",innovation_lab="Atelier Konstruct",
+ museum="Galerie Konservation",orgo_center="Maison Orgo",
 }
 local teal=Color3.fromRGB(30,104,100)
 local opal=Color3.fromRGB(197,244,240)
@@ -35,15 +35,7 @@ function Portals.decorate(parent,door,frame,mode)
  end
  ornament(deco,"Linteau champagne",Vector3.new(12.1,0.42,0.82),
   frame*CFrame.new(0,6.55,-0.08),gold,Enum.Material.Metal)
- local tag=if isEntry then "ENTRÉE • "..name else "RETOUR • KIN CITY"
- local label=F.sign(deco,"Signalétique de la Place",(frame*CFrame.new(0,7.95,-0.72)).Position,
-  math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),tag,10.2,1.95)
- label.CastShadow=false;label.CanTouch=false;label.CanQuery=false
- if mode=="SPLIT_PREVIEW" then
-  local info=F.sign(deco,"Statut de publication",(frame*CFrame.new(0,2.95,-0.72)).Position,
-    math.deg(math.atan2(-frame.LookVector.X,-frame.LookVector.Z)),"PLACE DISTINCTE • À PUBLIER",8.6,0.95)
-  info.CanTouch=false;info.CanQuery=false;info.CastShadow=false
- end
+ -- Seuils décoratifs sans pancartes redondantes.
  return deco
 end
 return Portals

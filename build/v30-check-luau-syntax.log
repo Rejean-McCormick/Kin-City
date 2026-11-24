@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/mnt/data/work_v30/KinCity_Construction_v30/tools/check_luau_syntax.py", line 3, in <module>
-    from tree_sitter import Language,Parser
-ModuleNotFoundError: No module named 'tree_sitter'

@@ -78,7 +78,9 @@ class TestRuntimeGeneration(unittest.TestCase):
     def test_built_runtime_is_network_free(self):
         files=list((ROOT/'src/server').rglob('*.luau'))+list((ROOT/'src/client').rglob('*.luau'))
         text='\n'.join(f.read_text(encoding='utf8') for f in files)
-        for forbidden in ('HttpService','DataStoreService','RequestAsync','GetAsync(','PostAsync(','api.openai.com'):
+        # v31.7 : DataStoreService est autorisé uniquement pour enregistrer les retouches
+        # auprès de Roblox ; aucune API HTTP/kOA externe n'est autorisée.
+        for forbidden in ('HttpService','RequestAsync','PostAsync(','api.openai.com'):
             self.assertNotIn(forbidden,text)
         self.assertIn('ProximityPromptService.PromptTriggered',text)
         self.assertIn('TeleportService:TeleportAsync',text)

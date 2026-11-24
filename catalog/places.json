@@ -29,7 +29,9 @@
         "city.kreative.museum.front_door",
         "city.kreative.museum.return_spawn",
         "city.orgo.admin_center.front_door",
-        "city.orgo.admin_center.return_spawn"
+        "city.orgo.admin_center.return_spawn",
+        "city.district.ekole.hub",
+        "city.district.uckk.hub"
       ]
     },
     {

@@ -1,6 +1,7 @@
 --!strict
 -- Espaces publics, bancs, fontaines, belvédères, lampadaires, arbres floraux.
 local F=require(script.Parent.Factory)
+local Districts=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("HexagonalDistricts"))
 local Urban={}
 local function pos(x,y,z) return Vector3.new(x,y,z) end
 local function part(parent,name,xyz,size,color,material)
@@ -21,13 +22,15 @@ local iron=Color3.fromRGB(30,104,100)
 local copper=Color3.fromRGB(181,139,86)
 local foliage=Color3.fromRGB(51,132,91)
 local function lamp(parent,x,z)
+    local section=if math.sqrt(x*x+z*z)>78 then Districts.nearestAxis(x,z) else nil
+    local glow=if section then section.lightColor else Color3.fromRGB(255,234,172)
     local model=F.folder(parent,"Réverbère")
     part(model,"Socle",pos(x,0.35,z),Vector3.new(2,0.7,2),stone,Enum.Material.Marble)
     part(model,"Fût",pos(x,5.1,z),Vector3.new(0.7,9.3,0.7),iron,Enum.Material.Metal)
     part(model,"Chapiteau",pos(x,10.2,z),Vector3.new(2.4,1.3,2.4),copper,Enum.Material.Metal)
-    local bulb=part(model,"Luminaire",pos(x,10.7,z),Vector3.new(1.2,0.8,1.2),Color3.fromRGB(255,234,172),Enum.Material.Neon)
+    local bulb=part(model,"Luminaire",pos(x,10.7,z),Vector3.new(1.2,0.8,1.2),glow,Enum.Material.Neon)
     bulb.CanCollide=false
-    local light=Instance.new("PointLight");light.Brightness=1.1;light.Range=19;light.Shadows=false;light.Parent=bulb
+    local light=Instance.new("PointLight");light.Brightness=0.60;light.Range=19;light.Color=glow;light.Shadows=false;light.Parent=bulb
 end
 local function bench(parent,x,z,yaw)
     local m=F.folder(parent,"Banc public")

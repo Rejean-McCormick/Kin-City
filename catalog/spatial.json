@@ -9,16 +9,16 @@
       "building_id": "central.city_hall",
       "place_key": "city",
       "center_studs": [
+        100,
         0,
-        0,
-        -100
+        86
       ],
       "footprint_studs": [
         70,
         56
       ],
       "height_studs": 29,
-      "yaw_degrees": 180.0,
+      "yaw_degrees": 49.304,
       "facade_asset_id": "civic.hall.frontage",
       "style_id": "civic_stone",
       "entrance_clearance_studs": 10
@@ -27,16 +27,16 @@
       "building_id": "central.ekoh_tower",
       "place_key": "city",
       "center_studs": [
-        100,
+        -110,
         0,
-        0
+        -16
       ],
       "footprint_studs": [
         42,
         42
       ],
       "height_studs": 73,
-      "yaw_degrees": 90.0,
+      "yaw_degrees": -98.276,
       "facade_asset_id": "civic.tower.frontage",
       "style_id": "central_glass",
       "entrance_clearance_studs": 10
@@ -45,108 +45,108 @@
       "building_id": "konnected.library",
       "place_key": "city",
       "center_studs": [
-        194,
+        -231,
         0,
-        70
+        -158
       ],
       "footprint_studs": [
         78,
         62
       ],
       "height_studs": 24,
-      "yaw_degrees": 70.159,
+      "yaw_degrees": -124.371,
       "facade_asset_id": "education.library.frontage",
-      "style_id": "warm_academic",
+      "style_id": "konnected_marble",
       "entrance_clearance_studs": 10
     },
     {
       "building_id": "konnected.university",
       "place_key": "city",
       "center_studs": [
-        306,
+        -51,
         0,
-        142
+        292
       ],
       "footprint_studs": [
         82,
         64
       ],
       "height_studs": 31,
-      "yaw_degrees": 65.106,
+      "yaw_degrees": -9.907,
       "facade_asset_id": "education.campus.frontage",
-      "style_id": "warm_academic",
+      "style_id": "uckk_academic",
       "entrance_clearance_studs": 10
     },
     {
       "building_id": "ethikos.justice_palace",
       "place_key": "city",
       "center_studs": [
+        224,
         0,
-        0,
-        242
+        -191
       ],
       "footprint_studs": [
         76,
         56
       ],
       "height_studs": 28,
-      "yaw_degrees": 0.0,
+      "yaw_degrees": 130.454,
       "facade_asset_id": "civic.justice.frontage",
-      "style_id": "civic_stone",
+      "style_id": "ethikos_wood",
       "entrance_clearance_studs": 10
     },
     {
       "building_id": "keenkonnect.innovation_lab",
       "place_key": "city",
       "center_studs": [
-        -230,
+        -51,
         0,
-        84
+        -292
       ],
       "footprint_studs": [
         76,
         60
       ],
       "height_studs": 24,
-      "yaw_degrees": -69.937,
+      "yaw_degrees": -170.093,
       "facade_asset_id": "innovation.lab.frontage",
-      "style_id": "innovation_glass",
+      "style_id": "keenkonnect_metal",
       "entrance_clearance_studs": 10
     },
     {
       "building_id": "kreative.museum",
       "place_key": "city",
       "center_studs": [
-        -202,
+        240,
         0,
-        -180
+        182
       ],
       "footprint_studs": [
         82,
         62
       ],
       "height_studs": 24,
-      "yaw_degrees": -131.704,
+      "yaw_degrees": 52.826,
       "facade_asset_id": "culture.museum.frontage",
-      "style_id": "cultural_copper",
+      "style_id": "kreative_gallery",
       "entrance_clearance_studs": 10
     },
     {
       "building_id": "orgo.admin_center",
       "place_key": "city",
       "center_studs": [
-        135,
+        117,
         0,
-        -239
+        -122
       ],
       "footprint_studs": [
         72,
         56
       ],
       "height_studs": 26,
-      "yaw_degrees": 150.54,
+      "yaw_degrees": 136.198,
       "facade_asset_id": "services.admin.frontage",
-      "style_id": "service_brick",
+      "style_id": "civic_stone",
       "entrance_clearance_studs": 10
     }
   ],
@@ -182,15 +182,215 @@
         {
           "anchor_id": "city.district.konnected.hub",
           "position_studs": [
-            145.652,
+            -134.234,
             3.0,
-            53.013
+            -77.5
           ],
           "yaw_degrees": 0.0,
           "role": "hub"
         },
         {
           "anchor_id": "city.district.ethikos.hub",
+          "position_studs": [
+            134.234,
+            3.0,
+            -77.5
+          ],
+          "yaw_degrees": 0.0,
+          "role": "hub"
+        },
+        {
+          "anchor_id": "city.district.keenkonnect.hub",
+          "position_studs": [
+            0.0,
+            3.0,
+            -155.0
+          ],
+          "yaw_degrees": 0.0,
+          "role": "hub"
+        },
+        {
+          "anchor_id": "city.district.kreative.hub",
+          "position_studs": [
+            134.234,
+            3.0,
+            77.5
+          ],
+          "yaw_degrees": 0.0,
+          "role": "hub"
+        },
+        {
+          "anchor_id": "city.district.orgo.hub",
+          "position_studs": [
+            100.0,
+            3.0,
+            -68.0
+          ],
+          "yaw_degrees": 0.0,
+          "role": "hub"
+        },
+        {
+          "anchor_id": "city.central.city_hall.front_door",
+          "position_studs": [
+            78.013,
+            3.0,
+            67.091
+          ],
+          "yaw_degrees": 49.304,
+          "role": "door"
+        },
+        {
+          "anchor_id": "city.central.city_hall.return_spawn",
+          "position_studs": [
+            68.156,
+            3.0,
+            58.614
+          ],
+          "yaw_degrees": 49.304,
+          "role": "spawn"
+        },
+        {
+          "anchor_id": "city.central.ekoh_tower.front_door",
+          "position_studs": [
+            -88.229,
+            3.0,
+            -12.833
+          ],
+          "yaw_degrees": -98.276,
+          "role": "door"
+        },
+        {
+          "anchor_id": "city.central.ekoh_tower.return_spawn",
+          "position_studs": [
+            -75.364,
+            3.0,
+            -10.962
+          ],
+          "yaw_degrees": -98.276,
+          "role": "spawn"
+        },
+        {
+          "anchor_id": "city.konnected.library.front_door",
+          "position_studs": [
+            -204.587,
+            3.0,
+            -139.934
+          ],
+          "yaw_degrees": -124.371,
+          "role": "door"
+        },
+        {
+          "anchor_id": "city.konnected.library.return_spawn",
+          "position_studs": [
+            -193.857,
+            3.0,
+            -132.595
+          ],
+          "yaw_degrees": -124.371,
+          "role": "spawn"
+        },
+        {
+          "anchor_id": "city.konnected.university.front_door",
+          "position_studs": [
+            -45.322,
+            3.0,
+            259.492
+          ],
+          "yaw_degrees": -9.907,
+          "role": "door"
+        },
+        {
+          "anchor_id": "city.konnected.university.return_spawn",
+          "position_studs": [
+            -43.086,
+            3.0,
+            246.686
+          ],
+          "yaw_degrees": -9.907,
+          "role": "spawn"
+        },
+        {
+          "anchor_id": "city.ethikos.justice_palace.front_door",
+          "position_studs": [
+            201.933,
+            3.0,
+            -172.184
+          ],
+          "yaw_degrees": 130.454,
+          "role": "door"
+        },
+        {
+          "anchor_id": "city.ethikos.justice_palace.return_spawn",
+          "position_studs": [
+            192.041,
+            3.0,
+            -163.749
+          ],
+          "yaw_degrees": 130.454,
+          "role": "spawn"
+        },
+        {
+          "anchor_id": "city.keenkonnect.innovation_lab.front_door",
+          "position_studs": [
+            -45.666,
+            3.0,
+            -261.462
+          ],
+          "yaw_degrees": -170.093,
+          "role": "door"
+        },
+        {
+          "anchor_id": "city.keenkonnect.innovation_lab.return_spawn",
+          "position_studs": [
+            -43.43,
+            3.0,
+            -248.656
+          ],
+          "yaw_degrees": -170.093,
+          "role": "spawn"
+        },
+        {
+          "anchor_id": "city.kreative.museum.front_door",
+          "position_studs": [
+            214.502,
+            3.0,
+            162.664
+          ],
+          "yaw_degrees": 52.826,
+          "role": "door"
+        },
+        {
+          "anchor_id": "city.kreative.museum.return_spawn",
+          "position_studs": [
+            204.144,
+            3.0,
+            154.809
+          ],
+          "yaw_degrees": 52.826,
+          "role": "spawn"
+        },
+        {
+          "anchor_id": "city.orgo.admin_center.front_door",
+          "position_studs": [
+            96.927,
+            3.0,
+            -101.069
+          ],
+          "yaw_degrees": 136.198,
+          "role": "door"
+        },
+        {
+          "anchor_id": "city.orgo.admin_center.return_spawn",
+          "position_studs": [
+            87.929,
+            3.0,
+            -91.687
+          ],
+          "yaw_degrees": 136.198,
+          "role": "spawn"
+        },
+        {
+          "anchor_id": "city.district.uckk.hub",
           "position_studs": [
             0.0,
             3.0,
@@ -200,194 +400,14 @@
           "role": "hub"
         },
         {
-          "anchor_id": "city.district.keenkonnect.hub",
+          "anchor_id": "city.district.ekole.hub",
           "position_studs": [
-            -145.652,
+            -134.234,
             3.0,
-            53.013
+            77.5
           ],
           "yaw_degrees": 0.0,
           "role": "hub"
-        },
-        {
-          "anchor_id": "city.district.kreative.hub",
-          "position_studs": [
-            -99.632,
-            3.0,
-            -118.737
-          ],
-          "yaw_degrees": 0.0,
-          "role": "hub"
-        },
-        {
-          "anchor_id": "city.district.orgo.hub",
-          "position_studs": [
-            77.5,
-            3.0,
-            -134.234
-          ],
-          "yaw_degrees": 0.0,
-          "role": "hub"
-        },
-        {
-          "anchor_id": "city.central.city_hall.front_door",
-          "position_studs": [
-            -0.0,
-            3.0,
-            -71.0
-          ],
-          "yaw_degrees": 180.0,
-          "role": "door"
-        },
-        {
-          "anchor_id": "city.central.city_hall.return_spawn",
-          "position_studs": [
-            -0.0,
-            3.0,
-            -58.0
-          ],
-          "yaw_degrees": 180.0,
-          "role": "spawn"
-        },
-        {
-          "anchor_id": "city.central.ekoh_tower.front_door",
-          "position_studs": [
-            78.0,
-            3.0,
-            -0.0
-          ],
-          "yaw_degrees": 90.0,
-          "role": "door"
-        },
-        {
-          "anchor_id": "city.central.ekoh_tower.return_spawn",
-          "position_studs": [
-            65.0,
-            3.0,
-            -0.0
-          ],
-          "yaw_degrees": 90.0,
-          "role": "spawn"
-        },
-        {
-          "anchor_id": "city.konnected.library.front_door",
-          "position_studs": [
-            163.9,
-            3.0,
-            59.139
-          ],
-          "yaw_degrees": 70.159,
-          "role": "door"
-        },
-        {
-          "anchor_id": "city.konnected.library.return_spawn",
-          "position_studs": [
-            151.671,
-            3.0,
-            54.727
-          ],
-          "yaw_degrees": 70.159,
-          "role": "spawn"
-        },
-        {
-          "anchor_id": "city.konnected.university.front_door",
-          "position_studs": [
-            276.066,
-            3.0,
-            128.109
-          ],
-          "yaw_degrees": 65.106,
-          "role": "door"
-        },
-        {
-          "anchor_id": "city.konnected.university.return_spawn",
-          "position_studs": [
-            264.274,
-            3.0,
-            122.637
-          ],
-          "yaw_degrees": 65.106,
-          "role": "spawn"
-        },
-        {
-          "anchor_id": "city.ethikos.justice_palace.front_door",
-          "position_studs": [
-            0.0,
-            3.0,
-            213.0
-          ],
-          "yaw_degrees": 0.0,
-          "role": "door"
-        },
-        {
-          "anchor_id": "city.ethikos.justice_palace.return_spawn",
-          "position_studs": [
-            0.0,
-            3.0,
-            200.0
-          ],
-          "yaw_degrees": 0.0,
-          "role": "spawn"
-        },
-        {
-          "anchor_id": "city.keenkonnect.innovation_lab.front_door",
-          "position_studs": [
-            -200.881,
-            3.0,
-            73.365
-          ],
-          "yaw_degrees": -69.937,
-          "role": "door"
-        },
-        {
-          "anchor_id": "city.keenkonnect.innovation_lab.return_spawn",
-          "position_studs": [
-            -188.67,
-            3.0,
-            68.906
-          ],
-          "yaw_degrees": -69.937,
-          "role": "spawn"
-        },
-        {
-          "anchor_id": "city.kreative.museum.front_door",
-          "position_studs": [
-            -178.109,
-            3.0,
-            -158.711
-          ],
-          "yaw_degrees": -131.704,
-          "role": "door"
-        },
-        {
-          "anchor_id": "city.kreative.museum.return_spawn",
-          "position_studs": [
-            -168.403,
-            3.0,
-            -150.062
-          ],
-          "yaw_degrees": -131.704,
-          "role": "spawn"
-        },
-        {
-          "anchor_id": "city.orgo.admin_center.front_door",
-          "position_studs": [
-            120.737,
-            3.0,
-            -213.75
-          ],
-          "yaw_degrees": 150.54,
-          "role": "door"
-        },
-        {
-          "anchor_id": "city.orgo.admin_center.return_spawn",
-          "position_studs": [
-            114.344,
-            3.0,
-            -202.431
-          ],
-          "yaw_degrees": 150.54,
-          "role": "spawn"
         }
       ],
       "rooms": [],

@@ -61,7 +61,12 @@ function FacadeGenerator.make(parent, structure, building, style)
     for side=-1,1,2 do
         element(model,"EntranceColumn",Vector3.new(1.4,10,1.4),base,Vector3.new(side*6.5,5,-d/2-1.2),trim,Enum.Material.Marble)
     end
-    Factory.sign(model,"BuildingSign",(base*CFrame.new(0,math.min(h-2.1,14.1),-d/2-1.95)).Position,yaw,building.name,math.min(w-10,42),3.8)
+    -- Enseigne unique de l'institution : compacte et intégrée à la façade.
+    local mainSign=Factory.sign(model,"BuildingSign",
+        (base*CFrame.new(0,math.min(h-2.1,14.1),-d/2-0.95)).Position,
+        yaw,building.name,math.min(w-10,24),2.9,{emblem=true,role="building-primary",section=building.district_id})
+    mainSign:SetAttribute("KinSignCompactV316",true)
+    mainSign:SetAttribute("KinSignRole","building-primary")
     if style.roof=="spire" then
         element(model,"Spire",Vector3.new(3,math.min(15,h*0.32),3),base,Vector3.new(0,h+math.min(15,h*0.32)/2,0),accent,Enum.Material.Metal)
     elseif style.roof=="gable" then

@@ -48,6 +48,7 @@ local oldAvatar=SS:FindFirstChild("KinCityKingKlownAvatar")
 local preservedOwner=oldAvatar and oldAvatar:GetAttribute("OwnerUserId") or 0
 local previousRuntime=SS:FindFirstChild("KinCityRuntime")
 if preservedOwner==0 and previousRuntime then preservedOwner=previousRuntime:GetAttribute("KingKlownOwnerUserId") or 0 end
+local preservedBuildOwner=previousRuntime and previousRuntime:GetAttribute("KinCityBuildOwnerUserId") or 0
 if oldAvatar then oldAvatar:Destroy() end
 local oldAura=SP:FindFirstChild("KinCityKingKlownAura")
 if oldAura then oldAura:Destroy() end
@@ -64,6 +65,7 @@ local server = Instance.new("Script")
 server.Name = "KinCityRuntime"
 server.Enabled = false
 server:SetAttribute("KingKlownOwnerUserId",preservedOwner)
+server:SetAttribute("KinCityBuildOwnerUserId",preservedBuildOwner)
 server.Parent = SS
 local client = Instance.new("LocalScript")
 client.Name = "KinCityUI"
@@ -111,13 +113,13 @@ local streamingOk, streamingValue=pcall(function() return workspace.StreamingEna
 if streamingOk then
     print("KIN CITY : Workspace.StreamingEnabled = "..tostring(streamingValue).." (paramètre Studio)")
 end
-print("KIN CITY v30.0.7 : Place installée séparément, typographie Garamond, ville allégée et institutions indépendantes; identité sarcelle-cristal, WORLD_STUB.")
+print("KIN CITY KOALI v31.9.5 : Place installée séparément, signalétique native et Mode Création propriétaire; identité sarcelle-cristal, WORLD_STUB.")
 ''')
     content=[chunk.replace('__KIN_CAMERA__', camera) for chunk in content]
     if place_key is None:
         path=root/'KinCity_Installer_CommandBar.luau'
     else:
-        path=root/f'KinCity_Installation_Place_{place_key}_v30.luau' 
+        path=root/f'KinCity_Installation_Place_{place_key}_v31_9_5.luau' 
     path.write_text(''.join(content),encoding='utf8')
     print('INSTALLER OK', path, path.stat().st_size, 'octets')
     return path

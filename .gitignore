@@ -7,3 +7,16 @@
 __pycache__/
 *.pyc
 .rojo/
+
+# Fichiers temporaires et extraits du dépôt
+*.log
+.tmp/
+_temp/
+*.bak
+*.tmp
+# Sorties d'installateurs historiques (non versionnées)
+KinCity_Installer_CommandBar.luau
+KinCity_Installation_Directe*.luau
+KinCity_Installation_Place_*.luau
+ZmartZnap.pyw
+GitSink.bat

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Kin City - Cadre 9-slice sobre, sans logo</title>
+  <desc>Cadre monocolore à centre transparent, avec bordure double et petits rivets aux quatre coins.</desc>
+  <!-- SliceCenter pour Roblox : Rect.new(56, 56, 200, 200). Le centre reste vide. -->
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="17" y="17" width="222" height="222" rx="14" stroke-width="6"/>
+    <rect x="28" y="28" width="200" height="200" rx="7" stroke-width="2" opacity="0.56"/>
+  </g>
+  <g fill="#FFFFFF" opacity="0.82">
+    <circle cx="38" cy="38" r="3.4"/>
+    <circle cx="218" cy="38" r="3.4"/>
+    <circle cx="38" cy="218" r="3.4"/>
+    <circle cx="218" cy="218" r="3.4"/>
+  </g>
+</svg>

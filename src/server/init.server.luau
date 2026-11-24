@@ -28,6 +28,7 @@ local UrbanV14Runtime=require(script.UrbanV14Runtime)
 local SkyPavilionRuntime=require(script.SkyPavilionRuntime)
 local InstitutionDiscoveryRuntime=require(script.InstitutionDiscoveryRuntime)
 local LivingExhibitsV23=require(script.LivingExhibitsV23)
+local KreativeThemeRuntime=require(script.KreativeThemeRuntime)
 
 local reply=ReplicatedStorage:FindFirstChild("KinCityReply")
 if not reply then
@@ -45,8 +46,14 @@ if not game:GetService("ServerScriptService"):FindFirstChild("KinCityKingKlownAv
     require(script.KingKlownAvatar).start(avatarConfig)
 end
 local state=WorldBuilder.build(true)
+require(script.PlayerBuildServer).start(state.world)
+-- Écran extérieur autonome; ne modifie ni portes ni catalogue Koali.
+if state.mode=="LOCAL_UNIVERSE" or state.currentPlace=="city" then
+    require(script.OutdoorCinema).start()
+end
 PlayerTravel.setup(state,reply)
 PromptRouter.start(state,reply)
+KreativeThemeRuntime.start(state.world)
 -- Les services spécialisés ne démarrent pas sur des Places où leur contenu
 -- n'existe pas. Les intérieurs ne répliquent donc ni flotte ni population urbaine.
 LocalMechanisms.start(state.world,reply)
@@ -63,18 +70,8 @@ if state.mode=="LOCAL_UNIVERSE" or state.currentPlace=="city" then
     WorldAmbience.start(state.world)
     OutdoorAtmosphere.start(state.world)
     Soundscape.start(state.world)
-    Tramways.start(state.world,reply)
-    IslandFerries.start(state.world,reply)
-    IslandExperiences.start(state.world,reply)
-    HarborAndTrailsRuntime.start(state.world,reply)
-    ResidentialLife.start(state.world,reply)
-    ResidentialResidents.start(state.world)
-    CommunityActivities.start(state.world,reply)
-    BoulevardBuses.start(state.world,reply)
-    IntermodalTransfers.start(state.world,reply)
-    CivicStageRuntime.start(state.world,reply)
-    PromenadeCraftRuntime.start(state.world,reply)
-    CooperativeRuntime.start(state.world,reply)
-    UrbanV14Runtime.start(state.world,reply)
+    -- Les services de transport, commerces et lotissements hérités sont
+    -- conservés dans les sources, mais désactivés dans l'urbanisme Koali v31.
+
 end
 print("KIN CITY WORLD_STUB prêt",state.mode,state.currentPlace)

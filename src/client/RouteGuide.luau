@@ -75,51 +75,14 @@ local names={}
 for _,b in ipairs(Buildings) do names[b.building_id]=b.name end
 local sorted={}
 for _,st in ipairs(Plan.structures) do table.insert(sorted,st) end
-for _,public in ipairs(PublicDestinations) do
-    names[public.id]=public.title
-    table.insert(sorted,{building_id=public.id,center_studs=public.center_studs,isPublicAttraction=true})
+-- Six destinations génériques correspondent aux six avenues réellement bâties.
+for _,sector in ipairs(require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("HexagonalDistricts")).sections) do
+    local id="koali.secteur."..sector.key
+    names[id]=sector.name
+    table.insert(sorted,{building_id=id,center_studs={sector.x*155,0,sector.z*155},isPublicAttraction=true})
 end
-for _,island in ipairs(IslandDestinations) do
-    names[island.id]=island.title
-    table.insert(sorted,{building_id=island.id,center_studs=island.center_studs,isPublicAttraction=true,isIsland=true})
-end
-for _,marina in ipairs(MarinaDestinations) do
-    names[marina.id]=marina.title
-    table.insert(sorted,{building_id=marina.id,center_studs=marina.center_studs,isPublicAttraction=true,isMarina=true})
-end
-for _,quarter in ipairs(ResidentialDestinations) do
-    names[quarter.id]=quarter.title
-    table.insert(sorted,{building_id=quarter.id,center_studs=quarter.center_studs,isPublicAttraction=true,isResidential=true})
-end
-for _,place in ipairs(CommunityDestinations) do
-    names[place.id]=place.title
-    table.insert(sorted,{building_id=place.id,center_studs=place.center_studs,isPublicAttraction=true,isCommunity=true})
-end
-local hub=IntermodalNetwork.hub
-names[hub.id]=hub.title
-table.insert(sorted,{building_id=hub.id,center_studs=hub.center_studs,isPublicAttraction=true})
-for _,stage in ipairs(CivicDestinations) do
-    names[stage.id]=stage.title
-    table.insert(sorted,{building_id=stage.id,center_studs=stage.center_studs,isPublicAttraction=true})
-end
-for _,shop in ipairs(PromenadeCommerce) do
-    names[shop.id]=shop.title.." · Promenade des métiers"
-    table.insert(sorted,{building_id=shop.id,center_studs=shop.center_studs,isPublicAttraction=true})
-end
-for _,shop in ipairs(UrbanV14Destinations.arcades) do
-    names[shop.id]=shop.title.." · Galeries de la gare"
-    table.insert(sorted,{building_id=shop.id,center_studs=shop.center_studs,isPublicAttraction=true})
-end
-for _,workshop in ipairs(UrbanV14Destinations.workshops) do
-    names[workshop.id]=workshop.title.." · Trois étapes"
-    table.insert(sorted,{building_id=workshop.id,center_studs=workshop.center_studs,isPublicAttraction=true})
-end
--- Les huit institutions précèdent les nombreuses attractions secondaires.
-local mainIds={}
-for _,b in ipairs(Buildings) do mainIds[b.building_id]=true end
+-- Les marques, les rues et les institutions affichées existent dans la scène.
 table.sort(sorted,function(a,b)
-    local aa,bb=mainIds[a.building_id] and 0 or 1,mainIds[b.building_id] and 0 or 1
-    if aa~=bb then return aa<bb end
     return (names[a.building_id] or a.building_id)<(names[b.building_id] or b.building_id)
 end)
 local function createButton(parent,title,y)

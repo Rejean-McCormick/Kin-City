@@ -34,6 +34,10 @@ local BotanicalKitV20=require(script.Parent.BotanicalKitV20)
 local CrystalRestStopsV22=require(script.Parent.CrystalRestStopsV22)
 local CrystalLandingsV24=require(script.Parent.CrystalLandingsV24)
 local GroundCompatibility=require(script.Parent.GroundCompatibility)
+local KoaliUrbanism=require(script.Parent.KoaliUrbanism)
+local HexagonalHeart=require(script.Parent.HexagonalHeart)
+local DistrictChromatics=require(script.Parent.DistrictChromatics)
+local EkohHalo=require(script.Parent.EkohHalo)
 local Spatial=require(script.Parent.Spatial)
 local CityGenerator={}
 
@@ -177,9 +181,7 @@ function CityGenerator.make(parent,plan,buildingsById)
     disk.Shape=Enum.PartType.Cylinder
     local water=Factory.part(city,"Lac périphérique",Vector3.new(1,1800,1800),CFrame.new(0,-3.8,0)*CFrame.Angles(0,0,math.pi/2),Color3.fromRGB(47,125,163),Enum.Material.SmoothPlastic)
     water.Shape=Enum.PartType.Cylinder
-    local plaza=Factory.part(city,"Place centrale",Vector3.new(2,110,110),CFrame.new(0,0,0)*CFrame.Angles(0,0,math.pi/2),Color3.fromRGB(198,220,211),Enum.Material.Cobblestone)
-    plaza.Shape=Enum.PartType.Cylinder
-    plaza.CanCollide=true
+    HexagonalHeart.make(city)
     local roads=Factory.folder(city,"Sentiers piétons")
     streetTiles(roads,plan.pedestrian_paths)
     local facades=Factory.folder(city,"Bâtiments")
@@ -188,14 +190,15 @@ function CityGenerator.make(parent,plan,buildingsById)
         assert(building,"Missing building: "..b.building_id)
         FacadeGenerator.make(facades,b,building,plan.styles[b.style_id])
     end
-    local gardens=Factory.folder(city,"Nature")
+    KoaliUrbanism.make(city,plan)
+    local gardens=Factory.folder(city,"Nature • alignements")
     local rng=Random.new(plan.seed)
     local planted=0
     for i=1,185 do
         local angle=rng:NextNumber(0,2*math.pi)
         local radius=rng:NextNumber(90,465)
         local x,z=math.cos(angle)*radius,math.sin(angle)*radius
-        if not nearestBuildings(x,z,plan.structures) and not InstitutionForecourts.isReserved(x,z,plan.structures) and not LearningConservatories.isReserved(x,z) and not DiscoveryPromenade.isReserved(x,z) and not ResidentialQuarters.isReserved(x,z) and not CommunityBuildings.isReserved(x,z) and not IntermodalHub.isReserved(x,z) and not CivicStages.isReserved(x,z) and not PromenadeCommerce.isReserved(x,z) and not CooperativeInstallations.isReserved(x,z) and not SecondaryStreets.isReserved(x,z) and not StationArcades.isReserved(x,z) and not PublicWorkshops.isReserved(x,z) then
+        if not KoaliUrbanism.isReserved(x,z) and not nearestBuildings(x,z,plan.structures) and not InstitutionForecourts.isReserved(x,z,plan.structures) and not LearningConservatories.isReserved(x,z) and not DiscoveryPromenade.isReserved(x,z) and not ResidentialQuarters.isReserved(x,z) and not CommunityBuildings.isReserved(x,z) and not IntermodalHub.isReserved(x,z) and not CivicStages.isReserved(x,z) and not PromenadeCommerce.isReserved(x,z) and not CooperativeInstallations.isReserved(x,z) and not SecondaryStreets.isReserved(x,z) and not StationArcades.isReserved(x,z) and not PublicWorkshops.isReserved(x,z) then
             local blockedPath=false
             for _,path in ipairs(plan.pedestrian_paths) do
                 if distanceToPath(x,z,path)<path.width_studs/2+7 then
@@ -212,7 +215,7 @@ function CityGenerator.make(parent,plan,buildingsById)
         if item.kind=="monument" then
             Factory.part(city,"Monument du savoir",Vector3.new(5,19,5),CFrame.new(item.center_studs[1],9.5,item.center_studs[2]),Color3.fromRGB(30,104,100),Enum.Material.Marble)
         elseif item.kind=="welcome" then
-            Factory.sign(city,"Bienvenue",Vector3.new(item.center_studs[1],7,item.center_studs[2]),0,"KIN CITY",28,5).CanCollide=false
+            -- Grand panneau redondant supprimé : la Place hexagonale sert de repère.
         end
     end
     local spawn=Instance.new("SpawnLocation")
@@ -226,37 +229,18 @@ function CityGenerator.make(parent,plan,buildingsById)
     spawn.Transparency=1
     spawn.Duration=0
     spawn.Parent=city
-    UrbanDetails.make(city,plan)
+    -- v31 : allègement du bac à sable préexistant. Les institutions et leurs
+    -- mécanismes demeurent ; les anciens lotissements aléatoires, marchés,
+    -- navettes et mises en scène non structurées ne sont plus construits.
     InstitutionForecourts.make(city,plan)
     CrystalLandingsV24.make(city,plan)
     ScenicCoast.make(city)
-    WaterfrontDistrict.make(city)
     OuterIslands.make(city)
-    MarinaDistrict.make(city)
-    IslandAnnexes.make(city)
-    IslandFootpaths.make(city)
-    ResidentialQuarters.make(city)
-    CommunityBuildings.make(city)
-    IntermodalHub.make(city)
-    StationArcades.make(city)
-    PublicWorkshops.make(city)
-    CivicStages.make(city)
-    CooperativeInstallations.make(city)
-    PromenadeCommerce.make(city)
-    SecondaryStreets.make(city)
-    ArtisanStreets.make(city,plan)
-    InteractiveGardens.make(city,plan)
-    LearningConservatories.make(city)
-    DiscoveryPromenade.make(city)
     PedestrianWayfinding.make(city,plan,buildingsById)
+    DistrictChromatics.make(city,plan)
     DistrictLandmarks.make(city,plan)
-    PromenadeLife.make(city,plan)
+    EkohHalo.make(city,plan)
     OutdoorAtmosphere.make(city)
-    Citizens.make(city)
-    Wildlife.make(city)
-    CrystalPublic.make(city)
-    OpalWayfindingV19.make(city,plan)
-    CrystalRestStopsV22.make(city,plan)
     return city
 end
 return CityGenerator

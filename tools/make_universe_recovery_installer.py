@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a compact single-Place full-universe Command Bar installer from v30 sources.
+"""Build a compact single-Place full-universe Command Bar installer from Kin City v31.9.7 cleaned sources.
 Includes optional v27-compatible geometry fallbacks provided by the owner.
 Never substitutes published PlaceIds, assets or external networks.
 """
@@ -8,7 +8,7 @@ from export_roblox import export, lua_literal
 from make_studio_installer import quote_luau
 
 ROOT=Path(__file__).resolve().parents[1]
-OUTPUT=ROOT/'KinCity_Installation_Univers_Complet_v30.0.7.luau'
+OUTPUT=ROOT/'installer/KinCity_INSTALLATION_TOTALE_v31_9_7.luau'
 
 def compact_luau(text: str) -> str:
     # All project sources are checked to avoid Lua multiline strings: those
@@ -20,30 +20,39 @@ def compact_luau(text: str) -> str:
 
 def generate(root=ROOT):
     export(root)
-    out=['''-- KIN CITY v30.0.7 — UNIVERS COMPLET / PARCOURS DE QUARTIER / PNJ / LUMIÈRE 65 %
+    out=['''-- KIN CITY • KOALI v31.9.7 — MOTEUR DE PANCARTES + ÉDITEUR DE VILLE — UNE ENSEIGNE PAR INSTITUTION, JALONNEMENT AU SOL ET LUMIÈRES PAR SECTEUR / HUIT INSTITUTIONS / HALO EkoH
 -- COLLER LE FICHIER EN ENTIER dans la Command Bar Roblox Studio, Play arrete.
 -- Une seule Place : ville + 8 institutions, sans publication ni appel HTTP.
+-- Destructif pour tous les objets Kin City anciens, pas pour les autres objets.
 -- Les scripts et fonctions Roblox ne peuvent etre executes que dans Studio.
 assert(not game:GetService("RunService"):IsRunning(), "Kin City : arreter Play avant installation")
-print("KIN CITY : debut installation UNIVERS COMPLET (ville + 8 institutions)")
+print("KOALI v31.9.7 : WIPE + RECONSTRUCTION TOTALE, 6 secteurs, 8 institutions, musique, cinema")
 local RS=game:GetService("ReplicatedStorage")
 local SS=game:GetService("ServerScriptService")
 local SP=game:GetService("StarterPlayer"):WaitForChild("StarterPlayerScripts")
-local oldAvatar=SS:FindFirstChild("KinCityKingKlownAvatar")
-local preservedOwner=oldAvatar and oldAvatar:GetAttribute("OwnerUserId") or 0
-local runtime=SS:FindFirstChild("KinCityRuntime")
-if preservedOwner==0 and runtime then preservedOwner=runtime:GetAttribute("KingKlownOwnerUserId") or 0 end
-local oldAura=SP:FindFirstChild("KinCityKingKlownAura")
-if oldAvatar then oldAvatar:Destroy() end
-if oldAura then oldAura:Destroy() end
-for _,pair in ipairs({{RS,"KinCityShared"},{SS,"KinCityRuntime"},{SP,"KinCityUI"}}) do
-  local old=pair[1]:FindFirstChild(pair[2]);if old then old:Destroy() end
+-- INSTALLATION TOTALE / DESTRUCTIVE : on supprime les objets nommes Kin City uniquement.
+-- Les autres creations Roblox, le Terrain et les services natifs restent intacts.
+local function wipe(parent,names)
+  for _,name in ipairs(names) do
+    local old=parent:FindFirstChild(name)
+    if old then print("KIN CITY WIPE : "..parent.Name.."."..name);old:Destroy() end
+  end
 end
+wipe(workspace,{"KinCityGenerated","KinCityOutdoorCinema","KinCityCity","KoaliGenerated"})
+wipe(RS,{"KinCityShared","KinCityReply","KinCityBuildRPC","KinCityTricksterCast"})
+wipe(SS,{"KinCityRuntime","KinCityKingKlownAvatar"})
+wipe(SP,{"KinCityUI","KinCityKingKlownAura"})
+local lighting=game:GetService("Lighting")
+wipe(lighting,{"KinCityAtmosphere","KinCityColor","KinCityBloom","KinCitySunRays"})
+local terrain=workspace:FindFirstChildOfClass("Terrain")
+if terrain then wipe(terrain,{"KinCityClouds"}) end
+local ownerUserId=if game.CreatorType==Enum.CreatorType.User then game.CreatorId else 0
 local shared=Instance.new("Folder")
 shared.Name="KinCityShared";shared.Parent=RS
 local server=Instance.new("Script")
 server.Name="KinCityRuntime";server.Enabled=false
-server:SetAttribute("KingKlownOwnerUserId",preservedOwner)
+server:SetAttribute("KingKlownOwnerUserId",ownerUserId)
+server:SetAttribute("KinCityBuildOwnerUserId",ownerUserId)
 server.Parent=SS
 local client=Instance.new("LocalScript")
 client.Name="KinCityUI";client.Enabled=false;client.Parent=SP
@@ -82,6 +91,8 @@ if not ok then
   warn("KIN CITY : GENERATION ECHOUEE. Copiez cette erreur depuis View > Output :\\n"..tostring(built))
   error("KIN CITY : la ville n'a PAS ete installee. Voir Output pour la cause : "..tostring(built))
 end
+-- Écran et dalle visibles aussi en mode Édition, avant Play.
+require(server:WaitForChild("OutdoorCinema")).ensure()
 local world=workspace:FindFirstChild("KinCityGenerated")
 assert(world and world:GetAttribute("KinBuildState")=="Ready", "KIN CITY : KinCityGenerated pas pret")
 local city=world:FindFirstChild("Ville")
@@ -95,11 +106,12 @@ end
 local cam=workspace.CurrentCamera
 if cam then cam.CameraType=Enum.CameraType.Custom;cam.CFrame=CFrame.lookAt(Vector3.new(230,230,270),Vector3.new(0,0,0)) end
 server.Enabled=true;client.Enabled=true
-print("KIN CITY : MONDE PRÊT - la ville et les 8 institutions existent. Parts "..tostring(world:GetAttribute("KinGeneratedParts")).." ; secours v27 "..tostring(world:GetAttribute("KinGeneratorFallbacks")))
+print("KOALI v31.9.7 : MONDE PRÊT - les 6 avenues et 8 institutions existent. Parts "..tostring(world:GetAttribute("KinGeneratedParts")).." ; secours v27 "..tostring(world:GetAttribute("KinGeneratorFallbacks")))
 print("KIN CITY : dossiers : Workspace.KinCityGenerated.Ville et Workspace.KinCityGenerated['Bâtiments visitables']")
 print("KIN CITY : utiliser les portes dans Play pour visiter les institutions chargees a leurs origines locales.")
 ''')
     data=''.join(out)
+    OUTPUT.parent.mkdir(parents=True,exist_ok=True)
     OUTPUT.write_text(data,encoding='utf8')
     print('COMPLETE INSTALLER',OUTPUT,len(data.encode('utf8')),'bytes',modules if False else '')
     return OUTPUT

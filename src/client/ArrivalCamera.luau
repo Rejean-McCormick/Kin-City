@@ -6,7 +6,7 @@ local Arrival={}
 function Arrival.start()
     local player=Players.LocalPlayer
     -- Occlusion native : rend le personnage visible sans caméra Scriptable permanente.
-    player.DevCameraOcclusionMode=Enum.DevCameraOcclusionMode.Invisicam
+    -- Caméra Roblox par défaut : DevCameraOcclusionMode requiert une capacité inaccessible ici.
     local function characterAdded(character)
         task.spawn(function()
             local root=character:WaitForChild("HumanoidRootPart",12)

@@ -1,5 +1,0 @@
-Kin City source v13
-Luau source count: 97
-New: 9 commercial ateliers (predicted registry), 6 streets, 6 collaborative installations
-Execution in Roblox Studio: NOT VERIFIED
-Mode: WORLD_STUB / LOCAL_UNIVERSE

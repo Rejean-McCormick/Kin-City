@@ -34,7 +34,7 @@ local PlacePortalsV26=require(script.Parent.PlacePortalsV26)
 local WorldBuilder={}
 -- Version de fabrication indépendante des manifestes : toute modification de géométrie
 -- doit invalider une scène d'édition issue d'une précédente version du moteur.
-local WORLD_BUILD_REVISION="construction-v30.0.7-door-clearance-pass-"..VisualConfig.profile.."-"..BuildIdentity.sha256
+local WORLD_BUILD_REVISION="construction-v31-koali-branded-avenues-alligned-"..VisualConfig.profile.."-"..BuildIdentity.sha256
 
 -- Réutilise la scène déjà construite en mode Édition par l'installateur.
 -- En session Play, le clonage automatique du Workspace évite une génération complète
@@ -165,16 +165,8 @@ function WorldBuilder.build(reuseExisting)
         print("KIN CITY : construction de la ville extérieure...")
         local ok,err=pcall(function() CityGenerator.make(world,Plan,named) end)
         if not ok then
-            warn("KIN CITY : générateur de ville v30 en erreur : "..tostring(err))
-            local backup=script.Parent:FindFirstChild("CityGeneratorLegacyV27")
-            if not backup then error("Kin City: pas de générateur de secours : "..tostring(err)) end
-            local partial=world:FindFirstChild("Ville")
-            if partial then partial:Destroy() end
-            local legacy=require(backup)
-            local success,detail=pcall(function() legacy.make(world,Plan,named) end)
-            if not success then error("Kin City: ville v30 : "..tostring(err).." ; secours v27 : "..tostring(detail)) end
-            fallbackCount+=1
-            warn("KIN CITY : ville créée avec le générateur v27 de secours ; améliorations géométriques v30 non garanties.")
+            -- v31 : interdiction de présenter un vieux plan comme une ville Koali.
+            error("KOALI v31 : génération urbanistique échouée, aucun secours v27 silencieux : "..tostring(err))
         end
         local city=world:FindFirstChild("Ville")
         assert(city and #city:GetDescendants()>50,"Kin City: la ville extérieure est absente ou presque vide")
@@ -205,17 +197,8 @@ function WorldBuilder.build(reuseExisting)
         end
     end
     local promptRecords={}
-    if routing=="LOCAL_UNIVERSE" or active=="city" then
-        local cityFolder=world:FindFirstChild("Ville")
-        if cityFolder then
-            TransitNodes.make(cityFolder,Plan,named)
-            Tramways.build(cityFolder)
-            IslandFerries.build(cityFolder)
-            BoulevardBuses.build(cityFolder)
-            local neighborhoodPrompts=Neighborhoods.make(cityFolder,Plan)
-            for prompt,record in pairs(neighborhoodPrompts) do promptRecords[prompt]=record end
-        end
-    end
+    -- v31 : les anciens transports et quartiers générés hors du plan Koali
+    -- restent dans les sources pour réemploi éventuel, pas dans la scène active.
     local anchorParts={}
     local binders=Factory.folder(world,"Points de connexion")
     local placed={}

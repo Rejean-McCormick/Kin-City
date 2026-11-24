@@ -45,8 +45,7 @@ def check(text):
 
 def main():
     files=sorted((ROOT/'src').rglob('*.luau'))
-    files+=sorted(ROOT.glob('*_v29.luau'))
-    files += [ROOT/'KinCity_Installer_CommandBar.luau',ROOT/'KingKlown_v7.luau']
+    files += sorted((ROOT/'installer').glob('*.luau'))
     errors=[]
     for f in files:
         e=check(f.read_text(encoding='utf8'))

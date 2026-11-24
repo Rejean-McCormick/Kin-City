@@ -63,7 +63,6 @@ function Journal.start()
     buttonCorner.CornerRadius=UDim.new(0,9)
     buttonCorner.Parent=toggle
     toggle.Activated:Connect(openClose)
-    require(script.Parent.KinCityMenu).register("gallery","Galeries [T]",toggle,window,openClose)
     window=Instance.new("Frame")
     window.Name="Carnet des galeries"
     window.AnchorPoint=Vector2.new(0.5,0.5)
@@ -137,6 +136,8 @@ function Journal.start()
     listing.TextSize=14
     listing.LineHeight=1.65
     listing.Parent=scroll
+    -- Enregistrer seulement après la construction complète de la fenêtre.
+    require(script.Parent.KinCityMenu).register("gallery","Galeries [T]",toggle,window,openClose)
     UserInputService.InputBegan:Connect(function(input,used)
         if not used and input.KeyCode==Enum.KeyCode.T then openClose() end
     end)

@@ -3,51 +3,59 @@
   "districts": [
     {
       "district_id": "central",
-      "name": "Centre",
-      "symbolic_domain": "ekoh_konnaxion",
+      "name": "Place Koali",
+      "symbolic_domain": "koali_interface_ekoh_orgo_ariane",
       "ring": 0,
       "angle_degrees": 0,
       "hub_anchor_id": "city.district.central.hub"
     },
     {
-      "district_id": "konnected",
-      "name": "Quartier du Savoir",
-      "symbolic_domain": "konnected_uckk",
-      "ring": 1,
-      "angle_degrees": 20,
-      "hub_anchor_id": "city.district.konnected.hub"
-    },
-    {
-      "district_id": "ethikos",
-      "name": "Place de l’Éthique",
-      "symbolic_domain": "ethikos",
-      "ring": 1,
-      "angle_degrees": 90,
-      "hub_anchor_id": "city.district.ethikos.hub"
-    },
-    {
       "district_id": "keenkonnect",
-      "name": "Parc de l’Innovation",
-      "symbolic_domain": "keenkonnect",
+      "name": "keenKonnect",
+      "symbolic_domain": "konnaxion_collaboration",
       "ring": 1,
-      "angle_degrees": 160,
+      "angle_degrees": 270,
       "hub_anchor_id": "city.district.keenkonnect.hub"
     },
     {
-      "district_id": "kreative",
-      "name": "Quartier Créatif",
-      "symbolic_domain": "kreative",
+      "district_id": "ethikos",
+      "name": "ethiKos",
+      "symbolic_domain": "konnaxion_deliberation",
       "ring": 1,
-      "angle_degrees": 230,
+      "angle_degrees": 330,
+      "hub_anchor_id": "city.district.ethikos.hub"
+    },
+    {
+      "district_id": "kreative",
+      "name": "Kreative",
+      "symbolic_domain": "konnaxion_culture",
+      "ring": 1,
+      "angle_degrees": 30,
       "hub_anchor_id": "city.district.kreative.hub"
     },
     {
-      "district_id": "orgo",
-      "name": "Infrastructure / Administration",
-      "symbolic_domain": "orgo",
+      "district_id": "uckk",
+      "name": "UCKK",
+      "symbolic_domain": "external_moodle",
       "ring": 1,
-      "angle_degrees": 300,
-      "hub_anchor_id": "city.district.orgo.hub"
+      "angle_degrees": 90,
+      "hub_anchor_id": "city.district.uckk.hub"
+    },
+    {
+      "district_id": "ekole",
+      "name": "Ekole",
+      "symbolic_domain": "ekole_konstellation",
+      "ring": 1,
+      "angle_degrees": 150,
+      "hub_anchor_id": "city.district.ekole.hub"
+    },
+    {
+      "district_id": "konnected",
+      "name": "KonnectED",
+      "symbolic_domain": "konnaxion_learning",
+      "ring": 1,
+      "angle_degrees": 210,
+      "hub_anchor_id": "city.district.konnected.hub"
     }
   ]
 }

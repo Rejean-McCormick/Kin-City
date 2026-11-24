@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kin City · Convertisseur SVG → PNG (hors ligne)</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#092927;color:#e7f2ee}
+*{box-sizing:border-box}body{margin:0 auto;padding:32px 20px;max-width:940px}
+h1{font-weight:680;letter-spacing:-.03em;font-size:28px;margin:0 0 7px}
+p{color:#bbd0ca;line-height:1.55}.bar{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:24px 0 26px;padding:18px;border:1px solid #3b726e;border-radius:16px;background:#123e3c}
+label{display:flex;gap:7px;align-items:center;font-size:14px}input[type=file]{max-width:260px}
+select,input[type=color]{background:#183d3a;border:1px solid #3b726e;color:#e7f2ee;padding:8px;border-radius:8px}
+input[type=color]{height:40px;padding:3px;width:54px}
+#files{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{border:1px solid #3b726e;border-radius:14px;padding:15px;background:#123330;min-width:0}
+.card img{object-fit:contain;width:100%;height:155px;padding:12px;background:#1b4540;border-radius:7px}
+.card h2{font-size:13px;word-break:break-word;font-weight:600}
+a.download{display:block;text-decoration:none;background:#c5f4f0;color:#123e3c;font-weight:700;padding:10px;border-radius:8px;text-align:center;margin-top:10px}
+small{color:#b9d1cb}#status{min-height:24px}code{color:#d5fffa}
+</style>
+</head>
+<body>
+<h1>Kin City · SVG vers PNG</h1>
+<p>Convertisseur autonome : fonctionne sans Internet ni installation. Choisis un ou plusieurs fichiers SVG du dossier <code>svg/</code>, puis télécharge les PNG résultants. Les proportions et la transparence sont préservées.</p>
+<div class="bar">
+ <label>Fichiers SVG <input id="input" type="file" accept=".svg,image/svg+xml" multiple /></label>
+ <label>Échelle <select id="scale"><option value="1">1× (taille source)</option><option value="2">2×</option><option value="4">4×</option></select></label>
+ <label>Teinte <input id="color" type="color" value="#ffffff" title="Blanc recommandé pour ImageColor3 Roblox" /></label>
+</div>
+<p id="status" aria-live="polite">Sélectionne les SVG pour commencer.</p>
+<div id="files"></div>
+<p><small>Astuce : conserve des PNG blancs pour les recolorer dans Roblox par <code>ImageColor3</code>. Pour un PNG sarcelle fixe, choisis <code>#1E6864</code>.</small></p>
+<script>
+'use strict';
+const el=id=>document.getElementById(id);
+const output=el('files');
+async function convert(file,scale,color){
+  const svg=await file.text();
+  // Les assets du kit sont monochromes : remplace leur couleur vectorielle avant rendu.
+  const tinted=svg.replace(/#FFFFFF|#1E6864/gi,color);
+  const blob=new Blob([tinted],{type:'image/svg+xml;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  try{
+    const img=new Image();
+    await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('SVG illisible'));img.src=url;});
+    const view=svg.match(/viewBox="[\d.]+\s+[\d.]+\s+([\d.]+)\s+([\d.]+)"/);
+    const w=Math.round((view?Number(view[1]):img.naturalWidth)*scale);
+    const h=Math.round((view?Number(view[2]):img.naturalHeight)*scale);
+    if(w<1||h<1||w*h>64_000_000)throw new Error('Dimensions non prises en charge');
+    const c=document.createElement('canvas');c.width=w;c.height=h;
+    const ctx=c.getContext('2d');if(!ctx)throw new Error('Canvas non disponible');
+    ctx.clearRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);
+    return {png:c.toDataURL('image/png'),width:w,height:h};
+  }finally{URL.revokeObjectURL(url)}
+}
+async function render(){
+  output.replaceChildren();
+  const files=[...el('input').files];
+  if(!files.length){el('status').textContent='Sélectionne les SVG pour commencer.';return;}
+  el('status').textContent=`Conversion de ${files.length} SVG…`;
+  let converted=0;
+  for(const file of files){
+    const card=document.createElement('div');card.className='card';
+    try{
+      const result=await convert(file,Number(el('scale').value),el('color').value);
+      const img=document.createElement('img');img.src=result.png;img.alt=`Aperçu de ${file.name}`;
+      const title=document.createElement('h2');title.textContent=file.name;
+      const p=document.createElement('small');p.textContent=`${result.width} × ${result.height}px · PNG transparent`;
+      const a=document.createElement('a');a.className='download';a.textContent='Télécharger PNG';
+      a.download=file.name.replace(/\.svg$/i,'')+'.png';a.href=result.png;
+      card.append(img,title,p,a);converted++;
+    }catch(e){card.textContent=`${file.name} : ${e.message}`;}
+    output.append(card);
+  }
+  el('status').textContent=`${converted} PNG prêt(s). Télécharge les fichiers individuellement.`;
+}
+for(const id of ['input','scale','color'])el(id).addEventListener('change',render);
+</script>
+</body></html>

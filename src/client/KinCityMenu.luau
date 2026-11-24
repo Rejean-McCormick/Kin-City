@@ -82,6 +82,8 @@ function Menu.open(key)
 end
 function Menu.register(key,label,toggle,window,action)
     assert(gui,"KinCityMenu.start must run first")
+    assert(typeof(window)=="Instance" and window:IsA("GuiObject"),
+        "KinCityMenu.register : fenêtre absente pour "..tostring(key).." (créer la fenêtre avant register)")
     for _,e in ipairs(entries) do if e.key==key then error("duplicate Kin City tool "..key) end end
     local e={key=key,window=window,action=action,label=label}
     table.insert(entries,e)
@@ -115,6 +117,14 @@ function Menu.register(key,label,toggle,window,action)
             child.Parent=contents
         end
     end
+    local contentHeight=normalHeight
+    for _,child in ipairs(contents:GetChildren()) do
+        if child:IsA("GuiObject") then
+            contentHeight=math.max(contentHeight,child.Position.Y.Offset+child.Size.Y.Offset)
+        end
+    end
+    -- v31.7 : l'éditeur a davantage de commandes que la fenêtre visible sur téléphone.
+    -- Ne pas limiter le CanvasSize à la hauteur de la fenêtre d'origine.
     -- La hauteur de la fenêtre et sa position se recalculent à chaque changement d'écran.
     local function resize()
         local c=workspace.CurrentCamera
@@ -124,7 +134,7 @@ function Menu.register(key,label,toggle,window,action)
         window.AnchorPoint=Vector2.new(0.5,0.5)
         window.Position=UDim2.fromScale(0.5,0.52)
         window.Size=UDim2.fromOffset(w,h)
-        contents.CanvasSize=UDim2.fromOffset(0,normalHeight+10)
+        contents.CanvasSize=UDim2.fromOffset(0,contentHeight+18)
         -- L'interface de l'outil reste visible pendant que sa liste défile.
     end
     resize()
@@ -195,11 +205,12 @@ function Menu.start()
     searchBox:GetPropertyChangedSignal("Text"):Connect(refreshResults)
     emptyLabel=Instance.new("TextLabel")
     emptyLabel.Name="Aucun outil trouvé";emptyLabel.BackgroundTransparency=1
-    emptyLabel.Size=UDim2.new(1,-12,0,34)
-    emptyLabel.Position=UDim2.fromOffset(6,82)
-    emptyLabel.Text="Aucun outil trouvé";emptyLabel.TextSize=13
-    emptyLabel.TextColor3=Color3.fromRGB(197,244,240)
-    emptyLabel.Visible=false;emptyLabel.Parent=menuPanel
+    emptyLabel.Size=UDim2.new(1,-16,0,58)
+    emptyLabel.Text="Aucun outil chargé. Le démarrage du jeu est peut-être incomplet."
+    emptyLabel.TextWrapped=true;emptyLabel.TextSize=15
+    emptyLabel.TextColor3=Color3.fromRGB(242,231,198)
+    emptyLabel.LayoutOrder=0
+    emptyLabel.Visible=false;emptyLabel.Parent=items
     local gap=makeButton(items,"INDICATEURS · Ouvrir",38);gap.LayoutOrder=1000
     local counters=Instance.new("TextLabel");counters.Name="Statistiques locales"
     counters.Size=UDim2.new(1,-16,0,140);counters.LayoutOrder=1001

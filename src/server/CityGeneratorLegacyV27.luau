@@ -120,7 +120,7 @@ function CityGenerator.make(parent,plan,buildingsById)
         end
     end
     local monument=Factory.part(city,"Monument du savoir",Vector3.new(5,19,5),CFrame.new(0,9.5,39),Color3.fromRGB(30,104,100),Enum.Material.Marble)
-    Factory.sign(city,"Bienvenue",Vector3.new(0,7,17),0,"KIN CITY",28,5)
+    -- Grand panneau redondant supprimé.
     local spawn=Instance.new("SpawnLocation")
     spawn.Name="Arrivée Kin City"
     spawn.Size=Vector3.new(12,1,12)

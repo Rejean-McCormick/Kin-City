@@ -4,7 +4,7 @@
     {
       "building_id": "central.city_hall",
       "district_id": "central",
-      "name": "Hôtel de ville",
+      "name": "Accueil",
       "exterior_template": "civic.hall.frontage",
       "interior_template": "civic.hall.interior",
       "interior_mode": "separate_place",
@@ -16,7 +16,7 @@
     {
       "building_id": "central.ekoh_tower",
       "district_id": "central",
-      "name": "Tour du Savoir",
+      "name": "Observatoire EkoH",
       "exterior_template": "civic.tower.frontage",
       "interior_template": "civic.tower.interior",
       "interior_mode": "separate_place",
@@ -39,8 +39,8 @@
     },
     {
       "building_id": "konnected.university",
-      "district_id": "konnected",
-      "name": "Univers-Cité",
+      "district_id": "uckk",
+      "name": "Université King Klown",
       "exterior_template": "education.campus.frontage",
       "interior_template": "education.campus.interior",
       "interior_mode": "separate_place",
@@ -52,7 +52,7 @@
     {
       "building_id": "ethikos.justice_palace",
       "district_id": "ethikos",
-      "name": "Palais de justice",
+      "name": "Agora Korum",
       "exterior_template": "civic.justice.frontage",
       "interior_template": "civic.justice.interior",
       "interior_mode": "separate_place",
@@ -64,7 +64,7 @@
     {
       "building_id": "keenkonnect.innovation_lab",
       "district_id": "keenkonnect",
-      "name": "Laboratoire d’innovation",
+      "name": "Atelier Konstruct",
       "exterior_template": "innovation.lab.frontage",
       "interior_template": "innovation.lab.interior",
       "interior_mode": "separate_place",
@@ -76,7 +76,7 @@
     {
       "building_id": "kreative.museum",
       "district_id": "kreative",
-      "name": "Musée Kreative",
+      "name": "Galerie Konservation",
       "exterior_template": "culture.museum.frontage",
       "interior_template": "culture.museum.interior",
       "interior_mode": "separate_place",
@@ -87,8 +87,8 @@
     },
     {
       "building_id": "orgo.admin_center",
-      "district_id": "orgo",
-      "name": "Centre administratif",
+      "district_id": "central",
+      "name": "Maison Orgo",
       "exterior_template": "services.admin.frontage",
       "interior_template": "services.admin.interior",
       "interior_mode": "separate_place",

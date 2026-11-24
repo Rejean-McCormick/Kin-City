@@ -2,6 +2,7 @@
 -- V5 — Cours publiques accessibles et différenciées pour les huit institutions.
 -- Géométrie totalement locale. Les bornes métier restent des stubs.
 local F = require(script.Parent.Factory)
+local Districts=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared"):WaitForChild("HexagonalDistricts"))
 local Courts = {}
 local STONE = Color3.fromRGB(213,201,173)
 local DARK = Color3.fromRGB(30,104,100)
@@ -161,7 +162,12 @@ function Courts.make(city,plan)
     local root=F.folder(city,"Parvis des institutions")
     local count=0
     for _,structure in ipairs(plan.structures) do
-        local theme=themes[structure.building_id]
+        local original=themes[structure.building_id]
+        local district=Districts.byKey(structure.district_id)
+        local theme=if original then {
+            label=original.label,kind=original.kind,
+            color=if district then district.lightColor else original.color,
+        } else nil
         local cf,side=choose(structure,plan.structures)
         if theme and cf and side then
             local m=Instance.new("Model")
@@ -185,7 +191,7 @@ function Courts.make(city,plan)
             console:SetAttribute("KinStubCapabilityId","future."..structure.building_id..".outdoor")
             console:SetAttribute("KinStubTitle",theme.label)
             F.prompt(console,"Consulter",theme.label)
-            F.sign(m,"Nom du parvis",(cf*CFrame.new(0,12,-15)).Position,structure.yaw_degrees,theme.label,34,3.1).CanCollide=false
+            -- La cour conserve ses ornements et sa borne; pas de seconde enseigne géante.
             -- Belvédère fonctionnel : la caméra observe la façade depuis le parvis.
             local marker=block(m,"Longue-vue",cf,-15,2.4,-10,2.6,4.7,2.6,DARK,Enum.Material.Metal,true)
             block(m,"Lentille",cf,-15,4.3,-11.6,2.1,1.1,1.1,accent,Enum.Material.Glass,false)
