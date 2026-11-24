@@ -1,0 +1,25 @@
+{
+  "revision": "KC36-INTERIOR-EDITOR-1",
+  "history_preserved": [
+    "KC36 alignment",
+    "KC36 population",
+    "KC36 production gate"
+  ],
+  "validated_in_Studio": false,
+  "files": {
+    "src/server/InteriorEditorV36.luau": "5f6b834a1031aaf0cba138160e77a8068fe721baf5259205935e2b5047330fcb",
+    "src/client/InteriorEditorClientV36.luau": "acb705b432623cca10e91d42e5cfc7dfa37140dac7f6b4b39ec296af3cb3ef22",
+    "src/server/PlayerBuildServer.luau": "7258f0e3dd1bae5d108c2340ed879fca6fd941fa51f6d0d44f41ffdab55df1e4",
+    "src/server/init.server.luau": "adce97acd25f765c8381e2c4a7601586c26048d42395f497a498e00f6a3190d9",
+    "src/client/init.client.luau": "0b307dd51e26789e79219f34d2ba72666e25532ce8bff5d72b5adeac1d9b68cf",
+    "src/server/ArtDecoAssets.luau": "0c25abfb2268ec0b00cd83dfb49fe4968c8bc704622308ef2442ad8fb16e9988",
+    "src/server/ArtDecoPolicy.luau": "833735e1d288ec079754c71f429279bac57f598bac0b6be13adc4b779e30c452",
+    "src/server/Citizens.luau": "168de251bd8fae9ee3cb78860dc4fe2e716f03d14310711983a0fc9e55b9b6bc",
+    "src/server/NativeR15Citizens.luau": "e445649280e41d413079caef265c1d5749e0597b3d3a9ecc7838ab64051f948c",
+    "src/server/CityPopulationV36.luau": "e0a83b214c3e4047a097082b2d9e34b804c2c71ad63491018d3d11874317e2f4",
+    "src/server/CityGenerator.luau": "2a94a5f0b2fc2552278f356c818d66f480663b9c0d2230baedf65eabbfce0f62",
+    "tools/studio/KC36_INSTALL_ATELIER_INTERIEUR_RS.luau": "51d26e7254c24081a55c0269b01f39588dea0869be7b6e15a1729c6c3f1c9b61",
+    "docs/10-ai-coordination/16_ATELIER_INTERIEUR_KC36.md": "dc2bcb9f7ab82f0d2ebdb9443b7671804104362db4496659f15e85a70809e26b",
+    "tests/test_kc36_interior_editor.py": "6a698218122639c3b2cbb000c8e5690acf7dc640cdcf62bc422561ead4cb163c"
+  }
+}

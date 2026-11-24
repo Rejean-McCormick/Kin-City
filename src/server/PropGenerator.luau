@@ -1,5 +1,6 @@
 --!strict
 local Factory = require(script.Parent.Factory)
+local ArtDecoInteriors=require(script.Parent.ArtDecoInteriors)
 local PropGenerator = {}
 
 -- Single explicit registry used by Studio's preflight before generating the world.
@@ -27,6 +28,8 @@ local function piece(parent, name, size, base, dx, dy, dz, color, material)
 end
 
 function PropGenerator.make(parent, item, position, palette)
+    local imported=ArtDecoInteriors.furnishing(parent,item,position)
+    if imported then return imported end
     local model = Instance.new("Model")
     model.Name = item.furnishing_id
     model:SetAttribute("KinFurnishingId",item.furnishing_id)

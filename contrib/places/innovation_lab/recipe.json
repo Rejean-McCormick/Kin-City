@@ -1,0 +1,11 @@
+{
+  "schema_version": "kincity.place-recipe/1.0",
+  "place_key": "innovation_lab",
+  "owner_branch": "B06",
+  "requires_contracts_version": "KC34-DOC-1.0",
+  "recipe_revision": "0.1.0-proposed",
+  "seed_policy": "CITY_SEED_XOR_PLACE_HASH",
+  "profiles_supported": ["LITE", "STANDARD", "SHOWCASE"],
+  "decorations": [],
+  "implementation_status": "INTEGRATION_PROPOSED"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "kincity.place-recipe/1.0",
+  "place_key": "city_hall",
+  "owner_branch": "B01",
+  "requires_contracts_version": "KC34-DOC-1.0",
+  "recipe_revision": "B01.1.0",
+  "seed_policy": "CITY_SEED_XOR_PLACE_HASH",
+  "profiles_supported": [
+    "LITE",
+    "STANDARD",
+    "SHOWCASE"
+  ],
+  "decorations": [],
+  "implementation_status": "INTEGRATION_PROPOSED"
+}

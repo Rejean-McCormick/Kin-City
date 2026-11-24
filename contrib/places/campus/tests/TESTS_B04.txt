@@ -1,0 +1,17 @@
+test_01_place_identity_and_historical_door_unchanged (test_b04.B04Static.test_01_place_identity_and_historical_door_unchanged) ... ok
+test_02_door_reciprocity_and_anchors (test_b04.B04Static.test_02_door_reciprocity_and_anchors) ... ok
+test_03_six_room_ids_match_runtime_and_program (test_b04.B04Static.test_03_six_room_ids_match_runtime_and_program) ... ok
+test_04_courses_stay_stub_and_canonical_board (test_b04.B04Static.test_04_courses_stay_stub_and_canonical_board) ... ok
+test_05_palette_exact (test_b04.B04Static.test_05_palette_exact) ... ok
+test_06_no_remote_or_teleport_behavior_in_overlay (test_b04.B04Static.test_06_no_remote_or_teleport_behavior_in_overlay) ... ok
+test_07_noncollidable_overlay_and_target_guard (test_b04.B04Static.test_07_noncollidable_overlay_and_target_guard) ... ok
+test_08_visual_profile_choices_and_idempotency (test_b04.B04Static.test_08_visual_profile_choices_and_idempotency) ... ok
+test_09_room_placement_avoids_central_exit_corridor (test_b04.B04Static.test_09_room_placement_avoids_central_exit_corridor) ... ok
+test_10_preview_studio_guard_before_world_change (test_b04.B04Static.test_10_preview_studio_guard_before_world_change) ... ok
+test_11_recipe_schema_conforms_to_b09 (test_b04.B04Static.test_11_recipe_schema_conforms_to_b09) ... ok
+test_12_contribution_does_not_embed_business_sources (test_b04.B04Static.test_12_contribution_does_not_embed_business_sources) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.003s
+
+OK

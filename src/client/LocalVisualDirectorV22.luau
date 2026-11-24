@@ -44,7 +44,7 @@ local function apply(zone,animate)
     player:SetAttribute("KinCityLocalQuality",quality)
     if button then
         local label=if quality=="LITE" then "LÉGER" elseif quality=="STANDARD" then "NORMAL" else "DÉTAIL"
-        button.Text="✦ CRISTAL : "..label
+        button.Text="✦ VILLE : "..label
     end
 end
 local function cycle()
@@ -94,7 +94,7 @@ function Director.start()
     UserInputService.InputBegan:Connect(function(input,processed)
         if not processed and input.KeyCode==Enum.KeyCode.V then cycle() end
     end)
-    require(script.Parent.KinCityMenu).registerAction("quality","Qualité cristal [V]",button,cycle)
+    require(script.Parent.KinCityMenu).registerAction("quality","Qualité visuelle [V]",button,cycle)
     currentZone=player:GetAttribute("KinZone") or ""
     apply(currentZone,false)
     player:GetAttributeChangedSignal("KinZone"):Connect(function()

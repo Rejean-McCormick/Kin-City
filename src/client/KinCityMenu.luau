@@ -98,6 +98,8 @@ function Menu.register(key,label,toggle,window,action)
     close.TextSize=17;close.BackgroundColor3=Color3.fromRGB(30,104,100)
     close.TextColor3=Color3.fromRGB(245,251,249);close.ZIndex=25;close.Parent=window
     corner(close,7);close.Activated:Connect(function()window.Visible=false end)
+    -- KC36_NATIVE_WINDOW_LAYOUT_V2: les grands outils gardent leur propre responsive UI.
+    if window:GetAttribute("KinUseNativeWindowLayout")~=true then
     local viewport=workspace.CurrentCamera
     local normalWidth=math.max(window.Size.X.Offset,240)
     local normalHeight=math.max(window.Size.Y.Offset,135)
@@ -139,6 +141,7 @@ function Menu.register(key,label,toggle,window,action)
     end
     resize()
     if viewport then viewport:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
+    end -- Fenetres historiques: recadrage/scroll v30 conserve.
     local b=makeButton(items,label,38)
     e.button=b
     b.LayoutOrder=#entries

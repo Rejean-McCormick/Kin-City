@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="64" viewBox="0 0 512 64">
-  <title>Kin City - Filet horizontal discret</title>
-  <desc>Deux traits parallèles sans symbole central, à placer sous un titre si nécessaire.</desc>
-  <g fill="none" stroke="#FFFFFF" stroke-linecap="round">
-    <path d="M10 28 H502" stroke-width="3.8"/>
-    <path d="M10 39 H502" stroke-width="1.7" opacity="0.38"/>
-  </g>
-</svg>

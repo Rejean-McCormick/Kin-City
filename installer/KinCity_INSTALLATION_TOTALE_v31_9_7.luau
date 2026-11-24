@@ -4,6 +4,198 @@
 -- Destructif pour tous les objets Kin City anciens, pas pour les autres objets.
 -- Les scripts et fonctions Roblox ne peuvent etre executes que dans Studio.
 assert(not game:GetService("RunService"):IsRunning(), "Kin City : arreter Play avant installation")
+local artDecoTarget={
+  ["allow_local_test"] = true,
+  ["budget_scope"] = "Resident source geometry reservations across nine streamed zones; not a measured mobile frame budget.",
+  ["enabled"] = true,
+  ["library_name"] = "KinCityArtDecoLibrary",
+  ["production_place_id"] = 72097868581669,
+  ["profiles"] = {
+    ["LITE"] = {
+      ["bench_steps"] = {
+        5,
+      },
+      ["clones"] = 2780,
+      ["floor_tiles"] = 2,
+      ["lamp_steps"] = {
+        3,
+      },
+      ["near_lights"] = 8,
+      ["parts"] = 12668,
+      ["pools"] = {
+        ["architecture"] = {
+          ["clones"] = 240,
+          ["parts"] = 1000,
+          ["triangles"] = 40000,
+        },
+        ["building"] = {
+          ["clones"] = 10,
+          ["parts"] = 80,
+          ["triangles"] = 45000,
+        },
+        ["environment"] = {
+          ["clones"] = 1,
+          ["parts"] = 20,
+          ["triangles"] = 2000,
+        },
+        ["interior"] = {
+          ["clones"] = 90,
+          ["parts"] = 400,
+          ["triangles"] = 35000,
+        },
+        ["pavilion"] = {
+          ["clones"] = 3,
+          ["parts"] = 40,
+          ["triangles"] = 33000,
+        },
+        ["paving"] = {
+          ["clones"] = 2,
+          ["parts"] = 18,
+          ["triangles"] = 500,
+        },
+        ["street"] = {
+          ["clones"] = 4,
+          ["parts"] = 60,
+          ["triangles"] = 8000,
+        },
+      },
+      ["road_steps"] = {
+        4,
+        12,
+      },
+      ["room_stations"] = 1,
+      ["triangles"] = 1221000,
+      ["wall_pitch"] = 20,
+    },
+    ["SHOWCASE"] = {
+      ["bench_steps"] = {
+        5,
+      },
+      ["clones"] = 2846,
+      ["floor_tiles"] = 4,
+      ["lamp_steps"] = {
+        2,
+        4,
+        6,
+        8,
+      },
+      ["near_lights"] = 24,
+      ["parts"] = 13376,
+      ["pools"] = {
+        ["architecture"] = {
+          ["clones"] = 240,
+          ["parts"] = 1000,
+          ["triangles"] = 60000,
+        },
+        ["building"] = {
+          ["clones"] = 10,
+          ["parts"] = 80,
+          ["triangles"] = 45000,
+        },
+        ["environment"] = {
+          ["clones"] = 3,
+          ["parts"] = 30,
+          ["triangles"] = 5000,
+        },
+        ["interior"] = {
+          ["clones"] = 90,
+          ["parts"] = 400,
+          ["triangles"] = 55000,
+        },
+        ["pavilion"] = {
+          ["clones"] = 3,
+          ["parts"] = 40,
+          ["triangles"] = 33000,
+        },
+        ["paving"] = {
+          ["clones"] = 5,
+          ["parts"] = 36,
+          ["triangles"] = 1200,
+        },
+        ["street"] = {
+          ["clones"] = 10,
+          ["parts"] = 150,
+          ["triangles"] = 26000,
+        },
+      },
+      ["road_steps"] = {
+        3,
+        6,
+        10,
+        13,
+        17,
+      },
+      ["room_stations"] = 2,
+      ["triangles"] = 1671200,
+      ["wall_pitch"] = 16,
+    },
+    ["STANDARD"] = {
+      ["bench_steps"] = {
+        5,
+      },
+      ["clones"] = 2810,
+      ["floor_tiles"] = 4,
+      ["lamp_steps"] = {
+        2,
+        6,
+      },
+      ["near_lights"] = 16,
+      ["parts"] = 12944,
+      ["pools"] = {
+        ["architecture"] = {
+          ["clones"] = 240,
+          ["parts"] = 1000,
+          ["triangles"] = 60000,
+        },
+        ["building"] = {
+          ["clones"] = 10,
+          ["parts"] = 80,
+          ["triangles"] = 45000,
+        },
+        ["environment"] = {
+          ["clones"] = 3,
+          ["parts"] = 20,
+          ["triangles"] = 5000,
+        },
+        ["interior"] = {
+          ["clones"] = 90,
+          ["parts"] = 400,
+          ["triangles"] = 55000,
+        },
+        ["pavilion"] = {
+          ["clones"] = 3,
+          ["parts"] = 40,
+          ["triangles"] = 33000,
+        },
+        ["paving"] = {
+          ["clones"] = 3,
+          ["parts"] = 24,
+          ["triangles"] = 700,
+        },
+        ["street"] = {
+          ["clones"] = 6,
+          ["parts"] = 100,
+          ["triangles"] = 14000,
+        },
+      },
+      ["road_steps"] = {
+        4,
+        10,
+        16,
+      },
+      ["room_stations"] = 2,
+      ["triangles"] = 1596200,
+      ["wall_pitch"] = 16,
+    },
+  },
+  ["revision"] = "kc33-urban-roadway-six-sectors-2026-10",
+  ["test_place_id"] = nil,
+}
+assert(game.PlaceId~=artDecoTarget.production_place_id, "Art Deco : Place de production interdite")
+assert(workspace:GetAttribute("KinArtDecoTestPlace")==true, "Art Deco : marquer explicitement cette copie de test")
+assert((game.PlaceId==0 and artDecoTarget.allow_local_test) or
+    (artDecoTarget.test_place_id~=nil and game.PlaceId==artDecoTarget.test_place_id),
+    "Art Deco : PlaceId de test non configure ; aucune modification effectuee")
 print("KOALI v31.9.7 : WIPE + RECONSTRUCTION TOTALE, 6 secteurs, 8 institutions, musique, cinema")
 local RS=game:GetService("ReplicatedStorage")
 local SS=game:GetService("ServerScriptService")
@@ -40,6 +232,34 @@ local function source(parent,name,code)
   child.Name=name;child.Source=code;child.Parent=parent
   modules+=1
 end
+source(shared,"ArtDecoLightPolicy",[[
+local Policy={}
+local limits={LITE={count=8,radius=100},STANDARD={count=16,radius=150},SHOWCASE={count=24,radius=220}}
+function Policy.select(candidates,quality)
+local limit=limits[quality] or limits.STANDARD
+table.sort(candidates,function(a,b) return a.distance<b.distance end)
+local active=0
+for index,item in ipairs(candidates) do
+item.selected=index<=limit.count and item.distance<=limit.radius*limit.radius
+if item.selected then active=active+1 end
+end
+return active
+end
+return Policy
+
+]])
+source(shared,"ArtDecoTheme",[[
+local Districts=require(script.Parent.HexagonalDistricts)
+return {
+stone=Color3.fromRGB(232,226,213),
+dark=Color3.fromRGB(32,60,64),
+teal=Districts.base,
+bronze=Color3.fromRGB(179,148,96),
+glazing=Color3.fromRGB(143,197,197),
+light=Color3.fromRGB(229,215,175),
+}
+
+]])
 source(shared,"AudioManifest",[[
 return {
 ["archives_sound_id"] = nil,
@@ -81,9 +301,9 @@ return routes
 ]])
 source(shared,"BuildIdentity",[[
 return {
-["input_count"] = 181,
+["input_count"] = 219,
 ["plan_sha256"] = "5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a",
-["sha256"] = "daf494878dd86f9ff57dca0b0f4dc1b66939e247fb4050bd009b25b400ff51d8",
+["sha256"] = "4a3f70f075eef5f21550b12670caa70ed60837be5ddbc3ac693eeacd00524c6d",
 ["version"] = "build-v29",
 }
 
@@ -303,7 +523,7 @@ Districts.opal=Color3.fromRGB(197,244,240)
 Districts.gold=Color3.fromRGB(205,164,101)
 Districts.sections={
 {key="keenkonnect",name="keenKonnect",hour=12,x=0,z=-1,
-color=Color3.fromRGB(117,177,174),lightColor=Color3.fromRGB(30,104,100),pale=Color3.fromRGB(207,228,222),
+color=Color3.fromRGB(208,191,134),lightColor=Color3.fromRGB(30,104,100),pale=Color3.fromRGB(207,228,222),
 dark=Color3.fromRGB(41,67,69),secondary=Color3.fromRGB(154,170,173),
 material="metal",theme="Concevoir • partager",
 system="Konnaxion"},
@@ -328,11 +548,12 @@ dark=Color3.fromRGB(26,31,32),secondary=Color3.fromRGB(94,104,104),
 material="monochrome",theme="Lire • relier",
 system="Ekole"},
 {key="konnected",name="KonnectED",hour=10,x=-0.866025403784,z=-0.5,
-color=Color3.fromRGB(209,168,100),lightColor=Color3.fromRGB(215,172,109),pale=Color3.fromRGB(230,211,172),
+color=Color3.fromRGB(188,103,76),lightColor=Color3.fromRGB(215,172,109),pale=Color3.fromRGB(230,211,172),
 dark=Color3.fromRGB(18,23,26),secondary=Color3.fromRGB(166,134,82),
 material="black_marble",theme="Comprendre • progresser",
 system="Konnaxion"},
 }
+for _,section in ipairs(Districts.sections) do section.lightColor=section.color end
 function Districts.nearestAxis(x:number,z:number)
 local length=math.sqrt(x*x+z*z)
 if length<0.01 then return nil end
@@ -1347,6 +1568,7 @@ return {
 }
 ]])
 source(shared,"SignTheme",[[
+local Districts=require(script.Parent.HexagonalDistricts)
 local SignTheme={}
 SignTheme.version="31.9.6"
 SignTheme.layout={
@@ -1366,14 +1588,11 @@ uckk={background=Color3.fromRGB(32,47,63),accent=Color3.fromRGB(137,158,181),bor
 ekole={background=Color3.fromRGB(25,29,30),accent=Color3.fromRGB(30,104,100),border=Color3.fromRGB(234,238,235),text=Color3.fromRGB(247,248,246)},
 konnected={background=Color3.fromRGB(20,24,27),accent=Color3.fromRGB(30,104,100),border=Color3.fromRGB(206,168,102),text=Color3.fromRGB(251,242,218)},
 }
-local AXES={
-{key="keenkonnect",x=0,z=-1},
-{key="ethikos",x=0.8660254,z=-0.5},
-{key="kreative",x=0.8660254,z=0.5},
-{key="uckk",x=0,z=1},
-{key="ekole",x=-0.8660254,z=0.5},
-{key="konnected",x=-0.8660254,z=-0.5},
-}
+for _,section in ipairs(Districts.sections) do
+SignTheme.palettes[section.key].accent=section.color
+SignTheme.palettes[section.key].border=section.color
+end
+local AXES=Districts.sections
 function SignTheme.infer(parent:Instance,position:Vector3?,forced:string?):string
 if forced and SignTheme.palettes[forced] then return forced end
 local node:Instance?=parent
@@ -5061,6 +5280,4653 @@ end
 return A
 
 ]])
+source(server,"ArtDecoAssets",[[
+local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local Data=require(script.Parent.ArtDecoData)
+local Visual=require(Shared.VisualConfig)
+local Districts=require(Shared.HexagonalDistricts)
+local Theme=require(Shared.ArtDecoTheme)
+local Policy=require(script.Parent.ArtDecoPolicy)
+local Budget=require(script.Parent.ArtDecoBudget)
+local Assets={}
+local records={}
+for _,record in ipairs(Data.manifest.assets) do records[record.asset_key]=record end
+local rejected={}
+local accountLimits={}
+local budget
+local generation=0
+local function addAccount(key,pool)
+accountLimits[key]=Data.config.profiles[Visual.profile].pools[pool]
+end
+local function resetAccounts()
+accountLimits={}
+for id,recipe in pairs(Data.placements.buildings) do
+addAccount("building/"..id,"building")
+addAccount("interior/"..recipe.place_key,"interior")
+addAccount("architecture/"..recipe.place_key,"architecture")
+end
+for _,section in ipairs(Districts.sections) do
+addAccount("street/"..section.key,"street")
+addAccount("paving/"..section.key,"paving")
+addAccount("pavilion/"..section.key,"pavilion")
+addAccount("environment/"..section.key,"environment")
+end
+budget=Budget.new(accountLimits)
+generation+=1
+end
+resetAccounts()
+local function reject(key,reason)
+if not rejected[key..reason] then
+rejected[key..reason]=true
+warn("Art Deco fallback: "..key.." / "..reason)
+end
+return nil
+end
+function Assets.allowed()
+return Data.config.enabled and Policy.isTestTarget(game.PlaceId,
+workspace:GetAttribute("KinArtDecoTestPlace"),Data.config)
+end
+function Assets.beginBuild()
+rejected={}
+resetAccounts()
+end
+function Assets.revision()
+local library=game:GetService("ServerStorage"):FindFirstChild(Data.config.library_name)
+return Data.config.revision.."/"..tostring(if library then library:GetAttribute("KinLibraryRevision") else "missing")
+end
+function Assets.beginQualification()
+local service=game:GetService("RunService")
+assert(service:IsStudio() and not service:IsRunning(),"Qualification is editor-only")
+Assets.checkTarget()
+Assets.beginBuild()
+budget:addOwner("qualification",{triangles=10000000,parts=10000,clones=1})
+end
+function Assets.profile()
+return Data.config.profiles[Visual.profile]
+end
+function Assets.accountStats(key)
+return budget:stats(key)
+end
+function Assets.stats()
+return budget:stats()
+end
+function Assets.checkTarget()
+assert(Policy.isTestTarget(game.PlaceId,workspace:GetAttribute("KinArtDecoTestPlace"),Data.config),
+"Art Deco : copie de test explicite requise ; production interdite")
+end
+local allowedClasses={Model=true,Folder=true,Part=true,MeshPart=true,SpecialMesh=true,
+SurfaceAppearance=true,Decal=true,Texture=true}
+function Assets.materialRole(part,root)
+local node=part
+while node and node~=root do
+for _,role in ipairs({"KC32_ACCENT","KC32_BRONZE","KC32_VITRAGE","KC32_LUMIERE","KC32_CORPS"}) do
+if string.find(node.Name,role,1,true) then return role end
+end
+node=node.Parent
+end
+return nil
+end
+function Assets.isAccent(part,root)
+local node=part
+while node and node~=root do
+if string.find(node.Name,"KC32_ACCENT",1,true) then return true end
+node=node.Parent
+end
+return false
+end
+function Assets.clone(key,sector,account)
+if not Assets.allowed() then return nil end
+if not accountLimits[account] then return reject(key,"unknown budget owner") end
+local record=records[key]
+if not record then return reject(key,"unknown manifest key") end
+local library=game:GetService("ServerStorage"):FindFirstChild(Data.config.library_name)
+local source=if library then library:FindFirstChild(record.source_name) else nil
+if not source or not source:IsA("Model") then return reject(key,"private source missing") end
+if not source.Archivable then return reject(key,"source not Archivable") end
+local clone=source:Clone()
+local parts=0
+for _,node in ipairs(clone:GetDescendants()) do
+if not allowedClasses[node.ClassName] then
+clone:Destroy()
+return reject(key,"unsupported import class "..node.ClassName)
+end
+if node:IsA("BasePart") then parts+=1 end
+end
+local cost={triangles=record.triangles_mesh_definitions,parts=parts+2,clones=1}
+local receipt=if parts>0 then budget:reserve(account,cost) else nil
+if not receipt then
+clone:Destroy();return reject(key,"empty source or mobile budget")
+end
+local section=Districts.byKey(sector or "")
+for _,node in ipairs(clone:GetDescendants()) do
+if node:IsA("BasePart") then
+node.Anchored=true;node.CanCollide=false;node.CanTouch=false;node.CanQuery=false
+if node:IsA("MeshPart") then node.RenderFidelity=Enum.RenderFidelity.Automatic end
+node.CastShadow=Visual.profile=="SHOWCASE"
+node.AssemblyLinearVelocity=Vector3.zero;node.AssemblyAngularVelocity=Vector3.zero
+local structural=record.category=="Exterior__Buildings" or record.category=="Interior__Architecture"
+local role=Assets.materialRole(node,clone)
+if structural then
+local palette={KC32_CORPS=Theme.stone,KC32_BRONZE=Theme.bronze,
+KC32_VITRAGE=Theme.glazing,KC32_LUMIERE=Theme.light}
+if palette[role] then node.Color=palette[role] end
+if role=="KC32_BRONZE" then node.Material=Enum.Material.Metal end
+if role=="KC32_LUMIERE" then node.Material=Enum.Material.Neon end
+end
+if Assets.isAccent(node,clone) then
+node.Color=if section then section.color else Districts.base
+if sector=="kreative" then node:SetAttribute("KinKreativeCanvas",true) end
+end
+end
+end
+clone:SetAttribute("KinArtDecoReservation",receipt)
+clone:SetAttribute("KinArtDecoGeneration",generation)
+clone:SetAttribute("KinArtDecoBudgetOwner",account)
+clone:SetAttribute("KinArtDecoAsset",key)
+clone:SetAttribute("KinArtDecoTrianglesEstimate",cost.triangles)
+clone:SetAttribute("KinArtDecoParts",cost.parts)
+clone:SetAttribute("KinSection",sector or "neutral")
+return clone
+end
+function Assets.restore(world)
+Assets.beginBuild()
+for _,node in ipairs(world:GetDescendants()) do
+if node:IsA("Model") and node:GetAttribute("KinArtDecoAsset") then
+local record=records[node:GetAttribute("KinArtDecoAsset")]
+local owner=node:GetAttribute("KinArtDecoBudgetOwner")
+if not record or not accountLimits[owner] then return false end
+local receipt=budget:reserve(owner,{triangles=record.triangles_mesh_definitions,
+parts=node:GetAttribute("KinArtDecoParts"),clones=1})
+if not receipt then return false end
+node:SetAttribute("KinArtDecoGeneration",generation)
+node:SetAttribute("KinArtDecoReservation",receipt)
+end
+end
+return true
+end
+function Assets.release(model)
+local function refund(node)
+if not node:GetAttribute("KinArtDecoAsset") then return end
+if node:GetAttribute("KinArtDecoGeneration")==generation then
+budget:release(node:GetAttribute("KinArtDecoReservation"))
+end
+node:SetAttribute("KinArtDecoAsset",nil)
+end
+for _,node in ipairs(model:GetDescendants()) do
+if node:IsA("Model") then refund(node) end
+end
+refund(model)
+model:Destroy()
+end
+function Assets.fit(model,envelope,frame)
+local _,size=model:GetBoundingBox()
+local scale=Policy.fitScale(size,envelope)
+if not scale or scale~=scale or scale<=0 or scale==math.huge then return false end
+model:ScaleTo(model:GetScale()*scale)
+local bounds,newSize=model:GetBoundingBox()
+local target=frame*CFrame.new(0,newSize.Y/2,0)
+model:PivotTo(target*bounds:Inverse()*model:GetPivot())
+return true
+end
+function Assets.place(parent,key,sector,envelope,frame,account)
+local model=Assets.clone(key,sector,account)
+if not model then return nil end
+local ok,result=pcall(Assets.fit,model,envelope,frame)
+if not ok or not result then Assets.release(model);return reject(key,"invalid dimensions") end
+model.Parent=parent
+return model
+end
+return Assets
+
+]])
+source(server,"ArtDecoBudget",[[
+local Budget={}
+Budget.__index=Budget
+local dimensions={"triangles","parts","clones"}
+local function zero() return {triangles=0,parts=0,clones=0} end
+local function copy(value) return {triangles=value.triangles,parts=value.parts,clones=value.clones} end
+function Budget.new(limits)
+local self=setmetatable({limits=limits,owners={},total=zero(),receipts={},sequence=0},Budget)
+for owner in pairs(limits) do self.owners[owner]=zero() end
+return self
+end
+function Budget:addOwner(owner,limit)
+assert(not self.limits[owner],"Duplicate budget owner")
+self.limits[owner]=limit;self.owners[owner]=zero()
+end
+function Budget:reserve(owner,cost)
+local limit=self.limits[owner]
+if not limit then return nil end
+local used=self.owners[owner]
+for _,key in ipairs(dimensions) do
+local value=cost[key]
+if type(value)~="number" or value~=value or value<0 or value==math.huge or used[key]+value>limit[key] then return nil end
+end
+self.sequence=self.sequence+1
+local receipt=self.sequence
+self.receipts[receipt]={owner=owner,cost=copy(cost)}
+for _,key in ipairs(dimensions) do
+used[key]=used[key]+cost[key];self.total[key]=self.total[key]+cost[key]
+end
+return receipt
+end
+function Budget:release(receipt)
+local reservation=self.receipts[receipt]
+if not reservation then return false end
+self.receipts[receipt]=nil
+for _,key in ipairs(dimensions) do
+self.owners[reservation.owner][key]=self.owners[reservation.owner][key]-reservation.cost[key]
+self.total[key]=self.total[key]-reservation.cost[key]
+end
+return true
+end
+function Budget:stats(owner)
+if owner then return self.owners[owner] and copy(self.owners[owner]) or nil end
+return copy(self.total)
+end
+return Budget
+
+]])
+source(server,"ArtDecoBuildings",[[
+local Data=require(script.Parent.ArtDecoData)
+local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local Districts=require(Shared.HexagonalDistricts)
+local Theme=require(Shared.ArtDecoTheme)
+local Factory=require(script.Parent.Factory)
+local Assets=require(script.Parent.ArtDecoAssets)
+local Layout=require(script.Parent.ArtDecoLayout)
+local Buildings={}
+function Buildings.make(parent,structure,building,frame)
+local recipe=assert(Data.placements.buildings[building.building_id],"Missing institution composition")
+local w,d=table.unpack(structure.footprint_studs)
+local plan=Layout.compile(w,d,structure.height_studs,recipe)
+local section=Districts.byKey(building.district_id)
+local colors=table.clone(Theme)
+colors.accent=if section then section.color else Districts.base
+local function imported(slot)
+local model=Assets.place(parent,slot.asset,building.district_id,Vector3.new(table.unpack(slot.size)),
+frame*CFrame.new(table.unpack(slot.center)),"building/"..building.building_id)
+if model then model.Name=slot.name end
+return model
+end
+local shells={}
+for _,slot in ipairs(plan.primary_shells) do
+local model=imported(slot)
+if model then
+model:SetAttribute("KinExteriorShell",true)
+table.insert(shells,model)
+end
+end
+local complete=#shells==#plan.primary_shells
+if not complete then
+for _,model in ipairs(shells) do Assets.release(model) end
+end
+local feature=false
+if complete then
+feature=imported(plan.primary_feature)~=nil
+for _,slot in ipairs(plan.slots) do
+if string.sub(slot.name,1,14)=="EntranceColumn" then imported(slot) end
+end
+else
+for _,slot in ipairs(plan.slots) do
+if imported(slot) and slot.name=="InstitutionFeature" then feature=true end
+end
+end
+local specs={}
+if complete then
+for _,spec in ipairs(plan.primary_parts) do table.insert(specs,spec) end
+table.insert(specs,plan.parts[1]) -- walkable site floor
+else
+for _,spec in ipairs(plan.parts) do
+local tower=spec.name=="ObservatoryShaft" or string.sub(spec.name,1,8)=="TowerFin"
+if not (tower and feature) then table.insert(specs,spec) end
+end
+end
+for _,spec in ipairs(specs) do
+local piece=Factory.part(parent,spec.name,Vector3.new(table.unpack(spec.size)),
+frame*CFrame.new(table.unpack(spec.center)),assert(colors[spec.role]),
+if spec.role=="bronze" or spec.role=="accent" then Enum.Material.Metal else Enum.Material.SmoothPlastic)
+piece.Transparency=if spec.invisible then 1 else 0
+piece.CanCollide=spec.solid;piece.CanTouch=false;piece.CanQuery=spec.solid
+piece.CastShadow=spec.solid and not spec.invisible
+piece:SetAttribute("KinArchitectureRole",spec.role)
+piece:SetAttribute("KinArchitecturePiece",spec.name)
+if spec.name=="Floor" then
+piece:SetAttribute("KinGroundAuthority","institution-foundation")
+piece:SetAttribute("KinGroundOwner",building.building_id)
+piece:SetAttribute("KinGroundTop",Layout.SITE_FLOOR_TOP_STUDS)
+end
+end
+parent:SetAttribute("KinExteriorShellCount",if complete then #shells else 0)
+parent:SetAttribute("KinInteriorLocation","separate_destination")
+parent:SetAttribute("KinEntranceClearWidth",plan.entry.width)
+parent:SetAttribute("KinArchitectureShape",recipe.shape)
+parent:SetAttribute("KinFootprintWidth",w)
+parent:SetAttribute("KinFootprintDepth",d)
+return plan
+end
+return Buildings
+
+]])
+source(server,"ArtDecoData",[[
+return {
+["config"] = {
+["allow_local_test"] = true,
+["budget_scope"] = "Resident source geometry reservations across nine streamed zones; not a measured mobile frame budget.",
+["enabled"] = true,
+["library_name"] = "KinCityArtDecoLibrary",
+["production_place_id"] = 72097868581669,
+["profiles"] = {
+["LITE"] = {
+["bench_steps"] = {
+5,
+},
+["clones"] = 2780,
+["floor_tiles"] = 2,
+["lamp_steps"] = {
+3,
+},
+["near_lights"] = 8,
+["parts"] = 12668,
+["pools"] = {
+["architecture"] = {
+["clones"] = 240,
+["parts"] = 1000,
+["triangles"] = 40000,
+},
+["building"] = {
+["clones"] = 10,
+["parts"] = 80,
+["triangles"] = 45000,
+},
+["environment"] = {
+["clones"] = 1,
+["parts"] = 20,
+["triangles"] = 2000,
+},
+["interior"] = {
+["clones"] = 90,
+["parts"] = 400,
+["triangles"] = 35000,
+},
+["pavilion"] = {
+["clones"] = 3,
+["parts"] = 40,
+["triangles"] = 33000,
+},
+["paving"] = {
+["clones"] = 2,
+["parts"] = 18,
+["triangles"] = 500,
+},
+["street"] = {
+["clones"] = 4,
+["parts"] = 60,
+["triangles"] = 8000,
+},
+},
+["road_steps"] = {
+4,
+12,
+},
+["room_stations"] = 1,
+["triangles"] = 1221000,
+["wall_pitch"] = 20,
+},
+["SHOWCASE"] = {
+["bench_steps"] = {
+5,
+},
+["clones"] = 2846,
+["floor_tiles"] = 4,
+["lamp_steps"] = {
+2,
+4,
+6,
+8,
+},
+["near_lights"] = 24,
+["parts"] = 13376,
+["pools"] = {
+["architecture"] = {
+["clones"] = 240,
+["parts"] = 1000,
+["triangles"] = 60000,
+},
+["building"] = {
+["clones"] = 10,
+["parts"] = 80,
+["triangles"] = 45000,
+},
+["environment"] = {
+["clones"] = 3,
+["parts"] = 30,
+["triangles"] = 5000,
+},
+["interior"] = {
+["clones"] = 90,
+["parts"] = 400,
+["triangles"] = 55000,
+},
+["pavilion"] = {
+["clones"] = 3,
+["parts"] = 40,
+["triangles"] = 33000,
+},
+["paving"] = {
+["clones"] = 5,
+["parts"] = 36,
+["triangles"] = 1200,
+},
+["street"] = {
+["clones"] = 10,
+["parts"] = 150,
+["triangles"] = 26000,
+},
+},
+["road_steps"] = {
+3,
+6,
+10,
+13,
+17,
+},
+["room_stations"] = 2,
+["triangles"] = 1671200,
+["wall_pitch"] = 16,
+},
+["STANDARD"] = {
+["bench_steps"] = {
+5,
+},
+["clones"] = 2810,
+["floor_tiles"] = 4,
+["lamp_steps"] = {
+2,
+6,
+},
+["near_lights"] = 16,
+["parts"] = 12944,
+["pools"] = {
+["architecture"] = {
+["clones"] = 240,
+["parts"] = 1000,
+["triangles"] = 60000,
+},
+["building"] = {
+["clones"] = 10,
+["parts"] = 80,
+["triangles"] = 45000,
+},
+["environment"] = {
+["clones"] = 3,
+["parts"] = 20,
+["triangles"] = 5000,
+},
+["interior"] = {
+["clones"] = 90,
+["parts"] = 400,
+["triangles"] = 55000,
+},
+["pavilion"] = {
+["clones"] = 3,
+["parts"] = 40,
+["triangles"] = 33000,
+},
+["paving"] = {
+["clones"] = 3,
+["parts"] = 24,
+["triangles"] = 700,
+},
+["street"] = {
+["clones"] = 6,
+["parts"] = 100,
+["triangles"] = 14000,
+},
+},
+["road_steps"] = {
+4,
+10,
+16,
+},
+["room_stations"] = 2,
+["triangles"] = 1596200,
+["wall_pitch"] = 16,
+},
+},
+["revision"] = "kc33-urban-roadway-six-sectors-2026-10",
+["test_place_id"] = nil,
+},
+["manifest"] = {
+["assets"] = {
+{
+["asset_key"] = "AD_Arc_Canopy_Disc",
+["bytes"] = 30116,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "f82b6862b27e66050e1dafba76a8861a8f6b10d26b32825cf8f84544571bbce3",
+["source_bounds"] = {
+10.0,
+0.512,
+10.0,
+},
+["source_name"] = "KC32__AD_Arc_Canopy_Disc",
+["triangles_mesh_definitions"] = 576,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 596,
+},
+{
+["asset_key"] = "AD_Arc_Column_Round_10",
+["bytes"] = 53312,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "65ef9a46524ff42149d18ec0833ac209177e4a798f470071cb3c8166d24e850a",
+["source_bounds"] = {
+1.48,
+10.0,
+1.48,
+},
+["source_name"] = "KC32__AD_Arc_Column_Round_10",
+["triangles_mesh_definitions"] = 1280,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 1042,
+},
+{
+["asset_key"] = "AD_Arc_Column_Round_4",
+["bytes"] = 53308,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "f5aa4c196998103657b777f2898988be981ab9e028bca59ee2d2e111f83b4d9c",
+["source_bounds"] = {
+1.48,
+4.3,
+1.48,
+},
+["source_name"] = "KC32__AD_Arc_Column_Round_4",
+["triangles_mesh_definitions"] = 1280,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 1042,
+},
+{
+["asset_key"] = "AD_Arc_Curtain_Tower",
+["bytes"] = 20632,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "a602c95cd04091ecc266de480082c948c24524e4ce46008fe2160a5bb0d0dcae",
+["source_bounds"] = {
+4.12,
+10.0,
+0.2,
+},
+["source_name"] = "KC32__AD_Arc_Curtain_Tower",
+["triangles_mesh_definitions"] = 228,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 386,
+},
+{
+["asset_key"] = "AD_Arc_Floor_Checker_Pink",
+["bytes"] = 2504,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 1,
+["primitives_with_vertex_colors"] = 1,
+["roblox_asset_id"] = nil,
+["sha256"] = "d396eea147728dd602955745bb0dabe988570b444c7d6feff64dad240ee31769",
+["source_bounds"] = {
+4.0,
+0.0,
+4.0,
+},
+["source_name"] = "KC32__AD_Arc_Floor_Checker_Pink",
+["triangles_mesh_definitions"] = 8,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 14,
+},
+{
+["asset_key"] = "AD_Arc_Floor_Steps_Neon",
+["bytes"] = 4584,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "515c9612ec9833a5c2ffaddcb5b9d7c3b8079e3f151b9e02af50db1206ddedad",
+["source_bounds"] = {
+4.0,
+0.4,
+1.22,
+},
+["source_name"] = "KC32__AD_Arc_Floor_Steps_Neon",
+["triangles_mesh_definitions"] = 20,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 40,
+},
+{
+["asset_key"] = "AD_Arc_Mezzanine_Open_Blue",
+["bytes"] = 9880,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "0dcbb82dad3b4c8d470ea4b12b45c0f202edc8389969703799cfba1411cdcb72",
+["source_bounds"] = {
+4.0,
+0.62,
+4.05,
+},
+["source_name"] = "KC32__AD_Arc_Mezzanine_Open_Blue",
+["triangles_mesh_definitions"] = 98,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 120,
+},
+{
+["asset_key"] = "AD_Arc_Mezzanine_Open_Violet",
+["bytes"] = 10656,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "f64f7ccadbb84e802e449498a70cf942820ca22acff3ba3f3862295e701a7980",
+["source_bounds"] = {
+4.0,
+0.62,
+4.05,
+},
+["source_name"] = "KC32__AD_Arc_Mezzanine_Open_Violet",
+["triangles_mesh_definitions"] = 98,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 120,
+},
+{
+["asset_key"] = "AD_Arc_Mezzanine_Rail_Blue",
+["bytes"] = 18096,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "e586716e17b198baa03e8a5a8ec9d57339e8dfc9d8957faae36412f25c2240df",
+["source_bounds"] = {
+4.05,
+1.7,
+4.05,
+},
+["source_name"] = "KC32__AD_Arc_Mezzanine_Rail_Blue",
+["triangles_mesh_definitions"] = 204,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 308,
+},
+{
+["asset_key"] = "AD_Arc_Mezzanine_Rail_Violet",
+["bytes"] = 18880,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "b5edfb3210c73119ec0a89569a8d3bd5a94fc7f05fc9e15b3373ffe437e49c1a",
+["source_bounds"] = {
+4.05,
+1.7,
+4.05,
+},
+["source_name"] = "KC32__AD_Arc_Mezzanine_Rail_Violet",
+["triangles_mesh_definitions"] = 204,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 308,
+},
+{
+["asset_key"] = "AD_Arc_Pavilion_Dome",
+["bytes"] = 57496,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "006797561cd23ecb1a31492322c2c2cd7249595e1c1e4516e484a4b02a3c521d",
+["source_bounds"] = {
+4.68,
+10.38,
+4.68,
+},
+["source_name"] = "KC32__AD_Arc_Pavilion_Dome",
+["triangles_mesh_definitions"] = 1456,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 1121,
+},
+{
+["asset_key"] = "AD_Arc_Pavilion_Drum",
+["bytes"] = 42244,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "d0c96c01c0085e56544460c8a30f05bedc66ebc900a1a690ad67ec5495ea86da",
+["source_bounds"] = {
+4.68,
+5.5,
+4.68,
+},
+["source_name"] = "KC32__AD_Arc_Pavilion_Drum",
+["triangles_mesh_definitions"] = 784,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 841,
+},
+{
+["asset_key"] = "AD_Arc_Stair_Grand_Blue",
+["bytes"] = 136484,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "28343c50953f987f20754f3d86ea960f7b02f2f41a6ca49c20124ae0df42a258",
+["source_bounds"] = {
+8.2,
+5.98618,
+11.63529,
+},
+["source_name"] = "KC32__AD_Arc_Stair_Grand_Blue",
+["triangles_mesh_definitions"] = 2688,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2934,
+},
+{
+["asset_key"] = "AD_Arc_Stair_Grand_Violet",
+["bytes"] = 137456,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "9a7a2ff038d5ce7d551589ed0f103ae488caf858f8b919f338b01d43b247b4c3",
+["source_bounds"] = {
+8.2,
+5.98618,
+11.63529,
+},
+["source_name"] = "KC32__AD_Arc_Stair_Grand_Violet",
+["triangles_mesh_definitions"] = 2688,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2934,
+},
+{
+["asset_key"] = "AD_Arc_Wall_Stars",
+["bytes"] = 105492,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "aed5bcd5a4f24b58cdb5281390f2556cd4f587b911f1cc888b2b26a94f32fa66",
+["source_bounds"] = {
+8.0,
+10.0,
+0.33,
+},
+["source_name"] = "KC32__AD_Arc_Wall_Stars",
+["triangles_mesh_definitions"] = 1172,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2344,
+},
+{
+["asset_key"] = "AD_Arc_Window_Arch_Grid",
+["bytes"] = 88456,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "22acba785eb769fa5753a1239259de6d2f3a022fec2d958df2b1b59c773844ee",
+["source_bounds"] = {
+12.0,
+10.0,
+0.59,
+},
+["source_name"] = "KC32__AD_Arc_Window_Arch_Grid",
+["triangles_mesh_definitions"] = 1565,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 1835,
+},
+{
+["asset_key"] = "AD_Arc_Window_Slant",
+["bytes"] = 15072,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "4f0052aeadf0d85a5fc6ed5e987aaa9fea59925e7664dc9f6860280afbb936af",
+["source_bounds"] = {
+8.0,
+9.0859,
+3.51478,
+},
+["source_name"] = "KC32__AD_Arc_Window_Slant",
+["triangles_mesh_definitions"] = 120,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 240,
+},
+{
+["asset_key"] = "AD_Ext_Airship_Gold",
+["bytes"] = 257568,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "e768641c47d3ff7e5731da3e81ca220df375c6c6e1e1f5a96d285f0fcb11abf4",
+["source_bounds"] = {
+40.3,
+40.32,
+114.04641,
+},
+["source_name"] = "KC32__AD_Ext_Airship_Gold",
+["triangles_mesh_definitions"] = 5248,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 5553,
+},
+{
+["asset_key"] = "AD_Ext_Airship_Red",
+["bytes"] = 257576,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "0e6433bbb76c23e716206f53d39b46f044a2069b1c6ef591fdd52b2ac8e498cb",
+["source_bounds"] = {
+40.3,
+40.32,
+114.04641,
+},
+["source_name"] = "KC32__AD_Ext_Airship_Red",
+["triangles_mesh_definitions"] = 5248,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 5553,
+},
+{
+["asset_key"] = "AD_Ext_Airship_Silver",
+["bytes"] = 257588,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "3c702085ab5a92ed65a944a070fc729a962b21dc4b5c9b075651a3e945dc325f",
+["source_bounds"] = {
+40.3,
+40.32,
+114.04641,
+},
+["source_name"] = "KC32__AD_Ext_Airship_Silver",
+["triangles_mesh_definitions"] = 5248,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 5553,
+},
+{
+["asset_key"] = "AD_Ext_Awning_Hotel",
+["bytes"] = 106792,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "4b0f0646f2c59d42aa334118d09c552b57e53747d520c78fe2e116ed91238e1a",
+["source_bounds"] = {
+3.36325,
+3.61,
+3.45,
+},
+["source_name"] = "KC32__AD_Ext_Awning_Hotel",
+["triangles_mesh_definitions"] = 1374,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2342,
+},
+{
+["asset_key"] = "AD_Ext_Bench",
+["bytes"] = 32988,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "19e371119294469fb9bd034f378143dccbca914b24d1eac9df87faa402c01159",
+["source_bounds"] = {
+1.98,
+0.98,
+0.82,
+},
+["source_name"] = "KC32__AD_Ext_Bench",
+["triangles_mesh_definitions"] = 456,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 683,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Base_Blue",
+["bytes"] = 620672,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "4e642941d7b310a977cf66b9b23acb70861c8ae12a09f2630e833e3e422908df",
+["source_bounds"] = {
+12.53486,
+7.05,
+13.31743,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Base_Blue",
+["triangles_mesh_definitions"] = 12160,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 13503,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Base_Cinema",
+["bytes"] = 190460,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "f92e93ae33c2722e522dfedc6abdd73454e3c30ffb2e08c02cd9b8befd00b5c9",
+["source_bounds"] = {
+12.2,
+13.9,
+15.24782,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Base_Cinema",
+["triangles_mesh_definitions"] = 2723,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 4163,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Base_Hotel_Blue",
+["bytes"] = 800060,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "0fa17a6f63662b080112d48b4891942b2094246e5f7ad3f5bbf9065f37692d9e",
+["source_bounds"] = {
+12.53486,
+6.0,
+14.67143,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Base_Hotel_Blue",
+["triangles_mesh_definitions"] = 15298,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 17517,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Base_Hotel_Red",
+["bytes"] = 800056,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "e06a3d8c2765ebea3735ce6a88c1a12bb8d8e23b18e3d73fdf2bd26f31dfeb52",
+["source_bounds"] = {
+12.53486,
+6.0,
+14.67143,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Base_Hotel_Red",
+["triangles_mesh_definitions"] = 15298,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 17517,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Base_Hotel_Violet",
+["bytes"] = 800072,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "2ced82a9c545c0bc8303731c1fcf676c6820df8a7ae91ff747996146856b075b",
+["source_bounds"] = {
+12.53486,
+6.0,
+14.67143,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Base_Hotel_Violet",
+["triangles_mesh_definitions"] = 15298,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 17517,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Base_Red",
+["bytes"] = 620664,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "d232a7bf0d164bd5569aceffe281f446e9d5b1cb6a75ebd477bd5e94c19a0534",
+["source_bounds"] = {
+12.53486,
+7.05,
+13.31743,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Base_Red",
+["triangles_mesh_definitions"] = 12160,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 13503,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Base_Violet",
+["bytes"] = 620684,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "8c9ac5c7786866fe3a598b97148f5a951320cba288ed7f0db0e193ff73e4e1e1",
+["source_bounds"] = {
+12.53486,
+7.05,
+13.31743,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Base_Violet",
+["triangles_mesh_definitions"] = 12160,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 13503,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Crown_Arches_Blue",
+["bytes"] = 492024,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 6,
+["primitives_with_vertex_colors"] = 6,
+["roblox_asset_id"] = nil,
+["sha256"] = "5f3518e6a8e7e7212db52c64a6382d84af38689e122ab53d4fb1a25fdeb4af94",
+["source_bounds"] = {
+12.08,
+28.92,
+12.08,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Crown_Arches_Blue",
+["triangles_mesh_definitions"] = 6108,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 11213,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Crown_Arches_Red",
+["bytes"] = 492016,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 6,
+["primitives_with_vertex_colors"] = 6,
+["roblox_asset_id"] = nil,
+["sha256"] = "33086988532f1c9fa5d10819059870e30f77a83cf91d42cb5a1311369e739477",
+["source_bounds"] = {
+12.08,
+28.92,
+12.08,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Crown_Arches_Red",
+["triangles_mesh_definitions"] = 6108,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 11213,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Crown_Arches_Violet",
+["bytes"] = 492036,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 6,
+["primitives_with_vertex_colors"] = 6,
+["roblox_asset_id"] = nil,
+["sha256"] = "f89c7c568e80a26266aeffba383182a85e3420edc4036978df7d2b4135aabdd5",
+["source_bounds"] = {
+12.08,
+28.92,
+12.08,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Crown_Arches_Violet",
+["triangles_mesh_definitions"] = 6108,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 11213,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Crown_Blue",
+["bytes"] = 1023132,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 6,
+["primitives_with_vertex_colors"] = 6,
+["roblox_asset_id"] = nil,
+["sha256"] = "bcc876899345a05764a691c05599b16e022f92e310b9a1f86a53081d42f68ac8",
+["source_bounds"] = {
+12.08,
+33.65,
+12.08,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Crown_Blue",
+["triangles_mesh_definitions"] = 12722,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 23499,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Crown_Red",
+["bytes"] = 1023124,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 6,
+["primitives_with_vertex_colors"] = 6,
+["roblox_asset_id"] = nil,
+["sha256"] = "b434d4a32b94a9c7e13379ee714bd06b680b72841ba4901c5209a4b68faa9028",
+["source_bounds"] = {
+12.08,
+33.65,
+12.08,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Crown_Red",
+["triangles_mesh_definitions"] = 12722,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 23499,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Crown_Violet",
+["bytes"] = 1023144,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 6,
+["primitives_with_vertex_colors"] = 6,
+["roblox_asset_id"] = nil,
+["sha256"] = "881d6df79c8f313c7785ce39f830be3015ac76750499227201f0bbaf64ba4a57",
+["source_bounds"] = {
+12.08,
+33.65,
+12.08,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Crown_Violet",
+["triangles_mesh_definitions"] = 12722,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 23499,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Crown_Ziggurat_Blue",
+["bytes"] = 946868,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "659f78aa33de2b03f974efc3ad2336d1021ec12468f745fb9de92aba000e3f90",
+["source_bounds"] = {
+12.08,
+29.25,
+12.08,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Crown_Ziggurat_Blue",
+["triangles_mesh_definitions"] = 11712,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 21721,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Crown_Ziggurat_Red",
+["bytes"] = 946860,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "0fc2e9a2942aad363f7b8e8b2c17a74111606bb7bc3ea86d10d9f8c5cd4db4d5",
+["source_bounds"] = {
+12.08,
+29.25,
+12.08,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Crown_Ziggurat_Red",
+["triangles_mesh_definitions"] = 11712,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 21721,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Crown_Ziggurat_Violet",
+["bytes"] = 946880,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "d15e8404f3f5d3f372a6c867b58deb5310958071af68442ba85c72e517ed9db6",
+["source_bounds"] = {
+12.08,
+29.25,
+12.08,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Crown_Ziggurat_Violet",
+["triangles_mesh_definitions"] = 11712,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 21721,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Mid_Blue",
+["bytes"] = 996788,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "03e95a511bdf5b6ad1367ec4bd7efaeea50affca3a6b9dd1d93469d1a3cf7cf1",
+["source_bounds"] = {
+12.2,
+12.0,
+12.2,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Mid_Blue",
+["triangles_mesh_definitions"] = 12340,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 22920,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Mid_Red",
+["bytes"] = 996764,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "8c46293ed8c0d1b18e0e8ab0d22d25198c57b1ef14533938da7a0e3aa678215f",
+["source_bounds"] = {
+12.2,
+12.0,
+12.2,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Mid_Red",
+["triangles_mesh_definitions"] = 12340,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 22920,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Mid_Ribbon_Blue",
+["bytes"] = 866412,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "95cdd1e6ae987972d88011f839ec85e6d52515199c27c868d0e904ade50774ae",
+["source_bounds"] = {
+12.4,
+12.0,
+12.4,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Mid_Ribbon_Blue",
+["triangles_mesh_definitions"] = 10862,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 19884,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Mid_Ribbon_Red",
+["bytes"] = 866376,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "34012c23b972e427ee53891f1b1a316725154ed58c40765389b7f8c022242477",
+["source_bounds"] = {
+12.4,
+12.0,
+12.4,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Mid_Ribbon_Red",
+["triangles_mesh_definitions"] = 10862,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 19884,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Mid_Ribbon_Violet",
+["bytes"] = 866420,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "b24eb49939e1266575f8ac60485cdf915d1820790ee973b9c7c84e045022f3ad",
+["source_bounds"] = {
+12.4,
+12.0,
+12.4,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Mid_Ribbon_Violet",
+["triangles_mesh_definitions"] = 10862,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 19884,
+},
+{
+["asset_key"] = "AD_Ext_Bldg_Mid_Violet",
+["bytes"] = 996800,
+["category"] = "Exterior__Buildings",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "cd1a2e48b9b73f99265ce025ada5227a154a4bedf3cc84553837b189f6a97f79",
+["source_bounds"] = {
+12.2,
+12.0,
+12.2,
+},
+["source_name"] = "KC32__AD_Ext_Bldg_Mid_Violet",
+["triangles_mesh_definitions"] = 12340,
+["usage_candidate"] = "Façades modulaires, tours/hôtels/cinéma (assemblage socle + étage + couronnement)",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 22920,
+},
+{
+["asset_key"] = "AD_Ext_Bridge_Suspension",
+["bytes"] = 860764,
+["category"] = "Exterior__Streets_and_Bridges",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 6,
+["primitives_with_vertex_colors"] = 6,
+["roblox_asset_id"] = nil,
+["sha256"] = "0b30025676de311b7961d7e7d24c5fc1173ff2d519169f0061afdf06502a1241",
+["source_bounds"] = {
+24.4,
+81.944,
+148.0,
+},
+["source_name"] = "KC32__AD_Ext_Bridge_Suspension",
+["triangles_mesh_definitions"] = 13318,
+["usage_candidate"] = "Voirie et ponts : seulement après contrôle du gabarit et des collisions",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 19358,
+},
+{
+["asset_key"] = "AD_Ext_Car_Coupe_Black",
+["bytes"] = 730772,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "6a833bd6c2c9640c34a7eec2f92d0553ab6a464833f549f4417a8abf77796967",
+["source_bounds"] = {
+2.12176,
+1.43016,
+5.36,
+},
+["source_name"] = "KC32__AD_Ext_Car_Coupe_Black",
+["triangles_mesh_definitions"] = 19514,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 15194,
+},
+{
+["asset_key"] = "AD_Ext_Car_Coupe_Cream",
+["bytes"] = 754000,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 7,
+["primitives_with_vertex_colors"] = 7,
+["roblox_asset_id"] = nil,
+["sha256"] = "f6f2318ea85efab1bdfd7d5d444560124f2a0aec3d63255a29dcec706ee56215",
+["source_bounds"] = {
+2.12176,
+1.43016,
+5.36,
+},
+["source_name"] = "KC32__AD_Ext_Car_Coupe_Cream",
+["triangles_mesh_definitions"] = 19514,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 15730,
+},
+{
+["asset_key"] = "AD_Ext_Car_Coupe_Red",
+["bytes"] = 730760,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "577964c1fa3d9f40defa8ffd6ffce7a005c67d5f5675cf78554477b9dfa5f368",
+["source_bounds"] = {
+2.12176,
+1.43016,
+5.36,
+},
+["source_name"] = "KC32__AD_Ext_Car_Coupe_Red",
+["triangles_mesh_definitions"] = 19514,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 15194,
+},
+{
+["asset_key"] = "AD_Ext_Car_Limousine",
+["bytes"] = 716080,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "fc4a3afe6b866cfce255be2e05b3f28d31ecc55cb20f31145f00d44715b3303e",
+["source_bounds"] = {
+2.20176,
+1.52743,
+6.76,
+},
+["source_name"] = "KC32__AD_Ext_Car_Limousine",
+["triangles_mesh_definitions"] = 18962,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 14910,
+},
+{
+["asset_key"] = "AD_Ext_Car_Roadster",
+["bytes"] = 632228,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "e59a5c7a8a5846d1ff918e663a96e61716b6e9a01d6db323252086e6f78516f6",
+["source_bounds"] = {
+2.12176,
+1.26133,
+4.96,
+},
+["source_name"] = "KC32__AD_Ext_Car_Roadster",
+["triangles_mesh_definitions"] = 17094,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 13095,
+},
+{
+["asset_key"] = "AD_Ext_Car_Taxi",
+["bytes"] = 730776,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "f0fe6bf68e93a6869453420bc61f6bcf6fa6bb037c2e8ebb51c1fb3e7b075b44",
+["source_bounds"] = {
+2.12176,
+1.69,
+5.36,
+},
+["source_name"] = "KC32__AD_Ext_Car_Taxi",
+["triangles_mesh_definitions"] = 18948,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 15280,
+},
+{
+["asset_key"] = "AD_Ext_Car_Van",
+["bytes"] = 664368,
+["category"] = "Exterior__Vehicles",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 6,
+["primitives_with_vertex_colors"] = 6,
+["roblox_asset_id"] = nil,
+["sha256"] = "cfe8367bce2de893cd53e995b9c9b972ac398417ab4a32d0787f38e8d5cc405b",
+["source_bounds"] = {
+2.28176,
+2.19224,
+5.6,
+},
+["source_name"] = "KC32__AD_Ext_Car_Van",
+["triangles_mesh_definitions"] = 18476,
+["usage_candidate"] = "Véhicules et aéronefs : décor mesuré, pas de faux transport interactif",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 13666,
+},
+{
+["asset_key"] = "AD_Ext_Clock_Post",
+["bytes"] = 112492,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "9de8bf45ff6309489413eef6393092d41f4a1306dce77fc4f94457e8e58fbfe6",
+["source_bounds"] = {
+0.94,
+4.9,
+0.84,
+},
+["source_name"] = "KC32__AD_Ext_Clock_Post",
+["triangles_mesh_definitions"] = 1566,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2478,
+},
+{
+["asset_key"] = "AD_Ext_Fountain",
+["bytes"] = 165580,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "efeaa296b3eef882dd44775734c078608187f51ff68f8e4e5e6b51029d36a349",
+["source_bounds"] = {
+4.06507,
+3.4,
+4.06507,
+},
+["source_name"] = "KC32__AD_Ext_Fountain",
+["triangles_mesh_definitions"] = 3056,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 3536,
+},
+{
+["asset_key"] = "AD_Ext_Hydrant",
+["bytes"] = 42720,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "90fa320189d7a7144938238476288e5fab477f9fdeeaabcc3dce977628ca7465",
+["source_bounds"] = {
+0.45,
+0.89,
+0.40054,
+},
+["source_name"] = "KC32__AD_Ext_Hydrant",
+["triangles_mesh_definitions"] = 520,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 916,
+},
+{
+["asset_key"] = "AD_Ext_Kiosk_News",
+["bytes"] = 94556,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "f7a90051ad3f7a4d081c9fa75332ddccb3ae2df6c0ff0e76425adbae4446f9a5",
+["source_bounds"] = {
+3.68504,
+4.3832,
+3.68504,
+},
+["source_name"] = "KC32__AD_Ext_Kiosk_News",
+["triangles_mesh_definitions"] = 1130,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2071,
+},
+{
+["asset_key"] = "AD_Ext_Mailbox",
+["bytes"] = 13676,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "201d9a5c088f9770c6588bc31c6f2601986a6b57647960f1dbafb7d2f38fb877",
+["source_bounds"] = {
+0.64,
+1.36,
+0.58,
+},
+["source_name"] = "KC32__AD_Ext_Mailbox",
+["triangles_mesh_definitions"] = 114,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 227,
+},
+{
+["asset_key"] = "AD_Ext_Palm_Tall",
+["bytes"] = 133396,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 1,
+["primitives_with_vertex_colors"] = 1,
+["roblox_asset_id"] = nil,
+["sha256"] = "4685a591e7067a1c15c08834b661a3208dee80bf2aeb4b96797921e3ca7752af",
+["source_bounds"] = {
+6.6,
+7.4555,
+6.27944,
+},
+["source_name"] = "KC32__AD_Ext_Palm_Tall",
+["triangles_mesh_definitions"] = 1524,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 3056,
+},
+{
+["asset_key"] = "AD_Ext_Phone_Booth",
+["bytes"] = 59836,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 6,
+["primitives_with_vertex_colors"] = 6,
+["roblox_asset_id"] = nil,
+["sha256"] = "b23d3b84fa2c7f8ff7c72d5d7a327a08e0beb439cba702d79d65d1dfe95f2749",
+["source_bounds"] = {
+1.32,
+3.08,
+1.32,
+},
+["source_name"] = "KC32__AD_Ext_Phone_Booth",
+["triangles_mesh_definitions"] = 786,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 1215,
+},
+{
+["asset_key"] = "AD_Ext_Planter_Palm",
+["bytes"] = 120036,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "303e2d75b0261569b07d2d19af4b19b0d5072ca7a2eb00e5de12b92fdaf76fa6",
+["source_bounds"] = {
+2.61995,
+2.79667,
+2.66037,
+},
+["source_name"] = "KC32__AD_Ext_Planter_Palm",
+["triangles_mesh_definitions"] = 1360,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 2698,
+},
+{
+["asset_key"] = "AD_Ext_Skybridge",
+["bytes"] = 140996,
+["category"] = "Exterior__Streets_and_Bridges",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "c382dab19b73c6dde2fce3c230f2860aaf1a0f7329d7918b114d393f737d09e8",
+["source_bounds"] = {
+16.03317,
+6.4,
+3.5,
+},
+["source_name"] = "KC32__AD_Ext_Skybridge",
+["triangles_mesh_definitions"] = 1970,
+["usage_candidate"] = "Voirie et ponts : seulement après contrôle du gabarit et des collisions",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 3086,
+},
+{
+["asset_key"] = "AD_Ext_Street_Cross",
+["bytes"] = 14284,
+["category"] = "Exterior__Streets_and_Bridges",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "d6bb0f481f0a6ba4cf7c6c8bb2431163882e97aeb275b46740ea1aef36b5ab5f",
+["source_bounds"] = {
+16.0,
+0.16,
+16.0,
+},
+["source_name"] = "KC32__AD_Ext_Street_Cross",
+["triangles_mesh_definitions"] = 114,
+["usage_candidate"] = "Voirie et ponts : seulement après contrôle du gabarit et des collisions",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 224,
+},
+{
+["asset_key"] = "AD_Ext_Street_Straight",
+["bytes"] = 7644,
+["category"] = "Exterior__Streets_and_Bridges",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "bc196c2712a8caa9145d2115f386a9a5b9969068bd4ec048a08cebb265d4f9dd",
+["source_bounds"] = {
+16.0,
+0.16,
+12.0,
+},
+["source_name"] = "KC32__AD_Ext_Street_Straight",
+["triangles_mesh_definitions"] = 38,
+["usage_candidate"] = "Voirie et ponts : seulement après contrôle du gabarit et des collisions",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 72,
+},
+{
+["asset_key"] = "AD_Ext_Streetlamp",
+["bytes"] = 150576,
+["category"] = "Exterior__Street_Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "b8075086af4ea16a4ef1ece4e3ff97b48e14a690f3e675476cf1255ea2de2537",
+["source_bounds"] = {
+1.38949,
+5.2392,
+0.84,
+},
+["source_name"] = "KC32__AD_Ext_Streetlamp",
+["triangles_mesh_definitions"] = 2400,
+["usage_candidate"] = "Mobilier urbain : places, boulevards et parvis, sans bloquer les parcours",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 3305,
+},
+{
+["asset_key"] = "AD_Ext_Viaduct_Arch",
+["bytes"] = 170020,
+["category"] = "Exterior__Streets_and_Bridges",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "715026c0a980bb4b1a789c9b70b69f5f84b268d5de3300ff37119613038d3dd2",
+["source_bounds"] = {
+24.0,
+13.29761,
+9.8,
+},
+["source_name"] = "KC32__AD_Ext_Viaduct_Arch",
+["triangles_mesh_definitions"] = 2556,
+["usage_candidate"] = "Voirie et ponts : seulement après contrôle du gabarit et des collisions",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 3746,
+},
+{
+["asset_key"] = "AD_Int_Arch_Door",
+["bytes"] = 132192,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "8e86d0c30ebb046ce11943f81eb8ae5afd97f23512e21a07670de4d45d98cd2e",
+["source_bounds"] = {
+8.04,
+10.0,
+1.66,
+},
+["source_name"] = "KC32__AD_Int_Arch_Door",
+["triangles_mesh_definitions"] = 1953,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 2867,
+},
+{
+["asset_key"] = "AD_Int_Arch_Window",
+["bytes"] = 135784,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "ee2e890ce89d4c3b6702427365a31f5faa25f21956498c1f72dfaf3da2405344",
+["source_bounds"] = {
+8.04,
+10.0,
+1.66,
+},
+["source_name"] = "KC32__AD_Int_Arch_Window",
+["triangles_mesh_definitions"] = 1995,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 2951,
+},
+{
+["asset_key"] = "AD_Int_Armchair_Club",
+["bytes"] = 149692,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "dfe41dd79cbd2b9ef4a20c6df924dbbd1fd8354c3170cd8f8196b81a3308dc4a",
+["source_bounds"] = {
+1.30276,
+0.85788,
+1.11577,
+},
+["source_name"] = "KC32__AD_Int_Armchair_Club",
+["triangles_mesh_definitions"] = 4140,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 3046,
+},
+{
+["asset_key"] = "AD_Int_Armchair_Tub_Black",
+["bytes"] = 151764,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "d89805817e330b3360c0c9debed2e0110c956ddd9a502e78d0477db7fe2fdfe7",
+["source_bounds"] = {
+1.30276,
+0.85986,
+1.11777,
+},
+["source_name"] = "KC32__AD_Int_Armchair_Tub_Black",
+["triangles_mesh_definitions"] = 4108,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 3102,
+},
+{
+["asset_key"] = "AD_Int_Back_Bar",
+["bytes"] = 111804,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "2c3fb93f8b039cf52d812374fa1ebeec718622ac2c6863806e25f8b8a4174198",
+["source_bounds"] = {
+2.0,
+3.08,
+0.66,
+},
+["source_name"] = "KC32__AD_Int_Back_Bar",
+["triangles_mesh_definitions"] = 1360,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2450,
+},
+{
+["asset_key"] = "AD_Int_Banquette_Shell",
+["bytes"] = 92284,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "430b5ad2473b33d6ec34caea2981d101cdf2596b0ffa7ca4ef931e6029297758",
+["source_bounds"] = {
+2.43,
+1.15974,
+1.02267,
+},
+["source_name"] = "KC32__AD_Int_Banquette_Shell",
+["triangles_mesh_definitions"] = 2710,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1826,
+},
+{
+["asset_key"] = "AD_Int_Bar_Curve",
+["bytes"] = 92848,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "d9157ab7e24f44bc2d84f1dc784c9a67fdc3a42249def5513d2b95036acf5f20",
+["source_bounds"] = {
+3.18492,
+1.05,
+3.18492,
+},
+["source_name"] = "KC32__AD_Int_Bar_Curve",
+["triangles_mesh_definitions"] = 2448,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 1834,
+},
+{
+["asset_key"] = "AD_Int_Bar_End",
+["bytes"] = 45260,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "21715974ebccd1403b4868e27774d7be8a3ff08dad0663f96ab5d8618375ea88",
+["source_bounds"] = {
+0.49416,
+1.05,
+0.98379,
+},
+["source_name"] = "KC32__AD_Int_Bar_End",
+["triangles_mesh_definitions"] = 976,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 840,
+},
+{
+["asset_key"] = "AD_Int_Bar_Stool",
+["bytes"] = 77796,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "912018fefcacbf5718f0a8f8235ebd55175747f6ba99b728bdb003b6bbb74aad",
+["source_bounds"] = {
+0.44,
+1.075,
+0.474,
+},
+["source_name"] = "KC32__AD_Int_Bar_Stool",
+["triangles_mesh_definitions"] = 1844,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1594,
+},
+{
+["asset_key"] = "AD_Int_Bar_Straight",
+["bytes"] = 25048,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "ea3b6bb1dacdc9609fbd5578a0d9b2500e08cd4fc8c46fd2165054dd79a49421",
+["source_bounds"] = {
+2.0,
+1.05,
+0.984,
+},
+["source_name"] = "KC32__AD_Int_Bar_Straight",
+["triangles_mesh_definitions"] = 304,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 440,
+},
+{
+["asset_key"] = "AD_Int_Bed_Leopard",
+["bytes"] = 327536,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "4c0c9de79cd6016850e6c8d430a1592691fd7136bb9885cbb7d7f0d92a301290",
+["source_bounds"] = {
+2.16386,
+1.582,
+2.30896,
+},
+["source_name"] = "KC32__AD_Int_Bed_Leopard",
+["triangles_mesh_definitions"] = 4670,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 7413,
+},
+{
+["asset_key"] = "AD_Int_Bed_Satin",
+["bytes"] = 164352,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "6085f395dce7c34a19ad1438d9edc5cf22b7c50463850225070a0372d2500b59",
+["source_bounds"] = {
+2.16386,
+1.582,
+2.31842,
+},
+["source_name"] = "KC32__AD_Int_Bed_Satin",
+["triangles_mesh_definitions"] = 4414,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 3372,
+},
+{
+["asset_key"] = "AD_Int_Billiard_Table",
+["bytes"] = 144888,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "70176f024e6b46eb30a8e6cd7065ccc5d4401909a755c786a677eff594e27d7f",
+["source_bounds"] = {
+2.86,
+0.8572,
+1.59,
+},
+["source_name"] = "KC32__AD_Int_Billiard_Table",
+["triangles_mesh_definitions"] = 2180,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 3171,
+},
+{
+["asset_key"] = "AD_Int_Chandelier",
+["bytes"] = 338448,
+["category"] = "Interior__Lighting",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "76839fa24a2860c1fa349413ec9e908f9c3071add3d230c20686d4ae52027144",
+["source_bounds"] = {
+2.03862,
+2.52,
+2.02791,
+},
+["source_name"] = "KC32__AD_Int_Chandelier",
+["triangles_mesh_definitions"] = 5108,
+["usage_candidate"] = "Luminaires : lumière avec budgets mobile, pas tous avec PointLight",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 7620,
+},
+{
+["asset_key"] = "AD_Int_Chandelier_Rings",
+["bytes"] = 104160,
+["category"] = "Interior__Lighting",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "63d4648a52181ced5199a6fb06e959c7db203f212e9933c2048f362988305a31",
+["source_bounds"] = {
+3.5,
+3.62,
+3.5,
+},
+["source_name"] = "KC32__AD_Int_Chandelier_Rings",
+["triangles_mesh_definitions"] = 1960,
+["usage_candidate"] = "Luminaires : lumière avec budgets mobile, pas tous avec PointLight",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2238,
+},
+{
+["asset_key"] = "AD_Int_Column",
+["bytes"] = 61564,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "1b3a08bd699ceacbaa4b85785e8dd5faae5cbb53433a6615b7fbc33fd2f4d334",
+["source_bounds"] = {
+2.1,
+10.0,
+2.1,
+},
+["source_name"] = "KC32__AD_Int_Column",
+["triangles_mesh_definitions"] = 1192,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 1264,
+},
+{
+["asset_key"] = "AD_Int_Floor_Checker",
+["bytes"] = 10364,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "8b08d3d7f20463688d6772dbf96152a3c5efdf330d721ba86ade62c52a196853",
+["source_bounds"] = {
+4.0,
+0.0,
+4.0,
+},
+["source_name"] = "KC32__AD_Int_Floor_Checker",
+["triangles_mesh_definitions"] = 162,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 164,
+},
+{
+["asset_key"] = "AD_Int_Floor_Medallion",
+["bytes"] = 13408,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "b5b40e0610336598d94974e75926bf79ceed170e918774d30132df165a05d0ac",
+["source_bounds"] = {
+4.0,
+0.0,
+4.0,
+},
+["source_name"] = "KC32__AD_Int_Floor_Medallion",
+["triangles_mesh_definitions"] = 200,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 234,
+},
+{
+["asset_key"] = "AD_Int_Glass_Martini",
+["bytes"] = 18612,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "87961d2b58dd93379212a649ff2ece3f9ce52e3c9dea8516b979d5f22afbf835",
+["source_bounds"] = {
+0.112,
+0.164,
+0.112,
+},
+["source_name"] = "KC32__AD_Int_Glass_Martini",
+["triangles_mesh_definitions"] = 264,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 302,
+},
+{
+["asset_key"] = "AD_Int_Lamp_Billiard",
+["bytes"] = 42108,
+["category"] = "Interior__Lighting",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "41ddbaedcddc43c038837835fce83f70703b7f2d2446daadfdfabd61b828ac0f",
+["source_bounds"] = {
+2.12,
+1.29,
+0.56,
+},
+["source_name"] = "KC32__AD_Int_Lamp_Billiard",
+["triangles_mesh_definitions"] = 912,
+["usage_candidate"] = "Luminaires : lumière avec budgets mobile, pas tous avec PointLight",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 817,
+},
+{
+["asset_key"] = "AD_Int_Lamp_Floor",
+["bytes"] = 89496,
+["category"] = "Interior__Lighting",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "1e72e4714e9b571d4d44247f3ac43bc3724a050d355b3c2ab0654f35c4b6d64c",
+["source_bounds"] = {
+0.69,
+1.815,
+0.69,
+},
+["source_name"] = "KC32__AD_Int_Lamp_Floor",
+["triangles_mesh_definitions"] = 1924,
+["usage_candidate"] = "Luminaires : lumière avec budgets mobile, pas tous avec PointLight",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 1850,
+},
+{
+["asset_key"] = "AD_Int_Lamp_Table",
+["bytes"] = 26020,
+["category"] = "Interior__Lighting",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "ee93283b3ec70eafc7e8119181e920ee44771bf6f6459065242cd0de4b25c1f7",
+["source_bounds"] = {
+0.42,
+0.5,
+0.42,
+},
+["source_name"] = "KC32__AD_Int_Lamp_Table",
+["triangles_mesh_definitions"] = 520,
+["usage_candidate"] = "Luminaires : lumière avec budgets mobile, pas tous avec PointLight",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 474,
+},
+{
+["asset_key"] = "AD_Int_Lamp_Wall_Sun",
+["bytes"] = 34300,
+["category"] = "Interior__Lighting",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "63d891683b409ffcc6e4f81b5c9f1995bbe1ac9899c0fe2eb7738a84e211581a",
+["source_bounds"] = {
+1.56,
+1.56,
+0.075,
+},
+["source_name"] = "KC32__AD_Int_Lamp_Wall_Sun",
+["triangles_mesh_definitions"] = 728,
+["usage_candidate"] = "Luminaires : lumière avec budgets mobile, pas tous avec PointLight",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 673,
+},
+{
+["asset_key"] = "AD_Int_Mic_Stand",
+["bytes"] = 45160,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "c8f6a28e99ee07999e00bc22b435a9ff25eb838370f22f151f6ae37531416401",
+["source_bounds"] = {
+0.32,
+1.59561,
+0.32,
+},
+["source_name"] = "KC32__AD_Int_Mic_Stand",
+["triangles_mesh_definitions"] = 932,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 915,
+},
+{
+["asset_key"] = "AD_Int_Mirror_Sunburst",
+["bytes"] = 68380,
+["category"] = "Interior__Decor",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "d584a6900f7a4ab5240b9ea89c4b82fa0caceea0b53d00ad9063c3b473594a9f",
+["source_bounds"] = {
+2.0,
+2.0,
+0.075,
+},
+["source_name"] = "KC32__AD_Int_Mirror_Sunburst",
+["triangles_mesh_definitions"] = 1088,
+["usage_candidate"] = "Décoration intérieure : salles, institutions, zones publiques",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1473,
+},
+{
+["asset_key"] = "AD_Int_Nightstand",
+["bytes"] = 41784,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "509a6a903fbdfb1aaee87979c7e33f886200b58109e1bd716248efc40f070a1f",
+["source_bounds"] = {
+0.52,
+0.58,
+0.525,
+},
+["source_name"] = "KC32__AD_Int_Nightstand",
+["triangles_mesh_definitions"] = 812,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 826,
+},
+{
+["asset_key"] = "AD_Int_Piano_Grand",
+["bytes"] = 117404,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "a219888acd709bac79f85eaa30a4afb263eb6da2be1d67646da78fc38e957d0b",
+["source_bounds"] = {
+1.53163,
+1.89595,
+2.41399,
+},
+["source_name"] = "KC32__AD_Int_Piano_Grand",
+["triangles_mesh_definitions"] = 1848,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2537,
+},
+{
+["asset_key"] = "AD_Int_Plant_Monstera",
+["bytes"] = 50080,
+["category"] = "Interior__Decor",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "4de1363145774a3d9fb60ae92f268242eedc763f108e9160b7984d08782ccf15",
+["source_bounds"] = {
+2.05682,
+1.41471,
+1.89415,
+},
+["source_name"] = "KC32__AD_Int_Plant_Monstera",
+["triangles_mesh_definitions"] = 876,
+["usage_candidate"] = "Décoration intérieure : salles, institutions, zones publiques",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1046,
+},
+{
+["asset_key"] = "AD_Int_Plant_Palm",
+["bytes"] = 115040,
+["category"] = "Interior__Decor",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "2b3d22667280e7f395c2a87b5312a1330d0f0000213b0d26255886d61e906afe",
+["source_bounds"] = {
+2.56415,
+1.75951,
+2.61155,
+},
+["source_name"] = "KC32__AD_Int_Plant_Palm",
+["triangles_mesh_definitions"] = 1516,
+["usage_candidate"] = "Décoration intérieure : salles, institutions, zones publiques",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 2574,
+},
+{
+["asset_key"] = "AD_Int_Planter_Flowers",
+["bytes"] = 203668,
+["category"] = "Interior__Decor",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "d2190f972622b0009c8e3b397adf043a85a605763ad74a8bc5b643a6b8c0acd4",
+["source_bounds"] = {
+1.22215,
+1.55817,
+1.20899,
+},
+["source_name"] = "KC32__AD_Int_Planter_Flowers",
+["triangles_mesh_definitions"] = 2384,
+["usage_candidate"] = "Décoration intérieure : salles, institutions, zones publiques",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 4634,
+},
+{
+["asset_key"] = "AD_Int_Radio_Console",
+["bytes"] = 36068,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "1c92b529d3c7eaa2e95e68225703612b497508437e05b861ca243ebcd27ff576",
+["source_bounds"] = {
+0.76,
+1.02,
+0.45,
+},
+["source_name"] = "KC32__AD_Int_Radio_Console",
+["triangles_mesh_definitions"] = 470,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 708,
+},
+{
+["asset_key"] = "AD_Int_Room_Floor_Parquet",
+["bytes"] = 14296,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 1,
+["primitives_with_vertex_colors"] = 1,
+["roblox_asset_id"] = nil,
+["sha256"] = "e298d470063ff33c416199710afe971854396fb38291d50f90758e10380a4ed2",
+["source_bounds"] = {
+4.0,
+0.0,
+4.0,
+},
+["source_name"] = "KC32__AD_Int_Room_Floor_Parquet",
+["triangles_mesh_definitions"] = 144,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 288,
+},
+{
+["asset_key"] = "AD_Int_Room_Wall_Door_Coral",
+["bytes"] = 10628,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "78012e36c73260cf4c390cae826417efa7a9627dab982e8566e8ad5ffb8d8e33",
+["source_bounds"] = {
+4.0,
+3.6,
+0.25,
+},
+["source_name"] = "KC32__AD_Int_Room_Wall_Door_Coral",
+["triangles_mesh_definitions"] = 92,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 156,
+},
+{
+["asset_key"] = "AD_Int_Room_Wall_Door_Teal",
+["bytes"] = 10624,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "291e7aaae15ec126873c3925d6655c7bcd647a25095343949c7fa569c5c9bce9",
+["source_bounds"] = {
+4.0,
+3.6,
+0.25,
+},
+["source_name"] = "KC32__AD_Int_Room_Wall_Door_Teal",
+["triangles_mesh_definitions"] = 92,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 156,
+},
+{
+["asset_key"] = "AD_Int_Room_Wall_GlassBlock_Coral",
+["bytes"] = 92544,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "afd2ce10edecf8c72def44fe3bb5d8758b19e68bdc6f5d9777a1dc617417507e",
+["source_bounds"] = {
+4.0,
+3.6,
+0.25,
+},
+["source_name"] = "KC32__AD_Int_Room_Wall_GlassBlock_Coral",
+["triangles_mesh_definitions"] = 1048,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2034,
+},
+{
+["asset_key"] = "AD_Int_Room_Wall_GlassBlock_Teal",
+["bytes"] = 92540,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "153734f8eee3b6ec721f8ec09d4aaf0eac9cd1f06b4ce9c0dcb3f40047878928",
+["source_bounds"] = {
+4.0,
+3.6,
+0.25,
+},
+["source_name"] = "KC32__AD_Int_Room_Wall_GlassBlock_Teal",
+["triangles_mesh_definitions"] = 1048,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2034,
+},
+{
+["asset_key"] = "AD_Int_Room_Wall_Plain_Coral",
+["bytes"] = 6952,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "baa2da512ffd4168912322921428212ee21c84fa024b2f75f9e5d2a8090f8a59",
+["source_bounds"] = {
+4.0,
+3.6,
+0.25,
+},
+["source_name"] = "KC32__AD_Int_Room_Wall_Plain_Coral",
+["triangles_mesh_definitions"] = 38,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 72,
+},
+{
+["asset_key"] = "AD_Int_Room_Wall_Plain_Teal",
+["bytes"] = 6948,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "043316c1437d50795571409e69e3dc9bfd0a361c4816462e48537dd1dbe3175f",
+["source_bounds"] = {
+4.0,
+3.6,
+0.25,
+},
+["source_name"] = "KC32__AD_Int_Room_Wall_Plain_Teal",
+["triangles_mesh_definitions"] = 38,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 72,
+},
+{
+["asset_key"] = "AD_Int_Room_Wall_Window_Coral",
+["bytes"] = 14608,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "2113ab25d82ebe72a7ef8a9b5df77dd38344f53a358e551fa0c7214e2dafdf12",
+["source_bounds"] = {
+4.0,
+3.6,
+0.3,
+},
+["source_name"] = "KC32__AD_Int_Room_Wall_Window_Coral",
+["triangles_mesh_definitions"] = 144,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 226,
+},
+{
+["asset_key"] = "AD_Int_Room_Wall_Window_Teal",
+["bytes"] = 14604,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "f4bc0b5d4ec6182968c57f31bab1e0b08daf748af04b0978bdb7a9c575f92b2c",
+["source_bounds"] = {
+4.0,
+3.6,
+0.3,
+},
+["source_name"] = "KC32__AD_Int_Room_Wall_Window_Teal",
+["triangles_mesh_definitions"] = 144,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 226,
+},
+{
+["asset_key"] = "AD_Int_Rug_Deco",
+["bytes"] = 5020,
+["category"] = "Interior__Decor",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 1,
+["primitives_with_vertex_colors"] = 1,
+["roblox_asset_id"] = nil,
+["sha256"] = "d58414d2d2ed141358ffe2a9350b20cc0c7af1c85c8daa865bf246dd6153b790",
+["source_bounds"] = {
+3.0,
+0.026,
+2.2,
+},
+["source_name"] = "KC32__AD_Int_Rug_Deco",
+["triangles_mesh_definitions"] = 34,
+["usage_candidate"] = "Décoration intérieure : salles, institutions, zones publiques",
+["used_material_roles"] = {
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 72,
+},
+{
+["asset_key"] = "AD_Int_Sculpture_Deco",
+["bytes"] = 49712,
+["category"] = "Interior__Decor",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "a1e1bde55db908f6ead5dcaf83dc2e338cbfab6472bfadcad751f5349b31cdb5",
+["source_bounds"] = {
+1.29257,
+3.15,
+1.24,
+},
+["source_name"] = "KC32__AD_Int_Sculpture_Deco",
+["triangles_mesh_definitions"] = 756,
+["usage_candidate"] = "Décoration intérieure : salles, institutions, zones publiques",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1055,
+},
+{
+["asset_key"] = "AD_Int_Sideboard",
+["bytes"] = 12516,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "29d0c40a562c9575632c98d84fb8df340ec1a2cc69b35cf91e2a624f6884de81",
+["source_bounds"] = {
+1.88,
+0.78,
+0.475,
+},
+["source_name"] = "KC32__AD_Int_Sideboard",
+["triangles_mesh_definitions"] = 92,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 180,
+},
+{
+["asset_key"] = "AD_Int_Sofa_Curved_Night",
+["bytes"] = 62656,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "b35fca3f2ec65b7e361ca7d00da4e08ca8da7e023437a8f3434b8b0c9d7ca42d",
+["source_bounds"] = {
+2.59392,
+0.99635,
+2.59392,
+},
+["source_name"] = "KC32__AD_Int_Sofa_Curved_Night",
+["triangles_mesh_definitions"] = 1876,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1211,
+},
+{
+["asset_key"] = "AD_Int_Sofa_Curved_Red",
+["bytes"] = 62648,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "52f0d0874152b5e69d4edd9ce29a0c3f3a1555488b59fe1543c4d8a7258c5789",
+["source_bounds"] = {
+2.59392,
+0.99635,
+2.59392,
+},
+["source_name"] = "KC32__AD_Int_Sofa_Curved_Red",
+["triangles_mesh_definitions"] = 1876,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1211,
+},
+{
+["asset_key"] = "AD_Int_Sofa_Mod_Corner",
+["bytes"] = 99944,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 1,
+["primitives_with_vertex_colors"] = 1,
+["roblox_asset_id"] = nil,
+["sha256"] = "5ebc4eb9f6b5608dc5cb6d99cd623082310fac862dc8c04cf1bef5f13e5a595a",
+["source_bounds"] = {
+1.06184,
+0.87054,
+1.06184,
+},
+["source_name"] = "KC32__AD_Int_Sofa_Mod_Corner",
+["triangles_mesh_definitions"] = 3468,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1929,
+},
+{
+["asset_key"] = "AD_Int_Sofa_Mod_Ottoman",
+["bytes"] = 31904,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 1,
+["primitives_with_vertex_colors"] = 1,
+["roblox_asset_id"] = nil,
+["sha256"] = "25b108600bef1f11b09cde41f571109a465ded20a57e16d7fceab01994627f6f",
+["source_bounds"] = {
+1.0,
+0.44,
+1.0,
+},
+["source_name"] = "KC32__AD_Int_Sofa_Mod_Ottoman",
+["triangles_mesh_definitions"] = 908,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 613,
+},
+{
+["asset_key"] = "AD_Int_Sofa_Mod_Seat",
+["bytes"] = 66244,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 1,
+["primitives_with_vertex_colors"] = 1,
+["roblox_asset_id"] = nil,
+["sha256"] = "93f7d37c298deb3840ae66f760199609911b5934872e647678382002e8f8bfbe",
+["source_bounds"] = {
+1.0,
+0.87054,
+1.06184,
+},
+["source_name"] = "KC32__AD_Int_Sofa_Mod_Seat",
+["triangles_mesh_definitions"] = 2188,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1279,
+},
+{
+["asset_key"] = "AD_Int_Stage_Shell",
+["bytes"] = 180316,
+["category"] = "Interior__Architecture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 5,
+["primitives_with_vertex_colors"] = 5,
+["roblox_asset_id"] = nil,
+["sha256"] = "51b6c9dc3a643be402fd8fdf7f02e03a47f0c43ee821b58aceb2b67a24d9148f",
+["source_bounds"] = {
+8.0,
+10.0,
+4.06,
+},
+["source_name"] = "KC32__AD_Int_Stage_Shell",
+["triangles_mesh_definitions"] = 3395,
+["usage_candidate"] = "Architecture intérieure : murs, colonnes, escaliers et modules pour vrais intérieurs",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 3858,
+},
+{
+["asset_key"] = "AD_Int_Stanchion_Rope",
+["bytes"] = 83740,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 2,
+["primitives_with_vertex_colors"] = 2,
+["roblox_asset_id"] = nil,
+["sha256"] = "94837ac3d90fbf1942acc9a594c0a101d8a5e7e0022f908f23f63323832e2dd3",
+["source_bounds"] = {
+1.82,
+1.07,
+0.32,
+},
+["source_name"] = "KC32__AD_Int_Stanchion_Rope",
+["triangles_mesh_definitions"] = 1592,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+},
+["vertex_accessor_count"] = 1780,
+},
+{
+["asset_key"] = "AD_Int_Table_Cocktail",
+["bytes"] = 116524,
+["category"] = "Interior__Bar_and_Lounge",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "b0800c8ed82f18bb0a128d49fde01c3b2a100cd01f6b67b5c18e559a48c532cc",
+["source_bounds"] = {
+0.74,
+0.56,
+0.74,
+},
+["source_name"] = "KC32__AD_Int_Table_Cocktail",
+["triangles_mesh_definitions"] = 2592,
+["usage_candidate"] = "Bar et salon : scènes intérieures contextualisées",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 2402,
+},
+{
+["asset_key"] = "AD_Int_Table_Coffee_Glass",
+["bytes"] = 16500,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "e7583f11275454daa02434841e92522d138bca6de7b948135918d05e179a98fb",
+["source_bounds"] = {
+1.5,
+0.45,
+1.5,
+},
+["source_name"] = "KC32__AD_Int_Table_Coffee_Glass",
+["triangles_mesh_definitions"] = 330,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_CORPS",
+"KC32_LUMIERE",
+"KC32_VITRAGE",
+},
+["vertex_accessor_count"] = 241,
+},
+{
+["asset_key"] = "AD_Int_Table_Drum_Gold",
+["bytes"] = 54748,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "49beac482756e12075cbfef267a51f45c288214f4ab31df81b0141de5d6e7e2d",
+["source_bounds"] = {
+0.64,
+0.98,
+0.64,
+},
+["source_name"] = "KC32__AD_Int_Table_Drum_Gold",
+["triangles_mesh_definitions"] = 1100,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 1104,
+},
+{
+["asset_key"] = "AD_Int_Table_Marble",
+["bytes"] = 45936,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 3,
+["primitives_with_vertex_colors"] = 3,
+["roblox_asset_id"] = nil,
+["sha256"] = "b51fed262de88aac14136b24236aaf92011a644feae7280bf39240a0f06f8fc0",
+["source_bounds"] = {
+1.52,
+0.45,
+1.52,
+},
+["source_name"] = "KC32__AD_Int_Table_Marble",
+["triangles_mesh_definitions"] = 1008,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 898,
+},
+{
+["asset_key"] = "AD_Int_Vanity",
+["bytes"] = 88588,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "a58152ed62f2d330655a46cf53c3d89cdd97cfbb090f21fe7934793cfde83d76",
+["source_bounds"] = {
+1.32,
+1.68,
+1.075,
+},
+["source_name"] = "KC32__AD_Int_Vanity",
+["triangles_mesh_definitions"] = 1322,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 1896,
+},
+{
+["asset_key"] = "AD_Int_Wardrobe",
+["bytes"] = 13676,
+["category"] = "Interior__Furniture",
+["imported_bounds_studs"] = nil,
+["imported_pivot"] = nil,
+["placement_status"] = "pending_HEAD_and_Studio_validation",
+["primitives"] = 4,
+["primitives_with_vertex_colors"] = 4,
+["roblox_asset_id"] = nil,
+["sha256"] = "bc9982d87fc470051ff6c8fbf84e1ee837eca3e55c408f827ad699ff362de016",
+["source_bounds"] = {
+1.68,
+2.27,
+0.63,
+},
+["source_name"] = "KC32__AD_Int_Wardrobe",
+["triangles_mesh_definitions"] = 106,
+["usage_candidate"] = "Meubles : espaces fonctionnels, lecture, bureaux, salon",
+["used_material_roles"] = {
+"KC32_ACCENT",
+"KC32_BRONZE",
+"KC32_CORPS",
+"KC32_LUMIERE",
+},
+["vertex_accessor_count"] = 204,
+},
+},
+["assets_using_accent"] = 56,
+["categories"] = {
+["Exterior__Buildings"] = 22,
+["Exterior__Street_Furniture"] = 11,
+["Exterior__Streets_and_Bridges"] = 5,
+["Exterior__Vehicles"] = 10,
+["Interior__Architecture"] = 32,
+["Interior__Bar_and_Lounge"] = 12,
+["Interior__Decor"] = 6,
+["Interior__Furniture"] = 17,
+["Interior__Lighting"] = 6,
+},
+["count"] = 121,
+["scope"] = "Supplied normalized GLB files; no Roblox import or GitHub HEAD verified",
+["triangles_mesh_definitions"] = 522275,
+},
+["placements"] = {
+["buildings"] = {
+["central.city_hall"] = {
+["body_height_ratio"] = 0.7,
+["columns_asset"] = "AD_Arc_Column_Round_10",
+["entry_height"] = 10,
+["entry_width"] = 10,
+["feature_asset"] = "AD_Arc_Pavilion_Drum",
+["feature_source_size"] = {
+4.68,
+5.5,
+4.68,
+},
+["place_key"] = "city_hall",
+["shape"] = "civic",
+["shell_asset"] = "AD_Ext_Bldg_Base_Blue",
+["shell_source_size"] = {
+12.53486,
+7.05,
+13.31743,
+},
+["window_asset"] = "AD_Arc_Window_Arch_Grid",
+},
+["central.ekoh_tower"] = {
+["body_height_ratio"] = 0.2,
+["columns_asset"] = "AD_Arc_Column_Round_10",
+["entry_height"] = 10,
+["entry_width"] = 10,
+["feature_asset"] = "AD_Ext_Bldg_Crown_Ziggurat_Violet",
+["feature_source_size"] = {
+12.08,
+29.25,
+12.08,
+},
+["place_key"] = "ekoh_tower",
+["shape"] = "observatory",
+["shell_asset"] = "AD_Ext_Bldg_Mid_Violet",
+["shell_source_size"] = {
+12.2,
+12,
+12.2,
+},
+["window_asset"] = "AD_Arc_Window_Arch_Grid",
+},
+["ethikos.justice_palace"] = {
+["body_height_ratio"] = 0.7,
+["columns_asset"] = "AD_Arc_Column_Round_10",
+["entry_height"] = 10,
+["entry_width"] = 10,
+["feature_asset"] = "AD_Arc_Wall_Stars",
+["feature_source_size"] = {
+8.0,
+10.0,
+0.33,
+},
+["place_key"] = "justice_palace",
+["shape"] = "court",
+["shell_asset"] = "AD_Ext_Bldg_Base_Violet",
+["shell_source_size"] = {
+12.53486,
+7.05,
+13.31743,
+},
+["window_asset"] = "AD_Arc_Window_Arch_Grid",
+},
+["keenkonnect.innovation_lab"] = {
+["body_height_ratio"] = 0.62,
+["columns_asset"] = "AD_Arc_Column_Round_10",
+["entry_height"] = 10,
+["entry_width"] = 10,
+["feature_asset"] = "AD_Arc_Window_Slant",
+["feature_source_size"] = {
+8.0,
+9.0859,
+3.51478,
+},
+["place_key"] = "innovation_lab",
+["shape"] = "atelier",
+["shell_asset"] = "AD_Ext_Bldg_Base_Blue",
+["shell_source_size"] = {
+12.53486,
+7.05,
+13.31743,
+},
+["window_asset"] = "AD_Arc_Window_Arch_Grid",
+},
+["konnected.library"] = {
+["body_height_ratio"] = 0.72,
+["columns_asset"] = "AD_Arc_Column_Round_10",
+["entry_height"] = 10,
+["entry_width"] = 10,
+["feature_asset"] = "AD_Arc_Canopy_Disc",
+["feature_source_size"] = {
+10.0,
+0.512,
+10.0,
+},
+["place_key"] = "library",
+["shape"] = "library",
+["shell_asset"] = "AD_Ext_Bldg_Base_Red",
+["shell_source_size"] = {
+12.53486,
+7.05,
+13.31743,
+},
+["window_asset"] = "AD_Arc_Window_Arch_Grid",
+},
+["konnected.university"] = {
+["body_height_ratio"] = 0.68,
+["columns_asset"] = "AD_Arc_Column_Round_10",
+["entry_height"] = 10,
+["entry_width"] = 10,
+["feature_asset"] = "AD_Arc_Mezzanine_Rail_Blue",
+["feature_source_size"] = {
+4.05,
+1.7,
+4.05,
+},
+["place_key"] = "campus",
+["shape"] = "campus",
+["shell_asset"] = "AD_Ext_Bldg_Base_Hotel_Blue",
+["shell_source_size"] = {
+12.53486,
+6.0,
+14.67143,
+},
+["window_asset"] = "AD_Arc_Window_Arch_Grid",
+},
+["kreative.museum"] = {
+["body_height_ratio"] = 0.74,
+["columns_asset"] = "AD_Arc_Column_Round_10",
+["entry_height"] = 10,
+["entry_width"] = 10,
+["feature_asset"] = "AD_Int_Sculpture_Deco",
+["feature_source_size"] = {
+1.29257,
+3.15,
+1.24,
+},
+["place_key"] = "museum",
+["shape"] = "gallery",
+["shell_asset"] = "AD_Ext_Bldg_Base_Hotel_Violet",
+["shell_source_size"] = {
+12.53486,
+6.0,
+14.67143,
+},
+["window_asset"] = "AD_Arc_Window_Arch_Grid",
+},
+["orgo.admin_center"] = {
+["body_height_ratio"] = 0.7,
+["columns_asset"] = "AD_Arc_Column_Round_10",
+["entry_height"] = 10,
+["entry_width"] = 10,
+["feature_asset"] = "AD_Arc_Pavilion_Drum",
+["feature_source_size"] = {
+4.68,
+5.5,
+4.68,
+},
+["place_key"] = "orgo_center",
+["shape"] = "services",
+["shell_asset"] = "AD_Ext_Bldg_Base_Hotel_Red",
+["shell_source_size"] = {
+12.53486,
+6.0,
+14.67143,
+},
+["window_asset"] = "AD_Arc_Window_Arch_Grid",
+},
+},
+["environment"] = {
+["palm"] = {
+["asset"] = "AD_Ext_Palm_Tall",
+["envelope"] = {
+7,
+18,
+7,
+},
+},
+},
+["furnishings"] = {
+["prop.bench"] = {
+["asset"] = "AD_Int_Banquette_Shell",
+["envelope"] = {
+7,
+3.5,
+3,
+},
+},
+["prop.desk"] = {
+["asset"] = "AD_Int_Bar_Straight",
+["envelope"] = {
+7.6,
+3.3,
+3.6,
+},
+},
+["prop.lamp"] = {
+["asset"] = "AD_Int_Lamp_Floor",
+["envelope"] = {
+3,
+8,
+3,
+},
+},
+["prop.planter"] = {
+["asset"] = "AD_Int_Plant_Monstera",
+["envelope"] = {
+4.2,
+5.5,
+4.2,
+},
+},
+["prop.table"] = {
+["asset"] = "AD_Int_Bar_Straight",
+["envelope"] = {
+8,
+3.3,
+4,
+},
+},
+},
+["interior_programs"] = {
+["campus"] = {
+["feature"] = "AD_Int_Radio_Console",
+["role"] = "campus",
+},
+["city_hall"] = {
+["feature"] = "AD_Int_Sculpture_Deco",
+["role"] = "civic",
+},
+["ekoh_tower"] = {
+["feature"] = "AD_Arc_Window_Slant",
+["role"] = "observatory",
+},
+["innovation_lab"] = {
+["feature"] = "AD_Int_Radio_Console",
+["role"] = "atelier",
+},
+["justice_palace"] = {
+["feature"] = "AD_Arc_Wall_Stars",
+["role"] = "court",
+},
+["library"] = {
+["feature"] = "AD_Int_Sideboard",
+["role"] = "library",
+},
+["museum"] = {
+["feature"] = "AD_Int_Sculpture_Deco",
+["role"] = "gallery",
+},
+["orgo_center"] = {
+["feature"] = "AD_Int_Sideboard",
+["role"] = "services",
+},
+},
+["lobby_accent"] = {
+["asset"] = "AD_Int_Mirror_Sunburst",
+["envelope"] = {
+2.2,
+3.2,
+0.5,
+},
+},
+["lobby_canopy"] = {
+["asset"] = "AD_Arc_Canopy_Disc",
+["clearance_below_ceiling"] = 2.3,
+["envelope"] = {
+16,
+1.2,
+16,
+},
+},
+["pavilion"] = {
+["asset"] = "AD_Ext_Bldg_Base_Cinema",
+["envelope"] = {
+18,
+21,
+24,
+},
+["variants"] = {
+"AD_Ext_Bldg_Base_Cinema",
+"AD_Ext_Bldg_Base_Red",
+"AD_Ext_Bldg_Base_Hotel_Violet",
+},
+["yaw_degrees"] = 90,
+},
+["room_furniture"] = {
+["banquette"] = "AD_Int_Banquette_Shell",
+["chandelier"] = "AD_Int_Chandelier_Rings",
+["coffee"] = "AD_Int_Table_Coffee_Glass",
+["desk"] = "AD_Int_Bar_Straight",
+["seat"] = "AD_Int_Sofa_Mod_Seat",
+},
+["stair_skins"] = {
+["default"] = "AD_Arc_Stair_Grand_Blue",
+["kreative"] = "AD_Arc_Stair_Grand_Violet",
+},
+["street"] = {
+["bench"] = {
+["asset"] = "AD_Ext_Bench",
+["envelope"] = {
+6,
+4,
+3,
+},
+},
+["lamp"] = {
+["asset"] = "AD_Ext_Streetlamp",
+["envelope"] = {
+3,
+10,
+3,
+},
+},
+["paving_cross"] = {
+["asset"] = "AD_Ext_Street_Cross",
+["envelope"] = {
+16,
+0.16,
+16,
+},
+},
+["paving_straight"] = {
+["asset"] = "AD_Ext_Street_Straight",
+["envelope"] = {
+16,
+0.16,
+12,
+},
+},
+},
+["surfaces"] = {
+["arch"] = "AD_Int_Arch_Door",
+["column"] = "AD_Arc_Column_Round_10",
+["floor"] = "AD_Int_Floor_Checker",
+["glass"] = "AD_Int_Room_Wall_GlassBlock_Teal",
+["library_floor"] = "AD_Int_Room_Floor_Parquet",
+["medallion"] = "AD_Int_Floor_Medallion",
+["mezzanine"] = "AD_Arc_Mezzanine_Rail_Blue",
+["wall"] = "AD_Int_Room_Wall_Plain_Teal",
+["window"] = "AD_Int_Room_Wall_Window_Teal",
+},
+},
+}
+
+]])
+source(server,"ArtDecoInteriors",[[
+local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local Data=require(script.Parent.ArtDecoData)
+local Buildings=require(Shared.Buildings)
+local Districts=require(Shared.HexagonalDistricts)
+local Theme=require(Shared.ArtDecoTheme)
+local Factory=require(script.Parent.Factory)
+local Assets=require(script.Parent.ArtDecoAssets)
+local Rooms=require(script.Parent.ArtDecoRooms)
+local Interiors={}
+local function sectorForPlace(key)
+for _,building in ipairs(Buildings) do
+if building.interior_place_key==key then return building.district_id end
+end
+return "central"
+end
+function Interiors.furnishing(parent,item,position)
+local recipe=Data.placements.furnishings[item.asset_id]
+if not recipe then return nil end
+local frame=CFrame.new(position)*CFrame.Angles(0,math.rad(item.yaw_degrees or 0),0)
+local model=Assets.place(parent,recipe.asset,sectorForPlace(item.place_key),
+Vector3.new(table.unpack(recipe.envelope)),frame,"interior/"..item.place_key)
+if not model then return nil end
+model.Name=item.furnishing_id
+model:SetAttribute("KinFurnishingId",item.furnishing_id)
+model:SetAttribute("KinAssetId",item.asset_id)
+model:SetAttribute("KinPlaceKey",item.place_key or "")
+if item.anchor_id then model:SetAttribute("KinAnchorId",item.anchor_id) end
+local root=Instance.new("Part")
+root.Name="InteractionHost";root.Size=Vector3.new(1,1,1);root.CFrame=frame*CFrame.new(0,2,0)
+root.Transparency=1;root.Anchored=true;root.CanCollide=false;root.CanTouch=false;root.CanQuery=true
+if item.asset_id=="prop.desk" or item.asset_id=="prop.table" then
+local _,size=model:GetBoundingBox()
+root.Size=Vector3.new(size.X*.9,size.Y,size.Z*.9)
+root.CFrame=frame*CFrame.new(0,size.Y/2,0);root.CanCollide=true
+end
+root.Parent=model;model.PrimaryPart=root
+if item.asset_id=="prop.bench" then
+local _,size=model:GetBoundingBox()
+local seat=Instance.new("Seat")
+seat.Name="Assise fonctionnelle";seat.Size=Vector3.new(size.X*.8,.35,math.min(size.Z,2))
+seat.CFrame=frame*CFrame.new(0,1.6,0);seat.Transparency=1;seat.Anchored=true
+seat.CanQuery=false;seat.Parent=model
+end
+if item.asset_id=="prop.lamp" then
+local _,size=model:GetBoundingBox()
+local luminous=Instance.new("Attachment")
+luminous.Name="Source lumineuse";luminous.Position=Vector3.new(0,math.max(0,size.Y-2),0);luminous.Parent=root
+local light=Instance.new("PointLight")
+light.Brightness=1.2;light.Range=18;light.Shadows=false;light:SetAttribute("KinStaticLightLOD",true);light.Parent=luminous
+end
+if item.collision_policy=="no_collision" then
+for _,part in ipairs(model:GetDescendants()) do
+if part:IsA("BasePart") then part.CanCollide=false end
+end
+end
+return root
+end
+local function piece(parent,name,size,cf,color,solid)
+local p=Factory.part(parent,name,size,cf,color,Enum.Material.SmoothPlastic)
+p.CanCollide=solid==true;p.CanTouch=false;p.CanQuery=solid==true;p.CastShadow=solid==true
+return p
+end
+local function chair(parent,frame,sector,owner)
+local imported=Assets.place(parent,Data.placements.room_furniture.seat,sector,Vector3.new(3.5,3.5,3.5),frame,owner)
+if imported then
+local _,size=imported:GetBoundingBox()
+local seat=Instance.new("Seat")
+seat.Name="Assise fonctionnelle";seat.Size=Vector3.new(size.X*.8,.35,size.Z*.7)
+seat.CFrame=frame*CFrame.new(0,1.5,0);seat.Transparency=1;seat.Anchored=true;seat.CanQuery=false;seat.Parent=imported
+return
+end
+local seat=Instance.new("Seat")
+seat.Name="Assise";seat.Size=Vector3.new(2.4,.5,2.4);seat.CFrame=frame*CFrame.new(0,1.8,0)
+seat.Anchored=true;seat.Color=Theme.teal;seat.Material=Enum.Material.SmoothPlastic;seat.Parent=parent
+piece(parent,"Dossier",Vector3.new(2.4,2,.4),frame*CFrame.new(0,2.8,1.1),Theme.dark,false)
+piece(parent,"Pied",Vector3.new(.7,1.6,.7),frame*CFrame.new(0,.8,0),Theme.bronze,false)
+end
+function Interiors.room(parent,place,room,origin,index)
+local program=assert(Data.placements.interior_programs[place.place_key],"Missing room program")
+local sector=sectorForPlace(place.place_key)
+local section=Districts.byKey(sector)
+local accent=if section then section.color else Districts.base
+local group=Factory.folder(parent,"Aménagement Art Deco")
+group:SetAttribute("KinRoomProgram",program.role)
+local cx,_,cz=table.unpack(room.center_studs)
+local w,h,d=table.unpack(room.size_studs)
+for _,side in ipairs({-1,1}) do
+piece(group,"Corniche latérale",Vector3.new(.35,.5,d-2),
+CFrame.new(origin+Vector3.new(cx+side*(w/2-1),h-1.2,cz)),Theme.bronze,false)
+end
+local slots=Rooms.compile(room,place,program,index)
+for n,slot in ipairs(slots) do
+if n>Assets.profile().room_stations then break end
+local base=CFrame.new(origin+Vector3.new(table.unpack(slot.center)))
+local station=Factory.folder(group,slot.name)
+if slot.role=="work" then
+local tableModel=Assets.place(station,Data.placements.room_furniture.desk,sector,
+Vector3.new(8,3.2,4),base,"interior/"..place.place_key)
+if tableModel then
+local _,size=tableModel:GetBoundingBox()
+local collision=piece(tableModel,"Appui de table",Vector3.new(size.X*.9,size.Y,size.Z*.9),
+base*CFrame.new(0,size.Y/2,0),Theme.stone,true)
+collision.Transparency=1
+else
+piece(station,"Table de travail",Vector3.new(8,.5,4),base*CFrame.new(0,3,0),Theme.stone,true)
+for _,side in ipairs({-1,1}) do
+piece(station,"Piètement",Vector3.new(.6,2.8,3),base*CFrame.new(side*3.3,1.4,0),Theme.bronze,false)
+end
+end
+chair(station,base*CFrame.new(0,0,3),sector,"interior/"..place.place_key)
+elseif slot.role=="lounge" then
+for _,side in ipairs({-1,1}) do
+chair(station,base*CFrame.new(side*2,0,0),sector,"interior/"..place.place_key)
+end
+local coffee=Assets.place(station,Data.placements.room_furniture.coffee,sector,
+Vector3.new(2.4,1.6,2.4),base*CFrame.new(0,0,-2.5),"interior/"..place.place_key)
+if not coffee then piece(station,"Table basse",Vector3.new(2,.35,2),base*CFrame.new(0,1.4,-2.5),Theme.stone,true) end
+else
+piece(station,"Socle d'exposition",Vector3.new(4,2.5,4),base*CFrame.new(0,1.25,0),Theme.dark,true)
+local object=Assets.place(station,program.feature,sector,Vector3.new(3.5,4,3.5),
+base*CFrame.new(0,2.5,0),"interior/"..place.place_key)
+if not object then
+piece(station,"Œuvre géométrique",Vector3.new(1.8,3,1.8),base*CFrame.new(0,4,0),accent,false)
+end
+end
+end
+if index==1 then
+local canopy=Data.placements.lobby_canopy
+Assets.place(group,canopy.asset,sector,Vector3.new(math.min(w-8,canopy.envelope[1]),canopy.envelope[2],math.min(d-8,canopy.envelope[3])),
+CFrame.new(origin+Vector3.new(cx,h-canopy.clearance_below_ceiling,cz)),"interior/"..place.place_key)
+end
+if index==1 then
+Assets.place(group,Data.placements.room_furniture.chandelier,sector,Vector3.new(5,5.2,5),
+CFrame.new(origin+Vector3.new(cx,h-6,cz)),"interior/"..place.place_key)
+end
+if index==1 then
+local accentRecipe=Data.placements.lobby_accent
+local mirror=Assets.place(group,accentRecipe.asset,sector,
+Vector3.new(table.unpack(accentRecipe.envelope)),
+CFrame.new(origin+Vector3.new(cx+w/2-1.4,7,cz+d/2-7))*CFrame.Angles(0,math.pi/2,0),
+"interior/"..place.place_key)
+if mirror then
+mirror.Name="Miroir de réception Art déco"
+for _,part in ipairs(mirror:GetDescendants()) do
+if part:IsA("BasePart") then part:SetAttribute("KinOptionalDetail",true) end
+end
+end
+end
+local marker=piece(group,"Repère de visite",Vector3.new(.3,.3,.3),CFrame.new(origin+Vector3.new(cx,3,cz)),Theme.teal,false)
+marker.Transparency=1
+marker:SetAttribute("KinGalleryId",place.place_key.."/"..room.room_id)
+marker:SetAttribute("KinGalleryTitle",room.display_name)
+game:GetService("CollectionService"):AddTag(marker,"KinCityGalleryV22")
+return group
+end
+return Interiors
+
+]])
+source(server,"ArtDecoLayout",[[
+local Layout={}
+Layout.SITE_FLOOR_TOP_STUDS=0.32
+Layout.SITE_FLOOR_THICKNESS_STUDS=0.60
+local function part(plan,name,size,center,role,solid)
+table.insert(plan.parts,{name=name,size=size,center=center,role=role,solid=solid==true})
+end
+function Layout.compile(width,depth,height,recipe)
+assert(width>20 and depth>20 and height>14,"Institution envelope too small")
+local body=height*recipe.body_height_ratio
+local opening=recipe.entry_width
+local doorHeight=math.min(recipe.entry_height,body-2)
+assert(opening>=8 and opening<width-8 and doorHeight>=8,"Invalid public entrance")
+local plan={parts={},slots={},primary_shells={},primary_parts={},width=width,depth=depth,height=height,
+entry={width=opening,height=doorHeight,z=-depth/2},body_height=body,shape=recipe.shape}
+local half=(width-opening)/2
+part(plan,"Floor",{width,Layout.SITE_FLOOR_THICKNESS_STUDS,depth},
+{0,Layout.SITE_FLOOR_TOP_STUDS-Layout.SITE_FLOOR_THICKNESS_STUDS/2,0},"stone",true)
+part(plan,"FrontLeft",{half,body,.65},{-(opening/2+half/2),body/2,-depth/2},"stone",true)
+part(plan,"FrontRight",{half,body,.65},{opening/2+half/2,body/2,-depth/2},"stone",true)
+part(plan,"FrontLintel",{opening,body-doorHeight,.65},{0,doorHeight+(body-doorHeight)/2,-depth/2},"stone",true)
+part(plan,"RearWall",{width,body,.65},{0,body/2,depth/2},"stone",true)
+for _,side in ipairs({-1,1}) do
+part(plan,"SideWall"..side,{.65,body,depth},{side*width/2,body/2,0},"stone",true)
+part(plan,"EntrancePier"..side,{1.2,doorHeight+1.5,1.2},{side*(opening/2+1.5),(doorHeight+1.5)/2,-depth/2-.8},"bronze",false)
+part(plan,"Window"..side,{width*.19,math.min(10,body-4),.2},{side*width*.29,body*.52,-depth/2-.45},"glazing",false)
+part(plan,"WindowCrown"..side,{width*.20,.35,.35},{side*width*.29,body*.52+math.min(10,body-4)/2,-depth/2-.6},"bronze",false)
+table.insert(plan.slots,{name="EntranceColumn"..side,asset=recipe.columns_asset,
+size={2,doorHeight+2,2},center={side*(opening/2+2),0,-depth/2-1},optional=true})
+table.insert(plan.slots,{name="ArchedWindow"..side,asset=recipe.window_asset,
+size={width*.19,math.min(10,body-4),1},center={side*width*.29,body*.52-math.min(10,body-4)/2,-depth/2-.65},optional=true})
+end
+part(plan,"Roof",{width,.6,depth},{0,body+.3,0},"dark",true)
+for _,side in ipairs({-1,1}) do
+part(plan,"RoofCorniceFront"..side,{width+.4,.4,.5},{0,body+.6,side*depth/2},"bronze",false)
+part(plan,"RoofCorniceSide"..side,{.5,.4,depth},{side*width/2,body+.6,0},"bronze",false)
+end
+part(plan,"UpperFrieze",{width,.35,.35},{0,body-1,-depth/2-.45},"teal",false)
+for _,side in ipairs({-1,1}) do
+part(plan,"FacadeFin"..side,{.55,body-1,.65},{side*width*.46,body/2,-depth/2-.5},"bronze",false)
+for _,bay in ipairs({-1,1}) do
+part(plan,"SideGlazing"..side..bay,{.2,math.min(8,body-5),depth*.22},
+{side*(width/2+.4),body*.52,bay*depth*.24},"glazing",false)
+end
+end
+part(plan,"EntranceHighlight",{opening+4,.35,.7},{0,doorHeight+.75,-depth/2-1},"accent",false)
+local top=height-body-.6
+if recipe.shape=="observatory" then
+part(plan,"ObservatoryShaft",{width*.42,top,depth*.42},{0,body+.6+top/2,0},"teal",false)
+for _,side in ipairs({-1,1}) do
+part(plan,"TowerFin"..side,{.6,top,.8},{side*width*.21,body+.6+top/2,-depth*.21-.4},"bronze",false)
+end
+elseif recipe.shape=="campus" then
+for _,side in ipairs({-1,1}) do
+part(plan,"AcademicWing"..side,{width*.23,top*.85,depth*.70},{side*width*.33,body+.6+top*.425,0},"stone",false)
+end
+elseif recipe.shape=="gallery" then
+for level=1,3 do
+local h=top/3
+part(plan,"GalleryStep"..level,{width*(.70-level*.12),h,depth*(.65-level*.10)},
+{0,body+.6+(level-.5)*h,0},"stone",false)
+end
+else
+local spans={civic=.45,court=.64,atelier=.76,library=.82,services=.50}
+local span=assert(spans[recipe.shape],"Unknown institution silhouette")
+part(plan,"RaisedPavilion",{width*span,top*.85,depth*.55},{0,body+.6+top*.425,0},"stone",false)
+part(plan,"UpperHighlight",{width*span,.4,.4},{0,body+.6+top*.70,-depth*.275-.3},"accent",false)
+end
+table.insert(plan.slots,{name="InstitutionFeature",asset=recipe.feature_asset,
+size={width*(recipe.shape=="observatory" and .42 or .36),math.max(1,top),depth*(recipe.shape=="observatory" and .42 or .36)},center={0,body+.6,recipe.shape=="observatory" and 0 or -depth*.32},optional=true})
+local source=recipe.shell_source_size
+local wingWidth=(width-opening-8)/2
+local scale=math.min(wingWidth/source[1],(depth-4)/source[3],body/source[2])
+local sx,sy,sz=source[1]*scale,source[2]*scale,source[3]*scale
+local canopyHeight=math.max(sy,doorHeight+3.5)
+plan.shell_height=sy
+for _,side in ipairs({-1,1}) do
+local center={side*(opening/2+4+sx/2),0,-depth/2+sz/2+.5}
+table.insert(plan.primary_shells,{name="PrimaryArtDecoWing"..side,asset=recipe.shell_asset,
+size={sx,sy,sz},center=center})
+table.insert(plan.primary_parts,{name="WingCollision"..side,size={sx,sy,sz},
+center={center[1],sy/2,center[3]},role="stone",solid=true,invisible=true})
+end
+table.insert(plan.primary_parts,{name="PortalLintel",size={opening+8,.6,2},
+center={0,doorHeight+.8,-depth/2},role="bronze",solid=false})
+table.insert(plan.primary_parts,{name="ConnectingCanopy",size={opening+8,.5,math.min(sz,12)},
+center={0,canopyHeight+.3,-depth/2+math.min(sz,12)/2+.5},role="teal",solid=false})
+table.insert(plan.primary_parts,{name="SectorFrieze",size={width,.4,.4},
+center={0,canopyHeight+.6,-depth/2+.2},role="accent",solid=false})
+plan.primary_feature={name="InstitutionFeature",asset=recipe.feature_asset,
+size={width*.42,math.max(1,height-canopyHeight-1),depth*.42},
+center={0,canopyHeight+.8,recipe.shape=="observatory" and 0 or -depth/2+sz*.65}}
+plan.sign={center={0,doorHeight+2.6,-depth/2-1.2},width=math.min(width-14,26),height=2.6}
+return plan
+end
+return Layout
+
+]])
+source(server,"ArtDecoPolicy",[[
+local Policy={}
+function Policy.isTestTarget(placeId,marked,config)
+if placeId==config.production_place_id then return false end
+if marked~=true then return false end
+if placeId==0 then return config.allow_local_test==true end
+if config.test_place_id~=nil and placeId==config.test_place_id then return true end
+for _,approved in ipairs(config.test_place_ids or {}) do
+if approved==placeId then return true end
+end
+return false
+end
+function Policy.canSpend(used,cost,limit)
+return used.triangles+cost.triangles<=limit.triangles
+and used.parts+cost.parts<=limit.parts and used.clones+cost.clones<=limit.clones
+end
+function Policy.fitScale(size,envelope)
+local scale=math.huge
+local extent=false
+for _,axis in ipairs({"X","Y","Z"}) do
+local value=size[axis]
+local bound=envelope[axis]
+if value~=value or value<0 or value==math.huge or bound~=bound or bound<=0 or bound==math.huge then return nil end
+if value>0 then scale=math.min(scale,bound/value);extent=true end
+end
+return extent and scale or nil
+end
+return Policy
+
+]])
+source(server,"ArtDecoProps",[[
+local Data=require(script.Parent.ArtDecoData)
+local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local Visual=require(Shared.VisualConfig)
+local Assets=require(script.Parent.ArtDecoAssets)
+local Props={}
+function Props.selected(kind,step)
+local steps=Data.config.profiles[Visual.profile][if kind=="lamp" then "lamp_steps" else "bench_steps"]
+for _,value in ipairs(steps) do if value==step then return true end end
+return false
+end
+function Props.roadSteps()
+return Data.config.profiles[Visual.profile].road_steps or {}
+end
+function Props.street(parent,kind,frame,sector)
+local recipe=Data.placements.street[kind]
+if not recipe then return nil end
+local pool=if string.sub(kind,1,7)=="paving_" then "paving/" else "street/"
+local model=Assets.place(parent,recipe.asset,sector,Vector3.new(table.unpack(recipe.envelope)),frame,pool..sector)
+if model and kind=="bench" then
+local _,size=model:GetBoundingBox()
+local seat=Instance.new("Seat")
+seat.Name="Assise du banc";seat.Size=Vector3.new(size.X*.9,.35,math.min(size.Z,2.2))
+seat.CFrame=frame*CFrame.new(0,size.Y*.48,0)
+seat.Transparency=1;seat.Anchored=true;seat.CanQuery=false;seat.Parent=model
+end
+return model
+end
+function Props.lightHost(model)
+for _,part in ipairs(model:GetDescendants()) do
+if part:IsA("BasePart") then
+local node=part
+while node and node~=model do
+if string.find(node.Name,"KC32_LUMIERE",1,true) then return part end
+node=node.Parent
+end
+end
+end
+return model:FindFirstChildWhichIsA("BasePart",true)
+end
+function Props.pavilion(parent,frame,sector,index)
+local recipe=Data.placements.pavilion
+local variants=recipe.variants
+local asset=if variants and #variants>0 then variants[((index or 1)-1)%#variants+1] else recipe.asset
+local model=Assets.place(parent,asset,sector,Vector3.new(table.unpack(recipe.envelope)),
+frame*CFrame.Angles(0,math.rad(recipe.yaw_degrees),0),"pavilion/"..sector)
+if model then
+model:SetAttribute("KinExteriorPavilion",true)
+model:SetAttribute("KinPavilionVariant",asset)
+local bounds,size=model:GetBoundingBox()
+local collider=Instance.new("Part")
+collider.Name="Enveloppe extérieure";collider.CFrame=bounds;collider.Size=size
+collider.Anchored=true;collider.Transparency=1;collider.CanCollide=true;collider.CanTouch=false
+collider.Parent=model
+end
+return model
+end
+function Props.environment(parent,kind,frame,sector)
+local recipe=Data.placements.environment[kind]
+if not recipe or not sector then return nil end
+local used=Assets.accountStats("environment/"..sector)
+if used and used.clones>=Assets.profile().pools.environment.clones then return nil end
+return Assets.place(parent,recipe.asset,sector,Vector3.new(table.unpack(recipe.envelope)),frame,"environment/"..sector)
+end
+return Props
+
+]])
+source(server,"ArtDecoRooms",[[
+local Rooms={}
+local function overlaps(ax,az,aw,ad,bx,bz,bw,bd)
+return math.abs(ax-bx)<(aw+bw)/2 and math.abs(az-bz)<(ad+bd)/2
+end
+function Rooms.clear(slot,room,place)
+local x,z=slot.center[1],slot.center[3]
+local w,d=slot.size[1],slot.size[3]
+local cx,cz=room.center_studs[1],room.center_studs[3]
+local rw,rd=room.size_studs[1],room.size_studs[3]
+if math.abs(x-cx)+w/2>rw/2-2 or math.abs(z-cz)+d/2>rd/2-2 then return false end
+if math.abs(x-cx)<w/2+5 or math.abs(z-cz)<d/2+5 then return false end
+for _,portal in ipairs(place.portals) do
+if portal.from_room==room.room_id or portal.to_room==room.room_id then
+local c=portal.center_studs
+local margin=portal.clear_width_studs+4
+if overlaps(x,z,w,d,c[1],c[3],margin,margin) then return false end
+end
+end
+for _,item in ipairs(place.furnishings) do
+local c=item.position_studs
+if overlaps(x,z,w,d,c[1],c[3],12,12) then return false end
+end
+return true
+end
+function Rooms.compile(room,place,program,index)
+local result={}
+local role=""
+if index==1 then role="lounge"
+elseif program.role=="gallery" or program.role=="observatory" then role="exhibit"
+else role="work" end
+for _,side in ipairs({-1,1}) do
+local slot={role=role,name=role..side,size={10,5,10},
+center={room.center_studs[1]+side*room.size_studs[1]*.28,0,room.center_studs[3]+room.size_studs[3]*.28}}
+if Rooms.clear(slot,room,place) then table.insert(result,slot) end
+end
+return result
+end
+return Rooms
+
+]])
+source(server,"ArtDecoSurfacePlan",[[
+local Surfaces={}
+local function add(plan,name,asset,size,center,yaw,kind)
+table.insert(plan,{name=name,asset=asset,size=size,center=center,yaw=yaw or 0,kind=kind})
+end
+function Surfaces.wallSegments(room,place,side)
+local cx,_,cz=table.unpack(room.center_studs)
+local w,_,d=table.unpack(room.size_studs)
+local horizontal=side=="front" or side=="back"
+local midpoint=horizontal and cx or cz
+local length=horizontal and w or d
+local wall=side=="front" and cz-d/2 or side=="back" and cz+d/2 or side=="left" and cx-w/2 or cx+w/2
+local gaps={}
+local function gap(c,width)
+local perpendicular=horizontal and c[3] or c[1]
+if math.abs(perpendicular-wall)<3 then
+local axis=horizontal and c[1] or c[3]
+if axis+width/2+1>midpoint-length/2 and axis-width/2-1<midpoint+length/2 then
+table.insert(gaps,{axis-width/2-1,axis+width/2+1})
+end
+end
+end
+for _,portal in ipairs(place.portals) do
+if portal.from_room==room.room_id or portal.to_room==room.room_id then gap(portal.center_studs,portal.clear_width_studs) end
+end
+for _,anchor in ipairs(place.anchors or {}) do
+if anchor.role=="door" then gap(anchor.position_studs,10) end
+end
+table.sort(gaps,function(a,b) return a[1]<b[1] end)
+local start,finish=midpoint-length/2,midpoint+length/2
+local spans={}
+for _,opening in ipairs(gaps) do
+local low,high=math.max(start,opening[1]),math.min(finish,opening[2])
+if low>start then table.insert(spans,{start,low}) end
+start=math.max(start,high)
+end
+if finish>start then table.insert(spans,{start,finish}) end
+return spans,wall,horizontal
+end
+function Surfaces.room(room,place,program,index,assets,profile)
+local plan={}
+local cx,_,cz=table.unpack(room.center_studs)
+local w,h,d=table.unpack(room.size_studs)
+local serial=0
+for _,side in ipairs({"front","back","left","right"}) do
+local spans,wall,horizontal=Surfaces.wallSegments(room,place,side)
+for _,span in ipairs(spans) do
+local length=span[2]-span[1]
+local count=math.max(1,math.ceil(length/profile.wall_pitch))
+local pitch=length/count
+if pitch>=6 then
+for n=1,count do
+serial=serial+1
+local at=span[1]+(n-.5)*pitch
+local inward=(side=="front" or side=="left") and 1 or -1
+local x=horizontal and at or wall+inward*1.1
+local z=horizontal and wall+inward*1.1 or at
+local yaw=side=="front" and 180 or side=="back" and 0 or side=="left" and -90 or 90
+local asset=serial%3==0 and assets.window or assets.wall
+if index==1 and n==2 and side=="back" then asset=assets.glass end
+add(plan,"WallPanel/"..side.."/"..serial,asset,
+{pitch-.08,math.min(h-1.2,(pitch-.08)*.9),1.2},{x,.2,z},yaw,"wall")
+end
+end
+end
+end
+local nx=math.max(1,math.min(profile.floor_tiles,math.floor(math.sqrt(profile.floor_tiles*w/d)+.5)))
+local nz=math.max(1,math.floor(profile.floor_tiles/nx))
+local edge=math.min((w-6)/nx,(d-6)/nz)
+for x=1,nx do for z=1,nz do
+add(plan,"FloorInlay/"..x.."/"..z,
+program.role=="library" and assets.library_floor or assets.floor,
+{edge,.1,edge},{cx+(x-(nx+1)/2)*edge,.025,cz+(z-(nz+1)/2)*edge},0,"floor")
+end end
+if index==1 then
+add(plan,"EntranceMedallion",assets.medallion,{10,.1,10},{cx,.05,cz},0,"floor")
+end
+if index==1 or index==3 or index==6 then
+for _,side in ipairs({-1,1}) do
+local x,z=cx+side*(w/2-3.5),cz+d/2-3.5
+local clear=true
+for _,portal in ipairs(place.portals) do
+local c=portal.center_studs
+if math.abs(x-c[1])<portal.clear_width_studs/2+3 and math.abs(z-c[3])<portal.clear_width_studs/2+3 then clear=false end
+end
+for _,item in ipairs(place.furnishings) do
+local c=item.position_studs
+if math.abs(x-c[1])<7 and math.abs(z-c[3])<7 then clear=false end
+end
+if clear then add(plan,"TallColumn/"..side,assets.column,{2.4,h-2,2.4},{x,0,z},0,"column") end
+end
+end
+return plan
+end
+function Surfaces.portals(place,assets)
+local slots={}
+for _,portal in ipairs(place.portals) do
+local from,to
+for _,room in ipairs(place.rooms) do
+if room.room_id==portal.from_room then from=room end
+if room.room_id==portal.to_room then to=room end
+end
+local eastWest=from and to and math.abs(from.center_studs[1]-to.center_studs[1])>math.abs(from.center_studs[3]-to.center_studs[3])
+for _,side in ipairs({-1,1}) do
+local offset=side*(portal.clear_width_studs/2+1.5)
+add(slots,"PortalColumn/"..portal.portal_id.."/"..side,assets.column,{2,12,2},
+{portal.center_studs[1]+(eastWest and 0 or offset),0,
+portal.center_studs[3]+(eastWest and offset or 0)},0,"portal")
+end
+end
+for _,anchor in ipairs(place.anchors or {}) do
+if anchor.role=="door" then
+add(slots,"ExitDoor/"..anchor.anchor_id,assets.arch,{12,14,3},
+{anchor.position_studs[1],0,anchor.position_studs[3]},anchor.yaw_degrees or 0,"exit")
+end
+end
+return slots
+end
+function Surfaces.upper(assets)
+local slots={}
+for _,side in ipairs({-1,1}) do
+for n=1,3 do
+add(slots,"UpperGallery/"..side.."/"..n,assets.mezzanine,
+{12,5.1,12},{side*32,18.02-.62*(12/4.05),55+(n-1)*16},side==1 and 180 or 0,"mezzanine")
+end
+end
+return slots
+end
+return Surfaces
+
+]])
+source(server,"ArtDecoSurfaces",[[
+local Data=require(script.Parent.ArtDecoData)
+local Assets=require(script.Parent.ArtDecoAssets)
+local Planner=require(script.Parent.ArtDecoSurfacePlan)
+local Surfaces={}
+local function render(parent,place,origin,sector,slots)
+local count=0
+for _,slot in ipairs(slots) do
+local frame=CFrame.new(origin+Vector3.new(table.unpack(slot.center)))*CFrame.Angles(0,math.rad(slot.yaw),0)
+local model=Assets.place(parent,slot.asset,sector,Vector3.new(table.unpack(slot.size)),frame,"architecture/"..place.place_key)
+if model then
+model.Name=slot.name
+model:SetAttribute("KinInteriorSurface",slot.kind)
+model:SetAttribute("KinPlaceKey",place.place_key)
+if slot.kind~="exit" then
+for _,part in ipairs(model:GetDescendants()) do
+if part:IsA("BasePart") then part:SetAttribute("KinOptionalDetail",true) end
+end
+end
+count+=1
+end
+end
+return count
+end
+function Surfaces.room(parent,place,room,origin,index,sector)
+local program=Data.placements.interior_programs[place.place_key]
+local slots=Planner.room(room,place,program,index,Data.placements.surfaces,Assets.profile())
+local count=render(parent,place,origin,sector,slots)
+parent:SetAttribute("KinArtDecoSurfaceCount",count)
+parent:SetAttribute("KinArtDecoSurfaceExpected",#slots)
+return count
+end
+function Surfaces.connectors(parent,place,origin,sector)
+local slots=Planner.portals(place,Data.placements.surfaces)
+local count=render(parent,place,origin,sector,slots)
+parent:SetAttribute("KinArtDecoConnectorCount",count)
+parent:SetAttribute("KinArtDecoConnectorExpected",#slots)
+return count
+end
+function Surfaces.upper(parent,place,origin,sector)
+local slots=Planner.upper(Data.placements.surfaces)
+local count=render(parent,place,origin,sector,slots)
+parent:SetAttribute("KinArtDecoUpperCount",count)
+parent:SetAttribute("KinArtDecoUpperExpected",#slots)
+return count
+end
+return Surfaces
+
+]])
 source(server,"ArtisanGeometryV22",[[
 local Kit=require(script.Parent.CrystalKit)
 local Studio={}
@@ -5285,6 +10151,1877 @@ root:SetAttribute("KinArtisanShopsCreated",count)
 return root
 end
 return Artisan
+
+]])
+source(server,"B01CityHallScene",[[
+local Spec = require(script.Parent.B01CityHallSpec)
+local Scene = {}
+local COLORS = {
+teal = Color3.fromRGB(30, 104, 100),
+bronze = Color3.fromRGB(184, 156, 103),
+ivory = Color3.fromRGB(230, 228, 217),
+charcoal = Color3.fromRGB(41, 56, 59),
+}
+local PROFILE = {
+LITE = {rays = 4, panels = 1, cap = 64},
+STANDARD = {rays = 8, panels = 2, cap = 128},
+SHOWCASE = {rays = 12, panels = 3, cap = 200},
+}
+local ROOT_NAME = "KinB01CityHallDecor"
+local function part(parent: Instance, name: string, size: Vector3, frame: CFrame, color: Color3, material: Enum.Material): BasePart
+local item = Instance.new("Part")
+item.Name = name
+item.Size = size
+item.CFrame = frame
+item.Color = color
+item.Material = material
+item.Anchored = true
+item.CanCollide = false
+item.CanTouch = false
+item.CanQuery = false
+item.CastShadow = false
+item.Locked = true
+item.Parent = parent
+return item
+end
+local function plaque(parent: Instance, name: string, text: string, frame: CFrame, width: number, color: Color3, subtitle: boolean)
+local board = part(parent, name, Vector3.new(width, if subtitle then 1.4 else 2.4, 0.12), frame, COLORS.charcoal, Enum.Material.Metal)
+local gui = Instance.new("SurfaceGui")
+gui.Name = "Texte Art déco"
+gui.Face = Enum.NormalId.Front
+gui.AlwaysOnTop = false
+gui.LightInfluence = 0.2
+gui.SizingMode = Enum.SurfaceGuiSizingMode.PixelsPerStud
+gui.PixelsPerStud = 38
+gui.Parent = board
+local label = Instance.new("TextLabel")
+label.Name = "Texte"
+label.BackgroundTransparency = 1
+label.Size = UDim2.fromScale(1, 1)
+label.Text = text
+label.TextColor3 = color
+label.TextScaled = true
+label.TextWrapped = true
+label.Font = if subtitle then Enum.Font.GothamMedium else Enum.Font.GothamBold
+label.Parent = gui
+end
+local function star(parent: Instance, base: Vector3, rays: number)
+part(parent, "Emblème civique central", Vector3.new(0.9, 0.9, 0.18), CFrame.new(base), COLORS.teal, Enum.Material.Metal)
+for i = 1, rays do
+local a = (i - 1) * math.pi / rays
+local dx = math.cos(a) * 1.25
+local dy = math.sin(a) * 1.25
+part(parent, "Rayon " .. i, Vector3.new(0.12, 1.65, 0.12),
+CFrame.new(base + Vector3.new(dx, dy, 0)) * CFrame.Angles(0, 0, a), COLORS.bronze, Enum.Material.Metal)
+end
+end
+local function decorateRoom(root: Model, room, origin: Vector3, profile)
+local c = room.center_studs
+local s = room.size_studs
+local cx, cz, w, d = c[1], c[3], s[1], s[3]
+local roomFolder = Instance.new("Folder")
+roomFolder.Name = room.room_id
+roomFolder:SetAttribute("KinRoomId", room.room_id)
+roomFolder:SetAttribute("KinDecorOnly", true)
+roomFolder.Parent = root
+local offset = if room.room_id == "city_hall.gallery" then math.min(w / 2 - 9, 13)
+elseif room.room_id == "city_hall.chamber" then -math.min(w / 2 - 9, 13)
+else 0
+local x = cx + offset
+local z = cz + d / 2 - 0.58
+local width = math.min(if offset == 0 then 21 else 15, w - 12)
+local center = origin + Vector3.new(x, 0, z)
+part(roomFolder, "Corniche civique", Vector3.new(width + 3, 0.18, 0.13),
+CFrame.new(center + Vector3.new(0, 14.25, 0)), COLORS.bronze, Enum.Material.Metal)
+plaque(roomFolder, "Titre civique", room.title,
+CFrame.new(center + Vector3.new(0, 7.55, -0.05)), width, COLORS.ivory, false)
+plaque(roomFolder, "Programme civique", room.subtitle,
+CFrame.new(center + Vector3.new(0, 5.42, -0.05)), width, COLORS.bronze, true)
+star(roomFolder, center + Vector3.new(0, 11.5, -0.09), profile.rays)
+for n = 1, profile.panels do
+local side = if n % 2 == 0 then -1 else 1
+local delta = 2.5 + math.floor((n - 1) / 2) * 2
+part(roomFolder, "Filet architectural " .. n,
+Vector3.new(0.14, 2.0, 0.1),
+CFrame.new(origin + Vector3.new(x + side * (width/2 - delta), 10.0, z - 0.1)),
+COLORS.teal, Enum.Material.Metal)
+end
+return roomFolder
+end
+local function validate(context)
+assert(type(context) == "table", "B01 attend un contexte")
+assert(context.place_key == Spec.place_key, "B01 ne peut pas construire une autre Place")
+assert(context.contracts_version == Spec.contracts_version, "B01 contrat incompatible")
+assert(typeof(context.place_model) == "Instance" and context.place_model:IsA("Model"), "B01 Model intérieur requis")
+local model = context.place_model
+assert(model:GetAttribute("KinPlaceKey") == "city_hall", "B01 objet parent non city_hall")
+assert(model.Name == "Intérieur — city_hall", "B01 nom modèle intérieur incorrect")
+local origin = model:GetAttribute("KinInteriorOrigin")
+assert(typeof(origin) == "Vector3", "B01 origine canonique manquante")
+local level = PROFILE[context.profile or "STANDARD"]
+assert(level ~= nil, "B01 profil invalide")
+for _, room in ipairs(Spec.rooms) do
+assert(model:FindFirstChild(room.room_id) ~= nil, "B01 salle canonique/extension absente : " .. room.room_id)
+end
+return model, origin, level
+end
+function Scene.build(context)
+local model, origin, level = validate(context)
+local root = Instance.new("Model")
+root.Name = ROOT_NAME
+root:SetAttribute("KinBranch", "B01")
+root:SetAttribute("KinPlaceKey", "city_hall")
+root:SetAttribute("KinSceneRevision", Spec.revision)
+root:SetAttribute("KinDecorProfile", context.profile or "STANDARD")
+local ok, err = pcall(function()
+for _, room in ipairs(Spec.rooms) do
+decorateRoom(root, room, origin, level)
+end
+end)
+if not ok then
+root:Destroy()
+error("B01 échec de génération sans modification des portes: " .. tostring(err))
+end
+local count = 0
+for _, descendant in ipairs(root:GetDescendants()) do
+if descendant:IsA("BasePart") then
+count += 1
+assert(not descendant.CanCollide and not descendant.CanTouch and not descendant.CanQuery,
+"B01 collision décorative interdite")
+end
+end
+assert(count <= level.cap, "B01 budget d'instances dépassé : " .. count)
+root:SetAttribute("KinDecorPartCount", count)
+local previous = model:FindFirstChild(ROOT_NAME)
+root.Parent = model
+if previous then previous:Destroy() end
+return {created = count, skipped = 0, failed = 0, revision = Spec.revision, model = root}
+end
+function Scene.remove(context)
+assert(type(context) == "table" and context.place_key == "city_hall", "B01 contexte de retrait invalide")
+local model = context.place_model
+assert(typeof(model) == "Instance" and model:IsA("Model"), "B01 Model intérieur requis")
+assert(model:GetAttribute("KinPlaceKey") == "city_hall", "B01 retrait limité à city_hall")
+local previous = model:FindFirstChild(ROOT_NAME)
+if previous then previous:Destroy() end
+end
+return Scene
+
+]])
+source(server,"B01CityHallSpec",[[
+return {["schema_version"]="kincity.b01-scene/1.0",["place_key"]="city_hall",["building_id"]="central.city_hall",["owner_branch"]="B01",["contracts_version"]="KC34-DOC-1.0",["revision"]="B01.1.0",["status"]="DEVELOPED_NOT_STUDIO_VERIFIED",["seed_policy"]="FIXED_LAYOUT",["origin_mode"]="read_KinInteriorOrigin_attribute",["style"]={["architectural"]="Art déco civique, courbes et rayons stylisés",["teal"]="#1E6864",["bronze"]="#B89C67",["ivory"]="#E6E4D9",["charcoal"]="#29383B"},["profile_limits"]={["LITE"]={["max_parts"]=64,["rays_per_room"]=4,["accent_panels"]=1},["STANDARD"]={["max_parts"]=128,["rays_per_room"]=8,["accent_panels"]=2},["SHOWCASE"]={["max_parts"]=200,["rays_per_room"]=12,["accent_panels"]=3}},["protected_anchors"]={{["anchor_id"]="city_hall.lobby.spawn",["position_studs"]={0,3,-32},["protection_radius_studs"]=8},{["anchor_id"]="city_hall.exit.door",["position_studs"]={0,3,-45},["protection_radius_studs"]=8},{["anchor_id"]="hall.kiosk_01",["position_studs"]={-27,3,18},["protection_radius_studs"]=9}},["protected_portals"]={"city_hall.portal.lobby.gallery","city_hall.portal.lobby.chamber","city_hall.gallery_to_west","city_hall.chamber_to_east","city_hall.gallery_to_rear","city_hall.chamber_to_rear"},["rooms"]={{["room_id"]="city_hall.lobby",["display_name"]="Accueil public",["title"]="BIENVENUE À KIN CITY",["subtitle"]="Information · Orientation · Accueil",["center_studs"]={0,0,-29},["size_studs"]={100,16,34},["narrative_prompts"]={"Entrer dans la ville civique","Découvrir les institutions"},["presentation"]="wall-mounted non-collidable frieze and emblem",["gameplay_changes"]=false},{["room_id"]="city_hall.gallery",["display_name"]="Galerie des services",["title"]="SERVICES ET RESSOURCES",["subtitle"]="Citoyenneté · Transparence · Information",["center_studs"]={-27,0,17},["size_studs"]={44,16,52},["narrative_prompts"]={"Consulter les services","Découvrir les initiatives"},["presentation"]="wall-mounted non-collidable frieze and emblem",["gameplay_changes"]=false},{["room_id"]="city_hall.chamber",["display_name"]="Salle du conseil",["title"]="SALLE DU CONSEIL",["subtitle"]="Écoute · Délibération · Dialogue",["center_studs"]={27,0,17},["size_studs"]={44,16,52},["narrative_prompts"]={"Débattre avec respect","Comprendre les décisions"},["presentation"]="wall-mounted non-collidable frieze and emblem",["gameplay_changes"]=false},{["room_id"]="city_hall.west_wing",["display_name"]="Salle des projets",["title"]="PROJETS COMMUNAUTAIRES",["subtitle"]="Idées · Propositions · Collaboration",["center_studs"]={-79,0,7},["size_studs"]={52,16,50},["narrative_prompts"]={"Imaginer ensemble","Présenter une initiative"},["presentation"]="wall-mounted non-collidable frieze and emblem",["gameplay_changes"]=false},{["room_id"]="city_hall.east_wing",["display_name"]="Salle des assemblées",["title"]="ASSEMBLÉES CITOYENNES",["subtitle"]="Participation · Rencontres · Équité",["center_studs"]={79,0,7},["size_studs"]={52,16,50},["narrative_prompts"]={"Participer","Écouter les autres"},["presentation"]="wall-mounted non-collidable frieze and emblem",["gameplay_changes"]=false},{["room_id"]="city_hall.rear_atrium",["display_name"]="Atrium civique",["title"]="L’ATRIUM CIVIQUE",["subtitle"]="Solidarité · Culture · Bien commun",["center_studs"]={0,0,76},["size_studs"]={100,16,56},["narrative_prompts"]={"Célébrer la communauté","Explorer les institutions"},["presentation"]="wall-mounted non-collidable frieze and emblem",["gameplay_changes"]=false}}}
+
+]])
+source(server,"B02EkohInterior",[[
+local Builder={}
+local SPEC={["contract"]={["building_id"]="central.ekoh_tower",["entry_anchor_id"]="ekoh_tower.lobby.spawn",["entry_door_id"]="city.central.ekoh_tower.entry",["exit_anchor_id"]="ekoh_tower.exit.door",["exit_door_id"]="ekoh_tower.exit",["interaction_anchor_id"]="tower.panel_01",["interaction_id"]="central.ekoh_tower.display_01",["interaction_mode"]="stub",["return_anchor_id"]="city.central.ekoh_tower.return_spawn"},["integration_note"]="B09 doit générer/charger le ModuleScript B02EkohInterior et appeler Build après InteriorGenerator.make, avec le modèle intérieur déjà créé, origin de Spatial.origin, profil graphique; aucun chemin ni ancre n'est modifié.",["owner_branch"]="B02",["panels"]={{["id"]="ekoh_tower.b02.atlas_accueil",["pos"]={0,10.7,-13.0},["room_id"]="ekoh_tower.lobby",["size"]={22,4.6,0.28},["story"]="Un parcours public pour découvrir les espaces EkoH.",["subtitle"]="Observer · comprendre · partager",["title"]="ATLAS DU SAVOIR",["yaw_degrees"]=0},{["id"]="ekoh_tower.b02.contributions",["pos"]={-47.1,10.8,33},["room_id"]="ekoh_tower.gallery",["size"]={15,4.8,0.28},["story"]="Les données des membres ne sont pas connectées.",["subtitle"]="Des idées mises en lumière",["title"]="CONTRIBUTIONS",["yaw_degrees"]=-90},{["id"]="ekoh_tower.b02.observation",["pos"]={47.1,10.8,33},["room_id"]="ekoh_tower.chamber",["size"]={15,4.8,0.28},["story"]="Constellation artistique, non scientifique.",["subtitle"]="Lire les liens entre les savoirs",["title"]="OBSERVATION",["yaw_degrees"]=90},{["id"]="ekoh_tower.b02.observatoire",["pos"]={-79,10.8,30.1},["room_id"]="ekoh_tower.west_wing",["size"]={20,4.8,0.28},["story"]="Exposition illustrative, sans données réelles.",["subtitle"]="Explorer la curiosité collective",["title"]="OBSERVATOIRE EKOH",["yaw_degrees"]=0},{["id"]="ekoh_tower.b02.merite",["pos"]={79,10.8,30.1},["room_id"]="ekoh_tower.east_wing",["size"]={20,4.8,0.28},["story"]="Aucun titre ni distinction n'est attribué ici.",["subtitle"]="L'effort est une aventure",["title"]="GALERIE DU MÉRITE",["yaw_degrees"]=0},{["id"]="ekoh_tower.b02.forum",["pos"]={-48.2,11.3,91.5},["room_id"]="ekoh_tower.rear_atrium",["size"]={17,4.8,0.28},["story"]="Espace de visite, services à venir.",["subtitle"]="De la réflexion au partage",["title"]="FORUM DES SAVOIRS",["yaw_degrees"]=-90}},["place_key"]="ekoh_tower",["profiles"]={["LITE"]={["max_panels"]=6,["max_parts_estimated"]=30,["max_surfaceguis"]=6,["ornament_level"]=0},["SHOWCASE"]={["max_panels"]=6,["max_parts_estimated"]=102,["max_surfaceguis"]=6,["ornament_level"]=2},["STANDARD"]={["max_panels"]=6,["max_parts_estimated"]=66,["max_surfaceguis"]=6,["ornament_level"]=1}},["protected_anchors"]={{["clearance_xz"]={12,6},["id"]="ekoh_tower.exit.door",["pos"]={0,-45}},{["clearance_xz"]={12,9},["id"]="ekoh_tower.lobby.spawn",["pos"]={0,-32}},{["clearance_xz"]={8,8},["id"]="tower.panel_01",["pos"]={-27,18}}},["protected_portals"]={{["clearance_xz"]={8,8},["id"]="ekoh_tower.portal.lobby.chamber",["pos"]={27,-10.5}},{["clearance_xz"]={8,8},["id"]="ekoh_tower.portal.lobby.gallery",["pos"]={-27,-10.5}},{["clearance_xz"]={6,8},["id"]="ekoh_tower.gallery_to_west",["pos"]={-51,16}},{["clearance_xz"]={6,8},["id"]="ekoh_tower.chamber_to_east",["pos"]={51,16}},{["clearance_xz"]={8,7},["id"]="ekoh_tower.gallery_to_rear",["pos"]={-27,45.5}},{["clearance_xz"]={8,7},["id"]="ekoh_tower.chamber_to_rear",["pos"]={27,45.5}}},["revision"]="b02-ekoh-atlas-1.0.0",["rooms"]={{["canonical"]=true,["center"]={0,0,-29},["display_name"]="Accueil",["purpose"]="Orientation des visites et annonce du partage du savoir",["room_id"]="ekoh_tower.lobby",["size"]={100,16,34}},{["canonical"]=true,["center"]={-27,0,17},["display_name"]="Galerie des contributions",["purpose"]="Réalisations présentées sans faux palmarès ni données de comptes",["room_id"]="ekoh_tower.gallery",["size"]={44,16,52}},{["canonical"]=true,["center"]={27,0,17},["display_name"]="Salle d’observation",["purpose"]="Observation pédagogique, constellation visuelle simulée",["room_id"]="ekoh_tower.chamber",["size"]={44,16,52}},{["canonical"]=false,["center"]={-79,0,7},["display_name"]="Observatoire EkoH",["purpose"]="Concepts et trajectoires de découverte",["room_id"]="ekoh_tower.west_wing",["size"]={52,16,50}},{["canonical"]=false,["center"]={79,0,7},["display_name"]="Galerie du mérite",["purpose"]="Encouragement de l'effort sans récompenses inventées",["room_id"]="ekoh_tower.east_wing",["size"]={52,16,50}},{["canonical"]=false,["center"]={0,0,76},["display_name"]="Forum de la connaissance",["purpose"]="Vue panoramique et convivialité, respect des escaliers et ascenseur",["room_id"]="ekoh_tower.rear_atrium",["size"]={100,16,56}}},["schema_version"]="kincity.b02-ekoh-scene/1.0",["visual_language"]={["bronze_hex"]="#CCA667",["identity"]="Art déco savant : opale, bronze, sarcelle structurelle, constellations géométriques",["ink_hex"]="#243946",["name"]="Atlas du savoir",["note"]="EkoH se trouve dans le secteur central : aucune septième couleur de district n'est créée.",["primary_hex"]="#1E6864",["stone_hex"]="#E5EAE7"}}
+local MIN_RANK={LITE=1,STANDARD=2,SHOWCASE=3}
+local COLORS={
+teal=Color3.fromRGB(30,104,100),
+bronze=Color3.fromRGB(204,166,103),
+opal=Color3.fromRGB(229,234,231),
+ink=Color3.fromRGB(36,57,70),
+}
+local function noCollision(part: BasePart)
+part.Anchored=true
+part.CanCollide=false
+part.CanTouch=false
+part.CanQuery=false
+part.CastShadow=false
+end
+local function part(parent: Instance,name: string,size: Vector3,frame: CFrame,color: Color3,material: Enum.Material)
+local item=Instance.new("Part")
+item.Name=name
+item.Size=size
+item.CFrame=frame
+item.Color=color
+item.Material=material
+noCollision(item)
+item.Parent=parent
+return item
+end
+local function text(gui: SurfaceGui, name: string, words: string, y: number, height: number, fontSize: number,color: Color3)
+local item=Instance.new("TextLabel")
+item.Name=name
+item.Size=UDim2.fromScale(0.92,height)
+item.Position=UDim2.fromScale(0.04,y)
+item.BackgroundTransparency=1
+item.Font=Enum.Font.GothamBold
+item.Text=words
+item.TextColor3=color
+item.TextSize=fontSize
+item.TextScaled=false
+item.TextWrapped=true
+item.TextXAlignment=Enum.TextXAlignment.Center
+item.TextYAlignment=Enum.TextYAlignment.Center
+item.Parent=gui
+return item
+end
+local function panel(parent: Instance,origin: Vector3,slot: any, profile: string)
+local r=slot.pos
+local s=slot.size
+local frame=CFrame.new(origin+Vector3.new(r[1],r[2],r[3]))*CFrame.Angles(0,math.rad(slot.yaw_degrees),0)
+local face=part(parent,slot.id..".fond",Vector3.new(s[1],s[2],s[3]),frame,COLORS.ink,Enum.Material.Metal)
+face:SetAttribute("KinB02DecorId",slot.id)
+face:SetAttribute("KinB02RoomId",slot.room_id)
+face:SetAttribute("KinB02NonFunctional",true)
+local board=Instance.new("SurfaceGui")
+board.Name="Lecture EkoH"
+board.Face=Enum.NormalId.Front
+board.SizingMode=Enum.SurfaceGuiSizingMode.FixedSize
+board.CanvasSize=Vector2.new(640,180)
+board.LightInfluence=0.45
+board.Brightness=1
+board.AlwaysOnTop=false
+board.Parent=face
+text(board,"Titre",slot.title,0.11,0.42,34,COLORS.opal)
+text(board,"Sous-titre",slot.subtitle,0.55,0.28,22,COLORS.bronze)
+local count=1
+if MIN_RANK[profile]>=2 then
+local left=frame*CFrame.new(-s[1]/2+0.08,0,-0.23)
+local right=frame*CFrame.new(s[1]/2-0.08,0,-0.23)
+part(parent,slot.id..".filet-g",Vector3.new(0.15,s[2]+0.12,0.13),left,COLORS.bronze,Enum.Material.Metal)
+part(parent,slot.id..".filet-d",Vector3.new(0.15,s[2]+0.12,0.13),right,COLORS.bronze,Enum.Material.Metal)
+part(parent,slot.id..".filet-bas",Vector3.new(s[1],0.15,0.13),frame*CFrame.new(0,-s[2]/2+0.09,-0.23),COLORS.teal,Enum.Material.Metal)
+count+=3
+end
+if MIN_RANK[profile]>=3 then
+for index=-1,1 do
+local stripe=part(parent,slot.id..".frise."..index,
+Vector3.new(math.min(1.3,s[1]/7),0.14,0.12),
+frame*CFrame.new(index*math.min(2.2,s[1]/5),s[2]/2-0.2,-0.23),
+COLORS.opal,Enum.Material.Metal)
+stripe.Transparency=0.05
+count+=1
+end
+end
+return count
+end
+function Builder.Build(context: any)
+assert(type(context)=="table","B02: context table requis")
+assert(context.place_key=="ekoh_tower","B02: Place incorrecte")
+local model=context.model
+assert(typeof(model)=="Instance" and model:IsA("Model"),"B02: modèle intérieur requis")
+assert(model:GetAttribute("KinPlaceKey")=="ekoh_tower","B02: mauvais KinPlaceKey")
+local origin=context.origin
+assert(typeof(origin)=="Vector3","B02: origin Vector3 requis (Spatial.origin)")
+local profile=context.profile or "STANDARD"
+assert(MIN_RANK[profile]~=nil,"B02: profil graphique inconnu")
+for _,room in ipairs(SPEC.rooms) do
+local existing=model:FindFirstChild(room.room_id)
+assert(existing~=nil and existing:IsA("Folder"),"B02: salle absente: "..room.room_id)
+end
+local existing=model:FindFirstChild("KinB02_EkoH_Atlas")
+if existing~=nil then
+assert(existing:GetAttribute("KinB02Revision")==SPEC.revision,"B02: version de décor incompatible")
+assert(existing:GetAttribute("KinB02Profile")==profile,"B02: profil changé; requiert reconstruction explicite du monde")
+return existing,{status="ALREADY_BUILT",panels=6,parts=existing:GetAttribute("KinB02Parts") or 0}
+end
+local root=Instance.new("Folder")
+root.Name="KinB02_EkoH_Atlas"
+root:SetAttribute("KinB02Revision",SPEC.revision)
+root:SetAttribute("KinB02PlaceKey",SPEC.place_key)
+root:SetAttribute("KinB02Profile",profile)
+root:SetAttribute("KinB02NonFunctional",true)
+local success,total=xpcall(function()
+local parts=0
+for _,slot in ipairs(SPEC.panels) do
+parts+=panel(root,origin,slot,profile)
+end
+return parts
+end,debug.traceback)
+if not success then
+root:Destroy()
+error("B02: génération annulée: "..tostring(total))
+end
+root:SetAttribute("KinB02Parts",total)
+root:SetAttribute("KinB02PanelCount",#SPEC.panels)
+root.Parent=model
+return root,{status="BUILT",panels=#SPEC.panels,parts=total}
+end
+return Builder
+
+]])
+source(server,"B03LibraryScene",[[
+local Data=require(script.Parent:WaitForChild("B03LibrarySceneData"))
+local Scene={}
+local REVISION="KC34-B03-visual-1.0"
+local STYLE={
+body=Color3.fromRGB(32,54,63),
+metal=Color3.fromRGB(194,151,86),
+opal=Color3.fromRGB(229,217,189),
+teal=Color3.fromRGB(30,104,100),
+accent=Color3.fromRGB(188,103,76),
+}
+local PROFILE_LEVEL={LITE=1,STANDARD=2,SHOWCASE=3}
+local COST={sunburst=9,frieze=3,shelf_relief=10,reading_panel=4,leaf_motif=7}
+local function part(parent,name,frame,size,color,material)
+local node=Instance.new("Part")
+node.Name=name
+node.CFrame=frame
+node.Size=size
+node.Color=color
+node.Material=material or Enum.Material.SmoothPlastic
+node.Anchored=true
+node.CanCollide=false
+node.CanTouch=false
+node.CanQuery=false
+node.CastShadow=false
+node.Locked=true
+node:SetAttribute("KinB03VisualOnly",true)
+node.Parent=parent
+return node
+end
+local function plaque(parent,frame,title)
+local face=part(parent,"Émail opalin",frame*CFrame.new(0,0,-0.12),Vector3.new(8,4.5,0.22),STYLE.opal)
+part(parent,"Encadrement bronze",frame*CFrame.new(0,0,0.08),Vector3.new(8.6,5.1,0.17),STYLE.metal,Enum.Material.Metal)
+part(parent,"Ligne d'accent",frame*CFrame.new(0,-2.06,-0.28),Vector3.new(7.2,0.18,0.12),STYLE.accent,Enum.Material.Metal)
+local top=part(parent,"Entablement",frame*CFrame.new(0,2.42,-0.22),Vector3.new(7.4,0.21,0.14),STYLE.teal,Enum.Material.Metal)
+local graphic=Instance.new("SurfaceGui")
+graphic.Name="Cartouche lisible"
+graphic.Face=Enum.NormalId.Front
+graphic.Adornee=face
+graphic.SizingMode=Enum.SurfaceGuiSizingMode.PixelsPerStud
+graphic.PixelsPerStud=40
+graphic.AlwaysOnTop=false
+graphic.LightInfluence=0.25
+graphic.Parent=face
+local label=Instance.new("TextLabel")
+label.Name="Texte"
+label.BackgroundTransparency=1
+label.Size=UDim2.fromScale(1,1)
+label.Text=title
+label.TextColor3=STYLE.body
+label.TextSize=25
+label.TextScaled=false
+label.TextWrapped=true
+label.Font=Enum.Font.GothamBold
+label.Parent=graphic
+top:SetAttribute("KinB03Title",title)
+end
+local function sunburst(parent,frame)
+part(parent,"Rosace fond",frame,Vector3.new(6.6,5.8,0.28),STYLE.body,Enum.Material.Metal)
+part(parent,"Rosace coeur",frame*CFrame.new(0,0,-0.23),Vector3.new(1.3,1.3,0.32),STYLE.accent,Enum.Material.Metal)
+for i=0,6 do
+local angle=math.rad(-78+i*26)
+local x=math.sin(angle)*1.9
+local y=math.cos(angle)*1.9
+part(parent,"Rayon ornemental "..tostring(i+1),
+frame*CFrame.new(x,y,-0.24)*CFrame.Angles(0,0,-angle),
+Vector3.new(0.22,2.0,0.16),STYLE.metal,Enum.Material.Metal)
+end
+end
+local function frieze(parent,frame)
+part(parent,"Bande architecturale",frame,Vector3.new(8.2,0.63,0.18),STYLE.body,Enum.Material.Metal)
+part(parent,"Trait bronze",frame*CFrame.new(0,0.18,-0.12),Vector3.new(7.9,0.12,0.12),STYLE.metal,Enum.Material.Metal)
+part(parent,"Trait terre cuite",frame*CFrame.new(0,-0.18,-0.13),Vector3.new(7.4,0.1,0.12),STYLE.accent,Enum.Material.Metal)
+end
+local function shelf(parent,frame)
+part(parent,"Niche géométrique",frame,Vector3.new(8.6,5.7,0.3),STYLE.body,Enum.Material.Metal)
+part(parent,"Étagère en bronze",frame*CFrame.new(0,-2.18,-0.28),Vector3.new(8.2,0.22,0.23),STYLE.metal,Enum.Material.Metal)
+for i=1,8 do
+local height=if i%3==0 then 2.8 else 3.3
+local color=if i%4==0 then STYLE.accent elseif i%3==0 then STYLE.teal else STYLE.opal
+part(parent,"Dos d'ouvrage "..i,
+frame*CFrame.new(-3.45+(i-1)*0.98,-1.95+height/2,-0.35),
+Vector3.new(0.72,height,0.24),color,Enum.Material.SmoothPlastic)
+end
+end
+local function leaf(parent,frame)
+part(parent,"Panneau jardin",frame,Vector3.new(7.6,6.2,0.22),STYLE.body,Enum.Material.Metal)
+part(parent,"Tige centrale",frame*CFrame.new(0,0,-0.2),Vector3.new(0.18,4.2,0.12),STYLE.metal,Enum.Material.Metal)
+for i=1,5 do
+local y=-1.5+(i-1)*0.72
+local side=if i%2==0 then -1 else 1
+part(parent,"Feuille du savoir "..i,
+frame*CFrame.new(side*1.0,y,-0.24)*CFrame.Angles(0,0,math.rad(side*31)),
+Vector3.new(2.1,0.32,0.14),if i%2==0 then STYLE.teal else STYLE.accent,Enum.Material.Metal)
+end
+end
+local function draw(parent,item,origin)
+local offset=item.position_studs
+local frame=CFrame.new(origin+Vector3.new(offset[1],offset[2],offset[3]))
+*CFrame.Angles(0,math.rad(item.yaw_degrees or 0),0)
+local holder=Instance.new("Model")
+holder.Name=item.id
+holder:SetAttribute("KinB03DecorationId",item.id)
+holder:SetAttribute("KinB03RoomId",item.room_id)
+holder:SetAttribute("KinB03Kind",item.kind)
+holder:SetAttribute("KinB03Title",item.title)
+holder.Parent=parent
+if item.kind=="sunburst" then
+sunburst(holder,frame)
+elseif item.kind=="frieze" then
+frieze(holder,frame)
+elseif item.kind=="shelf_relief" then
+shelf(holder,frame)
+elseif item.kind=="reading_panel" then
+plaque(holder,frame,item.title)
+elseif item.kind=="leaf_motif" then
+leaf(holder,frame)
+else
+holder:Destroy()
+error("B03: type d'ornement inconnu: "..tostring(item.kind))
+end
+return COST[item.kind]
+end
+function Scene.build(context)
+assert(type(context)=="table" and context.authorized==true,"B03: approbation explicite requise")
+assert(context.place_key=="library","B03: construction hors library interdite")
+local interior=context.interiorModel
+assert(typeof(interior)=="Instance" and interior:IsA("Model") and interior:GetAttribute("KinPlaceKey")=="library",
+"B03: vrai modèle d'intérieur library requis")
+local origin=context.origin
+assert(typeof(origin)=="Vector3","B03: origine Vector3 requise depuis Spatial.origin('library')")
+local profile=context.profile or "STANDARD"
+assert(PROFILE_LEVEL[profile],"B03: profil inconnu")
+local limit=Data.profile_limits[profile]
+assert(type(limit)=="number" and limit>0,"B03: limite invalide")
+local current=interior:FindFirstChild("KC34_B03_Library")
+if current then
+assert(current:IsA("Model") and current:GetAttribute("KinB03Owner")=="library",
+"B03: modèle homonyme externe, suppression bloquée")
+end
+if current and current:GetAttribute("KinB03Revision")==REVISION and current:GetAttribute("KinB03Profile")==profile then
+return {status="already_built",created_parts=current:GetAttribute("KinB03Parts") or 0,
+created_decorations=current:GetAttribute("KinB03Decorations") or 0,skipped=0}
+end
+local temp=Instance.new("Model")
+temp.Name="KC34_B03_Library__building"
+temp:SetAttribute("KinB03Owner","library")
+temp.Parent=interior
+local created=0
+local decorations=0
+local skipped=0
+local ok,err=pcall(function()
+for _,item in ipairs(Data.decorations) do
+local level=PROFILE_LEVEL[item.min_profile]
+assert(level and COST[item.kind],"B03: scène modifiée sans validation")
+if level>PROFILE_LEVEL[profile] or created+COST[item.kind]>limit then
+skipped+=1
+else
+created+=draw(temp,item,origin)
+decorations+=1
+end
+end
+end)
+if not ok then temp:Destroy();error(err) end
+local actual=0
+for _,node in ipairs(temp:GetDescendants()) do
+if node:IsA("BasePart") then
+assert(node.Anchored and not node.CanCollide and not node.CanTouch and not node.CanQuery,
+"B03: violation des règles de collision")
+actual+=1
+end
+end
+if actual~=created then
+temp:Destroy()
+error("B03: budget incohérent : "..tostring(actual).." != "..tostring(created))
+end
+if current then current:Destroy() end
+temp.Name="KC34_B03_Library"
+temp:SetAttribute("KinB03Revision",REVISION)
+temp:SetAttribute("KinB03Profile",profile)
+temp:SetAttribute("KinB03Parts",created)
+temp:SetAttribute("KinB03Decorations",decorations)
+return {status="built",created_parts=created,created_decorations=decorations,skipped=skipped}
+end
+return Scene
+
+]])
+source(server,"B03LibrarySceneData",[[
+return {["schema_version"]="kincity.library-scene/1.0",["contracts_version"]="KC34-DOC-1.0",["place_key"]="library",["building_id"]="konnected.library",["district_id"]="konnected",["design_name"]="La bibliothèque des liens — Art déco",["palette"]={["body"]="#20363F",["metal"]="#C29756",["opal"]="#E5D9BD",["teal"]="#1E6864",["accent"]="#BC674C"},["canonical_doors"]={["entry"]="city.konnected.library.entry",["exit"]="library.exit",["arrival_anchor"]="library.lobby.spawn",["return_anchor"]="library.exit.door"},["canonical_interaction_anchor"]="hall.bookshelf_01",["profile_limits"]={["LITE"]=100,["STANDARD"]=145,["SHOWCASE"]=185},["design_rules"]={["collision"]="all_added_parts_noncollidable",["placement"]="wall_mounted_only_at_y_7_or_above",["preserve_4_wing_portals"]=true,["existing_narrative"]="v28 LibraryJourney - do not duplicate or override prompts",["no_remote_assets"]=true,["no_external_integrations"]=true},["rooms"]={{["room_id"]="library.lobby",["name"]="Hall des lecteurs",["purpose"]="Accueil, choix d'un parcours, seuil symbolique",["center_studs"]={0,0,-29},["size_studs"]={100,16,34},["access"]="entrée à z=-45, spawn à z=-32, sorties vers galerie et lecture"},{["room_id"]="library.gallery",["name"]="Galerie des rayonnages",["purpose"]="Observer et explorer les archives",["center_studs"]={-27,0,17},["size_studs"]={44,16,52},["access"]="portails x=-27/z=-10.5, x=-51/z=16, x=-27/z=45.5"},{["room_id"]="library.chamber",["name"]="Salle de lecture",["purpose"]="Relier les savoirs et imaginer",["center_studs"]={27,0,17},["size_studs"]={44,16,52},["access"]="portails x=27/z=-10.5, x=51/z=16, x=27/z=45.5"},{["room_id"]="library.west_wing",["name"]="Archives ouvertes",["purpose"]="Mémoire collective, consultation silencieuse",["center_studs"]={-79,0,7},["size_studs"]={52,16,50},["access"]="portail latéral en x=-51/z=16"},{["room_id"]="library.east_wing",["name"]="Salle de lecture libre",["purpose"]="Lecture libre et échanges",["center_studs"]={79,0,7},["size_studs"]={52,16,50},["access"]="portail latéral en x=51/z=16"},{["room_id"]="library.rear_atrium",["name"]="Jardin des connaissances",["purpose"]="Clôture lumineuse et point de rencontre",["center_studs"]={0,0,76},["size_studs"]={100,16,56},["access"]="deux portails arrière à x=±27/z=45.5"}},["decorations"]={{["id"]="library.lobby.archivist_crest",["room_id"]="library.lobby",["kind"]="sunburst",["position_studs"]={-47,10,-29},["yaw_degrees"]=90,["min_profile"]="LITE",["title"]="Signe des archives"},{["id"]="library.lobby.community_crest",["room_id"]="library.lobby",["kind"]="sunburst",["position_studs"]={47,10,-29},["yaw_degrees"]=-90,["min_profile"]="LITE",["title"]="Signe des échanges"},{["id"]="library.lobby.entry_frieze",["room_id"]="library.lobby",["kind"]="frieze",["position_studs"]={-24,12,-44.7},["yaw_degrees"]=0,["min_profile"]="STANDARD",["title"]="Frise d'entrée"},{["id"]="library.lobby.far_frieze",["room_id"]="library.lobby",["kind"]="frieze",["position_studs"]={24,12,-44.7},["yaw_degrees"]=0,["min_profile"]="SHOWCASE",["title"]="Frise de repérage"},{["id"]="library.gallery.archive_01",["room_id"]="library.gallery",["kind"]="shelf_relief",["position_studs"]={-7,9,5},["yaw_degrees"]=-90,["min_profile"]="LITE",["title"]="Rayonnages conservés"},{["id"]="library.gallery.archive_02",["room_id"]="library.gallery",["kind"]="shelf_relief",["position_studs"]={-7,9,32},["yaw_degrees"]=-90,["min_profile"]="LITE",["title"]="Rayonnages associés"},{["id"]="library.gallery.motto",["room_id"]="library.gallery",["kind"]="reading_panel",["position_studs"]={-7,9,20},["yaw_degrees"]=-90,["min_profile"]="STANDARD",["title"]="OBSERVER"},{["id"]="library.gallery.upper_frieze",["room_id"]="library.gallery",["kind"]="frieze",["position_studs"]={-17,13,41.3},["yaw_degrees"]=180,["min_profile"]="SHOWCASE",["title"]="Frise des archives"},{["id"]="library.chamber.listen_01",["room_id"]="library.chamber",["kind"]="reading_panel",["position_studs"]={7,9,6},["yaw_degrees"]=90,["min_profile"]="LITE",["title"]="RELIER"},{["id"]="library.chamber.listen_02",["room_id"]="library.chamber",["kind"]="reading_panel",["position_studs"]={7,9,30},["yaw_degrees"]=90,["min_profile"]="LITE",["title"]="IMAGINER"},{["id"]="library.chamber.framing",["room_id"]="library.chamber",["kind"]="sunburst",["position_studs"]={7,9,19},["yaw_degrees"]=90,["min_profile"]="STANDARD",["title"]="Lumière de la lecture"},{["id"]="library.chamber.frieze",["room_id"]="library.chamber",["kind"]="frieze",["position_studs"]={17,13,41.3},["yaw_degrees"]=180,["min_profile"]="SHOWCASE",["title"]="Filets du lecteur"},{["id"]="library.west_wing.archive_01",["room_id"]="library.west_wing",["kind"]="shelf_relief",["position_studs"]={-103.5,9,-7},["yaw_degrees"]=90,["min_profile"]="LITE",["title"]="Archives publiques"},{["id"]="library.west_wing.archive_02",["room_id"]="library.west_wing",["kind"]="shelf_relief",["position_studs"]={-103.5,9,19},["yaw_degrees"]=90,["min_profile"]="LITE",["title"]="Archives vivantes"},{["id"]="library.west_wing.memory",["room_id"]="library.west_wing",["kind"]="reading_panel",["position_studs"]={-79,9,-16.5},["yaw_degrees"]=0,["min_profile"]="STANDARD",["title"]="MÉMOIRE"},{["id"]="library.west_wing.symbol",["room_id"]="library.west_wing",["kind"]="sunburst",["position_studs"]={-79,9,30.5},["yaw_degrees"]=180,["min_profile"]="SHOWCASE",["title"]="Transmission"},{["id"]="library.east_wing.reading_01",["room_id"]="library.east_wing",["kind"]="reading_panel",["position_studs"]={103.5,9,-7},["yaw_degrees"]=-90,["min_profile"]="LITE",["title"]="SAVOIR"},{["id"]="library.east_wing.reading_02",["room_id"]="library.east_wing",["kind"]="reading_panel",["position_studs"]={103.5,9,19},["yaw_degrees"]=-90,["min_profile"]="LITE",["title"]="PARTAGER"},{["id"]="library.east_wing.lamp_motif",["room_id"]="library.east_wing",["kind"]="sunburst",["position_studs"]={79,9,-16.5},["yaw_degrees"]=0,["min_profile"]="STANDARD",["title"]="Lectures libres"},{["id"]="library.east_wing.symbol",["room_id"]="library.east_wing",["kind"]="frieze",["position_studs"]={79,13,30.5},["yaw_degrees"]=180,["min_profile"]="SHOWCASE",["title"]="Filets de savoir"},{["id"]="library.rear_atrium.garden_west",["room_id"]="library.rear_atrium",["kind"]="leaf_motif",["position_studs"]={-47.8,9,69},["yaw_degrees"]=90,["min_profile"]="LITE",["title"]="Croissance et transmission"},{["id"]="library.rear_atrium.garden_east",["room_id"]="library.rear_atrium",["kind"]="leaf_motif",["position_studs"]={47.8,9,69},["yaw_degrees"]=-90,["min_profile"]="LITE",["title"]="Connaissance partagée"},{["id"]="library.rear_atrium.last_page",["room_id"]="library.rear_atrium",["kind"]="reading_panel",["position_studs"]={0,9,102},["yaw_degrees"]=180,["min_profile"]="STANDARD",["title"]="LA SUITE S'ÉCRIT ENSEMBLE"},{["id"]="library.rear_atrium.terminus",["room_id"]="library.rear_atrium",["kind"]="frieze",["position_studs"]={-26,13,102},["yaw_degrees"]=180,["min_profile"]="SHOWCASE",["title"]="Motif du jardin"}}}
+
+]])
+source(server,"B04CampusDecor",[[
+local CampusDecor={}
+local ACCENT=Color3.fromRGB(117,142,166) -- UCKK, #758EA6 (immutable canonical color)
+local TEAL=Color3.fromRGB(30,104,100)  -- KOALI shared #1E6864
+local BRASS=Color3.fromRGB(185,147,91)
+local INK=Color3.fromRGB(42,59,73)
+local STONE=Color3.fromRGB(232,225,212)
+local MUTED=Color3.fromRGB(198,207,216)
+local REVISION="B04-CAMPUS-V1-2026-10-26"
+local ROOT_NAME="B04_CampusDecor_KC34"
+local function part(parent:Instance,name:string,size:Vector3,cf:CFrame,color:Color3,material:Enum.Material):Part
+local obj=Instance.new("Part")
+obj.Name=name
+obj.Anchored=true
+obj.CanCollide=false
+obj.CanTouch=false
+obj.CanQuery=false
+obj.CastShadow=false
+obj.Size=size
+obj.CFrame=cf
+obj.Color=color
+obj.Material=material
+obj.Parent=parent
+obj:SetAttribute("KinOptionalDetail",true)
+return obj
+end
+local function plaque(parent:Instance,origin:Vector3,x:number,y:number,z:number,
+title:string,subtitle:string,face:Enum.NormalId):number
+local plate=part(parent,"Plaque · "..title,Vector3.new(17.5,3.8,0.14),
+CFrame.new(origin+Vector3.new(x,y,z)),INK,Enum.Material.Metal)
+part(parent,"Liseré supérieur",Vector3.new(17.1,0.12,0.16),
+plate.CFrame*CFrame.new(0,1.78,if face==Enum.NormalId.Back then 0.09 else -0.09),BRASS,Enum.Material.Metal)
+local gui=Instance.new("SurfaceGui")
+gui.Name="Cartouche didactique"
+gui.Adornee=plate
+gui.Face=face
+gui.SizingMode=Enum.SurfaceGuiSizingMode.FixedSize
+gui.CanvasSize=Vector2.new(700,170)
+gui.LightInfluence=0.2
+gui.AlwaysOnTop=false
+gui.Parent=plate
+local heading=Instance.new("TextLabel")
+heading.Name="Nom de salle"
+heading.BackgroundTransparency=1
+heading.Text=title
+heading.TextColor3=STONE
+heading.Font=Enum.Font.GothamBold
+heading.TextSize=39
+heading.TextScaled=false
+heading.TextWrapped=true
+heading.TextXAlignment=Enum.TextXAlignment.Center
+heading.Size=UDim2.new(1,-20,0,78)
+heading.Position=UDim2.fromOffset(10,9)
+heading.Parent=gui
+local detail=Instance.new("TextLabel")
+detail.Name="Intention pédagogique"
+detail.BackgroundTransparency=1
+detail.Text=subtitle
+detail.TextColor3=MUTED
+detail.Font=Enum.Font.Gotham
+detail.TextSize=23
+detail.TextWrapped=true
+detail.TextXAlignment=Enum.TextXAlignment.Center
+detail.Size=UDim2.new(1,-26,0,66)
+detail.Position=UDim2.fromOffset(13,93)
+detail.Parent=gui
+return 2 -- Part count; SurfaceGui is counted separately by Instances
+end
+local function panel(parent:Instance,origin:Vector3,x:number,z:number,title:string,detail:string):number
+local face=if z>0 then Enum.NormalId.Front else Enum.NormalId.Back
+return plaque(parent,origin,x,10.0,z,title,detail,face)
+end
+local function molding(parent:Instance,origin:Vector3,x:number,y:number,z:number,w:number):number
+part(parent,"Moulure laiton",Vector3.new(w,0.16,0.12),
+CFrame.new(origin+Vector3.new(x,y,z)),BRASS,Enum.Material.Metal)
+part(parent,"Filet UCKK",Vector3.new(w-0.8,0.09,0.14),
+CFrame.new(origin+Vector3.new(x,y-0.22,z)),ACCENT,Enum.Material.Metal)
+return 2
+end
+local function emblem(parent:Instance,origin:Vector3,x:number,z:number):number
+local backing=part(parent,"Médaillon académique",Vector3.new(4.6,4.6,0.18),
+CFrame.new(origin+Vector3.new(x,9,z))*CFrame.Angles(0,0,math.rad(45)),
+TEAL,Enum.Material.Metal)
+backing:SetAttribute("KinArtRole","KC32_CORPS")
+local jewel=part(parent,"Accent universitaire",Vector3.new(2.3,2.3,0.21),
+CFrame.new(origin+Vector3.new(x,9,z+0.13))*CFrame.Angles(0,0,math.rad(45)),
+ACCENT,Enum.Material.Metal)
+jewel:SetAttribute("KinArtRole","KC32_ACCENT")
+return 2
+end
+local function makeGroup(parent:Instance,name:string):Folder
+local group=Instance.new("Folder")
+group.Name=name
+group.Parent=parent
+return group
+end
+function CampusDecor.build(interior:Instance,origin:Vector3,profile:string):{created:number,skipped:number,revision:string}
+assert(interior:IsA("Model"),"B04: the target must be a Model")
+assert(interior:GetAttribute("KinPlaceKey")=="campus", "B04: incorrect place_key; refusing to draw")
+assert(typeof(origin)=="Vector3","B04: interior origin must be Vector3")
+assert(profile=="LITE" or profile=="STANDARD" or profile=="SHOWCASE", "B04: unknown visual profile")
+local already=interior:FindFirstChild(ROOT_NAME)
+if already then
+assert(already:GetAttribute("KinB04Revision")==REVISION,
+"B04: conflicting campus overlay revision, requires an explicit migration")
+return {created=0,skipped=1,revision=REVISION}
+end
+local root=makeGroup(interior,ROOT_NAME)
+root:SetAttribute("KinB04Revision",REVISION)
+root:SetAttribute("KinPlaceKey","campus")
+root:SetAttribute("KinProfile",profile)
+root:SetAttribute("KinDecorationOnly",true)
+local created=0
+local hall=makeGroup(root,"01 · Hall — orientation")
+created+=panel(hall,origin,-31,-44.15,"UCKK · Campus","Découvrir · Apprendre · Collaborer")
+created+=panel(hall,origin,31,-44.15,"Bienvenue","Six espaces pour explorer les savoirs")
+created+=molding(hall,origin,-31,12.85,-44.10,22)
+created+=molding(hall,origin,31,12.85,-44.10,22)
+if profile~="LITE" then
+created+=emblem(hall,origin,-46,-44.1)
+created+=emblem(hall,origin,46,-44.1)
+end
+local classroom=makeGroup(root,"02 · Salle de cours")
+created+=panel(classroom,origin,-39.5,42.10,"Salle de cours","Leçons, idées et méthodes à découvrir")
+if profile~="LITE" then
+created+=molding(classroom,origin,-27,14.5,42.05,31)
+end
+local lab=makeGroup(root,"03 · Laboratoire pédagogique")
+created+=panel(lab,origin,27,42.10,"Laboratoire","Questionner, expérimenter, comprendre")
+if profile~="LITE" then
+created+=molding(lab,origin,27,14.5,42.05,31)
+end
+local west=makeGroup(root,"04 · Laboratoire pédagogique, aile ouest")
+created+=panel(west,origin,-79,31.10,"Aile ouest","Ateliers et méthodes scientifiques")
+if profile=="SHOWCASE" then
+created+=molding(west,origin,-79,14.45,31.05,33)
+end
+local east=makeGroup(root,"05 · Salle d'exploration, aile est")
+created+=panel(east,origin,79,31.10,"Exploration","Chercher, observer, construire des hypothèses")
+if profile=="SHOWCASE" then
+created+=molding(east,origin,79,14.45,31.05,33)
+end
+local atrium=makeGroup(root,"06 · Atrium universitaire")
+created+=panel(atrium,origin,-28,103.10,"Atrium universitaire","Sciences, curiosité et partage")
+if profile~="LITE" then
+created+=panel(atrium,origin,28,103.10,"La connaissance","Expositions éducatives · activités à venir")
+end
+if profile=="SHOWCASE" then
+created+=molding(atrium,origin,-28,14.3,103.05,24)
+created+=molding(atrium,origin,28,14.3,103.05,24)
+end
+root:SetAttribute("KinB04NativeParts",created)
+return {created=created,skipped=0,revision=REVISION}
+end
+return CampusDecor
+
+]])
+source(server,"B05KorumData",[[
+return {["schema_version"]="kincity.b05-scene/1.0",["branch_id"]="B05",["place_key"]="justice_palace",["building_id"]="ethikos.justice_palace",["baseline_reference"]="KC33 (contrats KC34-DOC-1.0); archive KC33 non disponible dans cette session",["style"]={["name"]="KORUM — La justice accueillante",["sector"]="ethikos",["sector_hex"]="#A97C4F",["base_hex"]="#1E6864",["metal_hex"]="#B78C62",["wall_hex"]="#F0E9DA",["dark_hex"]="#273D3F",["tenets"]={"lisibilité et hospitalité","symétrie non intimidante","accessibilité des parcours","ornementation Art déco retenue","neutralité du dialogue"}},["protected"]={["entry_door_id"]="city.ethikos.justice_palace.entry",["exit_door_id"]="justice_palace.exit",["spawn_anchor_id"]="justice_palace.lobby.spawn",["exit_anchor_id"]="justice_palace.exit.door",["interaction_anchor_id"]="hall.terminal_01",["canonical_portals"]={"justice_palace.portal.lobby.gallery","justice_palace.portal.lobby.chamber"},["extension_portals"]={"justice_palace.gallery_to_west","justice_palace.chamber_to_east","justice_palace.gallery_to_rear","justice_palace.chamber_to_rear"}},["rooms"]={{["room_id"]="justice_palace.lobby",["title"]="Hall civique",["center"]={0,0,-29},["size"]={100,16,34},["theme"]="hospitalité, clarté, orientation",["role"]="welcome"},{["room_id"]="justice_palace.gallery",["title"]="Salle de consultation",["center"]={-27,0,17},["size"]={44,16,52},["theme"]="écoute et accès à l’information",["role"]="consultation"},{["room_id"]="justice_palace.chamber",["title"]="Salle de délibération",["center"]={27,0,17},["size"]={44,16,52},["theme"]="discussion équitable et participation",["role"]="deliberation"},{["room_id"]="justice_palace.west_wing",["title"]="Salle des témoignages",["center"]={-79,0,7},["size"]={52,16,50},["theme"]="confidentialité, calme, respect",["role"]="testimony"},{["room_id"]="justice_palace.east_wing",["title"]="Salle de médiation",["center"]={79,0,7},["size"]={52,16,50},["theme"]="dialogue et rapprochement",["role"]="mediation"},{["room_id"]="justice_palace.rear_atrium",["title"]="Atrium de la justice",["center"]={0,0,76},["size"]={100,16,56},["theme"]="espace commun sans hiérarchie",["role"]="atrium"}},["zones_to_keep_clear"]={{["name"]="exit and spawn central axis",["type"]="rect",["xz"]={-6,-47,6,-11.5},["notes"]="corridor from city return door to gallery/chamber junction"},{["name"]="consultation terminal",["type"]="circle",["xz"]={-27,18},["radius_studs"]=8},{["name"]="portal lobby/gallery",["type"]="circle",["xz"]={-27,-10.5},["radius_studs"]=7},{["name"]="portal lobby/chamber",["type"]="circle",["xz"]={27,-10.5},["radius_studs"]=7},{["name"]="west wing doorway",["type"]="circle",["xz"]={-51,16},["radius_studs"]=7},{["name"]="east wing doorway",["type"]="circle",["xz"]={51,16},["radius_studs"]=7},{["name"]="gallery rear doorway",["type"]="circle",["xz"]={-27,45.5},["radius_studs"]=7},{["name"]="chamber rear doorway",["type"]="circle",["xz"]={27,45.5},["radius_studs"]=7},{["name"]="stairs / mezzanine area",["type"]="rect",["xz"]={-44,47,44,98},["notes"]="floor access reserved; high wall plaques only"}},["features"]={{["id"]="justice_palace.b05.lobby.entry_rose",["room_id"]="justice_palace.lobby",["kind"]="rosette",["position_studs"]={-32,9.4,-44.4},["yaw_degrees"]=0,["width_studs"]=4.0,["min_profile"]="LITE",["asset_candidate"]="AD_Int_Mirror_Sunburst",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.lobby.hospitality_band",["room_id"]="justice_palace.lobby",["kind"]="frieze",["position_studs"]={32,10.0,-44.4},["yaw_degrees"]=0,["width_studs"]=9,["min_profile"]="STANDARD",["asset_candidate"]="AD_Int_Lamp_Wall_Sun",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.lobby.west_pilaster",["room_id"]="justice_palace.lobby",["kind"]="pilaster",["position_studs"]={-48,8.3,-29},["yaw_degrees"]=90,["width_studs"]=6.0,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Column",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.lobby.east_pilaster",["room_id"]="justice_palace.lobby",["kind"]="pilaster",["position_studs"]={48,8.3,-29},["yaw_degrees"]=90,["width_studs"]=6.0,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Column",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.gallery.orientation_rose",["room_id"]="justice_palace.gallery",["kind"]="rosette",["position_studs"]={-45.5,9.0,30},["yaw_degrees"]=90,["width_studs"]=3.6,["min_profile"]="LITE",["asset_candidate"]="AD_Int_Mirror_Sunburst",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.gallery.consultation_band",["room_id"]="justice_palace.gallery",["kind"]="frieze",["position_studs"]={-15,10.0,41.4},["yaw_degrees"]=0,["width_studs"]=9,["min_profile"]="STANDARD",["asset_candidate"]="AD_Int_Floor_Medallion",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.gallery.east_sconce",["room_id"]="justice_palace.gallery",["kind"]="sconce",["position_studs"]={-9.6,9.1,30},["yaw_degrees"]=90,["width_studs"]=3.0,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Lamp_Wall_Sun",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.gallery.west_sconce",["room_id"]="justice_palace.gallery",["kind"]="sconce",["position_studs"]={-45.5,9.1,2},["yaw_degrees"]=90,["width_studs"]=3.0,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Lamp_Wall_Sun",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.chamber.balanced_rose",["room_id"]="justice_palace.chamber",["kind"]="rosette",["position_studs"]={8,9.2,31},["yaw_degrees"]=90,["width_studs"]=3.8,["min_profile"]="LITE",["asset_candidate"]="AD_Int_Mirror_Sunburst",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.chamber.deliberation_band",["room_id"]="justice_palace.chamber",["kind"]="frieze",["position_studs"]={40,10,41.3},["yaw_degrees"]=0,["width_studs"]=8.5,["min_profile"]="STANDARD",["asset_candidate"]="AD_Int_Rug_Deco",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.chamber.north_sconce",["room_id"]="justice_palace.chamber",["kind"]="sconce",["position_studs"]={47,9,8},["yaw_degrees"]=90,["width_studs"]=3,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Lamp_Wall_Sun",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.chamber.south_sconce",["room_id"]="justice_palace.chamber",["kind"]="sconce",["position_studs"]={7,9,8},["yaw_degrees"]=90,["width_studs"]=3,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Lamp_Wall_Sun",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.west_wing.testimony_rose",["room_id"]="justice_palace.west_wing",["kind"]="rosette",["position_studs"]={-101.8,9.0,-5},["yaw_degrees"]=90,["width_studs"]=4,["min_profile"]="LITE",["asset_candidate"]="AD_Int_Mirror_Sunburst",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.west_wing.privacy_band",["room_id"]="justice_palace.west_wing",["kind"]="frieze",["position_studs"]={-82,10,30.5},["yaw_degrees"]=0,["width_studs"]=10,["min_profile"]="STANDARD",["asset_candidate"]="AD_Int_Room_Wall_GlassBlock_Teal",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.west_wing.west_pilaster",["room_id"]="justice_palace.west_wing",["kind"]="pilaster",["position_studs"]={-101.8,8,22},["yaw_degrees"]=90,["width_studs"]=6,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Column",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.west_wing.north_sconce",["room_id"]="justice_palace.west_wing",["kind"]="sconce",["position_studs"]={-58,9.2,29},["yaw_degrees"]=0,["width_studs"]=2.6,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Lamp_Wall_Sun",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.east_wing.mediation_rose",["room_id"]="justice_palace.east_wing",["kind"]="rosette",["position_studs"]={102,9,24},["yaw_degrees"]=90,["width_studs"]=4,["min_profile"]="LITE",["asset_candidate"]="AD_Int_Mirror_Sunburst",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.east_wing.listening_band",["room_id"]="justice_palace.east_wing",["kind"]="frieze",["position_studs"]={75,10,30.5},["yaw_degrees"]=0,["width_studs"]=10,["min_profile"]="STANDARD",["asset_candidate"]="AD_Int_Room_Wall_GlassBlock_Teal",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.east_wing.east_pilaster",["room_id"]="justice_palace.east_wing",["kind"]="pilaster",["position_studs"]={102,8,-5},["yaw_degrees"]=90,["width_studs"]=6,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Column",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.east_wing.north_sconce",["room_id"]="justice_palace.east_wing",["kind"]="sconce",["position_studs"]={56,9.2,29},["yaw_degrees"]=0,["width_studs"]=2.6,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Lamp_Wall_Sun",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.rear_atrium.together_rose",["room_id"]="justice_palace.rear_atrium",["kind"]="rosette",["position_studs"]={-46,9,96},["yaw_degrees"]=90,["width_studs"]=4,["min_profile"]="LITE",["asset_candidate"]="AD_Int_Mirror_Sunburst",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.rear_atrium.unity_band",["room_id"]="justice_palace.rear_atrium",["kind"]="frieze",["position_studs"]={0,10,102.2},["yaw_degrees"]=0,["width_studs"]=14,["min_profile"]="STANDARD",["asset_candidate"]="AD_Int_Floor_Medallion",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.rear_atrium.west_sconce",["room_id"]="justice_palace.rear_atrium",["kind"]="sconce",["position_studs"]={-48,9,69},["yaw_degrees"]=90,["width_studs"]=3,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Lamp_Wall_Sun",["collision_policy"]="no_collision"},{["id"]="justice_palace.b05.rear_atrium.east_sconce",["room_id"]="justice_palace.rear_atrium",["kind"]="sconce",["position_studs"]={48,9,69},["yaw_degrees"]=90,["width_studs"]=3,["min_profile"]="SHOWCASE",["asset_candidate"]="AD_Int_Lamp_Wall_Sun",["collision_policy"]="no_collision"}},["budget"]={["profile_max_features"]={["LITE"]=6,["STANDARD"]=12,["SHOWCASE"]=24},["estimated_native_parts_per_feature"]={["rosette"]=3,["frieze"]=3,["pilaster"]=3,["sconce"]=3},["estimated_native_parts"]={["LITE"]=18,["STANDARD"]=36,["SHOWCASE"]=72},["mesh_imports_in_preview"]=0,["dynamic_point_lights"]=0,["note"]="native decorative Parts only; no asset_mesh cloning in prototype; true GPU/draw/cost unmeasured"},["runtime_state"]="NOT_CONNECTED_TO_WORLD_BUILDER"}
+
+]])
+source(server,"B05KorumPreview",[[
+local Data = require(script.Parent.B05KorumData)
+local Builder = {}
+local GROUP = 'B05_Korum_Decoration'
+local REV = 'b05.korum.0.1.0'
+local ORDER = {LITE=1, STANDARD=2, SHOWCASE=3}
+local COLORS = {
+bronze=Color3.fromRGB(169,124,79),
+brass=Color3.fromRGB(183,140,98),
+teal=Color3.fromRGB(30,104,100),
+opal=Color3.fromRGB(240,233,218),
+shadow=Color3.fromRGB(39,61,63),
+}
+local function rectangle(folder: Instance, name: string, frame: CFrame, size: Vector3, color: Color3, material: Enum.Material)
+local part=Instance.new('Part')
+part.Name=name
+part.Size=size
+part.CFrame=frame
+part.Anchored=true
+part.CanCollide=false
+part.CanTouch=false
+part.CanQuery=false
+part.CastShadow=false
+part.Material=material
+part.Color=color
+part.TopSurface=Enum.SurfaceType.Smooth
+part.BottomSurface=Enum.SurfaceType.Smooth
+part.Parent=folder
+return part
+end
+local function createFeature(root: Instance, origin: Vector3, feature: any)
+local p=feature.position_studs
+local frame=CFrame.new(origin+Vector3.new(p[1],p[2],p[3]))*CFrame.Angles(0,math.rad(feature.yaw_degrees),0)
+local m=Instance.new('Model')
+m.Name=feature.id
+m:SetAttribute('KinBranch','B05')
+m:SetAttribute('KinRoomId',feature.room_id)
+m:SetAttribute('KinFeatureKind',feature.kind)
+m:SetAttribute('KinNoGameplayCollision',true)
+m.Parent=root
+local kind=feature.kind
+local width=feature.width_studs
+if kind=='frieze' then
+rectangle(m,'Corniche supérieure',frame*CFrame.new(0,.52,0),Vector3.new(width,.13,.18),COLORS.bronze,Enum.Material.Metal)
+rectangle(m,'Frise de fond',frame,Vector3.new(width-.25,.63,.12),COLORS.shadow,Enum.Material.SmoothPlastic)
+rectangle(m,'Fil sarcelle',frame*CFrame.new(0,-.40,-.12),Vector3.new(width-.6,.12,.10),COLORS.teal,Enum.Material.Metal)
+elseif kind=='rosette' then
+rectangle(m,'Diamant bronze',frame*CFrame.Angles(0,0,math.rad(45)),Vector3.new(width*.67,width*.67,.20),COLORS.bronze,Enum.Material.Metal)
+rectangle(m,'Diamant intérieur',frame*CFrame.new(0,0,-.13)*CFrame.Angles(0,0,math.rad(45)),Vector3.new(width*.45,width*.45,.08),COLORS.opal,Enum.Material.SmoothPlastic)
+rectangle(m,'Centre',frame*CFrame.new(0,0,-.20),Vector3.new(width*.24,width*.24,.08),COLORS.teal,Enum.Material.Metal)
+elseif kind=='pilaster' then
+rectangle(m,'Montant',frame,Vector3.new(.42,width,.24),COLORS.shadow,Enum.Material.Metal)
+rectangle(m,'Couronnement',frame*CFrame.new(0,width/2-.13,0),Vector3.new(1.45,.28,.42),COLORS.bronze,Enum.Material.Metal)
+rectangle(m,'Base',frame*CFrame.new(0,-width/2+.13,0),Vector3.new(1.18,.26,.42),COLORS.brass,Enum.Material.Metal)
+elseif kind=='sconce' then
+rectangle(m,'Dosseret',frame,Vector3.new(width*.65,1.35,.22),COLORS.shadow,Enum.Material.Metal)
+rectangle(m,'Éclat opalin',frame*CFrame.new(0,.22,-.17),Vector3.new(width*.44,.75,.17),COLORS.opal,Enum.Material.SmoothPlastic)
+rectangle(m,'Bord bronze',frame*CFrame.new(0,-.48,-.20),Vector3.new(width*.50,.15,.2),COLORS.bronze,Enum.Material.Metal)
+else
+m:Destroy()
+error('B05 type de feature inconnu: '..tostring(kind))
+end
+return m
+end
+function Builder.build(ctx: any): any
+assert(type(ctx)=='table','B05 attend un contexte explicite')
+assert(ctx.place_key=='justice_palace','B05 refuse de décorer une autre Place')
+assert(typeof(ctx.parent)=='Instance','B05 parent Instance exigé')
+assert(typeof(ctx.origin)=='Vector3','B05 origine Vector3 exigée')
+assert(type(ctx.profile)=='string' and ORDER[ctx.profile], 'B05 profil invalide')
+local prev=ctx.parent:FindFirstChild(GROUP)
+if prev then
+if prev:GetAttribute('KinB05Revision')==REV and prev:GetAttribute('KinB05Profile')==ctx.profile then
+return {created=0,skipped='already_built',reused=true,parts=0,revision=REV}
+end
+assert(ctx.replace_decoration==true,'B05 variante différente : suppression interdite sans approbation')
+assert(prev:GetAttribute('KinBranch')=='B05','B05 n’efface jamais les objets d’une autre branche')
+prev:Destroy()
+end
+local root=Instance.new('Folder')
+root.Name=GROUP
+root:SetAttribute('KinBranch','B05')
+root:SetAttribute('KinB05Revision',REV)
+root:SetAttribute('KinB05Profile',ctx.profile)
+root:SetAttribute('KinPlaceKey','justice_palace')
+local created=0
+for _,feature in ipairs(Data.features) do
+if ORDER[ctx.profile]>=ORDER[feature.min_profile] then
+createFeature(root,ctx.origin,feature)
+created+=1
+end
+end
+root.Parent=ctx.parent
+return {created=created,parts=created*3,imported_meshes=0,lights=0,revision=REV}
+end
+return Builder
+
+]])
+source(server,"B06KonstructScene",[[
+local Konstruct={}
+local PLACE_KEY="innovation_lab"
+local ACCENT=Color3.fromRGB(208,191,134)
+local TEAL=Color3.fromRGB(30,104,100)
+local BRONZE=Color3.fromRGB(167,126,71)
+local DARK=Color3.fromRGB(30,38,45)
+local TIERS={LITE=1,STANDARD=2,SHOWCASE=3}
+local ROOM_LABELS={["innovation_lab.chamber"]="Salle de démonstration",["innovation_lab.east_wing"]="Galerie des inventions",["innovation_lab.gallery"]="Atelier de fabrication",["innovation_lab.lobby"]="Accueil projets",["innovation_lab.rear_atrium"]="Hall de l'innovation",["innovation_lab.west_wing"]="Atelier de prototypage"}
+local PART_CAPS={["LITE"]=24,["SHOWCASE"]=66,["STANDARD"]=42}
+local DETAILS={{["id"]="innovation_lab.decor.lobby_01",["position_studs"]={-44,10,-29},["room_id"]="innovation_lab.lobby",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=7},{["id"]="innovation_lab.decor.lobby_02",["position_studs"]={44,10,-29},["room_id"]="innovation_lab.lobby",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=7},{["id"]="innovation_lab.decor.lobby_03",["position_studs"]={0,13,-18},["room_id"]="innovation_lab.lobby",["style"]="hanging_cartouche",["tier"]="STANDARD",["width_studs"]=10},{["id"]="innovation_lab.decor.gallery_01",["position_studs"]={-43,10,4},["room_id"]="innovation_lab.gallery",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=7},{["id"]="innovation_lab.decor.gallery_02",["position_studs"]={-11,10,30},["room_id"]="innovation_lab.gallery",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=7},{["id"]="innovation_lab.decor.gallery_03",["position_studs"]={-27,13,30},["room_id"]="innovation_lab.gallery",["style"]="hanging_cartouche",["tier"]="SHOWCASE",["width_studs"]=9},{["id"]="innovation_lab.decor.chamber_01",["position_studs"]={11,10,4},["room_id"]="innovation_lab.chamber",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=7},{["id"]="innovation_lab.decor.chamber_02",["position_studs"]={43,10,30},["room_id"]="innovation_lab.chamber",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=7},{["id"]="innovation_lab.decor.chamber_03",["position_studs"]={27,13,30},["room_id"]="innovation_lab.chamber",["style"]="hanging_cartouche",["tier"]="STANDARD",["width_studs"]=9},{["id"]="innovation_lab.decor.west_01",["position_studs"]={-97,10,-5},["room_id"]="innovation_lab.west_wing",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=8},{["id"]="innovation_lab.decor.west_02",["position_studs"]={-61,10,24},["room_id"]="innovation_lab.west_wing",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=8},{["id"]="innovation_lab.decor.west_03",["position_studs"]={-79,13,-2},["room_id"]="innovation_lab.west_wing",["style"]="hanging_cartouche",["tier"]="SHOWCASE",["width_studs"]=9},{["id"]="innovation_lab.decor.east_01",["position_studs"]={61,10,-5},["room_id"]="innovation_lab.east_wing",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=8},{["id"]="innovation_lab.decor.east_02",["position_studs"]={97,10,24},["room_id"]="innovation_lab.east_wing",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=8},{["id"]="innovation_lab.decor.east_03",["position_studs"]={79,13,-2},["room_id"]="innovation_lab.east_wing",["style"]="hanging_cartouche",["tier"]="SHOWCASE",["width_studs"]=9},{["id"]="innovation_lab.decor.rear_01",["position_studs"]={-44,10,77},["room_id"]="innovation_lab.rear_atrium",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=10},{["id"]="innovation_lab.decor.rear_02",["position_studs"]={44,10,77},["room_id"]="innovation_lab.rear_atrium",["style"]="wall_ribbon",["tier"]="LITE",["width_studs"]=10},{["id"]="innovation_lab.decor.rear_03",["position_studs"]={0,13,94},["room_id"]="innovation_lab.rear_atrium",["style"]="hanging_cartouche",["tier"]="STANDARD",["width_studs"]=10},{["id"]="innovation_lab.decor.lobby_emblem",["position_studs"]={-23,11,-35},["room_id"]="innovation_lab.lobby",["style"]="diamond_star",["tier"]="SHOWCASE",["width_studs"]=3},{["id"]="innovation_lab.decor.gallery_emblem",["position_studs"]={-42,11,35},["room_id"]="innovation_lab.gallery",["style"]="diamond_star",["tier"]="SHOWCASE",["width_studs"]=3},{["id"]="innovation_lab.decor.chamber_emblem",["position_studs"]={42,11,35},["room_id"]="innovation_lab.chamber",["style"]="diamond_star",["tier"]="SHOWCASE",["width_studs"]=3},{["id"]="innovation_lab.decor.west_wing_emblem",["position_studs"]={-96,11,20},["room_id"]="innovation_lab.west_wing",["style"]="diamond_star",["tier"]="SHOWCASE",["width_studs"]=3},{["id"]="innovation_lab.decor.east_wing_emblem",["position_studs"]={96,11,20},["room_id"]="innovation_lab.east_wing",["style"]="diamond_star",["tier"]="SHOWCASE",["width_studs"]=3},{["id"]="innovation_lab.decor.rear_atrium_emblem",["position_studs"]={0,11,97},["room_id"]="innovation_lab.rear_atrium",["style"]="diamond_star",["tier"]="SHOWCASE",["width_studs"]=3}}
+local function visualPart(owner,name,size,frame,color,material)
+local obj=Instance.new("Part")
+obj.Name=name
+obj.Size=size
+obj.CFrame=frame
+obj.Color=color
+obj.Material=material or Enum.Material.SmoothPlastic
+obj.Anchored=true
+obj.CanCollide=false
+obj.CanTouch=false
+obj.CanQuery=false
+obj.CastShadow=false
+obj:SetAttribute("KinOptionalDetail",true)
+obj:SetAttribute("KinPlaceKey",PLACE_KEY)
+obj.Parent=owner
+return obj
+end
+local function signage(panel,title)
+local gui=Instance.new("SurfaceGui")
+gui.Name="Konstruct_Signalétique"
+gui.Face=Enum.NormalId.Front
+gui.PixelsPerStud=32
+gui.AlwaysOnTop=false
+gui.LightInfluence=0.2
+local line=Instance.new("TextLabel")
+line.Size=UDim2.fromScale(1,1)
+line.BackgroundTransparency=1
+line.Text=title
+line.TextColor3=ACCENT
+line.TextScaled=true
+line.TextWrapped=true
+line.Font=Enum.Font.GothamBold
+line.Parent=gui
+gui.Parent=panel
+end
+function Konstruct.plan(profile: string)
+assert(TIERS[profile]~=nil,"Profil visuel B06 inconnu")
+local chosen={}
+for _,detail in ipairs(DETAILS) do
+if TIERS[detail.tier]<=TIERS[profile] then
+table.insert(chosen,detail)
+end
+end
+return chosen
+end
+function Konstruct.build(context: any)
+assert(context~=nil and context.parent~=nil,"B06: parent requis")
+assert(context.placeKey==PLACE_KEY,"B06: autre Place interdite")
+local profile=context.profile or "LITE"
+assert(TIERS[profile]~=nil,"B06: profil inconnu")
+local origin=context.origin or Vector3.zero
+local desired=Konstruct.plan(profile)
+local existing=context.parent:FindFirstChild("KinB06_Konstruct_Overlay")
+if existing then
+assert(existing:GetAttribute("KinB06Revision")=="B06-0.1.0" and existing:GetAttribute("KinB06Profile")==profile,
+"B06: overlay existant incompatible; rollback manuel requis")
+return {created=0,reused=true,decorations=#desired,profile=profile}
+end
+local model=Instance.new("Model")
+model.Name="KinB06_Konstruct_Overlay"
+model:SetAttribute("KinPlaceKey",PLACE_KEY)
+model:SetAttribute("KinB06Revision","B06-0.1.0")
+model:SetAttribute("KinB06Profile",profile)
+local created=0
+for _,detail in ipairs(desired) do
+local v=detail.position_studs
+local pos=origin+Vector3.new(v[1],v[2],v[3])
+local frame=CFrame.new(pos)
+local width=detail.width_studs
+if detail.style=="wall_ribbon" then
+visualPart(model,detail.id.."_filet",Vector3.new(width,0.55,0.14),frame,ACCENT,Enum.Material.Metal)
+visualPart(model,detail.id.."_coeur",Vector3.new(width*0.66,0.14,0.18),frame*CFrame.new(0,-0.54,0),TEAL,Enum.Material.Metal)
+created+=2
+elseif detail.style=="hanging_cartouche" then
+local panel=visualPart(model,detail.id.."_cartouche",Vector3.new(width,2.1,0.18),frame,DARK,Enum.Material.SmoothPlastic)
+signage(panel,ROOM_LABELS[detail.room_id] or "KONSTRUCT")
+visualPart(model,detail.id.."_rail_haut",Vector3.new(width+0.5,0.17,0.2),frame*CFrame.new(0,1.17,0),BRONZE,Enum.Material.Metal)
+visualPart(model,detail.id.."_rail_bas",Vector3.new(width+0.5,0.17,0.2),frame*CFrame.new(0,-1.17,0),BRONZE,Enum.Material.Metal)
+created+=3
+elseif detail.style=="diamond_star" then
+visualPart(model,detail.id.."_losange",Vector3.new(width, width, 0.16),
+frame*CFrame.Angles(0,0,math.rad(45)),DARK,Enum.Material.SmoothPlastic)
+visualPart(model,detail.id.."_rayon_h",Vector3.new(width*1.4,0.16,0.22),frame,ACCENT,Enum.Material.Metal)
+visualPart(model,detail.id.."_rayon_v",Vector3.new(0.16,width*1.4,0.22),frame,TEAL,Enum.Material.Metal)
+created+=3
+else
+error("B06: style inconnu")
+end
+end
+assert(created<=PART_CAPS[profile],"B06: budget de parts dépassé")
+model:SetAttribute("KinB06Parts",created)
+model.Parent=context.parent
+return {created=created,reused=false,decorations=#desired,profile=profile}
+end
+return Konstruct
+
+]])
+source(server,"B07MuseumData",[[
+local Data={
+metadata={
+branch_id="B07",
+place_key="museum",
+revision="1.0.0",
+accent_rgb={203,128,157},
+entry_policy="BARRED_EXTERIOR_PROMPT",
+broadcast_screen_policy="YOUTUBE_BROADCAST_NEARBY_VISIBLE",
+},
+rooms={
+{room_id="museum.lobby", display_name="Accueil expositions", center={0,0,-29}, size={100,16,34}, role="orientation"},
+{room_id="museum.gallery", display_name="Galerie permanente", center={-27,0,17}, size={44,16,52}, role="heritage"},
+{room_id="museum.chamber", display_name="Galerie temporaire", center={27,0,17}, size={44,16,52}, role="temporary"},
+{room_id="museum.west_wing", display_name="Archives du patrimoine", center={-79,0,7}, size={52,16,50}, role="archives"},
+{room_id="museum.east_wing", display_name="Galerie des créations", center={79,0,7}, size={52,16,50}, role="creation"},
+{room_id="museum.rear_atrium", display_name="Atrium artistique", center={0,0,76}, size={100,16,56}, role="atrium"},
+},
+exterior={
+target_door_id="city.kreative.museum.entry",
+target_anchor_id="city.kreative.museum.front_door",
+return_spawn_anchor_id="city.kreative.museum.return_spawn",
+screen_offset_studs={-14,0,10},
+sign_offset_studs={-7,0,5},
+message_heading="BROADCAST YOUTUBE",
+message_body="PORTE BARRÉE — DIFFUSION À PROXIMITÉ",
+},
+profiles={LITE=16, STANDARD=26, SHOWCASE=36},
+}
+return Data
+
+]])
+source(server,"B07MuseumScene",[[
+local Data=require(script.Parent:WaitForChild("B07MuseumData"))
+local MuseumScene={}
+local function makePart(parent: Instance, name: string, size: Vector3, cf: CFrame, color: Color3, material: Enum.Material, collide: boolean): BasePart
+local part=Instance.new("Part")
+part.Name=name
+part.Size=size
+part.CFrame=cf
+part.Color=color
+part.Material=material
+part.Anchored=true
+part.CanCollide=collide
+part.CanTouch=collide
+part.CanQuery=collide
+part.Parent=parent
+return part
+end
+local function buildPedestal(parent: Instance, origin: Vector3, item: any, accent: Color3)
+local folder=Instance.new("Folder")
+folder.Name=item.room_id
+folder.Parent=parent
+local pos=origin+Vector3.new(item.center[1],0,item.center[3])
+makePart(folder,"Socle",Vector3.new(4,1,4),CFrame.new(pos+Vector3.new(0,0.5,0)),accent,Enum.Material.SmoothPlastic,false)
+makePart(folder,"Cadre",Vector3.new(3,6,0.35),CFrame.new(pos+Vector3.new(0,3.5,-2.2)),Color3.fromRGB(43,27,36),Enum.Material.Metal,false)
+return folder
+end
+function MuseumScene.plan(profile: string?): any
+local name=(profile or "STANDARD"):upper()
+local budget=Data.profiles[name] or Data.profiles.STANDARD
+return {metadata=Data.metadata, rooms=Data.rooms, exterior=Data.exterior, decorative_budget=budget}
+end
+function MuseumScene.build(context: any): any
+local parent=(context and (context.parent or context.placeModel or context.interiorModel)) or workspace
+local origin=(context and context.origin) or Vector3.zero
+local profile=(context and context.profile) or "STANDARD"
+local accent=Color3.fromRGB(table.unpack(Data.metadata.accent_rgb))
+local existing=parent:FindFirstChild("KinB07MuseumScene")
+if existing then
+assert(existing:GetAttribute("KinB07Revision")==Data.metadata.revision,
+"B07: décoration existante d'une version différente")
+assert(existing:GetAttribute("KinB07Profile")==profile,"B07: profil modifié, reconstruction explicite requise")
+return {created=0,reused=true,model=existing}
+end
+local root=Instance.new("Folder")
+root.Name="KinB07MuseumScene"
+root:SetAttribute("KinB07Revision",Data.metadata.revision)
+root:SetAttribute("KinB07Profile",profile)
+root:SetAttribute("KinBranch","B07")
+root.Parent=parent
+local created=0
+for _,room in ipairs(Data.rooms) do
+buildPedestal(root,origin,room,accent)
+created+=2
+end
+return {
+created=created,
+skipped=0,
+failed=0,
+estimated_parts=created,
+estimated_triangles=created*12,
+warnings={"B07 garde la porte extérieure barrée ; écran de broadcast YouTube placé par intégration B09."},
+plan=MuseumScene.plan(profile),
+model=root,
+}
+end
+return MuseumScene
+
+]])
+source(server,"B08OrgoData",[[
+return {
+["contracts_version"] = "KC34-DOC-1.0",
+["decorations"] = {
+{
+["id"] = "orgo_center.b08.lobby.title",
+["kind"] = "sign",
+["position"] = {
+0,
+11,
+-12.8,
+},
+["profile"] = "LITE",
+["room"] = "orgo_center.lobby",
+["text"] = "MAISON ORGO",
+},
+{
+["id"] = "orgo_center.b08.lobby.welcome",
+["kind"] = "subtitle",
+["position"] = {
+0,
+7.5,
+-12.8,
+},
+["profile"] = "LITE",
+["room"] = "orgo_center.lobby",
+["text"] = "ACCUEIL  ·  INFORMATION",
+},
+{
+["id"] = "orgo_center.b08.lobby.crest",
+["kind"] = "medallion",
+["position"] = {
+36,
+0.1,
+-27,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.lobby",
+},
+{
+["id"] = "orgo_center.b08.lobby.relief",
+["kind"] = "pilaster",
+["position"] = {
+-44,
+8,
+-27,
+},
+["profile"] = "SHOWCASE",
+["room"] = "orgo_center.lobby",
+},
+{
+["id"] = "orgo_center.b08.gallery.title",
+["kind"] = "sign",
+["position"] = {
+-41,
+11,
+42.5,
+},
+["profile"] = "LITE",
+["room"] = "orgo_center.gallery",
+["text"] = "ESPACE DOSSIERS",
+},
+{
+["id"] = "orgo_center.b08.gallery.note",
+["kind"] = "subtitle",
+["position"] = {
+-41,
+7.5,
+42.5,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.gallery",
+["text"] = "PARCOURS DOCUMENTAIRE",
+},
+{
+["id"] = "orgo_center.b08.gallery.crest",
+["kind"] = "medallion",
+["position"] = {
+-41,
+0.1,
+0,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.gallery",
+},
+{
+["id"] = "orgo_center.b08.gallery.pilaster",
+["kind"] = "pilaster",
+["position"] = {
+-47,
+8,
+3,
+},
+["profile"] = "SHOWCASE",
+["room"] = "orgo_center.gallery",
+},
+{
+["id"] = "orgo_center.b08.chamber.title",
+["kind"] = "sign",
+["position"] = {
+40,
+11,
+42.5,
+},
+["profile"] = "LITE",
+["room"] = "orgo_center.chamber",
+["text"] = "SALLE DES OPÉRATIONS",
+},
+{
+["id"] = "orgo_center.b08.chamber.note",
+["kind"] = "subtitle",
+["position"] = {
+40,
+7.5,
+42.5,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.chamber",
+["text"] = "COORDINATION  ·  DÉMONSTRATION",
+},
+{
+["id"] = "orgo_center.b08.chamber.crest",
+["kind"] = "medallion",
+["position"] = {
+41,
+0.1,
+0,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.chamber",
+},
+{
+["id"] = "orgo_center.b08.chamber.pilaster",
+["kind"] = "pilaster",
+["position"] = {
+47,
+8,
+3,
+},
+["profile"] = "SHOWCASE",
+["room"] = "orgo_center.chamber",
+},
+{
+["id"] = "orgo_center.b08.west.title",
+["kind"] = "sign",
+["position"] = {
+-79,
+11,
+30.5,
+},
+["profile"] = "LITE",
+["room"] = "orgo_center.west_wing",
+["text"] = "PLANIFICATION",
+},
+{
+["id"] = "orgo_center.b08.west.note",
+["kind"] = "subtitle",
+["position"] = {
+-79,
+7.5,
+30.5,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.west_wing",
+["text"] = "FLUX  ·  PROJETS",
+},
+{
+["id"] = "orgo_center.b08.west.crest",
+["kind"] = "medallion",
+["position"] = {
+-91,
+0.1,
+-3,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.west_wing",
+},
+{
+["id"] = "orgo_center.b08.west.pilaster",
+["kind"] = "pilaster",
+["position"] = {
+-101,
+8,
+-3,
+},
+["profile"] = "SHOWCASE",
+["room"] = "orgo_center.west_wing",
+},
+{
+["id"] = "orgo_center.b08.east.title",
+["kind"] = "sign",
+["position"] = {
+79,
+11,
+30.5,
+},
+["profile"] = "LITE",
+["room"] = "orgo_center.east_wing",
+["text"] = "BUREAU COMMUNAUTAIRE",
+},
+{
+["id"] = "orgo_center.b08.east.note",
+["kind"] = "subtitle",
+["position"] = {
+79,
+7.5,
+30.5,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.east_wing",
+["text"] = "ACCUEIL  ·  LIENS",
+},
+{
+["id"] = "orgo_center.b08.east.crest",
+["kind"] = "medallion",
+["position"] = {
+91,
+0.1,
+-3,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.east_wing",
+},
+{
+["id"] = "orgo_center.b08.east.pilaster",
+["kind"] = "pilaster",
+["position"] = {
+101,
+8,
+-3,
+},
+["profile"] = "SHOWCASE",
+["room"] = "orgo_center.east_wing",
+},
+{
+["id"] = "orgo_center.b08.rear.title",
+["kind"] = "sign",
+["position"] = {
+0,
+11,
+102.5,
+},
+["profile"] = "LITE",
+["room"] = "orgo_center.rear_atrium",
+["text"] = "ATRIUM DES SERVICES",
+},
+{
+["id"] = "orgo_center.b08.rear.note",
+["kind"] = "subtitle",
+["position"] = {
+0,
+7.5,
+102.5,
+},
+["profile"] = "LITE",
+["room"] = "orgo_center.rear_atrium",
+["text"] = "SE REPÉRER  ·  S’INFORMER",
+},
+{
+["id"] = "orgo_center.b08.rear.crest",
+["kind"] = "medallion",
+["position"] = {
+0,
+0.1,
+56,
+},
+["profile"] = "STANDARD",
+["room"] = "orgo_center.rear_atrium",
+},
+{
+["id"] = "orgo_center.b08.rear.pilaster",
+["kind"] = "pilaster",
+["position"] = {
+-45,
+8,
+92,
+},
+["profile"] = "SHOWCASE",
+["room"] = "orgo_center.rear_atrium",
+},
+},
+["owner_branch"] = "B08",
+["palette"] = {
+["bronze"] = "#BD945A",
+["ink"] = "#263F4C",
+["opal"] = "#E7EEE9",
+["stone"] = "#DCD2BF",
+["teal"] = "#1E6864",
+},
+["place_key"] = "orgo_center",
+["protected_anchors"] = {
+{
+["center"] = {
+0,
+-32,
+},
+["id"] = "orgo_center.lobby.spawn",
+["radius"] = 7,
+},
+{
+["center"] = {
+0,
+-45,
+},
+["id"] = "orgo_center.exit.door",
+["radius"] = 7,
+},
+{
+["center"] = {
+-27,
+18,
+},
+["id"] = "hall.terminal_01",
+["radius"] = 7,
+},
+},
+["protected_connectors"] = {
+{
+["center"] = {
+-27,
+-10.5,
+},
+["id"] = "orgo_center.portal.lobby.gallery",
+["radius"] = 6,
+},
+{
+["center"] = {
+27,
+-10.5,
+},
+["id"] = "orgo_center.portal.lobby.chamber",
+["radius"] = 6,
+},
+{
+["center"] = {
+-51,
+16,
+},
+["id"] = "orgo_center.gallery_to_west",
+["radius"] = 6,
+},
+{
+["center"] = {
+51,
+16,
+},
+["id"] = "orgo_center.chamber_to_east",
+["radius"] = 6,
+},
+{
+["center"] = {
+-27,
+45.5,
+},
+["id"] = "orgo_center.gallery_to_rear",
+["radius"] = 6,
+},
+{
+["center"] = {
+27,
+45.5,
+},
+["id"] = "orgo_center.chamber_to_rear",
+["radius"] = 6,
+},
+},
+["quality_profiles"] = {
+["LITE"] = 0,
+["SHOWCASE"] = 2,
+["STANDARD"] = 1,
+},
+["rebase_evidence"] = {
+["anchor_count"] = 3,
+["canonical_rooms"] = 3,
+["code_contract_version"] = "KC34-DOC-1.0",
+["doors"] = {
+"city.orgo.admin_center.entry",
+"orgo_center.exit",
+},
+["extension_rooms"] = 3,
+["place_key"] = "orgo_center",
+},
+["rooms"] = {
+{
+["center"] = {
+0,
+-29,
+},
+["id"] = "orgo_center.lobby",
+["label"] = "Accueil administratif",
+["program"] = "Accueil et orientation, aucun service externe connecté",
+["size"] = {
+100,
+34,
+},
+},
+{
+["center"] = {
+-27,
+17,
+},
+["id"] = "orgo_center.gallery",
+["label"] = "Espace dossiers",
+["program"] = "Documentation, navigation et terminal canonique non modifié",
+["size"] = {
+44,
+52,
+},
+},
+{
+["center"] = {
+27,
+17,
+},
+["id"] = "orgo_center.chamber",
+["label"] = "Salle des opérations",
+["program"] = "Coordination et scénarios de démonstration sans données réelles",
+["size"] = {
+44,
+52,
+},
+},
+{
+["center"] = {
+-79,
+7,
+},
+["id"] = "orgo_center.west_wing",
+["label"] = "Salle des opérations",
+["program"] = "Tableaux de flux et ateliers de planification non opérationnels",
+["size"] = {
+52,
+50,
+},
+},
+{
+["center"] = {
+79,
+7,
+},
+["id"] = "orgo_center.east_wing",
+["label"] = "Bureau communautaire",
+["program"] = "Information associative, pas de gestion de comptes réelle",
+["size"] = {
+52,
+50,
+},
+},
+{
+["center"] = {
+0,
+76,
+},
+["id"] = "orgo_center.rear_atrium",
+["label"] = "Atrium des services",
+["program"] = "Espace commun de découverte des services et circulation",
+["size"] = {
+100,
+56,
+},
+},
+},
+["schema_version"] = "kincity.b08-visual-scene/1.0",
+["source_baseline"] = "KC33",
+}
+
+]])
+source(server,"B08OrgoScene",[[
+local Data=require(script.Parent:WaitForChild("B08OrgoData"))
+local Orgo={}
+local LEVEL={LITE=1,STANDARD=2,SHOWCASE=3}
+local INK=Color3.fromRGB(38,63,76)
+local BRONZE=Color3.fromRGB(189,148,90)
+local TEAL=Color3.fromRGB(30,104,100)
+local OPAL=Color3.fromRGB(231,238,233)
+local ROOT_NAME="B08_OrgoDecor_KC33"
+local function part(parent:Instance,name:string,pos:Vector3,size:Vector3,color:Color3,material:Enum.Material):BasePart
+local p=Instance.new("Part")
+p.Name=name;p.Size=size;p.CFrame=CFrame.new(pos);p.Color=color;p.Material=material
+p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false;p.Parent=parent
+return p
+end
+local function makeNode(root:Instance,item:any,origin:Vector3)
+local p=item.position
+local pos=origin+Vector3.new(p[1],p[2],p[3])
+local kind=item.kind
+local node=Instance.new("Folder");node.Name=item.id;node.Parent=root
+if kind=="sign" or kind=="subtitle" then
+local subtitle=kind=="subtitle"
+local width=if subtitle then 12 else 15
+local height=if subtitle then 1.35 else 2.9
+local face=part(node,"Cartouche",pos,Vector3.new(width,height,0.18),INK,Enum.Material.SmoothPlastic)
+part(node,"Rail supérieur",pos+Vector3.new(0,height/2+0.13,0),Vector3.new(width+0.4,0.13,0.2),BRONZE,Enum.Material.Metal)
+local gui=Instance.new("SurfaceGui");gui.Name="Titre";gui.Face=Enum.NormalId.Front
+gui.SizingMode=Enum.SurfaceGuiSizingMode.PixelsPerStud;gui.PixelsPerStud=32;gui.Parent=face
+local text=Instance.new("TextLabel");text.Size=UDim2.fromScale(1,1);text.BackgroundTransparency=1
+text.Text=item.text or "MAISON ORGO";text.TextColor3=if subtitle then OPAL else BRONZE
+text.Font=Enum.Font.GothamBold;text.TextScaled=true;text.TextWrapped=true;text.Parent=gui
+elseif kind=="medallion" then
+part(node,"Motif",pos+Vector3.new(0,0.07,0),Vector3.new(6,0.1,6),TEAL,Enum.Material.Metal)
+part(node,"Centre",pos+Vector3.new(0,0.15,0),Vector3.new(2,0.11,2),OPAL,Enum.Material.Marble)
+elseif kind=="pilaster" then
+part(node,"Pilastre",pos,Vector3.new(0.3,8.6,0.45),BRONZE,Enum.Material.Metal)
+part(node,"Cime",pos+Vector3.new(0,4.1,0),Vector3.new(1.2,0.24,0.5),OPAL,Enum.Material.Metal)
+else
+error("B08: type décoratif non reconnu "..tostring(kind))
+end
+end
+function Orgo.build(context:any):any
+assert(type(context)=="table" and context.place_key=="orgo_center","B08: mauvais place_key")
+local model=context.place_model or context.interiorModel or context.parent
+assert(typeof(model)=="Instance" and model:IsA("Model"),"B08: modèle intérieur absent")
+assert(model:GetAttribute("KinPlaceKey")=="orgo_center","B08: modèle étranger")
+local origin=context.origin
+assert(typeof(origin)=="Vector3","B08: origine absente")
+local profile=context.profile or "STANDARD"
+assert(LEVEL[profile]~=nil,"B08: profil inconnu")
+for _,room in ipairs(Data.rooms) do
+assert(model:FindFirstChild(room.id,true),"B08: salle manquante "..room.id)
+end
+local existing=model:FindFirstChild(ROOT_NAME)
+if existing then
+assert(existing:GetAttribute("KinB08Profile")==profile,"B08: profil différent, reconstruire explicitement")
+return {created=0,reused=true}
+end
+local root=Instance.new("Model");root.Name=ROOT_NAME
+root:SetAttribute("KinBranch","B08");root:SetAttribute("KinB08Profile",profile)
+root:SetAttribute("KinB08Contract","KC34-DOC-1.0")
+local created=0
+local ok,err=pcall(function()
+for _,node in ipairs(Data.decorations) do
+if LEVEL[node.profile]<=LEVEL[profile] then makeNode(root,node,origin);created+=1 end
+end
+end)
+if not ok then root:Destroy();error("B08 : erreur : "..tostring(err)) end
+root:SetAttribute("KinB08Decorations",created);root.Parent=model
+return {created=created,skipped=0,reused=false}
+end
+return Orgo
+
+]])
+source(server,"B10Wayfinding",[[
+local Wayfinding = {}
+local REVISION = "b10-wayfinding-1.0"
+local ROOT_NAME = "KinB10Orientation"
+local TEAL = Color3.fromRGB(30,104,100)
+local STONE = Color3.fromRGB(214,205,180)
+local LIGHT = Color3.fromRGB(247,244,234)
+local DARK = Color3.fromRGB(27,38,43)
+local RADII = {112,242,354}
+local LATERAL = 35
+local function decorative(parent: Instance, name: string, size: Vector3, frame: CFrame, color: Color3, material: Enum.Material): BasePart
+local object = Instance.new("Part")
+object.Name = name
+object.Size = size
+object.CFrame = frame
+object.Anchored = true
+object.CanCollide = false
+object.CanTouch = false
+object.CanQuery = false
+object.CastShadow = false
+object.Color = color
+object.Material = material
+object.Parent = parent
+return object
+end
+local function billboard(host: BasePart, heading: string, caption: string, foreground: Color3, bg: Color3)
+local board = Instance.new("BillboardGui")
+board.Name = "Cartouche Art déco"
+board.Adornee = host
+board.AlwaysOnTop = false
+board.MaxDistance = 115
+board.Size = UDim2.fromOffset(230,84)
+board.StudsOffsetWorldSpace = Vector3.new(0,1.55,0)
+board.Parent = host
+local panel = Instance.new("Frame")
+panel.Name = "Panneau"
+panel.BackgroundColor3 = bg
+panel.BackgroundTransparency = 0.06
+panel.BorderSizePixel = 0
+panel.Size = UDim2.fromScale(1,1)
+panel.Parent = board
+local edge = Instance.new("UIStroke")
+edge.Color = foreground
+edge.Thickness = 2
+edge.Parent = panel
+local title = Instance.new("TextLabel")
+title.Name = "Destination"
+title.BackgroundTransparency = 1
+title.Position = UDim2.fromScale(.05,.08)
+title.Size = UDim2.fromScale(.9,.52)
+title.Font = Enum.Font.GothamBold
+title.TextScaled = true
+title.TextWrapped = true
+title.TextColor3 = foreground
+title.Text = heading
+title.Parent = panel
+local secondary = Instance.new("TextLabel")
+secondary.Name = "Orientation"
+secondary.BackgroundTransparency = 1
+secondary.Position = UDim2.fromScale(.06,.60)
+secondary.Size = UDim2.fromScale(.88,.30)
+secondary.Font = Enum.Font.Gotham
+secondary.TextScaled = true
+secondary.TextWrapped = true
+secondary.TextColor3 = LIGHT
+secondary.Text = caption
+secondary.Parent = panel
+end
+local function nearestSector(position: Vector3, districts: any): any
+if position.Magnitude < .01 then return nil end
+local best: any = nil
+local score = -2
+for _, section in ipairs(districts.sections) do
+local dot = (position.X * section.x + position.Z * section.z)/Vector2.new(position.X, position.Z).Magnitude
+if dot > score then
+best = section
+score = dot
+end
+end
+return best
+end
+local function blockedByStructures(position: Vector3, structures: {any}, clearance: number): boolean
+for _, b in ipairs(structures) do
+local dx = position.X - b.center_studs[1]
+local dz = position.Z - b.center_studs[3]
+local theta = math.rad(b.yaw_degrees)
+local localX = math.cos(theta)*dx - math.sin(theta)*dz
+local localZ = math.sin(theta)*dx + math.cos(theta)*dz
+if math.abs(localX) < b.footprint_studs[1]/2 + clearance and math.abs(localZ) < b.footprint_studs[2]/2 + clearance then
+return true
+end
+end
+return false
+end
+local function clearOfPortals(position: Vector3, anchors: {Vector3}, radius: number): boolean
+for _, anchor in ipairs(anchors) do
+local distance = Vector2.new(position.X-anchor.X, position.Z-anchor.Z).Magnitude
+if distance < radius then return false end
+end
+return true
+end
+local function inCity(radius: number): boolean
+return radius > 75 and radius < 438
+end
+local function levelCount(profile: string): number
+if profile == "LITE" then return 1 end
+if profile == "STANDARD" then return 2 end
+if profile == "SHOWCASE" then return 3 end
+error("Profil B10 inconnu : "..tostring(profile))
+end
+local function getArrivals(plan: any): {any}
+local city
+for _, place in ipairs(plan.places) do
+if place.place_key == "city" then city = place; break end
+end
+assert(city ~= nil, "B10: Place city absente du plan")
+local anchors = {}
+for _, a in ipairs(city.anchors) do anchors[a.anchor_id] = a end
+local arrivals = {}
+local cleared = {}
+for _, d in ipairs(plan.doors) do
+if d.source_place_key == "city" then
+assert(d.destination_place_key ~= "city", "B10: boucle porte ville")
+assert(not cleared[d.door_id], "B10: porte extérieure répétée")
+local door = assert(anchors[d.source_anchor_id], "B10: ancre porte absente "..d.door_id)
+local dest = assert(anchors["city."..d.building_id..".return_spawn"], "B10: retour extérieur absent "..d.door_id)
+cleared[d.door_id] = true
+table.insert(arrivals,{door=d, doorAnchor=Vector3.new(table.unpack(door.position_studs)),
+returnAnchor=Vector3.new(table.unpack(dest.position_studs))})
+end
+end
+assert(#arrivals == 8, "B10: huit portes ville nécessaires; obtenu "..tostring(#arrivals))
+table.sort(arrivals,function(a,b) return a.door.door_id < b.door.door_id end)
+return arrivals
+end
+local function makeMonument(parent: Instance, position: Vector3, sector: any, heading: string, detail: string, index: string, rich: boolean)
+local group = Instance.new("Model")
+group.Name = "Repère "..index
+group:SetAttribute("KinB10Sector",sector.key)
+group:SetAttribute("KinB10DecorationId","city.wayfinding."..index)
+group:SetAttribute("KinB10NonColliding",true)
+group.Parent = parent
+local base = CFrame.new(position.X,0,position.Z)
+decorative(group,"Socle sarcelle",Vector3.new(2.7,.35,2.7),base*CFrame.new(0,.35,0),TEAL,Enum.Material.Metal)
+decorative(group,"Mât ornemental",Vector3.new(.48,6,.48),base*CFrame.new(0,3.5,0),TEAL,Enum.Material.Metal)
+local top = decorative(group,"Accents de secteur",Vector3.new(2.25,.44,2.25),base*CFrame.new(0,6.53,0),sector.color,Enum.Material.Neon)
+billboard(top,heading,detail,sector.key=="ekole" and LIGHT or sector.color,DARK)
+if rich then
+decorative(group,"Corniche Art déco",Vector3.new(1.4,.34,1.4),base*CFrame.new(0,6.15,0),STONE,Enum.Material.Metal)
+end
+return group
+end
+local function makeEntrance(parent: Instance, info: any, sector: any, buildingLabel: string)
+local delta = info.doorAnchor - info.returnAnchor
+local flat = Vector3.new(delta.X,0,delta.Z)
+local axis = if flat.Magnitude > .5 then flat.Unit else Vector3.new(0,0,-1)
+local perpendicular = Vector3.new(-axis.Z,0,axis.X)
+local anchor = info.returnAnchor - axis*3 + perpendicular*9
+if (anchor-info.doorAnchor).Magnitude < 6 then
+anchor = info.returnAnchor - axis*3 - perpendicular*9
+end
+return makeMonument(parent,anchor,sector,buildingLabel,"ENTRÉE  •  RETOUR VILLE",info.door.destination_place_key,false)
+end
+function Wayfinding.build(city: Instance, plan: any, districts: any, profile: string?): (Instance, {[string]:number})
+assert(city and city.Name == "Ville", "B10 : dossier Ville attendu")
+assert(type(plan)=="table" and type(plan.structures)=="table", "B10: plan absent")
+assert(type(districts)=="table" and type(districts.sections)=="table" and #districts.sections==6,
+"B10: six secteurs requis")
+local quality = profile or "STANDARD"
+local levels = levelCount(quality)
+local arrivals = getArrivals(plan) -- Validate all entry contracts BEFORE modifying city.
+local anchorVectors = {}
+for _,info in ipairs(arrivals) do
+table.insert(anchorVectors,info.doorAnchor)
+table.insert(anchorVectors,info.returnAnchor)
+end
+local previous = city:FindFirstChild(ROOT_NAME)
+if previous and previous:GetAttribute("KinB10Revision")==REVISION
+and previous:GetAttribute("KinB10Profile")==quality then
+return previous,{avenue=previous:GetAttribute("KinB10AvenueMarkers") or 0,
+entrances=previous:GetAttribute("KinB10EntranceMarkers") or 0,skipped=previous:GetAttribute("KinB10Skipped") or 0}
+end
+local draft = Instance.new("Folder")
+draft.Name = ROOT_NAME.."_PREPARE"
+draft:SetAttribute("KinB10Revision",REVISION)
+draft:SetAttribute("KinB10Profile",quality)
+local avenueMarkers = 0
+local skipped = 0
+for _,section in ipairs(districts.sections) do
+local axis=Vector3.new(section.x,0,section.z)
+local side=Vector3.new(-section.z,0,section.x)
+for i=1,levels do
+local selected: Vector3? = nil
+for _,polarity in ipairs({1,-1}) do
+local candidate=axis*RADII[i]+side*LATERAL*polarity
+if inCity(candidate.Magnitude)
+and not blockedByStructures(candidate,plan.structures,10)
+and clearOfPortals(candidate,anchorVectors,12) then
+selected=candidate
+break
+end
+end
+if selected then
+makeMonument(draft,selected,section,section.name,"SECTEUR  •  "..tostring(section.hour).." H",
+section.key.."-"..tostring(i),quality=="SHOWCASE")
+avenueMarkers += 1
+else
+skipped += 1
+end
+end
+end
+local placeTitles = {
+city_hall="Accueil civique", ekoh_tower="Tour EkoH", library="Bibliothèque",
+campus="Université King Klown", justice_palace="Palais de justice",
+innovation_lab="Atelier d'innovation", museum="Musée Kreative", orgo_center="Centre Orgo",
+}
+local entranceMarkers = 0
+for _,info in ipairs(arrivals) do
+local k=info.door.destination_place_key
+local sector=nearestSector(info.doorAnchor, districts)
+local chosen=assert(sector,"B10: aucun secteur pour une entrée")
+if string.sub(info.door.building_id,1,8)=="central." or info.door.building_id=="orgo.admin_center" then
+chosen={key="central",color=TEAL}
+end
+if k=="museum" then
+makeMonument(draft,info.returnAnchor,chosen,"MUSÉE — FERMÉ",
+"BROADCAST YOUTUBE À PROXIMITÉ", "museum-ferme", false)
+else
+makeEntrance(draft,info,chosen,placeTitles[k] or k)
+end
+entranceMarkers += 1
+end
+draft:SetAttribute("KinB10AvenueMarkers",avenueMarkers)
+draft:SetAttribute("KinB10EntranceMarkers",entranceMarkers)
+draft:SetAttribute("KinB10Skipped",skipped)
+if previous then previous:Destroy() end
+draft.Name=ROOT_NAME
+draft.Parent=city
+return draft,{avenue=avenueMarkers,entrances=entranceMarkers,skipped=skipped}
+end
+return Wayfinding
+
+]])
+source(server,"B10WayfindingKC36",[[
+local Wayfinding={}
+local REVISION="b10-kc36-physical-signs-1"
+local ROOT_NAME="KinB10Orientation"
+local TEAL=Color3.fromRGB(30,104,100)
+local BRASS=Color3.fromRGB(186,149,94)
+local IVORY=Color3.fromRGB(241,232,202)
+local INK=Color3.fromRGB(19,33,34)
+local function part(parent:Instance,name:string,size:Vector3,frame:CFrame,color:Color3):BasePart
+local p=Instance.new("Part")
+p.Name=name;p.Size=size;p.CFrame=frame;p.Color=color
+p.Material=Enum.Material.Metal;p.Anchored=true;p.CanCollide=false
+p.CanTouch=false;p.CanQuery=false;p.CastShadow=false;p.Parent=parent
+return p
+end
+local function paint(board:BasePart,face:Enum.NormalId,heading:string,detail:string)
+local gui=Instance.new("SurfaceGui")
+gui.Name=if face==Enum.NormalId.Front then "ReadableSign" else "ReadableSignBack"
+gui.Face=face;gui.AlwaysOnTop=false;gui.LightInfluence=0.14
+gui.SizingMode=Enum.SurfaceGuiSizingMode.PixelsPerStud
+gui.PixelsPerStud=36;gui.MaxDistance=85;gui.Parent=board
+local bg=Instance.new("Frame")
+bg.Name="Background";bg.Size=UDim2.fromScale(1,1);bg.BorderSizePixel=0
+bg.BackgroundColor3=INK;bg.Parent=gui
+local trim=Instance.new("UIStroke")
+trim.Thickness=2;trim.Color=BRASS;trim.Parent=bg
+local text=Instance.new("TextLabel")
+text.Name="Text";text.Size=UDim2.new(0.92,0,0.56,0)
+text.Position=UDim2.fromScale(0.04,0.05)
+text.BackgroundTransparency=1;text.Font=Enum.Font.Garamond
+text.TextScaled=true;text.TextWrapped=true
+text.TextColor3=IVORY;text.Text=heading;text.Parent=bg
+local subtitle=Instance.new("TextLabel")
+subtitle.Name="Description";subtitle.Size=UDim2.new(0.92,0,0.25,0)
+subtitle.Position=UDim2.fromScale(0.04,0.69)
+subtitle.BackgroundTransparency=1;subtitle.Font=Enum.Font.Gotham
+subtitle.TextScaled=true;subtitle.TextWrapped=true
+subtitle.TextColor3=BRASS;subtitle.Text=detail;subtitle.Parent=bg
+end
+local function plaque(parent:Instance,position:Vector3,yaw:number,title:string,detail:string,id:string)
+local m=Instance.new("Model")
+m.Name="Repère "..id;m:SetAttribute("KinB10DecorationId","city.wayfinding."..id)
+m:SetAttribute("KinB10StaticPhysical",true)
+m.Parent=parent
+local frame=CFrame.new(position.X,0,position.Z)*CFrame.Angles(0,yaw,0)
+local width=10.8
+for _,side in ipairs({-1,1}) do
+part(m,"Colonne latérale",Vector3.new(.42,4.7,.42),frame*CFrame.new(side*(width/2+.35),2.35,0),TEAL)
+end
+local board=part(m,"Plaque physique",Vector3.new(width,2.5,.22),frame*CFrame.new(0,4.55,0),INK)
+board:SetAttribute("KinSignMount","twin-post")
+paint(board,Enum.NormalId.Front,title,detail)
+paint(board,Enum.NormalId.Back,title,detail)
+return m
+end
+local function nearestSector(position:Vector3,districts:any):any
+local n=Vector2.new(position.X,position.Z)
+if n.Magnitude<0.01 then return districts.sections[1] end
+local best=nil
+local score=-2
+for _,section in ipairs(districts.sections) do
+local dot=(position.X*section.x+position.Z*section.z)/n.Magnitude
+if dot>score then best=section;score=dot end
+end
+return best
+end
+local function arrivals(plan:any):{any}
+local city=nil
+for _,place in ipairs(plan.places) do
+if place.place_key=="city" then city=place;break end
+end
+assert(city,"B10 : Place city absente")
+local anchors={}
+for _,a in ipairs(city.anchors) do anchors[a.anchor_id]=a end
+local result={}
+local seen={}
+for _,door in ipairs(plan.doors) do
+if door.source_place_key=="city" then
+assert(not seen[door.door_id],"B10 : porte répétée "..door.door_id)
+seen[door.door_id]=true
+local a=assert(anchors[door.source_anchor_id],"B10 : ancre absente "..door.door_id)
+local b=assert(anchors["city."..door.building_id..".return_spawn"],"B10 : retour absent "..door.door_id)
+table.insert(result,{door=door,doorAnchor=Vector3.new(table.unpack(a.position_studs)),
+returnAnchor=Vector3.new(table.unpack(b.position_studs))})
+end
+end
+assert(#result==8,"B10 : huit entrées attendues")
+table.sort(result,function(a,b) return a.door.door_id<b.door.door_id end)
+return result
+end
+local titles={
+city_hall="Accueil civique",ekoh_tower="Observatoire EkoH",library="Bibliothèque",
+campus="Université King Klown",justice_palace="Agora Korum",
+innovation_lab="Atelier Konstruct",museum="Musée Kreative",orgo_center="Maison Orgo",
+}
+function Wayfinding.build(city:Instance,plan:any,districts:any,profile:string?):(Instance,{[string]:number})
+assert(city and city.Name=="Ville","B10 : Ville attendue")
+assert(type(plan)=="table" and type(plan.structures)=="table","B10 : plan absent")
+assert(type(districts)=="table" and #districts.sections==6,"B10 : six sections nécessaires")
+local quality=profile or "STANDARD"
+assert(quality=="LITE" or quality=="STANDARD" or quality=="SHOWCASE","B10 : profil inconnu")
+local doors=arrivals(plan)
+local old=city:FindFirstChild(ROOT_NAME)
+if old and old:GetAttribute("KinB10Revision")==REVISION and old:GetAttribute("KinB10Profile")==quality then
+return old,{avenue=0,entrances=old:GetAttribute("KinB10EntranceMarkers") or 0,skipped=0}
+end
+local stage=Instance.new("Folder")
+stage.Name=ROOT_NAME.."_PREPARE"
+stage:SetAttribute("KinB10Revision",REVISION)
+stage:SetAttribute("KinB10Profile",quality)
+for _,record in ipairs(doors) do
+local sector=assert(nearestSector(record.doorAnchor,districts))
+local approach=record.doorAnchor-record.returnAnchor
+local flat=Vector3.new(approach.X,0,approach.Z)
+local normal=if flat.Magnitude>.5 then flat.Unit else Vector3.new(0,0,-1)
+local lateral=Vector3.new(-normal.Z,0,normal.X)
+local position=record.returnAnchor-normal*3+lateral*9
+if (position-record.doorAnchor).Magnitude<6 then
+position=record.returnAnchor-normal*3-lateral*9
+end
+local yaw=math.atan2(normal.X,normal.Z)
+local key=record.door.destination_place_key
+if key=="museum" then
+plaque(stage,position,yaw,"MUSÉE — FERMÉ","Écran de diffusion à proximité",key)
+else
+plaque(stage,position,yaw,titles[key] or key,"ACCÈS AU BÂTIMENT",key)
+end
+local marker=stage:FindFirstChild("Repère "..key)
+if marker then marker:SetAttribute("KinB10Sector",sector.key) end
+end
+stage:SetAttribute("KinB10AvenueMarkers",0)
+stage:SetAttribute("KinB10EntranceMarkers",#doors)
+stage:SetAttribute("KinB10Skipped",0)
+if old then old:Destroy() end
+stage.Name=ROOT_NAME;stage.Parent=city
+return stage,{avenue=0,entrances=#doors,skipped=0}
+end
+return Wayfinding
 
 ]])
 source(server,"BotanicalKitV20",[[
@@ -5637,6 +12374,97 @@ end
 return Buses
 
 ]])
+source(server,"BranchRuntime",[[
+local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local Plan=require(Shared:WaitForChild("WorldPlan"))
+local Districts=require(Shared:WaitForChild("HexagonalDistricts"))
+local Visual=require(Shared:WaitForChild("VisualConfig"))
+local Runtime={}
+local REVISION="KC35-BRANCH-RUNTIME-1"
+local ORDER={"city_hall","ekoh_tower","library","campus","justice_palace","innovation_lab","museum","orgo_center","city"}
+local EXPECTED={
+city_hall="B01",ekoh_tower="B02",library="B03",campus="B04",justice_palace="B05",
+innovation_lab="B06",museum="B07",orgo_center="B08",city="B10",
+}
+local function invoke(key:string,model:Instance?,origin:Vector3,profile:string,world:Instance):any
+assert(model,"KC35: modèle absent : "..key)
+local context={place_key=key,placeKey=key,contracts_version="KC34-DOC-1.0",
+place_model=model,placeModel=model,interiorModel=model,model=model,
+parent=model,origin=origin,profile=profile,authorized=true,replace_decoration=false}
+if key=="city_hall" then
+return require(script.Parent.B01CityHallScene).build(context)
+elseif key=="ekoh_tower" then
+return require(script.Parent.B02EkohInterior).Build(context)
+elseif key=="library" then
+return require(script.Parent.B03LibraryScene).build(context)
+elseif key=="campus" then
+return require(script.Parent.B04CampusDecor).build(model,origin,profile)
+elseif key=="justice_palace" then
+return require(script.Parent.B05KorumPreview).build(context)
+elseif key=="innovation_lab" then
+return require(script.Parent.B06KonstructScene).build(context)
+elseif key=="museum" then
+return require(script.Parent.B07MuseumScene).build(context)
+elseif key=="orgo_center" then
+return require(script.Parent.B08OrgoScene).build(context)
+elseif key=="city" then
+return require(script.Parent.B10WayfindingKC36).build(model,Plan,Districts,profile)
+end
+error("KC35: clé inconnue "..key)
+end
+function Runtime.apply(state:any):any
+assert(state and state.world,"KC35: world attendu")
+local world=state.world
+assert(world:GetAttribute("KinBuildState")=="Ready","KC35: monde non prêt")
+local mode=state.mode or world:GetAttribute("KinRoutingMode")
+local active=state.currentPlace or world:GetAttribute("KinActivePlace")
+local profile=Visual.profile
+assert(profile=="LITE" or profile=="STANDARD" or profile=="SHOWCASE","KC35: profil inconnu")
+local candidates={}
+for _,key in ipairs(ORDER) do
+if mode=="LOCAL_UNIVERSE" or key==active then table.insert(candidates,key) end
+end
+local interiorRoot=world:FindFirstChild("Bâtiments visitables")
+local interiors={}
+for _,key in ipairs(candidates) do
+if key=="city" then
+assert(world:FindFirstChild("Ville"),"KC35: Ville absente")
+else
+local m=interiorRoot and interiorRoot:FindFirstChild("Intérieur — "..key)
+assert(m and m:IsA("Model"),"KC35: intérieur manquant : "..key)
+assert(m:GetAttribute("KinPlaceKey")==key,"KC35: attribut Place invalide : "..key)
+assert(typeof(m:GetAttribute("KinInteriorOrigin"))=="Vector3","KC35: origine manquante : "..key)
+interiors[key]=m
+end
+end
+local completed=0
+local failed={}
+for _,key in ipairs(candidates) do
+local model=if key=="city" then world:FindFirstChild("Ville") else interiors[key]
+local origin=if key=="city" then Vector3.zero else (model::Instance):GetAttribute("KinInteriorOrigin")
+local ok,res=pcall(function() return invoke(key,model,origin,profile,world) end)
+if ok then
+completed+=1
+world:SetAttribute("KinBranch"..EXPECTED[key].."Status","Ready")
+else
+table.insert(failed,key..": "..tostring(res))
+world:SetAttribute("KinBranch"..EXPECTED[key].."Status","Error")
+warn("KC35 BRANCH ERROR "..key..": "..tostring(res))
+end
+end
+world:SetAttribute("KinBranchRuntimeRevision",REVISION)
+world:SetAttribute("KinBranchExpected",#candidates)
+world:SetAttribute("KinBranchReadyCount",completed)
+world:SetAttribute("KinBranchRuntimeState",if #failed==0 then "Ready" else "Partial")
+world:SetAttribute("KinBranchRuntimeErrors",table.concat(failed," | "))
+if #failed==0 then
+print("KC35 B09 : "..completed.." sur "..#candidates.." branches installées, profil "..profile)
+end
+return {expected=#candidates,created=completed,failed=failed,profile=profile,ready=#failed==0}
+end
+return Runtime
+
+]])
 source(server,"CanonicalInteractions",[[
 local Factory=require(script.Parent.Factory)
 local Binder={}
@@ -5966,6 +12794,8 @@ return Citizens
 ]])
 source(server,"CityGenerator",[[
 local Factory=require(script.Parent.Factory)
+local ArtDecoProps=require(script.Parent.ArtDecoProps)
+local ArtDecoDistricts=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared").HexagonalDistricts)
 local FacadeGenerator=require(script.Parent.FacadeGenerator)
 local UrbanDetails=require(script.Parent.UrbanDetails)
 local Citizens=require(script.Parent.Citizens)
@@ -6035,6 +12865,11 @@ end
 return nearest
 end
 local function tree(parent,x,z,seed)
+if seed%9==0 then
+local section=ArtDecoDistricts.nearestAxis(x,z)
+local imported=ArtDecoProps.environment(parent,"palm",CFrame.new(x,0,z),if section then section.key else nil)
+if imported then return imported end
+end
 return BotanicalKitV20.tree(parent,x,z,seed)
 end
 local function streetTiles(folder,paths)
@@ -7826,10 +14661,10 @@ end
 local function segment(parent,a,b,section)
 local d=b-a
 local frame=CFrame.new((a+b)*0.5)*CFrame.Angles(0,-math.atan2(d.Z,d.X),0)
-decal(parent,"Tracé "..section.name,Vector3.new(d.Magnitude,0.18,2.0),frame,
+decal(parent,"Tracé "..section.name,Vector3.new(d.Magnitude,0.10,2.0),frame,
 section.color,Enum.Material.SmoothPlastic).Transparency=0.16
-decal(parent,"Fil sarcelle",Vector3.new(d.Magnitude,0.22,0.31),
-frame*CFrame.new(0,0.12,0),Palette.base,Enum.Material.Neon)
+decal(parent,"Fil sarcelle",Vector3.new(d.Magnitude,0.10,0.31),
+frame*CFrame.new(0,0.09,0),Palette.base,Enum.Material.Neon)
 end
 function Chromatics.make(city,plan)
 local root=F.folder(city,"Repères chromatiques • 6 secteurs")
@@ -7838,8 +14673,8 @@ for _,s in ipairs(Palette.sections) do
 local axis=Vector3.new(s.x,0,s.z)
 for j=1,13 do
 local r=70+(j-1)*24
-local a=axis*r+Vector3.new(0,0.38,0)
-local b=axis*(r+17)+Vector3.new(0,0.38,0)
+local a=axis*r+Vector3.new(0,0.74,0)
+local b=axis*(r+17)+Vector3.new(0,0.74,0)
 segment(root,a,b,s)
 end
 for _,r in ipairs({102,290,391}) do
@@ -7866,7 +14701,7 @@ local s=Palette.nearestAxis(p.X,p.Z)
 if s then
 seen[key]=true
 local marker=decal(root,"Point de repère "..s.name,
-Vector3.new(2.1,0.16,2.1),CFrame.new(p+Vector3.new(0,0.43,0)),
+Vector3.new(2.1,0.16,2.1),CFrame.new(p+Vector3.new(0,0.72,0)),
 s.color,Enum.Material.Neon)
 marker:SetAttribute("KinSector",s.key)
 end
@@ -8138,18 +14973,35 @@ local p=kioskPlace(direction,plan.structures)
 local group=F.folder(posts,"Borne "..section.name)
 group:SetAttribute("KinSector",section.key)
 group:SetAttribute("KinTheme",section.material)
-deco(group,"Fil vertical du halo",Vector3.new(0.8,HEIGHT-6,0.8),
-CFrame.new(p+Vector3.new(0,(HEIGHT+6)/2,0)),Palette.base,Enum.Material.Neon).Transparency=0.14
+local yaw=math.atan2(section.x,section.z)
+local frame=CFrame.new(p)*CFrame.Angles(0,yaw,0)
+local boardWidth=25
+local signY=10.3
+local supportHeight=13.0
+local supportDistance=boardWidth/2+1.1
+for _,side in ipairs({-1,1}) do
+local foot=(frame*CFrame.new(side*supportDistance,supportHeight/2,0)).Position
+local post=deco(group,"Colonne latérale du portique",Vector3.new(supportHeight,0.78,0.78),
+CFrame.new(foot)*CFrame.Angles(0,0,math.pi/2),Palette.base,Enum.Material.Metal)
+post.Shape=Enum.PartType.Cylinder
+post:SetAttribute("KinSignStructuralSupport",true)
+local link=deco(group,"Fixation latérale du panneau",Vector3.new(1.4,0.22,0.38),
+frame*CFrame.new(side*(boardWidth/2+0.4),signY,0),Palette.light,Enum.Material.Metal)
+link:SetAttribute("KinSignStructuralSupport",true)
+end
+group:SetAttribute("KinSignSupportRevision","KC36-twin-post-clear-center")
 local terminal=deco(group,"Borne d'exploration",Vector3.new(5.4,5.3,3.5),
-CFrame.new(p+Vector3.new(0,3.5,0)),Palette.base,Enum.Material.Metal)
+frame*CFrame.new(0,3.5,0),Palette.base,Enum.Material.Metal)
 deco(group,"Façade éclairée",Vector3.new(4.6,3.0,0.32),
-CFrame.new(p+Vector3.new(0,4.2,-1.94)),Palette.light,Enum.Material.Neon).Transparency=0.3
+frame*CFrame.new(0,4.2,-1.94),Palette.light,Enum.Material.Neon).Transparency=0.3
 deco(group,"Sommet coloré",Vector3.new(5.7,0.5,3.6),
-CFrame.new(p+Vector3.new(0,6.35,0)),section.color,Enum.Material.Neon)
+frame*CFrame.new(0,6.35,0),section.color,Enum.Material.Neon)
 local meta=topics[section.key]
-local sign=F.sign(group,"EkoH • "..section.name,p+Vector3.new(0,10.3,0),0,
-"EkoH • "..meta[1].."\n"..meta[2],25,3.7)
+local sign=F.sign(group,"EkoH • "..section.name,p+Vector3.new(0,signY,0),math.deg(yaw),
+"EkoH • "..meta[1].."\n"..meta[2],boardWidth,3.7,
+{section=section.key,doubleSided=true})
 sign:SetAttribute("KinDisclosure","Découverte publique, aucune donnée personnelle")
+sign:SetAttribute("KinSignMount","twin-post")
 terminal:SetAttribute("KinStubInteractionId","ekoh.terminal."..section.key)
 terminal:SetAttribute("KinStubCapabilityId","ekoh.public.exploration")
 terminal:SetAttribute("KinStubTitle","EkoH • "..section.name)
@@ -8234,84 +15086,28 @@ return Detail
 
 ]])
 source(server,"FacadeGenerator",[[
-local Factory = require(script.Parent.Factory)
-local ArchitecturePlus = require(script.Parent.ArchitecturePlus)
-local FacadeDetail = require(script.Parent.FacadeDetail)
-local HeritageFacadesV16 = require(script.Parent.HeritageFacadesV16)
-local CrystalFacades = require(script.Parent.CrystalFacades)
-local CrystalPorticosV19 = require(script.Parent.CrystalPorticosV19)
-local SkylineV22=require(script.Parent.InstitutionSkylineV22)
-local FacadeKitV24=require(script.Parent.InstitutionFacadeKitV24)
-local FacadeGenerator = {}
-local function element(parent, name, size, frame, offset, color, material)
-return Factory.part(parent,name,size,frame*CFrame.new(offset),color,material)
-end
-function FacadeGenerator.make(parent, structure, building, style)
+local Factory=require(script.Parent.Factory)
+local Architecture=require(script.Parent.ArtDecoBuildings)
+local Facades={}
+function Facades.make(parent,structure,building,_style)
 local model=Instance.new("Model")
 model.Name=building.name
 model:SetAttribute("KinBuildingId",building.building_id)
+model:SetAttribute("KinSection",building.district_id)
+model:SetAttribute("KinArchitectureRevision","imported-street-shells-3")
 model.Parent=parent
-local cx,cy,cz=table.unpack(structure.center_studs)
-local w,d=table.unpack(structure.footprint_studs)
-local h=structure.height_studs
-local yaw=structure.yaw_degrees
-local base=CFrame.new(cx,cy,cz)*CFrame.Angles(0,math.rad(yaw),0)
-local walls=Factory.hex(style.palette.wall)
-local trim=Factory.hex(style.palette.trim)
-local accent=Factory.hex(style.palette.accent)
-local glazing=Color3.fromRGB(197,244,240)
-local function mineralPane(name,size,offset)
-local pane=element(model,name,size,base,offset,glazing,Enum.Material.SmoothPlastic)
-pane.CanCollide=false;pane.CanTouch=false;pane.CanQuery=false;pane.CastShadow=false
-pane.Reflectance=0.09
-pane:SetAttribute("KinArtTheme","sarcelle-cristal-v20")
-return pane
-end
-element(model,"BuildingCore",Vector3.new(w,h,d),base,Vector3.new(0,h/2,0),walls,Enum.Material.Concrete)
-element(model,"BasePlinth",Vector3.new(w+3,1,d+3),base,Vector3.new(0,0.5,0),trim,Enum.Material.Slate)
-element(model,"Cornice",Vector3.new(w+3,1.5,d+3),base,Vector3.new(0,h-1,0),trim,Enum.Material.Concrete)
-element(model,"Roof",Vector3.new(w+2,1,d+2),base,Vector3.new(0,h,0),accent,Enum.Material.Metal)
-local levels = math.max(1,math.floor((h-8)/8))
-local count=math.max(2,math.floor((w-12)/9))
-for level=1,levels do
-local y=5+level*6
-if y<h-3 then
-for col=1,count do
-local x=-w/2 + col*w/(count+1)
-mineralPane("WindowFront",Vector3.new(3.6,3.8,0.25),Vector3.new(x,y,-d/2-0.17))
-mineralPane("WindowBack",Vector3.new(3.6,3.8,0.25),Vector3.new(x,y,d/2+0.17))
-end
-end
-end
-for i=1,math.max(2, math.floor((d-10)/11)) do
-local z=-d/2 + i*d/(math.max(2,math.floor((d-10)/11))+1)
-mineralPane("SideWindowL",Vector3.new(0.22,4.3,3.5),Vector3.new(-w/2-0.13,h*0.49,z))
-mineralPane("SideWindowR",Vector3.new(0.22,4.3,3.5),Vector3.new(w/2+0.13,h*0.49,z))
-end
-element(model,"MainEntrance",Vector3.new(9,8,0.75),base,Vector3.new(0,4,-d/2-0.6),Color3.fromRGB(45,60,65),Enum.Material.Metal)
-for side=-1,1,2 do
-element(model,"EntranceColumn",Vector3.new(1.4,10,1.4),base,Vector3.new(side*6.5,5,-d/2-1.2),trim,Enum.Material.Marble)
-end
-local mainSign=Factory.sign(model,"BuildingSign",
-(base*CFrame.new(0,math.min(h-2.1,14.1),-d/2-0.95)).Position,
-yaw,building.name,math.min(w-10,24),2.9,{emblem=true,role="building-primary",section=building.district_id})
-mainSign:SetAttribute("KinSignCompactV316",true)
-mainSign:SetAttribute("KinSignRole","building-primary")
-if style.roof=="spire" then
-element(model,"Spire",Vector3.new(3,math.min(15,h*0.32),3),base,Vector3.new(0,h+math.min(15,h*0.32)/2,0),accent,Enum.Material.Metal)
-elseif style.roof=="gable" then
-element(model,"RoofRidge",Vector3.new(w+2,2.5,4),base,Vector3.new(0,h+1,0),accent,Enum.Material.Slate)
-end
-ArchitecturePlus.decorate(model,structure,building,style)
-FacadeDetail.make(model,structure,building,style)
-HeritageFacadesV16.make(model,structure,building,style)
-CrystalFacades.make(model,structure,building,style)
-CrystalPorticosV19.make(model,structure,building,style)
-SkylineV22.make(model,structure,building)
-FacadeKitV24.make(model,structure,building)
+local x,y,z=table.unpack(structure.center_studs)
+local frame=CFrame.new(x,y,z)*CFrame.Angles(0,math.rad(structure.yaw_degrees),0)
+local layout=Architecture.make(model,structure,building,frame)
+local sign=layout.sign
+local label=Factory.sign(model,"BuildingSign",(frame*CFrame.new(table.unpack(sign.center))).Position,
+structure.yaw_degrees,building.name,sign.width,sign.height,
+{emblem=true,role="building-primary",section=building.district_id})
+label:SetAttribute("KinSignCompactV316",true)
+label:SetAttribute("KinSignRole","building-primary")
 return model
 end
-return FacadeGenerator
+return Facades
 
 ]])
 source(server,"Factory",[[
@@ -8349,6 +15145,7 @@ local light = Instance.new("PointLight")
 light.Brightness = brightness or 1.3
 light.Range = range or 30
 light.Shadows = false
+light:SetAttribute("KinStaticLightLOD",true)
 light.Parent = bulb
 return bulb
 end
@@ -10059,24 +16856,22 @@ return Collection
 
 ]])
 source(server,"InteriorGenerator",[[
+local SharedTheme=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local ArtDecoTheme=require(SharedTheme.ArtDecoTheme)
+local Districts=require(SharedTheme.HexagonalDistricts)
 local Factory = require(script.Parent.Factory)
 local PropGenerator = require(script.Parent.PropGenerator)
+local ArtDecoInteriors=require(script.Parent.ArtDecoInteriors)
+local ArtDecoSurfaces=require(script.Parent.ArtDecoSurfaces)
 local Spatial = require(script.Parent.Spatial)
-local InteriorPlus = require(script.Parent.InteriorPlus)
 local InteriorWings = require(script.Parent.InteriorWings)
 local VerticalArchitecture = require(script.Parent.VerticalArchitecture)
 local InstitutionExhibits = require(script.Parent.InstitutionExhibits)
 local InteriorCollections = require(script.Parent.InteriorCollections)
-local InteriorScenography = require(script.Parent.InteriorScenography)
 local SpecializedRooms = require(script.Parent.SpecializedRooms)
 local SkyPavilions = require(script.Parent.SkyPavilions)
 local InstitutionDiscoveryWings = require(script.Parent.InstitutionDiscoveryWings)
-local CrystalInteriors = require(script.Parent.CrystalInteriors)
-local InstitutionCraftV20=require(script.Parent.InstitutionCraftV20)
-local StoriesV22=require(script.Parent.InstitutionStoriesV22)
-local FurnitureV23=require(script.Parent.SculptedFurnitureV23)
 local AtlasV23=require(script.Parent.LivingExhibitsV23)
-local StageV24=require(script.Parent.InstitutionStagecraftV24)
 local InteriorGenerator = {}
 local function segment(parent, name, width, height, center, color)
 return Factory.part(parent,name,Vector3.new(width,height,0.85),CFrame.new(center),color,Enum.Material.Concrete)
@@ -10128,11 +16923,25 @@ local origin=Spatial.origin(place.place_key)
 local model=Instance.new("Model")
 model.Name="Intérieur — "..place.place_key
 model:SetAttribute("KinPlaceKey",place.place_key)
+model:SetAttribute("KinInteriorOrigin",origin)
+model:SetAttribute("KinArtDecoInteriorRevision","separate-interior-surfaces-3")
 model.Parent=parent
-local walls=Factory.hex(style.palette.wall)
+local walls=ArtDecoTheme.stone
 local floorColor=Factory.hex(style.palette.floor)
-local trim=Factory.hex(style.palette.trim)
-local accent=Factory.hex(style.palette.accent)
+local trim=ArtDecoTheme.bronze
+local accent=Districts.base
+local sector="central"
+for _,building in ipairs(require(SharedTheme.Buildings)) do
+if building.interior_place_key==place.place_key then
+local section=Districts.byKey(building.district_id)
+if section then accent=section.color;sector=section.key end
+end
+end
+style=table.clone(style)
+style.palette=table.clone(style.palette)
+style.palette.wall="#"..walls:ToHex()
+style.palette.trim="#"..trim:ToHex()
+style.palette.accent="#"..accent:ToHex()
 for roomIndex,room in ipairs(place.rooms) do
 local folder=Factory.folder(model,room.room_id)
 local cx,_,cz=table.unpack(room.center_studs)
@@ -10147,14 +16956,10 @@ Factory.part(folder,"CeilingBorder",Vector3.new(w-2,0.25,d-2),CFrame.new(origin+
 end
 Factory.light(folder,origin+Vector3.new(cx,15.0,cz),1.7,55)
 Factory.sign(folder,"RoomTitle",origin+Vector3.new(cx,10.8,cz-d/2+0.65),0,room.display_name,math.min(30,w-6),2.5)
-InteriorPlus.decorateRoom(folder,place.place_key,room,origin,style,roomIndex)
-InteriorCollections.make(folder,place.place_key,room,origin,style,roomIndex)
-InteriorScenography.decorate(folder,room,origin,style,place.place_key,roomIndex)
-InstitutionCraftV20.decorate(folder,place.place_key,room,origin,roomIndex)
-StoriesV22.decorate(folder,place.place_key,room,origin,roomIndex)
-FurnitureV23.decorate(folder,place.place_key,room,origin,roomIndex)
+ArtDecoSurfaces.room(folder,place,room,origin,roomIndex,sector)
+ArtDecoInteriors.room(folder,place,room,origin,roomIndex)
+if roomIndex<=3 then InteriorCollections.make(folder,place.place_key,room,origin,style,roomIndex) end
 AtlasV23.decorate(folder,place.place_key,room,origin,roomIndex)
-StageV24.decorate(folder,place.place_key,room,origin,roomIndex)
 end
 for _,furn in ipairs(place.furnishings) do
 local palette={wall=walls,trim=trim,accent=accent}
@@ -10177,13 +16982,13 @@ local header=eastWest and Vector3.new(2.8,0.65,width+2) or Vector3.new(width+2,0
 Factory.part(model,"PortalThreshold",bridge,CFrame.new(base+Vector3.new(0,-0.5,0)),floorColor,Enum.Material.Marble)
 Factory.part(model,"PortalHeader",header,CFrame.new(base+Vector3.new(0,9.6,0)),accent,Enum.Material.Metal).CanCollide=false
 end
+ArtDecoSurfaces.connectors(model,place,origin,sector)
 InstitutionExhibits.make(model,place.place_key,origin)
 SpecializedRooms.make(model,place.place_key,origin)
 VerticalArchitecture.make(model,place.place_key,origin,style)
+ArtDecoSurfaces.upper(model,place,origin,sector)
 SkyPavilions.make(model,place.place_key,origin,style)
 InstitutionDiscoveryWings.make(model,place.place_key,origin,style)
-CrystalInteriors.make(model,place,origin,style)
-require(script.Parent.CrystalRoomStoriesV19).make(model,place,origin,style)
 require(script.Parent.LibraryJourneyArt).make(model,place.place_key)
 return model
 end
@@ -11694,9 +18499,11 @@ source(server,"KoaliUrbanism",[[
 local Factory=require(script.Parent.Factory)
 local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
 local Districts=require(Shared:WaitForChild("HexagonalDistricts"))
+local ArtDecoProps=require(script.Parent.ArtDecoProps)
 local Urbanism={}
+local ArtDecoTheme=require(Shared.ArtDecoTheme)
 local TEAL=Districts.base
-local STONE=Color3.fromRGB(207,218,209)
+local STONE=ArtDecoTheme.stone
 local INK=Color3.fromRGB(30,45,48)
 local GOLD=Color3.fromRGB(181,149,94)
 local preview={
@@ -11811,7 +18618,8 @@ end
 end
 return false
 end
-local function decorativeBench(parent,base,side,accent)
+local function decorativeBench(parent,base,side,accent,sector,step)
+if ArtDecoProps.selected("bench",step) and ArtDecoProps.street(parent,"bench",base*CFrame.new(side*30,0,0),sector) then return end
 piece(parent,"Banc – assise",Vector3.new(6,0.75,2.5),base*CFrame.new(side*30,1.6,0),STONE,Enum.Material.WoodPlanks,true)
 piece(parent,"Banc – dossier",Vector3.new(6,2,0.5),base*CFrame.new(side*30,2.45,1),accent,Enum.Material.Metal,true)
 end
@@ -11832,12 +18640,29 @@ local line=piece(road,"Filet identitaire",Vector3.new(0.30,0.22,19.9),cf*CFrame.
 if s.key=="kreative" then line:SetAttribute("KinKreativeCanvas",true) end
 end
 end
+road:SetAttribute("KinGroundAuthority","native-avenue-slabs")
+road:SetAttribute("KinPavingMeshOverlay",false)
 for n=1,8 do
 local r=99+n*37
 local centre=axis*r
 local base=CFrame.new(centre)*CFrame.Angles(0,math.atan2(s.x,s.z),0)
 for _,direction in ipairs({-1,1}) do
 local c=base*CFrame.new(direction*24,0,0)
+local importedLamp=if ArtDecoProps.selected("lamp",n) then ArtDecoProps.street(road,"lamp",c,s.key) else nil
+if importedLamp then
+local host=ArtDecoProps.lightHost(importedLamp)
+if host then
+host:SetAttribute("KinLightingSector",s.key)
+host:SetAttribute("KinLightingColor",s.lightColor:ToHex())
+if n%2==0 then
+local light=Instance.new("PointLight")
+light.Name="Lueur du quartier";light.Brightness=0.42;light.Range=18
+light.Color=s.lightColor;light.Shadows=false;light:SetAttribute("KinStaticLightLOD",true);light.Parent=host
+if s.key=="kreative" then light:SetAttribute("KinKreativeLight",true) end
+end
+end
+end
+if not importedLamp then
 piece(road,"Mât de quartier",Vector3.new(0.75,8.4,0.75),c*CFrame.new(0,4.4,0),TEAL,Enum.Material.Metal,true)
 local collar=piece(road,"Bague du lampadaire",Vector3.new(1.1,0.34,1.1),c*CFrame.new(0,8.5,0),s.lightColor,Enum.Material.Neon,false)
 local lamp=piece(road,"Lanterne de quartier",Vector3.new(1.75,1.75,1.75),c*CFrame.new(0,9.05,0),s.lightColor,Enum.Material.Neon,false)
@@ -11850,15 +18675,21 @@ end
 if n%2==0 then
 local light=Instance.new("PointLight")
 light.Name="Lueur du quartier"
-light.Brightness=0.42;light.Range=18;light.Color=s.lightColor;light.Shadows=false;light.Parent=lamp
+light.Brightness=0.42;light.Range=18;light.Color=s.lightColor;light.Shadows=false;light:SetAttribute("KinStaticLightLOD",true);light.Parent=lamp
 if s.key=="kreative" then light:SetAttribute("KinKreativeLight",true) end
 end
 end
+end
 if n==2 or n==5 then
-decorativeBench(road,base,-1,s.color)
-decorativeBench(road,base,1,s.color)
+decorativeBench(road,base,-1,s.color,s.key,n)
+decorativeBench(road,base,1,s.color,s.key,n)
 end
 end
+local entry=axis*84+side*14
+piece(road,"Support de pancarte",Vector3.new(.6,4,.6),CFrame.new(entry+Vector3.new(0,2,0)),TEAL,Enum.Material.Metal,false)
+local sectorSign=Factory.sign(road,"Pancarte du secteur",entry+Vector3.new(0,4.8,0),
+math.deg(math.atan2(s.x,s.z)),"Avenue "..s.name,18,2.8,{section=s.key})
+sectorSign:SetAttribute("KinSectorIdentity",s.key)
 return road
 end
 local function pavilion(parent,siteRecord)
@@ -11884,18 +18715,21 @@ local path=beam(lot,"Allée piétonne — "..info.title,
 axis*(longitudinal-18)+Vector3.new(0,0.54,0),
 at-axis*18+Vector3.new(0,0.54,0),7.5,0.25,STONE,Enum.Material.Slate)
 path.CanCollide=true
-piece(lot,"Façade réemployée",Vector3.new(30,12,15),base*CFrame.new(0,6.5,7),s.dark,material,true)
-local roof=piece(lot,"Toiture de quartier",Vector3.new(34,1.25,18),base*CFrame.new(0,12.8,7),s.color,Enum.Material.Metal,true)
+local importedPavilion=ArtDecoProps.pavilion(lot,base*CFrame.new(0,.5,7),s.key,siteRecord.index)
+if not importedPavilion then
+piece(lot,"Façade réemployée",Vector3.new(30,12,15),base*CFrame.new(0,6.5,7),STONE,Enum.Material.Concrete,true)
+local roof=piece(lot,"Toiture de quartier",Vector3.new(34,1.25,18),base*CFrame.new(0,12.8,7),ArtDecoTheme.dark,Enum.Material.Metal,true)
 if s.key=="kreative" then roof:SetAttribute("KinKreativeCanvas",true) end
 local frieze=piece(lot,"Frise lumineuse de quartier",Vector3.new(31,0.6,1),base*CFrame.new(0,10.7,-1),s.lightColor,Enum.Material.Neon,false)
 if s.key=="kreative" then frieze:SetAttribute("KinKreativeCanvas",true) end
 for n=-2,2 do
 piece(lot,"Colonnade alignée",Vector3.new(1.25,8.5,1.25),base*CFrame.new(n*5.2,5,-1),
-if s.material=="monochrome" and n%2==0 then s.pale else s.secondary,material,true)
+ArtDecoTheme.bronze,Enum.Material.Metal,true)
 end
 if s.material=="black_marble" then
 for n=-2,2 do
 piece(lot,"Veines dorées",Vector3.new(0.14,9,0.22),base*CFrame.new(n*5.2+1.1,6.3,-1.56)*CFrame.Angles(0,0,0.3),GOLD,Enum.Material.Metal,false)
+end
 end
 end
 local entrance=piece(lot,"Totem de découverte",Vector3.new(5.5,4,2),base*CFrame.new(0,2.3,-13),TEAL,Enum.Material.Metal,true)
@@ -11903,7 +18737,12 @@ entrance:SetAttribute("KinStubInteractionId","koali.preview."..s.key.."."..siteR
 entrance:SetAttribute("KinStubCapabilityId","koali.preview.information")
 entrance:SetAttribute("KinStubTitle",info.title)
 Factory.prompt(entrance,"Découvrir",info.title)
-local panel=Factory.sign(lot,"Enseigne de l'allée",(base*CFrame.new(0,16.3,-1.5)).Position,
+local signHeight=16.3
+if importedPavilion then
+local _,pavilionSize=importedPavilion:GetBoundingBox()
+signHeight=math.max(12,math.min(23,pavilionSize.Y+2.2))
+end
+local panel=Factory.sign(lot,"Enseigne de l'allée",(base*CFrame.new(0,signHeight,-3)).Position,
 math.deg(math.atan2(s.x,s.z)),info.title,24,3.2)
 panel.CanCollide=false
 return lot
@@ -11938,7 +18777,6 @@ return Urbanism
 source(server,"KreativeThemeRuntime",[[
 local PromptService=game:GetService("ProximityPromptService")
 local R=require(script.Parent.DistrictLandmarks)
-local SignEngine=require(script.Parent.SignEngine)
 local ThemeRuntime={}
 local function resultText(id,votes)
 local total=0
@@ -11966,20 +18804,9 @@ local function redraw()
 kreative:SetAttribute("KinKreativeActiveTheme",active)
 kreative:SetAttribute("KinKreativeVoteCount",votes.cuivre+votes.nuit+votes.prune)
 local roots={kreative}
-local urban=city:FindFirstChild("KOALI • urbanisme d'allées brandées")
-local avenue=urban and urban:FindFirstChild("Avenue Kreative")
-local gallery=urban and urban:FindFirstChild("18 lieux thématiques • vues d'ensemble")
-if avenue then table.insert(roots,avenue) end
-if gallery then
-for _,lot in ipairs(gallery:GetChildren()) do
-if lot:GetAttribute("KinSection")=="kreative" then table.insert(roots,lot) end
-end
-end
 for _,root in ipairs(roots) do
 for _,obj in ipairs(root:GetDescendants()) do
-if obj:IsA("BasePart") and obj:GetAttribute("KinSignEngineVersion")~=nil and obj:GetAttribute("KinSignTheme")=="kreative" then
-SignEngine.recolor(obj,options[active].color)
-elseif obj:IsA("BasePart") and obj:GetAttribute("KinKreativeCanvas")==true then
+if obj:IsA("BasePart") and obj:GetAttribute("KinKreativeCanvas")==true then
 obj.Color=options[active].color
 elseif obj:IsA("PointLight") and obj:GetAttribute("KinKreativeLight")==true then
 obj.Color=options[active].color
@@ -12681,6 +19508,129 @@ mesh:SetAttribute("KinMaterialKey",key)
 return true
 end
 return Library
+
+]])
+source(server,"MuseumBroadcastBarrier",[[
+local Barrier={}
+local TARGET_DOOR_ID="city.kreative.museum.entry"
+local SCREEN_NAME="KinCityOutdoorCinema"
+local MODEL_NAME="KinCityMuseumLockdown"
+local started=false
+local function makePart(parent: Instance, name: string, size: Vector3, cf: CFrame, color: Color3, material: Enum.Material, collide: boolean): BasePart
+local part=Instance.new("Part")
+part.Name=name
+part.Size=size
+part.CFrame=cf
+part.Color=color
+part.Material=material
+part.Anchored=true
+part.CanCollide=collide
+part.CanTouch=collide
+part.CanQuery=collide
+part.Parent=parent
+return part
+end
+local function textLabel(parent: Instance, name: string, text: string, size: UDim2, position: UDim2, color: Color3, maxSize: number)
+local label=Instance.new("TextLabel")
+label.Name=name
+label.BackgroundTransparency=1
+label.Size=size
+label.Position=position
+label.Text=text
+label.TextColor3=color
+label.Font=Enum.Font.GothamBold
+label.TextScaled=true
+label.TextWrapped=true
+label.Parent=parent
+local limit=Instance.new("UITextSizeConstraint")
+limit.MaxTextSize=maxSize
+limit.MinTextSize=12
+limit.Parent=label
+return label
+end
+local function findDoorPart(): BasePart?
+local generated=workspace:FindFirstChild("KinCityGenerated")
+if not generated then return nil end
+for _,item in ipairs(generated:GetDescendants()) do
+if item:IsA("BasePart") and item:GetAttribute("KinDoorId")==TARGET_DOOR_ID then
+return item
+end
+end
+return nil
+end
+local function disableDoorPrompt(door: BasePart)
+for _,child in ipairs(door:GetChildren()) do
+if child:IsA("ProximityPrompt") then
+child.Enabled=false
+child.ActionText="Fermé"
+child.ObjectText="Musée Kreative"
+end
+end
+door:SetAttribute("KinMuseumDoorBlocked",true)
+end
+local function buildBarrier(door: BasePart)
+local existing=workspace:FindFirstChild(MODEL_NAME)
+if existing and existing:IsA("Model") then existing:Destroy() end
+local model=Instance.new("Model")
+model.Name=MODEL_NAME
+model.Parent=workspace
+local ground=CFrame.new(door.Position.X,0,door.Position.Z)*door.CFrame.Rotation
+local base=ground*CFrame.new(0,0,0.8)
+local coral=Color3.fromRGB(203,128,157)
+local dark=Color3.fromRGB(45,24,34)
+for _,side in ipairs({-1,1}) do
+makePart(model,"Poteau",Vector3.new(0.55,4.2,0.55),base*CFrame.new(side*2.45,2.1,0),dark,Enum.Material.Metal,true)
+end
+makePart(model,"Barre",Vector3.new(5.8,0.45,0.55),base*CFrame.new(0,2.3,0),coral,Enum.Material.Metal,true)
+makePart(model,"Barre basse",Vector3.new(5.8,0.35,0.4),base*CFrame.new(0,1.2,0),dark,Enum.Material.Metal,true)
+local sign=makePart(model,"Panneau info",Vector3.new(5.6,3.1,0.3),base*CFrame.new(-6.4,2.8,-0.6),Color3.fromRGB(22,16,24),Enum.Material.SmoothPlastic,false)
+local gui=Instance.new("SurfaceGui")
+gui.Name="Info"
+gui.Face=Enum.NormalId.Front
+gui.CanvasSize=Vector2.new(900,500)
+gui.LightInfluence=0
+gui.Parent=sign
+textLabel(gui,"Heading","PORTE BARRÉE",UDim2.fromScale(0.88,0.28),UDim2.fromScale(0.06,0.08),coral,44)
+textLabel(gui,"Body","BROADCAST YOUTUBE\nJUSTE À CÔTÉ",UDim2.fromScale(0.88,0.48),UDim2.fromScale(0.06,0.42),Color3.fromRGB(242,239,244),40)
+end
+local function repositionCinema(door: BasePart)
+local cinema=workspace:FindFirstChild(SCREEN_NAME)
+if not cinema or not cinema:IsA("Model") then return end
+local sideOffset=-14
+local frontOffset=10
+local basePosition=door.Position + door.CFrame.RightVector*sideOffset + door.CFrame.LookVector*frontOffset
+local look=basePosition-door.CFrame.LookVector*24
+cinema:PivotTo(CFrame.lookAt(Vector3.new(basePosition.X,13,basePosition.Z),Vector3.new(look.X,13,look.Z)))
+cinema:SetAttribute("KinVideoLocation","Place Kreative — près du musée")
+cinema:SetAttribute("KinVideoChannel","YouTube - contenu via asset Roblox autorise")
+local screen=cinema:FindFirstChild("Écran",true)
+if screen then
+local gui=screen:FindFirstChild("Projection")
+if gui and gui:IsA("SurfaceGui") then
+local heading=gui:FindFirstChild("En-tête")
+if heading and heading:IsA("TextLabel") then heading.Text="BROADCAST YOUTUBE" end
+local message=gui:FindFirstChild("Message")
+if message and message:IsA("TextLabel") then
+local id=tonumber(cinema:GetAttribute("KinVideoAssetId")) or 0
+message.Text=if id>0 then "PROJECTION • BROADCAST YOUTUBE" else "BROADCAST YOUTUBE\nVIDÉO À CONFIGURER"
+end
+end
+end
+end
+function Barrier.start()
+if started then return end
+started=true
+local door=findDoorPart()
+if not door then
+warn("KIN CITY B07 : porte du musée introuvable, verrouillage non appliqué")
+return
+end
+disableDoorPrompt(door)
+buildBarrier(door)
+repositionCinema(door)
+print("KIN CITY B07 : porte du musée barrée et écran YouTube placé à proximité")
+end
+return Barrier
 
 ]])
 source(server,"NativeR15Citizens",[[
@@ -14496,6 +21446,7 @@ local base=prompt.Parent
 if not base or not base:IsA("BasePart") then return end
 if (base.Position-hrp.Position).Magnitude > prompt.MaxActivationDistance+3 then return end
 if record.kind=="door" then
+if record.data.door_id=="city.kreative.museum.entry" then return end
 PlayerTravel.tryDoor(player,record.data,state)
 elseif record.kind=="shuttle" then
 PlayerTravel.tryShuttle(player,record.data)
@@ -14540,6 +21491,7 @@ return PromptRouter
 ]])
 source(server,"PropGenerator",[[
 local Factory = require(script.Parent.Factory)
+local ArtDecoInteriors=require(script.Parent.ArtDecoInteriors)
 local PropGenerator = {}
 local SUPPORTED_ASSETS = {
 ["prop.bookshelf"] = true,
@@ -14561,6 +21513,8 @@ local function piece(parent, name, size, base, dx, dy, dz, color, material)
 return Factory.part(parent, name, size, base * CFrame.new(dx,dy,dz),color,material)
 end
 function PropGenerator.make(parent, item, position, palette)
+local imported=ArtDecoInteriors.furnishing(parent,item,position)
+if imported then return imported end
 local model = Instance.new("Model")
 model.Name = item.furnishing_id
 model:SetAttribute("KinFurnishingId",item.furnishing_id)
@@ -17411,6 +24365,9 @@ source(server,"VerticalArchitecture",[[
 local F=require(script.Parent.Factory)
 local Vertical={}
 local Roof=require(script.Parent.RooftopGardens)
+local ArtAssets=require(script.Parent.ArtDecoAssets)
+local ArtData=require(script.Parent.ArtDecoData)
+local Buildings=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared").Buildings)
 local function block(parent,name,origin,size,x,y,z,color,material)
 return F.part(parent,name,size,CFrame.new(origin+Vector3.new(x,y,z)),color,material)
 end
@@ -17514,8 +24471,22 @@ for _,s in ipairs({-1,1}) do
 block(section,"Garde-corps passerelle",origin,Vector3.new(25,3.4,0.55),s*10,19.9,z,accent,Enum.Material.Metal)
 end
 end
-for _,s in ipairs({-1,1}) do
-stairs(section,origin,placeKey,s*37,accent,trim)
+local sector="central"
+for _,building in ipairs(Buildings) do
+if building.interior_place_key==placeKey then sector=building.district_id;break end
+end
+for _,side in ipairs({-1,1}) do
+stairs(section,origin,placeKey,side*37,accent,trim)
+local skin=if sector=="kreative" then ArtData.placements.stair_skins.kreative
+else ArtData.placements.stair_skins.default
+local imported=ArtAssets.place(section,skin,sector,Vector3.new(7.2,5.7,11.4),
+CFrame.new(origin+Vector3.new(side*37,0,49)),"architecture/"..placeKey)
+if imported then
+imported.Name="Habillage Art Deco des premières marches "..side
+for _,part in ipairs(imported:GetDescendants()) do
+if part:IsA("BasePart") then part:SetAttribute("KinOptionalDetail",true) end
+end
+end
 end
 upperFurniture(section,origin,placeKey,accent)
 elevator(section,origin,placeKey,accent)
@@ -17791,14 +24762,16 @@ local IslandFerries=require(script.Parent.IslandFerries)
 local BoulevardBuses=require(script.Parent.BoulevardBuses)
 local WorldBuildDiagnosticsV25=require(script.Parent.WorldBuildDiagnosticsV25)
 local PlacePortalsV26=require(script.Parent.PlacePortalsV26)
+local ArtDecoAssets=require(script.Parent.ArtDecoAssets)
 local WorldBuilder={}
-local WORLD_BUILD_REVISION="construction-v31-koali-branded-avenues-alligned-"..VisualConfig.profile.."-"..BuildIdentity.sha256
+local WORLD_BUILD_REVISION="construction-v33-road-pavilion-chromatics-"..VisualConfig.profile.."-"..BuildIdentity.sha256
 local function rehydrate(world)
 if not world or world:GetAttribute("KinBuildState")~="Ready"
 or world:GetAttribute("KinCompilerSha")~=Plan.canonical_sha256
 or world:GetAttribute("KinWorldBuilderRevision")~=WORLD_BUILD_REVISION
 or world:GetAttribute("KinActivePlace")~=Spatial.currentPlace()
-or world:GetAttribute("KinRoutingMode")~=Spatial.mode() then return nil end
+or world:GetAttribute("KinRoutingMode")~=Spatial.mode()
+or world:GetAttribute("KinArtDecoLibraryRevision")~=ArtDecoAssets.revision() then return nil end
 local current=Spatial.currentPlace()
 local mode=Spatial.mode()
 local prompts={}
@@ -17874,10 +24847,12 @@ if not anchors[place.place_key.."/"..anchor.anchor_id] then return nil end
 end
 end
 end
+if not ArtDecoAssets.restore(world) then return nil end
 SkyDirector.configure()
 return {world=world,prompts=prompts,anchors=anchors,currentPlace=current,mode=mode,reused=true}
 end
 function WorldBuilder.build(reuseExisting)
+ArtDecoAssets.checkTarget()
 local unknown={}
 for _,place in ipairs(Plan.places) do
 if place.place_key~="city" and (Spatial.mode()=="LOCAL_UNIVERSE" or place.place_key==Spatial.currentPlace()) then
@@ -17894,6 +24869,7 @@ if reuseExisting and old then
 local restored=rehydrate(old)
 if restored then return restored end
 end
+ArtDecoAssets.beginBuild()
 if old then old:Destroy() end
 local startClock=os.clock()
 local world=Instance.new("Folder")
@@ -17931,7 +24907,7 @@ warn("KIN CITY : intérieur v30 "..place.place_key.." en erreur : "..tostring(er
 local backup=script.Parent:FindFirstChild("InteriorGeneratorLegacyV27")
 if not backup then error("Kin City: pas de secours pour "..place.place_key.." : "..tostring(err)) end
 local partial=inside:FindFirstChild("Intérieur — "..place.place_key)
-if partial then partial:Destroy() end
+if partial then ArtDecoAssets.release(partial) end
 local legacy=require(backup)
 local success,detail=pcall(function() legacy.make(inside,place,style) end)
 if not success then error("Kin City: intérieur "..place.place_key.." v30 : "..tostring(err).." ; secours v27 : "..tostring(detail)) end
@@ -18051,6 +25027,11 @@ assert(world:FindFirstChild("Ville") and interiorCount==8,
 end
 world:SetAttribute("KinInteriorCount",interiorCount)
 world:SetAttribute("KinGeneratorFallbacks",fallbackCount)
+world:SetAttribute("KinArtDecoLibraryRevision",ArtDecoAssets.revision())
+local artStats=ArtDecoAssets.stats()
+world:SetAttribute("KinArtDecoTrianglesEstimate",artStats.triangles)
+world:SetAttribute("KinArtDecoParts",artStats.parts)
+world:SetAttribute("KinArtDecoClones",artStats.clones)
 world:SetAttribute("KinBuildState","Ready")
 print("KIN CITY : MONDE PRÊT — ville + "..tostring(interiorCount).." institutions ; "..tostring(fallbackCount).." secours v27.")
 return {world=world,prompts=promptRecords,anchors=anchorParts,currentPlace=active,mode=routing}
@@ -18068,6 +25049,7 @@ local Interiors=require(script.Parent.InteriorGenerator)
 local InteriorLighting=require(script.Parent.InteriorLightingV30)
 local FullBuilder=require(script.Parent.WorldBuilder)
 local CanonicalInteractions=require(script.Parent.CanonicalInteractions)
+local ArtDecoAssets=require(script.Parent.ArtDecoAssets)
 local Editor={}
 local structures={}
 local labels={}
@@ -18075,6 +25057,12 @@ local places={}
 for _,b in ipairs(Plan.structures) do structures[b.building_id]=b end
 for _,b in ipairs(Buildings) do labels[b.building_id]=b end
 for _,p in ipairs(Plan.places) do places[p.place_key]=p end
+local function refreshBudgetStats(world)
+local stats=ArtDecoAssets.stats()
+world:SetAttribute("KinArtDecoTrianglesEstimate",stats.triangles)
+world:SetAttribute("KinArtDecoParts",stats.parts)
+world:SetAttribute("KinArtDecoClones",stats.clones)
+end
 local function generated()
 return workspace:FindFirstChild("KinCityGenerated")
 end
@@ -18082,6 +25070,7 @@ function Editor.regenerateAll()
 return FullBuilder.build()
 end
 function Editor.regenerateFacade(buildingId)
+ArtDecoAssets.checkTarget()
 local structure=structures[buildingId]
 local b=labels[buildingId]
 assert(structure and b,"ID de bâtiment inconnu: "..tostring(buildingId))
@@ -18091,15 +25080,18 @@ local city=world:FindFirstChild("Ville")
 assert(city,"Ville absente (Place non central)")
 local folder=city:FindFirstChild("Bâtiments")
 assert(folder,"Dossier des façades absent")
+assert(ArtDecoAssets.restore(world),"Rebuild the world before incremental editing")
 world:SetAttribute("KinBuildState","Editing")
 for _,m in ipairs(folder:GetChildren()) do
-if m:GetAttribute("KinBuildingId")==buildingId then m:Destroy() end
+if m:GetAttribute("KinBuildingId")==buildingId then ArtDecoAssets.release(m) end
 end
 local result=Facade.make(folder,structure,b,Plan.styles[structure.style_id])
+refreshBudgetStats(world)
 world:SetAttribute("KinBuildState","Ready")
 return result
 end
 function Editor.regenerateInterior(placeKey)
+ArtDecoAssets.checkTarget()
 assert(placeKey~="city","La ville n'est pas un intérieur")
 local place=places[placeKey]
 assert(place,"Place inconnu: "..tostring(placeKey))
@@ -18110,12 +25102,14 @@ assert(world,"Installer Kin City avant une régénération sélective")
 local interiors=world:FindFirstChild("Bâtiments visitables")
 assert(interiors,"Dossier intérieur absent")
 local old=interiors:FindFirstChild("Intérieur — "..placeKey)
+assert(ArtDecoAssets.restore(world),"Rebuild the world before incremental editing")
 world:SetAttribute("KinBuildState","Editing")
-if old then old:Destroy() end
+if old then ArtDecoAssets.release(old) end
 local style=Spatial.styleForPlace(placeKey)
 local model=Interiors.make(interiors,place,style)
 InteriorLighting.apply(model)
 CanonicalInteractions.bindPlace(model,placeKey,Plan.interactions,nil)
+refreshBudgetStats(world)
 world:SetAttribute("KinBuildState","Ready")
 return model
 end
@@ -18211,6 +25205,53 @@ player.CharacterAdded:Connect(characterAdded)
 if player.Character then characterAdded(player.Character) end
 end
 return Arrival
+
+]])
+source(client,"ArtDecoLightLOD",[[
+local Players=game:GetService("Players")
+local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local Visual=require(Shared.VisualConfig)
+local Policy=require(Shared.ArtDecoLightPolicy)
+local player=Players.LocalPlayer
+local LightLOD={}
+function LightLOD.start(world)
+local lights={}
+local function add(node)
+if (node:IsA("PointLight") or node:IsA("SpotLight") or node:IsA("SurfaceLight"))
+and node:GetAttribute("KinStaticLightLOD")==true then lights[node]=node.Enabled end
+end
+local function remove(node) lights[node]=nil end
+local added=world.DescendantAdded:Connect(add)
+local removed=world.DescendantRemoving:Connect(remove)
+for _,node in ipairs(world:GetDescendants()) do add(node) end
+task.spawn(function()
+while world.Parent do
+local character=player.Character
+local root=character and character:FindFirstChild("HumanoidRootPart")
+if root then
+local quality=player:GetAttribute("KinCityLocalQuality") or Visual.profile
+local candidates={}
+for light,enabled in pairs(lights) do
+if light.Parent and enabled then
+local host=light.Parent
+local position=if host:IsA("Attachment") then host.WorldPosition elseif host:IsA("BasePart") then host.Position else nil
+if position then
+local delta=position-root.Position
+table.insert(candidates,{light=light,distance=delta:Dot(delta)})
+end
+end
+end
+local active=Policy.select(candidates,quality)
+for _,item in ipairs(candidates) do item.light.Enabled=item.selected end
+player:SetAttribute("KinArtDecoStaticLightsActive",active)
+end
+task.wait(1.5)
+end
+added:Disconnect();removed:Disconnect()
+for light,enabled in pairs(lights) do if light.Parent then light.Enabled=enabled end end
+end)
+end
+return LightLOD
 
 ]])
 source(client,"BoulevardBusHud",[[
@@ -18439,6 +25480,7 @@ local player=Players.LocalPlayer
 function LOD.start()
 local world=workspace:WaitForChild("KinCityGenerated",30)
 if not world then return end
+require(script.Parent.ArtDecoLightLOD).start(world)
 local optional={}
 local function add(inst)
 if inst:IsA("BasePart") and inst:GetAttribute("KinOptionalDetail")==true then
@@ -20276,7 +27318,7 @@ bloom.Enabled=conf.bloom>0
 player:SetAttribute("KinCityLocalQuality",quality)
 if button then
 local label=if quality=="LITE" then "LÉGER" elseif quality=="STANDARD" then "NORMAL" else "DÉTAIL"
-button.Text="✦ CRISTAL : "..label
+button.Text="✦ VILLE : "..label
 end
 end
 local function cycle()
@@ -20326,7 +27368,7 @@ button.Activated:Connect(cycle)
 UserInputService.InputBegan:Connect(function(input,processed)
 if not processed and input.KeyCode==Enum.KeyCode.V then cycle() end
 end)
-require(script.Parent.KinCityMenu).registerAction("quality","Qualité cristal [V]",button,cycle)
+require(script.Parent.KinCityMenu).registerAction("quality","Qualité visuelle [V]",button,cycle)
 currentZone=player:GetAttribute("KinZone") or ""
 apply(currentZone,false)
 player:GetAttributeChangedSignal("KinZone"):Connect(function()
@@ -21742,9 +28784,12 @@ end
 require(script.KingKlownAvatar).start(avatarConfig)
 end
 local state=WorldBuilder.build(true)
+local branchResult=require(script.BranchRuntime).apply(state)
+if not branchResult.ready then warn("KC35 : overlays incomplets, consulter KinBranchRuntimeErrors") end
 require(script.PlayerBuildServer).start(state.world)
 if state.mode=="LOCAL_UNIVERSE" or state.currentPlace=="city" then
 require(script.OutdoorCinema).start()
+require(script.MuseumBroadcastBarrier).start()
 end
 PlayerTravel.setup(state,reply)
 PromptRouter.start(state,reply)
@@ -21812,7 +28857,10 @@ require(script.PlaceIdentityHudV26).start()
 print("KIN CITY : "..tostring(modules).." modules charges, debut du monde en EDITION...")
 local ok,built=xpcall(function()
   local builder=require(server:WaitForChild("WorldBuilder"))
-  return builder.build()
+  local state=builder.build()
+  local branchResult=require(server:WaitForChild("BranchRuntime")).apply(state)
+  assert(branchResult.ready,"KC35 B09: decor de branches incomplet : "..table.concat(branchResult.failed," | "))
+  return state
 end,function(err)
   if debug and type(debug.traceback)=="function" then return debug.traceback(tostring(err),2) end
   return tostring(err)
@@ -21823,6 +28871,7 @@ if not ok then
 end
 -- Écran et dalle visibles aussi en mode Édition, avant Play.
 require(server:WaitForChild("OutdoorCinema")).ensure()
+require(server:WaitForChild("MuseumBroadcastBarrier")).start()
 local world=workspace:FindFirstChild("KinCityGenerated")
 assert(world and world:GetAttribute("KinBuildState")=="Ready", "KIN CITY : KinCityGenerated pas pret")
 local city=world:FindFirstChild("Ville")

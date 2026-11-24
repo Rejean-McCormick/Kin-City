@@ -1,0 +1,192 @@
+{
+  "source": "original uploaded KinCity_ArtDeco_V3_Complet (1).zip; NOT the later KC33 release",
+  "source_zip_sha256": "6696d12dc6c9fefd845e9180a11c4f9412ea439989ef97bd0ef35eb091192798",
+  "canonical_plan_hash": "5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a",
+  "place_key": "ekoh_tower",
+  "rooms": [
+    {
+      "center_studs": [
+        27,
+        0,
+        17
+      ],
+      "decor_density": "rich",
+      "display_name": "Salle d’observation",
+      "has_walkable_floor": true,
+      "room_id": "ekoh_tower.chamber",
+      "size_studs": [
+        44,
+        16,
+        52
+      ]
+    },
+    {
+      "center_studs": [
+        -27,
+        0,
+        17
+      ],
+      "decor_density": "rich",
+      "display_name": "Galerie des contributions",
+      "has_walkable_floor": true,
+      "room_id": "ekoh_tower.gallery",
+      "size_studs": [
+        44,
+        16,
+        52
+      ]
+    },
+    {
+      "center_studs": [
+        0,
+        0,
+        -29
+      ],
+      "decor_density": "rich",
+      "display_name": "Accueil",
+      "has_walkable_floor": true,
+      "room_id": "ekoh_tower.lobby",
+      "size_studs": [
+        100,
+        16,
+        34
+      ]
+    }
+  ],
+  "portals": [
+    {
+      "center_studs": [
+        27,
+        0,
+        -10.5
+      ],
+      "clear_width_studs": 10,
+      "from_room": "ekoh_tower.lobby",
+      "portal_id": "ekoh_tower.portal.lobby.chamber",
+      "to_room": "ekoh_tower.chamber"
+    },
+    {
+      "center_studs": [
+        -27,
+        0,
+        -10.5
+      ],
+      "clear_width_studs": 10,
+      "from_room": "ekoh_tower.lobby",
+      "portal_id": "ekoh_tower.portal.lobby.gallery",
+      "to_room": "ekoh_tower.gallery"
+    }
+  ],
+  "anchors": [
+    {
+      "anchor_id": "ekoh_tower.exit.door",
+      "position_studs": [
+        0.0,
+        3.0,
+        -45.0
+      ],
+      "role": "door",
+      "room_id": "ekoh_tower.lobby",
+      "yaw_degrees": 0.0
+    },
+    {
+      "anchor_id": "ekoh_tower.lobby.spawn",
+      "position_studs": [
+        0.0,
+        3.0,
+        -32.0
+      ],
+      "role": "spawn",
+      "room_id": "ekoh_tower.lobby",
+      "yaw_degrees": 0.0
+    },
+    {
+      "anchor_id": "tower.panel_01",
+      "position_studs": [
+        -27.0,
+        3.0,
+        18.0
+      ],
+      "role": "interaction",
+      "room_id": "ekoh_tower.gallery",
+      "yaw_degrees": 0.0
+    }
+  ],
+  "doors": [
+    {
+      "door_id": "city.central.ekoh_tower.entry",
+      "building_id": "central.ekoh_tower",
+      "source_place_key": "city",
+      "source_anchor_id": "city.central.ekoh_tower.front_door",
+      "destination_place_key": "ekoh_tower",
+      "destination_anchor_id": "ekoh_tower.lobby.spawn",
+      "return_door_id": "ekoh_tower.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "ekoh_tower.exit",
+      "building_id": "central.ekoh_tower",
+      "source_place_key": "ekoh_tower",
+      "source_anchor_id": "ekoh_tower.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.central.ekoh_tower.return_spawn",
+      "return_door_id": "city.central.ekoh_tower.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    }
+  ],
+  "interaction": {
+    "interaction_id": "central.ekoh_tower.display_01",
+    "building_id": "central.ekoh_tower",
+    "place_key": "ekoh_tower",
+    "anchor_id": "tower.panel_01",
+    "capability_id": "ekoh.profile.view",
+    "provider_mode": "stub",
+    "prompt_label_key": "prompt.consult",
+    "display_title_key": "title.ekoh",
+    "display_message_key": "ui.coming_soon"
+  },
+  "additional_wings": [
+    {
+      "room_id": "ekoh_tower.west_wing",
+      "center": [
+        -79,
+        0,
+        7
+      ],
+      "size": [
+        52,
+        16,
+        50
+      ]
+    },
+    {
+      "room_id": "ekoh_tower.east_wing",
+      "center": [
+        79,
+        0,
+        7
+      ],
+      "size": [
+        52,
+        16,
+        50
+      ]
+    },
+    {
+      "room_id": "ekoh_tower.rear_atrium",
+      "center": [
+        0,
+        0,
+        76
+      ],
+      "size": [
+        100,
+        16,
+        56
+      ]
+    }
+  ],
+  "room_total": 6
+}

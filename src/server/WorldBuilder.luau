@@ -31,10 +31,11 @@ local IslandFerries=require(script.Parent.IslandFerries)
 local BoulevardBuses=require(script.Parent.BoulevardBuses)
 local WorldBuildDiagnosticsV25=require(script.Parent.WorldBuildDiagnosticsV25)
 local PlacePortalsV26=require(script.Parent.PlacePortalsV26)
+local ArtDecoAssets=require(script.Parent.ArtDecoAssets)
 local WorldBuilder={}
 -- Version de fabrication indépendante des manifestes : toute modification de géométrie
 -- doit invalider une scène d'édition issue d'une précédente version du moteur.
-local WORLD_BUILD_REVISION="construction-v31-koali-branded-avenues-alligned-"..VisualConfig.profile.."-"..BuildIdentity.sha256
+local WORLD_BUILD_REVISION="construction-v33-road-pavilion-chromatics-"..VisualConfig.profile.."-"..BuildIdentity.sha256
 
 -- Réutilise la scène déjà construite en mode Édition par l'installateur.
 -- En session Play, le clonage automatique du Workspace évite une génération complète
@@ -45,7 +46,8 @@ local function rehydrate(world)
         or world:GetAttribute("KinCompilerSha")~=Plan.canonical_sha256
         or world:GetAttribute("KinWorldBuilderRevision")~=WORLD_BUILD_REVISION
         or world:GetAttribute("KinActivePlace")~=Spatial.currentPlace()
-        or world:GetAttribute("KinRoutingMode")~=Spatial.mode() then return nil end
+        or world:GetAttribute("KinRoutingMode")~=Spatial.mode()
+        or world:GetAttribute("KinArtDecoLibraryRevision")~=ArtDecoAssets.revision() then return nil end
     local current=Spatial.currentPlace()
     local mode=Spatial.mode()
     local prompts={}
@@ -122,11 +124,13 @@ local function rehydrate(world)
             end
         end
     end
+    if not ArtDecoAssets.restore(world) then return nil end
     SkyDirector.configure()
     return {world=world,prompts=prompts,anchors=anchors,currentPlace=current,mode=mode,reused=true}
 end
 
 function WorldBuilder.build(reuseExisting)
+    ArtDecoAssets.checkTarget()
     -- Fail early, BEFORE removing a prior KinCityGenerated, if the canonical
     -- catalog contains any furniture without an actual geometry generator.
     local unknown={}
@@ -145,6 +149,7 @@ function WorldBuilder.build(reuseExisting)
         local restored=rehydrate(old)
         if restored then return restored end
     end
+    ArtDecoAssets.beginBuild()
     if old then old:Destroy() end
     local startClock=os.clock()
     local world=Instance.new("Folder")
@@ -183,7 +188,7 @@ function WorldBuilder.build(reuseExisting)
                 local backup=script.Parent:FindFirstChild("InteriorGeneratorLegacyV27")
                 if not backup then error("Kin City: pas de secours pour "..place.place_key.." : "..tostring(err)) end
                 local partial=inside:FindFirstChild("Intérieur — "..place.place_key)
-                if partial then partial:Destroy() end
+                if partial then ArtDecoAssets.release(partial) end
                 local legacy=require(backup)
                 local success,detail=pcall(function() legacy.make(inside,place,style) end)
                 if not success then error("Kin City: intérieur "..place.place_key.." v30 : "..tostring(err).." ; secours v27 : "..tostring(detail)) end
@@ -312,6 +317,11 @@ function WorldBuilder.build(reuseExisting)
     end
     world:SetAttribute("KinInteriorCount",interiorCount)
     world:SetAttribute("KinGeneratorFallbacks",fallbackCount)
+    world:SetAttribute("KinArtDecoLibraryRevision",ArtDecoAssets.revision())
+    local artStats=ArtDecoAssets.stats()
+    world:SetAttribute("KinArtDecoTrianglesEstimate",artStats.triangles)
+    world:SetAttribute("KinArtDecoParts",artStats.parts)
+    world:SetAttribute("KinArtDecoClones",artStats.clones)
     world:SetAttribute("KinBuildState","Ready")
     print("KIN CITY : MONDE PRÊT — ville + "..tostring(interiorCount).." institutions ; "..tostring(fallbackCount).." secours v27.")
     return {world=world,prompts=promptRecords,anchors=anchorParts,currentPlace=active,mode=routing}

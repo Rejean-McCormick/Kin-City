@@ -39,6 +39,7 @@ function Factory.light(parent, pos, brightness, range)
     light.Brightness = brightness or 1.3
     light.Range = range or 30
     light.Shadows = false
+    light:SetAttribute("KinStaticLightLOD",true)
     light.Parent = bulb
     return bulb
 end

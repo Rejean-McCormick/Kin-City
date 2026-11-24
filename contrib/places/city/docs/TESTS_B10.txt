@@ -1,0 +1,27 @@
+B10 / KC34 — Validation statique, non Roblox Studio
+Source de test : ZIP V3 original (KC33/B09 absents de l’environnement)
+Commande : KINCITY_SOURCE_PATH=<sources KC33> python -m unittest discover -s contrib/places/city/tests -p test_*.py -v
+
+test_01_six_sectors_exact_palette (test_b10_city.CityContracts.test_01_six_sectors_exact_palette) ... ok
+test_02_eight_entry_anchors_preserved (test_b10_city.CityContracts.test_02_eight_entry_anchors_preserved) ... ok
+test_03_path_count_unchanged (test_b10_city.CityContracts.test_03_path_count_unchanged) ... ok
+test_04_lite_has_all_six_distinct_sectors (test_b10_city.CityContracts.test_04_lite_has_all_six_distinct_sectors) ... ok
+test_05_standard_finds_safe_positions (test_b10_city.CityContracts.test_05_standard_finds_safe_positions) ... ok
+test_06_showcase_finds_safe_positions (test_b10_city.CityContracts.test_06_showcase_finds_safe_positions) ... ok
+test_07_signs_do_not_collide (test_b10_city.CityContracts.test_07_signs_do_not_collide) ... ok
+test_08_preview_is_studio_local_only (test_b10_city.CityContracts.test_08_preview_is_studio_local_only) ... ok
+test_09_no_portal_or_teleport_changes (test_b10_city.CityContracts.test_09_no_portal_or_teleport_changes) ... ok
+test_10_idempotent_existing_folder (test_b10_city.CityContracts.test_10_idempotent_existing_folder) ... ok
+test_11_profile_names_and_limits (test_b10_city.CityContracts.test_11_profile_names_and_limits) ... ok
+test_12_legacy_id_not_renamed (test_b10_city.CityContracts.test_12_legacy_id_not_renamed) ... ok
+test_13_world_compilation_hash (test_b10_city.CityContracts.test_13_world_compilation_hash) ... ok
+test_14_decorator_contains_no_external_assets (test_b10_city.CityContracts.test_14_decorator_contains_no_external_assets) ... ok
+test_15_no_decoration_or_audio_touches_to_rooms (test_b10_city.CityContracts.test_15_no_decoration_or_audio_touches_to_rooms) ... ok
+test_16_preview_embeds_exact_module (test_b10_city.CityContracts.test_16_preview_embeds_exact_module) ... ok
+test_17_build_manifest_conformant (test_b10_city.CityContracts.test_17_build_manifest_conformant) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.002s
+
+OK
+

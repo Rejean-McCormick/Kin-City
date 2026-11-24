@@ -6,6 +6,7 @@ import json
 import hashlib
 from pathlib import Path
 from compile_plan import compile_plan
+from art_deco_catalog import load_art_deco
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,10 +44,18 @@ def build_fingerprint(root: Path, plan_hash: str) -> dict:
             data=source.read_bytes()
             digest.update(name.encode("utf8")+b"\0"+len(data).to_bytes(8,"big")+data)
             included.append(name)
+    # Hand-authored palette modules affect geometry/signage and must invalidate reuse.
+    for name in ("HexagonalDistricts.luau","SignTheme.luau","ArtDecoTheme.luau"):
+        source=root/'src/shared'/name
+        if source.exists():
+            data=source.read_bytes()
+            digest.update(name.encode('utf8')+b'\0'+data)
+            included.append('src/shared/'+name)
     digest.update(b"canonical-plan\0"+plan_hash.encode("ascii"))
     return {"sha256":digest.hexdigest(),"plan_sha256":plan_hash,"input_count":len(included),"version":"build-v29"}
 
 def export(root: Path):
+    art_deco=load_art_deco(root)
     plan=compile_plan(root)
     registry=json.loads((root/'config/place_ids.json').read_text(encoding='utf8'))
     config=json.loads((root/'config/runtime.json').read_text(encoding='utf8'))
@@ -58,6 +67,8 @@ def export(root: Path):
     if config['mode']=='MULTI_PLACE' and any(v is None for v in registry.values()):
         raise ValueError('MULTI_PLACE exige tous les PlaceIds publiés')
     out=root/'src/shared'
+    (out/'ArtDecoData.luau').unlink(missing_ok=True)
+    put(root/'src/server/ArtDecoData.luau',art_deco,'Art Deco : manifeste privé référencé, placements et budgets')
     put(out/'BuildIdentity.luau',build_fingerprint(root,plan['canonical_sha256']),'empreinte exacte du build v29')
     origins=json.loads((root/'config/interior_origins.json').read_text(encoding='utf8'))
     if set(origins)!=expected-{'city'}: raise ValueError('Origines intérieures incomplètes')

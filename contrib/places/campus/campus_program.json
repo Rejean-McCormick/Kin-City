@@ -1,0 +1,29 @@
+{
+  "schema_version":"kincity.campus-brief/1.0",
+  "owner_branch":"B04",
+  "place_key":"campus",
+  "building_id":"konnected.university",
+  "sector":"uckk",
+  "accent":"#758EA6",
+  "city_accent":"#1E6864",
+  "official_entry_door_id":"city.konnected.university.entry",
+  "official_exit_door_id":"campus.exit",
+  "entry_spawn_anchor":"campus.lobby.spawn",
+  "exit_anchor":"campus.exit.door",
+  "canonical_interaction_anchor":"hall.board_01",
+  "canonical_capability":"uckk.courses.browse",
+  "capability_provider_mode":"stub",
+  "source_baseline":"KC33 / original user uploaded ZIP inspected. KC34 B09 runtime integration not available for this run",
+  "room_plan":[
+    {"room_id":"campus.lobby","name":"Hall du campus","center":[0,0,-29],"program":"Accueil et orientation","exit_corridor_keep_clear":{"x_min":-9,"x_max":9,"z_min":-46,"z_max":-29}},
+    {"room_id":"campus.gallery","name":"Salle de cours","center":[-27,0,17],"program":"Affichage de méthodes et pédagogie","protected_anchor":"hall.board_01"},
+    {"room_id":"campus.chamber","name":"Laboratoire pédagogique","center":[27,0,17],"program":"Science et démonstrations locales"},
+    {"room_id":"campus.west_wing","name":"Laboratoire pédagogique (extension)","center":[-79,0,7],"program":"Activités de recherche et ateliers"},
+    {"room_id":"campus.east_wing","name":"Salle d'exploration","center":[79,0,7],"program":"Explorations et hypothèses"},
+    {"room_id":"campus.rear_atrium","name":"Atrium universitaire","center":[0,0,76],"program":"Expositions, échanges et découverte"}
+  ],
+  "layout_note":"Le titre pédagogique peut être répété dans les salles canoniques et extensions: les room_id prévalent sur les noms visibles.",
+  "circulation":"6 pièces, 2 portails canoniques + 4 portails de InteriorWings, soit 6 passages intérieurs à maintenir",
+  "decorative_module":"CampusDecor.luau",
+  "deployment":"module prêt pour raccordement B09; NON CHARGÉ automatiquement par WorldBuilder ni les installateurs"
+}

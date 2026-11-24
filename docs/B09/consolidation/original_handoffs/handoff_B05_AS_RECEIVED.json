@@ -1,0 +1,90 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B05",
+  "place_key": "justice_palace",
+  "baseline": "KC33",
+  "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "contracts_version": "KC34-DOC-1.0",
+  "commit_or_patch_id": "B05.KORUM.0.1.0",
+  "change_class": "LOCAL",
+  "goal": "Six salles Agora Korum; scène Art déco non collidable avec 24 features et constructeur Luau autonome prêt pour revue B09",
+  "changed_files": [
+    {
+      "path": "contrib/places/justice_palace/DECISIONS_ET_QA.md",
+      "sha256": "c44232790292e4b036634198ff921a84efbdb6637af25d8df758cb41183c9c3d"
+    },
+    {
+      "path": "contrib/places/justice_palace/PreviewBuilder.luau",
+      "sha256": "995d28bcf39cda590490c0a8230ad633dd6e407214738f9477d97e0cb73391a4"
+    },
+    {
+      "path": "contrib/places/justice_palace/README.md",
+      "sha256": "b3057f4cb43fdaba97c6b1ef9ce05ef88ef9b7024c3799a8c891b76739628a78"
+    },
+    {
+      "path": "contrib/places/justice_palace/SceneData.luau",
+      "sha256": "392ac3cf3bfd261ed1f598ef5429c0b2a20b8105d9937feb617fa8c8c1b9144b"
+    },
+    {
+      "path": "contrib/places/justice_palace/canonical_snapshot.json",
+      "sha256": "7fd5ae759f14b97a666facf745cb6fa59dc1622f9ac938c33b4286d4c708e5b2"
+    },
+    {
+      "path": "contrib/places/justice_palace/recipe.json",
+      "sha256": "52b0fafd2ee5e841522e1bf35ad51719f7aabb139242d6566954803020fb199d"
+    },
+    {
+      "path": "contrib/places/justice_palace/scene_plan.json",
+      "sha256": "c22264ca5b5bb8ec3e55e6e1e960e8291a047d4f28690569ea7b857d23820270"
+    },
+    {
+      "path": "contrib/places/justice_palace/tests/test_b05.py",
+      "sha256": "e72b2551689ef6506f4ba7fd81ae73a7500b2c7ef131229856a14a52c25d0166"
+    },
+    {
+      "path": "contrib/places/justice_palace/tools/regenerate_luau.py",
+      "sha256": "6a484098e9d5539e590750b1ffa8b5d439e36743609a1e1bb4606271cb653f9e"
+    }
+  ],
+  "contract_changes": [],
+  "rfc_id": null,
+  "needs_approval": [],
+  "assets_added": [],
+  "tests_executed": [
+    {
+      "name": "B05 12 static contract tests",
+      "result": "PASS",
+      "evidence": "TESTS_B05.txt"
+    }
+  ],
+  "tests_not_executed": [
+    "Compilation Luau dans Roblox Studio",
+    "Décoration visuelle des six salles",
+    "Parcours des quatre passages, ascenseur et portes",
+    "Streaming mobile et FPS",
+    "Validation contre les ZIP KC33 et B09 effectifs non accessibles ici"
+  ],
+  "evidence": [
+    "TESTS_B05.txt",
+    "contrib/places/justice_palace/DECISIONS_ET_QA.md"
+  ],
+  "performance": {
+    "measured": false,
+    "device": "",
+    "profile": "",
+    "metrics": {},
+    "estimated_parts": {
+      "LITE": 18,
+      "STANDARD": 36,
+      "SHOWCASE": 72
+    }
+  },
+  "risk": [
+    "Les modules ne sont pas branchés au WorldBuilder",
+    "Placements réels à contrôler visuellement",
+    "Vérification du SHA KC33 par B09 à réception",
+    "Bounds 110x100 vs ailes effectives 210x150"
+  ],
+  "rollback": "Ne pas fusionner la contribution. Si installée pour preview, supprimer uniquement le dossier KinBranch=B05 du modèle de la Place justice_palace; restaurer la copie de test. Aucun fichier canonique modifié.",
+  "status": "READY_FOR_REVIEW"
+}

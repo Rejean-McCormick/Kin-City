@@ -1,0 +1,724 @@
+{
+  "scope": "Configuration references, including fallback recipes; actual placements are verified in Studio.",
+  "asset_count": 121,
+  "assets": [
+    {
+      "asset_key": "AD_Arc_Canopy_Disc",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.konnected.library.feature_asset",
+        "lobby_canopy.asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Arc_Column_Round_10",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.central.city_hall.columns_asset",
+        "buildings.central.ekoh_tower.columns_asset",
+        "buildings.konnected.library.columns_asset",
+        "buildings.konnected.university.columns_asset",
+        "buildings.ethikos.justice_palace.columns_asset",
+        "buildings.keenkonnect.innovation_lab.columns_asset",
+        "buildings.kreative.museum.columns_asset",
+        "buildings.orgo.admin_center.columns_asset",
+        "surfaces.column"
+      ]
+    },
+    {
+      "asset_key": "AD_Arc_Column_Round_4",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Arc_Curtain_Tower",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Arc_Floor_Checker_Pink",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Arc_Floor_Steps_Neon",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Arc_Mezzanine_Open_Blue",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Arc_Mezzanine_Open_Violet",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Arc_Mezzanine_Rail_Blue",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.konnected.university.feature_asset",
+        "surfaces.mezzanine"
+      ]
+    },
+    {
+      "asset_key": "AD_Arc_Mezzanine_Rail_Violet",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Arc_Pavilion_Dome",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Arc_Pavilion_Drum",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.central.city_hall.feature_asset",
+        "buildings.orgo.admin_center.feature_asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Arc_Stair_Grand_Blue",
+      "status": "configured",
+      "configuration_references": [
+        "stair_skins.default"
+      ]
+    },
+    {
+      "asset_key": "AD_Arc_Stair_Grand_Violet",
+      "status": "configured",
+      "configuration_references": [
+        "stair_skins.kreative"
+      ]
+    },
+    {
+      "asset_key": "AD_Arc_Wall_Stars",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.ethikos.justice_palace.feature_asset",
+        "interior_programs.justice_palace.feature"
+      ]
+    },
+    {
+      "asset_key": "AD_Arc_Window_Arch_Grid",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.central.city_hall.window_asset",
+        "buildings.central.ekoh_tower.window_asset",
+        "buildings.konnected.library.window_asset",
+        "buildings.konnected.university.window_asset",
+        "buildings.ethikos.justice_palace.window_asset",
+        "buildings.keenkonnect.innovation_lab.window_asset",
+        "buildings.kreative.museum.window_asset",
+        "buildings.orgo.admin_center.window_asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Arc_Window_Slant",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.keenkonnect.innovation_lab.feature_asset",
+        "interior_programs.ekoh_tower.feature"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Airship_Gold",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Airship_Red",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Airship_Silver",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Awning_Hotel",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bench",
+      "status": "configured",
+      "configuration_references": [
+        "street.bench.asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Base_Blue",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.central.city_hall.shell_asset",
+        "buildings.keenkonnect.innovation_lab.shell_asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Base_Cinema",
+      "status": "configured",
+      "configuration_references": [
+        "pavilion.asset",
+        "pavilion.variants.0"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Base_Hotel_Blue",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.konnected.university.shell_asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Base_Hotel_Red",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.orgo.admin_center.shell_asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Base_Hotel_Violet",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.kreative.museum.shell_asset",
+        "pavilion.variants.2"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Base_Red",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.konnected.library.shell_asset",
+        "pavilion.variants.1"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Base_Violet",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.ethikos.justice_palace.shell_asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Crown_Arches_Blue",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Crown_Arches_Red",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Crown_Arches_Violet",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Crown_Blue",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Crown_Red",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Crown_Violet",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Crown_Ziggurat_Blue",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Crown_Ziggurat_Red",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Crown_Ziggurat_Violet",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.central.ekoh_tower.feature_asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Mid_Blue",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Mid_Red",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Mid_Ribbon_Blue",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Mid_Ribbon_Red",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Mid_Ribbon_Violet",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Bldg_Mid_Violet",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.central.ekoh_tower.shell_asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Bridge_Suspension",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Car_Coupe_Black",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Car_Coupe_Cream",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Car_Coupe_Red",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Car_Limousine",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Car_Roadster",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Car_Taxi",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Car_Van",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Clock_Post",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Fountain",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Hydrant",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Kiosk_News",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Mailbox",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Palm_Tall",
+      "status": "configured",
+      "configuration_references": [
+        "environment.palm.asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Phone_Booth",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Planter_Palm",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Skybridge",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Ext_Street_Cross",
+      "status": "configured",
+      "configuration_references": [
+        "street.paving_cross.asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Street_Straight",
+      "status": "configured",
+      "configuration_references": [
+        "street.paving_straight.asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Streetlamp",
+      "status": "configured",
+      "configuration_references": [
+        "street.lamp.asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Ext_Viaduct_Arch",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Arch_Door",
+      "status": "configured",
+      "configuration_references": [
+        "surfaces.arch"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Arch_Window",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Armchair_Club",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Armchair_Tub_Black",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Back_Bar",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Banquette_Shell",
+      "status": "configured",
+      "configuration_references": [
+        "furnishings.prop.bench.asset",
+        "room_furniture.banquette"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Bar_Curve",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Bar_End",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Bar_Stool",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Bar_Straight",
+      "status": "configured",
+      "configuration_references": [
+        "furnishings.prop.desk.asset",
+        "furnishings.prop.table.asset",
+        "room_furniture.desk"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Bed_Leopard",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Bed_Satin",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Billiard_Table",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Chandelier",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Chandelier_Rings",
+      "status": "configured",
+      "configuration_references": [
+        "room_furniture.chandelier"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Column",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Floor_Checker",
+      "status": "configured",
+      "configuration_references": [
+        "surfaces.floor"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Floor_Medallion",
+      "status": "configured",
+      "configuration_references": [
+        "surfaces.medallion"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Glass_Martini",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Lamp_Billiard",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Lamp_Floor",
+      "status": "configured",
+      "configuration_references": [
+        "furnishings.prop.lamp.asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Lamp_Table",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Lamp_Wall_Sun",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Mic_Stand",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Mirror_Sunburst",
+      "status": "configured",
+      "configuration_references": [
+        "lobby_accent.asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Nightstand",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Piano_Grand",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Plant_Monstera",
+      "status": "configured",
+      "configuration_references": [
+        "furnishings.prop.planter.asset"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Plant_Palm",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Planter_Flowers",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Radio_Console",
+      "status": "configured",
+      "configuration_references": [
+        "interior_programs.innovation_lab.feature",
+        "interior_programs.campus.feature"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Room_Floor_Parquet",
+      "status": "configured",
+      "configuration_references": [
+        "surfaces.library_floor"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Room_Wall_Door_Coral",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Room_Wall_Door_Teal",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Room_Wall_GlassBlock_Coral",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Room_Wall_GlassBlock_Teal",
+      "status": "configured",
+      "configuration_references": [
+        "surfaces.glass"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Room_Wall_Plain_Coral",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Room_Wall_Plain_Teal",
+      "status": "configured",
+      "configuration_references": [
+        "surfaces.wall"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Room_Wall_Window_Coral",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Room_Wall_Window_Teal",
+      "status": "configured",
+      "configuration_references": [
+        "surfaces.window"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Rug_Deco",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Sculpture_Deco",
+      "status": "configured",
+      "configuration_references": [
+        "buildings.kreative.museum.feature_asset",
+        "interior_programs.city_hall.feature",
+        "interior_programs.museum.feature"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Sideboard",
+      "status": "configured",
+      "configuration_references": [
+        "interior_programs.library.feature",
+        "interior_programs.orgo_center.feature"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Sofa_Curved_Night",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Sofa_Curved_Red",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Sofa_Mod_Corner",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Sofa_Mod_Ottoman",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Sofa_Mod_Seat",
+      "status": "configured",
+      "configuration_references": [
+        "room_furniture.seat"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Stage_Shell",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Stanchion_Rope",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Table_Cocktail",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Table_Coffee_Glass",
+      "status": "configured",
+      "configuration_references": [
+        "room_furniture.coffee"
+      ]
+    },
+    {
+      "asset_key": "AD_Int_Table_Drum_Gold",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Table_Marble",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Vanity",
+      "status": "library_only",
+      "configuration_references": []
+    },
+    {
+      "asset_key": "AD_Int_Wardrobe",
+      "status": "library_only",
+      "configuration_references": []
+    }
+  ]
+}

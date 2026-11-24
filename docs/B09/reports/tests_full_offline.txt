@@ -1,0 +1,142 @@
+test_art_deco (unittest.loader._FailedTest.test_art_deco) ... ERROR
+test_art_deco_architecture (unittest.loader._FailedTest.test_art_deco_architecture) ... ERROR
+test_art_deco_full_refactor (unittest.loader._FailedTest.test_art_deco_full_refactor) ... ERROR
+test_art_deco_import_mapping (unittest.loader._FailedTest.test_art_deco_import_mapping) ... ERROR
+test_01_baseline_immutable_and_logical_plan (test_b09_integration.Contracts.test_01_baseline_immutable_and_logical_plan) ... ok
+test_02_extended_bounds_are_detected (test_b09_integration.Contracts.test_02_extended_bounds_are_detected) ... ok
+test_03_contribution_contracts (test_b09_integration.Contracts.test_03_contribution_contracts) ... ok
+test_04_path_guards_reject_traversal (test_b09_integration.Contracts.test_04_path_guards_reject_traversal) ... ok
+test_05_reciprocal_door_mutation_detected (test_b09_integration.Contracts.test_05_reciprocal_door_mutation_detected) ... ok
+test_06_valid_local_handoff (test_b09_integration.Handoffs.test_06_valid_local_handoff) ... ok
+test_07_wrong_branch_or_place_rejected (test_b09_integration.Handoffs.test_07_wrong_branch_or_place_rejected) ... ok
+test_08_wrong_baseline_hash_rejected (test_b09_integration.Handoffs.test_08_wrong_baseline_hash_rejected) ... ok
+test_09_tampered_file_rejected (test_b09_integration.Handoffs.test_09_tampered_file_rejected) ... ok
+test_10_out_of_scope_rejected (test_b09_integration.Handoffs.test_10_out_of_scope_rejected) ... ok
+test_11_missing_test_evidence_rejected (test_b09_integration.Handoffs.test_11_missing_test_evidence_rejected) ... ok
+test_12_shared_changed_unapproved_rejected (test_b09_integration.Handoffs.test_12_shared_changed_unapproved_rejected) ... ok
+test_13_unilateral_accepted_rejected (test_b09_integration.Handoffs.test_13_unilateral_accepted_rejected) ... ok
+test_14_empty_handoff_rejected (test_b09_integration.Handoffs.test_14_empty_handoff_rejected) ... ok
+test_15_shared_requires_rfc (test_b09_integration.Handoffs.test_15_shared_requires_rfc) ... ok
+test_16_breaking_requires_adr (test_b09_integration.Handoffs.test_16_breaking_requires_adr) ... ok
+test_19_hidden_file_in_patch_refused (test_b09_integration.PatchIntegrity.test_19_hidden_file_in_patch_refused) ... ok
+test_20_nine_manifests_validate_json_schema (test_b09_integration.RecipeSchema.test_20_nine_manifests_validate_json_schema) ... ok
+test_17_invalid_ids_prohibited (test_b09_integration.StagingGuards.test_17_invalid_ids_prohibited) ... ok
+test_18_staging_production_consistency (test_b09_integration.StagingGuards.test_18_staging_production_consistency) ... ok
+test_branding_and_player (test_clean_install_v31_9_7.CleanInstall.test_branding_and_player) ... ok
+test_expected_module_count (test_clean_install_v31_9_7.CleanInstall.test_expected_module_count) ... ok
+test_guard_play (test_clean_install_v31_9_7.CleanInstall.test_guard_play) ... ok
+test_media_count (test_clean_install_v31_9_7.CleanInstall.test_media_count) ... ok
+test_no_historical_deliverables_in_root (test_clean_install_v31_9_7.CleanInstall.test_no_historical_deliverables_in_root) ... ok
+test_no_old_asset_id_merge (test_clean_install_v31_9_7.CleanInstall.test_no_old_asset_id_merge) ... ok
+test_single_official_installer (test_clean_install_v31_9_7.CleanInstall.test_single_official_installer) ... ok
+test_single_place_mode (test_clean_install_v31_9_7.CleanInstall.test_single_place_mode) ... ok
+test_wipe_core_instances_before_regeneration (test_clean_install_v31_9_7.CleanInstall.test_wipe_core_instances_before_regeneration) ... ok
+test_world_and_interiors_verified (test_clean_install_v31_9_7.CleanInstall.test_world_and_interiors_verified) ... ok
+test_gallery_is_created_before_it_is_registered (test_gallery_menu_v31_1.GalleryMenuHotfixTests.test_gallery_is_created_before_it_is_registered) ... ok
+test_menu_rejects_invalid_window_with_clear_error (test_gallery_menu_v31_1.GalleryMenuHotfixTests.test_menu_rejects_invalid_window_with_clear_error) ... ok
+test_no_other_active_ui_registers_before_window_creation (test_gallery_menu_v31_1.GalleryMenuHotfixTests.test_no_other_active_ui_registers_before_window_creation) ... ok
+test_camera_privilege_fixed (test_koali_urbanisme_v31.KoaliUrbanismeV31.test_camera_privilege_fixed) ... ok
+test_door_anchors_follow_relocated_buildings (test_koali_urbanisme_v31.KoaliUrbanismeV31.test_door_anchors_follow_relocated_buildings) ... ok
+test_eight_institutions_keep_original_routes (test_koali_urbanisme_v31.KoaliUrbanismeV31.test_eight_institutions_keep_original_routes) ... ok
+test_koali_owns_the_interface (test_koali_urbanisme_v31.KoaliUrbanismeV31.test_koali_owns_the_interface) ... ok
+test_no_silent_city_reversion (test_koali_urbanisme_v31.KoaliUrbanismeV31.test_no_silent_city_reversion) ... ok
+test_public_prompts_are_stubs_not_real_apis (test_koali_urbanisme_v31.KoaliUrbanismeV31.test_public_prompts_are_stubs_not_real_apis) ... ok
+test_six_functional_axes_without_legacy_generated_lots (test_koali_urbanisme_v31.KoaliUrbanismeV31.test_six_functional_axes_without_legacy_generated_lots) ... ok
+test_six_sections_and_branding (test_koali_urbanisme_v31.KoaliUrbanismeV31.test_six_sections_and_branding) ... ok
+test_all_doors_reversible_and_resolved (test_runtime_generation.TestRuntimeGeneration.test_all_doors_reversible_and_resolved) ... ok
+test_all_interactions_have_real_furniture (test_runtime_generation.TestRuntimeGeneration.test_all_interactions_have_real_furniture) ... ok
+test_all_interiors_have_connected_layout_and_threshold (test_runtime_generation.TestRuntimeGeneration.test_all_interiors_have_connected_layout_and_threshold) ... ok
+test_built_runtime_is_network_free (test_runtime_generation.TestRuntimeGeneration.test_built_runtime_is_network_free) ... ok
+test_export_deterministic_and_contains_real_plan (test_runtime_generation.TestRuntimeGeneration.test_export_deterministic_and_contains_real_plan) ... ok
+test_multi_place_requires_public_ids (test_runtime_generation.TestRuntimeGeneration.test_multi_place_requires_public_ids) ... ok
+test_client_module_does_not_wait_for_rpc_at_top_level (test_v31_9_1_editor_boot.EditorBootstrap.test_client_module_does_not_wait_for_rpc_at_top_level) ... ok
+test_empty_menu_message_is_not_behind_buttons (test_v31_9_1_editor_boot.EditorBootstrap.test_empty_menu_message_is_not_behind_buttons) ... ok
+test_other_tools_unaffected_if_client_editor_fails (test_v31_9_1_editor_boot.EditorBootstrap.test_other_tools_unaffected_if_client_editor_fails) ... ok
+test_rpc_available_before_indexing (test_v31_9_1_editor_boot.EditorBootstrap.test_rpc_available_before_indexing) ... ok
+test_client_plays_locally_without_playing_replication (test_v31_9_3_outdoor_cinema.OutdoorCinemaContract.test_client_plays_locally_without_playing_replication) ... ok
+test_one_screen_one_trigger (test_v31_9_3_outdoor_cinema.OutdoorCinemaContract.test_one_screen_one_trigger) ... ok
+test_patch_does_not_destroy_generated_city (test_v31_9_3_outdoor_cinema.OutdoorCinemaContract.test_patch_does_not_destroy_generated_city) ... ok
+test_requires_real_video_asset_id_no_fake (test_v31_9_3_outdoor_cinema.OutdoorCinemaContract.test_requires_real_video_asset_id_no_fake) ... ok
+test_server_validates_character_and_entry (test_v31_9_3_outdoor_cinema.OutdoorCinemaContract.test_server_validates_character_and_entry) ... ok
+test_startup_in_current_universe (test_v31_9_3_outdoor_cinema.OutdoorCinemaContract.test_startup_in_current_universe) ... ok
+test_asset_ids_and_missing_track (test_v31_9_5_music_repo.MusicRepositoryV3195.test_asset_ids_and_missing_track) ... ok
+test_correctif_no_regeneration (test_v31_9_5_music_repo.MusicRepositoryV3195.test_correctif_no_regeneration) ... ok
+test_csv_match (test_v31_9_5_music_repo.MusicRepositoryV3195.test_csv_match) ... ok
+test_four_albums_49_tracks (test_v31_9_5_music_repo.MusicRepositoryV3195.test_four_albums_49_tracks) ... ok
+test_full_installer_embeds_latest_modules (test_v31_9_5_music_repo.MusicRepositoryV3195.test_full_installer_embeds_latest_modules) ... ok
+test_generator_uses_clean_wipe_without_old_asset_ids (test_v31_9_5_music_repo.MusicRepositoryV3195.test_generator_uses_clean_wipe_without_old_asset_ids) ... ok
+test_new_track_ids_in_library (test_v31_9_5_music_repo.MusicRepositoryV3195.test_new_track_ids_in_library) ... ok
+test_snapshot_and_project_included (test_v31_9_5_music_repo.MusicRepositoryV3195.test_snapshot_and_project_included) ... ok
+test_missing_interaction_object_rejected (test_validation.TestStaticWorld.test_missing_interaction_object_rejected) ... ok
+test_nonexistent_facade_rejected (test_validation.TestStaticWorld.test_nonexistent_facade_rejected) ... ok
+test_plan_is_repeatable (test_validation.TestStaticWorld.test_plan_is_repeatable) ... ok
+test_plan_paths_do_not_cross_footprints_on_grid (test_validation.TestStaticWorld.test_plan_paths_do_not_cross_footprints_on_grid) ... ok
+test_spatial_anchor_out_of_city_rejected (test_validation.TestStaticWorld.test_spatial_anchor_out_of_city_rejected) ... ok
+test_world_passes (test_validation.TestStaticWorld.test_world_passes) ... ok
+
+======================================================================
+ERROR: test_art_deco (unittest.loader._FailedTest.test_art_deco)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_art_deco
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/kincity_b09_work/KinCity_ArtDeco_V3/source/Kin-City/tests/test_art_deco.py", line 4, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+======================================================================
+ERROR: test_art_deco_architecture (unittest.loader._FailedTest.test_art_deco_architecture)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_art_deco_architecture
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/kincity_b09_work/KinCity_ArtDeco_V3/source/Kin-City/tests/test_art_deco_architecture.py", line 4, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+======================================================================
+ERROR: test_art_deco_full_refactor (unittest.loader._FailedTest.test_art_deco_full_refactor)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_art_deco_full_refactor
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/kincity_b09_work/KinCity_ArtDeco_V3/source/Kin-City/tests/test_art_deco_full_refactor.py", line 6, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+======================================================================
+ERROR: test_art_deco_import_mapping (unittest.loader._FailedTest.test_art_deco_import_mapping)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_art_deco_import_mapping
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/kincity_b09_work/KinCity_ArtDeco_V3/source/Kin-City/tests/test_art_deco_import_mapping.py", line 5, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+----------------------------------------------------------------------
+Ran 75 tests in 5.458s
+
+FAILED (errors=4)
+EXPORT OK 5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a / mode LOCAL_UNIVERSE / places 9

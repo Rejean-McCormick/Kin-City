@@ -1,0 +1,9 @@
+{
+  "schema_version":"kincity.kc36-gates/0.1-proposed",
+  "release_policy":"DOCUMENTATION_ONLY_NO_AUTO_DEPLOY",
+  "phases":[
+    {"id":"P0","name":"Urban plan / greybox","required_evidence":["road polygon schedule","plot inventory","signed site assignments","zero unauthorized roadway/plot footprint overlaps"]},
+    {"id":"P1","name":"Surface and signage ownership","required_evidence":["one opaque surface owner per public zone","studio z-fighting diagnosis with Instance paths","physical support for all public wayfinding","no hour-based sector names"]},
+    {"id":"P2","name":"Facades, places and QA","required_evidence":["same-camera V30/KC36 comparisons","all 16 door IDs consistent","9 branch loader registry verified","AssetMaster PackageLink intact","mobile performance measurements","multi-place client qualification if publishing"]}
+  ]
+}

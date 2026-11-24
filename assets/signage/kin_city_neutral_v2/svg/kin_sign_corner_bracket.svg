@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-  <title>Kin City - Equerre decorative neutre</title>
-  <desc>Coin supérieur gauche sans monogramme, réutilisable par rotations de 90 degrés.</desc>
-  <g fill="none" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M16 106 V31 Q16 16 31 16 H106" stroke-width="6"/>
-    <path d="M27 91 V36 Q27 27 36 27 H91" stroke-width="2.5" opacity="0.65"/>
-  </g>
-  <circle cx="36" cy="36" r="3.5" fill="#FFFFFF"/>
-</svg>

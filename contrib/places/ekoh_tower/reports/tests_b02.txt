@@ -1,0 +1,25 @@
+test_01_six_rooms_and_two_doors (test_b02.B02.test_01_six_rooms_and_two_doors) ... ok
+test_02_generated_module_reproducible (test_b02.B02.test_02_generated_module_reproducible) ... ok
+test_03_unique_panels_by_room (test_b02.B02.test_03_unique_panels_by_room) ... ok
+test_04_door_mutation_rejected (test_b02.B02.test_04_door_mutation_rejected) ... ok
+test_05_return_door_mutation_rejected (test_b02.B02.test_05_return_door_mutation_rejected) ... ok
+test_06_pretend_real_ekoh_api_rejected (test_b02.B02.test_06_pretend_real_ekoh_api_rejected) ... ok
+test_07_palette_mutation_rejected (test_b02.B02.test_07_palette_mutation_rejected) ... ok
+test_08_missing_room_rejected (test_b02.B02.test_08_missing_room_rejected) ... ok
+test_09_duplicate_decor_id_rejected (test_b02.B02.test_09_duplicate_decor_id_rejected) ... ok
+test_10_panel_in_spawn_area_rejected (test_b02.B02.test_10_panel_in_spawn_area_rejected) ... ok
+test_11_panel_in_portal_area_rejected (test_b02.B02.test_11_panel_in_portal_area_rejected) ... ok
+test_12_panel_outside_room_rejected (test_b02.B02.test_12_panel_outside_room_rejected) ... ok
+test_13_panel_at_avatar_height_rejected (test_b02.B02.test_13_panel_at_avatar_height_rejected) ... ok
+test_14_unbudgeted_profile_rejected (test_b02.B02.test_14_unbudgeted_profile_rejected) ... ok
+test_15_panels_are_all_noninteractive (test_b02.B02.test_15_panels_are_all_noninteractive) ... ok
+test_16_guarded_idempotence_and_no_global_mutation (test_b02.B02.test_16_guarded_idempotence_and_no_global_mutation) ... ok
+test_17_absent_room_preflight (test_b02.B02.test_17_absent_room_preflight) ... ok
+test_18_quality_profiles_costed (test_b02.B02.test_18_quality_profiles_costed) ... ok
+test_19_fixtures_v3_pinned (test_b02.B02.test_19_fixtures_v3_pinned) ... ok
+test_20_no_asset_fallback_required (test_b02.B02.test_20_no_asset_fallback_required) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.009s
+
+OK

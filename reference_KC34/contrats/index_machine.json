@@ -1,0 +1,96 @@
+{
+  "reference_version": "KC34-DOC-1.0",
+  "baseline": "KC33",
+  "source_package": "KinCity_KC33_Mise_a_Niveau_Complet.zip",
+  "place_count": 9,
+  "place_keys": [
+    "city",
+    "city_hall",
+    "ekoh_tower",
+    "library",
+    "campus",
+    "justice_palace",
+    "innovation_lab",
+    "museum",
+    "orgo_center"
+  ],
+  "branches": [
+    {
+      "branch": "B01",
+      "owner_key": "city_hall",
+      "purpose": "place",
+      "has_roblox_place": true
+    },
+    {
+      "branch": "B02",
+      "owner_key": "ekoh_tower",
+      "purpose": "place",
+      "has_roblox_place": true
+    },
+    {
+      "branch": "B03",
+      "owner_key": "library",
+      "purpose": "place",
+      "has_roblox_place": true
+    },
+    {
+      "branch": "B04",
+      "owner_key": "campus",
+      "purpose": "place",
+      "has_roblox_place": true
+    },
+    {
+      "branch": "B05",
+      "owner_key": "justice_palace",
+      "purpose": "place",
+      "has_roblox_place": true
+    },
+    {
+      "branch": "B06",
+      "owner_key": "innovation_lab",
+      "purpose": "place",
+      "has_roblox_place": true
+    },
+    {
+      "branch": "B07",
+      "owner_key": "museum",
+      "purpose": "place",
+      "has_roblox_place": true
+    },
+    {
+      "branch": "B08",
+      "owner_key": "orgo_center",
+      "purpose": "place",
+      "has_roblox_place": true
+    },
+    {
+      "branch": "B09",
+      "owner_key": "integration",
+      "purpose": "intégration et contrats",
+      "has_roblox_place": false
+    },
+    {
+      "branch": "B10",
+      "owner_key": "city",
+      "purpose": "place",
+      "has_roblox_place": true
+    }
+  ],
+  "district_count_outer": 6,
+  "door_count": 16,
+  "spatial_anchor_count": 49,
+  "canonical_rooms_in_world_plan": 24,
+  "additional_rooms_from_InteriorWings": 24,
+  "total_rooms_in_runtime_if_InteriorWings_applied": 48,
+  "models_total": 121,
+  "models_configured": 41,
+  "models_library_only": 80,
+  "runtime_mode_in_KC33": "LOCAL_UNIVERSE",
+  "place_id_population": 0,
+  "notes": [
+    "La Place city est le dixième CHANTIER (B10), mais la neuvième Place Roblox.",
+    "B09 n’est pas une Place.",
+    "Les PlaceIds du jeu réel ne sont pas disponibles dans KC33.",
+    "Tests Roblox publiés et performances non démontrés."
+  ]
+}

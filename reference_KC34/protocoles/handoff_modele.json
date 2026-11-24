@@ -1,0 +1,30 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B01",
+  "place_key": "city_hall",
+  "baseline": "KC33",
+  "contracts_version": "KC34-DOC-1.0",
+  "commit_or_patch_id": "A_REMPLIR",
+  "change_class": "LOCAL",
+  "goal": "A_REMPLIR",
+  "changed_files": [],
+  "contract_changes": [],
+  "assets_added": [],
+  "tests_executed": [],
+  "tests_not_executed": [
+    "Test Roblox Studio",
+    "Client publié: téléportations",
+    "Mesure mobile"
+  ],
+  "evidence": [],
+  "performance": {
+    "measured": false,
+    "device": "",
+    "profile": "",
+    "metrics": {}
+  },
+  "risk": [],
+  "rollback": "A_COMPLETER",
+  "needs_approval": [],
+  "status": "WORK_IN_PROGRESS"
+}

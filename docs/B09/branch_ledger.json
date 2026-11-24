@@ -1,0 +1,129 @@
+{
+  "schema_version": "kincity.integration-ledger/1.0",
+  "contracts_version": "KC34-DOC-1.0",
+  "baseline": "KC33",
+  "baseline_zip_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "integration_state": "CONSOLIDATED_SOURCE_ONLY_NOT_PUBLISHED",
+  "last_accepted_runtime_release": null,
+  "branches": {
+    "B01": {
+      "place_key": "city_hall",
+      "status": "BLOCKED",
+      "reason": "KC35 runtime branch adapter wired; pending Studio and published-client verification",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "6982bb456db8069c946b078c411ad520293011686e600805e99919ffdc716280",
+      "offline_gate": "PASS_OR_REBASED_WITH_LIMITS",
+      "source_imported_to_workspace": true,
+      "runtime_integrated": true,
+      "studio_validated": false,
+      "handoff_declared_status": "READY_FOR_REVIEW"
+    },
+    "B02": {
+      "place_key": "ekoh_tower",
+      "status": "BLOCKED",
+      "reason": "KC35 runtime branch adapter wired; pending Studio and published-client verification",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "4560ba2fcfd9d621463a6bd9021cb1440bd5e7707ecdb85e3d5e807ba0e79b47",
+      "offline_gate": "PASS_OR_REBASED_WITH_LIMITS",
+      "source_imported_to_workspace": true,
+      "runtime_integrated": true,
+      "studio_validated": false,
+      "handoff_declared_status": "BLOCKED"
+    },
+    "B03": {
+      "place_key": "library",
+      "status": "BLOCKED",
+      "reason": "KC35 runtime branch adapter wired; pending Studio and published-client verification",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "c5a48c60d86384f0a0f1659eb164a41779ec215eb43134ac836ee51ce6664369",
+      "offline_gate": "PASS_OR_REBASED_WITH_LIMITS",
+      "source_imported_to_workspace": true,
+      "runtime_integrated": true,
+      "studio_validated": false,
+      "handoff_declared_status": "BLOCKED"
+    },
+    "B04": {
+      "place_key": "campus",
+      "status": "BLOCKED",
+      "reason": "KC35 runtime branch adapter wired; pending Studio and published-client verification",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "40742963bb42b559f1f3b6f79b414d37b2012d986cca36fd5852ef61db450820",
+      "offline_gate": "PASS_OR_REBASED_WITH_LIMITS",
+      "source_imported_to_workspace": true,
+      "runtime_integrated": true,
+      "studio_validated": false,
+      "handoff_declared_status": "READY_FOR_REVIEW"
+    },
+    "B05": {
+      "place_key": "justice_palace",
+      "status": "BLOCKED",
+      "reason": "KC35 runtime branch adapter wired; pending Studio and published-client verification",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "bde5bfa8d50d3b4cb40c5a48b79eefef1a0b44f83b4cbcb19e56904fecd6b1a6",
+      "offline_gate": "PASS_OR_REBASED_WITH_LIMITS",
+      "source_imported_to_workspace": true,
+      "runtime_integrated": true,
+      "studio_validated": false,
+      "handoff_declared_status": "READY_FOR_REVIEW"
+    },
+    "B06": {
+      "place_key": "innovation_lab",
+      "status": "BLOCKED",
+      "reason": "KC35 runtime branch adapter wired; pending Studio and published-client verification",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "5027f3332955c579cb3d2c6af5a0501bde4efc737fe65d24f94edca181d08dfe",
+      "offline_gate": "PASS_OR_REBASED_WITH_LIMITS",
+      "source_imported_to_workspace": true,
+      "runtime_integrated": true,
+      "studio_validated": false,
+      "handoff_declared_status": "READY_FOR_REVIEW"
+    },
+    "B07": {
+      "place_key": "museum",
+      "status": "BLOCKED",
+      "reason": "KC35 runtime branch adapter wired; pending Studio and published-client verification",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "d8943555b4606950f330baa1a08c9622586c5ce58b2ed4126a0a2f9fa168d296",
+      "offline_gate": "PASS_OR_REBASED_WITH_LIMITS",
+      "source_imported_to_workspace": true,
+      "runtime_integrated": true,
+      "studio_validated": false,
+      "handoff_declared_status": "READY_FOR_REVIEW"
+    },
+    "B08": {
+      "place_key": "orgo_center",
+      "status": "BLOCKED",
+      "reason": "Rebase KC33 offline and runtime adapter wired; original V3 preserved; Studio still untested",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "3910631289c4a395f77b28947ec76323be09751593e5d175852eee3fabe3fa35",
+      "offline_gate": "PASS_OR_REBASED_WITH_LIMITS",
+      "source_imported_to_workspace": true,
+      "runtime_integrated": true,
+      "studio_validated": false,
+      "handoff_declared_status": "BLOCKED"
+    },
+    "B09": {
+      "place_key": "integration",
+      "status": "ACCEPTED",
+      "reason": "Outillage initial qualifié HORS MOTEUR uniquement; release Roblox non approuvée",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "8d2c3626407d307bdab4e563579dda208b558c53189277dea871b60420380fea",
+      "result_kind": "empreinte du rapport de contrôle hors moteur; aucune release runtime"
+    },
+    "B10": {
+      "place_key": "city",
+      "status": "BLOCKED",
+      "reason": "KC35 runtime branch adapter wired; pending Studio and published-client verification",
+      "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "result_sha256": "9747310e315b45a1134086b6c76d07d11c6d95e234bbbf95b379e4677317e80e",
+      "offline_gate": "PASS_OR_REBASED_WITH_LIMITS",
+      "source_imported_to_workspace": true,
+      "runtime_integrated": true,
+      "studio_validated": false,
+      "handoff_declared_status": "READY_FOR_REVIEW"
+    }
+  },
+  "intake_history": [],
+  "current_candidate_id": "KC34-B09-CONSOLIDATION-01",
+  "consolidation_report": "docs/B09/consolidation/consolidation_receipt.json"
+}

@@ -64,6 +64,9 @@ local function capture(p:BasePart):any
 end
 local function protected(p:BasePart):boolean
     if not p:IsDescendantOf(worldRef :: Instance) then return true end
+    -- KC36 : architecture/interieurs exclusivement geres par InteriorEditorV36.
+    local interiorRoot=(worldRef :: Instance):FindFirstChild("Bâtiments visitables")
+    if interiorRoot and p:IsDescendantOf(interiorRoot) then return true end
     if p:IsA("Seat") or p:IsA("VehicleSeat") or p:IsA("SpawnLocation") then return true end
     if not p.Anchored then return true end
     local node:Instance?=p

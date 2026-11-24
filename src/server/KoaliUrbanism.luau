@@ -5,9 +5,11 @@
 local Factory=require(script.Parent.Factory)
 local Shared=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
 local Districts=require(Shared:WaitForChild("HexagonalDistricts"))
+local ArtDecoProps=require(script.Parent.ArtDecoProps)
 local Urbanism={}
+local ArtDecoTheme=require(Shared.ArtDecoTheme)
 local TEAL=Districts.base
-local STONE=Color3.fromRGB(207,218,209)
+local STONE=ArtDecoTheme.stone
 local INK=Color3.fromRGB(30,45,48)
 local GOLD=Color3.fromRGB(181,149,94)
 local preview={
@@ -124,7 +126,8 @@ function Urbanism.isReserved(x,z)
     end
     return false
 end
-local function decorativeBench(parent,base,side,accent)
+local function decorativeBench(parent,base,side,accent,sector,step)
+    if ArtDecoProps.selected("bench",step) and ArtDecoProps.street(parent,"bench",base*CFrame.new(side*30,0,0),sector) then return end
     piece(parent,"Banc – assise",Vector3.new(6,0.75,2.5),base*CFrame.new(side*30,1.6,0),STONE,Enum.Material.WoodPlanks,true)
     piece(parent,"Banc – dossier",Vector3.new(6,2,0.5),base*CFrame.new(side*30,2.45,1),accent,Enum.Material.Metal,true)
 end
@@ -145,6 +148,11 @@ local function avenue(parent,s)
             if s.key=="kreative" then line:SetAttribute("KinKreativeCanvas",true) end
         end
     end
+    -- KC36 : surface viaire à propriétaire unique. Ne pas superposer les
+    -- deux meshes GLB de paving à ces dalles natives déjà visibles et solides.
+    -- Les assets restent disponibles dans le Package, sans être instanciés ici.
+    road:SetAttribute("KinGroundAuthority","native-avenue-slabs")
+    road:SetAttribute("KinPavingMeshOverlay",false)
     -- Deux alignements lisibles de mobilier à intervalles réguliers.
     for n=1,8 do
         local r=99+n*37
@@ -152,28 +160,49 @@ local function avenue(parent,s)
         local base=CFrame.new(centre)*CFrame.Angles(0,math.atan2(s.x,s.z),0)
         for _,direction in ipairs({-1,1}) do
             local c=base*CFrame.new(direction*24,0,0)
-            piece(road,"Mât de quartier",Vector3.new(0.75,8.4,0.75),c*CFrame.new(0,4.4,0),TEAL,Enum.Material.Metal,true)
-            local collar=piece(road,"Bague du lampadaire",Vector3.new(1.1,0.34,1.1),c*CFrame.new(0,8.5,0),s.lightColor,Enum.Material.Neon,false)
-            local lamp=piece(road,"Lanterne de quartier",Vector3.new(1.75,1.75,1.75),c*CFrame.new(0,9.05,0),s.lightColor,Enum.Material.Neon,false)
-            lamp:SetAttribute("KinLightingSector",s.key)
-            lamp:SetAttribute("KinLightingColor",s.lightColor:ToHex())
-            if s.key=="kreative" then
-                collar:SetAttribute("KinKreativeCanvas",true)
-                lamp:SetAttribute("KinKreativeCanvas",true)
+            local importedLamp=if ArtDecoProps.selected("lamp",n) then ArtDecoProps.street(road,"lamp",c,s.key) else nil
+            if importedLamp then
+                local host=ArtDecoProps.lightHost(importedLamp)
+                if host then
+                    host:SetAttribute("KinLightingSector",s.key)
+                    host:SetAttribute("KinLightingColor",s.lightColor:ToHex())
+                    if n%2==0 then
+                        local light=Instance.new("PointLight")
+                        light.Name="Lueur du quartier";light.Brightness=0.42;light.Range=18
+                        light.Color=s.lightColor;light.Shadows=false;light:SetAttribute("KinStaticLightLOD",true);light.Parent=host
+                        if s.key=="kreative" then light:SetAttribute("KinKreativeLight",true) end
+                    end
+                end
             end
-            if n%2==0 then
-                local light=Instance.new("PointLight")
-                light.Name="Lueur du quartier"
-                light.Brightness=0.42;light.Range=18;light.Color=s.lightColor;light.Shadows=false;light.Parent=lamp
-                if s.key=="kreative" then light:SetAttribute("KinKreativeLight",true) end
+            if not importedLamp then
+                piece(road,"Mât de quartier",Vector3.new(0.75,8.4,0.75),c*CFrame.new(0,4.4,0),TEAL,Enum.Material.Metal,true)
+                local collar=piece(road,"Bague du lampadaire",Vector3.new(1.1,0.34,1.1),c*CFrame.new(0,8.5,0),s.lightColor,Enum.Material.Neon,false)
+                local lamp=piece(road,"Lanterne de quartier",Vector3.new(1.75,1.75,1.75),c*CFrame.new(0,9.05,0),s.lightColor,Enum.Material.Neon,false)
+                lamp:SetAttribute("KinLightingSector",s.key)
+                lamp:SetAttribute("KinLightingColor",s.lightColor:ToHex())
+                if s.key=="kreative" then
+                    collar:SetAttribute("KinKreativeCanvas",true)
+                    lamp:SetAttribute("KinKreativeCanvas",true)
+                end
+                if n%2==0 then
+                    local light=Instance.new("PointLight")
+                    light.Name="Lueur du quartier"
+                    light.Brightness=0.42;light.Range=18;light.Color=s.lightColor;light.Shadows=false;light:SetAttribute("KinStaticLightLOD",true);light.Parent=lamp
+                    if s.key=="kreative" then light:SetAttribute("KinKreativeLight",true) end
+                end
             end
         end
         if n==2 or n==5 then
-            decorativeBench(road,base,-1,s.color)
-            decorativeBench(road,base,1,s.color)
+            decorativeBench(road,base,-1,s.color,s.key,n)
+            decorativeBench(road,base,1,s.color,s.key,n)
         end
     end
-    -- Grandes pancartes d’avenue retirées : l’architecture et les pavillons orientent les visiteurs.
+    -- Six compact, ornamented avenue signs: one visible identity per sector.
+    local entry=axis*84+side*14
+    piece(road,"Support de pancarte",Vector3.new(.6,4,.6),CFrame.new(entry+Vector3.new(0,2,0)),TEAL,Enum.Material.Metal,false)
+    local sectorSign=Factory.sign(road,"Pancarte du secteur",entry+Vector3.new(0,4.8,0),
+        math.deg(math.atan2(s.x,s.z)),"Avenue "..s.name,18,2.8,{section=s.key})
+    sectorSign:SetAttribute("KinSectorIdentity",s.key)
     return road
 end
 local function pavilion(parent,siteRecord)
@@ -199,26 +228,34 @@ local function pavilion(parent,siteRecord)
         axis*(longitudinal-18)+Vector3.new(0,0.54,0),
         at-axis*18+Vector3.new(0,0.54,0),7.5,0.25,STONE,Enum.Material.Slate)
     path.CanCollide=true
-    piece(lot,"Façade réemployée",Vector3.new(30,12,15),base*CFrame.new(0,6.5,7),s.dark,material,true)
-    local roof=piece(lot,"Toiture de quartier",Vector3.new(34,1.25,18),base*CFrame.new(0,12.8,7),s.color,Enum.Material.Metal,true)
+    local importedPavilion=ArtDecoProps.pavilion(lot,base*CFrame.new(0,.5,7),s.key,siteRecord.index)
+    if not importedPavilion then
+    piece(lot,"Façade réemployée",Vector3.new(30,12,15),base*CFrame.new(0,6.5,7),STONE,Enum.Material.Concrete,true)
+    local roof=piece(lot,"Toiture de quartier",Vector3.new(34,1.25,18),base*CFrame.new(0,12.8,7),ArtDecoTheme.dark,Enum.Material.Metal,true)
     if s.key=="kreative" then roof:SetAttribute("KinKreativeCanvas",true) end
     local frieze=piece(lot,"Frise lumineuse de quartier",Vector3.new(31,0.6,1),base*CFrame.new(0,10.7,-1),s.lightColor,Enum.Material.Neon,false)
     if s.key=="kreative" then frieze:SetAttribute("KinKreativeCanvas",true) end
     for n=-2,2 do
         piece(lot,"Colonnade alignée",Vector3.new(1.25,8.5,1.25),base*CFrame.new(n*5.2,5,-1),
-            if s.material=="monochrome" and n%2==0 then s.pale else s.secondary,material,true)
+            ArtDecoTheme.bronze,Enum.Material.Metal,true)
     end
     if s.material=="black_marble" then
         for n=-2,2 do
             piece(lot,"Veines dorées",Vector3.new(0.14,9,0.22),base*CFrame.new(n*5.2+1.1,6.3,-1.56)*CFrame.Angles(0,0,0.3),GOLD,Enum.Material.Metal,false)
         end
     end
+    end
     local entrance=piece(lot,"Totem de découverte",Vector3.new(5.5,4,2),base*CFrame.new(0,2.3,-13),TEAL,Enum.Material.Metal,true)
     entrance:SetAttribute("KinStubInteractionId","koali.preview."..s.key.."."..siteRecord.index)
     entrance:SetAttribute("KinStubCapabilityId","koali.preview.information")
     entrance:SetAttribute("KinStubTitle",info.title)
     Factory.prompt(entrance,"Découvrir",info.title)
-    local panel=Factory.sign(lot,"Enseigne de l'allée",(base*CFrame.new(0,16.3,-1.5)).Position,
+    local signHeight=16.3
+    if importedPavilion then
+        local _,pavilionSize=importedPavilion:GetBoundingBox()
+        signHeight=math.max(12,math.min(23,pavilionSize.Y+2.2))
+    end
+    local panel=Factory.sign(lot,"Enseigne de l'allée",(base*CFrame.new(0,signHeight,-3)).Position,
         math.deg(math.atan2(s.x,s.z)),info.title,24,3.2)
     panel.CanCollide=false
     -- Un marqueur ne simule pas le branchement à Orgo, Moodle, Konstellation ou Konnaxion.

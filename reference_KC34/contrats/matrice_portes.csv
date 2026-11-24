@@ -1,0 +1,17 @@
+door_id,source_place_key,source_anchor_id,destination_place_key,destination_anchor_id,return_door_id,source_branche,destination_branche,statut_KC33
+city.central.city_hall.entry,city,city.central.city_hall.front_door,city_hall,city_hall.lobby.spawn,city_hall.exit,B10,B01,contrat statique; test client publié à faire
+city_hall.exit,city_hall,city_hall.exit.door,city,city.central.city_hall.return_spawn,city.central.city_hall.entry,B01,B10,contrat statique; test client publié à faire
+city.central.ekoh_tower.entry,city,city.central.ekoh_tower.front_door,ekoh_tower,ekoh_tower.lobby.spawn,ekoh_tower.exit,B10,B02,contrat statique; test client publié à faire
+ekoh_tower.exit,ekoh_tower,ekoh_tower.exit.door,city,city.central.ekoh_tower.return_spawn,city.central.ekoh_tower.entry,B02,B10,contrat statique; test client publié à faire
+city.konnected.library.entry,city,city.konnected.library.front_door,library,library.lobby.spawn,library.exit,B10,B03,contrat statique; test client publié à faire
+library.exit,library,library.exit.door,city,city.konnected.library.return_spawn,city.konnected.library.entry,B03,B10,contrat statique; test client publié à faire
+city.konnected.university.entry,city,city.konnected.university.front_door,campus,campus.lobby.spawn,campus.exit,B10,B04,contrat statique; test client publié à faire
+campus.exit,campus,campus.exit.door,city,city.konnected.university.return_spawn,city.konnected.university.entry,B04,B10,contrat statique; test client publié à faire
+city.ethikos.justice_palace.entry,city,city.ethikos.justice_palace.front_door,justice_palace,justice_palace.lobby.spawn,justice_palace.exit,B10,B05,contrat statique; test client publié à faire
+justice_palace.exit,justice_palace,justice_palace.exit.door,city,city.ethikos.justice_palace.return_spawn,city.ethikos.justice_palace.entry,B05,B10,contrat statique; test client publié à faire
+city.keenkonnect.innovation_lab.entry,city,city.keenkonnect.innovation_lab.front_door,innovation_lab,innovation_lab.lobby.spawn,innovation_lab.exit,B10,B06,contrat statique; test client publié à faire
+innovation_lab.exit,innovation_lab,innovation_lab.exit.door,city,city.keenkonnect.innovation_lab.return_spawn,city.keenkonnect.innovation_lab.entry,B06,B10,contrat statique; test client publié à faire
+city.kreative.museum.entry,city,city.kreative.museum.front_door,museum,museum.lobby.spawn,museum.exit,B10,B07,contrat statique; test client publié à faire
+museum.exit,museum,museum.exit.door,city,city.kreative.museum.return_spawn,city.kreative.museum.entry,B07,B10,contrat statique; test client publié à faire
+city.orgo.admin_center.entry,city,city.orgo.admin_center.front_door,orgo_center,orgo_center.lobby.spawn,orgo_center.exit,B10,B08,contrat statique; test client publié à faire
+orgo_center.exit,orgo_center,orgo_center.exit.door,city,city.orgo.admin_center.return_spawn,city.orgo.admin_center.entry,B08,B10,contrat statique; test client publié à faire

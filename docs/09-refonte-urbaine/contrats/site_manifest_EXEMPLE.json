@@ -1,0 +1,22 @@
+{
+  "schema_version":"kincity.site-assignments/0.1-proposed",
+  "plan_revision":"KC36-URBAN-DRAFT-0",
+  "source_canonical_sha256":"5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a",
+  "approval_state":"PROPOSED_NOT_APPROVED",
+  "sites":[{
+    "site_id":"site.central.city_hall",
+    "building_id":"central.city_hall",
+    "district_id":"central",
+    "place_key":"city_hall",
+    "current_center_xz_studs":[100,86],
+    "current_yaw_degrees":49.304,
+    "current_footprint_xz_studs":[70,56],
+    "proposed_center_xz_studs":null,
+    "proposed_yaw_degrees":null,
+    "frontage_route_id":null,
+    "approach_anchor_id":"city.central.city_hall.front_door",
+    "transform_status":"PROPOSED_NOT_APPROVED",
+    "clearance_policy":{"road_overlap_allowed":false,"door_clearance_studs":6,"walkway_width_studs":6},
+    "rationale":"Emprise KC35 coupant l'avenue Kreative ; requiert une parcelle à définir en revue du plan"
+  }]
+}

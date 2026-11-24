@@ -1,0 +1,483 @@
+{
+  "schema_version": "kincity.b06-room-layout/1.0",
+  "place_key": "innovation_lab",
+  "building_id": "keenkonnect.innovation_lab",
+  "district_id": "keenkonnect",
+  "accent_hex": "#D0BF86",
+  "structural_teal_hex": "#1E6864",
+  "door_entry": "city.keenkonnect.innovation_lab.entry",
+  "door_exit": "innovation_lab.exit",
+  "exit_anchor_id": "innovation_lab.exit.door",
+  "spawn_anchor_id": "innovation_lab.lobby.spawn",
+  "canonical_interaction_id": "keenkonnect.innovation_lab.desk_01",
+  "canonical_interaction_anchor": "hall.desk_01",
+  "interaction_mode": "stub",
+  "scene_status": "OFFLINE_CONTRIBUTION_NOT_CONNECTED",
+  "profiles": {
+    "LITE": {
+      "max_parts": 24
+    },
+    "STANDARD": {
+      "max_parts": 42
+    },
+    "SHOWCASE": {
+      "max_parts": 66
+    }
+  },
+  "rooms": [
+    {
+      "room_id": "innovation_lab.lobby",
+      "label": "Accueil projets",
+      "center_studs": [
+        0,
+        0,
+        -29
+      ],
+      "size_studs": [
+        100,
+        16,
+        34
+      ],
+      "narrative": "Bienvenue, projets en cours et orientation vers les laboratoires",
+      "signature": "portique Art déco champagne, cartouches suspendus"
+    },
+    {
+      "room_id": "innovation_lab.gallery",
+      "label": "Atelier de fabrication",
+      "center_studs": [
+        -27,
+        0,
+        17
+      ],
+      "size_studs": [
+        44,
+        16,
+        52
+      ],
+      "narrative": "Matières, méthodes, prototypes et consultation des projets",
+      "signature": "panneaux de procédés et silhouettes d'outils stylisées"
+    },
+    {
+      "room_id": "innovation_lab.chamber",
+      "label": "Salle de démonstration",
+      "center_studs": [
+        27,
+        0,
+        17
+      ],
+      "size_studs": [
+        44,
+        16,
+        52
+      ],
+      "narrative": "Démonstrations locales sans prétendre à un service kOA connecté",
+      "signature": "scène d'exposition lumineuse et fond de présentation"
+    },
+    {
+      "room_id": "innovation_lab.west_wing",
+      "label": "Atelier de prototypage",
+      "center_studs": [
+        -79,
+        0,
+        7
+      ],
+      "size_studs": [
+        52,
+        16,
+        50
+      ],
+      "narrative": "Établis et matériaux, parcours périphérique dégagé",
+      "signature": "frises techniques avec symboles géométriques"
+    },
+    {
+      "room_id": "innovation_lab.east_wing",
+      "label": "Galerie des inventions",
+      "center_studs": [
+        79,
+        0,
+        7
+      ],
+      "size_studs": [
+        52,
+        16,
+        50
+      ],
+      "narrative": "Inventeurs et réalisations affichés en mode exposition",
+      "signature": "cadres en bronze et vitrines murales non interactives"
+    },
+    {
+      "room_id": "innovation_lab.rear_atrium",
+      "label": "Hall de l'innovation",
+      "center_studs": [
+        0,
+        0,
+        76
+      ],
+      "size_studs": [
+        100,
+        16,
+        56
+      ],
+      "narrative": "Espace de rassemblement et de restitution, sans vraie API projet",
+      "signature": "rosace Art déco haute et signalétique de parcours"
+    }
+  ],
+  "protected_portals": [
+    {
+      "portal_id": "innovation_lab.portal.lobby.gallery",
+      "center_studs": [
+        -27,
+        0,
+        -10.5
+      ],
+      "clear_width_studs": 10
+    },
+    {
+      "portal_id": "innovation_lab.portal.lobby.chamber",
+      "center_studs": [
+        27,
+        0,
+        -10.5
+      ],
+      "clear_width_studs": 10
+    },
+    {
+      "portal_id": "innovation_lab.gallery_to_west",
+      "center_studs": [
+        -51,
+        0,
+        16
+      ],
+      "clear_width_studs": 8
+    },
+    {
+      "portal_id": "innovation_lab.chamber_to_east",
+      "center_studs": [
+        51,
+        0,
+        16
+      ],
+      "clear_width_studs": 8
+    },
+    {
+      "portal_id": "innovation_lab.gallery_to_rear",
+      "center_studs": [
+        -27,
+        0,
+        45.5
+      ],
+      "clear_width_studs": 8
+    },
+    {
+      "portal_id": "innovation_lab.chamber_to_rear",
+      "center_studs": [
+        27,
+        0,
+        45.5
+      ],
+      "clear_width_studs": 8
+    }
+  ],
+  "details": [
+    {
+      "id": "innovation_lab.decor.lobby_01",
+      "room_id": "innovation_lab.lobby",
+      "style": "wall_ribbon",
+      "position_studs": [
+        -44,
+        10,
+        -29
+      ],
+      "width_studs": 7,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.lobby_02",
+      "room_id": "innovation_lab.lobby",
+      "style": "wall_ribbon",
+      "position_studs": [
+        44,
+        10,
+        -29
+      ],
+      "width_studs": 7,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.lobby_03",
+      "room_id": "innovation_lab.lobby",
+      "style": "hanging_cartouche",
+      "position_studs": [
+        0,
+        13,
+        -18
+      ],
+      "width_studs": 10,
+      "tier": "STANDARD"
+    },
+    {
+      "id": "innovation_lab.decor.gallery_01",
+      "room_id": "innovation_lab.gallery",
+      "style": "wall_ribbon",
+      "position_studs": [
+        -43,
+        10,
+        4
+      ],
+      "width_studs": 7,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.gallery_02",
+      "room_id": "innovation_lab.gallery",
+      "style": "wall_ribbon",
+      "position_studs": [
+        -11,
+        10,
+        30
+      ],
+      "width_studs": 7,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.gallery_03",
+      "room_id": "innovation_lab.gallery",
+      "style": "hanging_cartouche",
+      "position_studs": [
+        -27,
+        13,
+        30
+      ],
+      "width_studs": 9,
+      "tier": "SHOWCASE"
+    },
+    {
+      "id": "innovation_lab.decor.chamber_01",
+      "room_id": "innovation_lab.chamber",
+      "style": "wall_ribbon",
+      "position_studs": [
+        11,
+        10,
+        4
+      ],
+      "width_studs": 7,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.chamber_02",
+      "room_id": "innovation_lab.chamber",
+      "style": "wall_ribbon",
+      "position_studs": [
+        43,
+        10,
+        30
+      ],
+      "width_studs": 7,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.chamber_03",
+      "room_id": "innovation_lab.chamber",
+      "style": "hanging_cartouche",
+      "position_studs": [
+        27,
+        13,
+        30
+      ],
+      "width_studs": 9,
+      "tier": "STANDARD"
+    },
+    {
+      "id": "innovation_lab.decor.west_01",
+      "room_id": "innovation_lab.west_wing",
+      "style": "wall_ribbon",
+      "position_studs": [
+        -97,
+        10,
+        -5
+      ],
+      "width_studs": 8,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.west_02",
+      "room_id": "innovation_lab.west_wing",
+      "style": "wall_ribbon",
+      "position_studs": [
+        -61,
+        10,
+        24
+      ],
+      "width_studs": 8,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.west_03",
+      "room_id": "innovation_lab.west_wing",
+      "style": "hanging_cartouche",
+      "position_studs": [
+        -79,
+        13,
+        -2
+      ],
+      "width_studs": 9,
+      "tier": "SHOWCASE"
+    },
+    {
+      "id": "innovation_lab.decor.east_01",
+      "room_id": "innovation_lab.east_wing",
+      "style": "wall_ribbon",
+      "position_studs": [
+        61,
+        10,
+        -5
+      ],
+      "width_studs": 8,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.east_02",
+      "room_id": "innovation_lab.east_wing",
+      "style": "wall_ribbon",
+      "position_studs": [
+        97,
+        10,
+        24
+      ],
+      "width_studs": 8,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.east_03",
+      "room_id": "innovation_lab.east_wing",
+      "style": "hanging_cartouche",
+      "position_studs": [
+        79,
+        13,
+        -2
+      ],
+      "width_studs": 9,
+      "tier": "SHOWCASE"
+    },
+    {
+      "id": "innovation_lab.decor.rear_01",
+      "room_id": "innovation_lab.rear_atrium",
+      "style": "wall_ribbon",
+      "position_studs": [
+        -44,
+        10,
+        77
+      ],
+      "width_studs": 10,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.rear_02",
+      "room_id": "innovation_lab.rear_atrium",
+      "style": "wall_ribbon",
+      "position_studs": [
+        44,
+        10,
+        77
+      ],
+      "width_studs": 10,
+      "tier": "LITE"
+    },
+    {
+      "id": "innovation_lab.decor.rear_03",
+      "room_id": "innovation_lab.rear_atrium",
+      "style": "hanging_cartouche",
+      "position_studs": [
+        0,
+        13,
+        94
+      ],
+      "width_studs": 10,
+      "tier": "STANDARD"
+    },
+    {
+      "id": "innovation_lab.decor.lobby_emblem",
+      "room_id": "innovation_lab.lobby",
+      "style": "diamond_star",
+      "position_studs": [
+        -23,
+        11,
+        -35
+      ],
+      "width_studs": 3,
+      "tier": "SHOWCASE"
+    },
+    {
+      "id": "innovation_lab.decor.gallery_emblem",
+      "room_id": "innovation_lab.gallery",
+      "style": "diamond_star",
+      "position_studs": [
+        -42,
+        11,
+        35
+      ],
+      "width_studs": 3,
+      "tier": "SHOWCASE"
+    },
+    {
+      "id": "innovation_lab.decor.chamber_emblem",
+      "room_id": "innovation_lab.chamber",
+      "style": "diamond_star",
+      "position_studs": [
+        42,
+        11,
+        35
+      ],
+      "width_studs": 3,
+      "tier": "SHOWCASE"
+    },
+    {
+      "id": "innovation_lab.decor.west_wing_emblem",
+      "room_id": "innovation_lab.west_wing",
+      "style": "diamond_star",
+      "position_studs": [
+        -96,
+        11,
+        20
+      ],
+      "width_studs": 3,
+      "tier": "SHOWCASE"
+    },
+    {
+      "id": "innovation_lab.decor.east_wing_emblem",
+      "room_id": "innovation_lab.east_wing",
+      "style": "diamond_star",
+      "position_studs": [
+        96,
+        11,
+        20
+      ],
+      "width_studs": 3,
+      "tier": "SHOWCASE"
+    },
+    {
+      "id": "innovation_lab.decor.rear_atrium_emblem",
+      "room_id": "innovation_lab.rear_atrium",
+      "style": "diamond_star",
+      "position_studs": [
+        0,
+        11,
+        97
+      ],
+      "width_studs": 3,
+      "tier": "SHOWCASE"
+    }
+  ],
+  "asset_candidates_not_placed": [
+    "AD_Int_Radio_Console",
+    "AD_Int_Mirror_Sunburst",
+    "AD_Int_Lamp_Wall_Sun",
+    "AD_Arc_Window_Arch_Grid",
+    "AD_Int_Sideboard"
+  ],
+  "notes": [
+    "Les détails ajoutés sont géométrie native non collidable, au-dessus du niveau de l'avatar.",
+    "Les identifiants nouveaux appartiennent au namespace innovation_lab et ne changent aucun door_id ou anchor_id canonique.",
+    "Un futur adaptateur d'assets exige autorisation B09, vérification de pivots et quotas."
+  ]
+}

@@ -1,42 +1,40 @@
-# Kin City v31.9.7 — réinstallation totale
+# Installation Art Deco v3 — Place locale existante
 
-## Étape 1 : nettoyer le dépôt local
+Les 121 modèles sont déjà importés et archivés dans la Place de test. Ne pas
+créer une nouvelle Place et ne pas refaire l'import. Utiliser le script assemblé
+`INSTALLER_KINCITY_ARTDECO_V3.luau` fourni à la racine du ZIP. Hors Play, copier
+son contenu entier dans la barre de commande. Il prépare la bibliothèque, reconstruit
+la ville et ses huit intérieurs séparés, puis lance les contrôles d'architecture.
 
-La racine de ce ZIP contient `Kin-City`. Comme tu veux **effacer ton ancien repo**, renomme ou supprime son dossier, puis utilise ce dossier `Kin-City` comme nouveau dépôt de travail. **Ne copie pas par-dessus** : Windows laisserait les anciens fichiers devenus orphelins. Si tu veux garder l'historique Git, réinstalle le contenu en conservant uniquement l'ancien `.git` (si tu maîtrises Git).
+Reproduction depuis le dépôt :
 
-## Étape 2 : WIPER et réinstaller la Place dans Roblox Studio
+```sh
+python tools/build_imported_test_installer.py INSTALLER_KINCITY_ARTDECO_V3.luau
+```
 
-1. Ouvre la **bonne Place** dans Roblox Studio; vérifie PlaceId `72097868581669` et UniverseId `10772014442`. Si tu utilises une autre Place, le script opère sur celle qui est ouverte.
-2. **Arrête Play** (très important).
-3. Ouvre **Affichage → Command Bar / Barre de commande**.
-4. Ouvre `installer/KinCity_INSTALLATION_TOTALE_v31_9_7.luau` avec VS Code ou un éditeur texte, copie **TOUT**, colle dans Command Bar et appuie sur Entrée.
-5. Le script détruit **les objets Kin City connus** en Workspace, ReplicatedStorage, ServerScriptService, StarterPlayerScripts, Lighting et les anciens RemoteEvents; puis réinstalle les modules et reconstruit six secteurs et huit institutions en Édition. Il ne supprime ni Terrain ni les objets étrangers au projet.
-6. Dans **Sortie / Output**, cherche `KOALI v31.9.7 : MONDE PRÊT`. Une commande dépassant 100000 caractères peut ne pas être sauvée dans l'historique Studio : cela ne signifie pas un échec.
-7. Lance **Play**, vérifie la ville et le bouton **♫ MUSIQUE**, puis arrête Play.
+Le script complet exige une Place locale (PlaceId 0) avec streaming activé. Il
+refuse toute Place publiée, ne publie rien et ne demande aucun téléchargement
+réseau. Les imports originaux sont conservés dans ServerStorage, hors de la scène.
+Les objets Kin City générés et leurs scripts sont reconstruits.
 
-**Attention** : cette reconstruction supprime les modifications manuelles apportées aux objets Kin City de la Place. Le stockage DataStore est distinct et n'est pas effacé par ce script.
+Voir [la migration et les contrôles v3](docs/04-ingenierie/art-deco-ville-et-interieurs-v3.md).
 
-## Étape 3 : publier la nouvelle cité
+---
 
-Utilise **Fichier → Publier** (`Alt+P`) lorsque la bonne Place est ouverte, ou **Publier sous** pour choisir explicitement l'expérience et sa Place de départ existantes. Ne crée pas une Place supplémentaire. Une copie locale visible ne prouve pas qu'elle est en ligne. Vérifie dans le Creator Dashboard la version publiée et joins un nouveau serveur.
+# Installation Art Deco — copie de test uniquement
 
-Si publication échoue (`HTTP 403` ou `Erreur interne du serveur`), **réinstaller ne règle pas les permissions ni la panne Roblox**. Utilise **Fichier → Télécharger une copie** comme sauvegarde locale avant de résoudre la publication. Le repo propose l'installation complète mais ne remplace pas une publication Roblox.
+Cette branche part du snapshot v31.9.7 fourni. Elle ne doit pas être installée dans la Place publiée `72097868581669` ; le script officiel la refuse avant toute suppression.
 
-## État du lecteur MP3
+Suivre [la procédure de migration](docs/04-ingenierie/migration-art-deco.md) : copie locale ou privée distincte, marqueur de test, préparation de la bibliothèque privée, installateur officiel, qualification Studio puis tests mobiles.
 
-4 albums / 49 titres / **48 AssetIds** présents dans `src/shared/MusicAssetIds.luau`. 1 piste non importée : *Univers-City* (7:19). Les trois titres supprimés/modérés par Roblox doivent rester en attente des appels. Les audios privés doivent être autorisés pour l'**Universe ID `10772014442`**. Les références audio non autorisées rendent `HTTP 403` et ne seront pas jouées par le lecteur.
+Les modèles commerciaux ne sont pas inclus dans les sources. Réutiliser la bibliothèque privée du test précédent ou importer les 121 GLB dans Studio. Aucun script ne publie automatiquement la ville.
 
-## Mode Création
+Pour régénérer les données, les outils Studio et l'installateur depuis les sources :
 
-L'accès DataStore n'est pas garanti dans un test Studio non publié. Pour le tester avec l'API Studio, utiliser une **copie de test** de l'expérience et activer l'accès aux API Services seulement après en avoir compris les conséquences sur les données.
+```bash
+python -m pip install -r requirements-dev.txt
+python tools/build_release.py
+python -m unittest discover -s tests -v
+```
 
-## Recompiler l'installateur à partir des sources
-
-Depuis la racine du dépôt : `python tools/make_universe_recovery_installer.py`.
-Le générateur lit les sources de ce repo et produit à nouveau `installer/KinCity_INSTALLATION_TOTALE_v31_9_7.luau`.
-
-## Option publication allégée (uniquement si erreur de publication répétée)
-
-Après avoir installé la cité et vérifié Play, exécute **`installer/KinCity_PREPARER_PUBLICATION_LEGERE_OPTIONNEL.luau`** (Play arrêté). Ce script **supprime seulement le décor préconstruit** `Workspace.KinCityGenerated` et laisse les scripts et le cinéma en place. La ville sera alors **vide en mode Édition** : le serveur devra la reconstruire au prochain démarrage (plus long). Teste Play **avant** de publier. Si tu veux retrouver le décor en Édition, exécute `installer/KinCity_RESTAURER_DECOR_OPTIONNEL.luau`.
-
-Ce mode est une optimisation facultative de la taille de la Place; il **ne contourne aucune erreur HTTP 403**.
+Ne pas supprimer le dépôt Windows ou son historique Git. Appliquer le patch sur une branche sauvegardée après `git apply --check`, puis recompiler. La publication de la vraie Kin City reste soumise à l'accord explicite du propriétaire après qualification.

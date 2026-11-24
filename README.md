@@ -1,8 +1,22 @@
+> **KC36 ALIGNMENT-1 (27 Oct 2026):** For the active Roblox Studio Place, start with [MISE_A_JOUR_KC36_LIRE_EN_PREMIER.md](MISE_A_JOUR_KC36_LIRE_EN_PREMIER.md). The KC36 guarded migration is not the historical v31.9.7 installer.
+
+# KIN CITY / KOALI — Art Deco v3 : ville et intérieurs séparés (test)
+
+Base : snapshot fourni v31.9.7. Branche locale `refactor/art-deco-contextual` ; HEAD GitHub non vérifié.
+
+Voir [la refonte v3](docs/04-ingenierie/art-deco-ville-et-interieurs-v3.md) pour les huit façades, les 18 pavillons et les 48 salles séparées.
+
+Voir [la migration Art Deco](docs/04-ingenierie/migration-art-deco.md) pour les sources modifiées, l'installation sur copie test, les limites et le retour arrière.
+
+L'installateur officiel refuse la Place publiée `72097868581669`. Il exige une copie explicitement marquée et, pour une Place non locale, un PlaceId de test configuré. Les modèles commerciaux restent dans votre bibliothèque Roblox privée.
+
 # KIN CITY / KOALI — v31.9.7 (dépôt propre)
 
 **Version intégrale avec 6 secteurs et 8 institutions dans UNE Place Roblox.**
 
-## Installation
+## Installation historique v31.9.7
+
+Pour cette branche, suivre en priorité la migration Art Deco ci-dessus.
 
 Voir **[GUIDE_INSTALLATION.md](GUIDE_INSTALLATION.md)**. L'installateur unique et destructif :
 

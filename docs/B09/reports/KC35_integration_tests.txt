@@ -1,0 +1,7 @@
+----------------------------------------------------------------------
+Ran 12 tests in 6.089s
+
+OK
+EXPORT OK 5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a / mode LOCAL_UNIVERSE / places 9
+COMPLETE INSTALLER /mnt/data/kc35/KinCity_ArtDeco_V3/source/Kin-City/installer/KinCity_INSTALLATION_TOTALE_v31_9_7.luau 1070693 bytes
+RELEASE: official test installer only; 250 source/data artifacts

@@ -1,22 +1,20 @@
 --!strict
+local SharedTheme=game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared")
+local ArtDecoTheme=require(SharedTheme.ArtDecoTheme)
+local Districts=require(SharedTheme.HexagonalDistricts)
 local Factory = require(script.Parent.Factory)
 local PropGenerator = require(script.Parent.PropGenerator)
+local ArtDecoInteriors=require(script.Parent.ArtDecoInteriors)
+local ArtDecoSurfaces=require(script.Parent.ArtDecoSurfaces)
 local Spatial = require(script.Parent.Spatial)
-local InteriorPlus = require(script.Parent.InteriorPlus)
 local InteriorWings = require(script.Parent.InteriorWings)
 local VerticalArchitecture = require(script.Parent.VerticalArchitecture)
 local InstitutionExhibits = require(script.Parent.InstitutionExhibits)
 local InteriorCollections = require(script.Parent.InteriorCollections)
-local InteriorScenography = require(script.Parent.InteriorScenography)
 local SpecializedRooms = require(script.Parent.SpecializedRooms)
 local SkyPavilions = require(script.Parent.SkyPavilions)
 local InstitutionDiscoveryWings = require(script.Parent.InstitutionDiscoveryWings)
-local CrystalInteriors = require(script.Parent.CrystalInteriors)
-local InstitutionCraftV20=require(script.Parent.InstitutionCraftV20)
-local StoriesV22=require(script.Parent.InstitutionStoriesV22)
-local FurnitureV23=require(script.Parent.SculptedFurnitureV23)
 local AtlasV23=require(script.Parent.LivingExhibitsV23)
-local StageV24=require(script.Parent.InstitutionStagecraftV24)
 local InteriorGenerator = {}
 
 local function segment(parent, name, width, height, center, color)
@@ -71,11 +69,25 @@ function InteriorGenerator.make(parent, canonicalPlace, style)
     local model=Instance.new("Model")
     model.Name="Intérieur — "..place.place_key
     model:SetAttribute("KinPlaceKey",place.place_key)
+    model:SetAttribute("KinInteriorOrigin",origin)
+    model:SetAttribute("KinArtDecoInteriorRevision","separate-interior-surfaces-3")
     model.Parent=parent
-    local walls=Factory.hex(style.palette.wall)
+    local walls=ArtDecoTheme.stone
     local floorColor=Factory.hex(style.palette.floor)
-    local trim=Factory.hex(style.palette.trim)
-    local accent=Factory.hex(style.palette.accent)
+    local trim=ArtDecoTheme.bronze
+    local accent=Districts.base
+    local sector="central"
+    for _,building in ipairs(require(SharedTheme.Buildings)) do
+        if building.interior_place_key==place.place_key then
+            local section=Districts.byKey(building.district_id)
+            if section then accent=section.color;sector=section.key end
+        end
+    end
+    style=table.clone(style)
+    style.palette=table.clone(style.palette)
+    style.palette.wall="#"..walls:ToHex()
+    style.palette.trim="#"..trim:ToHex()
+    style.palette.accent="#"..accent:ToHex()
     for roomIndex,room in ipairs(place.rooms) do
         local folder=Factory.folder(model,room.room_id)
         local cx,_,cz=table.unpack(room.center_studs)
@@ -91,14 +103,10 @@ function InteriorGenerator.make(parent, canonicalPlace, style)
         Factory.light(folder,origin+Vector3.new(cx,15.0,cz),1.7,55)
         -- Lecture des noms des pièces à proximité des accès, sans collision.
         Factory.sign(folder,"RoomTitle",origin+Vector3.new(cx,10.8,cz-d/2+0.65),0,room.display_name,math.min(30,w-6),2.5)
-        InteriorPlus.decorateRoom(folder,place.place_key,room,origin,style,roomIndex)
-        InteriorCollections.make(folder,place.place_key,room,origin,style,roomIndex)
-        InteriorScenography.decorate(folder,room,origin,style,place.place_key,roomIndex)
-        InstitutionCraftV20.decorate(folder,place.place_key,room,origin,roomIndex)
-        StoriesV22.decorate(folder,place.place_key,room,origin,roomIndex)
-        FurnitureV23.decorate(folder,place.place_key,room,origin,roomIndex)
+        ArtDecoSurfaces.room(folder,place,room,origin,roomIndex,sector)
+        ArtDecoInteriors.room(folder,place,room,origin,roomIndex)
+        if roomIndex<=3 then InteriorCollections.make(folder,place.place_key,room,origin,style,roomIndex) end
         AtlasV23.decorate(folder,place.place_key,room,origin,roomIndex)
-        StageV24.decorate(folder,place.place_key,room,origin,roomIndex)
     end
     for _,furn in ipairs(place.furnishings) do
         local palette={wall=walls,trim=trim,accent=accent}
@@ -123,13 +131,13 @@ function InteriorGenerator.make(parent, canonicalPlace, style)
         Factory.part(model,"PortalThreshold",bridge,CFrame.new(base+Vector3.new(0,-0.5,0)),floorColor,Enum.Material.Marble)
         Factory.part(model,"PortalHeader",header,CFrame.new(base+Vector3.new(0,9.6,0)),accent,Enum.Material.Metal).CanCollide=false
     end
+    ArtDecoSurfaces.connectors(model,place,origin,sector)
     InstitutionExhibits.make(model,place.place_key,origin)
     SpecializedRooms.make(model,place.place_key,origin)
     VerticalArchitecture.make(model,place.place_key,origin,style)
+    ArtDecoSurfaces.upper(model,place,origin,sector)
     SkyPavilions.make(model,place.place_key,origin,style)
     InstitutionDiscoveryWings.make(model,place.place_key,origin,style)
-    CrystalInteriors.make(model,place,origin,style)
-    require(script.Parent.CrystalRoomStoriesV19).make(model,place,origin,style)
     require(script.Parent.LibraryJourneyArt).make(model,place.place_key)
     return model
 end

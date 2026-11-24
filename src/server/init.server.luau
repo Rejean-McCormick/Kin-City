@@ -46,10 +46,19 @@ if not game:GetService("ServerScriptService"):FindFirstChild("KinCityKingKlownAv
     require(script.KingKlownAvatar).start(avatarConfig)
 end
 local state=WorldBuilder.build(true)
+-- KC35 : install decorative overlays for this Place only.
+local branchResult=require(script.BranchRuntime).apply(state)
+if not branchResult.ready then warn("KC35 : overlays incomplets, consulter KinBranchRuntimeErrors") end
 require(script.PlayerBuildServer).start(state.world)
+-- KC36 : atelier de mobilier entier, independant de l ancien editeur ville.
+local editorOk,editorErr=pcall(function()
+    require(script.InteriorEditorV36).start(state.world)
+end)
+if not editorOk then warn("KC36 ATELIER : chargement serveur refusé : "..tostring(editorErr)) end
 -- Écran extérieur autonome; ne modifie ni portes ni catalogue Koali.
 if state.mode=="LOCAL_UNIVERSE" or state.currentPlace=="city" then
     require(script.OutdoorCinema).start()
+    require(script.MuseumBroadcastBarrier).start()
 end
 PlayerTravel.setup(state,reply)
 PromptRouter.start(state,reply)

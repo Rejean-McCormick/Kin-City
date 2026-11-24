@@ -1,0 +1,25 @@
+test_01_baseline_immutable_and_logical_plan (test_b09_integration.Contracts.test_01_baseline_immutable_and_logical_plan) ... ok
+test_02_extended_bounds_are_detected (test_b09_integration.Contracts.test_02_extended_bounds_are_detected) ... ok
+test_03_contribution_contracts (test_b09_integration.Contracts.test_03_contribution_contracts) ... ok
+test_04_path_guards_reject_traversal (test_b09_integration.Contracts.test_04_path_guards_reject_traversal) ... ok
+test_05_reciprocal_door_mutation_detected (test_b09_integration.Contracts.test_05_reciprocal_door_mutation_detected) ... ok
+test_06_valid_local_handoff (test_b09_integration.Handoffs.test_06_valid_local_handoff) ... ok
+test_07_wrong_branch_or_place_rejected (test_b09_integration.Handoffs.test_07_wrong_branch_or_place_rejected) ... ok
+test_08_wrong_baseline_hash_rejected (test_b09_integration.Handoffs.test_08_wrong_baseline_hash_rejected) ... ok
+test_09_tampered_file_rejected (test_b09_integration.Handoffs.test_09_tampered_file_rejected) ... ok
+test_10_out_of_scope_rejected (test_b09_integration.Handoffs.test_10_out_of_scope_rejected) ... ok
+test_11_missing_test_evidence_rejected (test_b09_integration.Handoffs.test_11_missing_test_evidence_rejected) ... ok
+test_12_shared_changed_unapproved_rejected (test_b09_integration.Handoffs.test_12_shared_changed_unapproved_rejected) ... ok
+test_13_unilateral_accepted_rejected (test_b09_integration.Handoffs.test_13_unilateral_accepted_rejected) ... ok
+test_14_empty_handoff_rejected (test_b09_integration.Handoffs.test_14_empty_handoff_rejected) ... ok
+test_15_shared_requires_rfc (test_b09_integration.Handoffs.test_15_shared_requires_rfc) ... ok
+test_16_breaking_requires_adr (test_b09_integration.Handoffs.test_16_breaking_requires_adr) ... ok
+test_19_hidden_file_in_patch_refused (test_b09_integration.PatchIntegrity.test_19_hidden_file_in_patch_refused) ... ok
+test_20_nine_manifests_validate_json_schema (test_b09_integration.RecipeSchema.test_20_nine_manifests_validate_json_schema) ... ok
+test_17_invalid_ids_prohibited (test_b09_integration.StagingGuards.test_17_invalid_ids_prohibited) ... ok
+test_18_staging_production_consistency (test_b09_integration.StagingGuards.test_18_staging_production_consistency) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 2.150s
+
+OK

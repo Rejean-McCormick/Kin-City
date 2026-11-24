@@ -1,0 +1,358 @@
+{
+  "schema_version": "kincity.b02-ekoh-scene/1.0",
+  "place_key": "ekoh_tower",
+  "owner_branch": "B02",
+  "revision": "b02-ekoh-atlas-1.0.0",
+  "visual_language": {
+    "name": "Atlas du savoir",
+    "identity": "Art déco savant : opale, bronze, sarcelle structurelle, constellations géométriques",
+    "primary_hex": "#1E6864",
+    "bronze_hex": "#CCA667",
+    "stone_hex": "#E5EAE7",
+    "ink_hex": "#243946",
+    "note": "EkoH se trouve dans le secteur central : aucune septième couleur de district n'est créée."
+  },
+  "contract": {
+    "building_id": "central.ekoh_tower",
+    "entry_door_id": "city.central.ekoh_tower.entry",
+    "entry_anchor_id": "ekoh_tower.lobby.spawn",
+    "exit_door_id": "ekoh_tower.exit",
+    "exit_anchor_id": "ekoh_tower.exit.door",
+    "return_anchor_id": "city.central.ekoh_tower.return_spawn",
+    "interaction_id": "central.ekoh_tower.display_01",
+    "interaction_anchor_id": "tower.panel_01",
+    "interaction_mode": "stub"
+  },
+  "profiles": {
+    "LITE": {
+      "max_panels": 6,
+      "max_parts_estimated": 30,
+      "max_surfaceguis": 6,
+      "ornament_level": 0
+    },
+    "STANDARD": {
+      "max_panels": 6,
+      "max_parts_estimated": 66,
+      "max_surfaceguis": 6,
+      "ornament_level": 1
+    },
+    "SHOWCASE": {
+      "max_panels": 6,
+      "max_parts_estimated": 102,
+      "max_surfaceguis": 6,
+      "ornament_level": 2
+    }
+  },
+  "rooms": [
+    {
+      "room_id": "ekoh_tower.lobby",
+      "display_name": "Accueil",
+      "purpose": "Orientation des visites et annonce du partage du savoir",
+      "canonical": true,
+      "center": [
+        0,
+        0,
+        -29
+      ],
+      "size": [
+        100,
+        16,
+        34
+      ]
+    },
+    {
+      "room_id": "ekoh_tower.gallery",
+      "display_name": "Galerie des contributions",
+      "purpose": "Réalisations présentées sans faux palmarès ni données de comptes",
+      "canonical": true,
+      "center": [
+        -27,
+        0,
+        17
+      ],
+      "size": [
+        44,
+        16,
+        52
+      ]
+    },
+    {
+      "room_id": "ekoh_tower.chamber",
+      "display_name": "Salle d’observation",
+      "purpose": "Observation pédagogique, constellation visuelle simulée",
+      "canonical": true,
+      "center": [
+        27,
+        0,
+        17
+      ],
+      "size": [
+        44,
+        16,
+        52
+      ]
+    },
+    {
+      "room_id": "ekoh_tower.west_wing",
+      "display_name": "Observatoire EkoH",
+      "purpose": "Concepts et trajectoires de découverte",
+      "canonical": false,
+      "center": [
+        -79,
+        0,
+        7
+      ],
+      "size": [
+        52,
+        16,
+        50
+      ]
+    },
+    {
+      "room_id": "ekoh_tower.east_wing",
+      "display_name": "Galerie du mérite",
+      "purpose": "Encouragement de l'effort sans récompenses inventées",
+      "canonical": false,
+      "center": [
+        79,
+        0,
+        7
+      ],
+      "size": [
+        52,
+        16,
+        50
+      ]
+    },
+    {
+      "room_id": "ekoh_tower.rear_atrium",
+      "display_name": "Forum de la connaissance",
+      "purpose": "Vue panoramique et convivialité, respect des escaliers et ascenseur",
+      "canonical": false,
+      "center": [
+        0,
+        0,
+        76
+      ],
+      "size": [
+        100,
+        16,
+        56
+      ]
+    }
+  ],
+  "panels": [
+    {
+      "id": "ekoh_tower.b02.atlas_accueil",
+      "room_id": "ekoh_tower.lobby",
+      "pos": [
+        0,
+        10.7,
+        -13.0
+      ],
+      "size": [
+        22,
+        4.6,
+        0.28
+      ],
+      "yaw_degrees": 0,
+      "title": "ATLAS DU SAVOIR",
+      "subtitle": "Observer · comprendre · partager",
+      "story": "Un parcours public pour découvrir les espaces EkoH."
+    },
+    {
+      "id": "ekoh_tower.b02.contributions",
+      "room_id": "ekoh_tower.gallery",
+      "pos": [
+        -47.1,
+        10.8,
+        33
+      ],
+      "size": [
+        15,
+        4.8,
+        0.28
+      ],
+      "yaw_degrees": -90,
+      "title": "CONTRIBUTIONS",
+      "subtitle": "Des idées mises en lumière",
+      "story": "Les données des membres ne sont pas connectées."
+    },
+    {
+      "id": "ekoh_tower.b02.observation",
+      "room_id": "ekoh_tower.chamber",
+      "pos": [
+        47.1,
+        10.8,
+        33
+      ],
+      "size": [
+        15,
+        4.8,
+        0.28
+      ],
+      "yaw_degrees": 90,
+      "title": "OBSERVATION",
+      "subtitle": "Lire les liens entre les savoirs",
+      "story": "Constellation artistique, non scientifique."
+    },
+    {
+      "id": "ekoh_tower.b02.observatoire",
+      "room_id": "ekoh_tower.west_wing",
+      "pos": [
+        -79,
+        10.8,
+        30.1
+      ],
+      "size": [
+        20,
+        4.8,
+        0.28
+      ],
+      "yaw_degrees": 0,
+      "title": "OBSERVATOIRE EKOH",
+      "subtitle": "Explorer la curiosité collective",
+      "story": "Exposition illustrative, sans données réelles."
+    },
+    {
+      "id": "ekoh_tower.b02.merite",
+      "room_id": "ekoh_tower.east_wing",
+      "pos": [
+        79,
+        10.8,
+        30.1
+      ],
+      "size": [
+        20,
+        4.8,
+        0.28
+      ],
+      "yaw_degrees": 0,
+      "title": "GALERIE DU MÉRITE",
+      "subtitle": "L'effort est une aventure",
+      "story": "Aucun titre ni distinction n'est attribué ici."
+    },
+    {
+      "id": "ekoh_tower.b02.forum",
+      "room_id": "ekoh_tower.rear_atrium",
+      "pos": [
+        -48.2,
+        11.3,
+        91.5
+      ],
+      "size": [
+        17,
+        4.8,
+        0.28
+      ],
+      "yaw_degrees": -90,
+      "title": "FORUM DES SAVOIRS",
+      "subtitle": "De la réflexion au partage",
+      "story": "Espace de visite, services à venir."
+    }
+  ],
+  "protected_anchors": [
+    {
+      "id": "ekoh_tower.exit.door",
+      "pos": [
+        0,
+        -45
+      ],
+      "clearance_xz": [
+        12,
+        6
+      ]
+    },
+    {
+      "id": "ekoh_tower.lobby.spawn",
+      "pos": [
+        0,
+        -32
+      ],
+      "clearance_xz": [
+        12,
+        9
+      ]
+    },
+    {
+      "id": "tower.panel_01",
+      "pos": [
+        -27,
+        18
+      ],
+      "clearance_xz": [
+        8,
+        8
+      ]
+    }
+  ],
+  "protected_portals": [
+    {
+      "id": "ekoh_tower.portal.lobby.chamber",
+      "pos": [
+        27,
+        -10.5
+      ],
+      "clearance_xz": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "ekoh_tower.portal.lobby.gallery",
+      "pos": [
+        -27,
+        -10.5
+      ],
+      "clearance_xz": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "ekoh_tower.gallery_to_west",
+      "pos": [
+        -51,
+        16
+      ],
+      "clearance_xz": [
+        6,
+        8
+      ]
+    },
+    {
+      "id": "ekoh_tower.chamber_to_east",
+      "pos": [
+        51,
+        16
+      ],
+      "clearance_xz": [
+        6,
+        8
+      ]
+    },
+    {
+      "id": "ekoh_tower.gallery_to_rear",
+      "pos": [
+        -27,
+        45.5
+      ],
+      "clearance_xz": [
+        8,
+        7
+      ]
+    },
+    {
+      "id": "ekoh_tower.chamber_to_rear",
+      "pos": [
+        27,
+        45.5
+      ],
+      "clearance_xz": [
+        8,
+        7
+      ]
+    }
+  ],
+  "integration_note": "B09 doit générer/charger le ModuleScript B02EkohInterior et appeler Build après InteriorGenerator.make, avec le modèle intérieur déjà créé, origin de Spatial.origin, profil graphique; aucun chemin ni ancre n'est modifié."
+}

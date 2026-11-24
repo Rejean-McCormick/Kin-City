@@ -1,0 +1,5 @@
+CityHallScene.luau — PASS (contrôle lexical)
+CityHallSpec.luau — PASS (contrôle lexical)
+preview/PREVIEW_B01_COPIE_LOCALE.luau — PASS (contrôle lexical)
+preview/ROLLBACK_B01_COPIE_LOCALE.luau — PASS (contrôle lexical)
+Note: analyse lexicale des délimiteurs, pas compilation Luau Studio.

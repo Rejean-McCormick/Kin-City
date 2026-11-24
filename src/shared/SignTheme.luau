@@ -1,6 +1,7 @@
 --!strict
 -- Kin City v31.8 : moteur procédural du kit SVG/P​NG sans logo.
 -- Aucun AssetId requis : les quatre ornements sont reconstruits en UI natives.
+local Districts=require(script.Parent.HexagonalDistricts)
 local SignTheme={}
 SignTheme.version="31.9.6"
 SignTheme.layout={
@@ -20,15 +21,12 @@ SignTheme.palettes={
     ekole={background=Color3.fromRGB(25,29,30),accent=Color3.fromRGB(30,104,100),border=Color3.fromRGB(234,238,235),text=Color3.fromRGB(247,248,246)},
     konnected={background=Color3.fromRGB(20,24,27),accent=Color3.fromRGB(30,104,100),border=Color3.fromRGB(206,168,102),text=Color3.fromRGB(251,242,218)},
 }
--- Table unique : aucune réallocation pour chaque panneau.
-local AXES={
-    {key="keenkonnect",x=0,z=-1},
-    {key="ethikos",x=0.8660254,z=-0.5},
-    {key="kreative",x=0.8660254,z=0.5},
-    {key="uckk",x=0,z=1},
-    {key="ekole",x=-0.8660254,z=0.5},
-    {key="konnected",x=-0.8660254,z=-0.5},
-}
+-- Les accents et orientations proviennent de la même autorité que la ville.
+for _,section in ipairs(Districts.sections) do
+    SignTheme.palettes[section.key].accent=section.color
+    SignTheme.palettes[section.key].border=section.color
+end
+local AXES=Districts.sections
 function SignTheme.infer(parent:Instance,position:Vector3?,forced:string?):string
     if forced and SignTheme.palettes[forced] then return forced end
     local node:Instance?=parent

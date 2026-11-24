@@ -1,0 +1,61 @@
+{
+  "schema_version":"kincity.b08-visual-scene/1.0",
+  "place_key":"orgo_center",
+  "owner_branch":"B08",
+  "contracts_version":"KC34-DOC-1.0",
+  "source_baseline":"V3 ORIGINAL — rebase KC33 required",
+  "quality_profiles":{"LITE":0,"STANDARD":1,"SHOWCASE":2},
+  "palette":{"stone":"#DCD2BF","teal":"#1E6864","bronze":"#BD945A","ink":"#263F4C","opal":"#E7EEE9"},
+  "rooms":[
+    {"id":"orgo_center.lobby","label":"Accueil administratif","program":"Accueil et orientation, aucun service externe connecté","center":[0,-29],"size":[100,34]},
+    {"id":"orgo_center.gallery","label":"Espace dossiers","program":"Documentation, navigation et terminal canonique non modifié","center":[-27,17],"size":[44,52]},
+    {"id":"orgo_center.chamber","label":"Salle des opérations","program":"Coordination et scénarios de démonstration sans données réelles","center":[27,17],"size":[44,52]},
+    {"id":"orgo_center.west_wing","label":"Salle des opérations","program":"Tableaux de flux et ateliers de planification non opérationnels","center":[-79,7],"size":[52,50]},
+    {"id":"orgo_center.east_wing","label":"Bureau communautaire","program":"Information associative, pas de gestion de comptes réelle","center":[79,7],"size":[52,50]},
+    {"id":"orgo_center.rear_atrium","label":"Atrium des services","program":"Espace commun de découverte des services et circulation","center":[0,76],"size":[100,56]}
+  ],
+  "protected_anchors":[
+    {"id":"orgo_center.lobby.spawn","center":[0,-32],"radius":7},
+    {"id":"orgo_center.exit.door","center":[0,-45],"radius":7},
+    {"id":"hall.terminal_01","center":[-27,18],"radius":7}
+  ],
+  "protected_connectors":[
+    {"id":"orgo_center.portal.lobby.gallery","center":[-27,-10.5],"radius":6},
+    {"id":"orgo_center.portal.lobby.chamber","center":[27,-10.5],"radius":6},
+    {"id":"orgo_center.gallery_to_west","center":[-51,16],"radius":6},
+    {"id":"orgo_center.chamber_to_east","center":[51,16],"radius":6},
+    {"id":"orgo_center.gallery_to_rear","center":[-27,45.5],"radius":6},
+    {"id":"orgo_center.chamber_to_rear","center":[27,45.5],"radius":6}
+  ],
+  "decorations":[
+    {"id":"orgo_center.b08.lobby.title","room":"orgo_center.lobby","kind":"sign","position":[0,11,-12.8],"text":"MAISON ORGO","profile":"LITE"},
+    {"id":"orgo_center.b08.lobby.welcome","room":"orgo_center.lobby","kind":"subtitle","position":[0,7.5,-12.8],"text":"ACCUEIL  ·  INFORMATION","profile":"LITE"},
+    {"id":"orgo_center.b08.lobby.crest","room":"orgo_center.lobby","kind":"medallion","position":[36,0.10,-27],"profile":"STANDARD"},
+    {"id":"orgo_center.b08.lobby.relief","room":"orgo_center.lobby","kind":"pilaster","position":[-44,8,-27],"profile":"SHOWCASE"},
+
+    {"id":"orgo_center.b08.gallery.title","room":"orgo_center.gallery","kind":"sign","position":[-41,11,42.5],"text":"ESPACE DOSSIERS","profile":"LITE"},
+    {"id":"orgo_center.b08.gallery.note","room":"orgo_center.gallery","kind":"subtitle","position":[-41,7.5,42.5],"text":"PARCOURS DOCUMENTAIRE","profile":"STANDARD"},
+    {"id":"orgo_center.b08.gallery.crest","room":"orgo_center.gallery","kind":"medallion","position":[-41,0.10,0],"profile":"STANDARD"},
+    {"id":"orgo_center.b08.gallery.pilaster","room":"orgo_center.gallery","kind":"pilaster","position":[-47,8,3],"profile":"SHOWCASE"},
+
+    {"id":"orgo_center.b08.chamber.title","room":"orgo_center.chamber","kind":"sign","position":[40,11,42.5],"text":"SALLE DES OPÉRATIONS","profile":"LITE"},
+    {"id":"orgo_center.b08.chamber.note","room":"orgo_center.chamber","kind":"subtitle","position":[40,7.5,42.5],"text":"COORDINATION  ·  DÉMONSTRATION","profile":"STANDARD"},
+    {"id":"orgo_center.b08.chamber.crest","room":"orgo_center.chamber","kind":"medallion","position":[41,0.10,0],"profile":"STANDARD"},
+    {"id":"orgo_center.b08.chamber.pilaster","room":"orgo_center.chamber","kind":"pilaster","position":[47,8,3],"profile":"SHOWCASE"},
+
+    {"id":"orgo_center.b08.west.title","room":"orgo_center.west_wing","kind":"sign","position":[-79,11,30.5],"text":"PLANIFICATION","profile":"LITE"},
+    {"id":"orgo_center.b08.west.note","room":"orgo_center.west_wing","kind":"subtitle","position":[-79,7.5,30.5],"text":"FLUX  ·  PROJETS","profile":"STANDARD"},
+    {"id":"orgo_center.b08.west.crest","room":"orgo_center.west_wing","kind":"medallion","position":[-91,0.10,-3],"profile":"STANDARD"},
+    {"id":"orgo_center.b08.west.pilaster","room":"orgo_center.west_wing","kind":"pilaster","position":[-101,8,-3],"profile":"SHOWCASE"},
+
+    {"id":"orgo_center.b08.east.title","room":"orgo_center.east_wing","kind":"sign","position":[79,11,30.5],"text":"BUREAU COMMUNAUTAIRE","profile":"LITE"},
+    {"id":"orgo_center.b08.east.note","room":"orgo_center.east_wing","kind":"subtitle","position":[79,7.5,30.5],"text":"ACCUEIL  ·  LIENS","profile":"STANDARD"},
+    {"id":"orgo_center.b08.east.crest","room":"orgo_center.east_wing","kind":"medallion","position":[91,0.10,-3],"profile":"STANDARD"},
+    {"id":"orgo_center.b08.east.pilaster","room":"orgo_center.east_wing","kind":"pilaster","position":[101,8,-3],"profile":"SHOWCASE"},
+
+    {"id":"orgo_center.b08.rear.title","room":"orgo_center.rear_atrium","kind":"sign","position":[0,11,102.5],"text":"ATRIUM DES SERVICES","profile":"LITE"},
+    {"id":"orgo_center.b08.rear.note","room":"orgo_center.rear_atrium","kind":"subtitle","position":[0,7.5,102.5],"text":"SE REPÉRER  ·  S’INFORMER","profile":"LITE"},
+    {"id":"orgo_center.b08.rear.crest","room":"orgo_center.rear_atrium","kind":"medallion","position":[0,0.10,56],"profile":"STANDARD"},
+    {"id":"orgo_center.b08.rear.pilaster","room":"orgo_center.rear_atrium","kind":"pilaster","position":[-45,8,92],"profile":"SHOWCASE"}
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B02",
+  "place_key": "ekoh_tower",
+  "baseline": "KC33",
+  "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "baseline_source_verified_this_turn": false,
+  "actual_inspected_source": "KinCity_ArtDeco_V3_Complet (1).zip",
+  "actual_inspected_sha256": "6696d12dc6c9fefd845e9180a11c4f9412ea439989ef97bd0ef35eb091192798",
+  "contracts_version": "KC34-DOC-1.0",
+  "commit_or_patch_id": "B02-EKOH-ATLAS-1.0.0",
+  "change_class": "LOCAL",
+  "goal": "Habillage Art déco EkoH non interactif pour 6 salles, sans changement du socle commun",
+  "changed_files": [
+    {
+      "path": "contrib/places/ekoh_tower/B02EkohInterior.luau",
+      "sha256": "c9bc06421ed44ad04e7a5065e754481dd91bb35a1441485bcdc46de9f0172443"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/B02EkohInterior.template.luau",
+      "sha256": "a75f79033f9be652bf3f4a90346f4918d4031f72830cb615cacf7168867e8ddc"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/docs/QA_CHECKLIST.md",
+      "sha256": "94e442e214a7c3887bc439fa1ffd1804522c8582fd02d94581f7441262e43e43"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/docs/README_B02.md",
+      "sha256": "d041cc1f43d5deea965f0b1f6e5c3a75185894ca05c841dda507fa45ecc91a4b"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/docs/RFC_B09_B02_LOADER.md",
+      "sha256": "649a35a1b3e0cb4613afa0148427785554d72d9dcca0ff0850b3b1888351c9fe"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/fixtures/canonical_v3_snapshot.json",
+      "sha256": "5a7ceeac93ebcc0429c99e557ae32ff35c811013ea96a0e35783fb5dc447b0d3"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/recipe.json",
+      "sha256": "35fe9c0b29cb6b80cf1ce379774aa2e197d041f342f3da1534c3c26738016a73"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/reports/luau_check.txt",
+      "sha256": "3e61a8c77c354011253ab228ce96e882179d5fbea324dab640736629696fbc0d"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/reports/preflight.txt",
+      "sha256": "8d05b6f734b02dcc99573ef7758df7de103a948dece71f4f88dad9c50a40c0c9"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/reports/tests_b02.txt",
+      "sha256": "710b600a228f22bd5d16b21042122a9f01409f6ac04a1ab664d423993f78a211"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/scene.json",
+      "sha256": "805ae46a1beb19ec95dd9918e3c7e98f07f14c1becc8c9feaf53957e62f364e3"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/tests/test_b02.py",
+      "sha256": "7334cbd3703a57ca06a3ea0068b56e3c5c19f46c802e9c1f3990fbff48a7dcbe"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/tools/build_b02.py",
+      "sha256": "e96ffd09d6d5c25e2182e5bbec233a46562ad38ed7f906322865c1279a6131a7"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/tools/validate_b02.py",
+      "sha256": "179fc20d13b053ca48f602b443a3e712ff10374a3896b3af1f96866ae2e83fd8"
+    }
+  ],
+  "contract_changes": [],
+  "rfc_id": "RFC-B09-B02-001",
+  "needs_approval": [
+    "B09: vérification de la vraie baseline KC33/B09, puis approbation du loader serveur"
+  ],
+  "assets_added": [],
+  "tests_executed": [
+    {
+      "name": "validation_b02_6_rooms_2_doors_3_anchors",
+      "result": "PASS",
+      "evidence": "contrib/places/ekoh_tower/reports/preflight.txt"
+    },
+    {
+      "name": "python_unittest_20_b02",
+      "result": "PASS",
+      "evidence": "contrib/places/ekoh_tower/reports/tests_b02.txt"
+    },
+    {
+      "name": "luau_lexical_pairs",
+      "result": "PASS",
+      "evidence": "contrib/places/ekoh_tower/reports/luau_check.txt"
+    }
+  ],
+  "tests_not_executed": [
+    "Révision de compatibilité KC33/B09 (ZIP indisponibles ici)",
+    "Compilateur Luau Roblox Studio",
+    "Rendu Roblox Studio",
+    "Client Roblox publié: les 2 portes",
+    "FPS/mémoire mobile"
+  ],
+  "evidence": [
+    "contrib/places/ekoh_tower/reports/preflight.txt",
+    "contrib/places/ekoh_tower/reports/tests_b02.txt",
+    "contrib/places/ekoh_tower/reports/luau_check.txt"
+  ],
+  "performance": {
+    "measured": false,
+    "device": "",
+    "profile": "LITE/STANDARD/SHOWCASE",
+    "metrics": {}
+  },
+  "risk": [
+    "Baseline KC33/B09 non disponible pour rebase",
+    "Module B02 non raccordé à WorldBuilder",
+    "Décor potentiellement masqué par mobilier réel",
+    "Aucune validation Studio ou client publiée",
+    "Le schéma spatiale canonique ne couvre pas tous les volumes runtime"
+  ],
+  "rollback": "Retirer l’éventuel appel au décor B02 et le dossier KinB02_EkoH_Atlas; la baseline et ses 16 portes restent inchangées.",
+  "status": "BLOCKED"
+}

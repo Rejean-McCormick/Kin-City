@@ -8,6 +8,8 @@ local CollectionService=game:GetService("CollectionService")
 local CitizenProps=require(script.Parent.CitizenPropsV21)
 local Presence=require(script.Parent.ViewerPresenceV21)
 local Nav=require(script.Parent.NeighborhoodNPCNavigation)
+local Population=require(script.Parent.CityPopulationV36)
+local PathfindingService=game:GetService("PathfindingService")
 local F=require(script.Parent.Factory)
 local R15={}
 local skins={
@@ -96,55 +98,91 @@ local function make(index,parent)
     CollectionService:AddTag(model,"KinCityAnimatedNPC")
     return model,humanoid,root
 end
+-- Déplacements courts sur la voie autorisée, jamais vers les anciens îlots.
+-- Aucun MoveTo direct traversant les structures en cas d'échec de Pathfinding.
+local function travel(model,humanoid,site,goal,world)
+    local root=model:FindFirstChild("HumanoidRootPart")
+    if not root then return false end
+    local path=PathfindingService:CreatePath({
+        AgentRadius=2.5,AgentHeight=6,AgentCanJump=false,AgentCanClimb=false,
+        WaypointSpacing=3,
+    })
+    local ok=pcall(function()
+        path:ComputeAsync(root.Position,goal+Vector3.new(0,2.4,0))
+    end)
+    if not ok or path.Status~=Enum.PathStatus.Success then return false end
+    local points=path:GetWaypoints()
+    if #points<2 or #points>32 then return false end
+    for _,waypoint in ipairs(points) do
+        if waypoint.Action==Enum.PathWaypointAction.Jump
+            or not Population.safeWaypoint(site,waypoint.Position) then return false end
+    end
+    for i=2,#points do
+        if not model.Parent or not world.Parent or humanoid.Health<=0 then return false end
+        local finished,reached=false,false
+        local connection=humanoid.MoveToFinished:Connect(function(success)
+            finished=true;reached=success
+        end)
+        humanoid:MoveTo(points[i].Position)
+        local deadline=os.clock()+6
+        while not finished and os.clock()<deadline and model.Parent and world.Parent do
+            task.wait(0.1)
+        end
+        connection:Disconnect()
+        if not reached then humanoid:MoveTo(root.Position);return false end
+    end
+    return true
+end
+
 local function walk(model,humanoid,index,world)
-    local quarter=Nav.quarter(index)
-    local start=Nav.stop(quarter,index,1)
-    model:SetAttribute("KinResidenceQuarter",quarter.id)
-    model:PivotTo(CFrame.new(start+Vector3.new(0,2.5,0)))
+    local site=Population.site("r15",index)
+    model:SetAttribute("KinResidenceQuarter",site.section.key)
+    model:SetAttribute("KinNPCAnchor",site.position)
+    model:PivotTo(CFrame.new(site.position+Vector3.new(0,3.6,0)))
     local root=model:FindFirstChild("HumanoidRootPart")
     if root and root:IsA("BasePart") then
         pcall(function() root:SetNetworkOwner(nil) end)
     end
-    local activities={"Promenade", "Observer", "Lecture", "Accueil", "Rencontre"}
     task.spawn(function()
-        local step=1
+        local direction=if index%2==0 then 1 else -1
         while model.Parent and world.Parent and humanoid.Health>0 do
-            if not Presence.near(model:GetPivot().Position,200) then
+            if not Presence.near(site.position,200) then
                 model:SetAttribute("KinNPCMotion","idle")
-                task.wait(2.5)
+                task.wait(2)
                 continue
             end
-            step+=1
-            local destination,title=Nav.stop(quarter,index,step)
+            local destination=site.position+site.axis*(direction*site.itinerary_half_length)
             model:SetAttribute("KinNPCMotion","walk")
-            model:SetAttribute("KinNPCActivity",title)
-            local reached=Nav.walkHumanoid(model,humanoid,quarter,destination,world)
-            if not model.Parent or not world.Parent then break end
-            if not reached then
-                model:SetAttribute("KinNPCMotion","idle")
-                task.wait(2.0) -- aucun mouvement direct à travers le mobilier
-                continue
-            end
-            local activity=activities[(step+index-2)%#activities+1]
-            model:SetAttribute("KinNPCMotion",if activity=="Lecture" then "read" elseif activity=="Accueil" or activity=="Rencontre" then "greet" else "idle")
-            model:SetAttribute("KinNPCActivity",activity)
-            task.wait(1.5+(index%3)*0.55)
+            model:SetAttribute("KinNPCActivity","Promenade de "..site.section.name)
+            local reached=travel(model,humanoid,site,destination,world)
+            model:SetAttribute("KinNPCMotion","idle")
+            if reached then direction=-direction end
+            task.wait(if reached then 2.5+(index%3) else 3.5)
         end
         model:SetAttribute("KinNPCMotion","idle")
     end)
 end
+
 function R15.start(world)
     local city=world:FindFirstChild("Ville")
     if not city then return end
+    local previous=city:FindFirstChild("Citoyens Roblox R15")
+    if previous and previous:GetAttribute("KinNPCPopulationRevision")==Population.REVISION then return end
     local folder=F.folder(city,"Citoyens Roblox R15")
-    -- Quatorze rigs natifs répartis sur les voies publiques, plus de variété sans surcharger la ville.
+    folder:SetAttribute("KinNPCPopulationRevision",Population.REVISION)
+    if previous then previous.Name="Citoyens R15 anciens";previous:Destroy() end
     task.spawn(function()
-        for i=1,14 do
+        local count=0
+        for i=1,Population.R15_PER_SECTOR*6 do
             if not world.Parent then break end
             local model,humanoid=make(i,folder)
-            if model and humanoid then walk(model,humanoid,i,world) end
-            task.wait(0.35)
+            if model and humanoid then
+                walk(model,humanoid,i,world)
+                count+=1
+            end
+            task.wait(0.4)
         end
+        print("KC36 POPULATION :",count,"R15 chargés sur 18 prévus; 6 secteurs")
     end)
 end
 return R15

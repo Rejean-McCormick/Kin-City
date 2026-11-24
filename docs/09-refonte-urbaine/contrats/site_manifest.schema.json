@@ -1,0 +1,38 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:kincity:kc36:approved-site-plan",
+  "title":"KC36 Site Assignment proposal",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","plan_revision","source_canonical_sha256","approval_state","sites"],
+  "properties":{
+    "schema_version":{"const":"kincity.site-assignments/0.1-proposed"},
+    "plan_revision":{"type":"string","minLength":1},
+    "source_canonical_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "approval_state":{"enum":["PROPOSED_NOT_APPROVED","APPROVED_FOR_GREYBOX","APPROVED_FOR_STAGING"]},
+    "sites":{"type":"array","minItems":1,"items":{"$ref":"#/$defs/site"}}
+  },
+  "$defs":{
+    "vec2":{"type":"array","prefixItems":[{"type":"number"},{"type":"number"}],"minItems":2,"maxItems":2},
+    "site":{
+      "type":"object","additionalProperties":false,
+      "required":["site_id","building_id","district_id","place_key","current_center_xz_studs","current_yaw_degrees","current_footprint_xz_studs","proposed_center_xz_studs","proposed_yaw_degrees","frontage_route_id","approach_anchor_id","transform_status","clearance_policy"],
+      "properties":{
+        "site_id":{"type":"string","pattern":"^site\\.[a-z0-9_.-]+$"},
+        "building_id":{"type":"string","minLength":3},
+        "district_id":{"type":"string","minLength":2},
+        "place_key":{"type":"string","minLength":2},
+        "current_center_xz_studs":{"$ref":"#/$defs/vec2"},
+        "current_yaw_degrees":{"type":"number"},
+        "current_footprint_xz_studs":{"$ref":"#/$defs/vec2"},
+        "proposed_center_xz_studs":{"oneOf":[{"type":"null"},{"$ref":"#/$defs/vec2"}]},
+        "proposed_yaw_degrees":{"type":["number","null"]},
+        "frontage_route_id":{"type":["string","null"]},
+        "approach_anchor_id":{"type":"string","minLength":3},
+        "transform_status":{"enum":["PROPOSED_NOT_APPROVED","REVIEWED","APPROVED"]},
+        "clearance_policy":{"type":"object","additionalProperties":false,"required":["road_overlap_allowed","door_clearance_studs","walkway_width_studs"],"properties":{"road_overlap_allowed":{"type":"boolean"},"door_clearance_studs":{"type":"number","minimum":0},"walkway_width_studs":{"type":"number","minimum":0}}},
+        "rationale":{"type":"string"}
+      }
+    }
+  }
+}

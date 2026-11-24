@@ -2,7 +2,6 @@
 -- Vote esthétique serveur, par session et par joueur, en aucun cas un Smart Vote.
 local PromptService=game:GetService("ProximityPromptService")
 local R=require(script.Parent.DistrictLandmarks)
-local SignEngine=require(script.Parent.SignEngine)
 local ThemeRuntime={}
 local function resultText(id,votes)
     local total=0
@@ -29,23 +28,11 @@ function ThemeRuntime.start(world)
     local function redraw()
         kreative:SetAttribute("KinKreativeActiveTheme",active)
         kreative:SetAttribute("KinKreativeVoteCount",votes.cuivre+votes.nuit+votes.prune)
-        -- La décoration du quartier et les lampadaires changent avec le vote.
-        -- Le halo EkoH, extérieur à ces deux racines, reste sarcelle.
+        -- Votes affect the installation only. Sector highlights and ornamented signs keep their identity.
         local roots={kreative}
-        local urban=city:FindFirstChild("KOALI • urbanisme d'allées brandées")
-        local avenue=urban and urban:FindFirstChild("Avenue Kreative")
-        local gallery=urban and urban:FindFirstChild("18 lieux thématiques • vues d'ensemble")
-        if avenue then table.insert(roots,avenue) end
-        if gallery then
-            for _,lot in ipairs(gallery:GetChildren()) do
-                if lot:GetAttribute("KinSection")=="kreative" then table.insert(roots,lot) end
-            end
-        end
         for _,root in ipairs(roots) do
             for _,obj in ipairs(root:GetDescendants()) do
-                if obj:IsA("BasePart") and obj:GetAttribute("KinSignEngineVersion")~=nil and obj:GetAttribute("KinSignTheme")=="kreative" then
-                    SignEngine.recolor(obj,options[active].color)
-                elseif obj:IsA("BasePart") and obj:GetAttribute("KinKreativeCanvas")==true then
+                if obj:IsA("BasePart") and obj:GetAttribute("KinKreativeCanvas")==true then
                     obj.Color=options[active].color
                 elseif obj:IsA("PointLight") and obj:GetAttribute("KinKreativeLight")==true then
                     obj.Color=options[active].color

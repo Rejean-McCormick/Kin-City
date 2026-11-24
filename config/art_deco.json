@@ -1,0 +1,187 @@
+{
+  "enabled": true,
+  "library_name": "KinCityArtDecoLibrary",
+  "revision": "kc33-urban-roadway-six-sectors-2026-10",
+  "production_place_id": 72097868581669,
+  "test_place_id": null,
+  "allow_local_test": true,
+  "profiles": {
+    "LITE": {
+      "triangles": 1221000,
+      "parts": 12668,
+      "clones": 2780,
+      "pools": {
+        "building": {
+          "triangles": 45000,
+          "parts": 80,
+          "clones": 10
+        },
+        "street": {
+          "triangles": 8000,
+          "parts": 60,
+          "clones": 4
+        },
+        "interior": {
+          "triangles": 35000,
+          "parts": 400,
+          "clones": 90
+        },
+        "environment": {
+          "triangles": 2000,
+          "parts": 20,
+          "clones": 1
+        },
+        "pavilion": {
+          "triangles": 33000,
+          "parts": 40,
+          "clones": 3
+        },
+        "architecture": {
+          "triangles": 40000,
+          "parts": 1000,
+          "clones": 240
+        },
+        "paving": {
+          "triangles": 500,
+          "parts": 18,
+          "clones": 2
+        }
+      },
+      "lamp_steps": [
+        3
+      ],
+      "bench_steps": [
+        5
+      ],
+      "wall_pitch": 20,
+      "floor_tiles": 2,
+      "room_stations": 1,
+      "near_lights": 8,
+      "road_steps": [
+        4,
+        12
+      ]
+    },
+    "STANDARD": {
+      "triangles": 1596200,
+      "parts": 12944,
+      "clones": 2810,
+      "pools": {
+        "building": {
+          "triangles": 45000,
+          "parts": 80,
+          "clones": 10
+        },
+        "street": {
+          "triangles": 14000,
+          "parts": 100,
+          "clones": 6
+        },
+        "interior": {
+          "triangles": 55000,
+          "parts": 400,
+          "clones": 90
+        },
+        "environment": {
+          "triangles": 5000,
+          "parts": 20,
+          "clones": 3
+        },
+        "pavilion": {
+          "triangles": 33000,
+          "parts": 40,
+          "clones": 3
+        },
+        "architecture": {
+          "triangles": 60000,
+          "parts": 1000,
+          "clones": 240
+        },
+        "paving": {
+          "triangles": 700,
+          "parts": 24,
+          "clones": 3
+        }
+      },
+      "lamp_steps": [
+        2,
+        6
+      ],
+      "bench_steps": [
+        5
+      ],
+      "wall_pitch": 16,
+      "floor_tiles": 4,
+      "room_stations": 2,
+      "near_lights": 16,
+      "road_steps": [
+        4,
+        10,
+        16
+      ]
+    },
+    "SHOWCASE": {
+      "triangles": 1671200,
+      "parts": 13376,
+      "clones": 2846,
+      "pools": {
+        "building": {
+          "triangles": 45000,
+          "parts": 80,
+          "clones": 10
+        },
+        "street": {
+          "triangles": 26000,
+          "parts": 150,
+          "clones": 10
+        },
+        "interior": {
+          "triangles": 55000,
+          "parts": 400,
+          "clones": 90
+        },
+        "environment": {
+          "triangles": 5000,
+          "parts": 30,
+          "clones": 3
+        },
+        "pavilion": {
+          "triangles": 33000,
+          "parts": 40,
+          "clones": 3
+        },
+        "architecture": {
+          "triangles": 60000,
+          "parts": 1000,
+          "clones": 240
+        },
+        "paving": {
+          "triangles": 1200,
+          "parts": 36,
+          "clones": 5
+        }
+      },
+      "lamp_steps": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "bench_steps": [
+        5
+      ],
+      "wall_pitch": 16,
+      "floor_tiles": 4,
+      "room_stations": 2,
+      "near_lights": 24,
+      "road_steps": [
+        3,
+        6,
+        10,
+        13,
+        17
+      ]
+    }
+  },
+  "budget_scope": "Resident source geometry reservations across nine streamed zones; not a measured mobile frame budget."
+}

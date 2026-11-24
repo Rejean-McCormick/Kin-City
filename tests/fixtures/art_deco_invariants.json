@@ -1,0 +1,29 @@
+{
+  "origin": "KC35 migration: one intentional bootstrap hash changed for B09 BranchRuntime; remaining 22 historic invariants preserved. Prior init hash: cb9aaaf19824692eb03c6dd1090ce0a98b3a8167601ddb3964b1f07010694c6c",
+  "canonical_plan_sha256": "5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a",
+  "unchanged": {
+    "catalog/buildings.json": "8e563e8fc6502858cae9f0bea6e2e5fd3942d4395f353fa5decc7fc90a7fc798",
+    "catalog/doors.json": "b6f1e5bfcdd12e27a08a74bf2a54254e1956108df573b4f102cd74c3a85f9a0a",
+    "catalog/interactions.json": "eda0f6458f1fcc4443f46e05a20ea419f2a08bc7ba9eb443701798211ef74ca8",
+    "catalog/spatial.json": "3c75d20a368f686cedf2fd2b4837668d7af91fa39f9dc6e0378ee742b444584c",
+    "catalog/places.json": "dd5f8812b2cecbd4010464ddc762df8a1267fb58fc6f60e1381b62c7ae2df901",
+    "catalog/music_inventory_current.json": "8e86ac980b5a3c1f272b8eae70c40a1f82634f845a5550372c5d732c15ec260b",
+    "config/audio.json": "6bf3d24d38eaf93d7d4be3189ecd198b11523e23d5c71c86741bc81d61d3a2c7",
+    "src/shared/MusicAssetIds.luau": "bef4444b24dd9a84f0736d80064b312c1cf2a3e880c0f17a92a8d0905fde6b3d",
+    "src/server/HexagonalHeart.luau": "47d6887775fa2c8f6af39930170643d14453972f3790104e5220655c3f500b72",
+    "src/server/EkohHalo.luau": "6416b975e6a1b379bedd5cbe8462ba41659919c0ec6d449baba2ea15d8a33051",
+    "src/server/init.server.luau": "eccb792f8c3572ff7705557a63e68958ec48c8b187f0724614dda6bddc663b70",
+    "src/client/init.client.luau": "5d1f06644fdfc112651c7590bfac581e3f4a286b06ea337a59bea88f86ca692f",
+    "src/client/KinCityMusicPlayer.luau": "04570860ac148857a762207c23ae847257b3640546998e6a6b199f891773d05d",
+    "src/shared/MusicLibrary.luau": "caed5a62dc70026d069c95b424ee9fd0af41be58ac25159bb6a1092c0c45d291",
+    "catalog/MusicAssetIds_A_REMPLIR.csv": "663e6a6b00c22e96238e0bcc978ac998464cd72520a250cada3f0039b1b3c689",
+    "catalog/music_import_48_ids.csv": "663e6a6b00c22e96238e0bcc978ac998464cd72520a250cada3f0039b1b3c689",
+    "src/server/SignEngine.luau": "e300abe2e251e7b8c743811ca719786e6be7d1df453d89634e552fc249c1201b",
+    "src/shared/Typography.luau": "64a094fd26469b6dea77f80a7fecb89236887b8c494c15b6cfeed1fc640589c7",
+    "config/interior_origins.json": "9113805e2e0d029a93461792614f3d23aeb8751f9724291c3046c891449431d1",
+    "config/runtime.json": "2becd8a8053085ebb1da3c0fdca13f76d4e2cbbe44f42a528823b6285c68f19e",
+    "src/server/PlayerTravel.luau": "1ce8d26cc8f7c8606f723e697ce897188f0917e98cb732e2762c684bcd984e30",
+    "src/server/Spatial.luau": "b734e51622726749f13d242ecd508f5a07884902289a73f004c457247242262a",
+    "src/server/InteriorWings.luau": "a8711b8ebd145e3011101035d4ed5e6fa3d2a99315df2e81bfe4b260724aa0ca"
+  }
+}

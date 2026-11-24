@@ -1,0 +1,100 @@
+{
+  "schema_version": "kincity.b09-scene-registry/1.0",
+  "contracts_version": "KC34-DOC-1.0",
+  "runtime_loader_enabled": true,
+  "place_count": 9,
+  "entries": [
+    {
+      "branch_id": "B01",
+      "place_key": "city_hall",
+      "module_path": "contrib/places/city_hall/CityHallScene.luau",
+      "entrypoint": "Scene.build(context)",
+      "signature_notes": "place_model,place_key,origin,profile",
+      "status": "WIRED_KC35_NOT_STUDIO_VALIDATED",
+      "runtime_enabled": true,
+      "requires_common_adapter": false
+    },
+    {
+      "branch_id": "B02",
+      "place_key": "ekoh_tower",
+      "module_path": "contrib/places/ekoh_tower/B02EkohInterior.luau",
+      "entrypoint": "Builder.Build(context)",
+      "signature_notes": "interiorModel,origin,profile,place_key",
+      "status": "WIRED_KC35_NOT_STUDIO_VALIDATED",
+      "runtime_enabled": true,
+      "requires_common_adapter": false
+    },
+    {
+      "branch_id": "B03",
+      "place_key": "library",
+      "module_path": "contrib/places/library/LibraryScene.luau",
+      "entrypoint": "Scene.build(context)",
+      "signature_notes": "interiorModel,origin,profile,authorized,place_key",
+      "status": "WIRED_KC35_NOT_STUDIO_VALIDATED",
+      "runtime_enabled": true,
+      "requires_common_adapter": false
+    },
+    {
+      "branch_id": "B04",
+      "place_key": "campus",
+      "module_path": "contrib/places/campus/CampusDecor.luau",
+      "entrypoint": "CampusDecor.build(interior,origin,profile)",
+      "signature_notes": "interior,origin,profile",
+      "status": "WIRED_KC35_NOT_STUDIO_VALIDATED",
+      "runtime_enabled": true,
+      "requires_common_adapter": false
+    },
+    {
+      "branch_id": "B05",
+      "place_key": "justice_palace",
+      "module_path": "contrib/places/justice_palace/PreviewBuilder.luau",
+      "entrypoint": "Builder.build(ctx)",
+      "signature_notes": "parent,origin,profile,place_key",
+      "status": "WIRED_KC35_NOT_STUDIO_VALIDATED",
+      "runtime_enabled": true,
+      "requires_common_adapter": false
+    },
+    {
+      "branch_id": "B06",
+      "place_key": "innovation_lab",
+      "module_path": "contrib/places/innovation_lab/KonstructScene.luau",
+      "entrypoint": "Konstruct.build(context)",
+      "signature_notes": "parent,origin,profile,place_key",
+      "status": "WIRED_KC35_NOT_STUDIO_VALIDATED",
+      "runtime_enabled": true,
+      "requires_common_adapter": false
+    },
+    {
+      "branch_id": "B07",
+      "place_key": "museum",
+      "module_path": "contrib/places/museum/MuseumScene.luau",
+      "entrypoint": "MuseumScene.build(context)",
+      "signature_notes": "parent/placeModel,origin,profile",
+      "status": "WIRED_KC35_NOT_STUDIO_VALIDATED",
+      "runtime_enabled": true,
+      "requires_common_adapter": false
+    },
+    {
+      "branch_id": "B08",
+      "place_key": "orgo_center",
+      "module_path": "contrib/places/orgo_center/OrgoScene.luau",
+      "entrypoint": "Orgo.build(context)",
+      "signature_notes": "place_model,origin,profile; rebased KC33",
+      "status": "WIRED_KC35_NOT_STUDIO_VALIDATED",
+      "runtime_enabled": true,
+      "requires_common_adapter": false
+    },
+    {
+      "branch_id": "B10",
+      "place_key": "city",
+      "module_path": "contrib/places/city/Wayfinding.luau",
+      "entrypoint": "Wayfinding.build(city,plan,districts,profile)",
+      "signature_notes": "city,world_plan,districts,profile",
+      "status": "WIRED_KC35_NOT_STUDIO_VALIDATED",
+      "runtime_enabled": true,
+      "requires_common_adapter": false
+    }
+  ],
+  "runtime_loader_module": "src/server/BranchRuntime.luau",
+  "studio_validation": "NOT_PERFORMED"
+}

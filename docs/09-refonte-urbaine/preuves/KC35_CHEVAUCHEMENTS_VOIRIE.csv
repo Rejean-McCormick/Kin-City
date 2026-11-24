@@ -1,0 +1,7 @@
+﻿building_id,building_name,avenue,intersection_area_studs2,building_footprint_studs,center_studs,yaw_deg,severity_candidate
+konnected.library,Bibliothèque,KonnectED,1181.4,"[78, 62]","[-231, 0, -158]",-124.371,HIGH
+central.city_hall,Hôtel de ville,Kreative,1020.1,"[70, 56]","[100, 0, 86]",49.304,HIGH
+kreative.museum,Musée,Kreative,785.0,"[82, 62]","[240, 0, 182]",52.826,HIGH
+konnected.university,Campus UCKK,UCKK,57.0,"[82, 64]","[-51, 0, 292]",-9.907,REVIEW
+orgo.admin_center,Maison Orgo,ethiKos,41.7,"[72, 56]","[117, 0, -122]",136.198,REVIEW
+keenkonnect.innovation_lab,Atelier,keenKonnect,3.5,"[76, 60]","[-51, 0, -292]",-170.093,REVIEW

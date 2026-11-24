@@ -1,0 +1,36 @@
+{
+  "branch": "B05",
+  "place_key": "justice_palace",
+  "source_file": "KinCity_ArtDeco_V3_Complet (1).zip",
+  "canonical_room_ids": [
+    "justice_palace.lobby",
+    "justice_palace.gallery",
+    "justice_palace.chamber"
+  ],
+  "additional_room_ids": [
+    "justice_palace.west_wing",
+    "justice_palace.east_wing",
+    "justice_palace.rear_atrium"
+  ],
+  "protected": {
+    "entry_door_id": "city.ethikos.justice_palace.entry",
+    "exit_door_id": "justice_palace.exit",
+    "spawn_anchor_id": "justice_palace.lobby.spawn",
+    "exit_anchor_id": "justice_palace.exit.door",
+    "interaction_anchor_id": "hall.terminal_01",
+    "canonical_portals": [
+      "justice_palace.portal.lobby.gallery",
+      "justice_palace.portal.lobby.chamber"
+    ],
+    "extension_portals": [
+      "justice_palace.gallery_to_west",
+      "justice_palace.chamber_to_east",
+      "justice_palace.gallery_to_rear",
+      "justice_palace.chamber_to_rear"
+    ]
+  },
+  "notes": [
+    "canonical room and door IDs checked against original uploaded package; KC33 modified archive not accessible this turn",
+    "place key/district mapping confirmed original package; no production PlaceId filled"
+  ]
+}

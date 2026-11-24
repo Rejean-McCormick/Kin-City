@@ -10,6 +10,7 @@ local player=Players.LocalPlayer
 function LOD.start()
     local world=workspace:WaitForChild("KinCityGenerated",30)
     if not world then return end
+    require(script.Parent.ArtDecoLightLOD).start(world)
     local optional={}
     local function add(inst)
         if inst:IsA("BasePart") and inst:GetAttribute("KinOptionalDetail")==true then

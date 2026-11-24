@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "source_archive": "doc(1).zip",
+  "original_document_files_preserved": 75,
+  "original_files_updated": [
+    "README.md"
+  ],
+  "filename_alias_added": "05-qualification/traçabilite.md",
+  "kc36_documents": 16,
+  "kc36_support_files": 8,
+  "local_links_missing": [],
+  "schema_valid": true,
+  "canonical_plan_sha256": "5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a",
+  "structure_count": 8,
+  "places_count": 9,
+  "door_count": 16,
+  "static_road_footprint_clashes": 6,
+  "runtime_modified": false,
+  "studio_tests_executed": false,
+  "limitations": [
+    "Shapely static 2D oriented-footprint intersection, not Roblox physics test",
+    "Lawn flashing exact visual surface not identified",
+    "Target plan proposed; not owner-approved"
+  ]
+}

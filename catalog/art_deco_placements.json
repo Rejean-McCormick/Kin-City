@@ -1,0 +1,345 @@
+{
+  "buildings": {
+    "central.city_hall": {
+      "place_key": "city_hall",
+      "shape": "civic",
+      "body_height_ratio": 0.7,
+      "entry_width": 10,
+      "entry_height": 10,
+      "feature_asset": "AD_Arc_Pavilion_Drum",
+      "columns_asset": "AD_Arc_Column_Round_10",
+      "window_asset": "AD_Arc_Window_Arch_Grid",
+      "shell_asset": "AD_Ext_Bldg_Base_Blue",
+      "shell_source_size": [
+        12.53486,
+        7.05,
+        13.31743
+      ],
+      "feature_source_size": [
+        4.68,
+        5.5,
+        4.68
+      ]
+    },
+    "central.ekoh_tower": {
+      "place_key": "ekoh_tower",
+      "shape": "observatory",
+      "body_height_ratio": 0.2,
+      "entry_width": 10,
+      "entry_height": 10,
+      "feature_asset": "AD_Ext_Bldg_Crown_Ziggurat_Violet",
+      "columns_asset": "AD_Arc_Column_Round_10",
+      "window_asset": "AD_Arc_Window_Arch_Grid",
+      "shell_asset": "AD_Ext_Bldg_Mid_Violet",
+      "shell_source_size": [
+        12.2,
+        12,
+        12.2
+      ],
+      "feature_source_size": [
+        12.08,
+        29.25,
+        12.08
+      ]
+    },
+    "konnected.library": {
+      "place_key": "library",
+      "shape": "library",
+      "body_height_ratio": 0.72,
+      "entry_width": 10,
+      "entry_height": 10,
+      "feature_asset": "AD_Arc_Canopy_Disc",
+      "columns_asset": "AD_Arc_Column_Round_10",
+      "window_asset": "AD_Arc_Window_Arch_Grid",
+      "shell_asset": "AD_Ext_Bldg_Base_Red",
+      "shell_source_size": [
+        12.53486,
+        7.05,
+        13.31743
+      ],
+      "feature_source_size": [
+        10.0,
+        0.512,
+        10.0
+      ]
+    },
+    "konnected.university": {
+      "place_key": "campus",
+      "shape": "campus",
+      "body_height_ratio": 0.68,
+      "entry_width": 10,
+      "entry_height": 10,
+      "feature_asset": "AD_Arc_Mezzanine_Rail_Blue",
+      "columns_asset": "AD_Arc_Column_Round_10",
+      "window_asset": "AD_Arc_Window_Arch_Grid",
+      "shell_asset": "AD_Ext_Bldg_Base_Hotel_Blue",
+      "shell_source_size": [
+        12.53486,
+        6.0,
+        14.67143
+      ],
+      "feature_source_size": [
+        4.05,
+        1.7,
+        4.05
+      ]
+    },
+    "ethikos.justice_palace": {
+      "place_key": "justice_palace",
+      "shape": "court",
+      "body_height_ratio": 0.7,
+      "entry_width": 10,
+      "entry_height": 10,
+      "feature_asset": "AD_Arc_Wall_Stars",
+      "columns_asset": "AD_Arc_Column_Round_10",
+      "window_asset": "AD_Arc_Window_Arch_Grid",
+      "shell_asset": "AD_Ext_Bldg_Base_Violet",
+      "shell_source_size": [
+        12.53486,
+        7.05,
+        13.31743
+      ],
+      "feature_source_size": [
+        8.0,
+        10.0,
+        0.33
+      ]
+    },
+    "keenkonnect.innovation_lab": {
+      "place_key": "innovation_lab",
+      "shape": "atelier",
+      "body_height_ratio": 0.62,
+      "entry_width": 10,
+      "entry_height": 10,
+      "feature_asset": "AD_Arc_Window_Slant",
+      "columns_asset": "AD_Arc_Column_Round_10",
+      "window_asset": "AD_Arc_Window_Arch_Grid",
+      "shell_asset": "AD_Ext_Bldg_Base_Blue",
+      "shell_source_size": [
+        12.53486,
+        7.05,
+        13.31743
+      ],
+      "feature_source_size": [
+        8.0,
+        9.0859,
+        3.51478
+      ]
+    },
+    "kreative.museum": {
+      "place_key": "museum",
+      "shape": "gallery",
+      "body_height_ratio": 0.74,
+      "entry_width": 10,
+      "entry_height": 10,
+      "feature_asset": "AD_Int_Sculpture_Deco",
+      "columns_asset": "AD_Arc_Column_Round_10",
+      "window_asset": "AD_Arc_Window_Arch_Grid",
+      "shell_asset": "AD_Ext_Bldg_Base_Hotel_Violet",
+      "shell_source_size": [
+        12.53486,
+        6.0,
+        14.67143
+      ],
+      "feature_source_size": [
+        1.29257,
+        3.15,
+        1.24
+      ]
+    },
+    "orgo.admin_center": {
+      "place_key": "orgo_center",
+      "shape": "services",
+      "body_height_ratio": 0.7,
+      "entry_width": 10,
+      "entry_height": 10,
+      "feature_asset": "AD_Arc_Pavilion_Drum",
+      "columns_asset": "AD_Arc_Column_Round_10",
+      "window_asset": "AD_Arc_Window_Arch_Grid",
+      "shell_asset": "AD_Ext_Bldg_Base_Hotel_Red",
+      "shell_source_size": [
+        12.53486,
+        6.0,
+        14.67143
+      ],
+      "feature_source_size": [
+        4.68,
+        5.5,
+        4.68
+      ]
+    }
+  },
+  "street": {
+    "bench": {
+      "asset": "AD_Ext_Bench",
+      "envelope": [
+        6,
+        4,
+        3
+      ]
+    },
+    "lamp": {
+      "asset": "AD_Ext_Streetlamp",
+      "envelope": [
+        3,
+        10,
+        3
+      ]
+    },
+    "paving_straight": {
+      "asset": "AD_Ext_Street_Straight",
+      "envelope": [
+        16,
+        0.16,
+        12
+      ]
+    },
+    "paving_cross": {
+      "asset": "AD_Ext_Street_Cross",
+      "envelope": [
+        16,
+        0.16,
+        16
+      ]
+    }
+  },
+  "furnishings": {
+    "prop.planter": {
+      "asset": "AD_Int_Plant_Monstera",
+      "envelope": [
+        4.2,
+        5.5,
+        4.2
+      ]
+    },
+    "prop.lamp": {
+      "asset": "AD_Int_Lamp_Floor",
+      "envelope": [
+        3,
+        8,
+        3
+      ]
+    },
+    "prop.desk": {
+      "asset": "AD_Int_Bar_Straight",
+      "envelope": [
+        7.6,
+        3.3,
+        3.6
+      ]
+    },
+    "prop.table": {
+      "asset": "AD_Int_Bar_Straight",
+      "envelope": [
+        8,
+        3.3,
+        4
+      ]
+    },
+    "prop.bench": {
+      "asset": "AD_Int_Banquette_Shell",
+      "envelope": [
+        7,
+        3.5,
+        3
+      ]
+    }
+  },
+  "environment": {
+    "palm": {
+      "asset": "AD_Ext_Palm_Tall",
+      "envelope": [
+        7,
+        18,
+        7
+      ]
+    }
+  },
+  "interior_programs": {
+    "city_hall": {
+      "role": "civic",
+      "feature": "AD_Int_Sculpture_Deco"
+    },
+    "ekoh_tower": {
+      "role": "observatory",
+      "feature": "AD_Arc_Window_Slant"
+    },
+    "justice_palace": {
+      "role": "court",
+      "feature": "AD_Arc_Wall_Stars"
+    },
+    "innovation_lab": {
+      "role": "atelier",
+      "feature": "AD_Int_Radio_Console"
+    },
+    "library": {
+      "role": "library",
+      "feature": "AD_Int_Sideboard"
+    },
+    "campus": {
+      "role": "campus",
+      "feature": "AD_Int_Radio_Console"
+    },
+    "museum": {
+      "role": "gallery",
+      "feature": "AD_Int_Sculpture_Deco"
+    },
+    "orgo_center": {
+      "role": "services",
+      "feature": "AD_Int_Sideboard"
+    }
+  },
+  "lobby_canopy": {
+    "asset": "AD_Arc_Canopy_Disc",
+    "envelope": [
+      16,
+      1.2,
+      16
+    ],
+    "clearance_below_ceiling": 2.3
+  },
+  "pavilion": {
+    "asset": "AD_Ext_Bldg_Base_Cinema",
+    "envelope": [
+      18,
+      21,
+      24
+    ],
+    "yaw_degrees": 90,
+    "variants": [
+      "AD_Ext_Bldg_Base_Cinema",
+      "AD_Ext_Bldg_Base_Red",
+      "AD_Ext_Bldg_Base_Hotel_Violet"
+    ]
+  },
+  "surfaces": {
+    "wall": "AD_Int_Room_Wall_Plain_Teal",
+    "window": "AD_Int_Room_Wall_Window_Teal",
+    "glass": "AD_Int_Room_Wall_GlassBlock_Teal",
+    "floor": "AD_Int_Floor_Checker",
+    "library_floor": "AD_Int_Room_Floor_Parquet",
+    "medallion": "AD_Int_Floor_Medallion",
+    "column": "AD_Arc_Column_Round_10",
+    "arch": "AD_Int_Arch_Door",
+    "mezzanine": "AD_Arc_Mezzanine_Rail_Blue"
+  },
+  "room_furniture": {
+    "desk": "AD_Int_Bar_Straight",
+    "seat": "AD_Int_Sofa_Mod_Seat",
+    "banquette": "AD_Int_Banquette_Shell",
+    "coffee": "AD_Int_Table_Coffee_Glass",
+    "chandelier": "AD_Int_Chandelier_Rings"
+  },
+  "stair_skins": {
+    "default": "AD_Arc_Stair_Grand_Blue",
+    "kreative": "AD_Arc_Stair_Grand_Violet"
+  },
+  "lobby_accent": {
+    "asset": "AD_Int_Mirror_Sunburst",
+    "envelope": [
+      2.2,
+      3.2,
+      0.5
+    ]
+  }
+}

@@ -31,6 +31,9 @@ function PromptRouter.start(state,reply)
         if not base or not base:IsA("BasePart") then return end
         if (base.Position-hrp.Position).Magnitude > prompt.MaxActivationDistance+3 then return end
         if record.kind=="door" then
+            -- Product exception B07: door is visibly barred until museum opening.
+            -- Enforce server side as defense in depth, independent of UI state.
+            if record.data.door_id=="city.kreative.museum.entry" then return end
             PlayerTravel.tryDoor(player,record.data,state)
         elseif record.kind=="shuttle" then
             PlayerTravel.tryShuttle(player,record.data)

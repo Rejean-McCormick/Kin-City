@@ -1,5 +1,7 @@
 --!strict
 local Factory=require(script.Parent.Factory)
+local ArtDecoProps=require(script.Parent.ArtDecoProps)
+local ArtDecoDistricts=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared").HexagonalDistricts)
 local FacadeGenerator=require(script.Parent.FacadeGenerator)
 local UrbanDetails=require(script.Parent.UrbanDetails)
 local Citizens=require(script.Parent.Citizens)
@@ -71,6 +73,12 @@ local function distanceToPath(x,z,path)
     return nearest
 end
 local function tree(parent,x,z,seed)
+    -- Only sites already cleared by the city's path/forecourt exclusion tests.
+    if seed%9==0 then
+        local section=ArtDecoDistricts.nearestAxis(x,z)
+        local imported=ArtDecoProps.environment(parent,"palm",CFrame.new(x,0,z),if section then section.key else nil)
+        if imported then return imported end
+    end
     return BotanicalKitV20.tree(parent,x,z,seed)
 end
 
@@ -241,6 +249,8 @@ function CityGenerator.make(parent,plan,buildingsById)
     DistrictLandmarks.make(city,plan)
     EkohHalo.make(city,plan)
     OutdoorAtmosphere.make(city)
+    -- KC36 B10 : population compatible avec la scène régénérée en édition.
+    Citizens.make(city)
     return city
 end
 return CityGenerator

@@ -1,0 +1,122 @@
+{
+  "audit_id": "KC36-RoadFootprint-Static-1.0",
+  "source": "KinCity KC35 build/world-plan.json",
+  "canonical_sha256": "5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a",
+  "method": "oriented footprint OBB 2D ∩ six radial avenue bands (r=62..442, physical width=19 studs, flat caps)",
+  "assumptions": [
+    "no vertical differentiation",
+    "rectangular envelope approximation",
+    "physical road segment as implemented in KoaliUrbanism; no curb/forecourt clearance included",
+    "analytical candidates; not Studio collision/visual proof"
+  ],
+  "avenue_count": 6,
+  "structures": 8,
+  "clash_count": 6,
+  "clashes": [
+    {
+      "building_id": "konnected.library",
+      "building_name": "Bibliothèque",
+      "avenue": "KonnectED",
+      "intersection_area_studs2": 1181.4,
+      "building_footprint_studs": [
+        78,
+        62
+      ],
+      "center_studs": [
+        -231,
+        0,
+        -158
+      ],
+      "yaw_deg": -124.371,
+      "severity_candidate": "HIGH"
+    },
+    {
+      "building_id": "central.city_hall",
+      "building_name": "Hôtel de ville",
+      "avenue": "Kreative",
+      "intersection_area_studs2": 1020.1,
+      "building_footprint_studs": [
+        70,
+        56
+      ],
+      "center_studs": [
+        100,
+        0,
+        86
+      ],
+      "yaw_deg": 49.304,
+      "severity_candidate": "HIGH"
+    },
+    {
+      "building_id": "kreative.museum",
+      "building_name": "Musée",
+      "avenue": "Kreative",
+      "intersection_area_studs2": 785.0,
+      "building_footprint_studs": [
+        82,
+        62
+      ],
+      "center_studs": [
+        240,
+        0,
+        182
+      ],
+      "yaw_deg": 52.826,
+      "severity_candidate": "HIGH"
+    },
+    {
+      "building_id": "konnected.university",
+      "building_name": "Campus UCKK",
+      "avenue": "UCKK",
+      "intersection_area_studs2": 57.0,
+      "building_footprint_studs": [
+        82,
+        64
+      ],
+      "center_studs": [
+        -51,
+        0,
+        292
+      ],
+      "yaw_deg": -9.907,
+      "severity_candidate": "REVIEW"
+    },
+    {
+      "building_id": "orgo.admin_center",
+      "building_name": "Maison Orgo",
+      "avenue": "ethiKos",
+      "intersection_area_studs2": 41.7,
+      "building_footprint_studs": [
+        72,
+        56
+      ],
+      "center_studs": [
+        117,
+        0,
+        -122
+      ],
+      "yaw_deg": 136.198,
+      "severity_candidate": "REVIEW"
+    },
+    {
+      "building_id": "keenkonnect.innovation_lab",
+      "building_name": "Atelier",
+      "avenue": "keenKonnect",
+      "intersection_area_studs2": 3.5,
+      "building_footprint_studs": [
+        76,
+        60
+      ],
+      "center_studs": [
+        -51,
+        0,
+        -292
+      ],
+      "yaw_deg": -170.093,
+      "severity_candidate": "REVIEW"
+    }
+  ],
+  "pedestrian_paths_count": 8,
+  "doors_count": 16,
+  "places_count": 9
+}

@@ -1,0 +1,4128 @@
+{
+  "schema": "kincity.repo-sha256/1.0",
+  "project": "KinCityV36",
+  "code_baseline": "KC35",
+  "documentation_target": "KC36",
+  "files": [
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "bytes": 792,
+      "sha256": "0b72037f6582e4e35a325bcd489e8556bf4bf6957c8ef2120bf209b93f75ff15"
+    },
+    {
+      "path": ".github/workflows/b09-contract-lock.yml",
+      "bytes": 922,
+      "sha256": "498c9974574aba2df4716afca8eb041ac3db453ea98b15c4e7fc9808ef64661c"
+    },
+    {
+      "path": ".github/workflows/code-checks.yml",
+      "bytes": 973,
+      "sha256": "c696a8f9edc55c5e90beb5856c27bf9a14e3c5d67fdeec7e96417715a0e2fd98"
+    },
+    {
+      "path": ".github/workflows/docs-validation.yml",
+      "bytes": 674,
+      "sha256": "0c141948d2b64e37ccccb350c3d16ca83f59d19401e6ba6b18e7422627d492a8"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 327,
+      "sha256": "8248d5f9db93d92f17d31f4e07d246942db57321cc5b4b724defa6e891903c2e"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 2810,
+      "sha256": "285a5a25618a5c45ec9e5b0f1c0f2324fc5e005460677b5dac5c902d19ee7b73"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 859,
+      "sha256": "dba226b3ddbfcadbca2e03aff478f9bcdbb57f41ccb59fadf3bcba26d3a64174"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 1326,
+      "sha256": "12359653ce39ed18b83a7b5d21f0bbb08337f1d9104be089f9bf427f9bb49cc6"
+    },
+    {
+      "path": "GUIDE_INSTALLATION.md",
+      "bytes": 2180,
+      "sha256": "af53d24c55cc61290c5d901b2885d2f9036601cfba417a4140c3ad25bd648365"
+    },
+    {
+      "path": "GitSink.bat",
+      "bytes": 781,
+      "sha256": "15b0af32d211ff210de0ed87eb4b374cf41f9302d92baf82a464a518ffe2c97e"
+    },
+    {
+      "path": "LICENSE-DECISION.md",
+      "bytes": 872,
+      "sha256": "38cbc508bc70ee7ad641f1b014947685efd4c6f895ffbb52395008a6c13c794a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2656,
+      "sha256": "9b6c504616c2576bfb4aab1f9757f7d1d9eb91a8daf06007f364d7b79038a799"
+    },
+    {
+      "path": "README_KC36_AI_DOCS.md",
+      "bytes": 1242,
+      "sha256": "c9a579d63acb1b4397c7619ac2a923f4e3e6cf10e0231a4cac6737cd181979ea"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 1023,
+      "sha256": "99a599f25f0c02a84626afb652118bf3d9eee61809d8562edb621b0934b20096"
+    },
+    {
+      "path": "SNAPSHOT_INDEX.txt",
+      "bytes": 12603,
+      "sha256": "1f8e87ee4b344c712a790b1d667d00db8321ee7e33963ac453d883dc12cadfd1"
+    },
+    {
+      "path": "START_HERE_KC36.md",
+      "bytes": 2999,
+      "sha256": "98992eae2ca33843ebd13db7d48730dac9d453007db6b4cf18455ff0f0b7a64c"
+    },
+    {
+      "path": "VALIDATION_KC36_REPO.md",
+      "bytes": 1547,
+      "sha256": "eeccbc73771820c2b0a06a459e0a4c4b87c1eca50c9e5cab96696d6869db9ead"
+    },
+    {
+      "path": "ZmartZnap.pyw",
+      "bytes": 22889,
+      "sha256": "70775b94ff616ed9efdb3d6b989639fa3cd22a250f1389fec485791d161df1ea"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Canopy_Disc.glb",
+      "bytes": 30116,
+      "sha256": "f82b6862b27e66050e1dafba76a8861a8f6b10d26b32825cf8f84544571bbce3"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Column_Round_10.glb",
+      "bytes": 53312,
+      "sha256": "65ef9a46524ff42149d18ec0833ac209177e4a798f470071cb3c8166d24e850a"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Column_Round_4.glb",
+      "bytes": 53308,
+      "sha256": "f5aa4c196998103657b777f2898988be981ab9e028bca59ee2d2e111f83b4d9c"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Curtain_Tower.glb",
+      "bytes": 20632,
+      "sha256": "a602c95cd04091ecc266de480082c948c24524e4ce46008fe2160a5bb0d0dcae"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Floor_Checker_Pink.glb",
+      "bytes": 2504,
+      "sha256": "d396eea147728dd602955745bb0dabe988570b444c7d6feff64dad240ee31769"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Floor_Steps_Neon.glb",
+      "bytes": 4584,
+      "sha256": "515c9612ec9833a5c2ffaddcb5b9d7c3b8079e3f151b9e02af50db1206ddedad"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Mezzanine_Open_Blue.glb",
+      "bytes": 9880,
+      "sha256": "0dcbb82dad3b4c8d470ea4b12b45c0f202edc8389969703799cfba1411cdcb72"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Mezzanine_Open_Violet.glb",
+      "bytes": 10656,
+      "sha256": "f64f7ccadbb84e802e449498a70cf942820ca22acff3ba3f3862295e701a7980"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Mezzanine_Rail_Blue.glb",
+      "bytes": 18096,
+      "sha256": "e586716e17b198baa03e8a5a8ec9d57339e8dfc9d8957faae36412f25c2240df"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Mezzanine_Rail_Violet.glb",
+      "bytes": 18880,
+      "sha256": "b5edfb3210c73119ec0a89569a8d3bd5a94fc7f05fc9e15b3373ffe437e49c1a"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Pavilion_Dome.glb",
+      "bytes": 57496,
+      "sha256": "006797561cd23ecb1a31492322c2c2cd7249595e1c1e4516e484a4b02a3c521d"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Pavilion_Drum.glb",
+      "bytes": 42244,
+      "sha256": "d0c96c01c0085e56544460c8a30f05bedc66ebc900a1a690ad67ec5495ea86da"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Stair_Grand_Blue.glb",
+      "bytes": 136484,
+      "sha256": "28343c50953f987f20754f3d86ea960f7b02f2f41a6ca49c20124ae0df42a258"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Stair_Grand_Violet.glb",
+      "bytes": 137456,
+      "sha256": "9a7a2ff038d5ce7d551589ed0f103ae488caf858f8b919f338b01d43b247b4c3"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Wall_Stars.glb",
+      "bytes": 105492,
+      "sha256": "aed5bcd5a4f24b58cdb5281390f2556cd4f587b911f1cc888b2b26a94f32fa66"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Window_Arch_Grid.glb",
+      "bytes": 88456,
+      "sha256": "22acba785eb769fa5753a1239259de6d2f3a022fec2d958df2b1b59c773844ee"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Arc_Window_Slant.glb",
+      "bytes": 15072,
+      "sha256": "4f0052aeadf0d85a5fc6ed5e987aaa9fea59925e7664dc9f6860280afbb936af"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Airship_Gold.glb",
+      "bytes": 257568,
+      "sha256": "e768641c47d3ff7e5731da3e81ca220df375c6c6e1e1f5a96d285f0fcb11abf4"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Airship_Red.glb",
+      "bytes": 257576,
+      "sha256": "0e6433bbb76c23e716206f53d39b46f044a2069b1c6ef591fdd52b2ac8e498cb"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Airship_Silver.glb",
+      "bytes": 257588,
+      "sha256": "3c702085ab5a92ed65a944a070fc729a962b21dc4b5c9b075651a3e945dc325f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Awning_Hotel.glb",
+      "bytes": 106792,
+      "sha256": "4b0f0646f2c59d42aa334118d09c552b57e53747d520c78fe2e116ed91238e1a"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bench.glb",
+      "bytes": 32988,
+      "sha256": "19e371119294469fb9bd034f378143dccbca914b24d1eac9df87faa402c01159"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Base_Blue.glb",
+      "bytes": 620672,
+      "sha256": "4e642941d7b310a977cf66b9b23acb70861c8ae12a09f2630e833e3e422908df"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Base_Cinema.glb",
+      "bytes": 190460,
+      "sha256": "f92e93ae33c2722e522dfedc6abdd73454e3c30ffb2e08c02cd9b8befd00b5c9"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Base_Hotel_Blue.glb",
+      "bytes": 800060,
+      "sha256": "0fa17a6f63662b080112d48b4891942b2094246e5f7ad3f5bbf9065f37692d9e"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Base_Hotel_Red.glb",
+      "bytes": 800056,
+      "sha256": "e06a3d8c2765ebea3735ce6a88c1a12bb8d8e23b18e3d73fdf2bd26f31dfeb52"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Base_Hotel_Violet.glb",
+      "bytes": 800072,
+      "sha256": "2ced82a9c545c0bc8303731c1fcf676c6820df8a7ae91ff747996146856b075b"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Base_Red.glb",
+      "bytes": 620664,
+      "sha256": "d232a7bf0d164bd5569aceffe281f446e9d5b1cb6a75ebd477bd5e94c19a0534"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Base_Violet.glb",
+      "bytes": 620684,
+      "sha256": "8c9ac5c7786866fe3a598b97148f5a951320cba288ed7f0db0e193ff73e4e1e1"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Crown_Arches_Blue.glb",
+      "bytes": 492024,
+      "sha256": "5f3518e6a8e7e7212db52c64a6382d84af38689e122ab53d4fb1a25fdeb4af94"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Crown_Arches_Red.glb",
+      "bytes": 492016,
+      "sha256": "33086988532f1c9fa5d10819059870e30f77a83cf91d42cb5a1311369e739477"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Crown_Arches_Violet.glb",
+      "bytes": 492036,
+      "sha256": "f89c7c568e80a26266aeffba383182a85e3420edc4036978df7d2b4135aabdd5"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Crown_Blue.glb",
+      "bytes": 1023132,
+      "sha256": "bcc876899345a05764a691c05599b16e022f92e310b9a1f86a53081d42f68ac8"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Crown_Red.glb",
+      "bytes": 1023124,
+      "sha256": "b434d4a32b94a9c7e13379ee714bd06b680b72841ba4901c5209a4b68faa9028"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Crown_Violet.glb",
+      "bytes": 1023144,
+      "sha256": "881d6df79c8f313c7785ce39f830be3015ac76750499227201f0bbaf64ba4a57"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Crown_Ziggurat_Blue.glb",
+      "bytes": 946868,
+      "sha256": "659f78aa33de2b03f974efc3ad2336d1021ec12468f745fb9de92aba000e3f90"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Crown_Ziggurat_Red.glb",
+      "bytes": 946860,
+      "sha256": "0fc2e9a2942aad363f7b8e8b2c17a74111606bb7bc3ea86d10d9f8c5cd4db4d5"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Crown_Ziggurat_Violet.glb",
+      "bytes": 946880,
+      "sha256": "d15e8404f3f5d3f372a6c867b58deb5310958071af68442ba85c72e517ed9db6"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Mid_Blue.glb",
+      "bytes": 996788,
+      "sha256": "03e95a511bdf5b6ad1367ec4bd7efaeea50affca3a6b9dd1d93469d1a3cf7cf1"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Mid_Red.glb",
+      "bytes": 996764,
+      "sha256": "8c46293ed8c0d1b18e0e8ab0d22d25198c57b1ef14533938da7a0e3aa678215f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Mid_Ribbon_Blue.glb",
+      "bytes": 866412,
+      "sha256": "95cdd1e6ae987972d88011f839ec85e6d52515199c27c868d0e904ade50774ae"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Mid_Ribbon_Red.glb",
+      "bytes": 866376,
+      "sha256": "34012c23b972e427ee53891f1b1a316725154ed58c40765389b7f8c022242477"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Mid_Ribbon_Violet.glb",
+      "bytes": 866420,
+      "sha256": "b24eb49939e1266575f8ac60485cdf915d1820790ee973b9c7c84e045022f3ad"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bldg_Mid_Violet.glb",
+      "bytes": 996800,
+      "sha256": "cd1a2e48b9b73f99265ce025ada5227a154a4bedf3cc84553837b189f6a97f79"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Bridge_Suspension.glb",
+      "bytes": 860764,
+      "sha256": "0b30025676de311b7961d7e7d24c5fc1173ff2d519169f0061afdf06502a1241"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Car_Coupe_Black.glb",
+      "bytes": 730772,
+      "sha256": "6a833bd6c2c9640c34a7eec2f92d0553ab6a464833f549f4417a8abf77796967"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Car_Coupe_Cream.glb",
+      "bytes": 754000,
+      "sha256": "f6f2318ea85efab1bdfd7d5d444560124f2a0aec3d63255a29dcec706ee56215"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Car_Coupe_Red.glb",
+      "bytes": 730760,
+      "sha256": "577964c1fa3d9f40defa8ffd6ffce7a005c67d5f5675cf78554477b9dfa5f368"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Car_Limousine.glb",
+      "bytes": 716080,
+      "sha256": "fc4a3afe6b866cfce255be2e05b3f28d31ecc55cb20f31145f00d44715b3303e"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Car_Roadster.glb",
+      "bytes": 632228,
+      "sha256": "e59a5c7a8a5846d1ff918e663a96e61716b6e9a01d6db323252086e6f78516f6"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Car_Taxi.glb",
+      "bytes": 730776,
+      "sha256": "f0fe6bf68e93a6869453420bc61f6bcf6fa6bb037c2e8ebb51c1fb3e7b075b44"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Car_Van.glb",
+      "bytes": 664368,
+      "sha256": "cfe8367bce2de893cd53e995b9c9b972ac398417ab4a32d0787f38e8d5cc405b"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Clock_Post.glb",
+      "bytes": 112492,
+      "sha256": "9de8bf45ff6309489413eef6393092d41f4a1306dce77fc4f94457e8e58fbfe6"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Fountain.glb",
+      "bytes": 165580,
+      "sha256": "efeaa296b3eef882dd44775734c078608187f51ff68f8e4e5e6b51029d36a349"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Hydrant.glb",
+      "bytes": 42720,
+      "sha256": "90fa320189d7a7144938238476288e5fab477f9fdeeaabcc3dce977628ca7465"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Kiosk_News.glb",
+      "bytes": 94556,
+      "sha256": "f7a90051ad3f7a4d081c9fa75332ddccb3ae2df6c0ff0e76425adbae4446f9a5"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Mailbox.glb",
+      "bytes": 13676,
+      "sha256": "201d9a5c088f9770c6588bc31c6f2601986a6b57647960f1dbafb7d2f38fb877"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Palm_Tall.glb",
+      "bytes": 133396,
+      "sha256": "4685a591e7067a1c15c08834b661a3208dee80bf2aeb4b96797921e3ca7752af"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Phone_Booth.glb",
+      "bytes": 59836,
+      "sha256": "b23d3b84fa2c7f8ff7c72d5d7a327a08e0beb439cba702d79d65d1dfe95f2749"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Planter_Palm.glb",
+      "bytes": 120036,
+      "sha256": "303e2d75b0261569b07d2d19af4b19b0d5072ca7a2eb00e5de12b92fdaf76fa6"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Skybridge.glb",
+      "bytes": 140996,
+      "sha256": "c382dab19b73c6dde2fce3c230f2860aaf1a0f7329d7918b114d393f737d09e8"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Street_Cross.glb",
+      "bytes": 14284,
+      "sha256": "d6bb0f481f0a6ba4cf7c6c8bb2431163882e97aeb275b46740ea1aef36b5ab5f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Street_Straight.glb",
+      "bytes": 7644,
+      "sha256": "bc196c2712a8caa9145d2115f386a9a5b9969068bd4ec048a08cebb265d4f9dd"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Streetlamp.glb",
+      "bytes": 150576,
+      "sha256": "b8075086af4ea16a4ef1ece4e3ff97b48e14a690f3e675476cf1255ea2de2537"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Ext_Viaduct_Arch.glb",
+      "bytes": 170020,
+      "sha256": "715026c0a980bb4b1a789c9b70b69f5f84b268d5de3300ff37119613038d3dd2"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Arch_Door.glb",
+      "bytes": 132192,
+      "sha256": "8e86d0c30ebb046ce11943f81eb8ae5afd97f23512e21a07670de4d45d98cd2e"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Arch_Window.glb",
+      "bytes": 135784,
+      "sha256": "ee2e890ce89d4c3b6702427365a31f5faa25f21956498c1f72dfaf3da2405344"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Armchair_Club.glb",
+      "bytes": 149692,
+      "sha256": "dfe41dd79cbd2b9ef4a20c6df924dbbd1fd8354c3170cd8f8196b81a3308dc4a"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Armchair_Tub_Black.glb",
+      "bytes": 151764,
+      "sha256": "d89805817e330b3360c0c9debed2e0110c956ddd9a502e78d0477db7fe2fdfe7"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Back_Bar.glb",
+      "bytes": 111804,
+      "sha256": "2c3fb93f8b039cf52d812374fa1ebeec718622ac2c6863806e25f8b8a4174198"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Banquette_Shell.glb",
+      "bytes": 92284,
+      "sha256": "430b5ad2473b33d6ec34caea2981d101cdf2596b0ffa7ca4ef931e6029297758"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Bar_Curve.glb",
+      "bytes": 92848,
+      "sha256": "d9157ab7e24f44bc2d84f1dc784c9a67fdc3a42249def5513d2b95036acf5f20"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Bar_End.glb",
+      "bytes": 45260,
+      "sha256": "21715974ebccd1403b4868e27774d7be8a3ff08dad0663f96ab5d8618375ea88"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Bar_Stool.glb",
+      "bytes": 77796,
+      "sha256": "912018fefcacbf5718f0a8f8235ebd55175747f6ba99b728bdb003b6bbb74aad"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Bar_Straight.glb",
+      "bytes": 25048,
+      "sha256": "ea3b6bb1dacdc9609fbd5578a0d9b2500e08cd4fc8c46fd2165054dd79a49421"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Bed_Leopard.glb",
+      "bytes": 327536,
+      "sha256": "4c0c9de79cd6016850e6c8d430a1592691fd7136bb9885cbb7d7f0d92a301290"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Bed_Satin.glb",
+      "bytes": 164352,
+      "sha256": "6085f395dce7c34a19ad1438d9edc5cf22b7c50463850225070a0372d2500b59"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Billiard_Table.glb",
+      "bytes": 144888,
+      "sha256": "70176f024e6b46eb30a8e6cd7065ccc5d4401909a755c786a677eff594e27d7f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Chandelier.glb",
+      "bytes": 338448,
+      "sha256": "76839fa24a2860c1fa349413ec9e908f9c3071add3d230c20686d4ae52027144"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Chandelier_Rings.glb",
+      "bytes": 104160,
+      "sha256": "63d4648a52181ced5199a6fb06e959c7db203f212e9933c2048f362988305a31"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Column.glb",
+      "bytes": 61564,
+      "sha256": "1b3a08bd699ceacbaa4b85785e8dd5faae5cbb53433a6615b7fbc33fd2f4d334"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Floor_Checker.glb",
+      "bytes": 10364,
+      "sha256": "8b08d3d7f20463688d6772dbf96152a3c5efdf330d721ba86ade62c52a196853"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Floor_Medallion.glb",
+      "bytes": 13408,
+      "sha256": "b5b40e0610336598d94974e75926bf79ceed170e918774d30132df165a05d0ac"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Glass_Martini.glb",
+      "bytes": 18612,
+      "sha256": "87961d2b58dd93379212a649ff2ece3f9ce52e3c9dea8516b979d5f22afbf835"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Lamp_Billiard.glb",
+      "bytes": 42108,
+      "sha256": "41ddbaedcddc43c038837835fce83f70703b7f2d2446daadfdfabd61b828ac0f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Lamp_Floor.glb",
+      "bytes": 89496,
+      "sha256": "1e72e4714e9b571d4d44247f3ac43bc3724a050d355b3c2ab0654f35c4b6d64c"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Lamp_Table.glb",
+      "bytes": 26020,
+      "sha256": "ee93283b3ec70eafc7e8119181e920ee44771bf6f6459065242cd0de4b25c1f7"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Lamp_Wall_Sun.glb",
+      "bytes": 34300,
+      "sha256": "63d891683b409ffcc6e4f81b5c9f1995bbe1ac9899c0fe2eb7738a84e211581a"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Mic_Stand.glb",
+      "bytes": 45160,
+      "sha256": "c8f6a28e99ee07999e00bc22b435a9ff25eb838370f22f151f6ae37531416401"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Mirror_Sunburst.glb",
+      "bytes": 68380,
+      "sha256": "d584a6900f7a4ab5240b9ea89c4b82fa0caceea0b53d00ad9063c3b473594a9f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Nightstand.glb",
+      "bytes": 41784,
+      "sha256": "509a6a903fbdfb1aaee87979c7e33f886200b58109e1bd716248efc40f070a1f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Piano_Grand.glb",
+      "bytes": 117404,
+      "sha256": "a219888acd709bac79f85eaa30a4afb263eb6da2be1d67646da78fc38e957d0b"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Plant_Monstera.glb",
+      "bytes": 50080,
+      "sha256": "4de1363145774a3d9fb60ae92f268242eedc763f108e9160b7984d08782ccf15"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Plant_Palm.glb",
+      "bytes": 115040,
+      "sha256": "2b3d22667280e7f395c2a87b5312a1330d0f0000213b0d26255886d61e906afe"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Planter_Flowers.glb",
+      "bytes": 203668,
+      "sha256": "d2190f972622b0009c8e3b397adf043a85a605763ad74a8bc5b643a6b8c0acd4"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Radio_Console.glb",
+      "bytes": 36068,
+      "sha256": "1c92b529d3c7eaa2e95e68225703612b497508437e05b861ca243ebcd27ff576"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Room_Floor_Parquet.glb",
+      "bytes": 14296,
+      "sha256": "e298d470063ff33c416199710afe971854396fb38291d50f90758e10380a4ed2"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Room_Wall_Door_Coral.glb",
+      "bytes": 10628,
+      "sha256": "78012e36c73260cf4c390cae826417efa7a9627dab982e8566e8ad5ffb8d8e33"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Room_Wall_Door_Teal.glb",
+      "bytes": 10624,
+      "sha256": "291e7aaae15ec126873c3925d6655c7bcd647a25095343949c7fa569c5c9bce9"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Room_Wall_GlassBlock_Coral.glb",
+      "bytes": 92544,
+      "sha256": "afd2ce10edecf8c72def44fe3bb5d8758b19e68bdc6f5d9777a1dc617417507e"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Room_Wall_GlassBlock_Teal.glb",
+      "bytes": 92540,
+      "sha256": "153734f8eee3b6ec721f8ec09d4aaf0eac9cd1f06b4ce9c0dcb3f40047878928"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Room_Wall_Plain_Coral.glb",
+      "bytes": 6952,
+      "sha256": "baa2da512ffd4168912322921428212ee21c84fa024b2f75f9e5d2a8090f8a59"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Room_Wall_Plain_Teal.glb",
+      "bytes": 6948,
+      "sha256": "043316c1437d50795571409e69e3dc9bfd0a361c4816462e48537dd1dbe3175f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Room_Wall_Window_Coral.glb",
+      "bytes": 14608,
+      "sha256": "2113ab25d82ebe72a7ef8a9b5df77dd38344f53a358e551fa0c7214e2dafdf12"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Room_Wall_Window_Teal.glb",
+      "bytes": 14604,
+      "sha256": "f4bc0b5d4ec6182968c57f31bab1e0b08daf748af04b0978bdb7a9c575f92b2c"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Rug_Deco.glb",
+      "bytes": 5020,
+      "sha256": "d58414d2d2ed141358ffe2a9350b20cc0c7af1c85c8daa865bf246dd6153b790"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Sculpture_Deco.glb",
+      "bytes": 49712,
+      "sha256": "a1e1bde55db908f6ead5dcaf83dc2e338cbfab6472bfadcad751f5349b31cdb5"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Sideboard.glb",
+      "bytes": 12516,
+      "sha256": "29d0c40a562c9575632c98d84fb8df340ec1a2cc69b35cf91e2a624f6884de81"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Sofa_Curved_Night.glb",
+      "bytes": 62656,
+      "sha256": "b35fca3f2ec65b7e361ca7d00da4e08ca8da7e023437a8f3434b8b0c9d7ca42d"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Sofa_Curved_Red.glb",
+      "bytes": 62648,
+      "sha256": "52f0d0874152b5e69d4edd9ce29a0c3f3a1555488b59fe1543c4d8a7258c5789"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Sofa_Mod_Corner.glb",
+      "bytes": 99944,
+      "sha256": "5ebc4eb9f6b5608dc5cb6d99cd623082310fac862dc8c04cf1bef5f13e5a595a"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Sofa_Mod_Ottoman.glb",
+      "bytes": 31904,
+      "sha256": "25b108600bef1f11b09cde41f571109a465ded20a57e16d7fceab01994627f6f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Sofa_Mod_Seat.glb",
+      "bytes": 66244,
+      "sha256": "93f7d37c298deb3840ae66f760199609911b5934872e647678382002e8f8bfbe"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Stage_Shell.glb",
+      "bytes": 180316,
+      "sha256": "51b6c9dc3a643be402fd8fdf7f02e03a47f0c43ee821b58aceb2b67a24d9148f"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Stanchion_Rope.glb",
+      "bytes": 83740,
+      "sha256": "94837ac3d90fbf1942acc9a594c0a101d8a5e7e0022f908f23f63323832e2dd3"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Table_Cocktail.glb",
+      "bytes": 116524,
+      "sha256": "b0800c8ed82f18bb0a128d49fde01c3b2a100cd01f6b67b5c18e559a48c532cc"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Table_Coffee_Glass.glb",
+      "bytes": 16500,
+      "sha256": "e7583f11275454daa02434841e92522d138bca6de7b948135918d05e179a98fb"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Table_Drum_Gold.glb",
+      "bytes": 54748,
+      "sha256": "49beac482756e12075cbfef267a51f45c288214f4ab31df81b0141de5d6e7e2d"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Table_Marble.glb",
+      "bytes": 45936,
+      "sha256": "b51fed262de88aac14136b24236aaf92011a644feae7280bf39240a0f06f8fc0"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Vanity.glb",
+      "bytes": 88588,
+      "sha256": "a58152ed62f2d330655a46cf53c3d89cdd97cfbb090f21fe7934793cfde83d76"
+    },
+    {
+      "path": "assets/art-deco-glb/KC32__AD_Int_Wardrobe.glb",
+      "bytes": 13676,
+      "sha256": "bc9982d87fc470051ff6c8fbf84e1ee837eca3e55c408f827ad699ff362de016"
+    },
+    {
+      "path": "assets/art-deco-glb/README.md",
+      "bytes": 624,
+      "sha256": "7328d9bbcaa5461a7467a81802daa2b9e85d89eeff9427d9606a01c704c20653"
+    },
+    {
+      "path": "assets/audio/kin-city-archives.wav",
+      "bytes": 264644,
+      "sha256": "0139aef15496ba8aa634a7b3e0238a0e39562cf483308289258841b47e94dea6"
+    },
+    {
+      "path": "assets/audio/kin-city-botanique.wav",
+      "bytes": 264644,
+      "sha256": "93ccb3465bcf070fad35f60e53b578a37bc71e0130489b556c528aa4414f9bff"
+    },
+    {
+      "path": "assets/audio/kin-city-chimes.wav",
+      "bytes": 99244,
+      "sha256": "91e8ab02b0eab5daafc148e77b5fcd280a2af992d88bc6c3adc0e0997ffa7577"
+    },
+    {
+      "path": "assets/audio/kin-city-harmonie-civique.wav",
+      "bytes": 264644,
+      "sha256": "a606cd937674089a251d4ee254946f705c45e99fe1e039a93a739c58e325080e"
+    },
+    {
+      "path": "assets/audio/kin-city-laboratoire.wav",
+      "bytes": 264644,
+      "sha256": "aa5d5e17c47366f17832e05f97eb830db2116096ed573e054905a7d49264ff60"
+    },
+    {
+      "path": "assets/audio/kin-city-port.wav",
+      "bytes": 264644,
+      "sha256": "9480f32e03d307d21dfd2aa27acd6271de85bb99b714770ad1c4590bfa2a4f06"
+    },
+    {
+      "path": "assets/audio/kin-city-water-loop.wav",
+      "bytes": 224044,
+      "sha256": "7ece9023a5675cffd20e79694b3db5d1d7bba49c976a419be730987fea4b99b9"
+    },
+    {
+      "path": "assets/audio/kin-city-wind-loop.wav",
+      "bytes": 256044,
+      "sha256": "1a99f5a11993c22d8a085b3b47707974b77acf39702da748ff0e23901dad6149"
+    },
+    {
+      "path": "assets/kingklown-v7/README.md",
+      "bytes": 756,
+      "sha256": "a63e9137caa6fffd2dabaa198b3cfa4f7f6dbd3fa77dd76b244562fdfeeed1d7"
+    },
+    {
+      "path": "assets/kingklown-v7/geometry.json",
+      "bytes": 186,
+      "sha256": "6feccc7c9272afc526693d6dd4f478e3f6de13925e9fc86905bb97d69ade3ea9"
+    },
+    {
+      "path": "assets/kingklown-v7/kingklown-hair-v7.obj",
+      "bytes": 51263,
+      "sha256": "f9181bd1a9b768cbe2e0f6dc825d3fc1ef5ed963670166f36f870e089a4f421d"
+    },
+    {
+      "path": "assets/materials-v23/README.md",
+      "bytes": 616,
+      "sha256": "fa88c941498e21cf9090dd35876e20c1d15b6d983765441eedd32c3a06a6a9f5"
+    },
+    {
+      "path": "assets/meshes-v23/README.md",
+      "bytes": 729,
+      "sha256": "44d97f342b92ce212e22ba02db24527e79cd00c38a59f15c92dcd714066a4af4"
+    },
+    {
+      "path": "assets/meshes-v23/crystal-rosette.obj",
+      "bytes": 3038,
+      "sha256": "6c6bdb5483326bfd9b263a82c145912002174ddeb5bec125ac0d60b8b694fca4"
+    },
+    {
+      "path": "assets/meshes-v23/kincity-crystal.mtl",
+      "bytes": 118,
+      "sha256": "37c1ee4d94bcfc70a887bc0e0ec6cc5e01dcf64b7cfbe14cbd70241da845f946"
+    },
+    {
+      "path": "assets/meshes-v23/mineral-column.obj",
+      "bytes": 4557,
+      "sha256": "961602a33f48702b22e2b7fe6703d0566a7670ca70e3bfd1c05c8d645eb89df2"
+    },
+    {
+      "path": "assets/meshes-v23/opal-arch.obj",
+      "bytes": 6555,
+      "sha256": "624979ecee4e3e128a1417c4bbafc6804616945ffc3a199319570fa3b8284b8e"
+    },
+    {
+      "path": "assets/meshes-v23/opal-chandelier.obj",
+      "bytes": 8038,
+      "sha256": "2284189a5f0e40dc6f722dc11a889cd252ab8a1c02a183b7f97ed9c6dc012253"
+    },
+    {
+      "path": "assets/meshes-v23/opal-spire.obj",
+      "bytes": 2776,
+      "sha256": "de254cd950f386282fd3a0c6da8e8f4fd4b111ab30eeddd7761055bd414cc487"
+    },
+    {
+      "path": "assets/meshes-v24/README.md",
+      "bytes": 607,
+      "sha256": "f32ce8c1e3e2a2a3e34049c11d1b33bb0a015da15ccdc7f323ad0228904859ca"
+    },
+    {
+      "path": "assets/meshes-v24/crystal-canopy.obj",
+      "bytes": 1468,
+      "sha256": "10b93170c0d194e39e0ba547857bc12374b54ffee9876bea883ba972e454af5d"
+    },
+    {
+      "path": "assets/meshes-v24/kincity-v24.mtl",
+      "bytes": 155,
+      "sha256": "427bc30ac3fac49a3b66aa04dabe60fc9c032a100405bf9c6ca0b1301e61a26b"
+    },
+    {
+      "path": "assets/meshes-v24/mineral-planter.obj",
+      "bytes": 1884,
+      "sha256": "00d4c5b84a2bd3a6b7e6fae0bbd28d13ebe16ec5bbc2fe8bdeb4aecbcb9f4fb2"
+    },
+    {
+      "path": "assets/meshes-v24/opal-console.obj",
+      "bytes": 1281,
+      "sha256": "eebc565df8767f4aa6d687b91e295b9eb6d4ca39bf621246781a7bd13da05eca"
+    },
+    {
+      "path": "assets/meshes-v25/README.md",
+      "bytes": 518,
+      "sha256": "f8609370344c2f9988c52882c29fa1965501b171dc649bbb982caf00b217c5a4"
+    },
+    {
+      "path": "assets/meshes-v25/harbor-crest.obj",
+      "bytes": 6639,
+      "sha256": "3c612e4284cd8dc0ffadd1c19b894c4c9a270b6df548e3b1f7d8280cb3b52861"
+    },
+    {
+      "path": "assets/meshes-v25/kincity-v25.mtl",
+      "bytes": 173,
+      "sha256": "0c0dfebed59c860127fd85ed7b377e865579fc438debfd78b3652f49ad7eea9c"
+    },
+    {
+      "path": "assets/meshes-v25/mineral-pediment.obj",
+      "bytes": 2477,
+      "sha256": "618064f6aff6f8d7b1e3b791a2b64c5b8d864229dad8eb99a88015f5f0385efa"
+    },
+    {
+      "path": "assets/meshes-v25/opal-lattice.obj",
+      "bytes": 4065,
+      "sha256": "42683569b5027f7de77fff090397cad38a86b7270d36d4de4f73e929cdf59458"
+    },
+    {
+      "path": "assets/signage/kin_city_neutral_v2/README.md",
+      "bytes": 637,
+      "sha256": "19690d69831815d47a4d0180f6aa35a8e4545519103456519874cf021302e002"
+    },
+    {
+      "path": "assets/signage/kin_city_neutral_v2/tools/convert_svgs_to_png.py",
+      "bytes": 1738,
+      "sha256": "3a47774fc9d8f2cced297114f71f5ec79ea9417b4277cfc96000eeb9854650fc"
+    },
+    {
+      "path": "assets/signage/kin_city_neutral_v2/tools/converter_svg_png_offline.html",
+      "bytes": 4936,
+      "sha256": "1d6bdd986216a89a02cd0e5b5647244fe9ce23fdab05caa18d2bfb426a2c8aa6"
+    },
+    {
+      "path": "assets/signage/kin_city_neutral_v2/tools/requirements.txt",
+      "bytes": 17,
+      "sha256": "17a3c004d72b41fcde159a5898defecad19b7d326d12e3733ca03cbc6415cecc"
+    },
+    {
+      "path": "build/art-deco-zone-audit-V3-REFERENCE.json",
+      "bytes": 16973,
+      "sha256": "cc18543c9d019047d85fcd63b2eacbd63f64d8ed7b580feba7224f64f2387af6"
+    },
+    {
+      "path": "build/art-deco-zone-audit.json",
+      "bytes": 17335,
+      "sha256": "43d5fa697588ff8c710b4af27453f04cd5b68f69e3bf097fe0a2d314e9846f89"
+    },
+    {
+      "path": "build/release-manifest.json",
+      "bytes": 26979,
+      "sha256": "62e7574cd652edac092d18291f3260b4211c21e9531b7d05d5ffed4f5d832015"
+    },
+    {
+      "path": "build/world-plan.json",
+      "bytes": 84405,
+      "sha256": "30d24a66b006b373815eb43ec82e26fa89bbe333b2d761dcaca1fe334434d1c7"
+    },
+    {
+      "path": "catalog/MusicAssetIds_A_REMPLIR.csv",
+      "bytes": 7987,
+      "sha256": "663e6a6b00c22e96238e0bcc978ac998464cd72520a250cada3f0039b1b3c689"
+    },
+    {
+      "path": "catalog/README.md",
+      "bytes": 994,
+      "sha256": "12a4c88cd761a161beb57384627971a3a07a7e1cce476db21c4d0d18bd440e13"
+    },
+    {
+      "path": "catalog/art_deco_assets.json",
+      "bytes": 105492,
+      "sha256": "525a2389d06d13b41f252f337cc08ff71fd9c45edded88b9f1772e1eb6a8d6cb"
+    },
+    {
+      "path": "catalog/art_deco_contexts.json",
+      "bytes": 18732,
+      "sha256": "aad291f689bd476c49eaea86546d24eadb27613ba0c377ff757210bafc781fe5"
+    },
+    {
+      "path": "catalog/art_deco_placements.json",
+      "bytes": 7698,
+      "sha256": "820eaba582b9e25268cd83749b700812e3806c647dfd54ad9846eebc4e71063e"
+    },
+    {
+      "path": "catalog/art_deco_studio_imports.json",
+      "bytes": 340215,
+      "sha256": "8e7d28bbd4f405a9a3b8284f0ad85393869ab563ae8a61c2e178c347d5bc9fe0"
+    },
+    {
+      "path": "catalog/assets.json",
+      "bytes": 12345,
+      "sha256": "b307e95c870bc86056daa6a0c11e8b372d24e46725f4f014c19440408c7e283c"
+    },
+    {
+      "path": "catalog/buildings.json",
+      "bytes": 3562,
+      "sha256": "8e563e8fc6502858cae9f0bea6e2e5fd3942d4395f353fa5decc7fc90a7fc798"
+    },
+    {
+      "path": "catalog/capabilities.json",
+      "bytes": 2277,
+      "sha256": "770add3d0dc3ffb5a75904bb19eb58e92dcf1d31e064dcb493eb321b989942cc"
+    },
+    {
+      "path": "catalog/central_furniture.json",
+      "bytes": 3867,
+      "sha256": "9017d7366546693c62ea8983c510c5cd2dc348e6d319e3ce930c8677282553c4"
+    },
+    {
+      "path": "catalog/city.json",
+      "bytes": 399,
+      "sha256": "b11705a2899e862ee400d9adce4573eba97e9a4415975572791e5990b9500d0c"
+    },
+    {
+      "path": "catalog/crystal_theme.json",
+      "bytes": 1306,
+      "sha256": "bcaf7383efc4d48b8001e611a0fd107840e06d26fcfccd9d677b8db5e70fdf0a"
+    },
+    {
+      "path": "catalog/districts.json",
+      "bytes": 1586,
+      "sha256": "22a1ce77e045c7530d3be23e0baca713d50a33d75d174ba78e079b49a9fc834a"
+    },
+    {
+      "path": "catalog/doors.json",
+      "bytes": 6875,
+      "sha256": "b6f1e5bfcdd12e27a08a74bf2a54254e1956108df573b4f102cd74c3a85f9a0a"
+    },
+    {
+      "path": "catalog/interactions.json",
+      "bytes": 3262,
+      "sha256": "eda0f6458f1fcc4443f46e05a20ea419f2a08bc7ba9eb443701798211ef74ca8"
+    },
+    {
+      "path": "catalog/messages.fr.json",
+      "bytes": 769,
+      "sha256": "b72e4bbf52085dbb2d2ea23d74ff26ca30266884800ed6bc1b4f10502fb50bd4"
+    },
+    {
+      "path": "catalog/music_import_48_ids.csv",
+      "bytes": 7987,
+      "sha256": "663e6a6b00c22e96238e0bcc978ac998464cd72520a250cada3f0039b1b3c689"
+    },
+    {
+      "path": "catalog/music_inventory_current.json",
+      "bytes": 53535,
+      "sha256": "8e86ac980b5a3c1f272b8eae70c40a1f82634f845a5550372c5d732c15ec260b"
+    },
+    {
+      "path": "catalog/places.json",
+      "bytes": 3351,
+      "sha256": "dd5f8812b2cecbd4010464ddc762df8a1267fb58fc6f60e1381b62c7ae2df901"
+    },
+    {
+      "path": "catalog/spatial.json",
+      "bytes": 49136,
+      "sha256": "3c75d20a368f686cedf2fd2b4837668d7af91fa39f9dc6e0378ee742b444584c"
+    },
+    {
+      "path": "catalog/style_guide.json",
+      "bytes": 4194,
+      "sha256": "b744e072ac7a2a65afcf3a74e095a9cad64a1a329f49075cc4f839d85211820b"
+    },
+    {
+      "path": "config/art_deco.json",
+      "bytes": 3804,
+      "sha256": "cd24369a39acf56ff1f29682822ce116ae94d3b1a7fbabd7d49436d81a832da1"
+    },
+    {
+      "path": "config/audio.json",
+      "bytes": 439,
+      "sha256": "6bf3d24d38eaf93d7d4be3189ecd198b11523e23d5c71c86741bc81d61d3a2c7"
+    },
+    {
+      "path": "config/interior_origins.json",
+      "bytes": 392,
+      "sha256": "9113805e2e0d029a93461792614f3d23aeb8751f9724291c3046c891449431d1"
+    },
+    {
+      "path": "config/king_klown.json",
+      "bytes": 42,
+      "sha256": "dd9dce229a0dfae2c415fddd6c0f7f115143fb3993dbb5f016238bdc83d49f7e"
+    },
+    {
+      "path": "config/library_journey.json",
+      "bytes": 1997,
+      "sha256": "e2b39de7e488c76f2560951c0e6b34c76484ef5430e8ebaee31676fc59c64528"
+    },
+    {
+      "path": "config/meshes.json",
+      "bytes": 491,
+      "sha256": "b33a63ad6a0bb7fd172151a202acd5f896fff2baa1a890bf0bb202bf9d254ef7"
+    },
+    {
+      "path": "config/place_ids.json",
+      "bytes": 192,
+      "sha256": "a11327dce842a42412f3be7f0c9842b7e22bb0b14fbb06d1ad25cf8c10816f11"
+    },
+    {
+      "path": "config/place_ids_staging.TEMPLATE.json",
+      "bytes": 192,
+      "sha256": "a11327dce842a42412f3be7f0c9842b7e22bb0b14fbb06d1ad25cf8c10816f11"
+    },
+    {
+      "path": "config/runtime.json",
+      "bytes": 200,
+      "sha256": "2becd8a8053085ebb1da3c0fdca13f76d4e2cbbe44f42a528823b6285c68f19e"
+    },
+    {
+      "path": "config/visual.json",
+      "bytes": 746,
+      "sha256": "57feee8dd7af148ccb675a66d3a35f3030cdabfd58ff65bd0f2db6ec758bb29b"
+    },
+    {
+      "path": "contrib/SCENE_REGISTRY_KC34.json",
+      "bytes": 3627,
+      "sha256": "afa15e40fff2352c2e85cd26c0d4e67c3a3da19563e4a013ba953e7e56c1438a"
+    },
+    {
+      "path": "contrib/places/campus/AGENTS.md",
+      "bytes": 616,
+      "sha256": "2bdd36889224bd314faf415a9fdafc8966851d86a490b3feeb50626be07e9724"
+    },
+    {
+      "path": "contrib/places/campus/CampusDecor.luau",
+      "bytes": 7871,
+      "sha256": "c0bb2e5cc30fe78c2d3fcb54470f94f4fd6447a14be8f219ebb25ab93e10833b"
+    },
+    {
+      "path": "contrib/places/campus/INSTALLER_B04_PREVIEW_LOCAL.luau",
+      "bytes": 9393,
+      "sha256": "37fd0e7171c726252770e1c7a800a9cb13042c2b834a2b607d499cf9e231b58e"
+    },
+    {
+      "path": "contrib/places/campus/QA_B04.md",
+      "bytes": 3078,
+      "sha256": "f6c4a058fd92e57ef79b8ef424e9ba0149a9a06a31efed8be47a3122463eb87a"
+    },
+    {
+      "path": "contrib/places/campus/README.md",
+      "bytes": 3285,
+      "sha256": "2f807fcefb767ecd56deba25eb06c2ed548dc8436b24081a567175e1a2620289"
+    },
+    {
+      "path": "contrib/places/campus/campus_program.json",
+      "bytes": 1993,
+      "sha256": "38aec71e728c3e64152db9cedc79966663635c3ab96337609fd1b6764b7a8006"
+    },
+    {
+      "path": "contrib/places/campus/recipe.json",
+      "bytes": 374,
+      "sha256": "7610405e00fd9c3041c660ff0cb5d56b51f0eb5438edc3d5506bc4e15f3145ea"
+    },
+    {
+      "path": "contrib/places/campus/tests/TESTS_B04.txt",
+      "bytes": 1517,
+      "sha256": "878acc271d1dd33cd6f7be474cecba2b6719217d0e1362c97c834352f1fd03b1"
+    },
+    {
+      "path": "contrib/places/campus/tests/test_b04.py",
+      "bytes": 5553,
+      "sha256": "f0d264552ae32920cb00409a3d41e8109e6b996efcf6eacdd2dd6af53a83d02b"
+    },
+    {
+      "path": "contrib/places/city/AGENTS.md",
+      "bytes": 618,
+      "sha256": "6dd97ee04485851ff45da501e076fc84bbbf091b31950b9eefae380b03728093"
+    },
+    {
+      "path": "contrib/places/city/README.md",
+      "bytes": 2547,
+      "sha256": "12d9ab9aa4775b79e0a913263bc5416bb9d8a4dbb015f52bd11614bbb05a1b88"
+    },
+    {
+      "path": "contrib/places/city/Wayfinding.luau",
+      "bytes": 11821,
+      "sha256": "6d1c28ec5a4aff4fd3cb1a955a36cf32d5285da8c3ae2bf1c0026b07cbef8be1"
+    },
+    {
+      "path": "contrib/places/city/build_preview.py",
+      "bytes": 1796,
+      "sha256": "fef05ee760069b454b3e14f13576c9ae6443080be139cf7dfbbb10ee2ab7910e"
+    },
+    {
+      "path": "contrib/places/city/design.json",
+      "bytes": 1088,
+      "sha256": "75d4f4458753747fa4f47056b318db90658a05997377fb96fdf53b84a2dc5c17"
+    },
+    {
+      "path": "contrib/places/city/docs/PLAN_URBAIN_B10.md",
+      "bytes": 4674,
+      "sha256": "6e31b5a026453a5facb4dba54d4b034fae1b820619849c301ed36224a03ca55c"
+    },
+    {
+      "path": "contrib/places/city/docs/RFC-B10-001-INTEGRATION.md",
+      "bytes": 4312,
+      "sha256": "eedf46e52b9e86629d8cf03e15d2af8956429d9ac43f2437b97c8ead8e5478b3"
+    },
+    {
+      "path": "contrib/places/city/docs/TESTS_B10.txt",
+      "bytes": 2208,
+      "sha256": "2419ba0554a65f7d9fc250ff580c216afda942842f56e72227cb17790d836498"
+    },
+    {
+      "path": "contrib/places/city/preview/B10_APERCU_LOCAL_COMMAND_BAR.luau",
+      "bytes": 12954,
+      "sha256": "bb3ea161864c4ade39e292bfe218f81c1fc4e48c00d462fa1a9f3faeb1f116aa"
+    },
+    {
+      "path": "contrib/places/city/recipe.json",
+      "bytes": 359,
+      "sha256": "205acd5121b83319a83a8cc22294ac8c6123c3cb816a2bab7f9e822818223911"
+    },
+    {
+      "path": "contrib/places/city/tests/test_b10_city.py",
+      "bytes": 6264,
+      "sha256": "49b48cf3506c328ff9b536a2ffe118578437cebb392ef696aa636686754e1f5e"
+    },
+    {
+      "path": "contrib/places/city_hall/AGENTS.md",
+      "bytes": 622,
+      "sha256": "0f6e197e3a92bcfd0cf50a013b7facf57eb16b2d257e7154a5f0d9e8a7b1f0fc"
+    },
+    {
+      "path": "contrib/places/city_hall/CityHallScene.luau",
+      "bytes": 7479,
+      "sha256": "c78619730d41d872b222cc323a49140ef44288d8f4fb72dcd8ebb6426dd489a1"
+    },
+    {
+      "path": "contrib/places/city_hall/CityHallSpec.luau",
+      "bytes": 3598,
+      "sha256": "2e3c7359b79ec08d3ceeb243d9ba946c664fcde28322b4d065fe7102401a230d"
+    },
+    {
+      "path": "contrib/places/city_hall/README.md",
+      "bytes": 6914,
+      "sha256": "69439cd9016ef74406688e22fc8a3537aca0e4ccee67027a8c418100772c75f7"
+    },
+    {
+      "path": "contrib/places/city_hall/city_hall_scene.json",
+      "bytes": 4823,
+      "sha256": "0c3d8ca97d3ce05cca5d096b894a939b51755079bdd7710932b1c7c16e7e4b32"
+    },
+    {
+      "path": "contrib/places/city_hall/contracts_snapshot.json",
+      "bytes": 6368,
+      "sha256": "1ac52ab1cd80583b4acf5673479ca6288bbacf234a93371c2e03808bfe60eb19"
+    },
+    {
+      "path": "contrib/places/city_hall/docs/RFC_B09_B01_001.md",
+      "bytes": 1897,
+      "sha256": "2d05fd799135015d11f213b09f532a9ffc7183c6c2f6ae5dbeec4ee0e20aba96"
+    },
+    {
+      "path": "contrib/places/city_hall/preview/PREVIEW_B01_COPIE_LOCALE.luau",
+      "bytes": 12836,
+      "sha256": "ef96ecb5aff6fed52be288868f22b8e91969a858d747566367483ea9054c060a"
+    },
+    {
+      "path": "contrib/places/city_hall/preview/ROLLBACK_B01_COPIE_LOCALE.luau",
+      "bytes": 769,
+      "sha256": "073f8d87de579f6c8565ec4cadc9947be053ce63915fae8e11bd4eff76dfd45f"
+    },
+    {
+      "path": "contrib/places/city_hall/recipe.json",
+      "bytes": 375,
+      "sha256": "213ddf2da63482781bbd25a90fad43f519f5638118a16011d7ab3db0628f63c2"
+    },
+    {
+      "path": "contrib/places/city_hall/tests/luau_lexical_results.txt",
+      "bytes": 300,
+      "sha256": "3f256ed553c7c55ebaff6ba382f477c1713dfa12aa448a663c0cf4f2be31cfb8"
+    },
+    {
+      "path": "contrib/places/city_hall/tests/offline_results.txt",
+      "bytes": 1779,
+      "sha256": "060e4d85a57838384f63f24c19c515e6dc4619e61845cfc11ed54da8d1b2d261"
+    },
+    {
+      "path": "contrib/places/city_hall/tests/test_scene.py",
+      "bytes": 7614,
+      "sha256": "196f1e01abfc8f9a398c21f8deb4a0db9b7bd94f76dbdfdb10ee0a0da43589bd"
+    },
+    {
+      "path": "contrib/places/city_hall/tools/generate_spec.py",
+      "bytes": 1051,
+      "sha256": "abb4ea7f1c90ab726114790ea14609491a02080eb24e53d045552d26006f635a"
+    },
+    {
+      "path": "contrib/places/city_hall/tools/make_studio_preview.py",
+      "bytes": 2640,
+      "sha256": "d84cba11306e9cc162098445d4b8fc30c893494ef68b4ea37d717fbb9931614d"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/AGENTS.md",
+      "bytes": 615,
+      "sha256": "81823f9429230435d2ba86c789ef84777bdebbc845fb69b0139f90fecce1807c"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/B02EkohInterior.luau",
+      "bytes": 10902,
+      "sha256": "c9bc06421ed44ad04e7a5065e754481dd91bb35a1441485bcdc46de9f0172443"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/B02EkohInterior.template.luau",
+      "bytes": 5815,
+      "sha256": "a75f79033f9be652bf3f4a90346f4918d4031f72830cb615cacf7168867e8ddc"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/README.md",
+      "bytes": 403,
+      "sha256": "b8d188ef65a3b6649b8556dbb1118cbcebbe2c89fae4461cd75393c39c9ff9c3"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/docs/QA_CHECKLIST.md",
+      "bytes": 1788,
+      "sha256": "94e442e214a7c3887bc439fa1ffd1804522c8582fd02d94581f7441262e43e43"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/docs/README_B02.md",
+      "bytes": 5933,
+      "sha256": "d041cc1f43d5deea965f0b1f6e5c3a75185894ca05c841dda507fa45ecc91a4b"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/docs/RFC_B09_B02_LOADER.md",
+      "bytes": 2122,
+      "sha256": "649a35a1b3e0cb4613afa0148427785554d72d9dcca0ff0850b3b1888351c9fe"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/fixtures/canonical_v3_snapshot.json",
+      "bytes": 4205,
+      "sha256": "5a7ceeac93ebcc0429c99e557ae32ff35c811013ea96a0e35783fb5dc447b0d3"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/recipe.json",
+      "bytes": 371,
+      "sha256": "35fe9c0b29cb6b80cf1ce379774aa2e197d041f342f3da1534c3c26738016a73"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/reports/luau_check.txt",
+      "bytes": 132,
+      "sha256": "3e61a8c77c354011253ab228ce96e882179d5fbea324dab640736629696fbc0d"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/reports/preflight.txt",
+      "bytes": 72,
+      "sha256": "8d05b6f734b02dcc99573ef7758df7de103a948dece71f4f88dad9c50a40c0c9"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/reports/tests_b02.txt",
+      "bytes": 1955,
+      "sha256": "710b600a228f22bd5d16b21042122a9f01409f6ac04a1ab664d423993f78a211"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/scene.json",
+      "bytes": 7448,
+      "sha256": "805ae46a1beb19ec95dd9918e3c7e98f07f14c1becc8c9feaf53957e62f364e3"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/tests/test_b02.py",
+      "bytes": 5093,
+      "sha256": "7334cbd3703a57ca06a3ea0068b56e3c5c19f46c802e9c1f3990fbff48a7dcbe"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/tools/build_b02.py",
+      "bytes": 1515,
+      "sha256": "e96ffd09d6d5c25e2182e5bbec233a46562ad38ed7f906322865c1279a6131a7"
+    },
+    {
+      "path": "contrib/places/ekoh_tower/tools/validate_b02.py",
+      "bytes": 5624,
+      "sha256": "179fc20d13b053ca48f602b443a3e712ff10374a3896b3af1f96866ae2e83fd8"
+    },
+    {
+      "path": "contrib/places/innovation_lab/AGENTS.md",
+      "bytes": 619,
+      "sha256": "1c10ac55c10073eeda2a7ca40b74aeea786b64a629113d5f48f313b517098cba"
+    },
+    {
+      "path": "contrib/places/innovation_lab/KonstructScene.luau",
+      "bytes": 9576,
+      "sha256": "aef9e536211ba7661013e7e13bc59c1369841daee42e228d16d7f131157a28cb"
+    },
+    {
+      "path": "contrib/places/innovation_lab/QA_B06.md",
+      "bytes": 2091,
+      "sha256": "153cc522ef63ca081d33a97a2fc4219f6b2b243135342ace454c04307ac758dd"
+    },
+    {
+      "path": "contrib/places/innovation_lab/README.md",
+      "bytes": 5260,
+      "sha256": "519ac059edfb4d9d0919a6d95ba73d2bc1f98d0dcedc36e53d22f1e0afdb5e14"
+    },
+    {
+      "path": "contrib/places/innovation_lab/build_scene.py",
+      "bytes": 6489,
+      "sha256": "0d4f53eff248545f7b2f780d5e04cae047fc6e564734f1ce2d48fc427cc655ca"
+    },
+    {
+      "path": "contrib/places/innovation_lab/recipe.json",
+      "bytes": 371,
+      "sha256": "29af0dff462fa1de5151e1e09de3773e533ba326ac7df328b14a383a4309a7e6"
+    },
+    {
+      "path": "contrib/places/innovation_lab/room_layout.json",
+      "bytes": 10772,
+      "sha256": "9ba3c3161fa008a35e0e3d18bad09c09dbe43863f45dbdc42b0308c95fade3e7"
+    },
+    {
+      "path": "contrib/places/innovation_lab/test_b06.py",
+      "bytes": 5642,
+      "sha256": "c801f072bdac0dd7bb42a24c3c3ce1cfa458ba8e38674c5fb9e9c77e03ca2021"
+    },
+    {
+      "path": "contrib/places/justice_palace/AGENTS.md",
+      "bytes": 613,
+      "sha256": "7047967c74ad88df5d7bda7108bd1e462cc55e409a148ab7a88525ffee44c68c"
+    },
+    {
+      "path": "contrib/places/justice_palace/DECISIONS_ET_QA.md",
+      "bytes": 4781,
+      "sha256": "c44232790292e4b036634198ff921a84efbdb6637af25d8df758cb41183c9c3d"
+    },
+    {
+      "path": "contrib/places/justice_palace/PreviewBuilder.luau",
+      "bytes": 5355,
+      "sha256": "995d28bcf39cda590490c0a8230ad633dd6e407214738f9477d97e0cb73391a4"
+    },
+    {
+      "path": "contrib/places/justice_palace/README.md",
+      "bytes": 5911,
+      "sha256": "b3057f4cb43fdaba97c6b1ef9ce05ef88ef9b7024c3799a8c891b76739628a78"
+    },
+    {
+      "path": "contrib/places/justice_palace/SceneData.luau",
+      "bytes": 10504,
+      "sha256": "392ac3cf3bfd261ed1f598ef5429c0b2a20b8105d9937feb617fa8c8c1b9144b"
+    },
+    {
+      "path": "contrib/places/justice_palace/canonical_snapshot.json",
+      "bytes": 1180,
+      "sha256": "7fd5ae759f14b97a666facf745cb6fa59dc1622f9ac938c33b4286d4c708e5b2"
+    },
+    {
+      "path": "contrib/places/justice_palace/recipe.json",
+      "bytes": 388,
+      "sha256": "52b0fafd2ee5e841522e1bf35ad51719f7aabb139242d6566954803020fb199d"
+    },
+    {
+      "path": "contrib/places/justice_palace/scene_plan.json",
+      "bytes": 14317,
+      "sha256": "c22264ca5b5bb8ec3e55e6e1e960e8291a047d4f28690569ea7b857d23820270"
+    },
+    {
+      "path": "contrib/places/justice_palace/tests/test_b05.py",
+      "bytes": 5696,
+      "sha256": "e72b2551689ef6506f4ba7fd81ae73a7500b2c7ef131229856a14a52c25d0166"
+    },
+    {
+      "path": "contrib/places/justice_palace/tools/regenerate_luau.py",
+      "bytes": 951,
+      "sha256": "6a484098e9d5539e590750b1ffa8b5d439e36743609a1e1bb4606271cb653f9e"
+    },
+    {
+      "path": "contrib/places/library/AGENTS.md",
+      "bytes": 615,
+      "sha256": "ec0a28053b13ff649460e186670f6086cb8b819183ab50476be50ee6777cb629"
+    },
+    {
+      "path": "contrib/places/library/LibraryScene.luau",
+      "bytes": 8566,
+      "sha256": "83f30ebe9937ea1a6e9c9b83aeafc2e8745d481da3838657c2d7dc0ed08302d9"
+    },
+    {
+      "path": "contrib/places/library/LibrarySceneData.luau",
+      "bytes": 7076,
+      "sha256": "07ba57224e6ce70344f0084682e3cf29f58b37974b68f0425bf885e45016e9e2"
+    },
+    {
+      "path": "contrib/places/library/README.md",
+      "bytes": 5217,
+      "sha256": "52c6d0526bbfa6e75f9ddb30002226a1be154cee387e44b956d4d46b3e004289"
+    },
+    {
+      "path": "contrib/places/library/STUDIO_APERCU_LOCAL_B03.luau",
+      "bytes": 16839,
+      "sha256": "2d3d4a96809b7e3894569fedf667b5383db742b608e44d1839bfbb62a647e5be"
+    },
+    {
+      "path": "contrib/places/library/build_tools.py",
+      "bytes": 2806,
+      "sha256": "363e3a0d972e72b2204e7faa128a0c69ba9f8175be7abd940ce1acb9a7bf4336"
+    },
+    {
+      "path": "contrib/places/library/recipe.json",
+      "bytes": 387,
+      "sha256": "baffacc8231b2bbf42a982e6eb34503784b19f8e6d560914f874f607c6e27fdd"
+    },
+    {
+      "path": "contrib/places/library/scene_plan.json",
+      "bytes": 9868,
+      "sha256": "43360d4a0d6d052fc05c13a65fb69527eda75c20c37b29b1a40426ec2ecfe44a"
+    },
+    {
+      "path": "contrib/places/museum/AGENTS.md",
+      "bytes": 614,
+      "sha256": "745771b893747158b48ea83379d0757677312edac7ec480d73fa5838132a34b8"
+    },
+    {
+      "path": "contrib/places/museum/MuseumScene.luau",
+      "bytes": 2849,
+      "sha256": "a07d68b988761bf85f7d4cdf8ebe2f4b726556ac03bf6adba5dc72c93cd7ac9f"
+    },
+    {
+      "path": "contrib/places/museum/MuseumSceneData.luau",
+      "bytes": 1501,
+      "sha256": "4879b219b3ccc3e175ca9905b17361f1ea3533f4544b89e3874689675af2b71a"
+    },
+    {
+      "path": "contrib/places/museum/README.md",
+      "bytes": 1591,
+      "sha256": "a42a6e2ab0d6fd59b6bc85e808e6b3baf6ddcccd0001f37644f93fa9969fe69c"
+    },
+    {
+      "path": "contrib/places/museum/docs/QA_B07.md",
+      "bytes": 784,
+      "sha256": "215b59b21731fc7bb2a1944dca7e471f10a61e23a763f8a2b9abb432108b6031"
+    },
+    {
+      "path": "contrib/places/museum/recipe.json",
+      "bytes": 354,
+      "sha256": "4c528cea67b5cd7e6d3704f634ac8073797b8362a7efff1ace4a33b3bcceefd1"
+    },
+    {
+      "path": "contrib/places/museum/tests/test_b07.py",
+      "bytes": 1214,
+      "sha256": "b1e2dfa58da4b00d270b9812f3c59f149246a99ab9c08fd45542d0a88a7c4b0a"
+    },
+    {
+      "path": "contrib/places/orgo_center/AGENTS.md",
+      "bytes": 610,
+      "sha256": "e2f5541970c9276391b26dcf3e6dce2eb0d1489ff719be848d40bb4d37ed22d1"
+    },
+    {
+      "path": "contrib/places/orgo_center/OrgoScene.luau",
+      "bytes": 4051,
+      "sha256": "e64f525ba359d2c5baa0934f1c5b79661aebeb154b869a27fd53b25510947c23"
+    },
+    {
+      "path": "contrib/places/orgo_center/OrgoSceneData.luau",
+      "bytes": 9850,
+      "sha256": "c6127eb3c521871f3ba48488d518e98076f40e2ebb0f27de735c53f9599a9940"
+    },
+    {
+      "path": "contrib/places/orgo_center/README.md",
+      "bytes": 1021,
+      "sha256": "21147f904e5cd9aa452f69ef17bfe3ab429635317555963906c51b303146438d"
+    },
+    {
+      "path": "contrib/places/orgo_center/asset_plan.json",
+      "bytes": 2820,
+      "sha256": "6840044425ce785c82085fa36c6c936d68c84802ac9a5022272555e43e5924bc"
+    },
+    {
+      "path": "contrib/places/orgo_center/asset_plan_KC33.json",
+      "bytes": 2903,
+      "sha256": "57d24d8617c05760ddd2c90ba408e61248ce07a3e3912195e4eb31bebc612a49"
+    },
+    {
+      "path": "contrib/places/orgo_center/docs/README_B08.md",
+      "bytes": 6492,
+      "sha256": "5ee543708ae1fb816d54e9a8dd2be94b9e74ad5a451477f522c6c6f8ad87f3f7"
+    },
+    {
+      "path": "contrib/places/orgo_center/docs/TESTS_B08.log",
+      "bytes": 1563,
+      "sha256": "c9017b44a4a98808f639437466008e4b464deda6fe7b97672562a5f22dff68c2"
+    },
+    {
+      "path": "contrib/places/orgo_center/recipe.json",
+      "bytes": 388,
+      "sha256": "3da13a86f6d0fbfa3a52cd96d12913dfd0bd68b441ab14de4eb90d5f063f7837"
+    },
+    {
+      "path": "contrib/places/orgo_center/scene_recipe.json",
+      "bytes": 5689,
+      "sha256": "4a9824469210930fe72d37cfe58f2af40ed3c332bb71836b8bceccc93a11dcef"
+    },
+    {
+      "path": "contrib/places/orgo_center/scene_recipe_KC33.json",
+      "bytes": 9023,
+      "sha256": "aed2ace8500d36868cfab37ef23380247c56ea7c22a74164edac3a027535c9a8"
+    },
+    {
+      "path": "contrib/places/orgo_center/src/generate_preview.py",
+      "bytes": 7366,
+      "sha256": "f124870e0465c9ee1495d15dcad7481d20dc9e146ace8a3e452f22554b8f0907"
+    },
+    {
+      "path": "contrib/places/orgo_center/studio/B08_STUDIO_PREVIEW_LOCAL.luau",
+      "bytes": 11861,
+      "sha256": "026acbcb07df447cb11c451d4aa7c2c6c1a1fa1a83778cc29059ee41afac9d49"
+    },
+    {
+      "path": "contrib/places/orgo_center/tests/test_b08.py",
+      "bytes": 6458,
+      "sha256": "1f6d91ec24f950bdccd9e95245fec41b5fabf74009dac26f2e3145b5b9cda9d5"
+    },
+    {
+      "path": "default.project.json",
+      "bytes": 433,
+      "sha256": "127360f041590175e79b14cfdc93f467e5c077a3f3cf3538aa3e1adf027d9d54"
+    },
+    {
+      "path": "docs/00-fondations/glossaire.md",
+      "bytes": 2070,
+      "sha256": "879440ba6bb25c111b054bae73d48f7a1ad3a078fefddea7eb6a26c684dcbb4e"
+    },
+    {
+      "path": "docs/00-fondations/invariants.md",
+      "bytes": 1917,
+      "sha256": "e6dd8779208785aedb4370e4c0ba4f4742496d3a0a18540a633a0fb3398b1678"
+    },
+    {
+      "path": "docs/00-fondations/perimetre.md",
+      "bytes": 2674,
+      "sha256": "8537b6bc923b276109984b20d29a7397ed53515ed3616209ab4ed31a659b67ac"
+    },
+    {
+      "path": "docs/00-fondations/vision.md",
+      "bytes": 2480,
+      "sha256": "7614d22594f0cdd2a772e0abc0ee79a79c33b6aa9921d7cab0e20005c320d74c"
+    },
+    {
+      "path": "docs/01-produit/accessibilite.md",
+      "bytes": 1571,
+      "sha256": "2ac003022fdcf6d3ced35e42e16c5a838c104dd999f7041c63a5196c3e7ff051"
+    },
+    {
+      "path": "docs/01-produit/batiments.md",
+      "bytes": 3069,
+      "sha256": "95a75c43af58cb64958dad8808a09df6ad16b129f99d261993a4cc70dfae1571"
+    },
+    {
+      "path": "docs/01-produit/interactions-ui.md",
+      "bytes": 2154,
+      "sha256": "75cc7b0ae20f6a1e6c7f7bfb5dbd41edd860de4b84d1ba569ad5b49627fecd43"
+    },
+    {
+      "path": "docs/01-produit/navigation.md",
+      "bytes": 1836,
+      "sha256": "2573db3522ff3cc7dcb021ca6bfe57adfc1ca62052591616c1ccad07d70bcdd4"
+    },
+    {
+      "path": "docs/01-produit/personnages.md",
+      "bytes": 1827,
+      "sha256": "123a34bff3f79deba396be98db4edb67fd0520629d05f580593b6616d2882ed2"
+    },
+    {
+      "path": "docs/01-produit/politique-contenu.md",
+      "bytes": 2101,
+      "sha256": "c3ac9f082ef59aa01267103a6765b7ed6c491da055122971c1a27c66b2441c58"
+    },
+    {
+      "path": "docs/01-produit/ville.md",
+      "bytes": 2728,
+      "sha256": "c92e31d39c60f98731996f48c45455eb9274018164f4afcf6e28f8e509879187"
+    },
+    {
+      "path": "docs/02-architecture/assets.md",
+      "bytes": 1828,
+      "sha256": "dc29f8dceaf90651403fec60c6f25baedf0e48f915df804e9fd0ab16b2b451d9"
+    },
+    {
+      "path": "docs/02-architecture/compilation.md",
+      "bytes": 2925,
+      "sha256": "3286be344b3772d92ba28010257c71a908a6173c29c1b642f9d680cbc9b4578e"
+    },
+    {
+      "path": "docs/02-architecture/configuration.md",
+      "bytes": 1645,
+      "sha256": "2fc8a6de2045abd179dbcaf6a7d9a9e4c851e4444c66b65fff2c27a38f9cbbe2"
+    },
+    {
+      "path": "docs/02-architecture/depot.md",
+      "bytes": 2495,
+      "sha256": "33880b59758848d06ca9d6fbd42dc5c071cd7a7f94e3c7452eb9171a0ef26306"
+    },
+    {
+      "path": "docs/02-architecture/donnees.md",
+      "bytes": 2081,
+      "sha256": "bb195c3e0929fc88c25cf3a915815bebdd685ecd8bb62904a10fa5a96ca5cf6e"
+    },
+    {
+      "path": "docs/02-architecture/ensemble.md",
+      "bytes": 3017,
+      "sha256": "8e31aef3422b22a09ceb93f4ef8d2194fd32b494db07798138436606edbd4d72"
+    },
+    {
+      "path": "docs/02-architecture/performance.md",
+      "bytes": 2060,
+      "sha256": "2151407c0289e8132c3b2ccbe196bff339539f39bebc769d7343a94d869906fb"
+    },
+    {
+      "path": "docs/02-architecture/roblox-runtime.md",
+      "bytes": 2252,
+      "sha256": "27046ff71e388c40a973bf9cd574d315fcb062710e7596d984b3716df87add6b"
+    },
+    {
+      "path": "docs/03-contrats/etats-ui.md",
+      "bytes": 1894,
+      "sha256": "b4b3ceff1b28608571528a89df50bcfa882aaacc7d459859c8502f39544015fb"
+    },
+    {
+      "path": "docs/03-contrats/identite-future.md",
+      "bytes": 1510,
+      "sha256": "77d9923b93c26ef2cef31beab73aa43637542532f46688ae7874c12a76ac1b28"
+    },
+    {
+      "path": "docs/03-contrats/interactions.md",
+      "bytes": 2767,
+      "sha256": "603fc9f9719cf28e1b08eb0a5dc97599aeb42becc4a2bcfbe72092b60af4f97e"
+    },
+    {
+      "path": "docs/03-contrats/koa-futur.md",
+      "bytes": 3110,
+      "sha256": "49fb4a7ac762d5ca8e7a8496e9fba16838dc3a645ccb68ef3081c447951918d8"
+    },
+    {
+      "path": "docs/03-contrats/manifestes.md",
+      "bytes": 2787,
+      "sha256": "d2039fb40aa12fe7474660892576ff27ce6b4d97c28a35b045e95d0d35cdac4d"
+    },
+    {
+      "path": "docs/03-contrats/portes.md",
+      "bytes": 2396,
+      "sha256": "e7ddea02e753086b6f1bc9c4de9f59a3cccb06f0c0200788ca53d3f395aa2b59"
+    },
+    {
+      "path": "docs/03-contrats/versionnement.md",
+      "bytes": 1254,
+      "sha256": "3fc3065264d680ca694b3f4c6f4ef0584137c209a7f6d3ebe6bc7e78941e96f9"
+    },
+    {
+      "path": "docs/04-ingenierie/art-deco-ville-et-interieurs-v3.md",
+      "bytes": 7248,
+      "sha256": "87e95009d1ee29fb666ed5b4b4d9a3fdd99a650249e2bf905844d0b887cec84a"
+    },
+    {
+      "path": "docs/04-ingenierie/depannage.md",
+      "bytes": 1985,
+      "sha256": "a9feb9272a5f894170cc3ca6f11a1bcb16e3c577faee627f08989505f3d2cc28"
+    },
+    {
+      "path": "docs/04-ingenierie/developpement.md",
+      "bytes": 1771,
+      "sha256": "4d95cef1779279cfd80099c2444ea4c6b5b3627b37e34e34610c6ed8b3dc707d"
+    },
+    {
+      "path": "docs/04-ingenierie/exploitation.md",
+      "bytes": 2067,
+      "sha256": "f7089b7f6dbe95d5e0d9c1b82121f813064d0d7a54926734c7f865474b7de1a0"
+    },
+    {
+      "path": "docs/04-ingenierie/migration-art-deco.md",
+      "bytes": 11516,
+      "sha256": "bb330e01ff3c7a4b9be55bff60f00b99a4f59e05bb7d3757e304e0a2803500ea"
+    },
+    {
+      "path": "docs/04-ingenierie/observabilite.md",
+      "bytes": 1935,
+      "sha256": "d35182496f5d678d6c468da93b090008f45d2e042a2dcafb3a96b46560bd88a9"
+    },
+    {
+      "path": "docs/04-ingenierie/outils.md",
+      "bytes": 2041,
+      "sha256": "7d63f964d3627bd599ed7fb06c6fae549edde212eb1a6e30d5bc0c6d00dbc76b"
+    },
+    {
+      "path": "docs/04-ingenierie/securite.md",
+      "bytes": 2262,
+      "sha256": "91546955a2005e7a99608774b02e51a4b3df0df7748b0b1e8e3e4540a36a949a"
+    },
+    {
+      "path": "docs/05-qualification/acceptation.md",
+      "bytes": 3004,
+      "sha256": "45a9a9d923a5393aa128f6438cd4bde41de00d4679ba0db012776bec6f48c680"
+    },
+    {
+      "path": "docs/05-qualification/art-deco-imports-studio.md",
+      "bytes": 1835,
+      "sha256": "1079f4a91dd05179f1a57f7d6b1574242dda6504178dd1d715892ad36df1e710"
+    },
+    {
+      "path": "docs/05-qualification/art-deco-resultats.md",
+      "bytes": 2086,
+      "sha256": "45288d7e050964ef22a0103ab76e9642cda2b3a1e3227a6cc61d17ffa3e13840"
+    },
+    {
+      "path": "docs/05-qualification/tests.md",
+      "bytes": 2563,
+      "sha256": "e84710347498ce8f5a04dc408320380313b7d2369b7d1134c074073fced6a511"
+    },
+    {
+      "path": "docs/05-qualification/traçabilite.md",
+      "bytes": 1675,
+      "sha256": "69e197d2efd1ddd07afc8a7425fe429dc3658f1d970750375cb562bc305b3c02"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/001-clients-et-autonomie.md",
+      "bytes": 730,
+      "sha256": "8880a6be881025a24273e31b582e55331554516a9616b7e9517a15c4a3d03929"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/002-generation-deterministe.md",
+      "bytes": 722,
+      "sha256": "7af2b3f14ac6b82a6a0cef7121c04516a263aac04b6ddde723b8fda1f29a90a3"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/003-portes-frontieres.md",
+      "bytes": 732,
+      "sha256": "d15746ab6ea3bfe8234417db9231c9dc953dd0a2dc9f7ffcf5229cee19852b27"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/004-interactions-stub.md",
+      "bytes": 666,
+      "sha256": "0a5b8a05c59fbf9523e9ab1a2b66965b76b73da842c4a73f1f2e2a7cd6f76809"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/005-ids-permanents.md",
+      "bytes": 638,
+      "sha256": "fdf1fc41131b606985b0f85bb80448029ec8772ef8f0d97a65ed8381461ec9a3"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/006-aucun-faux-succes.md",
+      "bytes": 628,
+      "sha256": "eb2def6b315f150ad9c88839770957ea4ad5c63734d04969b8655f45e2c866ce"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/007-futur-gateway.md",
+      "bytes": 719,
+      "sha256": "736d530a461d0dd9132dc4f92788d1fcdaafbd6f89156bb0c2eb39f0476444e7"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/008-autorites-koa.md",
+      "bytes": 668,
+      "sha256": "4956f6e3e668a8a7bc543baef49f783b07c632eacf92e0120248f8426ac242d4"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/009-politique-canal.md",
+      "bytes": 656,
+      "sha256": "ea43431eb2c7cb18dde72ad24595542cb0788fb5da57164448e39d0cb9239c30"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/010-test-reel-teleport.md",
+      "bytes": 646,
+      "sha256": "14d5981c97eac8b57c5fca9679f9a5e1ce4906d53879e1ba74de6d66ab240baf"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/011-outillage-open.md",
+      "bytes": 665,
+      "sha256": "12127d6196b9136407aa8869ca814a36a83372dc6ccf9df7d3642a849ef3a8e2"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/012-ville-avant-koa.md",
+      "bytes": 755,
+      "sha256": "0217e00b383a55699a2abf220ddc7f3ae0bc47c75ed08f74a7e92dd8cccd9cdf"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/013-secrets-et-autorisation.md",
+      "bytes": 636,
+      "sha256": "a5ba6679ddd57fa936774ff1139ba03f1b5780d6ef257e2980ca0b0580abe597"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/014-geometrie-canonique.md",
+      "bytes": 621,
+      "sha256": "51f9e06cadf192038381d7626cf015d7f33d63b1984fc2d93c2fcc2629ea01c1"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/015-hebergement-hybride.md",
+      "bytes": 395,
+      "sha256": "4b454f4b948904498135560f3ea91022b9c00127bd852f2a95fd3900449e0700"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/016-qualification-deux-barrieres.md",
+      "bytes": 351,
+      "sha256": "bd7bec630c03f823fd7590d98bcc555b5f6b1a6939d52278b01db8e7ff844d6a"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/017-assets-resolution.md",
+      "bytes": 488,
+      "sha256": "9bc040f69fe2833255d839f9b9f5cc150345eb5d79ad7e55f8752d720fad4ebf"
+    },
+    {
+      "path": "docs/06-gouvernance/adr/README.md",
+      "bytes": 2086,
+      "sha256": "f43b87fd6530b6e35fae65c71c554d8cca72b4a74dc6697391727602869b9762"
+    },
+    {
+      "path": "docs/06-gouvernance/ouverts.md",
+      "bytes": 1424,
+      "sha256": "8cccc79a9388543727597b54e717650c88ec1ae23be42b1f4a14d8fcd62c314e"
+    },
+    {
+      "path": "docs/06-gouvernance/risques.md",
+      "bytes": 2102,
+      "sha256": "ae9dbfca3e4169b34b75d7de59b73742e3d2a99dc4f7ea2d318bd60b37285439"
+    },
+    {
+      "path": "docs/06-gouvernance/sources.md",
+      "bytes": 3800,
+      "sha256": "b4c99e5a0526509250d71c6a4f8da45eeeb0651314175e3022cdf5e41be55cc1"
+    },
+    {
+      "path": "docs/07-construction/README.md",
+      "bytes": 1087,
+      "sha256": "855277aac600446346051320e141cadecd9a29cd01932cf905a02e51aa40e6b4"
+    },
+    {
+      "path": "docs/07-construction/architecture-code-luau.md",
+      "bytes": 4064,
+      "sha256": "042964f59d14afe593001cf283082f203a92bdf66d7f08d9995a01cd4bd78ae5"
+    },
+    {
+      "path": "docs/07-construction/bible-artistique.md",
+      "bytes": 2617,
+      "sha256": "897d9580ea62ff87d4169960cfa138c6e9e541558355ada23ac2f74e21ad9b46"
+    },
+    {
+      "path": "docs/07-construction/charte-cristal-v17.md",
+      "bytes": 2803,
+      "sha256": "d1b1f226e0d0ebd448a95d58733e7ccbadfd43d07f1b95caeb567bdb0e0c2e70"
+    },
+    {
+      "path": "docs/07-construction/charte-cristal-v19.md",
+      "bytes": 1824,
+      "sha256": "1dceb884f419587917b33c88deeb16e6abfef5c08b6304da0735400b8a1fb82b"
+    },
+    {
+      "path": "docs/07-construction/compilateur.md",
+      "bytes": 2948,
+      "sha256": "d780d63cb8af297828011ca2ad052c7df1781643e3f585b6b55501da940758a4"
+    },
+    {
+      "path": "docs/07-construction/interactions-runtime.md",
+      "bytes": 2392,
+      "sha256": "acbfa2ae04c55472f16fafae44efb7262c64f0fec936e638655fe0794a91e037"
+    },
+    {
+      "path": "docs/07-construction/performance-et-budget.md",
+      "bytes": 1733,
+      "sha256": "9be911d6f5a634987d60afa96a073bb410231f2dbc6c33d34846a801cbd647dc"
+    },
+    {
+      "path": "docs/07-construction/plan-ville-reference.png",
+      "bytes": 163433,
+      "sha256": "4ae499f7a0f8439d1fd27188b4336ac160d02e8d7fb9751bfafd93f1a396105b"
+    },
+    {
+      "path": "docs/07-construction/protocole-build-vibe-coding.md",
+      "bytes": 1706,
+      "sha256": "ece3dd28a5997417cba3b73e29415ed0e05bfb58c42760618f99f5ea82a601d7"
+    },
+    {
+      "path": "docs/07-construction/qualification-industrielle.md",
+      "bytes": 3354,
+      "sha256": "edeed3475f0a54e27908404b3c3931e7476e13bb3c2fafeda3d4216694536cd9"
+    },
+    {
+      "path": "docs/07-construction/specification-spatiale.md",
+      "bytes": 3299,
+      "sha256": "dd09120309905b17c5a536004a07fbf6258559c67f427b55cfbc862630dfd5cd"
+    },
+    {
+      "path": "docs/07-construction/strategie-places.md",
+      "bytes": 2168,
+      "sha256": "c95f4cd30ae2802fcf22855a448b792e15758a5d56d39a434340ba39f3c400e5"
+    },
+    {
+      "path": "docs/08-implementation/etat-executable.md",
+      "bytes": 1257,
+      "sha256": "b92bd6b02e1e20d806e78363b50bef3d3514e8ee755d3ab99e4e4aedc3c56d47"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/00_LIRE_EN_PREMIER.md",
+      "bytes": 3640,
+      "sha256": "e76b350a9c835b671ed12798a1007ff3c407d3d933965b17647b1667394fd77a"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/01_VISION_ET_PLAN_DIRECTEUR.md",
+      "bytes": 6899,
+      "sha256": "ca8eba90a032955d0f253c97d9da8fdc36f7745d2ef0de72b3de6e1a4247ff66"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/02_CONTRAT_PARCELLAIRE_ET_VOIRIE.md",
+      "bytes": 7402,
+      "sha256": "1532361d10eb425f4f56dbe48296e3b9eefdb527ba73399748a2ecf782d5767b"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/03_STRATES_DU_SOL_ET_Z_FIGHTING.md",
+      "bytes": 6062,
+      "sha256": "266841442042168fddceb8225fc6b954ab8f3bf01392cf808f51473ba6dafdd8"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/04_ORCHESTRATION_ET_DEPENDANCES.md",
+      "bytes": 7043,
+      "sha256": "bb57743503e55db41432fc4338837c10536fa00960c3d91200e90a72826f9aea"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/05_LANGAGE_VISUEL_V30_ET_SIGNALETIQUE.md",
+      "bytes": 4311,
+      "sha256": "c5892d31c1bbca2e1f9ffd92265219137e1871893ebc43721345d276364d1e2d"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/06_ARCHITECTURE_DES_NEUF_PLACES.md",
+      "bytes": 4762,
+      "sha256": "4a74d37a6fc8a1c3c1ad5f57ec7a2b1ee678e8a86201c2de1cd350fdad880e56"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/07_QUALIFICATION_ET_MIGRATION.md",
+      "bytes": 5803,
+      "sha256": "340ee8454ccb0b3b8da7d83d992051def4a3e2472d597e626dba74bfead3c348"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/08_REGISTRE_DECISIONS_ET_QUESTIONS.md",
+      "bytes": 3823,
+      "sha256": "b8dc2f9cc00905516524ea7796f48bc48b1118f529caf5f3ff08690928c378ac"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/PLAN_URBAIN_KC35_AUDIT.png",
+      "bytes": 424191,
+      "sha256": "674c5765a28995ff10015e9cf4f24f8c72235158fe2c33740588997e15519c49"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/PROMPT_PROCHAINE_PASSE_CODAGE.md",
+      "bytes": 2562,
+      "sha256": "a2cfc141ced6f116ea624860b869d9d5dac9c5860fe5b76323c2dfd61815c4f8"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/README_REVISION.md",
+      "bytes": 1075,
+      "sha256": "6a6998f978f030a2396291b254e73273e31336879b92a3fa9059f2c66fb7fcff"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/REVUE_CODE_KC35.md",
+      "bytes": 4193,
+      "sha256": "9e92d9547ace5e61ad2a7f77c041f204c00f23bc4d46e5c09d9c8efaa93a0b0a"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/contrats/PROCESSUS_GATES.json",
+      "bytes": 850,
+      "sha256": "8b650aba0de44297fa5a245e8742e0767faafe2c1ecb54e1598a7d4604f1d259"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/contrats/site_manifest.schema.json",
+      "bytes": 2314,
+      "sha256": "eeb6467871bfe06f0c35c8865a0a1f091ae3f6eb23fb8a6fbcd643ea4ef299c9"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/contrats/site_manifest_EXEMPLE.json",
+      "bytes": 939,
+      "sha256": "8d21211ed1f019a9bf612d620eaab5463bc7e828436b453a6e9faa9588e446dc"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/decisions/ADR-018-AUTORITE_PARCELLAIRE.md",
+      "bytes": 1385,
+      "sha256": "eee3d6189270458c17f2ca6e2c9c6389020c6921fb4d8fd137a0c0b021057ee6"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/decisions/ADR-019-SIGNALETIQUE_PHYSIQUE.md",
+      "bytes": 1137,
+      "sha256": "643553b539001530ba92d56865de37282b860bcad1ebd79861588d57a075e8c4"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/decisions/ADR-020-GEOMETRIE_MIGRATION.md",
+      "bytes": 736,
+      "sha256": "c1fdd689c01a0a2781e10595be7325a77afd317476452265f1b27af0639bdcc6"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/outils/README.md",
+      "bytes": 738,
+      "sha256": "155b8ea7a83b9575a513763db2aeb364d33007e6fddfdb3eaaf72fb36ef77557"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/outils/audit_voirie.py",
+      "bytes": 2412,
+      "sha256": "419dc98923bd04be14e0a739595e3daae029b240730a2639197149844e490b56"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/preuves/KC35_CHEVAUCHEMENTS_VOIRIE.csv",
+      "bytes": 655,
+      "sha256": "7d1758e8f09391ac2d27c15d2d476b1c128fa9652abb60241c2bb130c0ea51e6"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/preuves/KC35_CHEVAUCHEMENTS_VOIRIE.json",
+      "bytes": 2894,
+      "sha256": "d2682fe8878d9a297b0bfbbb22bdf23f80055248b7b0fe7b08f3b2787a12aa3b"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/preuves/PLAN_URBAIN_KC35_AUDIT.png",
+      "bytes": 424191,
+      "sha256": "674c5765a28995ff10015e9cf4f24f8c72235158fe2c33740588997e15519c49"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/preuves/PLAN_URBAIN_KC35_AUDIT.svg",
+      "bytes": 91647,
+      "sha256": "527879643747677c5bf11f63cf543683b467bf7ecc73e7e659b49dcfdef17edd"
+    },
+    {
+      "path": "docs/09-refonte-urbaine/preuves/VALIDATION_DOC_KC36.json",
+      "bytes": 788,
+      "sha256": "e960eae63eb4bc798928f523d14b1453a786e29fbff97008d64bd10a2ee06d28"
+    },
+    {
+      "path": "docs/10-ai-coordination/01_SOURCE_OF_TRUTH.md",
+      "bytes": 2930,
+      "sha256": "c0fe1818a5eaec83eae6c5a34f1bbcfd2434d7fef892bced05e44fd61adbade8"
+    },
+    {
+      "path": "docs/10-ai-coordination/02_BRANCH_MATRIX.md",
+      "bytes": 3084,
+      "sha256": "7f494ccff698ab6a932f5f8603923d4de20d69b3e755e01b6e0dab605b15ff0a"
+    },
+    {
+      "path": "docs/10-ai-coordination/03_SYSTEM_ARCHITECTURE.md",
+      "bytes": 2114,
+      "sha256": "1c7957e62ad65725f5da2e95ac65f0cbe570ae73c91deb3feb67cb12c0b8f735"
+    },
+    {
+      "path": "docs/10-ai-coordination/04_URBAN_INTEGRATION_ORDER.md",
+      "bytes": 2703,
+      "sha256": "0df9d55202c37bd57c056d50839c3c7a0a26bfe1a97466012faf7fc1c9cc5164"
+    },
+    {
+      "path": "docs/10-ai-coordination/05_SPATIAL_CONTRACTS.md",
+      "bytes": 2018,
+      "sha256": "36ec8f23d6bbabf8f2d77f4cccfe26ed18ebbdcd16afac2beb7d6856361704e2"
+    },
+    {
+      "path": "docs/10-ai-coordination/06_GROUND_SURFACE_AUTHORITY.md",
+      "bytes": 1976,
+      "sha256": "0919d70bbe64b023108062c250c62463bb472b43c34b8e748bc63a129856e717"
+    },
+    {
+      "path": "docs/10-ai-coordination/07_SIGNAGE_AND_VISUAL_STYLE.md",
+      "bytes": 1793,
+      "sha256": "c62df7d4c4e0b478a2bc29280549b5c11de832e6db49226f6bdc2a9a56ed68ce"
+    },
+    {
+      "path": "docs/10-ai-coordination/08_ASSET_PACKAGE.md",
+      "bytes": 1948,
+      "sha256": "9143f22ea1ef8b08592d4ac01c0bc2b7b54f2bcdacf7427f93377664243fe159"
+    },
+    {
+      "path": "docs/10-ai-coordination/09_INTEGRATION_PROTOCOL.md",
+      "bytes": 2114,
+      "sha256": "07d7824396caf9db44c97361911d222ccbd23e9944b3c0ac732570b73c37616e"
+    },
+    {
+      "path": "docs/10-ai-coordination/10_QUALITY_GATES.md",
+      "bytes": 2422,
+      "sha256": "bfb3f33f5111c54441037899dd69b692a62ce06924d9e9f35828526bce311f6f"
+    },
+    {
+      "path": "docs/10-ai-coordination/11_KNOWN_ISSUES.md",
+      "bytes": 2536,
+      "sha256": "3f23c175e6f7f94fdf0f3a4364f77b170f929a76b5f89979da2d28e9b38ad5b8"
+    },
+    {
+      "path": "docs/10-ai-coordination/12_ROADMAP.md",
+      "bytes": 1610,
+      "sha256": "f0b2afdb632b59bac480416735cb8df517fa5f8c04bb8bb456670818ca5e47b8"
+    },
+    {
+      "path": "docs/10-ai-coordination/13_STUDIO_VS_SOURCE.md",
+      "bytes": 1512,
+      "sha256": "c16698938324482438ea69e5b79ae305af34b7e113a84b852ec2fac6224346ba"
+    },
+    {
+      "path": "docs/10-ai-coordination/14_PROMPT_HANDOFF.md",
+      "bytes": 1512,
+      "sha256": "2e0291c05e039ef7d5e45d059035ef69c707b252912f8ce739348d9f0228fc19"
+    },
+    {
+      "path": "docs/10-ai-coordination/README.md",
+      "bytes": 2965,
+      "sha256": "52ccd29b0c8bac9a9273bdbdd81dc3756da65f2476a812a6d2980b8e9da2bf4a"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B01.md",
+      "bytes": 2304,
+      "sha256": "cfbd0f1b40a3267323e5c136a986da50f532ab8cd3072fa578ad25abd6a9b056"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B02.md",
+      "bytes": 2320,
+      "sha256": "c12c75ef692dd947479b8d849f41206307a0a3661336df47e93d657fb69a0794"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B03.md",
+      "bytes": 2282,
+      "sha256": "98352cd6bb94938bf18ff305e3ef0badf8dde5a950ceac7215276ad084c3964d"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B04.md",
+      "bytes": 2262,
+      "sha256": "0d82fddc0f98c2ea302d4d496a51334e55cb5267898cb38710cbc19a03a93fb6"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B05.md",
+      "bytes": 2381,
+      "sha256": "133f0029b8940aca97fa4e713423a6efb24ef88127fd1fa2384d42048a55650d"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B06.md",
+      "bytes": 2380,
+      "sha256": "907ace771358f194c7fe834e17ee972f0e53be0dfdc7a7b0199f3b3b7e850aae"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B07.md",
+      "bytes": 2572,
+      "sha256": "884cd49972ede028af8e34932e25af44b1165576692cff625fa757cafd7becb9"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B08.md",
+      "bytes": 2487,
+      "sha256": "96acec77fa5beea3fcdc0c93ceea8e3ddc7d6111e99723ab782e05a0613ecfc6"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B09.md",
+      "bytes": 2025,
+      "sha256": "f113733c81913252197e7b2125f65afa3a1127cdc6834c42f372c5c1e2daab16"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/B10.md",
+      "bytes": 3101,
+      "sha256": "abe29370bc4d86fd117c9ac18a9082ceb9790d49fdf169062aa27cbf920d4dbc"
+    },
+    {
+      "path": "docs/10-ai-coordination/branches/README.md",
+      "bytes": 677,
+      "sha256": "f1cb4775342582ef34a95674b8d25eef406aa31dbaca62afde0728856769a433"
+    },
+    {
+      "path": "docs/10-ai-coordination/evidence/CURRENT_PLACE_LAYOUT.md",
+      "bytes": 1103,
+      "sha256": "4a8a3d7465a2aaf66a89ac3708670b680fc2a32bb2dede7d2232f566aadd236c"
+    },
+    {
+      "path": "docs/10-ai-coordination/evidence/REPOSITORY_PROVENANCE.md",
+      "bytes": 2857,
+      "sha256": "53dcb1208d0a812c8e0dadde5775d0bdf1978f16ed3a1ee380b612aa697a969b"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B01_city_hall.md",
+      "bytes": 4821,
+      "sha256": "1ab6ab33ee4e05b9f5839df99051100b98362d10a0912937424738243177cf51"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B02_ekoh_tower.md",
+      "bytes": 4859,
+      "sha256": "50be4ca78262c2cc70350c5e38b40254e4702a83eead0024d25f6c3c1711d6b4"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B03_library.md",
+      "bytes": 4847,
+      "sha256": "edd4ca828469d8e33d60d27ab6130e7c0001a743a3498729362eba520bd5b2bb"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B04_campus.md",
+      "bytes": 4829,
+      "sha256": "3abd5fc02e210506093d006c407ebfbd14dc23a3274b33b73c903bf40412ac38"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B05_justice_palace.md",
+      "bytes": 4949,
+      "sha256": "089eb00247216fb4ba9e1d8d04eb6fab1eb1d9e33b9cd6ab4f025f5c79f22de2"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B06_innovation_lab.md",
+      "bytes": 4984,
+      "sha256": "00afd321fedb0f8dfe75eec63130435f6e2dfd51409434aa30c1f22af88b2a7b"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B07_museum.md",
+      "bytes": 4804,
+      "sha256": "4d117119f1a77563eaf4a9c6af684c0304ff0f8a348003b24090879d6296a9d4"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B08_orgo_center.md",
+      "bytes": 4876,
+      "sha256": "29d9e686107930b43eea84eabaf824797ad401828b86c2c0acb7e8e9e1d4cddd"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B09_integration.md",
+      "bytes": 4864,
+      "sha256": "31f0cd31b416c7faade73c580d0ce0d206efd7841b64ccf070af0ac89361bb3b"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/B10_city.md",
+      "bytes": 4917,
+      "sha256": "bb3d1ce583d669cdafe26c1fb4dd588b3d44f2e3fdd433d7854913645f9126f9"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/BIBLE_KINCITY_REFERENCE_IA_KC34.md",
+      "bytes": 59410,
+      "sha256": "27e6d56a4cd62b58802c9d7fe3d4bebf887b830dc628d51571eef7eb53d14536"
+    },
+    {
+      "path": "docs/10-ai-coordination/historical-kc34-briefs/README.md",
+      "bytes": 868,
+      "sha256": "e00e7a36552dd5cf9f4e68c73ebc7325b390fdc23e90ff51d38b8a6f61fce2df"
+    },
+    {
+      "path": "docs/10-ai-coordination/templates/ADR.md",
+      "bytes": 258,
+      "sha256": "6a36707bc6359439b260ecef466ee5b35f1ae911987f3be2d9a67bee97565a47"
+    },
+    {
+      "path": "docs/10-ai-coordination/templates/HANDOFF.md",
+      "bytes": 818,
+      "sha256": "dfdd8242c4d5925f682200a2aaa9ab88ddae139f6ab8f01cfd0d2e6a2996bc7e"
+    },
+    {
+      "path": "docs/10-ai-coordination/templates/PR_CHECKLIST.md",
+      "bytes": 676,
+      "sha256": "cd8d12b360075a2273b18489dba217c05ed0f035d739822f4e23a90c9bafa2af"
+    },
+    {
+      "path": "docs/10-ai-coordination/templates/RFC.md",
+      "bytes": 522,
+      "sha256": "a6e3dbc1e25451edaa11c537b78bf9d3a50b3404833837c596bb791de4709c93"
+    },
+    {
+      "path": "docs/ARCHITECTURE_PANCARTES_V31_7.md",
+      "bytes": 11136,
+      "sha256": "a24068ceaacfaa7c338bd2204d4e506611ce3c911b39abf3c2069142f1343ff5"
+    },
+    {
+      "path": "docs/B09/KC35_RUNTIME_INTEGRATION.md",
+      "bytes": 7351,
+      "sha256": "12ec4eea36998b6bc3922dbb073432969f15c338b2a6f633d4be446880eb20d1"
+    },
+    {
+      "path": "docs/B09/KC35_STUDIO_TEST_MATRIX.md",
+      "bytes": 2098,
+      "sha256": "ae497dcd5b94d7d1d1ec0c90a193b09b1322edf12972451ff1622a8a8a735fce"
+    },
+    {
+      "path": "docs/B09/README_B09.md",
+      "bytes": 12165,
+      "sha256": "83664bfe94f9ba2687667219991051714395c2bd363366d02fe4791b50a33f92"
+    },
+    {
+      "path": "docs/B09/branch_ledger.json",
+      "bytes": 6174,
+      "sha256": "a2c05986f3fe63ce6de6f82d6df0f40aa151559b05e62bc01d5588e74ddeb169"
+    },
+    {
+      "path": "docs/B09/consolidation/PROMPT_PASSE_SUIVANTE_B09.md",
+      "bytes": 1425,
+      "sha256": "9c6690ca680545eff60b138173aeb6b42dfeb52f81a4d0af533ac8cc41d7f663"
+    },
+    {
+      "path": "docs/B09/consolidation/RAPPORT_CONSOLIDATION.md",
+      "bytes": 5454,
+      "sha256": "57792a8a970637b63560fc8c16e003fbf683c6295f216ad04940c469cccd6996"
+    },
+    {
+      "path": "docs/B09/consolidation/RFC-CONSOL-001-SCENE-ADAPTER.md",
+      "bytes": 3600,
+      "sha256": "be511d41e4404f89d31fd6898e2a4ca4cd32abfc3f5166824057955cf73c85c8"
+    },
+    {
+      "path": "docs/B09/consolidation/consolidation_receipt.json",
+      "bytes": 31676,
+      "sha256": "8af315c00fd21f5fd7d659414be219746dfbe5ceeb601010581edb704fc8a201"
+    },
+    {
+      "path": "docs/B09/consolidation/original_handoffs/handoff_B01_AS_RECEIVED.json",
+      "bytes": 4078,
+      "sha256": "6982bb456db8069c946b078c411ad520293011686e600805e99919ffdc716280"
+    },
+    {
+      "path": "docs/B09/consolidation/original_handoffs/handoff_B02_AS_RECEIVED.json",
+      "bytes": 4588,
+      "sha256": "4560ba2fcfd9d621463a6bd9021cb1440bd5e7707ecdb85e3d5e807ba0e79b47"
+    },
+    {
+      "path": "docs/B09/consolidation/original_handoffs/handoff_B03_AS_RECEIVED.json",
+      "bytes": 3140,
+      "sha256": "c5a48c60d86384f0a0f1659eb164a41779ec215eb43134ac836ee51ce6664369"
+    },
+    {
+      "path": "docs/B09/consolidation/original_handoffs/handoff_B04_AS_RECEIVED.json",
+      "bytes": 3002,
+      "sha256": "40742963bb42b559f1f3b6f79b414d37b2012d986cca36fd5852ef61db450820"
+    },
+    {
+      "path": "docs/B09/consolidation/original_handoffs/handoff_B05_AS_RECEIVED.json",
+      "bytes": 3221,
+      "sha256": "bde5bfa8d50d3b4cb40c5a48b79eefef1a0b44f83b4cbcb19e56904fecd6b1a6"
+    },
+    {
+      "path": "docs/B09/consolidation/original_handoffs/handoff_B06_AS_RECEIVED.json",
+      "bytes": 2915,
+      "sha256": "5027f3332955c579cb3d2c6af5a0501bde4efc737fe65d24f94edca181d08dfe"
+    },
+    {
+      "path": "docs/B09/consolidation/original_handoffs/handoff_B07_AS_RECEIVED.json",
+      "bytes": 2520,
+      "sha256": "d8943555b4606950f330baa1a08c9622586c5ce58b2ed4126a0a2f9fa168d296"
+    },
+    {
+      "path": "docs/B09/consolidation/original_handoffs/handoff_B08_AS_RECEIVED.json",
+      "bytes": 2719,
+      "sha256": "3910631289c4a395f77b28947ec76323be09751593e5d175852eee3fabe3fa35"
+    },
+    {
+      "path": "docs/B09/consolidation/original_handoffs/handoff_B10_AS_RECEIVED.json",
+      "bytes": 3617,
+      "sha256": "9747310e315b45a1134086b6c76d07d11c6d95e234bbbf95b379e4677317e80e"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/B01_replay.log",
+      "bytes": 1779,
+      "sha256": "d6c2802a96674a1573d1da28e97dc42d36fa5017ec7ce5f7d4b6ef08bc445d03"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/B02_replay.log",
+      "bytes": 1955,
+      "sha256": "2b1630417db673f1b150cc6a4343b21f2033653055eb18fde41385cd9e2ad65c"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/B03_replay.log",
+      "bytes": 2171,
+      "sha256": "ada3932c55f5d2d01359c0e46a470209bc1dca9b527eecb95b64b0f86c8c9ded"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/B04_replay.log",
+      "bytes": 1517,
+      "sha256": "878acc271d1dd33cd6f7be474cecba2b6719217d0e1362c97c834352f1fd03b1"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/B05_replay.log",
+      "bytes": 1255,
+      "sha256": "386e17a860bd576c2ddc130d2c9395aa121d947e5619e92db625566e2cba6cd3"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/B06_replay.log",
+      "bytes": 1055,
+      "sha256": "68fe5ef9cec928901e970abbf4f907478b5f1c01bc2ae5dbeea58fd22f86f710"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/B08_replay.log",
+      "bytes": 1563,
+      "sha256": "92c195fd636e24171bf267fb0fc225ff49ee8f95400625120819a28c4a27df89"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/B09_30_tests.log",
+      "bytes": 3532,
+      "sha256": "cb2dca1c05b4c923e47e4407005daa966d3dd8fbf16295a2c546c10ebb251ca6"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/B10_replay.log",
+      "bytes": 1960,
+      "sha256": "6e1dd2de04cde2e285fd1e20af539e071f2a2c6cff2d343b16e57756e5d5ccd7"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/legacy_suite.log",
+      "bytes": 3525,
+      "sha256": "9aa09af7543e4f12b79f1fa98eaac03d986b1c4f28d8a1b9daa84da0143dacb4"
+    },
+    {
+      "path": "docs/B09/consolidation/test_logs/replay_summary.json",
+      "bytes": 1533,
+      "sha256": "e8bcd774759580710ebb8c1cd3f443c021d02633a274d37a2055cc37c024e057"
+    },
+    {
+      "path": "docs/B09/decisions/ADR-001-bounds.md",
+      "bytes": 1834,
+      "sha256": "825ba1860737021a266c29ddad1ab431167e34c2799dab5ead9ef5b5b8d04cf2"
+    },
+    {
+      "path": "docs/B09/decisions/ADR-002-contributions.md",
+      "bytes": 1188,
+      "sha256": "078bd9f0e2a5cd3fe22668fa8cb11e92010533ba588069f7fdbae4d9e660bd4b"
+    },
+    {
+      "path": "docs/B09/decisions/RFC-B09-BOOTSTRAP-001.md",
+      "bytes": 1519,
+      "sha256": "6aa72bd8bf1ea92b564eb26e60ad2dfb4203945b724896e86d00dc2ccca46503"
+    },
+    {
+      "path": "docs/B09/reports/KC35_b09_tests.txt",
+      "bytes": 98,
+      "sha256": "3bf9b57d0f6662d8f8af0be4f1655b087de9ea2adf656af6c9cf7cb463cef966"
+    },
+    {
+      "path": "docs/B09/reports/KC35_full_unittest.txt",
+      "bytes": 3725,
+      "sha256": "26fbe9e885d374b7e1f0a37ae8c758255bc33c9dc9138e2c68db1f60bebd3817"
+    },
+    {
+      "path": "docs/B09/reports/KC35_integration_tests.txt",
+      "bytes": 405,
+      "sha256": "ed845f34c095c77b3d3f1314fc9971ea88c793fb0bc6d6cb7b3e340dd6819639"
+    },
+    {
+      "path": "docs/B09/reports/baseline.json",
+      "bytes": 3431,
+      "sha256": "8d2c3626407d307bdab4e563579dda208b558c53189277dea871b60420380fea"
+    },
+    {
+      "path": "docs/B09/reports/tests_b09.txt",
+      "bytes": 2334,
+      "sha256": "2262f75d7dc09f5373de22784df34f9bf47802cb2a3bddc2a27ccf93de8d605c"
+    },
+    {
+      "path": "docs/B09/reports/tests_full_offline.txt",
+      "bytes": 12501,
+      "sha256": "c18990a2e3e73d7cfd0894e8558262bfccb5a22a30aefaf75c7c965ab03dd299"
+    },
+    {
+      "path": "docs/B09/templates/RELEASE_CHECKLIST.md",
+      "bytes": 1404,
+      "sha256": "20ecffd4101f5815b0b91ac8971d67d77c9fad904c430911a45b859fbf7edc66"
+    },
+    {
+      "path": "docs/B09/templates/RFC_TEMPLATE.md",
+      "bytes": 531,
+      "sha256": "67f281d4cf2d8e137ff26c11bb513c0157f7ebef9b73a5733d044379d4bc28c5"
+    },
+    {
+      "path": "docs/KC33_MISE_A_NIVEAU.md",
+      "bytes": 6625,
+      "sha256": "f06bdcc02aa08c32e69b5f4e349d43f6d909fcec823f315dc493ced718500b85"
+    },
+    {
+      "path": "docs/KC33_PROMPT_PASSE_SUIVANTE.md",
+      "bytes": 3677,
+      "sha256": "87b41a472d9f02203ec3c8bfd8ad75dfa1b34238f7463f65cb004d8325f353a1"
+    },
+    {
+      "path": "docs/README.md",
+      "bytes": 5159,
+      "sha256": "566d923f9fd8c3198ed95424da4a622d5a72c6f884b7358df0f72ac777b5ccc3"
+    },
+    {
+      "path": "docs/VALIDATION_V31_7.md",
+      "bytes": 981,
+      "sha256": "1eba309da3a753ba51423adae307f5a39d5029c60423c02cf3ea2b94a6d5d1c0"
+    },
+    {
+      "path": "docs/reference/architecture-v1.1.md",
+      "bytes": 86013,
+      "sha256": "10ffc916d3f3f60c3a89f614c3447f37bc88d015b3ea966218fc7e15ea0da479"
+    },
+    {
+      "path": "docs/reference/audit-optimisation-v17-2026-10-19.md",
+      "bytes": 50174,
+      "sha256": "b51ebabbbc7eb6031881b7972138f3078a54e7769e5af970c392618ddd269bf1"
+    },
+    {
+      "path": "docs/v29_baseline_sha256.json",
+      "bytes": 580,
+      "sha256": "b3478f741334f4833ef4a13dd31f701a934bbf98ba84bea8b3fe849019160372"
+    },
+    {
+      "path": "inputs/branch_archives/KinCity_B01_KC34_Complet.zip",
+      "bytes": 28318,
+      "sha256": "119368beaa69138e009b0d06aeb41d327a3e5b96c405dfcaad0c1c9c5283e02a"
+    },
+    {
+      "path": "inputs/branch_archives/KinCity_B02_Ekoh_Contribution_Initiale.zip",
+      "bytes": 27920,
+      "sha256": "802636315b2b82140bf18ca658e63f27565aafe8e6ad5d27e1d7c3b15038ef22"
+    },
+    {
+      "path": "inputs/branch_archives/KinCity_B03_KC34_Grande_Bibliotheque.zip",
+      "bytes": 27921,
+      "sha256": "416f22f354ff4c95144011c5717fa7c5a602ea9159ec3062dc0c68e3f63c8d9f"
+    },
+    {
+      "path": "inputs/branch_archives/KinCity_B04_Campus_UCKK_Contribution.zip",
+      "bytes": 22103,
+      "sha256": "2e9f02dfe8e3cb7045907c403bac7ff01b3dd10f09ff30708d3c7b6c3bac2992"
+    },
+    {
+      "path": "inputs/branch_archives/KinCity_B05_AgoraKorum_KC34_Contribution.zip",
+      "bytes": 38479,
+      "sha256": "4d7903a55d7dd3807c3872de01f3ead80ae819ac26fdce3b28041664ae3e2034"
+    },
+    {
+      "path": "inputs/branch_archives/KinCity_B06_Atelier_Konstruct_Patch.zip",
+      "bytes": 2786486,
+      "sha256": "17d698827a07d49bb3ea62309ba2af09c3f83de9b44440906874cf37e10b2684"
+    },
+    {
+      "path": "inputs/branch_archives/KinCity_B08_Maison_Orgo_Branche.zip",
+      "bytes": 19937,
+      "sha256": "67b2bce29c0bc567bb1cbb040fa039fd1992c136ce4d9e67fa21231f54e5503b"
+    },
+    {
+      "path": "inputs/branch_archives/KinCity_B10_KC34_Premiere_Passe.zip",
+      "bytes": 25483,
+      "sha256": "281328f5ab856499062101f13a53fca159238a34c925174ee9f5c2f27577848d"
+    },
+    {
+      "path": "installer/KinCity_INSTALLATION_TOTALE_v31_9_7.luau",
+      "bytes": 1070693,
+      "sha256": "92ec83801d579242011ae42d20b345cb41a56cda3f481ef7ef34809754611673"
+    },
+    {
+      "path": "installer/KinCity_PREPARER_PUBLICATION_LEGERE_OPTIONNEL.luau",
+      "bytes": 4287,
+      "sha256": "1224c0eaf7785769034417dcff04b49a00f1a5d881b244b0987c88be1a1c25bd"
+    },
+    {
+      "path": "installer/KinCity_RESTAURER_DECOR_OPTIONNEL.luau",
+      "bytes": 1283,
+      "sha256": "095dae7075f59034012685b3261b4d597c184210489f9875d8002879d3d6e411"
+    },
+    {
+      "path": "reference_KC34/BIBLE_KINCITY_REFERENCE_IA_KC34.md",
+      "bytes": 59410,
+      "sha256": "27e6d56a4cd62b58802c9d7fe3d4bebf887b830dc628d51571eef7eb53d14536"
+    },
+    {
+      "path": "reference_KC34/LIRE_EN_PREMIER.md",
+      "bytes": 2554,
+      "sha256": "c589f9096b63c4704980dfc553b745ce0d73447d0542ce4cbd320e676cf0a042"
+    },
+    {
+      "path": "reference_KC34/branches/B01_city_hall.md",
+      "bytes": 4821,
+      "sha256": "1ab6ab33ee4e05b9f5839df99051100b98362d10a0912937424738243177cf51"
+    },
+    {
+      "path": "reference_KC34/branches/B02_ekoh_tower.md",
+      "bytes": 4859,
+      "sha256": "50be4ca78262c2cc70350c5e38b40254e4702a83eead0024d25f6c3c1711d6b4"
+    },
+    {
+      "path": "reference_KC34/branches/B03_library.md",
+      "bytes": 4847,
+      "sha256": "edd4ca828469d8e33d60d27ab6130e7c0001a743a3498729362eba520bd5b2bb"
+    },
+    {
+      "path": "reference_KC34/branches/B04_campus.md",
+      "bytes": 4829,
+      "sha256": "3abd5fc02e210506093d006c407ebfbd14dc23a3274b33b73c903bf40412ac38"
+    },
+    {
+      "path": "reference_KC34/branches/B05_justice_palace.md",
+      "bytes": 4949,
+      "sha256": "089eb00247216fb4ba9e1d8d04eb6fab1eb1d9e33b9cd6ab4f025f5c79f22de2"
+    },
+    {
+      "path": "reference_KC34/branches/B06_innovation_lab.md",
+      "bytes": 4984,
+      "sha256": "00afd321fedb0f8dfe75eec63130435f6e2dfd51409434aa30c1f22af88b2a7b"
+    },
+    {
+      "path": "reference_KC34/branches/B07_museum.md",
+      "bytes": 4804,
+      "sha256": "4d117119f1a77563eaf4a9c6af684c0304ff0f8a348003b24090879d6296a9d4"
+    },
+    {
+      "path": "reference_KC34/branches/B08_orgo_center.md",
+      "bytes": 4876,
+      "sha256": "29d9e686107930b43eea84eabaf824797ad401828b86c2c0acb7e8e9e1d4cddd"
+    },
+    {
+      "path": "reference_KC34/branches/B09_integration.md",
+      "bytes": 4864,
+      "sha256": "31f0cd31b416c7faade73c580d0ce0d206efd7841b64ccf070af0ac89361bb3b"
+    },
+    {
+      "path": "reference_KC34/branches/B10_city.md",
+      "bytes": 4917,
+      "sha256": "bb3d1ce583d669cdafe26c1fb4dd588b3d44f2e3fdd433d7854913645f9126f9"
+    },
+    {
+      "path": "reference_KC34/contrats/empreintes_kc33.json",
+      "bytes": 2506,
+      "sha256": "bd92c50ce40be644a23f84a097d0778cf34a05d25854d726ccdbe9f2a9258591"
+    },
+    {
+      "path": "reference_KC34/contrats/index_machine.json",
+      "bytes": 2250,
+      "sha256": "deafd8c8daa62f5e8ba2e04b36200116c03a62f6f753337bcc599d083adc4f91"
+    },
+    {
+      "path": "reference_KC34/contrats/matrice_portes.csv",
+      "bytes": 2979,
+      "sha256": "4475e5f193ab0b6936e4acd52e0cc43535c00072547e9fe16580321fd91d93bb"
+    },
+    {
+      "path": "reference_KC34/protocoles/PROTOCOL_INTEGRATION.md",
+      "bytes": 3854,
+      "sha256": "d548b231be3c0a960263f09e6d10042e403a1d6dfcac5cc44a60358053c2bb1f"
+    },
+    {
+      "path": "reference_KC34/protocoles/handoff_modele.json",
+      "bytes": 675,
+      "sha256": "8ef7a36704acbd12a3b073389ca1388fa521b7c2bca84d0b33c957c471814303"
+    },
+    {
+      "path": "reference_KC34/protocoles/valider_handoff.py",
+      "bytes": 2286,
+      "sha256": "2fa293d96162462d128aa756d0c0be517f94e5e5a46a1522180a945f7858aa64"
+    },
+    {
+      "path": "reference_KC34/protocoles/verifier_reference.py",
+      "bytes": 2463,
+      "sha256": "64feed1b5dea2d92b46c4285396390d3b5e5df5be85b5c58e3cad1c44c82a5f6"
+    },
+    {
+      "path": "releases/DIAGNOSTIC_SOL_KC35.luau",
+      "bytes": 1210,
+      "sha256": "ccfefec2a1c86493fc10932875c8dd5d20e89b4a273e95c99288237e6a7a6186"
+    },
+    {
+      "path": "releases/GUIDE_KINCITY_IMPORT_CENTRAL_121.md",
+      "bytes": 3809,
+      "sha256": "b0f1731dcf760f693bac8cc5ec82b6dcd0df6f2f2a0ee5ed0138143f3db89208"
+    },
+    {
+      "path": "releases/INSTALLER_KINCITY_KC35_CENTRAL_SAFE.luau",
+      "bytes": 1099139,
+      "sha256": "e660e65ec68c539ccaa66bab9089eda21224371702e19db6e3458c1999ae1564"
+    },
+    {
+      "path": "releases/KC35_ANNULER_CORRECTIF_VISUEL.luau",
+      "bytes": 1645,
+      "sha256": "a2472923bb29caecaeda54548dbdb706077ff13298842a9600a1623da9c970fb"
+    },
+    {
+      "path": "releases/KC35_CORRECTIF_VISUEL_V30_SAFE.luau",
+      "bytes": 5959,
+      "sha256": "feae27e285ee8e63d8d08b366fb7eea56431e75ea3cd99267c0cfd2fc0b48ef5"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "bytes": 184,
+      "sha256": "6596585bee115bcbe05be245edcc9389f1ecc197248fc73c25e050cd94542205"
+    },
+    {
+      "path": "schemas/assets.schema.json",
+      "bytes": 1547,
+      "sha256": "695a0a3f575f28d69695a5b0bd9dade7b07c0e463dc3a82731375225bff9d2e8"
+    },
+    {
+      "path": "schemas/buildings.schema.json",
+      "bytes": 2248,
+      "sha256": "4ef36b6c63cd569a6ca3105deacd017d4afe0164b9c1be87c66ed923caed2c4c"
+    },
+    {
+      "path": "schemas/capabilities.schema.json",
+      "bytes": 1712,
+      "sha256": "21844045f2803a2f29c7c9a8c1fc03e8eff46bdec811b932adeb857c59ec458f"
+    },
+    {
+      "path": "schemas/city.schema.json",
+      "bytes": 1503,
+      "sha256": "73329400fe2062875d9d8c636f4f70732daa1365ed890a791a8017bd8a6c63e6"
+    },
+    {
+      "path": "schemas/districts.schema.json",
+      "bytes": 1436,
+      "sha256": "30019259bc4e7133e11de53a0a2f6183e6ce9553f3742c9ff1830a634c89de67"
+    },
+    {
+      "path": "schemas/doors.schema.json",
+      "bytes": 2058,
+      "sha256": "448ca824c4f130a0d7aa494ed5747cfd1dd4b08c0c11e3eecd41c5791dc567e0"
+    },
+    {
+      "path": "schemas/interactions.schema.json",
+      "bytes": 2049,
+      "sha256": "47f8a4170a5a2b0aa66892966b8b8f38a99c5d688d90161406432a10fff2a1f6"
+    },
+    {
+      "path": "schemas/messages.schema.json",
+      "bytes": 735,
+      "sha256": "6057b05b3be8416372cbeaf732448a6d89c840143dcc99611437a8079e2ebba5"
+    },
+    {
+      "path": "schemas/place_recipe.schema.json",
+      "bytes": 1622,
+      "sha256": "1445e899e094f74a6a807095f5ac639b999d4a2b9bb4bbf6c3980a5b5040e6a6"
+    },
+    {
+      "path": "schemas/places.schema.json",
+      "bytes": 1676,
+      "sha256": "9526c2c7dbf6f499239d3db96930a7cd57eec1d286f6d5a3190ca00b69e9190a"
+    },
+    {
+      "path": "schemas/spatial.schema.json",
+      "bytes": 7010,
+      "sha256": "15c3809340347bc70e4534a0ba1ebe68482dbed3e6c5fa29149a2bc899dbfea1"
+    },
+    {
+      "path": "schemas/style_guide.schema.json",
+      "bytes": 300,
+      "sha256": "6ec917871a8ac3290c7edb3fcebeef3fe480263b752d6f50886d3f73d108b7ed"
+    },
+    {
+      "path": "src/client/ArchipelagoProgressHud.luau",
+      "bytes": 2748,
+      "sha256": "7d8934f73822f3912a5303a371c466a18a58c463381f8e149b1fe03fc9ec0f26"
+    },
+    {
+      "path": "src/client/ArrivalCamera.luau",
+      "bytes": 1901,
+      "sha256": "552a18e52c7db1cc91e36c41d03b40ea020d5077e229bbde00c62715eafa93a2"
+    },
+    {
+      "path": "src/client/ArtDecoLightLOD.luau",
+      "bytes": 2301,
+      "sha256": "399fc87a771f6e938b6e3a9c49c3ad671cceac63ce96aef89cdd17e369277831"
+    },
+    {
+      "path": "src/client/BoulevardBusHud.luau",
+      "bytes": 2793,
+      "sha256": "b9e46a2ec57a662dc062fe188595cb142cf09a812b361d87f768bc807f737771"
+    },
+    {
+      "path": "src/client/CitizenAnimationV21.luau",
+      "bytes": 5596,
+      "sha256": "67089161ac63f4fe3c67272a275316bee1d33ec5891dafb1861c3b470f572b5a"
+    },
+    {
+      "path": "src/client/CooperativeHud.luau",
+      "bytes": 2151,
+      "sha256": "8c0e86596ba110ce3baf6ea9d782d5be1d21062f800ae1cf873e40d7628d33f5"
+    },
+    {
+      "path": "src/client/CrystalDetailLOD.luau",
+      "bytes": 2870,
+      "sha256": "4081014efb33fc17ad6d07c93e43d454ea7311bc2ac936cdd79d99f8afeac8f6"
+    },
+    {
+      "path": "src/client/ExplorationJournal.luau",
+      "bytes": 4068,
+      "sha256": "b014c6c81676b69253db5be746b4ff6d9de48c2525bb6556a2e27c07bed67a52"
+    },
+    {
+      "path": "src/client/FerryGroupHud.luau",
+      "bytes": 3079,
+      "sha256": "ba51d362c8a02e610e402ea7f86673f7e61476d65c8f842635063884b38d16bd"
+    },
+    {
+      "path": "src/client/GalleryJournalV22.luau",
+      "bytes": 6820,
+      "sha256": "9647a571d2ff0562c7558594e9c3b147bf0d3832e2820055594520ebadbf1317"
+    },
+    {
+      "path": "src/client/Hud.luau",
+      "bytes": 4111,
+      "sha256": "1b3e34006eb7c9b5638b1093662baa83a894f38519be9346e49b403c6050de52"
+    },
+    {
+      "path": "src/client/IntermodalPanel.luau",
+      "bytes": 5106,
+      "sha256": "49a277ab0a30820da218581066c7722c5bbaaa5ca7df5ba4b1417b6ee0e1c2c6"
+    },
+    {
+      "path": "src/client/IslandPassportHud.luau",
+      "bytes": 1502,
+      "sha256": "e00ce89f580523697702206b6eb5131b1d9b31f10e984789dae4d5ac0c07e0d9"
+    },
+    {
+      "path": "src/client/KinCityMenu.luau",
+      "bytes": 13530,
+      "sha256": "04e6011c9e8c9848d0438b1b78cf6ac2744536faa228194e8b45189581540a72"
+    },
+    {
+      "path": "src/client/KinCityMusicPlayer.luau",
+      "bytes": 11623,
+      "sha256": "04570860ac148857a762207c23ae847257b3640546998e6a6b199f891773d05d"
+    },
+    {
+      "path": "src/client/KingKlownAura.luau",
+      "bytes": 8124,
+      "sha256": "0fec495fde0343d95b52603fb33770ca6391b396ec8a230c97192d0a9bd1c26e"
+    },
+    {
+      "path": "src/client/KingKlownPerformance.luau",
+      "bytes": 6807,
+      "sha256": "f9b0bc2b682df4e78f56f19e9421826d9c65dd37428abbf86cbdfd0c7f28f675"
+    },
+    {
+      "path": "src/client/LibraryJourneyGuide.luau",
+      "bytes": 9443,
+      "sha256": "e79b48cad1dbf9305452edb250d2a245c32c11cb83bc833e4e8dd6888360e1d6"
+    },
+    {
+      "path": "src/client/LibraryStoryPanel.luau",
+      "bytes": 3473,
+      "sha256": "5ffd47e74e4038b52609c1e98c678343f3ea3e5da9103ce005d518b63190d30d"
+    },
+    {
+      "path": "src/client/LocalPerformanceProbeV29.luau",
+      "bytes": 5500,
+      "sha256": "fe5934cd7ca609ef46c5201f3bcf8948862815eb334c6bff30fc26833ccc2721"
+    },
+    {
+      "path": "src/client/LocalVisualDirectorV22.luau",
+      "bytes": 4329,
+      "sha256": "68374ea3c314c0ead4e55bb5e1149f978698241ebbe46ded8c73869e6d0d5c15"
+    },
+    {
+      "path": "src/client/MapHud.luau",
+      "bytes": 8561,
+      "sha256": "67fdf808f1a445a4e138eac1af2548ba12d05e11ce7d2e3be198454dad7427f1"
+    },
+    {
+      "path": "src/client/OutdoorCinemaClient.luau",
+      "bytes": 2647,
+      "sha256": "a21378ef47eb9f71ab8dde27800236e6658b76d45d3e695e87547061f4e44e78"
+    },
+    {
+      "path": "src/client/PlaceIdentityHudV26.luau",
+      "bytes": 2167,
+      "sha256": "fe5cf804b8fa6546adaa3aa586941eba8994c76508302959e5b0f2c5c7ef2e74"
+    },
+    {
+      "path": "src/client/PlayerBuildClient.luau",
+      "bytes": 14393,
+      "sha256": "f49d2bb4a5edc00165d3559fa37634ffac39cb2c0630251a41800a353d4137d3"
+    },
+    {
+      "path": "src/client/RouteGuide.luau",
+      "bytes": 13248,
+      "sha256": "de054991aa1cb5ea2a8bebcaad39726545dd889801b04e4cfea5f70a92a13072"
+    },
+    {
+      "path": "src/client/SectorHud.luau",
+      "bytes": 3484,
+      "sha256": "9903bdf10ac690bc82545a24d8b01ae304e2eb50842dbdd089ad05f88ee2eaba"
+    },
+    {
+      "path": "src/client/SkyTourHud.luau",
+      "bytes": 3575,
+      "sha256": "77168bf9cf43028d9ae13b7df15e6fefadd9a01ea42e8d20ed0ee22ed48599e8"
+    },
+    {
+      "path": "src/client/TrailHud.luau",
+      "bytes": 1612,
+      "sha256": "4c6cdc5e936128342f12f983db303386cfbf0c3fee0c670d25c233772b22ed39"
+    },
+    {
+      "path": "src/client/TramRideHud.luau",
+      "bytes": 2867,
+      "sha256": "95f83eb49cf9aab47facd30bc95edcab929e0ff11a0b09bacaa0e13c9ae39e82"
+    },
+    {
+      "path": "src/client/TravelTransition.luau",
+      "bytes": 1531,
+      "sha256": "df7fab1cee7d1cdd021f7e30461ebb2b18b071d2b1bff663c4d1bc7c4dac0ca3"
+    },
+    {
+      "path": "src/client/VistaCamera.luau",
+      "bytes": 6558,
+      "sha256": "fb9d509a989edac6c2d92dea681e4962f3cb23c94a29d9f08dd9e8a4df83cb93"
+    },
+    {
+      "path": "src/client/WorkshopHud.luau",
+      "bytes": 3989,
+      "sha256": "d06a34a1c19a1ef81e9e666f14007ec99c5cb2d78e573ce5474709efd7122ada"
+    },
+    {
+      "path": "src/client/init.client.luau",
+      "bytes": 2209,
+      "sha256": "5d1f06644fdfc112651c7590bfac581e3f4a286b06ea337a59bea88f86ca692f"
+    },
+    {
+      "path": "src/server/ArchitecturePlus.luau",
+      "bytes": 7365,
+      "sha256": "5ec6ff62eb50ba857c6e44d0a91ed031d9c1808ce48c68d9c75aca7e160e060e"
+    },
+    {
+      "path": "src/server/ArtDecoAssets.luau",
+      "bytes": 8866,
+      "sha256": "a3e1f1eaa055a3325e0b87990bca4afaf7deb8b2ac5914eadabedb8e21a9126a"
+    },
+    {
+      "path": "src/server/ArtDecoBudget.luau",
+      "bytes": 1895,
+      "sha256": "64164a87af85f6824e1765239924768f8deccfb54b6a510926df3050111b0f35"
+    },
+    {
+      "path": "src/server/ArtDecoBuildings.luau",
+      "bytes": 3663,
+      "sha256": "d8386c4c4930786a7e825f2c65c784d71731ba5044173ba4e1a446c0fc19c990"
+    },
+    {
+      "path": "src/server/ArtDecoData.luau",
+      "bytes": 130593,
+      "sha256": "c0fc1c8bc50bc511d6bf00c6ceefefb98be29fce434f27305b328d8811f69f09"
+    },
+    {
+      "path": "src/server/ArtDecoInteriors.luau",
+      "bytes": 8992,
+      "sha256": "3c454f8d41988caec4122b14d66eb74296dcb007732473fdd2207f86cf957e35"
+    },
+    {
+      "path": "src/server/ArtDecoLayout.luau",
+      "bytes": 6511,
+      "sha256": "046d7689c175965bfb32256f60f980146ce4e8d3a610c979fd8e6c38a21c4fda"
+    },
+    {
+      "path": "src/server/ArtDecoPolicy.luau",
+      "bytes": 1359,
+      "sha256": "bde890727f8a1be52f2dc71483cf60bf452808b8904d20fc462f6c6b4c42bde5"
+    },
+    {
+      "path": "src/server/ArtDecoProps.luau",
+      "bytes": 3269,
+      "sha256": "20e58b02dd6c518739bd15a17498e79de19ff37b32361037494971f05d5953e9"
+    },
+    {
+      "path": "src/server/ArtDecoRooms.luau",
+      "bytes": 1792,
+      "sha256": "f356788fa8087501b6cea2c894e87299df2499adecfcd86137630d6afa6ca535"
+    },
+    {
+      "path": "src/server/ArtDecoSurfacePlan.luau",
+      "bytes": 6663,
+      "sha256": "d0d381958e98a727efff2583185301752755e89e52ffe1abdce3f3cc0b0cc12d"
+    },
+    {
+      "path": "src/server/ArtDecoSurfaces.luau",
+      "bytes": 2232,
+      "sha256": "a5353169b2ba93bec2eaa640cddc389854d702a1379727fb5d0bfc9a372dc5a3"
+    },
+    {
+      "path": "src/server/ArtisanGeometryV22.luau",
+      "bytes": 4885,
+      "sha256": "37fc95b9a4deeb4abeb4de84516d6a577d5c743e88070d36272145a49b8ed1f6"
+    },
+    {
+      "path": "src/server/ArtisanStreets.luau",
+      "bytes": 6374,
+      "sha256": "0fd2c1c86ba723c60bae4e48e59eaa230e5780f3e76aaa7e7a8cb6cbe5b528de"
+    },
+    {
+      "path": "src/server/B01CityHallScene.luau",
+      "bytes": 7625,
+      "sha256": "ddf41004f685a529bd0b245bb8d32cc134d39764fe2caeaade5de404c413ae52"
+    },
+    {
+      "path": "src/server/B01CityHallSpec.luau",
+      "bytes": 3740,
+      "sha256": "e3f281fe927ebbe078509e46a6c861742778e8b6ca8d9a45092c099b4742874c"
+    },
+    {
+      "path": "src/server/B02EkohInterior.luau",
+      "bytes": 11048,
+      "sha256": "ed0d40efb4205e8ea89c7d5651f8543faba971bcb91ff45ff2f1f0c944c42088"
+    },
+    {
+      "path": "src/server/B03LibraryScene.luau",
+      "bytes": 8709,
+      "sha256": "22d3edef8090226eb0557ace53e72d209d70d7f6650ad6df30757c828441b0e5"
+    },
+    {
+      "path": "src/server/B03LibrarySceneData.luau",
+      "bytes": 7220,
+      "sha256": "269671b102d00fd0783d162b9bd17d8eedf6832307ae07ea61498868fee32c8b"
+    },
+    {
+      "path": "src/server/B04CampusDecor.luau",
+      "bytes": 8009,
+      "sha256": "af9540526b1d2b0ec68a337f70ff43521e42a26b4a6bc064a8bf7b942dd74526"
+    },
+    {
+      "path": "src/server/B05KorumData.luau",
+      "bytes": 10648,
+      "sha256": "88aefc15625a2ee7796068d43a0108beed765ff5e38db54266c85ac00ec50843"
+    },
+    {
+      "path": "src/server/B05KorumPreview.luau",
+      "bytes": 5510,
+      "sha256": "369b462725a2397665cedde6f54adc2d435c1322c490957cf0aebf476accb5ec"
+    },
+    {
+      "path": "src/server/B06KonstructScene.luau",
+      "bytes": 9725,
+      "sha256": "9d1e5bd602592561d80c25544b261ddcb9322ab4907b1e62bb59a839f8d206ae"
+    },
+    {
+      "path": "src/server/B07MuseumData.luau",
+      "bytes": 1643,
+      "sha256": "69677a2cf573bd83ba18f8c3f06c8e4d9d40d47653cfcf746d41b98ee88a9add"
+    },
+    {
+      "path": "src/server/B07MuseumScene.luau",
+      "bytes": 2985,
+      "sha256": "d21518713560612f961d55b0f370a06846a0dd828f4a8d68ae66bdb20d7a1c38"
+    },
+    {
+      "path": "src/server/B08OrgoData.luau",
+      "bytes": 9995,
+      "sha256": "65855f43216eda2ed5911ddec55af11d88145daf1375bf9ef0e7648f3228c6b2"
+    },
+    {
+      "path": "src/server/B08OrgoScene.luau",
+      "bytes": 4190,
+      "sha256": "97a2081d4407e0ae4ade710abefbc5008a409c20e36f0a773c26a0b941391e80"
+    },
+    {
+      "path": "src/server/B10Wayfinding.luau",
+      "bytes": 11956,
+      "sha256": "9350ee10037ca448bcfe868964163990dbb2916f3198b16ae91196abbd02a104"
+    },
+    {
+      "path": "src/server/BotanicalKitV20.luau",
+      "bytes": 3406,
+      "sha256": "b1930ad15f07da380287991b60ec33fb6798f08d4afd51cd71b32a10d59d28ed"
+    },
+    {
+      "path": "src/server/BoulevardBuses.luau",
+      "bytes": 14415,
+      "sha256": "c2294def65464f06fb9e1e8a8ffcf10115128381703e9b9013b4ba2f58002f98"
+    },
+    {
+      "path": "src/server/BranchRuntime.luau",
+      "bytes": 4936,
+      "sha256": "13b644b1d3786414780d31cb6d80c06615b08a9166aed797e286bc1a9cb7a58a"
+    },
+    {
+      "path": "src/server/CanonicalInteractions.luau",
+      "bytes": 1770,
+      "sha256": "b8e13e8cc75d550a0cab3a137e54ec9410ad6c337c1d46b889950db8a65141aa"
+    },
+    {
+      "path": "src/server/CitizenPropsV21.luau",
+      "bytes": 3603,
+      "sha256": "f367b36026aeaf85ccbd76c655d412e7be66bf772f4f73a4eb9dbbb6641ee314"
+    },
+    {
+      "path": "src/server/Citizens.luau",
+      "bytes": 12106,
+      "sha256": "fa9158669757700dbb55c413db7289c17ff880da58a3dacd64cab8a30964bc6e"
+    },
+    {
+      "path": "src/server/CityGenerator.luau",
+      "bytes": 11622,
+      "sha256": "49bf6fde1dc5a60d291066b9d716c0bef72c74b90369bf328726de308d5eee2b"
+    },
+    {
+      "path": "src/server/CityGeneratorLegacyV27.luau",
+      "bytes": 7891,
+      "sha256": "9e204fde50febb74086f6b4ab9b8db6c5ec8deed73b10e166e81b8377ec976a8"
+    },
+    {
+      "path": "src/server/CivicStageRuntime.luau",
+      "bytes": 3461,
+      "sha256": "28a1820de67f2a4cd2d9fc27f93ba78285e1ce0826d39401a55798e5fce53811"
+    },
+    {
+      "path": "src/server/CivicStages.luau",
+      "bytes": 5770,
+      "sha256": "a0d5f70e32b3ad3de05bf6cc4be9055744d6254d6219be977e28d2f24ad34046"
+    },
+    {
+      "path": "src/server/CommunityActivities.luau",
+      "bytes": 3850,
+      "sha256": "18d2d393f315a3e7f0006e3e1ebc0d94d8b4dad9ec93c71d178d9e1ef7f97929"
+    },
+    {
+      "path": "src/server/CommunityBuildings.luau",
+      "bytes": 12183,
+      "sha256": "bfcbd5f794ee2773da8eb1f93c6adc51bdf15c0fe89b5b3ea605f85e1bec88b9"
+    },
+    {
+      "path": "src/server/CooperativeInstallations.luau",
+      "bytes": 3813,
+      "sha256": "4a12b26a0ab845f5f42361c2d4e35fa24ccfc2a8c6675c6700c1ee217147b636"
+    },
+    {
+      "path": "src/server/CooperativeRuntime.luau",
+      "bytes": 5677,
+      "sha256": "9e7adfb8eba1be32eaabc683acbc4e4d09efff9ef6343a81c72fe687fe3daa7c"
+    },
+    {
+      "path": "src/server/CrystalEverydayV19.luau",
+      "bytes": 2210,
+      "sha256": "0fb7531c1c60379221d2b9c90cb83cf6408567ab3c4dd96b8c60deb3d7babf20"
+    },
+    {
+      "path": "src/server/CrystalFacades.luau",
+      "bytes": 2135,
+      "sha256": "c752def6e6da5bfd1590d8e1eb16a715f911a6fc67639229154286fae01f261d"
+    },
+    {
+      "path": "src/server/CrystalInteriors.luau",
+      "bytes": 1656,
+      "sha256": "34830e5df5a12cdc531280e0da081e9425a6e24781ba9b5e3ea62ad43e8a37cf"
+    },
+    {
+      "path": "src/server/CrystalKit.luau",
+      "bytes": 5510,
+      "sha256": "79c4429a433301b6eab8aa208b1aacf69e23fe3288d0acc8c762b0309852ff51"
+    },
+    {
+      "path": "src/server/CrystalLandingsV24.luau",
+      "bytes": 2896,
+      "sha256": "02d4d3d662ae117179e39a9a3f7d4185d028bffd701cec4d1eeeebb671a416bc"
+    },
+    {
+      "path": "src/server/CrystalLuminairesV23.luau",
+      "bytes": 2473,
+      "sha256": "57d99c094232cfae473b2e6cbfb23e42ee38d06bebe7505f3c0c48471c112798"
+    },
+    {
+      "path": "src/server/CrystalPorticosV19.luau",
+      "bytes": 6169,
+      "sha256": "52c072c25bf0a0360a6bc4d9aec674dd92edb72f37f8c4f8bec4f06e1142b108"
+    },
+    {
+      "path": "src/server/CrystalPublic.luau",
+      "bytes": 2102,
+      "sha256": "90235cf24ea1cbb1abc6a1e32aa42a5e08aef3b586e085831114d0dc57741fa0"
+    },
+    {
+      "path": "src/server/CrystalRestStopsV22.luau",
+      "bytes": 3504,
+      "sha256": "7dd43b9ac55d3ca9f3ae3702710a43e4dc6437a00f56dcde909b6bfc53bee627"
+    },
+    {
+      "path": "src/server/CrystalRoomStoriesV19.luau",
+      "bytes": 5213,
+      "sha256": "3580141e852fd57f523e57318526e9100952b7a1f46a392e6db5c482a4b1c82b"
+    },
+    {
+      "path": "src/server/DiscoveryLedger.luau",
+      "bytes": 2305,
+      "sha256": "e6efdb8978d3d9eaf53baafc93f3a0cc916e29b486947ca835269e18cb451699"
+    },
+    {
+      "path": "src/server/DiscoveryPromenade.luau",
+      "bytes": 3939,
+      "sha256": "469d5b67ee2f1232c6f092264b94d2372405047c89d41cdc6597c2e11c4bba19"
+    },
+    {
+      "path": "src/server/DistrictChromatics.luau",
+      "bytes": 3086,
+      "sha256": "634b82309a26d6b327fc450ce633652a4dd46eff1775f382f7e137077ba6dd31"
+    },
+    {
+      "path": "src/server/DistrictLandmarks.luau",
+      "bytes": 9819,
+      "sha256": "35dc9dca7c1de34697f449487f12ff441a5becd0fba1d4fea7bf4e3564e04f56"
+    },
+    {
+      "path": "src/server/EkohHalo.luau",
+      "bytes": 6444,
+      "sha256": "6416b975e6a1b379bedd5cbe8462ba41659919c0ec6d449baba2ea15d8a33051"
+    },
+    {
+      "path": "src/server/FacadeDetail.luau",
+      "bytes": 4041,
+      "sha256": "395dfa473f5fc682b8834a40ae10d7e08c3e915c8a8b0c753b136bcdf19a002e"
+    },
+    {
+      "path": "src/server/FacadeGenerator.luau",
+      "bytes": 1208,
+      "sha256": "ba301752a7740a443ef9425460f669528a874f137c33fb4066e1a0fc1970dde7"
+    },
+    {
+      "path": "src/server/Factory.luau",
+      "bytes": 2257,
+      "sha256": "3a3f14209ab09937b25444401fea90ef26df604e55f598f7fae15a57e3462442"
+    },
+    {
+      "path": "src/server/GroundCompatibility.luau",
+      "bytes": 1397,
+      "sha256": "6fcc9bcce277821573681770d1a33b4d2922a5fe4689095cba4552b58b51d6b0"
+    },
+    {
+      "path": "src/server/HarborAndTrailsRuntime.luau",
+      "bytes": 8518,
+      "sha256": "ebd3d22b4a230627e2ed9856e307414835b67098c5ed30475e353f8b9ee83962"
+    },
+    {
+      "path": "src/server/HeritageFacadesV16.luau",
+      "bytes": 6056,
+      "sha256": "63a819c406460904ee1163e467ff24bd3ba2ee0d9f1dab3f5d10667350f06a77"
+    },
+    {
+      "path": "src/server/HexagonalHeart.luau",
+      "bytes": 4381,
+      "sha256": "47d6887775fa2c8f6af39930170643d14453972f3790104e5220655c3f500b72"
+    },
+    {
+      "path": "src/server/InstitutionCraftV20.luau",
+      "bytes": 4291,
+      "sha256": "c82b03ab03d98964e0fec88b4b1bbcdc396d15cc82d422170a35518841a5a8b8"
+    },
+    {
+      "path": "src/server/InstitutionDiscoveryRuntime.luau",
+      "bytes": 4789,
+      "sha256": "fb3392b20c5f49027d54eea4a44f812cfd13c5bdd90ecf0db0988b1e746ecc06"
+    },
+    {
+      "path": "src/server/InstitutionDiscoveryWings.luau",
+      "bytes": 13611,
+      "sha256": "282c36573c2ef8c8f364e826d65a81eb7392b958753ac3f5e270e0197cab780a"
+    },
+    {
+      "path": "src/server/InstitutionExhibits.luau",
+      "bytes": 5399,
+      "sha256": "406e3879b338d7a6a103e1f96cf3297c3a65f784ad7fc36bf96765e27340150c"
+    },
+    {
+      "path": "src/server/InstitutionFacadeKitV24.luau",
+      "bytes": 1945,
+      "sha256": "c49f8e29de2c690b4c903eaeccfb4f2f27f6b05856aa3da926ce6bfcd843d266"
+    },
+    {
+      "path": "src/server/InstitutionForecourts.luau",
+      "bytes": 11055,
+      "sha256": "ca68900ca37c5c8e59bf2e8b3bdb95e3e506388330c92bc3fdc42fbf70ab400e"
+    },
+    {
+      "path": "src/server/InstitutionSkylineV22.luau",
+      "bytes": 4463,
+      "sha256": "0279ac81dc3666631b45b0b864f1f94f551dc65b4a92adaa8a1d1fc5959af2b9"
+    },
+    {
+      "path": "src/server/InstitutionStagecraftV24.luau",
+      "bytes": 5165,
+      "sha256": "e0c9294076ca2dfabb3db49904254feef6226633899db65557218e84a7da0069"
+    },
+    {
+      "path": "src/server/InstitutionStoriesV22.luau",
+      "bytes": 4499,
+      "sha256": "659307496d34decc01a147f217a56c803bfb47f3906b952d1dd18d8c5f047a75"
+    },
+    {
+      "path": "src/server/InteractiveGardens.luau",
+      "bytes": 5152,
+      "sha256": "2269d494758835f54a0abb95a437e6669ffc082f13a3a8718fff18f6c274917f"
+    },
+    {
+      "path": "src/server/InteriorCollections.luau",
+      "bytes": 7631,
+      "sha256": "af92e2b0f9cdf55d2857236a28329545e65bb227484067a9a6ba01d371003d4b"
+    },
+    {
+      "path": "src/server/InteriorGenerator.luau",
+      "bytes": 7957,
+      "sha256": "ef819857c90671f277da344018766b5b344a9bf0a6839f783985bb28a5fc90e5"
+    },
+    {
+      "path": "src/server/InteriorGeneratorLegacyV27.luau",
+      "bytes": 7754,
+      "sha256": "b16afe37bc2f00267e39e0be6de3c4c4ccedbfc15161ff168cb90578682032f4"
+    },
+    {
+      "path": "src/server/InteriorLightingV30.luau",
+      "bytes": 931,
+      "sha256": "7563ffee9244ff46a247c8671d211875a5569c29d739a6c8d303c279a5c5c47d"
+    },
+    {
+      "path": "src/server/InteriorPlus.luau",
+      "bytes": 6668,
+      "sha256": "9430793b6e7e9512e747a4ef9ef22c71da40ddb100035e00cb9142f5b5627f17"
+    },
+    {
+      "path": "src/server/InteriorScenography.luau",
+      "bytes": 2591,
+      "sha256": "962bda9bdecaca42ee6f11a8657712ce8b6e3d0a2cb51c8f2a566f44bb89e0c8"
+    },
+    {
+      "path": "src/server/InteriorWings.luau",
+      "bytes": 2453,
+      "sha256": "a8711b8ebd145e3011101035d4ed5e6fa3d2a99315df2e81bfe4b260724aa0ca"
+    },
+    {
+      "path": "src/server/IntermodalHub.luau",
+      "bytes": 8613,
+      "sha256": "2121b1e78479501a970eb33f96408f774a3d5eabdac97bf0eaf6b60fa155f613"
+    },
+    {
+      "path": "src/server/IntermodalTransfers.luau",
+      "bytes": 2824,
+      "sha256": "c28054ca55a4402cbe9e4d109fb1acc36c177bff6b32ea17804da21cae3ce17e"
+    },
+    {
+      "path": "src/server/IslandAnnexes.luau",
+      "bytes": 9927,
+      "sha256": "4ebeb33fac846c27f8114f69e0f6ac5473e068dba3e8386e663c7ea7f044beb4"
+    },
+    {
+      "path": "src/server/IslandExperiences.luau",
+      "bytes": 4384,
+      "sha256": "cdebf61360e9119e90ec59e77e2d850e162d6f8610e10d09685c5a5e094043b1"
+    },
+    {
+      "path": "src/server/IslandFerries.luau",
+      "bytes": 14885,
+      "sha256": "a5ffecc23685f7d90cbf829337864f68b065b09d1328db8ca2e89b3e65a885c5"
+    },
+    {
+      "path": "src/server/IslandFootpaths.luau",
+      "bytes": 3122,
+      "sha256": "b16727566f0531c44b5be40ce836bd14fc8a1b47353ac86f139d6b8d5b445159"
+    },
+    {
+      "path": "src/server/KingKlownAvatar.luau",
+      "bytes": 18213,
+      "sha256": "38839900f7d33d128cc56a5e85651087513671ed876e19c43d42549aed063384"
+    },
+    {
+      "path": "src/server/KoaliUrbanism.luau",
+      "bytes": 14996,
+      "sha256": "caeddabc12269fd56bfce1f2869311f0267f5983356db65055d40ec2f958fc13"
+    },
+    {
+      "path": "src/server/KreativeThemeRuntime.luau",
+      "bytes": 4001,
+      "sha256": "40f511771e61914f178b3d662b689d9caeb9a2286970b157f3c62afde9921cb9"
+    },
+    {
+      "path": "src/server/LearningConservatories.luau",
+      "bytes": 7215,
+      "sha256": "f90308a91e6714819b1229051ef13b0e4d80156ad5464a5e091becfb134d501c"
+    },
+    {
+      "path": "src/server/LibraryJourneyArt.luau",
+      "bytes": 2860,
+      "sha256": "6eeece2de78471c99d9fc0b7d0cc2f1cdd1c17a03c4434ba8ce4e1dea672e20d"
+    },
+    {
+      "path": "src/server/LibraryJourneyRules.luau",
+      "bytes": 1262,
+      "sha256": "c7333ed0d30c982a203c7d4c234910f63e08bda5c45e29479d8103d6423eafda"
+    },
+    {
+      "path": "src/server/LibraryJourneyRuntime.luau",
+      "bytes": 2896,
+      "sha256": "1375da4d9ae9fac8734c29b6086d984fa0099333eff4a956d9fa790f556ab56f"
+    },
+    {
+      "path": "src/server/LivingExhibitsV23.luau",
+      "bytes": 8920,
+      "sha256": "96b3e9fd7ebade880516a5c7732883cb5e4bfa7ce63bbc61d9a1863d46e5aef8"
+    },
+    {
+      "path": "src/server/LocalMechanisms.luau",
+      "bytes": 2952,
+      "sha256": "3457a0e0883dec2270b0af25b0f9162c31114ef0217dd1429369b68d8be9c057"
+    },
+    {
+      "path": "src/server/MarinaDistrict.luau",
+      "bytes": 8045,
+      "sha256": "f3927306c9b5bf97b33696acf7010a50bcb39fc690e2ea2db38c38369d5c113a"
+    },
+    {
+      "path": "src/server/MaterialLibraryV25.luau",
+      "bytes": 1700,
+      "sha256": "0178a71236f2018b61fa9021eb7d78bbbf3e8decfbf10bc4f264743e561e5e5d"
+    },
+    {
+      "path": "src/server/MuseumBroadcastBarrier.luau",
+      "bytes": 5347,
+      "sha256": "4bf6ac97c0ee380e81cd334a8f6ec28e09404fc7d8315c1362e628d8c10b80cc"
+    },
+    {
+      "path": "src/server/NativeR15Citizens.luau",
+      "bytes": 6464,
+      "sha256": "00d6f7266bc09065e770353341b45d5ced2b815f143fd8e2d8e8ea3d8715ec10"
+    },
+    {
+      "path": "src/server/NeighborhoodNPCNavigation.luau",
+      "bytes": 6153,
+      "sha256": "930892d2e8dec3bef560cfc95b86b7b1cf56ee550389bfe45d61a11cdec4181b"
+    },
+    {
+      "path": "src/server/NeighborhoodRooflinesV22.luau",
+      "bytes": 2210,
+      "sha256": "72b8f909f3a9d0a5b1cbd524a3d7016a049290be2406dd54e2ecba9d184c2892"
+    },
+    {
+      "path": "src/server/Neighborhoods.luau",
+      "bytes": 4908,
+      "sha256": "225b16bc4f2ac913f2c8544f68e777a23518345b48cbcd6fc0e72033a8853c39"
+    },
+    {
+      "path": "src/server/OpalGlazingV22.luau",
+      "bytes": 763,
+      "sha256": "465a3c3c5e530ebd07b33b391eaf20c64c1f538104441c6d6d6a996f8155596f"
+    },
+    {
+      "path": "src/server/OpalWayfindingV19.luau",
+      "bytes": 3413,
+      "sha256": "953372bce7d72502d8f2ff3afd3c05f527a2e3da499e8e3c5dba73f7b746ab78"
+    },
+    {
+      "path": "src/server/OutdoorAtmosphere.luau",
+      "bytes": 3309,
+      "sha256": "c85f23f959fb7f2250b38be1fd032fbae5dc184e59ba9b86e03998fb982c7e15"
+    },
+    {
+      "path": "src/server/OutdoorCinema.luau",
+      "bytes": 6624,
+      "sha256": "fafdae7400e0df5d5bc695624e5f649e5a73a592ccade7eaa1302eff6b3649a1"
+    },
+    {
+      "path": "src/server/OuterIslands.luau",
+      "bytes": 8872,
+      "sha256": "e4dec3f16324484c21943500db2223ab3679889cbab03df282ff1a93dafc5d04"
+    },
+    {
+      "path": "src/server/PedestrianWayfinding.luau",
+      "bytes": 2055,
+      "sha256": "1f3b12372a0cba1fe22814ecd752aa5f51d598b84a293ef8e696e1bb42c23eca"
+    },
+    {
+      "path": "src/server/PendingTravel.luau",
+      "bytes": 774,
+      "sha256": "29dc2a77251ee6e904cba54e07f5c5eb618bd1e5818922d64e2d9c00240f91c4"
+    },
+    {
+      "path": "src/server/PlacePortalsV26.luau",
+      "bytes": 1826,
+      "sha256": "bc44e748244f3bfa83e2dba4bd27d0e5424f74e2018cf43625055eb96c384ecd"
+    },
+    {
+      "path": "src/server/PlayerBuildServer.luau",
+      "bytes": 15952,
+      "sha256": "542ee63c10c0d0821a1ed9f608181e384cc9011c31db6ee1637ba60abf298327"
+    },
+    {
+      "path": "src/server/PlayerTravel.luau",
+      "bytes": 8496,
+      "sha256": "1ce8d26cc8f7c8606f723e697ce897188f0917e98cb732e2762c684bcd984e30"
+    },
+    {
+      "path": "src/server/PromenadeCommerce.luau",
+      "bytes": 7136,
+      "sha256": "7b89ab44a4dcad73481ff0d64d22a46bb6dafd87f58038f448917520f5607e68"
+    },
+    {
+      "path": "src/server/PromenadeCraftRuntime.luau",
+      "bytes": 2503,
+      "sha256": "e263d3bef97b56f9bf72918eada79816ab1b7f9c41ed1a8e72ae5959767abfcd"
+    },
+    {
+      "path": "src/server/PromenadeLife.luau",
+      "bytes": 4277,
+      "sha256": "7480a3cf2b41dad0824f7088cece32d8f2b86098be1cf93aab6873efb927209a"
+    },
+    {
+      "path": "src/server/PromptRouter.luau",
+      "bytes": 4196,
+      "sha256": "2069a8d724714a168d2e3671367d92c4592c8609642ee9b3fb692c3c80554ecc"
+    },
+    {
+      "path": "src/server/PropGenerator.luau",
+      "bytes": 5325,
+      "sha256": "5a0b3fb2101545a2a3f3c89296e8a7f92de8c9f5753d786f866089f9646ab03b"
+    },
+    {
+      "path": "src/server/PublicWorkshops.luau",
+      "bytes": 4899,
+      "sha256": "e1f3e3a4054a961ccda87e3d065e1116326264e73670a0c9d14a8f7b927ec715"
+    },
+    {
+      "path": "src/server/RateLimiter.luau",
+      "bytes": 421,
+      "sha256": "40619cf383f6b4ef4f3eb6f41a4d15ffa36d5febfb653d0cd19c9c4c5ded19df"
+    },
+    {
+      "path": "src/server/ResidentialLife.luau",
+      "bytes": 2155,
+      "sha256": "bf44562c6e379e19f1e4c1a1ef9b761692070ec58823c96e28c56fd1278edeba"
+    },
+    {
+      "path": "src/server/ResidentialQuarters.luau",
+      "bytes": 15155,
+      "sha256": "9d9201420148129fd433a04a13509da418cf715258f63f12259f2813e72e2658"
+    },
+    {
+      "path": "src/server/ResidentialResidents.luau",
+      "bytes": 6891,
+      "sha256": "d888dd135abf9c9fb55e49431686faab8a349065a7f2894575b40a9b52c5c7e0"
+    },
+    {
+      "path": "src/server/ReusableMeshesV23.luau",
+      "bytes": 5324,
+      "sha256": "f50303b8d64a0ebf930a46c8fe3ae44411536b24c5ad1d21411abe9e901447fa"
+    },
+    {
+      "path": "src/server/RooftopGardens.luau",
+      "bytes": 4202,
+      "sha256": "2e43579b91b767ca03c6a35c7bc6c5e569aa5b5ad5ea2548379ffe188ae7b13d"
+    },
+    {
+      "path": "src/server/ScenicCoast.luau",
+      "bytes": 1441,
+      "sha256": "ab7d860f61cc0e508ad8b175c146290b1d58d3ed3ac3a6779b60f424b0c78e93"
+    },
+    {
+      "path": "src/server/ScienceExperiments.luau",
+      "bytes": 3710,
+      "sha256": "894aacd250970134469a691fd4a93719d6a7c9a6e97f9d8ab0c44d47012eedf7"
+    },
+    {
+      "path": "src/server/SculptedFurnitureV23.luau",
+      "bytes": 6976,
+      "sha256": "09d3ae01215142c2fb13e7aa0fdf9c0b16005f9d7973992fadf42cc0d09bc722"
+    },
+    {
+      "path": "src/server/SecondaryArchitectureV25.luau",
+      "bytes": 8359,
+      "sha256": "fdabe8b886475433b7948e34d06566703acbed5d416e80f9a3bc42c9bac06c1c"
+    },
+    {
+      "path": "src/server/SecondaryStreets.luau",
+      "bytes": 3209,
+      "sha256": "f713dafc049ef08be61bd634279edae15a5d3e5273e93239d7899db4f69894d1"
+    },
+    {
+      "path": "src/server/SignEngine.luau",
+      "bytes": 11973,
+      "sha256": "e300abe2e251e7b8c743811ca719786e6be7d1df453d89634e552fc249c1201b"
+    },
+    {
+      "path": "src/server/SkyDirector.luau",
+      "bytes": 1790,
+      "sha256": "888f740e5f615250563e752de713b77b4c78bbc01a5230f842ba8037dc6c3b38"
+    },
+    {
+      "path": "src/server/SkyPavilionRuntime.luau",
+      "bytes": 5137,
+      "sha256": "c9a16d4a4c7032df07ce4d2f6120b8801ed11e55c9f66571315f2a71d8357045"
+    },
+    {
+      "path": "src/server/SkyPavilions.luau",
+      "bytes": 10766,
+      "sha256": "53342ab71324210f31decc7cd9b15130641b3aceeda27b487a8bbd80bf558d89"
+    },
+    {
+      "path": "src/server/Soundscape.luau",
+      "bytes": 3064,
+      "sha256": "3dd7ca556c25a308ec6610a0883fed0edf171964689abc99221f91a477cbe414"
+    },
+    {
+      "path": "src/server/Spatial.luau",
+      "bytes": 3447,
+      "sha256": "b734e51622726749f13d242ecd508f5a07884902289a73f004c457247242262a"
+    },
+    {
+      "path": "src/server/SpecializedRooms.luau",
+      "bytes": 3698,
+      "sha256": "42ab9be0c2b4dd0e3267b87aa6f578b79d9ec33ff111f9145d6d728c25bc7100"
+    },
+    {
+      "path": "src/server/StationArcades.luau",
+      "bytes": 6777,
+      "sha256": "3dfded6bd2d79bc9aa022bc1a2e8d3a979cc619fd7a096b51a2ba8ce7095f7de"
+    },
+    {
+      "path": "src/server/StudioAssetLibraryV24.luau",
+      "bytes": 1796,
+      "sha256": "70f73d1d0ad3fb91c2de729d17e44214213d756c23847eda7e5a29e10f2d865f"
+    },
+    {
+      "path": "src/server/Tramways.luau",
+      "bytes": 11161,
+      "sha256": "99f756fbe4fbf2cc50d49e14dbff15eccbbfb09e3fb5dc56b177c32af7b77bd6"
+    },
+    {
+      "path": "src/server/TransitNodes.luau",
+      "bytes": 2730,
+      "sha256": "0a1f1c00d6cfd84b47b5dd81a2b5867bae9a3a87d8f7a968ae318611873b8f37"
+    },
+    {
+      "path": "src/server/TravelSession.luau",
+      "bytes": 1920,
+      "sha256": "523083ce7ab19bd809c34e5872a380b5ea6bca48ad2d140017377c7a2d0689f5"
+    },
+    {
+      "path": "src/server/UrbanDetails.luau",
+      "bytes": 10918,
+      "sha256": "2c2e8b0c96840c057a98e7513a59058736aa93fb9f583509b52ccb1dac9fe425"
+    },
+    {
+      "path": "src/server/UrbanV14Runtime.luau",
+      "bytes": 6664,
+      "sha256": "a9ada1f79a643e3afb37a3131dd048a2456d57f4754f03274292919d93916ece"
+    },
+    {
+      "path": "src/server/VerticalArchitecture.luau",
+      "bytes": 8430,
+      "sha256": "c0f5c6be783bbe06cea84d072287cdebe167a56b65d3f3f6469634f3707cfd3f"
+    },
+    {
+      "path": "src/server/ViewerPresenceV21.luau",
+      "bytes": 807,
+      "sha256": "2db64c51440e15dc226e68eb01d77ec4d6eb3cff8ffd1a130a1f1342d4f5b331"
+    },
+    {
+      "path": "src/server/WaterfrontDistrict.luau",
+      "bytes": 4512,
+      "sha256": "9f4e08ea6ac9fc51eed3e587ebef583f43d05e445bc8c57858da4bfd45869659"
+    },
+    {
+      "path": "src/server/Wildlife.luau",
+      "bytes": 3389,
+      "sha256": "6f2eae0e41ac8a4dd9df02206258d6a016447701813782bbcbb66dfd5ef5a143"
+    },
+    {
+      "path": "src/server/WorldAmbience.luau",
+      "bytes": 441,
+      "sha256": "4722c465f4630b4c089354d5afce6cec367eb5097864615637d1f2ae360cb588"
+    },
+    {
+      "path": "src/server/WorldBuildDiagnosticsV25.luau",
+      "bytes": 1942,
+      "sha256": "33695ec59a2f00cc9744d9787b7c7afc359a86ccbb083ad07572205fe09906a2"
+    },
+    {
+      "path": "src/server/WorldBuilder.luau",
+      "bytes": 18404,
+      "sha256": "3d810736525df998b0f818fab06a61339237db13962daf43c5c5fcc5040bd9f1"
+    },
+    {
+      "path": "src/server/WorldEditor.luau",
+      "bytes": 3630,
+      "sha256": "c039e563f20a9c0eba4a5f3715f7737ab43f6be800ab6543bfdbadefeff0688b"
+    },
+    {
+      "path": "src/server/init.server.luau",
+      "bytes": 4058,
+      "sha256": "eccb792f8c3572ff7705557a63e68958ec48c8b187f0724614dda6bddc663b70"
+    },
+    {
+      "path": "src/shared/ArtDecoLightPolicy.luau",
+      "bytes": 616,
+      "sha256": "cd1b3ea43386dd027955b76f48626da28aa7789eea092fd383b343a9ed735923"
+    },
+    {
+      "path": "src/shared/ArtDecoTheme.luau",
+      "bytes": 387,
+      "sha256": "5a880bc148b63aa58d3c44dae2d5d4b0e4a29e91a94b0655df3c1f54f15f4966"
+    },
+    {
+      "path": "src/shared/AudioManifest.luau",
+      "bytes": 619,
+      "sha256": "e4dbccf4b9279fc11fb7fa817da55edeb956cf2d2914876e73df5c16528b8d56"
+    },
+    {
+      "path": "src/shared/BoulevardRoutes.luau",
+      "bytes": 875,
+      "sha256": "2d47a1e8881a5ddb3632e3ab7821d0c4e2b43a4119ae2b03f16a30fce139cf9a"
+    },
+    {
+      "path": "src/shared/BuildIdentity.luau",
+      "bytes": 385,
+      "sha256": "de367aca5375fcdaedfe50a3b056d84748f1b74d2d9b8da6e9946e140b42f3bf"
+    },
+    {
+      "path": "src/shared/Buildings.luau",
+      "bytes": 3711,
+      "sha256": "cb5425b4475b197805b6e2d91df85855299dd436f9da53484fcbddcc25e6ae6c"
+    },
+    {
+      "path": "src/shared/CivicDestinations.luau",
+      "bytes": 1153,
+      "sha256": "d7154eb20afcff1b6aecf709386beb7aaf0722d48aa349432024de2d730fdde1"
+    },
+    {
+      "path": "src/shared/CommunityDestinations.luau",
+      "bytes": 1968,
+      "sha256": "835f22f2e80ecebdcb2be6a1aff37251c3afc28ab5288796683193f674b38378"
+    },
+    {
+      "path": "src/shared/CrystalTheme.luau",
+      "bytes": 1573,
+      "sha256": "677e87397d752fc5b93721fcdfce43cca03fde52e7fd454b1d8f55d6f868d38f"
+    },
+    {
+      "path": "src/shared/HexagonalDistricts.luau",
+      "bytes": 3196,
+      "sha256": "9e3c229c02169daad0fc776c24a3860c99f052c4b0f99f39eb0b0a9fd120bc2d"
+    },
+    {
+      "path": "src/shared/InteriorOrigins.luau",
+      "bytes": 585,
+      "sha256": "98248ef2e602e2e9f5a8536b07b597aa1fbf3c7e3ec58efa1bc9bad6c9f628eb"
+    },
+    {
+      "path": "src/shared/IntermodalNetwork.luau",
+      "bytes": 1756,
+      "sha256": "16f509f04c5b234a07a89c9d5269ef3b5227dc61683d6b5e09faf4b6e8a35f7f"
+    },
+    {
+      "path": "src/shared/IslandDestinations.luau",
+      "bytes": 1617,
+      "sha256": "643d9cbd520e89ef144c8447d8ca30e441310edb691bf77a39d15afd7b5a280a"
+    },
+    {
+      "path": "src/shared/JourneyPath.luau",
+      "bytes": 1571,
+      "sha256": "d5b607de35896ebbe1e298afb52996ee07e6056a61ddf646c59efb2a6a05a975"
+    },
+    {
+      "path": "src/shared/KingKlownConfig.luau",
+      "bytes": 217,
+      "sha256": "9028e42b12b18f3998aee7c19118741d319a34a89cdd8150aab5577fada3f1b5"
+    },
+    {
+      "path": "src/shared/LibraryJourney.luau",
+      "bytes": 2261,
+      "sha256": "31d04361be5cf04b8024c91cd7f3deb1548f129088580be5593c7dffc5d7eb3d"
+    },
+    {
+      "path": "src/shared/MarinaDestinations.luau",
+      "bytes": 595,
+      "sha256": "e48a27f21697705cb383b6af003dccba18e8ae5aa445f1702dd9e1925e8d92e1"
+    },
+    {
+      "path": "src/shared/MeshManifest.luau",
+      "bytes": 705,
+      "sha256": "1f4838e40e7d64c0a1b20276d4111369281e80860ea85c7845bc3159ec1b17cf"
+    },
+    {
+      "path": "src/shared/Messages.luau",
+      "bytes": 839,
+      "sha256": "caad91a861abb34cdbf321e35af9299cbbc360c65fbb325649a347bc86d3c88a"
+    },
+    {
+      "path": "src/shared/MusicAssetIds.luau",
+      "bytes": 2568,
+      "sha256": "bef4444b24dd9a84f0736d80064b312c1cf2a3e880c0f17a92a8d0905fde6b3d"
+    },
+    {
+      "path": "src/shared/MusicLibrary.luau",
+      "bytes": 16868,
+      "sha256": "caed5a62dc70026d069c95b424ee9fd0af41be58ac25159bb6a1092c0c45d291"
+    },
+    {
+      "path": "src/shared/PlaceRouting.luau",
+      "bytes": 360,
+      "sha256": "3550a7d229a41c554c85a0fff3706c35a86c3e87d47cafe6d74d81302bd8f2fa"
+    },
+    {
+      "path": "src/shared/PromenadeCommerce.luau",
+      "bytes": 3098,
+      "sha256": "83d4ad3fa87143199ea57b427a30f9f0d97af0dd16b7a3f2703fbb989840d644"
+    },
+    {
+      "path": "src/shared/PublicDestinations.luau",
+      "bytes": 1122,
+      "sha256": "6ec35816b773df600c2ff936107b995edfbb25b9bfcaca804dcd2de03d0847be"
+    },
+    {
+      "path": "src/shared/ResidentialDestinations.luau",
+      "bytes": 1071,
+      "sha256": "f29b18d49842b4f48dd69b554ff71e7a26cc666bbdc4b508e33b734769d22ad2"
+    },
+    {
+      "path": "src/shared/RuntimeConfig.luau",
+      "bytes": 185,
+      "sha256": "715559f5aea45aa26c7eed64fcf5fab3b412b3a64ed89bb2b9510d8b3aefc17e"
+    },
+    {
+      "path": "src/shared/SignTheme.luau",
+      "bytes": 3094,
+      "sha256": "979be31f57230a907846a7078b5e3a4c17b928198a4fd7a73f943ab7e8159cfc"
+    },
+    {
+      "path": "src/shared/Typography.luau",
+      "bytes": 773,
+      "sha256": "64a094fd26469b6dea77f80a7fecb89236887b8c494c15b6cfeed1fc640589c7"
+    },
+    {
+      "path": "src/shared/UrbanV14Destinations.luau",
+      "bytes": 1829,
+      "sha256": "46641ee3bf0c20aa0d60ae5ace629a8c5e3e99d60bd7184ca3ea712bf3ece392"
+    },
+    {
+      "path": "src/shared/VisualConfig.luau",
+      "bytes": 424,
+      "sha256": "efedb4a11ea76385b171821a88d32bb6990802054cd74320ecc0a3bd1ee5e087"
+    },
+    {
+      "path": "src/shared/WorldPlan.luau",
+      "bytes": 90598,
+      "sha256": "1a5796cd3f79ed72009e41ce4a68ff52e3fa5fcce3c110bb647ae0759ce0fcf0"
+    },
+    {
+      "path": "studio/PrepareArtDecoLibrary.luau",
+      "bytes": 16870,
+      "sha256": "86ab2c48c28dfde65f39e17def598ed53f4a0c09af647da99b17db890066e726"
+    },
+    {
+      "path": "studio/RunArtDecoChecks.luau",
+      "bytes": 7561,
+      "sha256": "b1ea03f109123f1856339bab4d5b496cbf2b56ac0b03a0e1842efd00187d45ec"
+    },
+    {
+      "path": "tests/fixtures/art_deco_invariants.json",
+      "bytes": 2687,
+      "sha256": "7d5882fde166ecffc90a94ac75edd0dc95030cc1accbf2070ba474a6f4079c7d"
+    },
+    {
+      "path": "tests/test_art_deco.py",
+      "bytes": 6450,
+      "sha256": "d1d7a24e339719fc20a9eedf61878c546650e2b5391295cd76500aa912dac839"
+    },
+    {
+      "path": "tests/test_art_deco_architecture.py",
+      "bytes": 6702,
+      "sha256": "7cf3e90948c771858bc99c77816f46dc34ffe451a040567f718e1e849566cf9f"
+    },
+    {
+      "path": "tests/test_art_deco_full_refactor.py",
+      "bytes": 7957,
+      "sha256": "4723880cd51e6fc6a270a854f8b3954acbbab70bfb4af05ca128de6b714f8b84"
+    },
+    {
+      "path": "tests/test_art_deco_import_mapping.py",
+      "bytes": 3888,
+      "sha256": "5e9298f1882d3cc7704d6084e587725126f6d77df5994ed6a757d754a14d644b"
+    },
+    {
+      "path": "tests/test_b07_broadcast_integration.py",
+      "bytes": 1285,
+      "sha256": "c1dbd6ec0d0b88cc7fb7dedb61348249360372ddcedb542d9b64a9831602da6f"
+    },
+    {
+      "path": "tests/test_b09_consolidation.py",
+      "bytes": 3017,
+      "sha256": "46af6737f86ec0a92536b4fc21448777939ddfa8cdbe4d49be43b06b02b374bc"
+    },
+    {
+      "path": "tests/test_b09_integration.py",
+      "bytes": 9050,
+      "sha256": "038c4c5b1d3c976748cc9615f2a2b5e136f2c580ac27e0a7dddce172895effb4"
+    },
+    {
+      "path": "tests/test_clean_install_v31_9_7.py",
+      "bytes": 2903,
+      "sha256": "4fef17d1d04d200ab652c08cbc8e540589a1a8cd5b0475aa50172b8c0a85ef8b"
+    },
+    {
+      "path": "tests/test_gallery_menu_v31_1.py",
+      "bytes": 1701,
+      "sha256": "4bd708229eda919a645869208a993e006a98f5b5d50dc97421ce5d2a8be29fcd"
+    },
+    {
+      "path": "tests/test_kc35_integration.py",
+      "bytes": 4804,
+      "sha256": "b7746e1d7409cd9723d730f20cba37f2dd9cf2142c1fe1edc4a7e80eacb667af"
+    },
+    {
+      "path": "tests/test_koali_urbanisme_v31.py",
+      "bytes": 3515,
+      "sha256": "36548dae42b66ef41c5d0c703f6b3fb968b878b25cc42038a395c2d573a09cfe"
+    },
+    {
+      "path": "tests/test_runtime_generation.py",
+      "bytes": 4408,
+      "sha256": "1033a78597c3d64985752ef2a49f1d6924afe147986e12aae01e9294812d1728"
+    },
+    {
+      "path": "tests/test_v31_9_1_editor_boot.py",
+      "bytes": 1702,
+      "sha256": "c2c75f64bd8e7a9a73a4350e7d65ea80d54dc257807f4dc769539a87b5ff5798"
+    },
+    {
+      "path": "tests/test_v31_9_3_outdoor_cinema.py",
+      "bytes": 2955,
+      "sha256": "9a0f76a55204170c92fb0fd528c8d0f2dbe96f573711df6227436d941339bd37"
+    },
+    {
+      "path": "tests/test_v31_9_5_music_repo.py",
+      "bytes": 3803,
+      "sha256": "2b3bcd9303607169625ce56e49ecbe8bf2f9833617a41291f838e1fe2e6e5376"
+    },
+    {
+      "path": "tests/test_validation.py",
+      "bytes": 2988,
+      "sha256": "b259971478ab0acd701b814f7914f07bd1f6d904a6845be7b79c0022ae6a9985"
+    },
+    {
+      "path": "tools/AGENTS.md",
+      "bytes": 529,
+      "sha256": "b8789b0092dacd3abc20eb06d26b326f6c0b04d30ae6c1d956810e5c08365229"
+    },
+    {
+      "path": "tools/art_deco_catalog.py",
+      "bytes": 6006,
+      "sha256": "59a7bc9ab89483192eeb64f55e32dee0bd78edb225c572f06daba50aff05b5bb"
+    },
+    {
+      "path": "tools/art_deco_context_manifest.py",
+      "bytes": 1248,
+      "sha256": "d2fbf7f9e39dd27d0074aea61eceeeb8cd7659261a006467e48a765492d0ffb2"
+    },
+    {
+      "path": "tools/art_deco_scene_audit.py",
+      "bytes": 5683,
+      "sha256": "20cd0c7145a5c63afe490ee3838548468064ce6d305a705e2aaddc385d06f7e5"
+    },
+    {
+      "path": "tools/audit_art_deco_glb.py",
+      "bytes": 3048,
+      "sha256": "5d759e123b0121cc44f85781dd309a137670af9cc94645055442ea7d4dafc04b"
+    },
+    {
+      "path": "tools/b09_bundle_branches.py",
+      "bytes": 2594,
+      "sha256": "194f1edf25d5c2c9184b33304209125f98f1c0758d29a9da2d1e105aa8023d0f"
+    },
+    {
+      "path": "tools/b09_contracts.py",
+      "bytes": 14239,
+      "sha256": "8aa0c88544987fc077e740739e2ae1fa373b8e2cf1d609adede63bb0cf09c137"
+    },
+    {
+      "path": "tools/b09_intake.py",
+      "bytes": 2014,
+      "sha256": "4b54fac9d6ef3c1b386254754efd4ca12a0df25dbce2cde249f1fae9e35b4a82"
+    },
+    {
+      "path": "tools/b09_recipes.py",
+      "bytes": 2245,
+      "sha256": "efb8de885dc0061f563d09d238866526fbab27a9fe9b11079eb8548d9d861c73"
+    },
+    {
+      "path": "tools/b09_replay_branch_tests.py",
+      "bytes": 3982,
+      "sha256": "8e9e2b7018c80f9a4e96c4bd12a600335f324cfd043b0084d4c67b4d42ddf5c9"
+    },
+    {
+      "path": "tools/b09_staging_audit.py",
+      "bytes": 3318,
+      "sha256": "e5e3aa77cf980e7129e5ae1f535a1e1856349ea659ea5e7d63450105b3eb3d54"
+    },
+    {
+      "path": "tools/b09_verify_consolidation.py",
+      "bytes": 4371,
+      "sha256": "73563c4aa5edfb9dd95b26348003c890a84bb56a410b9b2fcffef39600bb7a8b"
+    },
+    {
+      "path": "tools/build_imported_test_installer.py",
+      "bytes": 2955,
+      "sha256": "00f77eb092a94937533a170170dc2c91ca27b8ea15e7eefb9a0c6af195d02a69"
+    },
+    {
+      "path": "tools/build_release.py",
+      "bytes": 1923,
+      "sha256": "84258e64457b0e33af741a812e9fab3bef8c70b7a21e5246406e7c70640d73de"
+    },
+    {
+      "path": "tools/build_staging_kc35.py",
+      "bytes": 1970,
+      "sha256": "30f7db03e95f2f8dea14a6d70b8d3a1ac4db860cfad7bdac9e8e205b6a9ef88d"
+    },
+    {
+      "path": "tools/build_staging_places.py",
+      "bytes": 8495,
+      "sha256": "a2da0ff6bcd038ba2339a8674ae586ffec4e5f59409deb30f56ef185f6a4c5d3"
+    },
+    {
+      "path": "tools/check_luau_structure_v29.py",
+      "bytes": 2322,
+      "sha256": "79296090a1bd0d81adb692fb0bba8e53e827e09c80e8dc1938295c4b6a355a95"
+    },
+    {
+      "path": "tools/check_luau_syntax.py",
+      "bytes": 622,
+      "sha256": "339c178f14f3d595dd524f5f01fa24c077257f20c588eb4f2cea76ad360f32b5"
+    },
+    {
+      "path": "tools/compile_plan.py",
+      "bytes": 5595,
+      "sha256": "998087032594d9ff3216dfa90ce3ec0126d90d545914efd069c44b96b07c4d0f"
+    },
+    {
+      "path": "tools/enhance_residents_v14.py",
+      "bytes": 3142,
+      "sha256": "7957d634e1ea27fd59683b840a6c98742c49688c015d87c3899421090d0ebbcd"
+    },
+    {
+      "path": "tools/export_roblox.py",
+      "bytes": 6639,
+      "sha256": "337bf6dd345af4ca97abd840007ac15a4c77379a4bbd5ecf1e0ebcb2075bbfba"
+    },
+    {
+      "path": "tools/extend_v14.py",
+      "bytes": 3838,
+      "sha256": "9dbb532f4f8d4bc10cf7ceb42f026df4f192969177047873881a8f62ec4ed691"
+    },
+    {
+      "path": "tools/generate_v23_materials.py",
+      "bytes": 3473,
+      "sha256": "aa9307dfe0a52b4afda27f37358d0cf0b4b9ff83c4a132e3c76758fb0f665b67"
+    },
+    {
+      "path": "tools/generate_v23_meshes.py",
+      "bytes": 5345,
+      "sha256": "1dbc53c76192b8202d4e9f5b1f91f249c4d04a3f4b3fcc5f88a0ca3079eedb77"
+    },
+    {
+      "path": "tools/generate_v23_soundbeds.py",
+      "bytes": 2525,
+      "sha256": "aadcbd06d8fc76e2303a557c53bde16ef9918773a869093c5f5081e6ddef7061"
+    },
+    {
+      "path": "tools/generate_v24_meshes.py",
+      "bytes": 3808,
+      "sha256": "9a075e624104f8ce7d0d84988a1a85e75d2c473783b59fb3231fa8b203a6376f"
+    },
+    {
+      "path": "tools/generate_v25_meshes.py",
+      "bytes": 3436,
+      "sha256": "d83b892b4c304458102782cf2673243ea3130a5fc3f980c0e18738be02052249"
+    },
+    {
+      "path": "tools/generate_v28_meshes.py",
+      "bytes": 2236,
+      "sha256": "d1691e3c5b518ca9b70f4cc6faa6a58408b1ff685e8e4aebc7a44c0d653db85b"
+    },
+    {
+      "path": "tools/make_art_deco_library_tools.py",
+      "bytes": 5850,
+      "sha256": "b91eae54db83019103ad43babaa31fb6a7c4d389f31fd72f8b162995cf414088"
+    },
+    {
+      "path": "tools/make_king_klown_installer.py",
+      "bytes": 2516,
+      "sha256": "10bdb4f9e1935dc661610859d820f81887dfdbfc70645a72cb0a4febdd48b0ff"
+    },
+    {
+      "path": "tools/make_outdoor_cinema_patch.py",
+      "bytes": 2493,
+      "sha256": "4eb45c67cac17904914d02bee9e569541fc81b888c492283d4e43031d9aab4d6"
+    },
+    {
+      "path": "tools/make_sound_assets.py",
+      "bytes": 2007,
+      "sha256": "59c8d7e29326c6b58eea350c087d2b94d0ab447bded15eb32829a29e83bf8ac4"
+    },
+    {
+      "path": "tools/make_studio_installer.py",
+      "bytes": 6730,
+      "sha256": "76c4c300c379d5be023c914e75a643bcba2d5a28b7ce39f2f2adfc546151ff4c"
+    },
+    {
+      "path": "tools/make_universe_recovery_installer.py",
+      "bytes": 7852,
+      "sha256": "44bfa94db2350d1fad10e860618fe6d6e11360ca5b424cd71d74ae3514353584"
+    },
+    {
+      "path": "tools/package_art_deco_release.py",
+      "bytes": 4302,
+      "sha256": "9a113b12c689d99fd5769713befb01d13a54d9f8ddb372265b935ce490ff56a9"
+    },
+    {
+      "path": "tools/package_kc33.py",
+      "bytes": 1973,
+      "sha256": "da9a724ca8e1b2eca005686d5ef544e93d431a5b8ea81846711ba02c4fd08548"
+    },
+    {
+      "path": "tools/validate_catalog.py",
+      "bytes": 6100,
+      "sha256": "d5d5cd47b870f48d6e1033341c5c895fedaacca73e35eaddfde995368212d9d8"
+    },
+    {
+      "path": "tools/validate_spatial.py",
+      "bytes": 9280,
+      "sha256": "99083bbe631574f411310efba00f1df4743ca856a9ed4daf6e24794b70694ec5"
+    },
+    {
+      "path": "tools/validate_v28_journey.py",
+      "bytes": 2020,
+      "sha256": "f81a59662b35f11629775ed7ffe133bbf8993130d3aab8369a48f8869c181bab"
+    },
+    {
+      "path": "tools/verify_kc33_upgrade.py",
+      "bytes": 6098,
+      "sha256": "f5a098f0a431e9fa939f4ff903f35e357f1b23c2bfd0e057e28247507ddf8a21"
+    }
+  ]
+}

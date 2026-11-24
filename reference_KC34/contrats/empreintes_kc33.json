@@ -1,0 +1,30 @@
+{
+  "reference_version": "KC34-DOC-1.0",
+  "baseline": "KC33",
+  "sha256": {
+    "catalog/city.json": "b11705a2899e862ee400d9adce4573eba97e9a4415975572791e5990b9500d0c",
+    "catalog/districts.json": "22a1ce77e045c7530d3be23e0baca713d50a33d75d174ba78e079b49a9fc834a",
+    "catalog/buildings.json": "8e563e8fc6502858cae9f0bea6e2e5fd3942d4395f353fa5decc7fc90a7fc798",
+    "catalog/places.json": "dd5f8812b2cecbd4010464ddc762df8a1267fb58fc6f60e1381b62c7ae2df901",
+    "catalog/doors.json": "b6f1e5bfcdd12e27a08a74bf2a54254e1956108df573b4f102cd74c3a85f9a0a",
+    "catalog/spatial.json": "3c75d20a368f686cedf2fd2b4837668d7af91fa39f9dc6e0378ee742b444584c",
+    "catalog/interactions.json": "eda0f6458f1fcc4443f46e05a20ea419f2a08bc7ba9eb443701798211ef74ca8",
+    "catalog/assets.json": "b307e95c870bc86056daa6a0c11e8b372d24e46725f4f014c19440408c7e283c",
+    "catalog/art_deco_assets.json": "525a2389d06d13b41f252f337cc08ff71fd9c45edded88b9f1772e1eb6a8d6cb",
+    "catalog/art_deco_contexts.json": "aad291f689bd476c49eaea86546d24eadb27613ba0c377ff757210bafc781fe5",
+    "catalog/art_deco_placements.json": "820eaba582b9e25268cd83749b700812e3806c647dfd54ad9846eebc4e71063e",
+    "catalog/style_guide.json": "b744e072ac7a2a65afcf3a74e095a9cad64a1a329f49075cc4f839d85211820b",
+    "config/runtime.json": "2becd8a8053085ebb1da3c0fdca13f76d4e2cbbe44f42a528823b6285c68f19e",
+    "config/place_ids.json": "a11327dce842a42412f3be7f0c9842b7e22bb0b14fbb06d1ad25cf8c10816f11",
+    "config/interior_origins.json": "9113805e2e0d029a93461792614f3d23aeb8751f9724291c3046c891449431d1",
+    "config/art_deco.json": "cd24369a39acf56ff1f29682822ce116ae94d3b1a7fbabd7d49436d81a832da1",
+    "config/visual.json": "57feee8dd7af148ccb675a66d3a35f3030cdabfd58ff65bd0f2db6ec758bb29b",
+    "build/world-plan.json": "30d24a66b006b373815eb43ec82e26fa89bbe333b2d761dcaca1fe334434d1c7",
+    "src/shared/HexagonalDistricts.luau": "9e3c229c02169daad0fc776c24a3860c99f052c4b0f99f39eb0b0a9fd120bc2d",
+    "src/server/PlayerTravel.luau": "1ce8d26cc8f7c8606f723e697ce897188f0917e98cb732e2762c684bcd984e30",
+    "src/server/InteriorWings.luau": "a8711b8ebd145e3011101035d4ed5e6fa3d2a99315df2e81bfe4b260724aa0ca",
+    "src/server/WorldBuilder.luau": "3d810736525df998b0f818fab06a61339237db13962daf43c5c5fcc5040bd9f1",
+    "tools/build_staging_places.py": "a2da0ff6bcd038ba2339a8674ae586ffec4e5f59409deb30f56ef185f6a4c5d3"
+  },
+  "purpose": "Détecter les écarts; un changement n’est pas automatiquement interdit mais doit être approuvé par B09."
+}

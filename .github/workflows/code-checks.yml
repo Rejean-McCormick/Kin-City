@@ -16,13 +16,11 @@ jobs:
         run: |
           python tools/validate_catalog.py
           python tools/validate_spatial.py
-      - name: Generate assets, Luau and check all tests
+          python tools/art_deco_catalog.py
+      - name: Rebuild official test installer and test sources
         run: |
-          python tools/generate_v23_meshes.py
-          python tools/generate_v24_meshes.py
-          python tools/generate_v23_materials.py
-          python tools/generate_v23_soundbeds.py
-          python -m unittest discover -s tests -v
           python tools/build_release.py
-      - name: Ensure generated files are committed
-        run: git diff --exit-code -- src/shared/ build/world-plan.json build/release-manifest.json KinCity_Installer_CommandBar.luau KinCity_Installation_Directe_v26.luau KinCity_Installation_Place_*_v26.luau build/place-package-plan.json
+          python tools/art_deco_scene_audit.py --output build/art-deco-zone-audit.json
+          python -m unittest discover -s tests -v
+      - name: Ensure release artifacts are reproducible
+        run: git diff --exit-code -- src/shared/ build/world-plan.json build/art-deco-zone-audit.json build/release-manifest.json installer/

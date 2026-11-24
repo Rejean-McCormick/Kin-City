@@ -1,0 +1,1 @@
+B02EkohInterior.luau: analyse lexicale des délimiteurs PASS; vérification syntaxique Roblox Studio et tree-sitter NON exécutée.

@@ -1,0 +1,78 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B08",
+  "place_key": "orgo_center",
+  "baseline": "V3_ORIGINAL",
+  "baseline_sha256": "6696d12dc6c9fefd845e9180a11c4f9412ea439989ef97bd0ef35eb091192798",
+  "target_baseline": "KC33",
+  "target_contracts_version": "KC34-DOC-1.0",
+  "contracts_version": "KC34-DOC-1.0",
+  "change_class": "LOCAL",
+  "status": "BLOCKED",
+  "reason": "KC33/B09 base not mounted; V3 original only. Rebase mandatory.",
+  "changed_files": [
+    {
+      "path": "contrib/places/orgo_center/asset_plan.json",
+      "sha256": "6840044425ce785c82085fa36c6c936d68c84802ac9a5022272555e43e5924bc"
+    },
+    {
+      "path": "contrib/places/orgo_center/docs/README_B08.md",
+      "sha256": "5ee543708ae1fb816d54e9a8dd2be94b9e74ad5a451477f522c6c6f8ad87f3f7"
+    },
+    {
+      "path": "contrib/places/orgo_center/docs/TESTS_B08.log",
+      "sha256": "c9017b44a4a98808f639437466008e4b464deda6fe7b97672562a5f22dff68c2"
+    },
+    {
+      "path": "contrib/places/orgo_center/recipe.json",
+      "sha256": "ae9e238bd5fff94de0d98aad7dfbe8971bc107d645685fa1c150d7888235efaa"
+    },
+    {
+      "path": "contrib/places/orgo_center/scene_recipe.json",
+      "sha256": "4a9824469210930fe72d37cfe58f2af40ed3c332bb71836b8bceccc93a11dcef"
+    },
+    {
+      "path": "contrib/places/orgo_center/src/generate_preview.py",
+      "sha256": "f124870e0465c9ee1495d15dcad7481d20dc9e146ace8a3e452f22554b8f0907"
+    },
+    {
+      "path": "contrib/places/orgo_center/studio/B08_STUDIO_PREVIEW_LOCAL.luau",
+      "sha256": "026acbcb07df447cb11c451d4aa7c2c6c1a1fa1a83778cc29059ee41afac9d49"
+    },
+    {
+      "path": "contrib/places/orgo_center/tests/test_b08.py",
+      "sha256": "1f6d91ec24f950bdccd9e95245fec41b5fabf74009dac26f2e3145b5b9cda9d5"
+    }
+  ],
+  "contract_changes": [],
+  "tests_executed": [
+    {
+      "name": "B08 16 offline static+lexical tests vs V3",
+      "result": "PASS",
+      "evidence": "contrib/places/orgo_center/docs/TESTS_B08.log"
+    }
+  ],
+  "tests_not_executed": [
+    "KC33/B09 rebase",
+    "Roblox Studio playtest",
+    "Roblox client teleports",
+    "Performance mobile",
+    "Full Luau compiler"
+  ],
+  "risk": [
+    "Scene visuals not tested in Studio",
+    "Possible overlap with KC33 decoration revisions",
+    "Commercial meshes only proposed, not integrated"
+  ],
+  "needs_approval": [
+    "B09 review and rebase onto real KC33 before merge"
+  ],
+  "rollback": "Supprimer uniquement le Model B08_OrgoDecor_V1 de l’intérieur Orgo; retirer les fichiers sous contrib/places/orgo_center.",
+  "performance": {
+    "measured": false,
+    "device": null,
+    "profile": null,
+    "metrics": {}
+  },
+  "implementation_status": "LOCAL_STUDIO_PREVIEW_NOT_RUNTIME_INTEGRATED"
+}

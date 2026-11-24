@@ -12,10 +12,10 @@ end
 local function segment(parent,a,b,section)
     local d=b-a
     local frame=CFrame.new((a+b)*0.5)*CFrame.Angles(0,-math.atan2(d.Z,d.X),0)
-    decal(parent,"Tracé "..section.name,Vector3.new(d.Magnitude,0.18,2.0),frame,
+    decal(parent,"Tracé "..section.name,Vector3.new(d.Magnitude,0.10,2.0),frame,
         section.color,Enum.Material.SmoothPlastic).Transparency=0.16
-    decal(parent,"Fil sarcelle",Vector3.new(d.Magnitude,0.22,0.31),
-        frame*CFrame.new(0,0.12,0),Palette.base,Enum.Material.Neon)
+    decal(parent,"Fil sarcelle",Vector3.new(d.Magnitude,0.10,0.31),
+        frame*CFrame.new(0,0.09,0),Palette.base,Enum.Material.Neon)
 end
 function Chromatics.make(city,plan)
     local root=F.folder(city,"Repères chromatiques • 6 secteurs")
@@ -24,8 +24,8 @@ function Chromatics.make(city,plan)
         local axis=Vector3.new(s.x,0,s.z)
         for j=1,13 do
             local r=70+(j-1)*24
-            local a=axis*r+Vector3.new(0,0.38,0)
-            local b=axis*(r+17)+Vector3.new(0,0.38,0)
+            local a=axis*r+Vector3.new(0,0.74,0)
+            local b=axis*(r+17)+Vector3.new(0,0.74,0)
             segment(root,a,b,s)
         end
         for _,r in ipairs({102,290,391}) do
@@ -53,7 +53,7 @@ function Chromatics.make(city,plan)
                         if s then
                             seen[key]=true
                             local marker=decal(root,"Point de repère "..s.name,
-                                Vector3.new(2.1,0.16,2.1),CFrame.new(p+Vector3.new(0,0.43,0)),
+                                Vector3.new(2.1,0.16,2.1),CFrame.new(p+Vector3.new(0,0.72,0)),
                                 s.color,Enum.Material.Neon)
                             marker:SetAttribute("KinSector",s.key)
                         end

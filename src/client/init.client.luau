@@ -25,6 +25,13 @@ task.spawn(function()
     end)
     if not ok then warn("KIN CITY : Mode Création client non chargé : "..tostring(err)) end
 end)
+-- KC36 : atelier interieur isole pour ne jamais bloquer le menu ou les voyages.
+task.spawn(function()
+    local ok,err=xpcall(function()
+        require(script.InteriorEditorClientV36).start()
+    end,function(e) return debug.traceback(tostring(e),2) end)
+    if not ok then warn("KC36 ATELIER client : "..tostring(err)) end
+end)
 require(script.Hud).start(remote)
 require(script.TravelTransition).start(remote)
 require(script.LibraryJourneyGuide).start()

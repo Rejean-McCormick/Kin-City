@@ -1,0 +1,78 @@
+{
+  "schema_version": "kincity.b08-asset-plan/1.0",
+  "implementation_status": "PROPOSED_NOT_CLONED_NOT_BUDGETED",
+  "place_key": "orgo_center",
+  "notes": "Suggestions seulement; B09 doit obtenir la recette d’ancre/position et les quotas ArtDecoAssets. Ne pas toucher au pool global par B08.",
+  "items": [
+    {
+      "room_id": "orgo_center.lobby",
+      "asset_key": "AD_Int_Mirror_Sunburst",
+      "reason": "Habillage du panneau d’accueil",
+      "min_profile": "STANDARD",
+      "kc_v3_manifest_status": "library_only",
+      "source_triangles_estimate": 1088,
+      "collisions": "off",
+      "requires_budget_owner": "interior/orgo_center"
+    },
+    {
+      "room_id": "orgo_center.lobby",
+      "asset_key": "AD_Int_Lamp_Wall_Sun",
+      "reason": "Lumière décorative sans source dynamique",
+      "min_profile": "SHOWCASE",
+      "kc_v3_manifest_status": "library_only",
+      "source_triangles_estimate": 728,
+      "collisions": "off",
+      "requires_budget_owner": "interior/orgo_center"
+    },
+    {
+      "room_id": "orgo_center.gallery",
+      "asset_key": "AD_Int_Sideboard",
+      "reason": "Archivage scénographique non opérationnel",
+      "min_profile": "STANDARD",
+      "kc_v3_manifest_status": "configured",
+      "source_triangles_estimate": 92,
+      "collisions": "off",
+      "requires_budget_owner": "interior/orgo_center"
+    },
+    {
+      "room_id": "orgo_center.chamber",
+      "asset_key": "AD_Int_Sofa_Curved_Night",
+      "reason": "Assises de coordination, hors voie principale",
+      "min_profile": "SHOWCASE",
+      "kc_v3_manifest_status": "library_only",
+      "source_triangles_estimate": 1876,
+      "collisions": "off",
+      "requires_budget_owner": "interior/orgo_center"
+    },
+    {
+      "room_id": "orgo_center.west_wing",
+      "asset_key": "AD_Int_Bar_Curve",
+      "reason": "Comptoir de planification, purement décoratif",
+      "min_profile": "SHOWCASE",
+      "kc_v3_manifest_status": "library_only",
+      "source_triangles_estimate": 2448,
+      "collisions": "off",
+      "requires_budget_owner": "interior/orgo_center"
+    },
+    {
+      "room_id": "orgo_center.east_wing",
+      "asset_key": "AD_Int_Mirror_Sunburst",
+      "reason": "Emblème de liaison associative",
+      "min_profile": "SHOWCASE",
+      "kc_v3_manifest_status": "library_only",
+      "source_triangles_estimate": 1088,
+      "collisions": "off",
+      "requires_budget_owner": "interior/orgo_center"
+    },
+    {
+      "room_id": "orgo_center.rear_atrium",
+      "asset_key": "AD_Int_Chandelier",
+      "reason": "Luminaire statique, sans nouvelle PointLight",
+      "min_profile": "SHOWCASE",
+      "kc_v3_manifest_status": "library_only",
+      "source_triangles_estimate": 5108,
+      "collisions": "off",
+      "requires_budget_owner": "interior/orgo_center"
+    }
+  ]
+}

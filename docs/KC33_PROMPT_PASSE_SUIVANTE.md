@@ -1,0 +1,18 @@
+# Prompt de reprise — Grande passe Kin City KC34
+
+Tu es responsable technique Roblox Studio / Luau, architecte logiciel multi-Place et directeur artistique Art déco du projet Kin City / KOALI. Pars **uniquement** du ZIP KC33 joint, de son rapport `docs/KC33_MISE_A_NIVEAU.md` et de ses manifests. Ne reconstruis pas le projet de mémoire, ne réinitialise pas la Place de production et ne fabrique aucun PlaceId, MeshId, mesure de performance ou résultat de test.
+
+**Objectif** : achever une version KOALI / Kin City de qualité publiable avec sa ville extérieure et ses huit intérieurs, préserver les 16 portes et les 48 salles, fiabiliser les six couleurs de secteurs, les voies piétonnes et les assets Art déco, et mettre en place une migration multi-Place mesurée, sûre et réversible.
+
+Ordre de travail demandé :
+
+1. Auditer les fichiers réellement livrés, la logique de l'installateur local et le générateur `tools/build_staging_places.py`. Corriger toute incohérence bloquante. Préserver les fichiers canoniques et leurs empreintes. Éviter les changements cosmétiques non démontrés.
+2. Installer `lupa` et `tree-sitter-luau` dans un environnement de test autorisé puis lancer **tous** les tests historiques et KC33. Faire passer les tests ou consigner chaque échec avec son correctif, sans modifier les assertions pour cacher un problème.
+3. Revoir les coûts exacts des nouvelles recettes : 18 pavillons en trois variantes, 6 réseaux d'avenues, deux habillages d'escaliers et un miroir par hall. Vérifier les limites par propriétaire `building`, `pavilion`, `street`, `paving`, `interior`, `architecture`, `environment` en profils LITE/STANDARD/SHOWCASE, ainsi que la conservation des collisions des portes et marches.
+4. Avec les neuf **PlaceIds réels de staging fournis par l'utilisateur**, générer les neuf installateurs et faire une revue de leurs gardes anti-production. Si les identifiants ne sont pas disponibles, terminer une préparation testable sans inventer de publication et signaler l'élément bloquant.
+5. Tester dans Roblox Studio sur des **copies de staging**, puis dans le **client Roblox publié** pour TeleportService : 16 portes, points d'arrivée, retour bibliothèque, ascenseurs, avatars, cinémas, musique, en solo et multijoueur. Photographier/consigner les écarts visuels de façades, escaliers, pavés, matériaux et six highlights.
+6. Mesurer Performance Stats / MicroProfiler sur mobile modeste, comparer LOCAL_UNIVERSE + StreamingEnabled et MULTI_PLACE (chargement, RAM, draw calls, temps de transition et FPS). Ne conclure « plus performant » qu'après mesures comparables.
+7. Définir une stratégie de circulation crédible : zones piétonnes existantes, traversées, chaussées distinctes si utiles, arrêts, tram/bus et véhicules éventuels. Ne pas activer les anciens générateurs sans vérifier collisions, tailles et trajets. Intégrer seulement les modèles du pack qui servent l'urbanisme, avec budgets et LOD.
+8. Produire des archives installables, un journal des modifications, un rapport d'écarts de tests/performances, un plan de rollback et un tableau PASS/FAIL des 9 Places, des 16 portes, des 6 secteurs et des 48 salles.
+
+Règles de livraison : conserver l'installateur local de secours, ne jamais publier la production automatiquement, ne redistribuer aucun mesh commercial, ne pas simuler des APIs KOALI comme de vraies connexions, garder des chemins de migration et de restauration explicites. **Si la passe reste incomplète, livrer immédiatement le ZIP modifié, les tests exécutés (ou bloqués), la liste exhaustive des tâches restantes et un nouveau prompt de reprise.**

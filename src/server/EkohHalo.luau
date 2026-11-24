@@ -83,18 +83,37 @@ function Halo.make(city,plan)
         local group=F.folder(posts,"Borne "..section.name)
         group:SetAttribute("KinSector",section.key)
         group:SetAttribute("KinTheme",section.material)
-        deco(group,"Fil vertical du halo",Vector3.new(0.8,HEIGHT-6,0.8),
-            CFrame.new(p+Vector3.new(0,(HEIGHT+6)/2,0)),Palette.base,Enum.Material.Neon).Transparency=0.14
+        -- KC36 : supports latéraux, jamais d'axe opaque devant le texte.
+        -- Le portique entier est orienté comme l'avenue du secteur.
+        local yaw=math.atan2(section.x,section.z)
+        local frame=CFrame.new(p)*CFrame.Angles(0,yaw,0)
+        local boardWidth=25
+        local signY=10.3
+        local supportHeight=13.0
+        local supportDistance=boardWidth/2+1.1
+        for _,side in ipairs({-1,1}) do
+            local foot=(frame*CFrame.new(side*supportDistance,supportHeight/2,0)).Position
+            local post=deco(group,"Colonne latérale du portique",Vector3.new(supportHeight,0.78,0.78),
+                CFrame.new(foot)*CFrame.Angles(0,0,math.pi/2),Palette.base,Enum.Material.Metal)
+            post.Shape=Enum.PartType.Cylinder
+            post:SetAttribute("KinSignStructuralSupport",true)
+            local link=deco(group,"Fixation latérale du panneau",Vector3.new(1.4,0.22,0.38),
+                frame*CFrame.new(side*(boardWidth/2+0.4),signY,0),Palette.light,Enum.Material.Metal)
+            link:SetAttribute("KinSignStructuralSupport",true)
+        end
+        group:SetAttribute("KinSignSupportRevision","KC36-twin-post-clear-center")
         local terminal=deco(group,"Borne d'exploration",Vector3.new(5.4,5.3,3.5),
-            CFrame.new(p+Vector3.new(0,3.5,0)),Palette.base,Enum.Material.Metal)
+            frame*CFrame.new(0,3.5,0),Palette.base,Enum.Material.Metal)
         deco(group,"Façade éclairée",Vector3.new(4.6,3.0,0.32),
-            CFrame.new(p+Vector3.new(0,4.2,-1.94)),Palette.light,Enum.Material.Neon).Transparency=0.3
+            frame*CFrame.new(0,4.2,-1.94),Palette.light,Enum.Material.Neon).Transparency=0.3
         deco(group,"Sommet coloré",Vector3.new(5.7,0.5,3.6),
-            CFrame.new(p+Vector3.new(0,6.35,0)),section.color,Enum.Material.Neon)
+            frame*CFrame.new(0,6.35,0),section.color,Enum.Material.Neon)
         local meta=topics[section.key]
-        local sign=F.sign(group,"EkoH • "..section.name,p+Vector3.new(0,10.3,0),0,
-            "EkoH • "..meta[1].."\n"..meta[2],25,3.7)
+        local sign=F.sign(group,"EkoH • "..section.name,p+Vector3.new(0,signY,0),math.deg(yaw),
+            "EkoH • "..meta[1].."\n"..meta[2],boardWidth,3.7,
+            {section=section.key,doubleSided=true})
         sign:SetAttribute("KinDisclosure","Découverte publique, aucune donnée personnelle")
+        sign:SetAttribute("KinSignMount","twin-post")
         terminal:SetAttribute("KinStubInteractionId","ekoh.terminal."..section.key)
         terminal:SetAttribute("KinStubCapabilityId","ekoh.public.exploration")
         terminal:SetAttribute("KinStubTitle","EkoH • "..section.name)

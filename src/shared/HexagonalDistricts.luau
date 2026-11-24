@@ -9,7 +9,7 @@ Districts.opal=Color3.fromRGB(197,244,240)
 Districts.gold=Color3.fromRGB(205,164,101)
 Districts.sections={
     {key="keenkonnect",name="keenKonnect",hour=12,x=0,z=-1,
-        color=Color3.fromRGB(117,177,174),lightColor=Color3.fromRGB(30,104,100),pale=Color3.fromRGB(207,228,222),
+        color=Color3.fromRGB(208,191,134),lightColor=Color3.fromRGB(30,104,100),pale=Color3.fromRGB(207,228,222),
         dark=Color3.fromRGB(41,67,69),secondary=Color3.fromRGB(154,170,173),
         material="metal",theme="Concevoir • partager",
         system="Konnaxion"},
@@ -34,11 +34,13 @@ Districts.sections={
         material="monochrome",theme="Lire • relier",
         system="Ekole"},
     {key="konnected",name="KonnectED",hour=10,x=-0.866025403784,z=-0.5,
-        color=Color3.fromRGB(209,168,100),lightColor=Color3.fromRGB(215,172,109),pale=Color3.fromRGB(230,211,172),
+        color=Color3.fromRGB(188,103,76),lightColor=Color3.fromRGB(215,172,109),pale=Color3.fromRGB(230,211,172),
         dark=Color3.fromRGB(18,23,26),secondary=Color3.fromRGB(166,134,82),
         material="black_marble",theme="Comprendre • progresser",
         system="Konnaxion"},
 }
+-- Same approved accent for identifying light details; no second sector palette.
+for _,section in ipairs(Districts.sections) do section.lightColor=section.color end
 function Districts.nearestAxis(x:number,z:number)
     local length=math.sqrt(x*x+z*z)
     if length<0.01 then return nil end

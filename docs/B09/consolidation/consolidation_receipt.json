@@ -1,0 +1,811 @@
+{
+  "audit_version": "KC34-B09-CONSOLIDATION-1.0",
+  "baseline_zip_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "contracts_version": "KC34-DOC-1.0",
+  "source_bxx_sha256": "4ca330d20fac04c72cb6e66352b133b5bc271bfefb468327b18ebe28e65bae69",
+  "original_submission_sha256": {
+    "KinCity_KC34_B09_Integration_Complet.zip": "97523d534f5635ef6ec8f12485f933fff91a6aad457af83ee8a57d386803208a",
+    "KinCity_B10_KC34_Premiere_Passe.zip": "281328f5ab856499062101f13a53fca159238a34c925174ee9f5c2f27577848d",
+    "KinCity_B08_Maison_Orgo_Branche.zip": "67b2bce29c0bc567bb1cbb040fa039fd1992c136ce4d9e67fa21231f54e5503b",
+    "KinCity_B06_Atelier_Konstruct_Patch.zip": "17d698827a07d49bb3ea62309ba2af09c3f83de9b44440906874cf37e10b2684",
+    "KinCity_B05_AgoraKorum_KC34_Contribution.zip": "4d7903a55d7dd3807c3872de01f3ead80ae819ac26fdce3b28041664ae3e2034",
+    "KinCity_B04_Campus_UCKK_Contribution.zip": "2e9f02dfe8e3cb7045907c403bac7ff01b3dd10f09ff30708d3c7b6c3bac2992",
+    "KinCity_B03_KC34_Grande_Bibliotheque.zip": "416f22f354ff4c95144011c5717fa7c5a602ea9159ec3062dc0c68e3f63c8d9f",
+    "KinCity_B02_Ekoh_Contribution_Initiale.zip": "802636315b2b82140bf18ca658e63f27565aafe8e6ad5d27e1d7c3b15038ef22",
+    "KinCity_B01_KC34_Complet.zip": "119368beaa69138e009b0d06aeb41d327a3e5b96c405dfcaad0c1c9c5283e02a"
+  },
+  "branches": {
+    "B01": {
+      "place_key": "city_hall",
+      "source": "KinCity_B01_KC34_Complet.zip",
+      "source_sha256": "119368beaa69138e009b0d06aeb41d327a3e5b96c405dfcaad0c1c9c5283e02a",
+      "source_status": "READY_FOR_REVIEW",
+      "source_baseline": "KC33",
+      "source_baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "hashes_verified": true,
+      "declared_files": 14,
+      "imported_to_contrib": true,
+      "staging_level": "PASS_OFFLINE_STAGING",
+      "offline_test_return_code": 0,
+      "offline_tests": "Ran 18 tests in 0.007s",
+      "integration_status": "KC35_RUNTIME_WIRED_PENDING_STUDIO",
+      "runtime": "CODE_WIRED_KC35_NOT_STUDIO_TESTED",
+      "issues": []
+    },
+    "B02": {
+      "place_key": "ekoh_tower",
+      "source": "KinCity_B02_Ekoh_Contribution_Initiale.zip",
+      "source_sha256": "802636315b2b82140bf18ca658e63f27565aafe8e6ad5d27e1d7c3b15038ef22",
+      "source_status": "BLOCKED",
+      "source_baseline": "KC33",
+      "source_baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "hashes_verified": true,
+      "declared_files": 14,
+      "imported_to_contrib": true,
+      "staging_level": "PASS_OFFLINE_STAGING",
+      "offline_test_return_code": 0,
+      "offline_tests": "Ran 20 tests in 0.007s",
+      "integration_status": "KC35_RUNTIME_WIRED_PENDING_STUDIO",
+      "runtime": "CODE_WIRED_KC35_NOT_STUDIO_TESTED",
+      "issues": []
+    },
+    "B03": {
+      "place_key": "library",
+      "source": "KinCity_B03_KC34_Grande_Bibliotheque.zip",
+      "source_sha256": "416f22f354ff4c95144011c5717fa7c5a602ea9159ec3062dc0c68e3f63c8d9f",
+      "source_status": "BLOCKED",
+      "source_baseline": "KC33",
+      "source_baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "hashes_verified": true,
+      "declared_files": 7,
+      "imported_to_contrib": true,
+      "staging_level": "PASS_OFFLINE_STAGING",
+      "offline_test_return_code": 0,
+      "offline_tests": "Ran 19 tests in 0.010s",
+      "integration_status": "KC35_RUNTIME_WIRED_PENDING_STUDIO",
+      "runtime": "CODE_WIRED_KC35_NOT_STUDIO_TESTED",
+      "issues": []
+    },
+    "B04": {
+      "place_key": "campus",
+      "source": "KinCity_B04_Campus_UCKK_Contribution.zip",
+      "source_sha256": "2e9f02dfe8e3cb7045907c403bac7ff01b3dd10f09ff30708d3c7b6c3bac2992",
+      "source_status": "READY_FOR_REVIEW",
+      "source_baseline": "KC33",
+      "source_baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "hashes_verified": true,
+      "declared_files": 8,
+      "imported_to_contrib": true,
+      "staging_level": "PASS_OFFLINE_STAGING",
+      "offline_test_return_code": 0,
+      "offline_tests": "Ran 12 tests in 0.003s",
+      "integration_status": "KC35_RUNTIME_WIRED_PENDING_STUDIO",
+      "runtime": "CODE_WIRED_KC35_NOT_STUDIO_TESTED",
+      "issues": []
+    },
+    "B05": {
+      "place_key": "justice_palace",
+      "source": "KinCity_B05_AgoraKorum_KC34_Contribution.zip",
+      "source_sha256": "4d7903a55d7dd3807c3872de01f3ead80ae819ac26fdce3b28041664ae3e2034",
+      "source_status": "READY_FOR_REVIEW",
+      "source_baseline": "KC33",
+      "source_baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "hashes_verified": true,
+      "declared_files": 9,
+      "imported_to_contrib": true,
+      "staging_level": "PASS_OFFLINE_STAGING",
+      "offline_test_return_code": 0,
+      "offline_tests": "Ran 12 tests in 0.004s",
+      "integration_status": "KC35_RUNTIME_WIRED_PENDING_STUDIO",
+      "runtime": "CODE_WIRED_KC35_NOT_STUDIO_TESTED",
+      "issues": []
+    },
+    "B06": {
+      "place_key": "innovation_lab",
+      "source": "KinCity_B06_Atelier_Konstruct_Patch.zip",
+      "source_sha256": "17d698827a07d49bb3ea62309ba2af09c3f83de9b44440906874cf37e10b2684",
+      "source_status": "READY_FOR_REVIEW",
+      "source_baseline": "KC33",
+      "source_baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "hashes_verified": true,
+      "declared_files": 7,
+      "imported_to_contrib": true,
+      "staging_level": "PASS_OFFLINE_STAGING",
+      "offline_test_return_code": 0,
+      "offline_tests": "Ran 10 tests in 0.012s",
+      "integration_status": "KC35_RUNTIME_WIRED_PENDING_STUDIO",
+      "runtime": "CODE_WIRED_KC35_NOT_STUDIO_TESTED",
+      "issues": [
+        "B06_TESTS_REFERENCE_EMBEDDED_V3_ORIGINAL_NOT_KC33"
+      ]
+    },
+    "B07": {
+      "place_key": "museum",
+      "source": "authored_in_b09_finalization_session",
+      "source_sha256": "d8943555b4606950f330baa1a08c9622586c5ce58b2ed4126a0a2f9fa168d296",
+      "source_status": "READY_FOR_REVIEW",
+      "source_baseline": "KC33",
+      "source_baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "hashes_verified": true,
+      "declared_files": 6,
+      "imported_to_contrib": true,
+      "staging_level": "PASS_OFFLINE_STAGING",
+      "offline_test_return_code": 0,
+      "offline_tests": "Ran 5 tests in offline consolidation suite",
+      "integration_status": "KC35_RUNTIME_WIRED_PENDING_STUDIO",
+      "runtime": "CODE_WIRED_KC35_NOT_STUDIO_TESTED",
+      "issues": []
+    },
+    "B08": {
+      "place_key": "orgo_center",
+      "source": "KinCity_B08_Maison_Orgo_Branche.zip",
+      "source_sha256": "67b2bce29c0bc567bb1cbb040fa039fd1992c136ce4d9e67fa21231f54e5503b",
+      "source_status": "BLOCKED",
+      "source_baseline": "V3_ORIGINAL",
+      "source_baseline_sha256": "6696d12dc6c9fefd845e9180a11c4f9412ea439989ef97bd0ef35eb091192798",
+      "hashes_verified": true,
+      "declared_files": 8,
+      "imported_to_contrib": true,
+      "staging_level": "PROVISIONAL_REBASE",
+      "offline_test_return_code": 0,
+      "offline_tests": "Ran 16 tests in 0.014s",
+      "integration_status": "REBASED_KC33_AND_KC35_RUNTIME_WIRED_PENDING_STUDIO",
+      "runtime": "NOT_TESTED",
+      "issues": [
+        "ORIGINAL_SUBMISSION_V3_ARCHIVED",
+        "REAL_ROBLOX_STUDIO_TESTS_NOT_EXECUTED"
+      ],
+      "rebase_provenance": "contrib/places/orgo_center/scene_recipe_KC33.json"
+    },
+    "B09": {
+      "place_key": "integration",
+      "source": "bundled B09",
+      "imported_to_contrib": null,
+      "offline_tests": "20 PASS",
+      "source_status": "INTEGRATION_CONTROLLER",
+      "runtime": "NOT_TESTED"
+    },
+    "B10": {
+      "place_key": "city",
+      "source": "KinCity_B10_KC34_Premiere_Passe.zip",
+      "source_sha256": "281328f5ab856499062101f13a53fca159238a34c925174ee9f5c2f27577848d",
+      "source_status": "READY_FOR_REVIEW",
+      "source_baseline": "KC33",
+      "source_baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+      "hashes_verified": true,
+      "declared_files": 10,
+      "imported_to_contrib": true,
+      "staging_level": "PASS_OFFLINE_STAGING",
+      "offline_test_return_code": 0,
+      "offline_tests": "Ran 17 tests in 0.003s",
+      "integration_status": "KC35_RUNTIME_WIRED_PENDING_STUDIO",
+      "runtime": "CODE_WIRED_KC35_NOT_STUDIO_TESTED",
+      "issues": []
+    }
+  },
+  "staged_files": [
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/README.md",
+      "sha256": "12d9ab9aa4775b79e0a913263bc5416bb9d8a4dbb015f52bd11614bbb05a1b88",
+      "replaces_b09_stub": true,
+      "previous_sha256": "a95c86a17af710603f941037707327394a3d1e6616b78095ce209f2b21de0acf"
+    },
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/Wayfinding.luau",
+      "sha256": "6d1c28ec5a4aff4fd3cb1a955a36cf32d5285da8c3ae2bf1c0026b07cbef8be1",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/build_preview.py",
+      "sha256": "fef05ee760069b454b3e14f13576c9ae6443080be139cf7dfbbb10ee2ab7910e",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/design.json",
+      "sha256": "75d4f4458753747fa4f47056b318db90658a05997377fb96fdf53b84a2dc5c17",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/docs/PLAN_URBAIN_B10.md",
+      "sha256": "6e31b5a026453a5facb4dba54d4b034fae1b820619849c301ed36224a03ca55c",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/docs/RFC-B10-001-INTEGRATION.md",
+      "sha256": "eedf46e52b9e86629d8cf03e15d2af8956429d9ac43f2437b97c8ead8e5478b3",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/docs/TESTS_B10.txt",
+      "sha256": "2419ba0554a65f7d9fc250ff580c216afda942842f56e72227cb17790d836498",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/preview/B10_APERCU_LOCAL_COMMAND_BAR.luau",
+      "sha256": "bb3ea161864c4ade39e292bfe218f81c1fc4e48c00d462fa1a9f3faeb1f116aa",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/recipe.json",
+      "sha256": "205acd5121b83319a83a8cc22294ac8c6123c3cb816a2bab7f9e822818223911",
+      "replaces_b09_stub": true,
+      "previous_sha256": "69f651677a3deb69c5a0b69626d786ccce7af9ff5ef4a95405687a8fabdaeab8"
+    },
+    {
+      "branch": "B10",
+      "path": "contrib/places/city/tests/test_b10_city.py",
+      "sha256": "49b48cf3506c328ff9b536a2ffe118578437cebb392ef696aa636686754e1f5e",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B06",
+      "path": "contrib/places/innovation_lab/KonstructScene.luau",
+      "sha256": "aef9e536211ba7661013e7e13bc59c1369841daee42e228d16d7f131157a28cb",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B06",
+      "path": "contrib/places/innovation_lab/QA_B06.md",
+      "sha256": "153cc522ef63ca081d33a97a2fc4219f6b2b243135342ace454c04307ac758dd",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B06",
+      "path": "contrib/places/innovation_lab/README.md",
+      "sha256": "519ac059edfb4d9d0919a6d95ba73d2bc1f98d0dcedc36e53d22f1e0afdb5e14",
+      "replaces_b09_stub": true,
+      "previous_sha256": "3519fc2f261cdc70842dd3f91fe2f67f5efac8a67c9f178c15d3e9298701e4cc"
+    },
+    {
+      "branch": "B06",
+      "path": "contrib/places/innovation_lab/build_scene.py",
+      "sha256": "0d4f53eff248545f7b2f780d5e04cae047fc6e564734f1ce2d48fc427cc655ca",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B06",
+      "path": "contrib/places/innovation_lab/recipe.json",
+      "sha256": "29af0dff462fa1de5151e1e09de3773e533ba326ac7df328b14a383a4309a7e6",
+      "replaces_b09_stub": true,
+      "previous_sha256": "04a8362ebcd9a4c06199c8b41944ec54345cb6fa53f37e54d24af8c4d1c2ba20"
+    },
+    {
+      "branch": "B06",
+      "path": "contrib/places/innovation_lab/room_layout.json",
+      "sha256": "9ba3c3161fa008a35e0e3d18bad09c09dbe43863f45dbdc42b0308c95fade3e7",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B06",
+      "path": "contrib/places/innovation_lab/test_b06.py",
+      "sha256": "c801f072bdac0dd7bb42a24c3c3ce1cfa458ba8e38674c5fb9e9c77e03ca2021",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B05",
+      "path": "contrib/places/justice_palace/DECISIONS_ET_QA.md",
+      "sha256": "c44232790292e4b036634198ff921a84efbdb6637af25d8df758cb41183c9c3d",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B05",
+      "path": "contrib/places/justice_palace/PreviewBuilder.luau",
+      "sha256": "995d28bcf39cda590490c0a8230ad633dd6e407214738f9477d97e0cb73391a4",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B05",
+      "path": "contrib/places/justice_palace/README.md",
+      "sha256": "b3057f4cb43fdaba97c6b1ef9ce05ef88ef9b7024c3799a8c891b76739628a78",
+      "replaces_b09_stub": true,
+      "previous_sha256": "dbbd2cbd9cddb8123c17852e4ac41c1868b0a6886f7d791e368d0b5536f167c7"
+    },
+    {
+      "branch": "B05",
+      "path": "contrib/places/justice_palace/SceneData.luau",
+      "sha256": "392ac3cf3bfd261ed1f598ef5429c0b2a20b8105d9937feb617fa8c8c1b9144b",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B05",
+      "path": "contrib/places/justice_palace/canonical_snapshot.json",
+      "sha256": "7fd5ae759f14b97a666facf745cb6fa59dc1622f9ac938c33b4286d4c708e5b2",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B05",
+      "path": "contrib/places/justice_palace/recipe.json",
+      "sha256": "52b0fafd2ee5e841522e1bf35ad51719f7aabb139242d6566954803020fb199d",
+      "replaces_b09_stub": true,
+      "previous_sha256": "c9395ab363d5c995f6a0d103f8f79e009df4b869ea46283f68d1f1621c174555"
+    },
+    {
+      "branch": "B05",
+      "path": "contrib/places/justice_palace/scene_plan.json",
+      "sha256": "c22264ca5b5bb8ec3e55e6e1e960e8291a047d4f28690569ea7b857d23820270",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B05",
+      "path": "contrib/places/justice_palace/tests/test_b05.py",
+      "sha256": "e72b2551689ef6506f4ba7fd81ae73a7500b2c7ef131229856a14a52c25d0166",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B05",
+      "path": "contrib/places/justice_palace/tools/regenerate_luau.py",
+      "sha256": "6a484098e9d5539e590750b1ffa8b5d439e36743609a1e1bb4606271cb653f9e",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B04",
+      "path": "contrib/places/campus/CampusDecor.luau",
+      "sha256": "c0bb2e5cc30fe78c2d3fcb54470f94f4fd6447a14be8f219ebb25ab93e10833b",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B04",
+      "path": "contrib/places/campus/INSTALLER_B04_PREVIEW_LOCAL.luau",
+      "sha256": "37fd0e7171c726252770e1c7a800a9cb13042c2b834a2b607d499cf9e231b58e",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B04",
+      "path": "contrib/places/campus/QA_B04.md",
+      "sha256": "f6c4a058fd92e57ef79b8ef424e9ba0149a9a06a31efed8be47a3122463eb87a",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B04",
+      "path": "contrib/places/campus/README.md",
+      "sha256": "2f807fcefb767ecd56deba25eb06c2ed548dc8436b24081a567175e1a2620289",
+      "replaces_b09_stub": true,
+      "previous_sha256": "0c2a6b157d97d6c0e3713bf6a97c2d3aec139a24848ef470262d7bbea0e58ab6"
+    },
+    {
+      "branch": "B04",
+      "path": "contrib/places/campus/campus_program.json",
+      "sha256": "38aec71e728c3e64152db9cedc79966663635c3ab96337609fd1b6764b7a8006",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B04",
+      "path": "contrib/places/campus/recipe.json",
+      "sha256": "7610405e00fd9c3041c660ff0cb5d56b51f0eb5438edc3d5506bc4e15f3145ea",
+      "replaces_b09_stub": true,
+      "previous_sha256": "ba75e7c10030fe3e47180f994ad2b0c50db77fd129bc6f892da1d86f5fdedbb2"
+    },
+    {
+      "branch": "B04",
+      "path": "contrib/places/campus/tests/TESTS_B04.txt",
+      "sha256": "878acc271d1dd33cd6f7be474cecba2b6719217d0e1362c97c834352f1fd03b1",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B04",
+      "path": "contrib/places/campus/tests/test_b04.py",
+      "sha256": "f0d264552ae32920cb00409a3d41e8109e6b996efcf6eacdd2dd6af53a83d02b",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B03",
+      "path": "contrib/places/library/LibraryScene.luau",
+      "sha256": "83f30ebe9937ea1a6e9c9b83aeafc2e8745d481da3838657c2d7dc0ed08302d9",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B03",
+      "path": "contrib/places/library/LibrarySceneData.luau",
+      "sha256": "07ba57224e6ce70344f0084682e3cf29f58b37974b68f0425bf885e45016e9e2",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B03",
+      "path": "contrib/places/library/README.md",
+      "sha256": "52c6d0526bbfa6e75f9ddb30002226a1be154cee387e44b956d4d46b3e004289",
+      "replaces_b09_stub": true,
+      "previous_sha256": "8418e71510f70123558e967dfe48b550a9968e41aaf4367934a615535a693c91"
+    },
+    {
+      "branch": "B03",
+      "path": "contrib/places/library/STUDIO_APERCU_LOCAL_B03.luau",
+      "sha256": "2d3d4a96809b7e3894569fedf667b5383db742b608e44d1839bfbb62a647e5be",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B03",
+      "path": "contrib/places/library/build_tools.py",
+      "sha256": "363e3a0d972e72b2204e7faa128a0c69ba9f8175be7abd940ce1acb9a7bf4336",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B03",
+      "path": "contrib/places/library/recipe.json",
+      "sha256": "baffacc8231b2bbf42a982e6eb34503784b19f8e6d560914f874f607c6e27fdd",
+      "replaces_b09_stub": true,
+      "previous_sha256": "116544a9442dd0a3ed1443d1011682d1c8fd9e6da8e6d7a938565d80c86b58d9"
+    },
+    {
+      "branch": "B03",
+      "path": "contrib/places/library/scene_plan.json",
+      "sha256": "43360d4a0d6d052fc05c13a65fb69527eda75c20c37b29b1a40426ec2ecfe44a",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/B02EkohInterior.luau",
+      "sha256": "c9bc06421ed44ad04e7a5065e754481dd91bb35a1441485bcdc46de9f0172443",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/B02EkohInterior.template.luau",
+      "sha256": "a75f79033f9be652bf3f4a90346f4918d4031f72830cb615cacf7168867e8ddc",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/docs/QA_CHECKLIST.md",
+      "sha256": "94e442e214a7c3887bc439fa1ffd1804522c8582fd02d94581f7441262e43e43",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/docs/README_B02.md",
+      "sha256": "d041cc1f43d5deea965f0b1f6e5c3a75185894ca05c841dda507fa45ecc91a4b",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/docs/RFC_B09_B02_LOADER.md",
+      "sha256": "649a35a1b3e0cb4613afa0148427785554d72d9dcca0ff0850b3b1888351c9fe",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/fixtures/canonical_v3_snapshot.json",
+      "sha256": "5a7ceeac93ebcc0429c99e557ae32ff35c811013ea96a0e35783fb5dc447b0d3",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/recipe.json",
+      "sha256": "35fe9c0b29cb6b80cf1ce379774aa2e197d041f342f3da1534c3c26738016a73",
+      "replaces_b09_stub": true,
+      "previous_sha256": "9c0bfc86a19ad48ee97b0e92a5ddab60205532d6bc792f64bc5fd82902c01a39"
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/reports/luau_check.txt",
+      "sha256": "3e61a8c77c354011253ab228ce96e882179d5fbea324dab640736629696fbc0d",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/reports/preflight.txt",
+      "sha256": "8d05b6f734b02dcc99573ef7758df7de103a948dece71f4f88dad9c50a40c0c9",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/reports/tests_b02.txt",
+      "sha256": "710b600a228f22bd5d16b21042122a9f01409f6ac04a1ab664d423993f78a211",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/scene.json",
+      "sha256": "805ae46a1beb19ec95dd9918e3c7e98f07f14c1becc8c9feaf53957e62f364e3",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/tests/test_b02.py",
+      "sha256": "7334cbd3703a57ca06a3ea0068b56e3c5c19f46c802e9c1f3990fbff48a7dcbe",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/tools/build_b02.py",
+      "sha256": "e96ffd09d6d5c25e2182e5bbec233a46562ad38ed7f906322865c1279a6131a7",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B02",
+      "path": "contrib/places/ekoh_tower/tools/validate_b02.py",
+      "sha256": "179fc20d13b053ca48f602b443a3e712ff10374a3896b3af1f96866ae2e83fd8",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/CityHallScene.luau",
+      "sha256": "c78619730d41d872b222cc323a49140ef44288d8f4fb72dcd8ebb6426dd489a1",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/CityHallSpec.luau",
+      "sha256": "2e3c7359b79ec08d3ceeb243d9ba946c664fcde28322b4d065fe7102401a230d",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/README.md",
+      "sha256": "69439cd9016ef74406688e22fc8a3537aca0e4ccee67027a8c418100772c75f7",
+      "replaces_b09_stub": true,
+      "previous_sha256": "d6e2b06ab26f8bee9aa14d6033cfdcedbac3801664cc0c9842fe185f9db7ec6f"
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/city_hall_scene.json",
+      "sha256": "0c3d8ca97d3ce05cca5d096b894a939b51755079bdd7710932b1c7c16e7e4b32",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/contracts_snapshot.json",
+      "sha256": "1ac52ab1cd80583b4acf5673479ca6288bbacf234a93371c2e03808bfe60eb19",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/docs/RFC_B09_B01_001.md",
+      "sha256": "2d05fd799135015d11f213b09f532a9ffc7183c6c2f6ae5dbeec4ee0e20aba96",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/preview/PREVIEW_B01_COPIE_LOCALE.luau",
+      "sha256": "ef96ecb5aff6fed52be288868f22b8e91969a858d747566367483ea9054c060a",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/preview/ROLLBACK_B01_COPIE_LOCALE.luau",
+      "sha256": "073f8d87de579f6c8565ec4cadc9947be053ce63915fae8e11bd4eff76dfd45f",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/recipe.json",
+      "sha256": "213ddf2da63482781bbd25a90fad43f519f5638118a16011d7ab3db0628f63c2",
+      "replaces_b09_stub": true,
+      "previous_sha256": "f31112f8d2199d28ab0cb4514e35847bc0695f93ebbdef8082a361dc16a34acb"
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/tests/luau_lexical_results.txt",
+      "sha256": "3f256ed553c7c55ebaff6ba382f477c1713dfa12aa448a663c0cf4f2be31cfb8",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/tests/offline_results.txt",
+      "sha256": "060e4d85a57838384f63f24c19c515e6dc4619e61845cfc11ed54da8d1b2d261",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/tests/test_scene.py",
+      "sha256": "196f1e01abfc8f9a398c21f8deb4a0db9b7bd94f76dbdfdb10ee0a0da43589bd",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/tools/generate_spec.py",
+      "sha256": "abb4ea7f1c90ab726114790ea14609491a02080eb24e53d045552d26006f635a",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B01",
+      "path": "contrib/places/city_hall/tools/make_studio_preview.py",
+      "sha256": "d84cba11306e9cc162098445d4b8fc30c893494ef68b4ea37d717fbb9931614d",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B08",
+      "path": "contrib/places/orgo_center/asset_plan.json",
+      "sha256": "6840044425ce785c82085fa36c6c936d68c84802ac9a5022272555e43e5924bc",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B08",
+      "path": "contrib/places/orgo_center/docs/README_B08.md",
+      "sha256": "5ee543708ae1fb816d54e9a8dd2be94b9e74ad5a451477f522c6c6f8ad87f3f7",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B08",
+      "path": "contrib/places/orgo_center/docs/TESTS_B08.log",
+      "sha256": "c9017b44a4a98808f639437466008e4b464deda6fe7b97672562a5f22dff68c2",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B08",
+      "path": "contrib/places/orgo_center/recipe.json",
+      "sha256": "3da13a86f6d0fbfa3a52cd96d12913dfd0bd68b441ab14de4eb90d5f063f7837",
+      "replaces_b09_stub": true,
+      "previous_sha256": "73bda325f02e0b0740d4a999652e0ca9b0e24907770918a81d6a76997eeea71a"
+    },
+    {
+      "branch": "B08",
+      "path": "contrib/places/orgo_center/scene_recipe.json",
+      "sha256": "4a9824469210930fe72d37cfe58f2af40ed3c332bb71836b8bceccc93a11dcef",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B08",
+      "path": "contrib/places/orgo_center/src/generate_preview.py",
+      "sha256": "f124870e0465c9ee1495d15dcad7481d20dc9e146ace8a3e452f22554b8f0907",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B08",
+      "path": "contrib/places/orgo_center/studio/B08_STUDIO_PREVIEW_LOCAL.luau",
+      "sha256": "026acbcb07df447cb11c451d4aa7c2c6c1a1fa1a83778cc29059ee41afac9d49",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B08",
+      "path": "contrib/places/orgo_center/tests/test_b08.py",
+      "sha256": "1f6d91ec24f950bdccd9e95245fec41b5fabf74009dac26f2e3145b5b9cda9d5",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B07",
+      "path": "contrib/places/museum/MuseumScene.luau",
+      "sha256": "a07d68b988761bf85f7d4cdf8ebe2f4b726556ac03bf6adba5dc72c93cd7ac9f",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B07",
+      "path": "contrib/places/museum/MuseumSceneData.luau",
+      "sha256": "4879b219b3ccc3e175ca9905b17361f1ea3533f4544b89e3874689675af2b71a",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B07",
+      "path": "contrib/places/museum/README.md",
+      "sha256": "a42a6e2ab0d6fd59b6bc85e808e6b3baf6ddcccd0001f37644f93fa9969fe69c",
+      "replaces_b09_stub": true,
+      "previous_sha256": "stub-replaced"
+    },
+    {
+      "branch": "B07",
+      "path": "contrib/places/museum/recipe.json",
+      "sha256": "4c528cea67b5cd7e6d3704f634ac8073797b8362a7efff1ace4a33b3bcceefd1",
+      "replaces_b09_stub": true,
+      "previous_sha256": "stub-replaced"
+    },
+    {
+      "branch": "B07",
+      "path": "contrib/places/museum/docs/QA_B07.md",
+      "sha256": "215b59b21731fc7bb2a1944dca7e471f10a61e23a763f8a2b9abb432108b6031",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    },
+    {
+      "branch": "B07",
+      "path": "contrib/places/museum/tests/test_b07.py",
+      "sha256": "b1e2dfa58da4b00d270b9812f3c59f149246a99ab9c08fd45542d0a88a7c4b0a",
+      "replaces_b09_stub": false,
+      "previous_sha256": null
+    }
+  ],
+  "frozen_core_mutations": [],
+  "gate": {
+    "B09_baseline_23_hashes": "PASS",
+    "B09_20_unit_tests": "PASS",
+    "nine_recipe_validation": "PASS",
+    "branch_handoff_hashes": "8/8 PASS",
+    "branch_handoff_baseline": "7/8 PASS; B08 V3",
+    "branch_local_tests": "8/8 execute with environment; B06 pinned V3 original",
+    "Roblox_Studio": "NOT_TESTED",
+    "TeleportService": "NOT_TESTED",
+    "runtime_loader": "NOT_CONNECTED",
+    "published_places": "NONE"
+  },
+  "releases": {
+    "runtime_active": "KC35_SOURCE_ONLY",
+    "staging_candidate_only": true,
+    "studio_validation": "NOT_PERFORMED",
+    "published_multiplace": "NOT_PERFORMED"
+  },
+  "kc35_overrides": {
+    "contrib/places/city/Wayfinding.luau": {
+      "previous_sha256": "ded882d2148d88ec2a4fa4ad8fae2c5d1703e71872fc9029c27c845d2630c457",
+      "current_sha256": "6d1c28ec5a4aff4fd3cb1a955a36cf32d5285da8c3ae2bf1c0026b07cbef8be1",
+      "review": "KC35 runtime wiring / KC33 rebase change"
+    },
+    "contrib/places/orgo_center/recipe.json": {
+      "previous_sha256": "ae9e238bd5fff94de0d98aad7dfbe8971bc107d645685fa1c150d7888235efaa",
+      "current_sha256": "3da13a86f6d0fbfa3a52cd96d12913dfd0bd68b441ab14de4eb90d5f063f7837",
+      "review": "KC35 runtime wiring / KC33 rebase change"
+    },
+    "contrib/places/museum/MuseumScene.luau": {
+      "previous_sha256": "0c61cedd50ccde1603032c8d1ab25a56904b65222ea23ed1529de02380f628c2",
+      "current_sha256": "a07d68b988761bf85f7d4cdf8ebe2f4b726556ac03bf6adba5dc72c93cd7ac9f",
+      "review": "KC35 runtime wiring / KC33 rebase change"
+    },
+    "contrib/places/museum/README.md": {
+      "previous_sha256": "5549e78582fda1d56045bae3a8bd5fd6b00885d747a443dd63cf4c0ede05880c",
+      "current_sha256": "a42a6e2ab0d6fd59b6bc85e808e6b3baf6ddcccd0001f37644f93fa9969fe69c",
+      "review": "KC35 runtime wiring / KC33 rebase change"
+    }
+  },
+  "branches_with_sources": 9
+}

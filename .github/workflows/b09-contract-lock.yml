@@ -1,0 +1,22 @@
+name: KC34 B09 contract lock
+on:
+  push:
+  pull_request:
+jobs:
+  offline-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install schema dependency
+        run: python -m pip install 'jsonschema>=4.20,<5'
+      - name: Verify KC33 immutable contracts, compiled plan and room envelopes
+        run: python tools/b09_contracts.py --repo . --reference reference_KC34 --out docs/B09/reports/CI_TEMP_CONTRACTS.json
+      - name: Validate the nine declarative recipe stubs
+        run: python tools/b09_recipes.py --repo .
+      - name: Positive and negative handoff controls
+        run: python -m unittest discover -s tests -p 'test_b09_*.py' -v
+      - name: Verify no generated files changed during B09 checks
+        run: git diff --exit-code -- catalog/ config/ src/ build/world-plan.json

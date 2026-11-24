@@ -1,0 +1,24 @@
+{
+  "version": "B10-1.0",
+  "city_place_key": "city",
+  "scope": "Wayfinding overlay only; roads, gameplay collision, pavilion meshes and canonical doors remain unchanged",
+  "reference_teal": "#1E6864",
+  "sector_colors": {
+    "keenkonnect": "#D0BF86", "ethikos": "#A97C4F", "kreative": "#CB809D",
+    "uckk": "#758EA6", "ekole": "#E5EAE7", "konnected": "#BC674C"
+  },
+  "avenues": {
+    "count": 6,
+    "radii_studs": [112,242,354],
+    "lateral_offset_studs": 35,
+    "construction": "noncolliding anchored props and BillboardGui; building and portal clearance tests",
+    "quality_levels": {"LITE": 1, "STANDARD": 2, "SHOWCASE": 3}
+  },
+  "building_entries": {
+    "count": 8,
+    "source": "WorldPlan.city.anchors and doors (read only)",
+    "visual_palette": "nearest sector in XZ to physical doorway, independent of legacy building_id",
+    "title_source": "UI labels in Wayfinding.luau; never modify door_id or place_key"
+  },
+  "safety": {"collisions":false,"can_touch":false,"can_query":false,"light_instances":0,"teleports":0,"runtime_mutations":"only B10 folder in Ville"}
+}

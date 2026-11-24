@@ -1,0 +1,23 @@
+test_17_signs_avoid_canonical_anchor_zones (test_scene.ClearanceChecks.test_17_signs_avoid_canonical_anchor_zones) ... ok
+test_18_two_exit_ids_not_created_as_decoration (test_scene.ClearanceChecks.test_18_two_exit_ids_not_created_as_decoration) ... ok
+test_01_ids (test_scene.SceneContracts.test_01_ids) ... ok
+test_02_six_rooms (test_scene.SceneContracts.test_02_six_rooms) ... ok
+test_03_canonical_geometry (test_scene.SceneContracts.test_03_canonical_geometry) ... ok
+test_04_extensions (test_scene.SceneContracts.test_04_extensions) ... ok
+test_05_both_door_ids_preserved (test_scene.SceneContracts.test_05_both_door_ids_preserved) ... ok
+test_06_anchor_protections (test_scene.SceneContracts.test_06_anchor_protections) ... ok
+test_07_no_fake_api (test_scene.SceneContracts.test_07_no_fake_api) ... ok
+test_08_program_geometry_fits_rooms (test_scene.SceneContracts.test_08_program_geometry_fits_rooms) ... ok
+test_09_canonical_portals_clear (test_scene.SceneContracts.test_09_canonical_portals_clear) ... ok
+test_10_budget_profiles (test_scene.SceneContracts.test_10_budget_profiles) ... ok
+test_11_decor_is_non_collidable (test_scene.SceneContracts.test_11_decor_is_non_collidable) ... ok
+test_12_guard_and_idempotence (test_scene.SceneContracts.test_12_guard_and_idempotence) ... ok
+test_13_generated_luau_up_to_date (test_scene.SceneContracts.test_13_generated_luau_up_to_date) ... ok
+test_14_preview_generation_up_to_date (test_scene.SceneContracts.test_14_preview_generation_up_to_date) ... ok
+test_15_rollback_scoped (test_scene.SceneContracts.test_15_rollback_scoped) ... ok
+test_16_all_paths_within_b01 (test_scene.SceneContracts.test_16_all_paths_within_b01) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.006s
+
+OK

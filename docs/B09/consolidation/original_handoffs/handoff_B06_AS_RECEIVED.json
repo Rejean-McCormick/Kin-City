@@ -1,0 +1,83 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B06",
+  "place_key": "innovation_lab",
+  "baseline": "KC33",
+  "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "contracts_version": "KC34-DOC-1.0",
+  "commit_or_patch_id": "B06-KONSTRUCT-0.1.0",
+  "change_class": "LOCAL",
+  "goal": "Identité Art déco et parcours de six salles, contribution Luau sans modification des contrats communs",
+  "changed_files": [
+    {
+      "path": "contrib/places/innovation_lab/KonstructScene.luau",
+      "sha256": "aef9e536211ba7661013e7e13bc59c1369841daee42e228d16d7f131157a28cb"
+    },
+    {
+      "path": "contrib/places/innovation_lab/QA_B06.md",
+      "sha256": "153cc522ef63ca081d33a97a2fc4219f6b2b243135342ace454c04307ac758dd"
+    },
+    {
+      "path": "contrib/places/innovation_lab/README.md",
+      "sha256": "519ac059edfb4d9d0919a6d95ba73d2bc1f98d0dcedc36e53d22f1e0afdb5e14"
+    },
+    {
+      "path": "contrib/places/innovation_lab/build_scene.py",
+      "sha256": "0d4f53eff248545f7b2f780d5e04cae047fc6e564734f1ce2d48fc427cc655ca"
+    },
+    {
+      "path": "contrib/places/innovation_lab/recipe.json",
+      "sha256": "29af0dff462fa1de5151e1e09de3773e533ba326ac7df328b14a383a4309a7e6"
+    },
+    {
+      "path": "contrib/places/innovation_lab/room_layout.json",
+      "sha256": "9ba3c3161fa008a35e0e3d18bad09c09dbe43863f45dbdc42b0308c95fade3e7"
+    },
+    {
+      "path": "contrib/places/innovation_lab/test_b06.py",
+      "sha256": "c801f072bdac0dd7bb42a24c3c3ce1cfa458ba8e38674c5fb9e9c77e03ca2021"
+    }
+  ],
+  "contract_changes": [],
+  "assets_added": [],
+  "tests_executed": [
+    {
+      "name": "B06Static suite",
+      "result": "PASS",
+      "evidence": "qa/test_results.log (10 tests statiques exécutés contre le ZIP V3 original)"
+    }
+  ],
+  "tests_not_executed": [
+    "Roblox Studio preview / Lua runtime",
+    "TeleportService client publié",
+    "Visual signage and avatar collisions",
+    "FPS/memory on mobile",
+    "KC33/B09 full source merge"
+  ],
+  "evidence": [
+    "qa/test_results.log",
+    "RAPPORT_B06.md",
+    "contrib/places/innovation_lab/QA_B06.md"
+  ],
+  "performance": {
+    "measured": false,
+    "device": "",
+    "profile": "",
+    "metrics": {
+      "estimated_native_parts": {
+        "LITE": 24,
+        "STANDARD": 33,
+        "SHOWCASE": 60
+      }
+    }
+  },
+  "risk": [
+    "Source KC33/B09 non accessible dans cet environnement; vérification du hash à refaire à réception",
+    "Module décoratif non connecté au WorldBuilder",
+    "Direction des panneaux à vérifier dans Studio",
+    "Bounds des ailes plus vastes que la fiche initiale"
+  ],
+  "rollback": "Supprimer uniquement le module/dossier KinB06_Konstruct_Overlay après sauvegarde de staging, puis retirer la contribution B06; restaurer la baseline KC33/B09. Aucun contrat canonique modifié.",
+  "needs_approval": [],
+  "status": "READY_FOR_REVIEW"
+}

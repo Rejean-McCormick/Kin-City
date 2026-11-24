@@ -5,6 +5,7 @@ local Typography=require(game:GetService("ReplicatedStorage"):WaitForChild("KinC
 local F=require(script.Parent.Factory)
 local Presence=require(script.Parent.ViewerPresenceV21)
 local Nav=require(script.Parent.NeighborhoodNPCNavigation)
+local Population=require(script.Parent.CityPopulationV36)
 local Citizens={}
 local outfits={
     {"Bibliothécaire","Savoirs"},{"Guide du savoir","Accueil"},{"Étudiante","Université"},
@@ -103,16 +104,26 @@ local function makeCitizen(parent,index)
     return model,arms,legs
 end
 function Citizens.make(parent)
-    local folder=F.folder(parent,"Citoyens")
-    for i=1,36 do
-        local model=makeCitizen(folder,i)
-        local quarter=Nav.quarter(i)
-        local start=Nav.stop(quarter,i,1)
-        model:SetAttribute("KinResidenceQuarter",quarter.id)
-        model:SetAttribute("KinNPCActivity","Accueil du quartier")
-        model:PivotTo(CFrame.new(start+Vector3.new(0,0.15,0)))
-    end
-    return folder
+    local existing=parent:FindFirstChild("Citoyens")
+    if existing and existing:GetAttribute("KinNPCPopulationRevision")==Population.REVISION then return existing end
+    -- Construire la nouvelle population AVANT d'enlever la précédente.
+    local stage=F.folder(parent,"Citoyens_KC36_PREPARE")
+    local ok,err=pcall(function()
+        for i=1,Population.PROCEDURAL_PER_SECTOR*6 do
+            local site=Population.site("stylized",i)
+            local model=makeCitizen(stage,i)
+            model:SetAttribute("KinResidenceQuarter",site.section.key)
+            model:SetAttribute("KinNPCActivity","Promenade de l'avenue")
+            model:SetAttribute("KinNPCAnchor",site.position)
+            local pos=site.position+Vector3.new(0,0.55,0)
+            model:PivotTo(CFrame.lookAt(pos,pos+site.axis))
+        end
+    end)
+    if not ok then stage:Destroy();error(err) end
+    stage:SetAttribute("KinNPCPopulationRevision",Population.REVISION)
+    if existing then existing:Destroy() end
+    stage.Name="Citoyens"
+    return stage
 end
 -- Les PNJ primitifs sont ancrés et n'utilisent pas Humanoid:MoveTo. On avance
 -- sur une tangente à vitesse constante, puis on aligne le regard sur ce vecteur.
@@ -140,91 +151,65 @@ local function face(position,tangent)
 end
 function Citizens.start(world)
     local city=world:FindFirstChild("Ville")
-    local folder=city and city:FindFirstChild("Citoyens")
-    if not folder then return end
+    if not city then return end
+    -- WorldBuilder peut réutiliser une scène KC35 : la population est rattrapée
+    -- ici si le générateur d'édition n'avait pas encore les nouveaux PNJ.
+    local folder=Citizens.make(city)
+    local started=0
     for _,model in ipairs(folder:GetChildren()) do
-        local index=model:GetAttribute("CitizenIndex")
-        if index and model:IsA("Model") then
-            task.spawn(function()
-                local quarter=Nav.quarter(index)
-                local routeStep=1
-                local phase=index*1.7
-                local speed=4.5+(index%4)*0.65
-                local last=os.clock()
-                local lastPresence=0
-                local nearby=false
-                local pathPoints=nil
-                local waypointIndex=2
-                local retryAt=0
-                local pauseUntil=0
-                local root=model.PrimaryPart
-                while root and root.Parent and world.Parent do
-                    local now=os.clock()
-                    local dt=math.clamp(now-last,0,0.15)
-                    last=now
-                    if now-lastPresence>1.0 then
-                        nearby=Presence.near(model:GetPivot().Position,180)
-                        lastPresence=now
-                    end
-                    if not nearby then
-                        task.wait(0.6)
-                        continue
-                    end
-                    local position=model:GetPivot().Position
-                    if not pathPoints and now>=retryAt then
-                        routeStep+=1
-                        local target,activity=Nav.stop(quarter,index,routeStep)
-                        local _,points=Nav.plan(quarter,position+Vector3.new(0,2.35,0),target+Vector3.new(0,2.5,0))
-                        pathPoints=points
-                        waypointIndex=2
-                        retryAt=now+(if points then 0 else 2.5)
-                        if points then model:SetAttribute("KinNPCActivity",activity) end
-                    end
-                    local walking=false
-                    local direction=Vector3.new(0,0,-1)
-                    if pathPoints and now>=pauseUntil then
-                        local waypoint=pathPoints[waypointIndex]
-                        if waypoint then
-                            local delta=Vector3.new(waypoint.Position.X-position.X,0,waypoint.Position.Z-position.Z)
-                            if delta.Magnitude<0.55 then
-                                waypointIndex+=1
-                                if waypointIndex>#pathPoints then
-                                    pathPoints=nil
-                                    pauseUntil=now+1.2+(index%4)*0.6
-                                end
-                            else
-                                direction=delta.Unit
-                                local step=math.min(speed*dt,delta.Magnitude)
-                                local advance=direction*step
-                                if Nav.blockedAhead(model,position,advance+direction*1.1,world) then
-                                    pathPoints=nil
-                                    retryAt=now+2.0
-                                else
-                                    local nextPosition=position+advance
-                                    -- Les PNJ ancrés ne traversent pas l'enveloppe de leur quartier.
-                                    if Nav.within(quarter,nextPosition) then
-                                        walking=true
-                                        phase+=step*1.05
-                                        local frame=face(nextPosition,direction)
-                                        model:PivotTo(frame)
-                                        animate(model,frame,phase,true)
-                                    else
-                                        pathPoints=nil
-                                        retryAt=now+2.5
-                                    end
-                                end
-                            end
+        if model:IsA("Model") then
+            local index=model:GetAttribute("CitizenIndex")
+            if typeof(index)=="number" then
+                local site=Population.site("stylized",index)
+                started+=1
+                task.spawn(function()
+                    local offset=if index%2==0 then 8 else -8
+                    local goalSign=if index%2==0 then -1 else 1
+                    local last=os.clock()
+                    local phase=index*0.35
+                    while model.Parent==folder and world.Parent do
+                        local now=os.clock()
+                        local dt=math.clamp(now-last,0,0.12)
+                        last=now
+                        if not Presence.near(model:GetPivot().Position,190) then
+                            model:SetAttribute("KinNPCMotion","idle")
+                            task.wait(0.7)
+                            continue
+                        end
+                        local position=model:GetPivot().Position
+                        local current=(position-site.position):Dot(site.axis)
+                        local goal=goalSign*site.itinerary_half_length
+                        local delta=goal-current
+                        if math.abs(delta)<0.65 then
+                            goalSign=-goalSign
+                            model:SetAttribute("KinNPCMotion","idle")
+                            task.wait(1.5+(index%4)*0.4)
                         else
-                            pathPoints=nil
+                            local step=math.min(math.abs(delta),7*dt)
+                            local motion=site.axis*(if delta>0 then step else -step)
+                            if Nav.blockedAhead(model,position,motion,world) then
+                                goalSign=-goalSign
+                                model:SetAttribute("KinNPCMotion","idle")
+                                task.wait(1.2)
+                            else
+                                local nextPos=position+motion
+                                if Population.safeWaypoint(site,nextPos) then
+                                    local frame=face(nextPos,motion.Unit)
+                                    model:PivotTo(frame)
+                                    phase+=step*1.4
+                                    animate(model,frame,phase,true)
+                                    model:SetAttribute("KinNPCMotion","walk")
+                                else
+                                    goalSign=-goalSign
+                                end
+                                task.wait(0.09)
+                            end
                         end
                     end
-                    if not walking then
-                        animate(model,model:GetPivot(),phase,false)
-                    end
-                    task.wait(0.08)
-                end
-            end)
+                end)
+            end
         end
     end
+    print("KC36 POPULATION :",started,"citoyens stylisés répartis sur 6 avenues")
 end
 return Citizens

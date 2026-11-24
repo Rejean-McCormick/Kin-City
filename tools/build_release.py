@@ -1,86 +1,36 @@
 #!/usr/bin/env python3
-"""Release v30: ville seule + huit intérieurs, plus secours historique local.
-Sans PlaceId inventé ni connexion réseau. Si les vrais IDs sont configurés et
-MULTI_PLACE sélectionné, les neuf scripts basculent en publication.
-"""
-from __future__ import annotations
+"""Reproducible single-Place test release; never generate historical publishing installers."""
 import argparse
 import hashlib
 import json
-import shutil
 from pathlib import Path
-from make_studio_installer import generate
-import runpy
-from export_roblox import build_fingerprint
-
+from make_universe_recovery_installer import generate
+from art_deco_catalog import load_art_deco
 ROOT=Path(__file__).resolve().parents[1]
-def sha256(path:Path)->str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-def build(root:Path):
+def build(root=ROOT):
+    load_art_deco(root)
+    from art_deco_context_manifest import generate as generate_contexts
+    generate_contexts(root)
     from validate_v28_journey import validate
     errors=validate(root)
-    if errors: raise ValueError("Invalid library journey: "+"; ".join(errors))
-    runpy.run_path(str(root/'tools/generate_v24_meshes.py'))
-    runpy.run_path(str(root/'tools/generate_v25_meshes.py'))
-    from generate_v28_meshes import generate as generate_meshes
-    generate_meshes(root)
-    from make_king_klown_installer import generate_avatar
-    avatar=generate_avatar(root)
-    local=generate(root)
-    local_copy=root/'KinCity_Installation_Univers_Local_v30.luau'
-    shutil.copyfile(local,local_copy)
-    registry=json.loads((root/'config/place_ids.json').read_text(encoding='utf8'))
-    installers={}
-    for key in registry:
-        installers[key]=generate(root,place_key=key)
-    direct=root/'KinCity_Installation_Directe_v30.luau'
-    shutil.copyfile(installers['city'],direct)
-    plan=json.loads((root/'build/world-plan.json').read_text(encoding='utf8'))
-    identity=build_fingerprint(root,plan['canonical_sha256'])
-    place_packages=[]
-    for key in registry:
-        is_city=key=='city'
-        place_packages.append({
-            'place_key':key,
-            'role':'exterior_city' if is_city else 'institution_interior',
-            'installer':installers[key].name,
-            'published_place_id':registry[key],
-            'canonical_doors':sum(d['source_place_key']==key for d in plan['doors']),
-            'canonical_interactions':sum(i['place_key']==key for i in plan['interactions']),
-            'anchors':next(len(p['anchors']) for p in plan['places'] if p['place_key']==key),
-            'generates_city':is_city,
-            'generates_institution_interior':not is_city,
-        })
-    package_json=root/'build/place-package-plan.json'
-    package_json.write_text(json.dumps({
-        'version':'31.9.3','source_world_plan_sha256':plan['canonical_sha256'],
-        'packages':place_packages,'published_place_ids_required_for_interplace_travel':True,
-        'preview_has_interplace_teleportation':False,
-    },ensure_ascii=False,sort_keys=True,indent=2)+'\n',encoding='utf8')
-    tracked=[avatar,root/'KingKlown_Enregistrer_Cheveux_v7.luau',root/'assets/kingklown-v7/kingklown-hair-v7.obj',root/'KinCity_Diagnostic_Performance_v28.luau',root/'build/world-plan.json',package_json,local,local_copy,direct]
-    tracked.extend(installers.values())
-    tracked.extend(sorted((root/'src/shared').glob('*.luau')))
-    tracked.extend(sorted((root/'assets/meshes-v24').glob('*.obj')))
-    tracked.extend(sorted((root/'assets/meshes-v25').glob('*.obj')))
-    tracked.extend([root/'KinCity_Enregistrer_Mesh_Studio_v25.luau',
-        root/'KinCity_Enregistrer_Materiau_Studio_v25.luau',
-        root/'KinCity_Diagnostic_Studio_v25.luau',
-        root/'KinCity_Diagnostic_Places_v26.luau'])
-    configured=json.loads((root/'config/runtime.json').read_text(encoding='utf8'))['mode']
-    manifest={
-        'version':'31.9.3','mode':'WORLD_STUB','runtime_mode':configured,
-        'place_install_mode':'MULTI_PLACE' if configured=='MULTI_PLACE' else 'SPLIT_PREVIEW',
-        'art_style':'#1E6864 + #C5F4F0 cristal opalin',
-        'plan_sha256':plan['canonical_sha256'],'build_sha256':identity['sha256'],
-        'place_installers':{key:path.name for key,path in installers.items()},
-        'place_ids_configured':sum(isinstance(n,int) and not isinstance(n,bool) for n in registry.values()),
-        'artifacts':{p.relative_to(root).as_posix():sha256(p) for p in tracked},
-    }
-    output=root/'build/release-manifest.json'
-    output.write_text(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n',encoding='utf8')
-    print('RELEASE v31.9.3',len(installers),'installateurs indépendants; build',identity['sha256'][:16])
+    if errors: raise ValueError('; '.join(errors))
+    from make_art_deco_library_tools import generate as generate_library_tools
+    generate_library_tools(root)
+    if (root/'contrib/places').exists():
+        from b09_bundle_branches import generate as bundle_branches
+        bundle_branches(root)
+    generate(root)
+    plan=json.loads((root/'build/world-plan.json').read_text())
+    paths=[root/'installer/KinCity_INSTALLATION_TOTALE_v31_9_7.luau',root/'build/world-plan.json']
+    for folder,pattern in [('src','*.luau'),('catalog','*.json'),('config','*.json'),('studio','*.luau')]:
+        paths.extend(sorted((root/folder).rglob(pattern)))
+    manifest={'version':'kc35-all-branches-local-staging','base':'supplied snapshot; remote HEAD not verified',
+        'test_only':True,'production_place_excluded':72097868581669,
+        'canonical_plan_sha256':plan['canonical_sha256'],
+        'artifacts':{p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}}
+    (root/'build/release-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+    print('RELEASE: official test installer only;',len(paths),'source/data artifacts')
     return manifest
-
 if __name__=='__main__':
-    ap=argparse.ArgumentParser();ap.add_argument('--root',type=Path,default=ROOT)
-    args=ap.parse_args();build(args.root)
+    parser=argparse.ArgumentParser();parser.add_argument('--root',type=Path,default=ROOT)
+    build(parser.parse_args().root)

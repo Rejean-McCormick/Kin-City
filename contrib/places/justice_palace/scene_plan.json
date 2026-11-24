@@ -1,0 +1,609 @@
+{
+  "schema_version": "kincity.b05-scene/1.0",
+  "branch_id": "B05",
+  "place_key": "justice_palace",
+  "building_id": "ethikos.justice_palace",
+  "baseline_reference": "KC33 (contrats KC34-DOC-1.0); archive KC33 non disponible dans cette session",
+  "style": {
+    "name": "KORUM — La justice accueillante",
+    "sector": "ethikos",
+    "sector_hex": "#A97C4F",
+    "base_hex": "#1E6864",
+    "metal_hex": "#B78C62",
+    "wall_hex": "#F0E9DA",
+    "dark_hex": "#273D3F",
+    "tenets": [
+      "lisibilité et hospitalité",
+      "symétrie non intimidante",
+      "accessibilité des parcours",
+      "ornementation Art déco retenue",
+      "neutralité du dialogue"
+    ]
+  },
+  "protected": {
+    "entry_door_id": "city.ethikos.justice_palace.entry",
+    "exit_door_id": "justice_palace.exit",
+    "spawn_anchor_id": "justice_palace.lobby.spawn",
+    "exit_anchor_id": "justice_palace.exit.door",
+    "interaction_anchor_id": "hall.terminal_01",
+    "canonical_portals": [
+      "justice_palace.portal.lobby.gallery",
+      "justice_palace.portal.lobby.chamber"
+    ],
+    "extension_portals": [
+      "justice_palace.gallery_to_west",
+      "justice_palace.chamber_to_east",
+      "justice_palace.gallery_to_rear",
+      "justice_palace.chamber_to_rear"
+    ]
+  },
+  "rooms": [
+    {
+      "room_id": "justice_palace.lobby",
+      "title": "Hall civique",
+      "center": [
+        0,
+        0,
+        -29
+      ],
+      "size": [
+        100,
+        16,
+        34
+      ],
+      "theme": "hospitalité, clarté, orientation",
+      "role": "welcome"
+    },
+    {
+      "room_id": "justice_palace.gallery",
+      "title": "Salle de consultation",
+      "center": [
+        -27,
+        0,
+        17
+      ],
+      "size": [
+        44,
+        16,
+        52
+      ],
+      "theme": "écoute et accès à l’information",
+      "role": "consultation"
+    },
+    {
+      "room_id": "justice_palace.chamber",
+      "title": "Salle de délibération",
+      "center": [
+        27,
+        0,
+        17
+      ],
+      "size": [
+        44,
+        16,
+        52
+      ],
+      "theme": "discussion équitable et participation",
+      "role": "deliberation"
+    },
+    {
+      "room_id": "justice_palace.west_wing",
+      "title": "Salle des témoignages",
+      "center": [
+        -79,
+        0,
+        7
+      ],
+      "size": [
+        52,
+        16,
+        50
+      ],
+      "theme": "confidentialité, calme, respect",
+      "role": "testimony"
+    },
+    {
+      "room_id": "justice_palace.east_wing",
+      "title": "Salle de médiation",
+      "center": [
+        79,
+        0,
+        7
+      ],
+      "size": [
+        52,
+        16,
+        50
+      ],
+      "theme": "dialogue et rapprochement",
+      "role": "mediation"
+    },
+    {
+      "room_id": "justice_palace.rear_atrium",
+      "title": "Atrium de la justice",
+      "center": [
+        0,
+        0,
+        76
+      ],
+      "size": [
+        100,
+        16,
+        56
+      ],
+      "theme": "espace commun sans hiérarchie",
+      "role": "atrium"
+    }
+  ],
+  "zones_to_keep_clear": [
+    {
+      "name": "exit and spawn central axis",
+      "type": "rect",
+      "xz": [
+        -6,
+        -47,
+        6,
+        -11.5
+      ],
+      "notes": "corridor from city return door to gallery/chamber junction"
+    },
+    {
+      "name": "consultation terminal",
+      "type": "circle",
+      "xz": [
+        -27,
+        18
+      ],
+      "radius_studs": 8
+    },
+    {
+      "name": "portal lobby/gallery",
+      "type": "circle",
+      "xz": [
+        -27,
+        -10.5
+      ],
+      "radius_studs": 7
+    },
+    {
+      "name": "portal lobby/chamber",
+      "type": "circle",
+      "xz": [
+        27,
+        -10.5
+      ],
+      "radius_studs": 7
+    },
+    {
+      "name": "west wing doorway",
+      "type": "circle",
+      "xz": [
+        -51,
+        16
+      ],
+      "radius_studs": 7
+    },
+    {
+      "name": "east wing doorway",
+      "type": "circle",
+      "xz": [
+        51,
+        16
+      ],
+      "radius_studs": 7
+    },
+    {
+      "name": "gallery rear doorway",
+      "type": "circle",
+      "xz": [
+        -27,
+        45.5
+      ],
+      "radius_studs": 7
+    },
+    {
+      "name": "chamber rear doorway",
+      "type": "circle",
+      "xz": [
+        27,
+        45.5
+      ],
+      "radius_studs": 7
+    },
+    {
+      "name": "stairs / mezzanine area",
+      "type": "rect",
+      "xz": [
+        -44,
+        47,
+        44,
+        98
+      ],
+      "notes": "floor access reserved; high wall plaques only"
+    }
+  ],
+  "features": [
+    {
+      "id": "justice_palace.b05.lobby.entry_rose",
+      "room_id": "justice_palace.lobby",
+      "kind": "rosette",
+      "position_studs": [
+        -32,
+        9.4,
+        -44.4
+      ],
+      "yaw_degrees": 0,
+      "width_studs": 4.0,
+      "min_profile": "LITE",
+      "asset_candidate": "AD_Int_Mirror_Sunburst",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.lobby.hospitality_band",
+      "room_id": "justice_palace.lobby",
+      "kind": "frieze",
+      "position_studs": [
+        32,
+        10.0,
+        -44.4
+      ],
+      "yaw_degrees": 0,
+      "width_studs": 9,
+      "min_profile": "STANDARD",
+      "asset_candidate": "AD_Int_Lamp_Wall_Sun",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.lobby.west_pilaster",
+      "room_id": "justice_palace.lobby",
+      "kind": "pilaster",
+      "position_studs": [
+        -48,
+        8.3,
+        -29
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 6.0,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Column",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.lobby.east_pilaster",
+      "room_id": "justice_palace.lobby",
+      "kind": "pilaster",
+      "position_studs": [
+        48,
+        8.3,
+        -29
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 6.0,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Column",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.gallery.orientation_rose",
+      "room_id": "justice_palace.gallery",
+      "kind": "rosette",
+      "position_studs": [
+        -45.5,
+        9.0,
+        30
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 3.6,
+      "min_profile": "LITE",
+      "asset_candidate": "AD_Int_Mirror_Sunburst",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.gallery.consultation_band",
+      "room_id": "justice_palace.gallery",
+      "kind": "frieze",
+      "position_studs": [
+        -15,
+        10.0,
+        41.4
+      ],
+      "yaw_degrees": 0,
+      "width_studs": 9,
+      "min_profile": "STANDARD",
+      "asset_candidate": "AD_Int_Floor_Medallion",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.gallery.east_sconce",
+      "room_id": "justice_palace.gallery",
+      "kind": "sconce",
+      "position_studs": [
+        -9.6,
+        9.1,
+        30
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 3.0,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Lamp_Wall_Sun",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.gallery.west_sconce",
+      "room_id": "justice_palace.gallery",
+      "kind": "sconce",
+      "position_studs": [
+        -45.5,
+        9.1,
+        2
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 3.0,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Lamp_Wall_Sun",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.chamber.balanced_rose",
+      "room_id": "justice_palace.chamber",
+      "kind": "rosette",
+      "position_studs": [
+        8,
+        9.2,
+        31
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 3.8,
+      "min_profile": "LITE",
+      "asset_candidate": "AD_Int_Mirror_Sunburst",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.chamber.deliberation_band",
+      "room_id": "justice_palace.chamber",
+      "kind": "frieze",
+      "position_studs": [
+        40,
+        10,
+        41.3
+      ],
+      "yaw_degrees": 0,
+      "width_studs": 8.5,
+      "min_profile": "STANDARD",
+      "asset_candidate": "AD_Int_Rug_Deco",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.chamber.north_sconce",
+      "room_id": "justice_palace.chamber",
+      "kind": "sconce",
+      "position_studs": [
+        47,
+        9,
+        8
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 3,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Lamp_Wall_Sun",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.chamber.south_sconce",
+      "room_id": "justice_palace.chamber",
+      "kind": "sconce",
+      "position_studs": [
+        7,
+        9,
+        8
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 3,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Lamp_Wall_Sun",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.west_wing.testimony_rose",
+      "room_id": "justice_palace.west_wing",
+      "kind": "rosette",
+      "position_studs": [
+        -101.8,
+        9.0,
+        -5
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 4,
+      "min_profile": "LITE",
+      "asset_candidate": "AD_Int_Mirror_Sunburst",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.west_wing.privacy_band",
+      "room_id": "justice_palace.west_wing",
+      "kind": "frieze",
+      "position_studs": [
+        -82,
+        10,
+        30.5
+      ],
+      "yaw_degrees": 0,
+      "width_studs": 10,
+      "min_profile": "STANDARD",
+      "asset_candidate": "AD_Int_Room_Wall_GlassBlock_Teal",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.west_wing.west_pilaster",
+      "room_id": "justice_palace.west_wing",
+      "kind": "pilaster",
+      "position_studs": [
+        -101.8,
+        8,
+        22
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 6,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Column",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.west_wing.north_sconce",
+      "room_id": "justice_palace.west_wing",
+      "kind": "sconce",
+      "position_studs": [
+        -58,
+        9.2,
+        29
+      ],
+      "yaw_degrees": 0,
+      "width_studs": 2.6,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Lamp_Wall_Sun",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.east_wing.mediation_rose",
+      "room_id": "justice_palace.east_wing",
+      "kind": "rosette",
+      "position_studs": [
+        102,
+        9,
+        24
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 4,
+      "min_profile": "LITE",
+      "asset_candidate": "AD_Int_Mirror_Sunburst",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.east_wing.listening_band",
+      "room_id": "justice_palace.east_wing",
+      "kind": "frieze",
+      "position_studs": [
+        75,
+        10,
+        30.5
+      ],
+      "yaw_degrees": 0,
+      "width_studs": 10,
+      "min_profile": "STANDARD",
+      "asset_candidate": "AD_Int_Room_Wall_GlassBlock_Teal",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.east_wing.east_pilaster",
+      "room_id": "justice_palace.east_wing",
+      "kind": "pilaster",
+      "position_studs": [
+        102,
+        8,
+        -5
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 6,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Column",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.east_wing.north_sconce",
+      "room_id": "justice_palace.east_wing",
+      "kind": "sconce",
+      "position_studs": [
+        56,
+        9.2,
+        29
+      ],
+      "yaw_degrees": 0,
+      "width_studs": 2.6,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Lamp_Wall_Sun",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.rear_atrium.together_rose",
+      "room_id": "justice_palace.rear_atrium",
+      "kind": "rosette",
+      "position_studs": [
+        -46,
+        9,
+        96
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 4,
+      "min_profile": "LITE",
+      "asset_candidate": "AD_Int_Mirror_Sunburst",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.rear_atrium.unity_band",
+      "room_id": "justice_palace.rear_atrium",
+      "kind": "frieze",
+      "position_studs": [
+        0,
+        10,
+        102.2
+      ],
+      "yaw_degrees": 0,
+      "width_studs": 14,
+      "min_profile": "STANDARD",
+      "asset_candidate": "AD_Int_Floor_Medallion",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.rear_atrium.west_sconce",
+      "room_id": "justice_palace.rear_atrium",
+      "kind": "sconce",
+      "position_studs": [
+        -48,
+        9,
+        69
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 3,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Lamp_Wall_Sun",
+      "collision_policy": "no_collision"
+    },
+    {
+      "id": "justice_palace.b05.rear_atrium.east_sconce",
+      "room_id": "justice_palace.rear_atrium",
+      "kind": "sconce",
+      "position_studs": [
+        48,
+        9,
+        69
+      ],
+      "yaw_degrees": 90,
+      "width_studs": 3,
+      "min_profile": "SHOWCASE",
+      "asset_candidate": "AD_Int_Lamp_Wall_Sun",
+      "collision_policy": "no_collision"
+    }
+  ],
+  "budget": {
+    "profile_max_features": {
+      "LITE": 6,
+      "STANDARD": 12,
+      "SHOWCASE": 24
+    },
+    "estimated_native_parts_per_feature": {
+      "rosette": 3,
+      "frieze": 3,
+      "pilaster": 3,
+      "sconce": 3
+    },
+    "estimated_native_parts": {
+      "LITE": 18,
+      "STANDARD": 36,
+      "SHOWCASE": 72
+    },
+    "mesh_imports_in_preview": 0,
+    "dynamic_point_lights": 0,
+    "note": "native decorative Parts only; no asset_mesh cloning in prototype; true GPU/draw/cost unmeasured"
+  },
+  "runtime_state": "NOT_CONNECTED_TO_WORLD_BUILDER"
+}

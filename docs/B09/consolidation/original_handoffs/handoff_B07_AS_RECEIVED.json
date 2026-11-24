@@ -1,0 +1,76 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B07",
+  "place_key": "museum",
+  "baseline": "KC33",
+  "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "contracts_version": "KC34-DOC-1.0",
+  "commit_or_patch_id": "KC34-B07-MUSEUM-BARRICADE-1.0",
+  "change_class": "LOCAL",
+  "goal": "Contribution musée à six salles, porte extérieure barrée et écran de broadcast YouTube à proximité",
+  "changed_files": [
+    {
+      "path": "contrib/places/museum/MuseumScene.luau",
+      "sha256": "a07d68b988761bf85f7d4cdf8ebe2f4b726556ac03bf6adba5dc72c93cd7ac9f"
+    },
+    {
+      "path": "contrib/places/museum/MuseumSceneData.luau",
+      "sha256": "4879b219b3ccc3e175ca9905b17361f1ea3533f4544b89e3874689675af2b71a"
+    },
+    {
+      "path": "contrib/places/museum/README.md",
+      "sha256": "a42a6e2ab0d6fd59b6bc85e808e6b3baf6ddcccd0001f37644f93fa9969fe69c"
+    },
+    {
+      "path": "contrib/places/museum/recipe.json",
+      "sha256": "4c528cea67b5cd7e6d3704f634ac8073797b8362a7efff1ace4a33b3bcceefd1"
+    },
+    {
+      "path": "contrib/places/museum/docs/QA_B07.md",
+      "sha256": "215b59b21731fc7bb2a1944dca7e471f10a61e23a763f8a2b9abb432108b6031"
+    },
+    {
+      "path": "contrib/places/museum/tests/test_b07.py",
+      "sha256": "b1e2dfa58da4b00d270b9812f3c59f149246a99ab9c08fd45542d0a88a7c4b0a"
+    }
+  ],
+  "contract_changes": [],
+  "rfc_id": "RFC-B09-B07-LOCKED-ENTRY-001",
+  "needs_approval": [
+    "B09: revue d’intégration et tests Studio pour le verrou visuel"
+  ],
+  "assets_added": [],
+  "tests_executed": [
+    {
+      "name": "tests/test_b07.py",
+      "result": "PASS",
+      "evidence": "contrib/places/museum/tests/test_b07.py"
+    },
+    {
+      "name": "Museum broadcast integration checks",
+      "result": "PASS",
+      "evidence": "tests/test_b07_broadcast_integration.py"
+    }
+  ],
+  "tests_not_executed": [
+    "Roblox Studio",
+    "client publié multi-Place",
+    "profilage FPS/mobile"
+  ],
+  "evidence": [
+    "contrib/places/museum/tests/test_b07.py",
+    "tests/test_b07_broadcast_integration.py"
+  ],
+  "performance": {
+    "measured": false,
+    "device": "",
+    "profile": "",
+    "metrics": {}
+  },
+  "risk": [
+    "contribution non chargée par adaptateur commun",
+    "écran Roblox dépend d’un AssetId vidéo configuré par le propriétaire"
+  ],
+  "rollback": "Supprimer contrib/places/museum et retirer MuseumBroadcastBarrier du démarrage; aucun contrat canonique modifié.",
+  "status": "READY_FOR_REVIEW"
+}

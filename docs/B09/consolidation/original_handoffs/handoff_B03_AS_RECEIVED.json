@@ -1,0 +1,85 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B03",
+  "place_key": "library",
+  "baseline": "KC33",
+  "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "baseline_bytes_verified": false,
+  "baseline_used_for_static_tests": "KinCity_ArtDeco_V3_Complet (1).zip",
+  "baseline_used_sha256": "6696d12dc6c9fefd845e9180a11c4f9412ea439989ef97bd0ef35eb091192798",
+  "contracts_version": "KC34-DOC-1.0",
+  "commit_or_patch_id": "KC34-B03-LIBRARY-001",
+  "change_class": "LOCAL",
+  "goal": "Aménagement visuel Art déco des 6 salles de la Grande Bibliothèque sans changement du gameplay",
+  "changed_files": [
+    {
+      "path": "contrib/places/library/LibraryScene.luau",
+      "sha256": "83f30ebe9937ea1a6e9c9b83aeafc2e8745d481da3838657c2d7dc0ed08302d9"
+    },
+    {
+      "path": "contrib/places/library/LibrarySceneData.luau",
+      "sha256": "07ba57224e6ce70344f0084682e3cf29f58b37974b68f0425bf885e45016e9e2"
+    },
+    {
+      "path": "contrib/places/library/README.md",
+      "sha256": "52c6d0526bbfa6e75f9ddb30002226a1be154cee387e44b956d4d46b3e004289"
+    },
+    {
+      "path": "contrib/places/library/STUDIO_APERCU_LOCAL_B03.luau",
+      "sha256": "2d3d4a96809b7e3894569fedf667b5383db742b608e44d1839bfbb62a647e5be"
+    },
+    {
+      "path": "contrib/places/library/build_tools.py",
+      "sha256": "363e3a0d972e72b2204e7faa128a0c69ba9f8175be7abd940ce1acb9a7bf4336"
+    },
+    {
+      "path": "contrib/places/library/recipe.json",
+      "sha256": "baffacc8231b2bbf42a982e6eb34503784b19f8e6d560914f874f607c6e27fdd"
+    },
+    {
+      "path": "contrib/places/library/scene_plan.json",
+      "sha256": "43360d4a0d6d052fc05c13a65fb69527eda75c20c37b29b1a40426ec2ecfe44a"
+    }
+  ],
+  "contract_changes": [],
+  "assets_added": [],
+  "tests_executed": [
+    {
+      "name": "B03 static suite on V3 available baseline",
+      "result": "PASS",
+      "evidence": "evidence/tests_B03_offline.log (19/19)"
+    }
+  ],
+  "tests_not_executed": [
+    "KC33/B09 target baseline comparison",
+    "Roblox Studio preview",
+    "Luau grammar compilation (tree-sitter-luau)",
+    "Published TeleportService",
+    "Mobile device FPS and memory"
+  ],
+  "evidence": [
+    "evidence/tests_B03_offline.log",
+    "PLAN_ET_LIVRAISON_B03.md"
+  ],
+  "performance": {
+    "measured": false,
+    "device": null,
+    "profile": null,
+    "metrics": {},
+    "declared_part_counts": {
+      "LITE": 88,
+      "STANDARD": 121,
+      "SHOWCASE": 145
+    }
+  },
+  "risk": [
+    "This environment provides original V3 zip but not KC33 or B09 generated zip; B09 must confirm actual compatibility.",
+    "Decorative geometry may overlap preexisting scene dressings even though it has no collisions.",
+    "WorldBuilder does not yet load the submitted library procedural scene."
+  ],
+  "rollback": "Delete only Intérieur — library/KC34_B03_Library on a saved local test Place. Remove only contrib/places/library files to revert contribution. Never remove generated canonical world.",
+  "needs_approval": [
+    "B09: confirm KC33 compatibility and explicitly approve procedural scene loader RFC"
+  ],
+  "status": "BLOCKED"
+}

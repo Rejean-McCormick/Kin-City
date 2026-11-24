@@ -1,0 +1,11 @@
+{
+  "schema_version": "kincity.place-recipe/1.0",
+  "place_key": "ekoh_tower",
+  "owner_branch": "B02",
+  "requires_contracts_version": "KC34-DOC-1.0",
+  "recipe_revision": "1.0.0-b02-proposal",
+  "seed_policy": "CITY_SEED_XOR_PLACE_HASH",
+  "profiles_supported": ["LITE", "STANDARD", "SHOWCASE"],
+  "decorations": [],
+  "implementation_status": "INTEGRATION_PROPOSED"
+}

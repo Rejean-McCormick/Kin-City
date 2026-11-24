@@ -1,0 +1,99 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B10",
+  "place_key": "city",
+  "baseline": "KC33",
+  "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "baseline_sha256_status": "PROVENANCE_FROM_B09_PRIOR_REPORT_NOT_REVERIFIED_HERE",
+  "observed_input": "KinCity_ArtDeco_V3_Complet (1).zip",
+  "observed_input_sha256": "6696d12dc6c9fefd845e9180a11c4f9412ea439989ef97bd0ef35eb091192798",
+  "contracts_version": "KC34-DOC-1.0",
+  "commit_or_patch_id": "KC34-B10-WAYFINDING-001",
+  "change_class": "LOCAL",
+  "goal": "Renforcer orientation urbaine, six accents et huit entrées sans modifier routes/portes",
+  "changed_files": [
+    {
+      "path": "contrib/places/city/README.md",
+      "sha256": "12d9ab9aa4775b79e0a913263bc5416bb9d8a4dbb015f52bd11614bbb05a1b88"
+    },
+    {
+      "path": "contrib/places/city/Wayfinding.luau",
+      "sha256": "ded882d2148d88ec2a4fa4ad8fae2c5d1703e71872fc9029c27c845d2630c457"
+    },
+    {
+      "path": "contrib/places/city/build_preview.py",
+      "sha256": "fef05ee760069b454b3e14f13576c9ae6443080be139cf7dfbbb10ee2ab7910e"
+    },
+    {
+      "path": "contrib/places/city/design.json",
+      "sha256": "75d4f4458753747fa4f47056b318db90658a05997377fb96fdf53b84a2dc5c17"
+    },
+    {
+      "path": "contrib/places/city/docs/PLAN_URBAIN_B10.md",
+      "sha256": "6e31b5a026453a5facb4dba54d4b034fae1b820619849c301ed36224a03ca55c"
+    },
+    {
+      "path": "contrib/places/city/docs/RFC-B10-001-INTEGRATION.md",
+      "sha256": "eedf46e52b9e86629d8cf03e15d2af8956429d9ac43f2437b97c8ead8e5478b3"
+    },
+    {
+      "path": "contrib/places/city/docs/TESTS_B10.txt",
+      "sha256": "2419ba0554a65f7d9fc250ff580c216afda942842f56e72227cb17790d836498"
+    },
+    {
+      "path": "contrib/places/city/preview/B10_APERCU_LOCAL_COMMAND_BAR.luau",
+      "sha256": "bb3ea161864c4ade39e292bfe218f81c1fc4e48c00d462fa1a9f3faeb1f116aa"
+    },
+    {
+      "path": "contrib/places/city/recipe.json",
+      "sha256": "205acd5121b83319a83a8cc22294ac8c6123c3cb816a2bab7f9e822818223911"
+    },
+    {
+      "path": "contrib/places/city/tests/test_b10_city.py",
+      "sha256": "49b48cf3506c328ff9b536a2ffe118578437cebb392ef696aa636686754e1f5e"
+    }
+  ],
+  "contract_changes": [],
+  "rfc_id": "RFC-B10-001-INTEGRATION",
+  "needs_approval": [
+    "B09: review CityGenerator export/cache integration separately"
+  ],
+  "assets_added": [],
+  "tests_executed": [
+    {
+      "name": "test_b10_city.py 17 checks",
+      "result": "PASS",
+      "evidence": "contrib/places/city/docs/TESTS_B10.txt"
+    },
+    {
+      "name": "Luau lexical paired delimiters",
+      "result": "PASS",
+      "evidence": "contrib/places/city/docs/TESTS_B10.txt"
+    }
+  ],
+  "tests_not_executed": [
+    "KC33/B09 target baseline availability check",
+    "Full Luau grammar parser",
+    "Roblox Studio visual preview",
+    "Published Roblox client teleportations",
+    "Mobile/GPU performance"
+  ],
+  "evidence": [
+    "contrib/places/city/docs/TESTS_B10.txt",
+    "contrib/places/city/docs/PLAN_URBAIN_B10.md",
+    "contrib/places/city/docs/RFC-B10-001-INTEGRATION.md"
+  ],
+  "performance": {
+    "measured": false,
+    "device": "",
+    "profile": "",
+    "metrics": {}
+  },
+  "risk": [
+    "Exact KC33/B09 files were not present in this session; B09 must revalidate",
+    "Decorative design not visually tested in Studio",
+    "B10 totem module not wired into runtime until B09 RFC approved"
+  ],
+  "rollback": "Remove only Ville/KinB10Orientation for preview; discard contrib/places/city patch before runtime merge. No canonical file edited.",
+  "status": "READY_FOR_REVIEW"
+}

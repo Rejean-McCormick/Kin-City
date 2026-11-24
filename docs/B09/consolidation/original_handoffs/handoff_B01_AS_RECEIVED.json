@@ -1,0 +1,112 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B01",
+  "place_key": "city_hall",
+  "baseline": "KC33",
+  "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "baseline_sha256_source": "B09 report in conversation, not reverified against a KC33 file in this session",
+  "contracts_version": "KC34-DOC-1.0",
+  "commit_or_patch_id": "KC34-B01-CITYHALL-1.0",
+  "change_class": "LOCAL",
+  "goal": "Décoration Art déco civique des six salles et preview locale sans réécriture des contrats",
+  "changed_files": [
+    {
+      "path": "contrib/places/city_hall/CityHallScene.luau",
+      "sha256": "c78619730d41d872b222cc323a49140ef44288d8f4fb72dcd8ebb6426dd489a1"
+    },
+    {
+      "path": "contrib/places/city_hall/CityHallSpec.luau",
+      "sha256": "2e3c7359b79ec08d3ceeb243d9ba946c664fcde28322b4d065fe7102401a230d"
+    },
+    {
+      "path": "contrib/places/city_hall/README.md",
+      "sha256": "69439cd9016ef74406688e22fc8a3537aca0e4ccee67027a8c418100772c75f7"
+    },
+    {
+      "path": "contrib/places/city_hall/city_hall_scene.json",
+      "sha256": "0c3d8ca97d3ce05cca5d096b894a939b51755079bdd7710932b1c7c16e7e4b32"
+    },
+    {
+      "path": "contrib/places/city_hall/contracts_snapshot.json",
+      "sha256": "1ac52ab1cd80583b4acf5673479ca6288bbacf234a93371c2e03808bfe60eb19"
+    },
+    {
+      "path": "contrib/places/city_hall/docs/RFC_B09_B01_001.md",
+      "sha256": "2d05fd799135015d11f213b09f532a9ffc7183c6c2f6ae5dbeec4ee0e20aba96"
+    },
+    {
+      "path": "contrib/places/city_hall/preview/PREVIEW_B01_COPIE_LOCALE.luau",
+      "sha256": "ef96ecb5aff6fed52be288868f22b8e91969a858d747566367483ea9054c060a"
+    },
+    {
+      "path": "contrib/places/city_hall/preview/ROLLBACK_B01_COPIE_LOCALE.luau",
+      "sha256": "073f8d87de579f6c8565ec4cadc9947be053ce63915fae8e11bd4eff76dfd45f"
+    },
+    {
+      "path": "contrib/places/city_hall/recipe.json",
+      "sha256": "213ddf2da63482781bbd25a90fad43f519f5638118a16011d7ab3db0628f63c2"
+    },
+    {
+      "path": "contrib/places/city_hall/tests/luau_lexical_results.txt",
+      "sha256": "3f256ed553c7c55ebaff6ba382f477c1713dfa12aa448a663c0cf4f2be31cfb8"
+    },
+    {
+      "path": "contrib/places/city_hall/tests/offline_results.txt",
+      "sha256": "060e4d85a57838384f63f24c19c515e6dc4619e61845cfc11ed54da8d1b2d261"
+    },
+    {
+      "path": "contrib/places/city_hall/tests/test_scene.py",
+      "sha256": "196f1e01abfc8f9a398c21f8deb4a0db9b7bd94f76dbdfdb10ee0a0da43589bd"
+    },
+    {
+      "path": "contrib/places/city_hall/tools/generate_spec.py",
+      "sha256": "abb4ea7f1c90ab726114790ea14609491a02080eb24e53d045552d26006f635a"
+    },
+    {
+      "path": "contrib/places/city_hall/tools/make_studio_preview.py",
+      "sha256": "d84cba11306e9cc162098445d4b8fc30c893494ef68b4ea37d717fbb9931614d"
+    }
+  ],
+  "contract_changes": [],
+  "rfc_id": "RFC-B09-B01-001",
+  "needs_approval": [
+    "B09: revue du loader et de l’export, qualification Roblox Studio"
+  ],
+  "assets_added": [],
+  "tests_executed": [
+    {
+      "name": "18 tests Python B01",
+      "result": "PASS",
+      "evidence": "contrib/places/city_hall/tests/offline_results.txt"
+    },
+    {
+      "name": "4 Luau lexical checks",
+      "result": "PASS",
+      "evidence": "contrib/places/city_hall/tests/luau_lexical_results.txt"
+    }
+  ],
+  "tests_not_executed": [
+    "Roblox Studio",
+    "multi-Place client publié",
+    "profilage FPS/mobile",
+    "fusion KC33/B09 non accessible"
+  ],
+  "evidence": [
+    "contrib/places/city_hall/tests/offline_results.txt",
+    "contrib/places/city_hall/tests/luau_lexical_results.txt"
+  ],
+  "performance": {
+    "measured": false,
+    "device": "",
+    "profile": "",
+    "metrics": {}
+  },
+  "risk": [
+    "KC33 B09 exact unavailable to re-test",
+    "loader non raccordé",
+    "UI textes à tester sur modèles réels",
+    "bounds 110x100 incompatibles extensions"
+  ],
+  "rollback": "Supprimer uniquement KinB01CityHallDecor ou retirer le chargement du module B01; aucun fichier canonique KC33 modifié.",
+  "status": "READY_FOR_REVIEW"
+}

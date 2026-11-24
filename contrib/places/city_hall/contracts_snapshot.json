@@ -1,0 +1,255 @@
+{
+  "schema_version": "kincity.b01-contracts-snapshot/1.0",
+  "reference": "Original user ZIP KinCity_ArtDeco_V3_Complet (1).zip; verify again against KC33 in B09",
+  "place": {
+    "place_key": "city_hall",
+    "bounds": {
+      "shape": "rectangle",
+      "size_studs": [
+        110,
+        100
+      ],
+      "height_studs": 22,
+      "ground_y_studs": 0
+    },
+    "anchors": [
+      {
+        "anchor_id": "city_hall.lobby.spawn",
+        "position_studs": [
+          0.0,
+          3.0,
+          -32.0
+        ],
+        "yaw_degrees": 0.0,
+        "role": "spawn",
+        "room_id": "city_hall.lobby"
+      },
+      {
+        "anchor_id": "city_hall.exit.door",
+        "position_studs": [
+          0.0,
+          3.0,
+          -45.0
+        ],
+        "yaw_degrees": 0.0,
+        "role": "door",
+        "room_id": "city_hall.lobby"
+      },
+      {
+        "anchor_id": "hall.kiosk_01",
+        "position_studs": [
+          -27.0,
+          3.0,
+          18.0
+        ],
+        "yaw_degrees": 0.0,
+        "role": "interaction",
+        "room_id": "city_hall.gallery"
+      }
+    ],
+    "rooms": [
+      {
+        "room_id": "city_hall.lobby",
+        "display_name": "Accueil public",
+        "center_studs": [
+          0,
+          0,
+          -29
+        ],
+        "size_studs": [
+          100,
+          16,
+          34
+        ],
+        "decor_density": "rich",
+        "has_walkable_floor": true
+      },
+      {
+        "room_id": "city_hall.gallery",
+        "display_name": "Galerie des services",
+        "center_studs": [
+          -27,
+          0,
+          17
+        ],
+        "size_studs": [
+          44,
+          16,
+          52
+        ],
+        "decor_density": "rich",
+        "has_walkable_floor": true
+      },
+      {
+        "room_id": "city_hall.chamber",
+        "display_name": "Salle du conseil",
+        "center_studs": [
+          27,
+          0,
+          17
+        ],
+        "size_studs": [
+          44,
+          16,
+          52
+        ],
+        "decor_density": "rich",
+        "has_walkable_floor": true
+      }
+    ],
+    "furnishings": [
+      {
+        "furnishing_id": "city_hall.prop.01",
+        "asset_id": "prop.bench",
+        "position_studs": [
+          15,
+          0,
+          -29
+        ],
+        "yaw_degrees": 0,
+        "room_id": "city_hall.lobby",
+        "collision_policy": "solid"
+      },
+      {
+        "furnishing_id": "city_hall.prop.02",
+        "asset_id": "prop.planter",
+        "position_studs": [
+          -39,
+          0,
+          -28
+        ],
+        "yaw_degrees": 0,
+        "room_id": "city_hall.lobby",
+        "collision_policy": "solid"
+      },
+      {
+        "furnishing_id": "city_hall.prop.03",
+        "asset_id": "prop.table",
+        "position_studs": [
+          27,
+          0,
+          20
+        ],
+        "yaw_degrees": 0,
+        "room_id": "city_hall.chamber",
+        "collision_policy": "solid"
+      },
+      {
+        "furnishing_id": "city_hall.prop.04",
+        "asset_id": "prop.lamp",
+        "position_studs": [
+          38,
+          0,
+          38
+        ],
+        "yaw_degrees": 0,
+        "room_id": "city_hall.chamber",
+        "collision_policy": "no_collision"
+      },
+      {
+        "furnishing_id": "city_hall.prop.05",
+        "asset_id": "prop.display",
+        "position_studs": [
+          -14,
+          0,
+          37
+        ],
+        "yaw_degrees": 0,
+        "room_id": "city_hall.gallery",
+        "collision_policy": "solid"
+      },
+      {
+        "furnishing_id": "city_hall.prop.06",
+        "asset_id": "prop.bench",
+        "position_studs": [
+          -32,
+          0,
+          37
+        ],
+        "yaw_degrees": 0,
+        "room_id": "city_hall.gallery",
+        "collision_policy": "solid"
+      },
+      {
+        "furnishing_id": "city_hall.interactive.01",
+        "asset_id": "prop.kiosk",
+        "position_studs": [
+          -27,
+          0,
+          18
+        ],
+        "yaw_degrees": 0,
+        "room_id": "city_hall.gallery",
+        "anchor_id": "hall.kiosk_01",
+        "collision_policy": "solid"
+      }
+    ],
+    "portals": [
+      {
+        "portal_id": "city_hall.portal.lobby.gallery",
+        "from_room": "city_hall.lobby",
+        "to_room": "city_hall.gallery",
+        "center_studs": [
+          -27,
+          0,
+          -10.5
+        ],
+        "clear_width_studs": 10
+      },
+      {
+        "portal_id": "city_hall.portal.lobby.chamber",
+        "from_room": "city_hall.lobby",
+        "to_room": "city_hall.chamber",
+        "center_studs": [
+          27,
+          0,
+          -10.5
+        ],
+        "clear_width_studs": 10
+      }
+    ]
+  },
+  "doors": [
+    {
+      "door_id": "city.central.city_hall.entry",
+      "building_id": "central.city_hall",
+      "source_place_key": "city",
+      "source_anchor_id": "city.central.city_hall.front_door",
+      "destination_place_key": "city_hall",
+      "destination_anchor_id": "city_hall.lobby.spawn",
+      "return_door_id": "city_hall.exit",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    },
+    {
+      "door_id": "city_hall.exit",
+      "building_id": "central.city_hall",
+      "source_place_key": "city_hall",
+      "source_anchor_id": "city_hall.exit.door",
+      "destination_place_key": "city",
+      "destination_anchor_id": "city.central.city_hall.return_spawn",
+      "return_door_id": "city.central.city_hall.entry",
+      "transition_kind": "teleport",
+      "is_operational_required": true
+    }
+  ],
+  "interactions": [
+    {
+      "interaction_id": "central.city_hall.vote_01",
+      "building_id": "central.city_hall",
+      "place_key": "city_hall",
+      "anchor_id": "hall.kiosk_01",
+      "capability_id": "smartvote.ballots.browse",
+      "provider_mode": "stub",
+      "prompt_label_key": "prompt.consult",
+      "display_title_key": "title.ballots",
+      "display_message_key": "ui.coming_soon"
+    }
+  ],
+  "source_sha256": {
+    "catalog/spatial.json": "3c75d20a368f686cedf2fd2b4837668d7af91fa39f9dc6e0378ee742b444584c",
+    "catalog/doors.json": "b6f1e5bfcdd12e27a08a74bf2a54254e1956108df573b4f102cd74c3a85f9a0a",
+    "catalog/interactions.json": "eda0f6458f1fcc4443f46e05a20ea419f2a08bc7ba9eb443701798211ef74ca8",
+    "src/server/InteriorWings.luau": "a8711b8ebd145e3011101035d4ed5e6fa3d2a99315df2e81bfe4b260724aa0ca"
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "compiled_plan_sha256": "5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a",
+  "contracts_version": "KC34-DOC-1.0",
+  "counts": {
+    "anchors": 49,
+    "art_deco_configured": 41,
+    "art_deco_total": 121,
+    "canonical_rooms": 24,
+    "doors": 16,
+    "interiors": 8,
+    "outer_districts": 6,
+    "places": 9
+  },
+  "failures": [],
+  "locked_files_verified": 23,
+  "publication": "NOT_RUN",
+  "runtime_tests": "NOT_RUN",
+  "status": "PASS",
+  "unresolved_runtime_bounds": {
+    "campus": {
+      "actual_aabb_xz": [
+        -105.0,
+        105.0,
+        -46.0,
+        104.0
+      ],
+      "actual_extent_xz": [
+        210.0,
+        150.0
+      ],
+      "catalog_covers_runtime": false,
+      "catalog_size": [
+        110,
+        100
+      ],
+      "suggested_centered_size_xz": [
+        230,
+        228
+      ]
+    },
+    "city_hall": {
+      "actual_aabb_xz": [
+        -105.0,
+        105.0,
+        -46.0,
+        104.0
+      ],
+      "actual_extent_xz": [
+        210.0,
+        150.0
+      ],
+      "catalog_covers_runtime": false,
+      "catalog_size": [
+        110,
+        100
+      ],
+      "suggested_centered_size_xz": [
+        230,
+        228
+      ]
+    },
+    "ekoh_tower": {
+      "actual_aabb_xz": [
+        -105.0,
+        105.0,
+        -46.0,
+        104.0
+      ],
+      "actual_extent_xz": [
+        210.0,
+        150.0
+      ],
+      "catalog_covers_runtime": false,
+      "catalog_size": [
+        110,
+        100
+      ],
+      "suggested_centered_size_xz": [
+        230,
+        228
+      ]
+    },
+    "innovation_lab": {
+      "actual_aabb_xz": [
+        -105.0,
+        105.0,
+        -46.0,
+        104.0
+      ],
+      "actual_extent_xz": [
+        210.0,
+        150.0
+      ],
+      "catalog_covers_runtime": false,
+      "catalog_size": [
+        110,
+        100
+      ],
+      "suggested_centered_size_xz": [
+        230,
+        228
+      ]
+    },
+    "justice_palace": {
+      "actual_aabb_xz": [
+        -105.0,
+        105.0,
+        -46.0,
+        104.0
+      ],
+      "actual_extent_xz": [
+        210.0,
+        150.0
+      ],
+      "catalog_covers_runtime": false,
+      "catalog_size": [
+        110,
+        100
+      ],
+      "suggested_centered_size_xz": [
+        230,
+        228
+      ]
+    },
+    "library": {
+      "actual_aabb_xz": [
+        -105.0,
+        105.0,
+        -46.0,
+        104.0
+      ],
+      "actual_extent_xz": [
+        210.0,
+        150.0
+      ],
+      "catalog_covers_runtime": false,
+      "catalog_size": [
+        110,
+        100
+      ],
+      "suggested_centered_size_xz": [
+        230,
+        228
+      ]
+    },
+    "museum": {
+      "actual_aabb_xz": [
+        -105.0,
+        105.0,
+        -46.0,
+        104.0
+      ],
+      "actual_extent_xz": [
+        210.0,
+        150.0
+      ],
+      "catalog_covers_runtime": false,
+      "catalog_size": [
+        110,
+        100
+      ],
+      "suggested_centered_size_xz": [
+        230,
+        228
+      ]
+    },
+    "orgo_center": {
+      "actual_aabb_xz": [
+        -105.0,
+        105.0,
+        -46.0,
+        104.0
+      ],
+      "actual_extent_xz": [
+        210.0,
+        150.0
+      ],
+      "catalog_covers_runtime": false,
+      "catalog_size": [
+        110,
+        100
+      ],
+      "suggested_centered_size_xz": [
+        230,
+        228
+      ]
+    }
+  },
+  "zip_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89"
+}

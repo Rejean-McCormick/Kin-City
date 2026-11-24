@@ -4,6 +4,7 @@ Includes optional v27-compatible geometry fallbacks provided by the owner.
 Never substitutes published PlaceIds, assets or external networks.
 """
 from pathlib import Path
+from art_deco_catalog import load_art_deco
 from export_roblox import export, lua_literal
 from make_studio_installer import quote_luau
 
@@ -63,6 +64,14 @@ local function source(parent,name,code)
   modules+=1
 end
 ''']
+    target=load_art_deco(root)['config']
+    guard='local artDecoTarget='+lua_literal(target)+'\n'+"""assert(game.PlaceId~=artDecoTarget.production_place_id, "Art Deco : Place de production interdite")
+assert(workspace:GetAttribute("KinArtDecoTestPlace")==true, "Art Deco : marquer explicitement cette copie de test")
+assert((game.PlaceId==0 and artDecoTarget.allow_local_test) or
+    (artDecoTarget.test_place_id~=nil and game.PlaceId==artDecoTarget.test_place_id),
+    "Art Deco : PlaceId de test non configure ; aucune modification effectuee")
+"""
+    out[0]=out[0].replace('print("KOALI v31.9.7',guard+'print("KOALI v31.9.7',1)
     for filename in sorted((root/'src/shared').glob('*.luau')):
         if filename.stem=='RuntimeConfig':
             code='return '+lua_literal({'mode':'LOCAL_UNIVERSE'})
@@ -82,7 +91,10 @@ end
     out.append('''print("KIN CITY : "..tostring(modules).." modules charges, debut du monde en EDITION...")
 local ok,built=xpcall(function()
   local builder=require(server:WaitForChild("WorldBuilder"))
-  return builder.build()
+  local state=builder.build()
+  local branchResult=require(server:WaitForChild("BranchRuntime")).apply(state)
+  assert(branchResult.ready,"KC35 B09: decor de branches incomplet : "..table.concat(branchResult.failed," | "))
+  return state
 end,function(err)
   if debug and type(debug.traceback)=="function" then return debug.traceback(tostring(err),2) end
   return tostring(err)
@@ -93,6 +105,7 @@ if not ok then
 end
 -- Écran et dalle visibles aussi en mode Édition, avant Play.
 require(server:WaitForChild("OutdoorCinema")).ensure()
+require(server:WaitForChild("MuseumBroadcastBarrier")).start()
 local world=workspace:FindFirstChild("KinCityGenerated")
 assert(world and world:GetAttribute("KinBuildState")=="Ready", "KIN CITY : KinCityGenerated pas pret")
 local city=world:FindFirstChild("Ville")
@@ -111,9 +124,10 @@ print("KIN CITY : dossiers : Workspace.KinCityGenerated.Ville et Workspace.KinCi
 print("KIN CITY : utiliser les portes dans Play pour visiter les institutions chargees a leurs origines locales.")
 ''')
     data=''.join(out)
-    OUTPUT.parent.mkdir(parents=True,exist_ok=True)
-    OUTPUT.write_text(data,encoding='utf8')
-    print('COMPLETE INSTALLER',OUTPUT,len(data.encode('utf8')),'bytes',modules if False else '')
-    return OUTPUT
+    output=root/'installer'/OUTPUT.name
+    output.parent.mkdir(parents=True,exist_ok=True)
+    output.write_text(data,encoding='utf8')
+    print('COMPLETE INSTALLER',output,len(data.encode('utf8')),'bytes')
+    return output
 
 if __name__=='__main__':generate()

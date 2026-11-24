@@ -1,0 +1,81 @@
+{
+  "schema_version": "kincity.handoff/1.0",
+  "branch_id": "B04",
+  "place_key": "campus",
+  "baseline": "KC33",
+  "baseline_sha256": "1fd3968977823a8814f54f766164c85e02cda3e370df984455f8c3f7db877c89",
+  "baseline_note": "SHA KC33 mentionné dans le handoff B09 précédent; NON revérifié dans cet environnement. Sources examinées ici : ZIP original utilisateur SHA256 6696d12dc6c9fefd845e9180a11c4f9412ea439989ef97bd0ef35eb091192798",
+  "contracts_version": "KC34-DOC-1.0",
+  "commit_or_patch_id": "B04-CAMPUS-V1-2026-10-26",
+  "change_class": "LOCAL",
+  "goal": "Proposer six zones de campus UCKK avec décor Art déco natif, gardes de collision et prévisualisation locale",
+  "changed_files": [
+    {
+      "path": "contrib/places/campus/CampusDecor.luau",
+      "sha256": "c0bb2e5cc30fe78c2d3fcb54470f94f4fd6447a14be8f219ebb25ab93e10833b"
+    },
+    {
+      "path": "contrib/places/campus/INSTALLER_B04_PREVIEW_LOCAL.luau",
+      "sha256": "37fd0e7171c726252770e1c7a800a9cb13042c2b834a2b607d499cf9e231b58e"
+    },
+    {
+      "path": "contrib/places/campus/QA_B04.md",
+      "sha256": "f6c4a058fd92e57ef79b8ef424e9ba0149a9a06a31efed8be47a3122463eb87a"
+    },
+    {
+      "path": "contrib/places/campus/README.md",
+      "sha256": "2f807fcefb767ecd56deba25eb06c2ed548dc8436b24081a567175e1a2620289"
+    },
+    {
+      "path": "contrib/places/campus/campus_program.json",
+      "sha256": "38aec71e728c3e64152db9cedc79966663635c3ab96337609fd1b6764b7a8006"
+    },
+    {
+      "path": "contrib/places/campus/recipe.json",
+      "sha256": "7610405e00fd9c3041c660ff0cb5d56b51f0eb5438edc3d5506bc4e15f3145ea"
+    },
+    {
+      "path": "contrib/places/campus/tests/TESTS_B04.txt",
+      "sha256": "878acc271d1dd33cd6f7be474cecba2b6719217d0e1362c97c834352f1fd03b1"
+    },
+    {
+      "path": "contrib/places/campus/tests/test_b04.py",
+      "sha256": "f0d264552ae32920cb00409a3d41e8109e6b996efcf6eacdd2dd6af53a83d02b"
+    }
+  ],
+  "contract_changes": [],
+  "assets_added": [],
+  "tests_executed": [
+    {
+      "name": "B04 static manifest and noncollision invariants, 12 tests",
+      "result": "PASS",
+      "evidence": "contrib/places/campus/tests/TESTS_B04.txt"
+    }
+  ],
+  "tests_not_executed": [
+    "B09 KC33 checkout compatibility verification",
+    "Roblox Studio local render",
+    "Roblox published teleportation",
+    "Mobile FPS/memory",
+    "Luau parser/compiler"
+  ],
+  "evidence": [
+    "contrib/places/campus/tests/TESTS_B04.txt",
+    "contrib/places/campus/QA_B04.md"
+  ],
+  "performance": {
+    "measured": false,
+    "device": "",
+    "profile": "",
+    "metrics": {}
+  },
+  "risk": [
+    "B09 archive absent for integration verification",
+    "Surfaces GUI orientation requires Studio review",
+    "Loader not connected to WorldBuilder",
+    "Bounds smaller than runtime wings"
+  ],
+  "rollback": "Remove only declared B04 files and delete the B04_CampusDecor_KC34 folder in a LOCAL test copy, or restore its .rbxl backup.",
+  "needs_approval": [],
+  "status": "READY_FOR_REVIEW"
+}

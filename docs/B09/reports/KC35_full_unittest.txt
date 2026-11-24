@@ -1,0 +1,69 @@
+======================================================================
+ERROR: test_art_deco (unittest.loader._FailedTest.test_art_deco)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_art_deco
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/kc35/KinCity_ArtDeco_V3/source/Kin-City/tests/test_art_deco.py", line 4, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+======================================================================
+ERROR: test_art_deco_architecture (unittest.loader._FailedTest.test_art_deco_architecture)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_art_deco_architecture
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/kc35/KinCity_ArtDeco_V3/source/Kin-City/tests/test_art_deco_architecture.py", line 4, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+======================================================================
+ERROR: test_art_deco_full_refactor (unittest.loader._FailedTest.test_art_deco_full_refactor)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_art_deco_full_refactor
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/kc35/KinCity_ArtDeco_V3/source/Kin-City/tests/test_art_deco_full_refactor.py", line 6, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+======================================================================
+ERROR: test_art_deco_import_mapping (unittest.loader._FailedTest.test_art_deco_import_mapping)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_art_deco_import_mapping
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/kc35/KinCity_ArtDeco_V3/source/Kin-City/tests/test_art_deco_import_mapping.py", line 5, in <module>
+    from lupa import LuaRuntime
+ModuleNotFoundError: No module named 'lupa'
+
+
+----------------------------------------------------------------------
+Ran 100 tests in 6.536s
+
+FAILED (errors=4)
+EXPORT OK 5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a / mode LOCAL_UNIVERSE / places 9
+COMPLETE INSTALLER /mnt/data/kc35/KinCity_ArtDeco_V3/source/Kin-City/installer/KinCity_INSTALLATION_TOTALE_v31_9_7.luau 1070693 bytes
+RELEASE: official test installer only; 250 source/data artifacts
+EXPORT OK 5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a / mode LOCAL_UNIVERSE / places 9
+EXPORT OK 5941cd6ecd89ea806cd5b815fcc128b1abef1cff77f77d670dbe01c7f487039a / mode LOCAL_UNIVERSE / places 9

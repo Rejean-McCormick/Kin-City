@@ -74,3 +74,19 @@ Les documents Kin City décrivent un **système cible à développer**, pas des 
 ## Construction v3
 
 Voir [construction industrielle et géométrie](07-construction/README.md). La v3 améliore les contrats avec une géométrie explicite, une résolution des assets, des tests négatifs et un compilateur de plan logique. Aucune revendication de jeu déjà exécuté dans Roblox.
+
+
+## KC36 — Refonte du plan directeur et orchestration (27 octobre 2026)
+
+**NOUVEAU :** voir [le dossier KC36 — Urbanisme, emprises, sols et orchestration](09-refonte-urbaine/00_LIRE_EN_PREMIER.md). Cette section décrit le plan actuel KC35, les collisions bâtiment/avenue détectées par calcul, le traitement du scintillement du gazon, l'interdiction des panneaux de quartier flottants, et la cible d'orchestration avant toute nouvelle passe de code.
+
+Elle est **documentaire** et proposée pour revue ; elle n'a pas modifié les sources Roblox, ni rendu les scènes actuelles automatiquement correctes.
+
+## KC36 — Refactor and AI branch orchestration
+
+- [KC36 source-derived urban overhaul and evidence](09-refonte-urbaine/00_LIRE_EN_PREMIER.md) — architectural target; not an implemented replacement of KC35.
+- [AI agent coordination hub](10-ai-coordination/README.md) — ten branches, source-of-truth, dependencies, geometry and merge gates.
+- [Original ten branch missions](../reference_KC34/branches/B09_integration.md) — original locked KC34 reference briefs, now contextualized by the KC36 rules.
+- [Root-level coding agent instructions](../AGENTS.md).
+
+**Current status caution:** a successful KC35 local install does not establish visual/staging/mobile acceptance. Owner-observed white lawn flashing and oversized floating B10 signs are known regressions to address architecturally.

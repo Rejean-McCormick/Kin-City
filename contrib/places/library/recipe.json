@@ -1,0 +1,11 @@
+{
+  "schema_version": "kincity.place-recipe/1.0",
+  "place_key": "library",
+  "owner_branch": "B03",
+  "requires_contracts_version": "KC34-DOC-1.0",
+  "recipe_revision": "0.1.0-library-visual-proposal",
+  "seed_policy": "CITY_SEED_XOR_PLACE_HASH",
+  "profiles_supported": ["LITE","STANDARD","SHOWCASE"],
+  "decorations": [],
+  "implementation_status": "NOT_CONNECTED_TO_WORLD_BUILDER"
+}

@@ -1,0 +1,644 @@
+{
+  "scope": "Planned source geometry only; no Studio execution, FPS, memory or total legacy geometry measurement.",
+  "profiles": {
+    "LITE": {
+      "city": {
+        "institution_shells": {
+          "central.city_hall": {
+            "triangles": 27664,
+            "parts": 33,
+            "clones": 5
+          },
+          "central.ekoh_tower": {
+            "triangles": 38952,
+            "parts": 33,
+            "clones": 5
+          },
+          "ethikos.justice_palace": {
+            "triangles": 28052,
+            "parts": 34,
+            "clones": 5
+          },
+          "keenkonnect.innovation_lab": {
+            "triangles": 27000,
+            "parts": 34,
+            "clones": 5
+          },
+          "konnected.library": {
+            "triangles": 27456,
+            "parts": 32,
+            "clones": 5
+          },
+          "konnected.university": {
+            "triangles": 33360,
+            "parts": 34,
+            "clones": 5
+          },
+          "kreative.museum": {
+            "triangles": 33912,
+            "parts": 32,
+            "clones": 5
+          },
+          "orgo.admin_center": {
+            "triangles": 33940,
+            "parts": 33,
+            "clones": 5
+          }
+        },
+        "pavilions": {
+          "triangles": 49014,
+          "parts": 162,
+          "clones": 18
+        }
+      },
+      "interiors": {
+        "campus": {
+          "architecture": {
+            "triangles": 33755,
+            "parts": 584,
+            "clones": 113
+          },
+          "furniture": {
+            "triangles": 23242,
+            "parts": 74,
+            "clones": 16
+          },
+          "rooms": {
+            "campus.chamber": 15,
+            "campus.gallery": 12,
+            "campus.lobby": 19,
+            "campus.west_wing": 14,
+            "campus.east_wing": 14,
+            "campus.rear_atrium": 20
+          }
+        },
+        "city_hall": {
+          "architecture": {
+            "triangles": 33755,
+            "parts": 584,
+            "clones": 113
+          },
+          "furniture": {
+            "triangles": 23242,
+            "parts": 74,
+            "clones": 16
+          },
+          "rooms": {
+            "city_hall.chamber": 15,
+            "city_hall.gallery": 12,
+            "city_hall.lobby": 19,
+            "city_hall.west_wing": 14,
+            "city_hall.east_wing": 14,
+            "city_hall.rear_atrium": 20
+          }
+        },
+        "ekoh_tower": {
+          "architecture": {
+            "triangles": 33755,
+            "parts": 584,
+            "clones": 113
+          },
+          "furniture": {
+            "triangles": 16126,
+            "parts": 62,
+            "clones": 13
+          },
+          "rooms": {
+            "ekoh_tower.chamber": 15,
+            "ekoh_tower.gallery": 12,
+            "ekoh_tower.lobby": 19,
+            "ekoh_tower.west_wing": 14,
+            "ekoh_tower.east_wing": 14,
+            "ekoh_tower.rear_atrium": 20
+          }
+        },
+        "innovation_lab": {
+          "architecture": {
+            "triangles": 33755,
+            "parts": 584,
+            "clones": 113
+          },
+          "furniture": {
+            "triangles": 23546,
+            "parts": 81,
+            "clones": 17
+          },
+          "rooms": {
+            "innovation_lab.chamber": 15,
+            "innovation_lab.gallery": 12,
+            "innovation_lab.lobby": 19,
+            "innovation_lab.west_wing": 14,
+            "innovation_lab.east_wing": 14,
+            "innovation_lab.rear_atrium": 20
+          }
+        },
+        "justice_palace": {
+          "architecture": {
+            "triangles": 33755,
+            "parts": 584,
+            "clones": 113
+          },
+          "furniture": {
+            "triangles": 23242,
+            "parts": 74,
+            "clones": 16
+          },
+          "rooms": {
+            "justice_palace.chamber": 15,
+            "justice_palace.gallery": 12,
+            "justice_palace.lobby": 19,
+            "justice_palace.west_wing": 14,
+            "justice_palace.east_wing": 14,
+            "justice_palace.rear_atrium": 20
+          }
+        },
+        "library": {
+          "architecture": {
+            "triangles": 33539,
+            "parts": 572,
+            "clones": 113
+          },
+          "furniture": {
+            "triangles": 23242,
+            "parts": 74,
+            "clones": 16
+          },
+          "rooms": {
+            "library.chamber": 15,
+            "library.gallery": 12,
+            "library.lobby": 19,
+            "library.west_wing": 14,
+            "library.east_wing": 14,
+            "library.rear_atrium": 20
+          }
+        },
+        "museum": {
+          "architecture": {
+            "triangles": 33755,
+            "parts": 584,
+            "clones": 113
+          },
+          "furniture": {
+            "triangles": 18034,
+            "parts": 56,
+            "clones": 13
+          },
+          "rooms": {
+            "museum.chamber": 15,
+            "museum.gallery": 12,
+            "museum.lobby": 19,
+            "museum.west_wing": 14,
+            "museum.east_wing": 14,
+            "museum.rear_atrium": 20
+          }
+        },
+        "orgo_center": {
+          "architecture": {
+            "triangles": 33755,
+            "parts": 584,
+            "clones": 113
+          },
+          "furniture": {
+            "triangles": 23242,
+            "parts": 74,
+            "clones": 16
+          },
+          "rooms": {
+            "orgo_center.chamber": 15,
+            "orgo_center.gallery": 12,
+            "orgo_center.lobby": 19,
+            "orgo_center.west_wing": 14,
+            "orgo_center.east_wing": 14,
+            "orgo_center.rear_atrium": 20
+          }
+        }
+      }
+    },
+    "STANDARD": {
+      "city": {
+        "institution_shells": {
+          "central.city_hall": {
+            "triangles": 27664,
+            "parts": 33,
+            "clones": 5
+          },
+          "central.ekoh_tower": {
+            "triangles": 38952,
+            "parts": 33,
+            "clones": 5
+          },
+          "ethikos.justice_palace": {
+            "triangles": 28052,
+            "parts": 34,
+            "clones": 5
+          },
+          "keenkonnect.innovation_lab": {
+            "triangles": 27000,
+            "parts": 34,
+            "clones": 5
+          },
+          "konnected.library": {
+            "triangles": 27456,
+            "parts": 32,
+            "clones": 5
+          },
+          "konnected.university": {
+            "triangles": 33360,
+            "parts": 34,
+            "clones": 5
+          },
+          "kreative.museum": {
+            "triangles": 33912,
+            "parts": 32,
+            "clones": 5
+          },
+          "orgo.admin_center": {
+            "triangles": 33940,
+            "parts": 33,
+            "clones": 5
+          }
+        },
+        "pavilions": {
+          "triangles": 49014,
+          "parts": 162,
+          "clones": 18
+        }
+      },
+      "interiors": {
+        "campus": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "campus.chamber": 21,
+            "campus.gallery": 18,
+            "campus.lobby": 24,
+            "campus.west_wing": 19,
+            "campus.east_wing": 19,
+            "campus.rear_atrium": 27
+          }
+        },
+        "city_hall": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "city_hall.chamber": 21,
+            "city_hall.gallery": 18,
+            "city_hall.lobby": 24,
+            "city_hall.west_wing": 19,
+            "city_hall.east_wing": 19,
+            "city_hall.rear_atrium": 27
+          }
+        },
+        "ekoh_tower": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 16486,
+            "parts": 80,
+            "clones": 16
+          },
+          "rooms": {
+            "ekoh_tower.chamber": 21,
+            "ekoh_tower.gallery": 18,
+            "ekoh_tower.lobby": 24,
+            "ekoh_tower.west_wing": 19,
+            "ekoh_tower.east_wing": 19,
+            "ekoh_tower.rear_atrium": 27
+          }
+        },
+        "innovation_lab": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 31022,
+            "parts": 111,
+            "clones": 23
+          },
+          "rooms": {
+            "innovation_lab.chamber": 21,
+            "innovation_lab.gallery": 18,
+            "innovation_lab.lobby": 24,
+            "innovation_lab.west_wing": 19,
+            "innovation_lab.east_wing": 19,
+            "innovation_lab.rear_atrium": 27
+          }
+        },
+        "justice_palace": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "justice_palace.chamber": 21,
+            "justice_palace.gallery": 18,
+            "justice_palace.lobby": 24,
+            "justice_palace.west_wing": 19,
+            "justice_palace.east_wing": 19,
+            "justice_palace.rear_atrium": 27
+          }
+        },
+        "library": {
+          "architecture": {
+            "triangles": 38547,
+            "parts": 730,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "library.chamber": 21,
+            "library.gallery": 18,
+            "library.lobby": 24,
+            "library.west_wing": 19,
+            "library.east_wing": 19,
+            "library.rear_atrium": 27
+          }
+        },
+        "museum": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 20302,
+            "parts": 68,
+            "clones": 16
+          },
+          "rooms": {
+            "museum.chamber": 21,
+            "museum.gallery": 18,
+            "museum.lobby": 24,
+            "museum.west_wing": 19,
+            "museum.east_wing": 19,
+            "museum.rear_atrium": 27
+          }
+        },
+        "orgo_center": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "orgo_center.chamber": 21,
+            "orgo_center.gallery": 18,
+            "orgo_center.lobby": 24,
+            "orgo_center.west_wing": 19,
+            "orgo_center.east_wing": 19,
+            "orgo_center.rear_atrium": 27
+          }
+        }
+      }
+    },
+    "SHOWCASE": {
+      "city": {
+        "institution_shells": {
+          "central.city_hall": {
+            "triangles": 27664,
+            "parts": 33,
+            "clones": 5
+          },
+          "central.ekoh_tower": {
+            "triangles": 38952,
+            "parts": 33,
+            "clones": 5
+          },
+          "ethikos.justice_palace": {
+            "triangles": 28052,
+            "parts": 34,
+            "clones": 5
+          },
+          "keenkonnect.innovation_lab": {
+            "triangles": 27000,
+            "parts": 34,
+            "clones": 5
+          },
+          "konnected.library": {
+            "triangles": 27456,
+            "parts": 32,
+            "clones": 5
+          },
+          "konnected.university": {
+            "triangles": 33360,
+            "parts": 34,
+            "clones": 5
+          },
+          "kreative.museum": {
+            "triangles": 33912,
+            "parts": 32,
+            "clones": 5
+          },
+          "orgo.admin_center": {
+            "triangles": 33940,
+            "parts": 33,
+            "clones": 5
+          }
+        },
+        "pavilions": {
+          "triangles": 49014,
+          "parts": 162,
+          "clones": 18
+        }
+      },
+      "interiors": {
+        "campus": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "campus.chamber": 21,
+            "campus.gallery": 18,
+            "campus.lobby": 24,
+            "campus.west_wing": 19,
+            "campus.east_wing": 19,
+            "campus.rear_atrium": 27
+          }
+        },
+        "city_hall": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "city_hall.chamber": 21,
+            "city_hall.gallery": 18,
+            "city_hall.lobby": 24,
+            "city_hall.west_wing": 19,
+            "city_hall.east_wing": 19,
+            "city_hall.rear_atrium": 27
+          }
+        },
+        "ekoh_tower": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 16486,
+            "parts": 80,
+            "clones": 16
+          },
+          "rooms": {
+            "ekoh_tower.chamber": 21,
+            "ekoh_tower.gallery": 18,
+            "ekoh_tower.lobby": 24,
+            "ekoh_tower.west_wing": 19,
+            "ekoh_tower.east_wing": 19,
+            "ekoh_tower.rear_atrium": 27
+          }
+        },
+        "innovation_lab": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 31022,
+            "parts": 111,
+            "clones": 23
+          },
+          "rooms": {
+            "innovation_lab.chamber": 21,
+            "innovation_lab.gallery": 18,
+            "innovation_lab.lobby": 24,
+            "innovation_lab.west_wing": 19,
+            "innovation_lab.east_wing": 19,
+            "innovation_lab.rear_atrium": 27
+          }
+        },
+        "justice_palace": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "justice_palace.chamber": 21,
+            "justice_palace.gallery": 18,
+            "justice_palace.lobby": 24,
+            "justice_palace.west_wing": 19,
+            "justice_palace.east_wing": 19,
+            "justice_palace.rear_atrium": 27
+          }
+        },
+        "library": {
+          "architecture": {
+            "triangles": 38547,
+            "parts": 730,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "library.chamber": 21,
+            "library.gallery": 18,
+            "library.lobby": 24,
+            "library.west_wing": 19,
+            "library.east_wing": 19,
+            "library.rear_atrium": 27
+          }
+        },
+        "museum": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 20302,
+            "parts": 68,
+            "clones": 16
+          },
+          "rooms": {
+            "museum.chamber": 21,
+            "museum.gallery": 18,
+            "museum.lobby": 24,
+            "museum.west_wing": 19,
+            "museum.east_wing": 19,
+            "museum.rear_atrium": 27
+          }
+        },
+        "orgo_center": {
+          "architecture": {
+            "triangles": 38943,
+            "parts": 752,
+            "clones": 147
+          },
+          "furniture": {
+            "triangles": 30718,
+            "parts": 104,
+            "clones": 22
+          },
+          "rooms": {
+            "orgo_center.chamber": 21,
+            "orgo_center.gallery": 18,
+            "orgo_center.lobby": 24,
+            "orgo_center.west_wing": 19,
+            "orgo_center.east_wing": 19,
+            "orgo_center.rear_atrium": 27
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "B01": {
+    "exit_code": 0,
+    "summary": [
+      "Ran 18 tests in 0.008s",
+      "OK"
+    ],
+    "log": "B01_replay.log",
+    "baseline_used": "KC33",
+    "studio": "NOT_TESTED"
+  },
+  "B02": {
+    "exit_code": 0,
+    "summary": [
+      "Ran 20 tests in 0.012s",
+      "OK"
+    ],
+    "log": "B02_replay.log",
+    "baseline_used": "KC33",
+    "studio": "NOT_TESTED"
+  },
+  "B03": {
+    "exit_code": 0,
+    "summary": [
+      "Ran 19 tests in 0.012s",
+      "OK"
+    ],
+    "log": "B03_replay.log",
+    "baseline_used": "KC33",
+    "studio": "NOT_TESTED"
+  },
+  "B04": {
+    "exit_code": 0,
+    "summary": [
+      "Ran 12 tests in 0.003s",
+      "OK"
+    ],
+    "log": "B04_replay.log",
+    "baseline_used": "KC33",
+    "studio": "NOT_TESTED"
+  },
+  "B05": {
+    "exit_code": 0,
+    "summary": [
+      "Ran 12 tests in 0.005s",
+      "OK"
+    ],
+    "log": "B05_replay.log",
+    "baseline_used": "KC33",
+    "studio": "NOT_TESTED"
+  },
+  "B06": {
+    "exit_code": 0,
+    "summary": [
+      "Ran 10 tests in 0.011s",
+      "OK"
+    ],
+    "log": "B06_replay.log",
+    "baseline_used": "V3 ORIGINAL EMBEDDED, NOT KC33",
+    "studio": "NOT_TESTED"
+  },
+  "B08": {
+    "exit_code": 0,
+    "summary": [
+      "Ran 16 tests in 0.009s",
+      "OK"
+    ],
+    "log": "B08_replay.log",
+    "baseline_used": "KC33",
+    "studio": "NOT_TESTED"
+  },
+  "B10": {
+    "exit_code": 0,
+    "summary": [
+      "Ran 17 tests in 0.003s",
+      "OK"
+    ],
+    "log": "B10_replay.log",
+    "baseline_used": "KC33",
+    "studio": "NOT_TESTED"
+  }
+}

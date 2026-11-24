@@ -4,6 +4,9 @@
 local F=require(script.Parent.Factory)
 local Vertical={}
 local Roof=require(script.Parent.RooftopGardens)
+local ArtAssets=require(script.Parent.ArtDecoAssets)
+local ArtData=require(script.Parent.ArtDecoData)
+local Buildings=require(game:GetService("ReplicatedStorage"):WaitForChild("KinCityShared").Buildings)
 local function block(parent,name,origin,size,x,y,z,color,material)
     return F.part(parent,name,size,CFrame.new(origin+Vector3.new(x,y,z)),color,material)
 end
@@ -116,8 +119,24 @@ function Vertical.make(model,placeKey,origin,style)
             block(section,"Garde-corps passerelle",origin,Vector3.new(25,3.4,0.55),s*10,19.9,z,accent,Enum.Material.Metal)
         end
     end
-    for _,s in ipairs({-1,1}) do
-        stairs(section,origin,placeKey,s*37,accent,trim)
+    local sector="central"
+    for _,building in ipairs(Buildings) do
+        if building.interior_place_key==placeKey then sector=building.district_id;break end
+    end
+    for _,side in ipairs({-1,1}) do
+        stairs(section,origin,placeKey,side*37,accent,trim)
+        -- Imported stair skins dress the first native steps; they are NOT
+        -- colliders. The full climb and railings remain genuine Roblox parts.
+        local skin=if sector=="kreative" then ArtData.placements.stair_skins.kreative
+            else ArtData.placements.stair_skins.default
+        local imported=ArtAssets.place(section,skin,sector,Vector3.new(7.2,5.7,11.4),
+            CFrame.new(origin+Vector3.new(side*37,0,49)),"architecture/"..placeKey)
+        if imported then
+            imported.Name="Habillage Art Deco des premières marches "..side
+            for _,part in ipairs(imported:GetDescendants()) do
+                if part:IsA("BasePart") then part:SetAttribute("KinOptionalDetail",true) end
+            end
+        end
     end
     upperFurniture(section,origin,placeKey,accent)
     elevator(section,origin,placeKey,accent)
